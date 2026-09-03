@@ -105,27 +105,23 @@ describe.skipIf(!url)('tenant isolation (F-05)', () => {
         firstSeenAt: NOW,
         lastSeenAt: NOW,
       });
-      await t.db
-        .insert(schema.findingEvidence)
-        .values({
-          findingId: `f-${tenant}`,
-          evidenceId: `text:${hash.slice(0, 16)}`,
-          tenantId: tenant,
-          sourceRef: 'test',
-        });
-      await t.db
-        .insert(schema.caseEvents)
-        .values({
-          id: `e-${tenant}`,
-          tenantId: tenant,
-          sourceRef: 'test',
-          caseId,
-          seq: 1,
-          at: NOW,
-          actor: { kind: 'scanner' },
-          type: 'case_opened',
-          payload: { source: 'scanner' },
-        });
+      await t.db.insert(schema.findingEvidence).values({
+        findingId: `f-${tenant}`,
+        evidenceId: `text:${hash.slice(0, 16)}`,
+        tenantId: tenant,
+        sourceRef: 'test',
+      });
+      await t.db.insert(schema.caseEvents).values({
+        id: `e-${tenant}`,
+        tenantId: tenant,
+        sourceRef: 'test',
+        caseId,
+        seq: 1,
+        at: NOW,
+        actor: { kind: 'scanner' },
+        type: 'case_opened',
+        payload: { source: 'scanner' },
+      });
     }
   });
 
@@ -233,18 +229,16 @@ describe.skipIf(!url)('tenant isolation (F-05)', () => {
     // A refused statement aborts its transaction, so each attempt gets its own.
     await failsWith(
       withTenant(t, 'tenant-a', (tx) =>
-        tx
-          .insert(schema.answers)
-          .values({
-            id: 'a-x',
-            tenantId: 'tenant-b',
-            sourceRef: 'test',
-            caseId: 'DK-26-BBBB',
-            questionId: 'Q1',
-            answer: 'yes',
-            answeredBy: { kind: 'scanner' },
-            answeredAt: NOW,
-          }),
+        tx.insert(schema.answers).values({
+          id: 'a-x',
+          tenantId: 'tenant-b',
+          sourceRef: 'test',
+          caseId: 'DK-26-BBBB',
+          questionId: 'Q1',
+          answer: 'yes',
+          answeredBy: { kind: 'scanner' },
+          answeredAt: NOW,
+        }),
       ),
       /row-level security policy/,
     );

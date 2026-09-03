@@ -46,7 +46,8 @@
     "tsx": "^4.23.13",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.19.0",
-    "vitest": "^2.1.8"
+    "vitest": "^2.1.8",
+    "zod": "^4.5.4"
   },
   "dependencies": {
     "@gc/agent": "workspace:*",
@@ -57,6 +58,7 @@
     "@gc/db": "workspace:*",
     "@gc/findings": "workspace:*",
     "@gc/i18n": "workspace:*",
+    "@gc/jobs": "workspace:*",
     "@gc/remedies": "workspace:*",
     "@gc/rules": "workspace:*",
     "@gc/scanner": "workspace:*"
