@@ -16,13 +16,12 @@ companies a list of problems; this hands them a plan and the things that close i
 
 ## Where you are
 
-**25 of 112 done.** Phase 0 is complete and signed off; phase 1 is 6 of 11 and phase 2 is
-9 of 34. Contracts, config with the EU-only allowlist, the test harness, record and
+**27 of 112 done.** Phase 0 is complete and signed off; phase 1 is 7 of 11 and phase 2 is
+10 of 34. Contracts, config with the EU-only allowlist, the test harness, record and
 replay, i18n, the remedy catalogue and resolver, the model client, the web shell, the
-fixture estate (now with TLS), the browser pool, Pass A, cookie classification and the
-security surface checks are in. The remaining phase 1 items (`F-02`, `F-03`, `F-05`,
-`F-06`, `T-07`) all wait on a Postgres with pgvector, which needs Docker; see the notes
-at the end of this file.
+fixture estate (with TLS), the browser pool, Pass A, cookie classification, the security
+surface checks, policy discovery and the database harness are in. The database is up
+(`pnpm db:up`), so `F-03`, `F-05`, `F-06` and `T-07` are open.
 
 Do not trust that list — ask:
 
@@ -164,10 +163,15 @@ different architecture. The plan is a hypothesis, but it is a shared one.
 
 ## Notes from the session of 3 September 2026
 
-- **`F-02` is blocked on this machine, not on the plan.** Docker Desktop would not bring
-  its engine up (the docker-desktop WSL distro stayed stopped) and later crashed. The
-  local Postgres 17 has no pgvector. Everything downstream of `F-02` needs a database:
-  start there when Docker works, or point `DATABASE_URL` at any Postgres 16 with pgvector.
+- **Docker Desktop does not work on this machine; Docker Engine runs inside WSL Ubuntu.**
+  Windows here cannot manage the Unix-socket files Desktop creates at start-up (every one
+  becomes "The file cannot be accessed by the system" the moment its process dies), so the
+  backend crashes on launch. The engine in WSL listens on `127.0.0.1:2375`; the Windows
+  `docker` CLI uses context `wsl-engine`; `.env` sets `COMPOSE_CONVERT_WINDOWS_PATHS=1` and
+  WSL has `/c -> /mnt/c` so bind mounts resolve. Desktop's autostart entry was removed and
+  it is otherwise untouched; two `*.stale.*` directories under `%LOCALAPPDATA%\Docker` can
+  be deleted from WSL (`rm -r /mnt/c/Users/frits/AppData/Local/Docker/run.stale.*`). If the
+  engine is down after a reboot: `wsl -d Ubuntu -u root -e systemctl start docker`.
 - **The web app builds with webpack, not Turbopack.** The packages use NodeNext resolution
   (imports name `.js`, sources are `.ts`); webpack maps one to the other via an extension
   alias in `apps/web/next.config.ts`, Turbopack does not yet. The scripts pass `--webpack`.
