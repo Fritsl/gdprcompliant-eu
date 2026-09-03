@@ -15,6 +15,7 @@ const config: NextConfig = {
     '@gc/findings',
     '@gc/remedies',
     '@gc/jobs',
+    '@gc/agent',
   ],
   // The Postgres driver stays a Node module; bundling it breaks its sockets.
   serverExternalPackages: ['postgres', 'pdfkit', 'pg-boss', 'pg'],

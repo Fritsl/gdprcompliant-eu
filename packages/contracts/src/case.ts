@@ -135,6 +135,8 @@ export const CaseEventSchema = z
     event('colleague_invited', { role: NonEmptyStringSchema }),
     event('colleague_joined', { role: NonEmptyStringSchema }),
     event('reminder_sent', { role: NonEmptyStringSchema }),
+    // An invitation withdrawn by the owner (P-02): the link stops working.
+    event('invitation_revoked', { role: NonEmptyStringSchema }),
     event('watch_run', { scanId: IdSchema, changes: z.number().int().min(0) }),
     event('meeting_requested', { topic: z.string().optional() }),
     event('note_added', { text: NonEmptyStringSchema }),

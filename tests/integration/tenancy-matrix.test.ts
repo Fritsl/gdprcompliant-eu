@@ -126,6 +126,8 @@ describe.skipIf(!url)('tenant A against tenant B, every way across (T-07)', () =
       });
     });
     const invite = await inviteMember(t, {
+      invitedBy: 'Mette',
+      baseUrl: 'https://gdprcompliant.eu',
       caseId: side.caseId,
       tenantId: side.tenantId,
       role: 'it',
@@ -245,9 +247,15 @@ describe.skipIf(!url)('tenant A against tenant B, every way across (T-07)', () =
     await expect(claimByOverride(t, { ...pair, by: 'a', reason: 'trying' })).rejects.toMatchObject({
       reason: 'not_found',
     });
-    await expect(inviteMember(t, { ...pair, role: 'hr', email: 'hr@b-side.dk' })).rejects.toThrow(
-      /no case/,
-    );
+    await expect(
+      inviteMember(t, {
+        invitedBy: 'Mette',
+        baseUrl: 'https://gdprcompliant.eu',
+        ...pair,
+        role: 'hr',
+        email: 'hr@b-side.dk',
+      }),
+    ).rejects.toThrow(/no case/);
     await expect(grantFullAccess(t, A.tenantId, B.caseId, B.memberId)).rejects.toThrow(/no member/);
     await expect(syncCaseStage(t, A.tenantId, B.caseId)).rejects.toThrow(/no case/);
     // Nothing happened to B: no event, no member, still claimed, still there.

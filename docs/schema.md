@@ -1,6 +1,6 @@
 # Schema
 
-Generated from `packages/db/migrations/meta/0007_snapshot.json` by `scripts/schema-doc.mjs`.
+Generated from `packages/db/migrations/meta/0008_snapshot.json` by `scripts/schema-doc.mjs`.
 Do not edit; change `packages/db/src/schema.ts`, run `pnpm db:generate`, then `pnpm db:doc`.
 
 Every table carries `tenant_id`, `created_at` and `source_ref`. `case_events` and
@@ -60,6 +60,10 @@ erDiagram
     text email
     text invite_token
     timestamp invited_at
+    text invited_by
+    timestamp expires_at
+    timestamp revoked_at "nullable"
+    timestamp reminded_at "nullable"
     timestamp joined_at "nullable"
     boolean granted_full
   }
@@ -163,6 +167,18 @@ erDiagram
     timestamp created_at
     text source_ref
   }
+  mail_outbox {
+    text id "PK"
+    text tenant_id
+    timestamp created_at
+    text source_ref
+    text case_id
+    text kind
+    text to
+    text subject
+    text body
+    timestamp sent_at "nullable"
+  }
   processing_activities {
     text id "PK"
     text tenant_id
@@ -230,6 +246,7 @@ erDiagram
   cases ||--o{ findings : "case_id"
   jurisdictions ||--o{ findings : "jurisdiction"
   remedies ||--o{ findings : "remedy_id, remedy_version"
+  cases ||--o{ mail_outbox : "case_id"
   cases ||--o{ processing_activities : "case_id"
   cases ||--o{ vendors : "case_id"
   vendors ||--o{ vendors : "parent_vendor_id"
@@ -299,7 +316,7 @@ erDiagram
 - unique index case_events_case_seq (case_id, seq)
 - index case_events_tenant_idx (tenant_id)
 - check case_events_seq: `"case_events"."seq" >= 1`
-- check case_events_type: `"type" in ('case_opened', 'scan_started', 'scan_completed', 'scan_failed', 'finding_raised', 'finding_closed', 'finding_regressed', 'fix_verification_failed', 'check_undetermined', 'question_asked', 'question_answered', 'artefact_generated', 'artefact_published', 'colleague_invited', 'colleague_joined', 'reminder_sent', 'watch_run', 'meeting_requested', 'note_added', 'claim_rejected', 'claim_requested', 'case_claimed', 'case_expired', 'export_produced', 'deletion_requested', 'vendor_resolved')`
+- check case_events_type: `"type" in ('case_opened', 'scan_started', 'scan_completed', 'scan_failed', 'finding_raised', 'finding_closed', 'finding_regressed', 'fix_verification_failed', 'check_undetermined', 'question_asked', 'question_answered', 'artefact_generated', 'artefact_published', 'colleague_invited', 'colleague_joined', 'reminder_sent', 'invitation_revoked', 'watch_run', 'meeting_requested', 'note_added', 'claim_rejected', 'claim_requested', 'case_claimed', 'case_expired', 'export_produced', 'deletion_requested', 'vendor_resolved')`
 - check case_events_actor: `coalesce("case_events"."actor"->>'kind', '') in ('person', 'agent', 'scanner', 'watcher', 'system')`
 
 ## case_members
@@ -315,6 +332,10 @@ erDiagram
 | email | text | not null |
 | invite_token | text | not null |
 | invited_at | timestamp with time zone | not null |
+| invited_by | text | not null, default '' |
+| expires_at | timestamp with time zone | not null, default now() + interval '14 days' |
+| revoked_at | timestamp with time zone |  |
+| reminded_at | timestamp with time zone |  |
 | joined_at | timestamp with time zone |  |
 | granted_full | boolean | not null, default false |
 
@@ -488,6 +509,25 @@ erDiagram
 | source_ref | text | not null |
 
 - check jurisdictions_code: `"jurisdictions"."code" ~ '^(EU|[A-Z]{2})$'`
+
+## mail_outbox
+
+| Column | Type | Constraints |
+| --- | --- | --- |
+| id | text | primary key, not null |
+| tenant_id | text | not null |
+| created_at | timestamp with time zone | not null, default now() |
+| source_ref | text | not null |
+| case_id | text | not null |
+| kind | text | not null |
+| to | text | not null |
+| subject | text | not null |
+| body | text | not null |
+| sent_at | timestamp with time zone |  |
+
+- case_id → cases(id)
+- index mail_outbox_case_idx (case_id, created_at)
+- check mail_outbox_kind: `"kind" in ('invitation', 'reminder')`
 
 ## processing_activities
 

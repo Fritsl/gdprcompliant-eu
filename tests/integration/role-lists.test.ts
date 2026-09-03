@@ -156,6 +156,8 @@ describe.skipIf(!url)('roles and scoped lists (P-01)', () => {
 
   it('the owner invites a colleague into a role; the invitation is on the timeline', async () => {
     const invite = await inviteMember(t, {
+      invitedBy: 'Mette',
+      baseUrl: 'https://gdprcompliant.eu',
       caseId,
       tenantId,
       role: 'it',
@@ -166,7 +168,15 @@ describe.skipIf(!url)('roles and scoped lists (P-01)', () => {
     itToken = invite.inviteToken;
     itMemberId = invite.memberId;
     await expect(
-      inviteMember(t, { caseId, tenantId, role: 'it', email: 'nobody', now: () => T0 }),
+      inviteMember(t, {
+        invitedBy: 'Mette',
+        baseUrl: 'https://gdprcompliant.eu',
+        caseId,
+        tenantId,
+        role: 'it',
+        email: 'nobody',
+        now: () => T0,
+      }),
     ).rejects.toThrow(/not an address/);
     const events = await withTenant(t, tenantId, (db) => caseTimeline(db, caseId));
     expect(events.at(-1)).toMatchObject({ type: 'colleague_invited', payload: { role: 'it' } });

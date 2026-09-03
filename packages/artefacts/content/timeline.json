@@ -277,6 +277,16 @@
         "en": "by {{requestedBy}} {{reason}}",
         "da": "af {{requestedBy}} {{reason}}"
       }
+    },
+    "invitation_revoked": {
+      "text": {
+        "en": "Invitation withdrawn",
+        "da": "Invitation trukket tilbage"
+      },
+      "detail": {
+        "en": "{{role}}",
+        "da": "{{role}}"
+      }
     }
   }
 }

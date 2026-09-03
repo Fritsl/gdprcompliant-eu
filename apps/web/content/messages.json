@@ -211,5 +211,101 @@
   "deleted.rows": {
     "en": "rows removed",
     "da": "rækker fjernet"
+  },
+  "colleagues.heading": {
+    "en": "Colleagues",
+    "da": "Kolleger"
+  },
+  "colleagues.none": {
+    "en": "Nobody has been invited yet.",
+    "da": "Ingen er inviteret endnu."
+  },
+  "colleagues.status.invited": {
+    "en": "invited, not yet opened",
+    "da": "inviteret, ikke åbnet endnu"
+  },
+  "colleagues.status.joined": {
+    "en": "working",
+    "da": "i gang"
+  },
+  "colleagues.status.finished": {
+    "en": "finished",
+    "da": "færdig"
+  },
+  "colleagues.status.revoked": {
+    "en": "withdrawn",
+    "da": "trukket tilbage"
+  },
+  "colleagues.status.expired": {
+    "en": "link expired",
+    "da": "link udløbet"
+  },
+  "colleagues.open": {
+    "en": "open",
+    "da": "åbne"
+  },
+  "colleagues.link": {
+    "en": "Their link",
+    "da": "Deres link"
+  },
+  "colleagues.remind": {
+    "en": "Remind",
+    "da": "Mind om"
+  },
+  "colleagues.revoke": {
+    "en": "Withdraw",
+    "da": "Træk tilbage"
+  },
+  "colleagues.invite": {
+    "en": "Invite",
+    "da": "Invitér"
+  },
+  "colleagues.invite.from": {
+    "en": "Your name, as they know it",
+    "da": "Dit navn, som de kender det"
+  },
+  "colleagues.invite.email": {
+    "en": "Their address",
+    "da": "Deres adresse"
+  },
+  "colleagues.invite.role": {
+    "en": "Their desk",
+    "da": "Deres område"
+  },
+  "colleagues.invite.expires": {
+    "en": "The link works for 14 days, for them alone, and can be withdrawn.",
+    "da": "Linket virker i 14 dage, kun for dem, og kan trækkes tilbage."
+  },
+  "colleagues.error.reminded": {
+    "en": "A reminder went out less than a day ago.",
+    "da": "Der er sendt en påmindelse for under et døgn siden."
+  },
+  "colleagues.error.invalid": {
+    "en": "That address or name did not go through.",
+    "da": "Adressen eller navnet gik ikke igennem."
+  },
+  "member.heading": {
+    "en": "Your list",
+    "da": "Din liste"
+  },
+  "member.from": {
+    "en": "Invited by",
+    "da": "Inviteret af"
+  },
+  "member.none": {
+    "en": "Nothing open for your desk right now.",
+    "da": "Intet åbent for dit område lige nu."
+  },
+  "member.deferred": {
+    "en": "more once these are done",
+    "da": "flere når disse er klaret"
+  },
+  "member.checked": {
+    "en": "Sent to the assistant.",
+    "da": "Sendt til assistenten."
+  },
+  "colleagues.error.tooMany": {
+    "en": "Too many invitations in the last hour. Try again later.",
+    "da": "For mange invitationer den seneste time. Prøv igen senere."
   }
 }

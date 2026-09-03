@@ -391,6 +391,14 @@ export const caseMembers = pgTable(
     email: text('email').notNull(),
     inviteToken: text('invite_token').notNull(),
     invitedAt: timestamp('invited_at', { withTimezone: true }).notNull(),
+    // The person the invitation comes from, in their own name (P-02).
+    invitedBy: text('invited_by').notNull().default(''),
+    // Single-purpose, expiring, revocable: the link is dead after either.
+    expiresAt: timestamp('expires_at', { withTimezone: true })
+      .notNull()
+      .default(sql`now() + interval '14 days'`),
+    revokedAt: timestamp('revoked_at', { withTimezone: true }),
+    remindedAt: timestamp('reminded_at', { withTimezone: true }),
     joinedAt: timestamp('joined_at', { withTimezone: true }),
     grantedFull: boolean('granted_full').notNull().default(false),
   },
@@ -400,6 +408,28 @@ export const caseMembers = pgTable(
     check('case_members_role', oneOf('role', ['marketing', 'it', 'hr', 'finance'])),
     check('case_members_token_length', sql`length(${t.inviteToken}) >= 32`),
     index('case_members_case_idx').on(t.caseId),
+  ],
+);
+
+// Mail the case wants sent (P-02): invitations and reminders, written here and picked
+// up by delivery. Counting rows here is what rate-limits the feature.
+export const mailOutbox = pgTable(
+  'mail_outbox',
+  {
+    id: text('id').primaryKey(),
+    ...stamped,
+    caseId: text('case_id')
+      .notNull()
+      .references(() => cases.id),
+    kind: text('kind').notNull(),
+    to: text('to').notNull(),
+    subject: text('subject').notNull(),
+    body: text('body').notNull(),
+    sentAt: timestamp('sent_at', { withTimezone: true }),
+  },
+  (t) => [
+    check('mail_outbox_kind', oneOf('kind', ['invitation', 'reminder'])),
+    index('mail_outbox_case_idx').on(t.caseId, t.createdAt),
   ],
 );
 
@@ -439,4 +469,5 @@ export const TABLES = {
   caseClaims,
   deletionAudit,
   caseMembers,
+  mailOutbox,
 } as const;
