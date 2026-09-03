@@ -35,3 +35,4 @@ export * from './security.js';
 export * from './policy.js';
 export * from './forms.js';
 export * from './replay.js';
+export * from './dns.js';

@@ -1,0 +1,24 @@
+{
+  "txt": {
+    "eksempelbutik.test": [
+      "v=spf1 include:_spf.google.com include:spf.protection.outlook.com include:sendgrid.net include:spf.unknownco.example -all",
+      "google-site-verification=abc123def456ghi789",
+      "MS=ms12345678",
+      "facebook-domain-verification=zzz999",
+      "unknownco-verification=0123456789",
+      "Some plain text a registrar left here"
+    ],
+    "_dmarc.eksempelbutik.test": ["v=DMARC1; p=quarantine; rua=mailto:dmarc@eksempelbutik.test"]
+  },
+  "mx": {
+    "eksempelbutik.test": [
+      { "exchange": "aspmx.l.google.com", "priority": 1 },
+      { "exchange": "alt1.aspmx.l.google.com", "priority": 5 },
+      { "exchange": "mx.unknownco.example", "priority": 10 }
+    ]
+  },
+  "cname": {
+    "newsletter.eksempelbutik.test": ["u1234567.wl123.sendgrid.net"],
+    "mail.eksempelbutik.test": ["ghs.googlehosted.com"]
+  }
+}

@@ -16,18 +16,19 @@ companies a list of problems; this hands them a plan and the things that close i
 
 ## Where you are
 
-**44 of 112 done.** Phase 0 and phase 1 are complete; phase 2 is
-14 of 34, phase 3 has begun and the task catalogue opens phase 5. Contracts, config with
-the EU-only allowlist, the test harness, record and replay, i18n, the remedy catalogue and
-resolver, the model client, the web shell, the fixture estate (with TLS), the browser pool,
-Pass A, cookie classification, the security surface checks, policy discovery, the form
-inventory, replay and fingerprinting detection, the database harness, the schema spine,
-the finding-needs-a-remedy constraint, row-level security with a per-transaction tenant
-context, the durable job queue, the demand ledger, the case object with numbering, tokens
-and claiming, the append-only timeline with its PDF, the case state machine, export and
-hard delete, retention with its nightly sweep, the typed task catalogue with its budgeted
-dispatcher, roles with scoped lists, and the tenancy matrix that runs on every push are in.
-The database is up (`pnpm db:up`); `T-07` is the last phase-1 task open.
+**46 of 112 done.** Phase 0 and phase 1 are complete; phase 2 is 14 of 34, phase 3 has
+begun, DNS collection opens phase 4 and the task catalogue opens phase 5. Contracts,
+config with the EU-only allowlist, the test harness, record and replay, i18n, the remedy
+catalogue and resolver, the model client, the web shell, the fixture estate (with TLS),
+the browser pool, Pass A, cookie classification, the security surface checks, policy
+discovery, the form inventory, replay and fingerprinting detection, the database harness,
+the schema spine, the finding-needs-a-remedy constraint, row-level security with a
+per-transaction tenant context, the durable job queue, the demand ledger, the case object
+with numbering, tokens and claiming, the append-only timeline with its PDF, the case state
+machine, export and hard delete, retention with its nightly sweep, the typed task
+catalogue with its budgeted dispatcher, roles with scoped lists, the tenancy matrix that
+runs on every push, and DNS collection with its curated service map are in. The database
+is up (`pnpm db:up`); `T-07` is the last phase-1 task open.
 
 Do not trust that list — ask:
 

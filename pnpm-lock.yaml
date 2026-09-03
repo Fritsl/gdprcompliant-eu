@@ -252,6 +252,9 @@ importers:
 
   packages/scanner:
     dependencies:
+      '@gc/config':
+        specifier: workspace:*
+        version: link:../config
       '@gc/contracts':
         specifier: workspace:*
         version: link:../contracts

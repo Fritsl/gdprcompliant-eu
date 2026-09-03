@@ -1,0 +1,179 @@
+{
+  "version": "2026-09-04",
+  "services": [
+    {
+      "id": "google-workspace",
+      "name": "Google Workspace",
+      "jurisdiction": "US",
+      "role": "processor",
+      "txtPrefixes": ["google-site-verification="],
+      "spfIncludes": ["_spf.google.com"],
+      "mxSuffixes": ["google.com", "googlemail.com"],
+      "provenance": {
+        "url": "https://support.google.com/a/answer/33786",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      }
+    },
+    {
+      "id": "microsoft-365",
+      "name": "Microsoft 365",
+      "jurisdiction": "US",
+      "role": "processor",
+      "txtPrefixes": ["MS=ms"],
+      "spfIncludes": ["spf.protection.outlook.com"],
+      "mxSuffixes": ["mail.protection.outlook.com"],
+      "provenance": {
+        "url": "https://learn.microsoft.com/microsoft-365/admin/get-help-with-domains/create-dns-records-at-any-dns-hosting-provider",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      }
+    },
+    {
+      "id": "sendgrid",
+      "name": "SendGrid (Twilio)",
+      "jurisdiction": "US",
+      "role": "processor",
+      "spfIncludes": ["sendgrid.net"],
+      "cnameSuffixes": ["sendgrid.net"],
+      "provenance": {
+        "url": "https://docs.sendgrid.com/ui/account-and-settings/how-to-set-up-domain-authentication",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      }
+    },
+    {
+      "id": "mailchimp",
+      "name": "Mailchimp (Intuit)",
+      "jurisdiction": "US",
+      "role": "processor",
+      "spfIncludes": ["servers.mcsv.net", "spf.mandrillapp.com"],
+      "provenance": {
+        "url": "https://mailchimp.com/help/set-up-email-domain-authentication/",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      }
+    },
+    {
+      "id": "brevo",
+      "name": "Brevo",
+      "jurisdiction": "FR",
+      "role": "processor",
+      "txtPrefixes": ["brevo-code:", "Sendinblue-code:"],
+      "spfIncludes": ["spf.brevo.com", "spf.sendinblue.com"],
+      "provenance": {
+        "url": "https://help.brevo.com/hc/en-us/articles/12163873383186",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      }
+    },
+    {
+      "id": "mailgun",
+      "name": "Mailgun (Sinch)",
+      "jurisdiction": "US",
+      "role": "processor",
+      "spfIncludes": ["mailgun.org", "eu.mailgun.org"],
+      "provenance": {
+        "url": "https://help.mailgun.com/hc/en-us/articles/203637190",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      }
+    },
+    {
+      "id": "amazon-ses",
+      "name": "Amazon SES",
+      "jurisdiction": "US",
+      "role": "processor",
+      "spfIncludes": ["amazonses.com"],
+      "provenance": {
+        "url": "https://docs.aws.amazon.com/ses/latest/dg/send-email-authentication-spf.html",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      }
+    },
+    {
+      "id": "postmark",
+      "name": "Postmark (ActiveCampaign)",
+      "jurisdiction": "US",
+      "role": "processor",
+      "spfIncludes": ["spf.mtasv.net"],
+      "provenance": {
+        "url": "https://postmarkapp.com/support/article/1046-how-do-i-verify-a-domain",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      }
+    },
+    {
+      "id": "hubspot",
+      "name": "HubSpot",
+      "jurisdiction": "US",
+      "role": "processor",
+      "txtPrefixes": ["hubspot-developer-verification="],
+      "spfIncludes": ["hubspot.net"],
+      "provenance": {
+        "url": "https://knowledge.hubspot.com/domains-and-urls/connect-your-email-sending-domain",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      }
+    },
+    {
+      "id": "zoho",
+      "name": "Zoho",
+      "jurisdiction": "IN",
+      "role": "processor",
+      "txtPrefixes": ["zoho-verification="],
+      "spfIncludes": ["zoho.com", "zoho.eu"],
+      "mxSuffixes": ["zoho.com", "zoho.eu"],
+      "provenance": {
+        "url": "https://www.zoho.com/mail/help/adminconsole/domain-verification.html",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      }
+    },
+    {
+      "id": "meta-business",
+      "name": "Meta Business (domain verification)",
+      "jurisdiction": "US",
+      "role": "independent_controller",
+      "txtPrefixes": ["facebook-domain-verification="],
+      "provenance": {
+        "url": "https://www.facebook.com/business/help/286768115176155",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      }
+    },
+    {
+      "id": "apple-business",
+      "name": "Apple (domain verification)",
+      "jurisdiction": "US",
+      "role": "independent_controller",
+      "txtPrefixes": ["apple-domain-verification="],
+      "provenance": {
+        "url": "https://support.apple.com/guide/apple-business-manager/verify-a-domain-axm06f8cd7cf/web",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      }
+    },
+    {
+      "id": "atlassian",
+      "name": "Atlassian",
+      "jurisdiction": "AU",
+      "role": "processor",
+      "txtPrefixes": ["atlassian-domain-verification="],
+      "provenance": {
+        "url": "https://support.atlassian.com/user-management/docs/verify-a-domain-to-manage-accounts/",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      }
+    },
+    {
+      "id": "stripe",
+      "name": "Stripe",
+      "jurisdiction": "US",
+      "role": "processor",
+      "txtPrefixes": ["stripe-verification="],
+      "provenance": {
+        "url": "https://docs.stripe.com/payments/payment-methods/pmd-registration",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      }
+    },
+    {
+      "id": "docusign",
+      "name": "Docusign",
+      "jurisdiction": "US",
+      "role": "processor",
+      "txtPrefixes": ["docusign="],
+      "provenance": {
+        "url": "https://support.docusign.com/s/document-item?bundleId=rrf1583359212854&topicId=gav1583359141256.html",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      }
+    }
+  ]
+}
