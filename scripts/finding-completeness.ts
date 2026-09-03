@@ -8,7 +8,7 @@
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { FindingSchema } from '@gc/contracts';
-import { DETECTORS, checkFindingCompleteness } from '@gc/findings';
+import { DETECTORS, bindingCoverage, checkFindingCompleteness } from '@gc/findings';
 import { loadCatalogue } from '@gc/remedies';
 
 const problems: string[] = [];
@@ -64,8 +64,14 @@ for (const gap of result.gaps) {
   problems.push(`${gap.findingTypeId} has no remedy in ${gap.jurisdiction} (promised by ${gap.promisedBy.join(', ')})`);
 }
 
+// 4. The bindings (I-02): every promised finding type is bound in every supported
+// jurisdiction — the provisions, the authority, the guide — as content.
+for (const gap of bindingCoverage(result.findingTypes, result.jurisdictions)) {
+  problems.push(`${gap.findingTypeId} has no jurisdiction binding in ${gap.jurisdiction}`);
+}
+
 if (problems.length > 0) {
   console.error(`\n${problems.length} problem(s):\n${problems.map((p) => `  - ${p}`).join('\n')}`);
   process.exit(1);
 }
-console.log('every finding the product can raise has a remedy in every supported jurisdiction');
+console.log('every finding the product can raise has a remedy and a binding in every supported jurisdiction');

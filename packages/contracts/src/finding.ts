@@ -79,6 +79,53 @@ export const JurisdictionBindingSchema = z
   .describe('What a finding type means in one jurisdiction');
 export type JurisdictionBinding = z.infer<typeof JurisdictionBindingSchema>;
 
+// The binding table as content (I-02): one file per jurisdiction, written the way a
+// lawyer reads it. Citations are the instrument and the display reference ("GDPR",
+// "Art. 7(3)"), or "Case law" and the decision; code turns them into typed citations
+// and the corpus resolves them. `reviewed` names who last reviewed the table and when.
+export const BindingRowSchema = z.object({
+  findingTypeId: FindingTypeIdSchema,
+  citations: z
+    .array(
+      z.object({
+        instrument: NonEmptyStringSchema,
+        ref: NonEmptyStringSchema,
+        note: z.string().optional(),
+        jurisdiction: JurisdictionSchema.optional(),
+      }),
+    )
+    .min(1, 'a binding names at least one provision'),
+  guideId: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, 'guide slug'),
+  version: z.number().int().min(1).optional(),
+});
+export type BindingRow = z.infer<typeof BindingRowSchema>;
+
+export const BindingTableSchema = z
+  .object({
+    jurisdiction: JurisdictionSchema,
+    version: z.number().int().min(1),
+    reviewed: z
+      .object({ by: NonEmptyStringSchema, at: z.string().regex(/^\d{4}-\d{2}-\d{2}$/) })
+      .nullable(),
+    authority: z.object({ name: NonEmptyStringSchema, url: UrlSchema.optional() }),
+    bindings: z.array(BindingRowSchema).min(1),
+  })
+  .superRefine((t, ctx) => {
+    const seen = new Set<string>();
+    t.bindings.forEach((b, i) => {
+      if (seen.has(b.findingTypeId)) {
+        ctx.addIssue({
+          code: 'custom',
+          path: ['bindings', i],
+          message: `${b.findingTypeId} is bound twice`,
+        });
+      }
+      seen.add(b.findingTypeId);
+    });
+  })
+  .describe('What every finding type means in one jurisdiction, as content');
+export type BindingTable = z.infer<typeof BindingTableSchema>;
+
 // What, specifically, the finding is about. Part of the fingerprint so the same problem
 // is recognised across re-scans (S-14) and two problems of one type stay distinct.
 export const FindingSubjectSchema = z

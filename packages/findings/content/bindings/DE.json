@@ -1,0 +1,425 @@
+{
+  "jurisdiction": "DE",
+  "version": 1,
+  "reviewed": null,
+  "authority": {
+    "name": "Die Datenschutzaufsichtsbehörde des Bundeslandes",
+    "url": "https://www.bfdi.bund.de/DE/Service/Anschriften/Laender/Laender-node.html"
+  },
+  "bindings": [
+    {
+      "findingTypeId": "AI-03",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 28(3)",
+          "note": "a processor needs a contract"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 44",
+          "note": "transfers outside the EEA need a basis"
+        }
+      ],
+      "guideId": "ai-03",
+      "version": 1
+    },
+    {
+      "findingTypeId": "CNS-01",
+      "citations": [
+        {
+          "instrument": "ePrivacy",
+          "ref": "Art. 5(3)",
+          "note": "consent before storage or access"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 4(11)",
+          "note": "what consent is"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 7(1)",
+          "note": "the controller must be able to show consent was given"
+        }
+      ],
+      "guideId": "cns-01",
+      "version": 1
+    },
+    {
+      "findingTypeId": "CNS-02",
+      "citations": [
+        {
+          "instrument": "ePrivacy",
+          "ref": "Art. 5(3)",
+          "note": "consent before storage or access"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 7(3)",
+          "note": "withdrawal as easy as consent"
+        }
+      ],
+      "guideId": "cns-02",
+      "version": 1
+    },
+    {
+      "findingTypeId": "CNS-09",
+      "citations": [
+        {
+          "instrument": "ePrivacy",
+          "ref": "Art. 5(3)",
+          "note": "consent before storage or access"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 13(1)(e)",
+          "note": "recipients must be named"
+        }
+      ],
+      "guideId": "cns-09",
+      "version": 1
+    },
+    {
+      "findingTypeId": "DPA-01",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 28(3)",
+          "note": "required content of a processor agreement"
+        }
+      ],
+      "guideId": "dpa-01",
+      "version": 1
+    },
+    {
+      "findingTypeId": "EXP-01",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 32(1)",
+          "note": "appropriate technical measures"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 5(1)(f)",
+          "note": "integrity and confidentiality"
+        }
+      ],
+      "guideId": "exp-01",
+      "version": 1
+    },
+    {
+      "findingTypeId": "FPR-01",
+      "citations": [
+        {
+          "instrument": "ePrivacy",
+          "ref": "Art. 5(3)",
+          "note": "access to the terminal equipment needs consent"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 6(1)",
+          "note": "a lawful basis for the processing"
+        }
+      ],
+      "guideId": "fpr-01",
+      "version": 1
+    },
+    {
+      "findingTypeId": "FPR-02",
+      "citations": [
+        {
+          "instrument": "ePrivacy",
+          "ref": "Art. 5(3)",
+          "note": "access to the terminal equipment needs consent"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 6(1)",
+          "note": "a lawful basis for the processing"
+        }
+      ],
+      "guideId": "fpr-02",
+      "version": 1
+    },
+    {
+      "findingTypeId": "FPR-03",
+      "citations": [
+        {
+          "instrument": "ePrivacy",
+          "ref": "Art. 5(3)",
+          "note": "access to the terminal equipment needs consent"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 6(1)",
+          "note": "a lawful basis for the processing"
+        }
+      ],
+      "guideId": "fpr-03",
+      "version": 1
+    },
+    {
+      "findingTypeId": "FRM-01",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 4(11)",
+          "note": "consent is an affirmative act"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 7(2)",
+          "note": "a consent request is clearly distinguishable"
+        }
+      ],
+      "guideId": "frm-01",
+      "version": 1
+    },
+    {
+      "findingTypeId": "FRM-02",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 7(2)",
+          "note": "a consent request is clearly distinguishable"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 7(4)",
+          "note": "consent tied to a service is not freely given"
+        }
+      ],
+      "guideId": "frm-02",
+      "version": 1
+    },
+    {
+      "findingTypeId": "FRM-03",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 13(1)",
+          "note": "information at the time data are obtained"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 12(1)",
+          "note": "in a concise, transparent form"
+        }
+      ],
+      "guideId": "frm-03",
+      "version": 1
+    },
+    {
+      "findingTypeId": "POL-01",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 13(1)",
+          "note": "information at the time data are obtained"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 12(1)",
+          "note": "in a concise, transparent form"
+        }
+      ],
+      "guideId": "pol-01",
+      "version": 1
+    },
+    {
+      "findingTypeId": "POL-04",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 13(2)(a)",
+          "note": "the retention period, or how it is decided"
+        }
+      ],
+      "guideId": "pol-04",
+      "version": 1
+    },
+    {
+      "findingTypeId": "POL-09",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 13(2)(d)",
+          "note": "the right to lodge a complaint with a supervisory authority"
+        }
+      ],
+      "guideId": "pol-09",
+      "version": 1
+    },
+    {
+      "findingTypeId": "REC-01",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 6",
+          "note": "a lawful basis for the processing"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 35",
+          "note": "an impact assessment for high-risk processing"
+        }
+      ],
+      "guideId": "rec-01",
+      "version": 1
+    },
+    {
+      "findingTypeId": "SEC-01",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 32(1)",
+          "note": "appropriate technical measures"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 5(1)(f)",
+          "note": "integrity and confidentiality"
+        }
+      ],
+      "guideId": "sec-01",
+      "version": 1
+    },
+    {
+      "findingTypeId": "SEC-02",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 32(1)",
+          "note": "appropriate technical measures"
+        }
+      ],
+      "guideId": "sec-02",
+      "version": 1
+    },
+    {
+      "findingTypeId": "SEC-03",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 32(1)",
+          "note": "appropriate technical measures"
+        }
+      ],
+      "guideId": "sec-03",
+      "version": 1
+    },
+    {
+      "findingTypeId": "SEC-04",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 32(1)",
+          "note": "appropriate technical measures"
+        }
+      ],
+      "guideId": "sec-04",
+      "version": 1
+    },
+    {
+      "findingTypeId": "SEC-05",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 32(1)",
+          "note": "appropriate technical measures"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 5(1)(c)",
+          "note": "data minimisation"
+        }
+      ],
+      "guideId": "sec-05",
+      "version": 1
+    },
+    {
+      "findingTypeId": "SEC-06",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 32(1)",
+          "note": "appropriate technical measures"
+        }
+      ],
+      "guideId": "sec-06",
+      "version": 1
+    },
+    {
+      "findingTypeId": "SEC-07",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 32(1)",
+          "note": "appropriate technical measures"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 5(1)(f)",
+          "note": "integrity and confidentiality"
+        }
+      ],
+      "guideId": "sec-07",
+      "version": 1
+    },
+    {
+      "findingTypeId": "SUB-03",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 28(2)",
+          "note": "sub-processors need prior authorisation"
+        }
+      ],
+      "guideId": "sub-03",
+      "version": 1
+    },
+    {
+      "findingTypeId": "TRF-01",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 44–49",
+          "note": "transfers outside the EEA need a basis"
+        }
+      ],
+      "guideId": "trf-01",
+      "version": 1
+    },
+    {
+      "findingTypeId": "VND-06",
+      "citations": [
+        {
+          "instrument": "Case law",
+          "ref": "LG München I, 3 O 17493/20",
+          "note": "damages for embedded web fonts"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 6(1)",
+          "note": "a lawful basis for passing the visitor’s address to the font host"
+        }
+      ],
+      "guideId": "vnd-06",
+      "version": 1
+    },
+    {
+      "findingTypeId": "VND-11",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 13(1)(e)",
+          "note": "recipients or categories of recipients"
+        }
+      ],
+      "guideId": "vnd-11",
+      "version": 1
+    }
+  ]
+}
