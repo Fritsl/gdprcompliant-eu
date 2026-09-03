@@ -184,6 +184,9 @@ importers:
       '@gc/contracts':
         specifier: workspace:*
         version: link:../contracts
+      '@gc/findings':
+        specifier: workspace:*
+        version: link:../findings
       '@gc/jobs':
         specifier: workspace:*
         version: link:../jobs
@@ -205,6 +208,9 @@ importers:
       '@gc/contracts':
         specifier: workspace:*
         version: link:../contracts
+      '@gc/i18n':
+        specifier: workspace:*
+        version: link:../i18n
       '@gc/remedies':
         specifier: workspace:*
         version: link:../remedies

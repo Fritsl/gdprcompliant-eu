@@ -1,0 +1,18 @@
+{
+  "roles": {
+    "marketing": { "en": "Marketing", "da": "Marketing" },
+    "it": { "en": "IT / Operations", "da": "IT / Drift" },
+    "hr": { "en": "HR", "da": "HR" },
+    "finance": { "en": "Finance / Legal", "da": "Økonomi / Jura" }
+  },
+  "kinds": {
+    "fix": { "en": "Fix", "da": "Ret" },
+    "approve": { "en": "Approve", "da": "Godkend" },
+    "confirm": { "en": "Confirm", "da": "Bekræft" },
+    "answer": { "en": "Answer", "da": "Svar" }
+  },
+  "checkForMe": {
+    "en": "I do not know, check it for me",
+    "da": "Det ved jeg ikke, tjek det for mig"
+  }
+}

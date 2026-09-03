@@ -12,6 +12,7 @@
     "@gc/config": "workspace:*",
     "@gc/contracts": "workspace:*",
     "@gc/remedies": "workspace:*",
-    "zod": "^4.5.4"
+    "zod": "^4.5.4",
+    "@gc/i18n": "workspace:*"
   }
 }

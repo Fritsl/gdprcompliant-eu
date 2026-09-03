@@ -376,6 +376,33 @@ export const demandEntries = pgTable(
   ],
 );
 
+// A colleague on a case (P-01): a role, an address, and an invitation token that is the
+// one door to their list. They see their role's items, and the rest of the case only
+// once the owner grants it.
+export const caseMembers = pgTable(
+  'case_members',
+  {
+    id: text('id').primaryKey(),
+    ...stamped,
+    caseId: text('case_id')
+      .notNull()
+      .references(() => cases.id),
+    role: text('role').notNull(),
+    email: text('email').notNull(),
+    inviteToken: text('invite_token').notNull(),
+    invitedAt: timestamp('invited_at', { withTimezone: true }).notNull(),
+    joinedAt: timestamp('joined_at', { withTimezone: true }),
+    grantedFull: boolean('granted_full').notNull().default(false),
+  },
+  (t) => [
+    uniqueIndex('case_members_invite').on(t.inviteToken),
+    uniqueIndex('case_members_case_email').on(t.caseId, t.email),
+    check('case_members_role', oneOf('role', ['marketing', 'it', 'hr', 'finance'])),
+    check('case_members_token_length', sql`length(${t.inviteToken}) >= 32`),
+    index('case_members_case_idx').on(t.caseId),
+  ],
+);
+
 // What remains after a hard delete (C-04): that a case was deleted, when, and how much
 // went. The id is the hash of the case number; nothing here names a company or a person.
 export const deletionAudit = pgTable(
@@ -411,4 +438,5 @@ export const TABLES = {
   demandEntries,
   caseClaims,
   deletionAudit,
+  caseMembers,
 } as const;

@@ -50,6 +50,13 @@
       "when": 1788471576538,
       "tag": "0006_clammy_the_phantom",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1788472830107,
+      "tag": "0007_peaceful_baron_zemo",
+      "breakpoints": true
     }
   ]
 }

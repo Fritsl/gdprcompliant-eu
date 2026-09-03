@@ -1,6 +1,6 @@
 # Schema
 
-Generated from `packages/db/migrations/meta/0006_snapshot.json` by `scripts/schema-doc.mjs`.
+Generated from `packages/db/migrations/meta/0007_snapshot.json` by `scripts/schema-doc.mjs`.
 Do not edit; change `packages/db/src/schema.ts`, run `pnpm db:generate`, then `pnpm db:doc`.
 
 Every table carries `tenant_id`, `created_at` and `source_ref`. `case_events` and
@@ -49,6 +49,19 @@ erDiagram
     jsonb actor
     text type
     jsonb payload
+  }
+  case_members {
+    text id "PK"
+    text tenant_id
+    timestamp created_at
+    text source_ref
+    text case_id
+    text role
+    text email
+    text invite_token
+    timestamp invited_at
+    timestamp joined_at "nullable"
+    boolean granted_full
   }
   cases {
     text id "PK"
@@ -207,6 +220,7 @@ erDiagram
   cases ||--o{ answers : "case_id"
   cases ||--o{ case_claims : "case_id"
   cases ||--o{ case_events : "case_id"
+  cases ||--o{ case_members : "case_id"
   jurisdictions ||--o{ cases : "jurisdiction"
   tenants ||--o{ cases : "tenant_id"
   cases ||--o{ demand_entries : "case_id"
@@ -287,6 +301,29 @@ erDiagram
 - check case_events_seq: `"case_events"."seq" >= 1`
 - check case_events_type: `"type" in ('case_opened', 'scan_started', 'scan_completed', 'scan_failed', 'finding_raised', 'finding_closed', 'finding_regressed', 'fix_verification_failed', 'check_undetermined', 'question_asked', 'question_answered', 'artefact_generated', 'artefact_published', 'colleague_invited', 'colleague_joined', 'reminder_sent', 'watch_run', 'meeting_requested', 'note_added', 'claim_rejected', 'claim_requested', 'case_claimed', 'case_expired', 'export_produced', 'deletion_requested', 'vendor_resolved')`
 - check case_events_actor: `coalesce("case_events"."actor"->>'kind', '') in ('person', 'agent', 'scanner', 'watcher', 'system')`
+
+## case_members
+
+| Column | Type | Constraints |
+| --- | --- | --- |
+| id | text | primary key, not null |
+| tenant_id | text | not null |
+| created_at | timestamp with time zone | not null, default now() |
+| source_ref | text | not null |
+| case_id | text | not null |
+| role | text | not null |
+| email | text | not null |
+| invite_token | text | not null |
+| invited_at | timestamp with time zone | not null |
+| joined_at | timestamp with time zone |  |
+| granted_full | boolean | not null, default false |
+
+- case_id → cases(id)
+- unique index case_members_invite (invite_token)
+- unique index case_members_case_email (case_id, email)
+- index case_members_case_idx (case_id)
+- check case_members_role: `"role" in ('marketing', 'it', 'hr', 'finance')`
+- check case_members_token_length: `length("case_members"."invite_token") >= 32`
 
 ## cases
 

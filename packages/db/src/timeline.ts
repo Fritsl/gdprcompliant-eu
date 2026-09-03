@@ -21,6 +21,9 @@ export interface AppendEvent {
 // loser waits a few milliseconds, reads the new head and tries again, so the order is
 // the order of commits.
 export async function appendCaseEvent(db: Db, input: AppendEvent): Promise<CaseEvent> {
+  // One appender per case at a time, for the length of the transaction: the head is read
+  // and the row written under the same lock, so the retry below is a belt for the braces.
+  await db.execute(sql`select pg_advisory_xact_lock(hashtext(${input.caseId}))`);
   let lastError: unknown;
   for (let attempt = 0; attempt < 25; attempt += 1) {
     if (attempt > 0) await new Promise((r) => setTimeout(r, 5 + Math.random() * 20 * attempt));

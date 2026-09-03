@@ -7,3 +7,4 @@ export const PACKAGE = '@gc/findings';
 
 export * from './cookies/index.js';
 export * from './registry.js';
+export * from './roles.js';
