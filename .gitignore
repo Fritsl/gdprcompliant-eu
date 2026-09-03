@@ -3,5 +3,6 @@ node_modules/
 dist/
 !apps/prototype/dist/
 artifacts/
+*.tsbuildinfo
 .env*
 !.env.example

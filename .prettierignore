@@ -1,0 +1,13 @@
+node_modules/
+dist/
+artifacts/
+pnpm-lock.yaml
+
+# Everything below predates F-01 and has its own conventions. Reformatting it is
+# churn, and docs/plan.html is the source of a published artifact.
+apps/prototype/
+docs/
+tasks/
+fixtures/
+scripts/
+*.md
