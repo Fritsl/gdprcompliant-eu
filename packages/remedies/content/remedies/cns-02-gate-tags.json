@@ -1,0 +1,40 @@
+{
+  "id": "cns-02-gate-tags",
+  "version": 1,
+  "findingTypeId": "CNS-02",
+  "jurisdictions": "all",
+  "kind": "self_fix",
+  "title": {
+    "en": "Move the tags behind the consent state",
+    "da": "Flyt dine tags om bag samtykket"
+  },
+  "effort": {
+    "label": {
+      "en": "About 20 minutes",
+      "da": "Cirka 20 minutter"
+    },
+    "minutes": 20
+  },
+  "detail": {
+    "en": "Your tags fire on page load rather than on the consent event. Wrap each non-essential tag in a consent check and re-publish."
+  },
+  "snippet": "// before — fires immediately\nloadTag('analytics');\n\n// after — waits for a real decision\nwindow.addEventListener('CookieConsentDecision', (e) => {\n  if (e.detail.categories.includes('statistics')) loadTag('analytics');\n});",
+  "verifyLabel": {
+    "en": "Re-check this finding"
+  },
+  "verification": {
+    "method": "rescan"
+  },
+  "action": {
+    "kind": "agent_prompt",
+    "label": {
+      "en": "Paste into your coding assistant"
+    },
+    "forwardable": {
+      "en": "Or forward it to your developer — it reads the same either way."
+    },
+    "body": {
+      "en": "On {{domain}} these third-party hosts load on page load, before the visitor has consented:\n\n{{hosts}}\n\nThe consent banner itself works correctly and records the choice — the problem is where the tags fire, not the banner. Leave the banner and its configuration alone. {{essential_hosts}} must keep loading immediately.\n\nMake each of the hosts above load only after the consent event fires with its matching category (statistics, marketing or preferences).\n\nWhen you are done: list which hosts you changed and which you deliberately left alone, and tell me how to verify that refusing consent now prevents each one from loading."
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "id": "dpa-01-processing-agreement",
+  "version": 1,
+  "findingTypeId": "DPA-01",
+  "jurisdictions": "all",
+  "kind": "generated_artefact",
+  "title": {
+    "en": "Generate your processing agreement and sub-processor page"
+  },
+  "effort": {
+    "label": {
+      "en": "One click, then a review"
+    }
+  },
+  "detail": {
+    "en": "Drafted from your vendors, where they sit, and what they handle."
+  },
+  "artefact": "processing_agreement",
+  "cta": {
+    "en": "Preview the draft"
+  },
+  "verifyLabel": {
+    "en": "Re-check once published"
+  },
+  "verification": {
+    "method": "artefact_published",
+    "artefact": "processing_agreement"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "id": "cns-09-new-tracker",
+  "version": 1,
+  "findingTypeId": "CNS-09",
+  "jurisdictions": "all",
+  "kind": "self_fix",
+  "title": {
+    "en": "Ask who added it, then gate it like the others"
+  },
+  "effort": {
+    "label": {
+      "en": "About 20 minutes"
+    },
+    "minutes": 20
+  },
+  "detail": {
+    "en": "This is the ordinary way compliance decays. Somebody in marketing added a pixel for a campaign. It needs the same consent gate as the rest."
+  },
+  "verifyLabel": {
+    "en": "Re-check this finding"
+  },
+  "verification": {
+    "method": "rescan"
+  },
+  "action": {
+    "kind": "message",
+    "label": {
+      "en": "Send this to the team"
+    },
+    "to": {
+      "en": "Whoever runs campaigns"
+    },
+    "subject": {
+      "en": "A tracking tag went onto the {{page}} page on {{day}}"
+    },
+    "body": {
+      "en": "Hi,\n\nA {{tracker}} tracking tag appeared on our {{page}} page sometime on {{day}}. It fires before visitors have agreed to anything, which undoes a fix we made earlier.\n\nTwo things:\n\nIf you added it for a campaign, tell me and I will get it gated properly rather than removed — it can stay, it just has to wait for consent like the others.\n\nIf you did not add it, tell me that too, because then we need to find out who did.\n\nNo drama either way."
+    }
+  }
+}

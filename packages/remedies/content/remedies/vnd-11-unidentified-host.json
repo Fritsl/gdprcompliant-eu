@@ -1,0 +1,41 @@
+{
+  "id": "vnd-11-unidentified-host",
+  "version": 1,
+  "findingTypeId": "VND-11",
+  "jurisdictions": "all",
+  "kind": "no_solution",
+  "title": {
+    "en": "We have no good answer to this yet"
+  },
+  "effort": {
+    "label": {
+      "en": "Logged"
+    }
+  },
+  "detail": {
+    "en": "There is no reliable public way to attribute an anonymised CDN host. Logged with your sector and country."
+  },
+  "demandGap": "Attributing anonymised CDN hosts to a legal entity",
+  "askLabel": {
+    "en": "Do you know what this is?"
+  },
+  "verification": {
+    "method": "none",
+    "reason": "No public registry attributes an anonymised CDN host; only the customer or their agency can."
+  },
+  "action": {
+    "kind": "message",
+    "label": {
+      "en": "Send this to your web agency"
+    },
+    "to": {
+      "en": "Your web agency"
+    },
+    "subject": {
+      "en": "What is {{host}}?"
+    },
+    "body": {
+      "en": "Hi,\n\nOur site loads resources from {{host}} on {{paths}}. We can't trace it to a company — the registration is behind a privacy service and there's no organisation on the certificate.\n\nCould you tell us what it is and who operates it? We need to name every third party that receives visitor data, and we can't list this one until we know.\n\nIf it turns out to be something we no longer use, please remove it."
+    }
+  }
+}

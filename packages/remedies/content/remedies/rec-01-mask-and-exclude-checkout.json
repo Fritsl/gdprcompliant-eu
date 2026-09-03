@@ -1,0 +1,38 @@
+{
+  "id": "rec-01-mask-and-exclude-checkout",
+  "version": 1,
+  "findingTypeId": "REC-01",
+  "jurisdictions": "all",
+  "kind": "self_fix",
+  "title": {
+    "en": "Turn masking on and exclude the checkout"
+  },
+  "effort": {
+    "label": {
+      "en": "About 10 minutes"
+    },
+    "minutes": 10
+  },
+  "detail": {
+    "en": "Two changes: mask all input by default, and stop the tool loading on the checkout path entirely. The second is the one that matters."
+  },
+  "snippet": "// mask everything, then exclude the checkout entirely\nreplay.set('maskAllInputs', true);\nif (location.pathname.startsWith('{{path}}')) {\n  /* do not load the replay tag at all */\n}",
+  "verifyLabel": {
+    "en": "Re-check this finding"
+  },
+  "verification": {
+    "method": "rescan"
+  },
+  "action": {
+    "kind": "agent_prompt",
+    "label": {
+      "en": "Paste into your coding assistant"
+    },
+    "forwardable": {
+      "en": "Or forward it to your developer — it reads the same either way."
+    },
+    "body": {
+      "en": "On {{domain}}, {{tool}} ({{tool_host}}) is active on {{path}} with input masking off. It records what customers type into {{fields}} before they submit anything.\n\nTwo changes, and the second matters more than the first:\n1. Turn input masking on globally.\n2. Prevent the {{tool}} script from loading at all on any path under {{path}}.\n\nWhen you are done: show me the change and how to verify the script is entirely absent on {{path}}."
+    }
+  }
+}

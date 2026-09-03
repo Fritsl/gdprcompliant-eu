@@ -1,0 +1,60 @@
+{
+  "entries": {
+    "ai-03-move-to-gdprchat": {
+      "version": 1,
+      "hash": "de0da847a8e79bb8d2079da7f08d1a0e5322cc043d5fbd38d165ee6a2f0d8cb7"
+    },
+    "cns-02-gate-tags": {
+      "version": 1,
+      "hash": "ab5f5a10423e24cdbf519784746e4773e003ca4a5463b3a60f53009aa03aee0b"
+    },
+    "cns-09-new-tracker": {
+      "version": 1,
+      "hash": "8646b2fa43ed2d61000a5b76988bc2cb8c982228eb1cd54fc0576385dce26127"
+    },
+    "dpa-01-processing-agreement": {
+      "version": 1,
+      "hash": "8c606d5f43657f0f6eff2ddff525a48b662885beab542f40d4e475cadf26e9f6"
+    },
+    "frm-02-split-checkboxes": {
+      "version": 1,
+      "hash": "ef971ec41d9e90602facc8a5a8f8dd4f89e2612204ff3f7352dbc56a5ecd3fce"
+    },
+    "pol-04-retention-section": {
+      "version": 1,
+      "hash": "77c9d617c6bb080ec36d2605695023d8542311d949dd33cf80ab251960754a03"
+    },
+    "pol-09-complaint-and-withdrawal-dk": {
+      "version": 1,
+      "hash": "47cb3e7bd7ee7c5d153b145c9671f7c688bd215f0fb3790bf0cf81a3135f3871"
+    },
+    "pol-09-complaint-and-withdrawal": {
+      "version": 1,
+      "hash": "b9c28681cacb1acc7641a98a52543acb5108eea2765735e7377d4a301c9c9726"
+    },
+    "rec-01-mask-and-exclude-checkout": {
+      "version": 1,
+      "hash": "af4ce3276f89cc339f99799e2e3a689107a8dfe0acf07dbe0c4b9870a1252b0e"
+    },
+    "sec-02-https-form-hsts": {
+      "version": 1,
+      "hash": "e175594dc490002bdcd855b3c42432577ec265059ca00658497f2455b4f12abe"
+    },
+    "sub-03-publish-list": {
+      "version": 1,
+      "hash": "970325430c56de6b6f8e21582b34945368b527652a013e20a2558521a94c0e44"
+    },
+    "trf-01-european-alternatives": {
+      "version": 1,
+      "hash": "dce1e66eb514ca9994d8da303a622788c2823972a163e8ff4b679c7ef2105f08"
+    },
+    "vnd-06-self-host-fonts": {
+      "version": 1,
+      "hash": "c00da830dd1053b6136b1182a51611e2abe26fb4d14dcd20f21a625cf230e45b"
+    },
+    "vnd-11-unidentified-host": {
+      "version": 1,
+      "hash": "470d6a37552401fc1093689b2b8c9688212ac2de90e48ed0757fd625b8006658"
+    }
+  }
+}

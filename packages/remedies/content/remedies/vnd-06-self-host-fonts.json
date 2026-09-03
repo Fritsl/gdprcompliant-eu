@@ -1,0 +1,38 @@
+{
+  "id": "vnd-06-self-host-fonts",
+  "version": 1,
+  "findingTypeId": "VND-06",
+  "jurisdictions": "all",
+  "kind": "self_fix",
+  "title": {
+    "en": "Self-host the fonts"
+  },
+  "effort": {
+    "label": {
+      "en": "About 15 minutes"
+    },
+    "minutes": 15
+  },
+  "detail": {
+    "en": "Download the families, put them beside your stylesheet, and declare them locally. Nothing leaves your server and the page gets slightly faster."
+  },
+  "snippet": "@font-face {\n  font-family: 'Inter';\n  src: url('/fonts/inter-v13.woff2') format('woff2');\n  font-display: swap;\n}",
+  "verifyLabel": {
+    "en": "Re-check this finding"
+  },
+  "verification": {
+    "method": "rescan"
+  },
+  "action": {
+    "kind": "agent_prompt",
+    "label": {
+      "en": "Paste into your coding assistant"
+    },
+    "forwardable": {
+      "en": "Or forward it to your developer — it reads the same either way."
+    },
+    "body": {
+      "en": "{{domain}} loads {{font_families}} from {{font_hosts}}. Every visitor's IP address therefore reaches those hosts before they have agreed to anything.\n\nDownload the families, self-host them under {{domain}}, and replace the external stylesheet link with local @font-face declarations using font-display: swap. Rendered typography must stay identical — same weights, same styles, same fallback stacks.\n\nWhen you are done: list the files you changed and confirm that no request to {{font_hosts}} remains anywhere in the page load."
+    }
+  }
+}

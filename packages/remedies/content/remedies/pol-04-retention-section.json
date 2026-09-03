@@ -1,0 +1,29 @@
+{
+  "id": "pol-04-retention-section",
+  "version": 1,
+  "findingTypeId": "POL-04",
+  "jurisdictions": "all",
+  "kind": "generated_artefact",
+  "title": {
+    "en": "Rewrite the retention section from your register"
+  },
+  "effort": {
+    "label": {
+      "en": "One click, after two answers"
+    }
+  },
+  "detail": {
+    "en": "We need two things from you first — how long you keep orders, and how long you keep newsletter sign-ups. Then the section writes itself from your register."
+  },
+  "artefact": "privacy_policy",
+  "cta": {
+    "en": "Answer the two questions"
+  },
+  "verifyLabel": {
+    "en": "Re-check once published"
+  },
+  "verification": {
+    "method": "artefact_published",
+    "artefact": "privacy_policy"
+  }
+}

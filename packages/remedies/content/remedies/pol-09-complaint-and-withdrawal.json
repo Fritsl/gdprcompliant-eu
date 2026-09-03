@@ -1,0 +1,29 @@
+{
+  "id": "pol-09-complaint-and-withdrawal",
+  "version": 1,
+  "findingTypeId": "POL-09",
+  "jurisdictions": "all",
+  "kind": "generated_artefact",
+  "title": {
+    "en": "Add the two missing paragraphs"
+  },
+  "effort": {
+    "label": {
+      "en": "One click"
+    }
+  },
+  "detail": {
+    "en": "Two paragraphs, in your language, naming the supervisory authority for your country and the correct way to withdraw consent for your setup."
+  },
+  "artefact": "privacy_policy",
+  "cta": {
+    "en": "Preview the text"
+  },
+  "verifyLabel": {
+    "en": "Re-check once published"
+  },
+  "verification": {
+    "method": "artefact_published",
+    "artefact": "privacy_policy"
+  }
+}

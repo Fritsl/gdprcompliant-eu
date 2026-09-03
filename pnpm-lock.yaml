@@ -77,7 +77,11 @@ importers:
 
   packages/findings: {}
 
-  packages/remedies: {}
+  packages/remedies:
+    dependencies:
+      '@gc/contracts':
+        specifier: workspace:*
+        version: link:../contracts
 
   packages/rules: {}
 

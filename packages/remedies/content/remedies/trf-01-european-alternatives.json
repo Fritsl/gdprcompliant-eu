@@ -1,0 +1,62 @@
+{
+  "id": "trf-01-european-alternatives",
+  "version": 1,
+  "findingTypeId": "TRF-01",
+  "jurisdictions": "all",
+  "kind": "partner_alternative",
+  "title": {
+    "en": "Compare European alternatives"
+  },
+  "effort": {
+    "label": {
+      "en": "A decision, not a task"
+    }
+  },
+  "detail": {
+    "en": "Real switching cost, so take your time. Three European-owned options we have checked."
+  },
+  "options": [
+    {
+      "name": "Mailbox provider",
+      "jurisdiction": "DE",
+      "note": {
+        "en": "mail only, keeps your files where they are"
+      }
+    },
+    {
+      "name": "Collaboration suite",
+      "jurisdiction": "FR",
+      "note": {
+        "en": "mail and files, migration tooling included"
+      }
+    },
+    {
+      "name": "Collaboration suite",
+      "jurisdiction": "DE",
+      "note": {
+        "en": "mail and files, on-premise option"
+      }
+    }
+  ],
+  "verifyLabel": {
+    "en": "Re-check after a change"
+  },
+  "verification": {
+    "method": "rescan"
+  },
+  "action": {
+    "kind": "message",
+    "label": {
+      "en": "Send this to whoever decides"
+    },
+    "to": {
+      "en": "Whoever owns the decision"
+    },
+    "subject": {
+      "en": "Decision needed: where our mail and files live"
+    },
+    "body": {
+      "en": "We need a decision, not a task.\n\nOur mail and document storage are with a provider whose ultimate parent is established in the United States. European data residency doesn't change which courts can compel that parent, and our privacy policy doesn't currently name a basis for it.\n\nThree options, none of them free:\n- Do nothing, and document the transfer basis properly. Cheapest, and defensible.\n- Move mail only. Moderate disruption, keeps files where they are.\n- Move mail and files. Largest disruption, removes the question entirely.\n\nI can get costs for the second and third if you want them. What I need from you is which direction we're going, so I can stop leaving this open."
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "id": "frm-02-split-checkboxes",
+  "version": 1,
+  "findingTypeId": "FRM-02",
+  "jurisdictions": "all",
+  "kind": "self_fix",
+  "title": {
+    "en": "Split it into two checkboxes"
+  },
+  "effort": {
+    "label": {
+      "en": "About 10 minutes"
+    },
+    "minutes": 10
+  },
+  "detail": {
+    "en": "Terms stays required. The newsletter becomes a second, optional, unticked box. Your list gets smaller and considerably more valuable."
+  },
+  "snippet": "<label><input type=\"checkbox\" required> I accept the terms</label>\n<label><input type=\"checkbox\"> Yes to the newsletter</label>",
+  "verifyLabel": {
+    "en": "Re-check this finding"
+  },
+  "verification": {
+    "method": "rescan"
+  },
+  "action": {
+    "kind": "agent_prompt",
+    "label": {
+      "en": "Paste into your coding assistant"
+    },
+    "forwardable": {
+      "en": "Or forward it to your developer — it reads the same either way."
+    },
+    "body": {
+      "en": "On {{domain}} at {{path}}, one required checkbox with id \"{{control_id}}\" currently covers both accepting the terms and joining the newsletter. Its label reads \"{{label}}\", and the order cannot be placed without ticking it.\n\nSplit it into two controls. Accepting the terms stays required. The newsletter becomes a separate optional checkbox, unticked by default. Store the newsletter choice as its own value with its own timestamp, separate from terms acceptance, so we can later show who opted in and when.\n\nWhen you are done: show me the change and where the newsletter opt-in is recorded."
+    }
+  }
+}

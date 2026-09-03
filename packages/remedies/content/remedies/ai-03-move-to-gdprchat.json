@@ -1,0 +1,50 @@
+{
+  "id": "ai-03-move-to-gdprchat",
+  "version": 1,
+  "findingTypeId": "AI-03",
+  "jurisdictions": "all",
+  "kind": "our_product",
+  "title": {
+    "en": "Move the people using it to GDPR Chat"
+  },
+  "effort": {
+    "label": {
+      "en": "Same day"
+    }
+  },
+  "detail": {
+    "en": "Same experience your staff already know, hosted in the EU, with a processing agreement and no training on your content."
+  },
+  "product": {
+    "id": "gdprchat",
+    "url": "https://gdprchat.eu"
+  },
+  "cta": {
+    "en": "See what it would cost"
+  },
+  "alternativeNote": {
+    "en": "No free fix exists for this one. Three European alternatives, if you would rather not use ours."
+  },
+  "verifyLabel": {
+    "en": "Mark as handled"
+  },
+  "verification": {
+    "method": "attestation",
+    "statement": "The people named have stopped using the previous assistant for anything involving a customer."
+  },
+  "action": {
+    "kind": "message",
+    "label": {
+      "en": "Send this to the people using it"
+    },
+    "to": {
+      "en": "{{recipients}}"
+    },
+    "subject": {
+      "en": "Switching the assistant we use for customer replies"
+    },
+    "body": {
+      "en": "Hi,\n\nWe've found that customer details — names, addresses, order information — are going into an assistant hosted outside the EU that we don't have an agreement covering. We need to stop that continuing.\n\nFrom Monday, please use the EU-hosted one for anything involving a customer. It works the same way, so there's nothing to learn.\n\nNothing you've done is a problem and nobody is in trouble. We just found it and we're fixing it.\n\nAsk me if anything is unclear."
+    }
+  }
+}

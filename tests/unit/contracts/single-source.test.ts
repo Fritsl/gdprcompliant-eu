@@ -60,7 +60,11 @@ describe('one definition of every shape (F-04)', () => {
   });
 
   it('no other package or app redefines a contract shape', () => {
-    const redefinition = new RegExp(`\\b(?:interface|type)\\s+(?:${CONTRACT_NAMES.join('|')})\\b`);
+    // A declaration is followed by `=`, `{`, `extends` or type parameters. An import
+    // specifier (`type Remedy,`) is not, and is exactly how the shape should be used.
+    const redefinition = new RegExp(
+      `\\b(?:interface|type)\\s+(?:${CONTRACT_NAMES.join('|')})\\s*(?:<|=|\\{|extends\\b)`,
+    );
     const offenders = elsewhere.filter((f) => redefinition.test(readFileSync(f, 'utf8')));
     expect(offenders.map(rel)).toEqual([]);
   });

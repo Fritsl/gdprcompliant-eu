@@ -1,0 +1,38 @@
+{
+  "id": "sec-02-https-form-hsts",
+  "version": 1,
+  "findingTypeId": "SEC-02",
+  "jurisdictions": "all",
+  "kind": "self_fix",
+  "title": {
+    "en": "Point the form at the https address and add HSTS"
+  },
+  "effort": {
+    "label": {
+      "en": "About 5 minutes"
+    },
+    "minutes": 5
+  },
+  "detail": {
+    "en": "Change the form action to the https address so nothing is sent over the redirect. Then add HSTS, so browsers never try http again."
+  },
+  "snippet": "# nginx\nadd_header Strict-Transport-Security \"max-age=63072000; includeSubDomains\" always;",
+  "verifyLabel": {
+    "en": "Re-check this finding"
+  },
+  "verification": {
+    "method": "rescan"
+  },
+  "action": {
+    "kind": "agent_prompt",
+    "label": {
+      "en": "Paste into your coding assistant"
+    },
+    "forwardable": {
+      "en": "Or forward it to your developer — it reads the same either way."
+    },
+    "body": {
+      "en": "On {{domain}} the form at {{form_path}} posts to {{post_url_http}}, which redirects to {{post_url_https}}. The first request carries {{fields}} in the clear.\n\nChange the form action to post directly to {{post_url_https}} so nothing travels over the redirect. Then add a Strict-Transport-Security response header with max-age of at least 63072000, including subdomains.\n\nWhen you are done: tell me which files you changed and how to confirm no request from this form leaves over plain http."
+    }
+  }
+}
