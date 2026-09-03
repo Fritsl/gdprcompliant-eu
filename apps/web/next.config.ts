@@ -6,9 +6,18 @@ const config: NextConfig = {
   // into static export or client-only rendering.
   poweredByHeader: false,
   // Workspace packages ship TypeScript source; Next compiles them as part of the app.
-  transpilePackages: ['@gc/contracts', '@gc/i18n', '@gc/db', '@gc/config', '@gc/artefacts'],
+  transpilePackages: [
+    '@gc/contracts',
+    '@gc/i18n',
+    '@gc/db',
+    '@gc/config',
+    '@gc/artefacts',
+    '@gc/findings',
+    '@gc/remedies',
+    '@gc/jobs',
+  ],
   // The Postgres driver stays a Node module; bundling it breaks its sockets.
-  serverExternalPackages: ['postgres', 'pdfkit'],
+  serverExternalPackages: ['postgres', 'pdfkit', 'pg-boss', 'pg'],
   // The packages use NodeNext resolution: imports name the emitted .js, sources are .ts.
   // webpack maps one to the other; Turbopack does not yet, so the scripts pass --webpack.
   webpack: (config) => {

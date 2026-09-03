@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   createOutboundFetch,
@@ -21,8 +21,9 @@ import type { Config } from './schema.js';
 // The mode comes from config (GC_NETWORK), and the default is replay: a test that reaches
 // for the network without a cassette fails in front of the developer, not silently in CI.
 
-export const CASSETTES_DIR = fileURLToPath(
-  new URL('../../../fixtures/cassettes/', import.meta.url),
+export const CASSETTES_DIR = resolve(
+  dirname(fileURLToPath(import.meta.url)),
+  '../../../fixtures/cassettes/',
 );
 
 export type NetworkMode = Config['network']['mode'];

@@ -1,5 +1,5 @@
 import { readdirSync, readFileSync } from 'node:fs';
-import { basename, join } from 'node:path';
+import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { RemedySchema, type Jurisdiction, type Remedy } from '@gc/contracts';
 import { canonicalJson, sha256 } from './canonical.js';
@@ -10,7 +10,7 @@ import { PLACEHOLDERS, placeholdersIn } from './placeholders.js';
 // every file against the schema and against the rules a schema cannot express, and fails
 // loudly on the first problem. There is no partial catalogue.
 
-export const CONTENT_DIR = fileURLToPath(new URL('../content/remedies/', import.meta.url));
+export const CONTENT_DIR = resolve(dirname(fileURLToPath(import.meta.url)), '../content/remedies/');
 export const LOCK_FILE_NAME = 'catalogue.lock.json';
 
 export class CatalogueError extends Error {

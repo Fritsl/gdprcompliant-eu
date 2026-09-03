@@ -1,3 +1,5 @@
+import { fileURLToPath } from 'node:url';
+import { dirname, resolve } from 'node:path';
 import { readFileSync } from 'node:fs';
 import { z } from 'zod';
 import { hostOf, isLocalHost } from './egress.js';
@@ -14,7 +16,7 @@ import {
 // pass the result down. Every problem is collected and reported together, named by
 // the variable that caused it, so one restart fixes the lot.
 
-export const ENDPOINTS_FILE = new URL('../endpoints.json', import.meta.url);
+export const ENDPOINTS_FILE = resolve(dirname(fileURLToPath(import.meta.url)), '../endpoints.json');
 
 export class ConfigError extends Error {
   constructor(public readonly problems: readonly string[]) {
@@ -23,8 +25,8 @@ export class ConfigError extends Error {
   }
 }
 
-export function readEndpointsFile(url: URL = ENDPOINTS_FILE): unknown {
-  return JSON.parse(readFileSync(url, 'utf8'));
+export function readEndpointsFile(file: string | URL = ENDPOINTS_FILE): unknown {
+  return JSON.parse(readFileSync(file, 'utf8'));
 }
 
 function describeIssue(prefix: string, issue: z.core.$ZodIssue): string {

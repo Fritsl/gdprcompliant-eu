@@ -34,3 +34,33 @@ jobs:
       # The prototype is the design specification; its 430 assertions encode product
       # rules, so a change that breaks one must fail here too.
       - run: pnpm proto
+
+  # Tenant isolation is proven on every push, not nightly (T-07): the two tenancy suites
+  # against a real Postgres with the same image as docker-compose.
+  tenancy:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: gc
+          POSTGRES_PASSWORD: gc
+          POSTGRES_DB: gc_test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U gc -d gc_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      GC_TEST_DATABASE_URL: postgres://gc:gc@localhost:5432/gc_test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 9.15.4 }
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm vitest run --project integration tests/integration/tenancy.test.ts tests/integration/tenancy-matrix.test.ts

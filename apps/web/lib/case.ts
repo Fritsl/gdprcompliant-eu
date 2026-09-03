@@ -13,6 +13,13 @@ import {
 } from '@gc/db';
 import type { CaseEvent, Locale } from '@gc/contracts';
 
+// The schema to read from, when a test points the app at a disposable one. Production
+// leaves it unset and reads public.
+export const searchPath = (env: Record<string, string | undefined>): { searchPath?: string[] } => {
+  const path = env['GC_SEARCH_PATH'];
+  return path ? { searchPath: path.split(',') } : {};
+};
+
 // A case reached by its token (C-01): resolve the token, then act as that tenant.
 // No database, no token match, or an expired case all come back as nothing found.
 
@@ -29,7 +36,7 @@ async function withConnection<T>(
 ): Promise<T | undefined> {
   const url = env['DATABASE_URL'];
   if (!url) return undefined;
-  const connection = connect(url, { max: 1 });
+  const connection = connect(url, { max: 1, ...searchPath(env) });
   try {
     return await work(connection);
   } finally {

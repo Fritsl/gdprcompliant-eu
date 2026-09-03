@@ -204,8 +204,12 @@ export async function deleteCase(
 ): Promise<DeletionStub> {
   const started = Date.now();
   const now = (options.now ?? (() => new Date()))();
-  await withTenant(connection, tenantId, (db) =>
-    appendCaseEvent(db, {
+  // The pair (tenant, case) is checked as the tenant before anything is written: a
+  // tenant naming another tenant's case sees no case, and nothing happens.
+  await withTenant(connection, tenantId, async (db) => {
+    const [c] = await db.select({ id: cases.id }).from(cases).where(eq(cases.id, caseId)).limit(1);
+    if (!c) throw new Error(`no case ${caseId}`);
+    await appendCaseEvent(db, {
       tenantId,
       caseId,
       at: now,
@@ -215,8 +219,8 @@ export async function deleteCase(
         requestedBy: options.requestedBy,
         ...(options.reason ? { reason: options.reason } : {}),
       },
-    }),
-  );
+    });
+  });
   const [row] = await connection.sql<{ rows_removed: number }[]>`
     select delete_case(${caseId}, ${options.requestedBy}, ${deletionStubId(caseId)}, ${now.toISOString()}) as rows_removed`;
   return {

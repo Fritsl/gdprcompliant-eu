@@ -1,5 +1,5 @@
 import { existsSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   CookieDatabaseVersionSchema,
@@ -13,7 +13,10 @@ import {
 // replaced by the refresh job (refresh.ts) and read here. The checked-in copy is the
 // first version, not the truth; the job's copy is.
 
-export const DEFAULT_STORE = fileURLToPath(new URL('../../data/cookies/', import.meta.url));
+export const DEFAULT_STORE = resolve(
+  dirname(fileURLToPath(import.meta.url)),
+  '../../data/cookies/',
+);
 export const DATABASE_FILE = 'open-cookie-database.csv';
 export const VERSION_FILE = 'version.json';
 

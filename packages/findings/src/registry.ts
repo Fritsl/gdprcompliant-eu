@@ -1,5 +1,5 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
-import { join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { z } from 'zod';
 import {
@@ -27,8 +27,9 @@ export type Detector = z.infer<typeof DetectorSchema>;
 
 export const DETECTORS: readonly Detector[] = z.array(DetectorSchema).parse(detectorsJson);
 
-export const FIXTURE_SITES_DIR = fileURLToPath(
-  new URL('../../../fixtures/sites/', import.meta.url),
+export const FIXTURE_SITES_DIR = resolve(
+  dirname(fileURLToPath(import.meta.url)),
+  '../../../fixtures/sites/',
 );
 
 // Finding types the fixture estate expects a scan to produce.
