@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@gc/config": "workspace:*",
-    "@gc/contracts": "workspace:*"
+    "@gc/contracts": "workspace:*",
+    "zod": "^4.5.4"
   }
 }
