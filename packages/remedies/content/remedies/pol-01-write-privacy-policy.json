@@ -1,0 +1,34 @@
+{
+  "id": "pol-01-write-privacy-policy",
+  "version": 1,
+  "findingTypeId": "POL-01",
+  "jurisdictions": "all",
+  "kind": "generated_artefact",
+  "title": {
+    "en": "Publish a privacy policy, drafted from what we found",
+    "da": "Offentliggør en privatlivspolitik, skrevet ud fra det, vi fandt"
+  },
+  "effort": {
+    "label": {
+      "en": "One click, then a review",
+      "da": "Ét klik, så et gennemsyn"
+    }
+  },
+  "detail": {
+    "en": "Nothing on the site tells a visitor who collects their data or why. The draft is written from the vendors, forms and cookies the scan saw, and from the answers you give; it links from the footer of every page.",
+    "da": "Intet på sitet fortæller en besøgende, hvem der indsamler deres data eller hvorfor. Udkastet skrives ud fra de leverandører, formularer og cookies, scanningen så, og ud fra dine svar; det linkes fra sidefoden på hver side."
+  },
+  "artefact": "privacy_policy",
+  "cta": {
+    "en": "Preview the draft",
+    "da": "Se udkastet"
+  },
+  "verifyLabel": {
+    "en": "Re-check once published",
+    "da": "Tjek igen, når den er offentliggjort"
+  },
+  "verification": {
+    "method": "artefact_published",
+    "artefact": "privacy_policy"
+  }
+}

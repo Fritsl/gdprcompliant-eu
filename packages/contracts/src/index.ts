@@ -32,3 +32,4 @@ export * from './hash.js';
 export * from './capture.js';
 export * from './cookie.js';
 export * from './security.js';
+export * from './policy.js';
