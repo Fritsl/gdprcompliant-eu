@@ -4,7 +4,7 @@
 
 export const PLACEHOLDER_PATTERN = /\{\{([a-z_]+)\}\}/g;
 
-export const PLACEHOLDERS: ReadonlySet<string> = new Set([
+export const PLACEHOLDER_NAMES = [
   // The customer's site
   'domain',
   'path',
@@ -30,7 +30,35 @@ export const PLACEHOLDERS: ReadonlySet<string> = new Set([
   'recipients',
   'owner',
   'day',
-]);
+] as const;
+export type Placeholder = (typeof PLACEHOLDER_NAMES)[number];
+
+export const PLACEHOLDERS: ReadonlySet<string> = new Set(PLACEHOLDER_NAMES);
+
+// What the resolver substitutes: a string, or a list rendered one item per line.
+export type PlaceholderValues = Partial<Record<Placeholder, string | readonly string[]>>;
+
+export function renderValue(value: string | readonly string[]): string {
+  if (typeof value === 'string') return value;
+  return value.map((v) => `  ${v}`).join('\n');
+}
+
+// Substitute every placeholder that has a value; return what is still unfilled.
+export function fill(
+  template: string,
+  values: PlaceholderValues,
+): { text: string; unfilled: string[] } {
+  const unfilled = new Set<string>();
+  const text = template.replace(PLACEHOLDER_PATTERN, (whole, name: string) => {
+    const value = values[name as Placeholder];
+    if (value === undefined || (Array.isArray(value) && value.length === 0)) {
+      unfilled.add(name);
+      return whole;
+    }
+    return renderValue(value);
+  });
+  return { text, unfilled: [...unfilled].sort() };
+}
 
 export function placeholdersIn(value: unknown, out = new Set<string>()): Set<string> {
   if (typeof value === 'string') {
