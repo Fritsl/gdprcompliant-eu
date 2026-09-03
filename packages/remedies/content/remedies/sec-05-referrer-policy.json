@@ -1,0 +1,38 @@
+{
+  "id": "sec-05-referrer-policy",
+  "version": 1,
+  "findingTypeId": "SEC-05",
+  "jurisdictions": "all",
+  "kind": "self_fix",
+  "title": {
+    "en": "Stop sending page addresses to other hosts"
+  },
+  "effort": {
+    "label": {
+      "en": "About 5 minutes"
+    },
+    "minutes": 5
+  },
+  "detail": {
+    "en": "Every request to another host carries the full address of the page it came from, which can include what a visitor searched for or which order they are looking at. One header keeps it to the origin."
+  },
+  "snippet": "# nginx\nadd_header Referrer-Policy \"strict-origin-when-cross-origin\" always;",
+  "verifyLabel": {
+    "en": "Re-check this finding"
+  },
+  "verification": {
+    "method": "rescan"
+  },
+  "action": {
+    "kind": "agent_prompt",
+    "label": {
+      "en": "Paste into your coding assistant"
+    },
+    "forwardable": {
+      "en": "Or forward it to your developer — it reads the same either way."
+    },
+    "body": {
+      "en": "On {{domain}}, responses carry no Referrer-Policy, so requests to {{hosts}} receive the full page address as the referrer. Add a Referrer-Policy header with the value strict-origin-when-cross-origin to every response.\n\nWhen you are done: show me the change and how to confirm the header on https://{{domain}}/."
+    }
+  }
+}

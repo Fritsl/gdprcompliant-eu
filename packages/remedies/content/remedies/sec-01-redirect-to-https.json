@@ -1,0 +1,38 @@
+{
+  "id": "sec-01-redirect-to-https",
+  "version": 1,
+  "findingTypeId": "SEC-01",
+  "jurisdictions": "all",
+  "kind": "self_fix",
+  "title": {
+    "en": "Send every plain-HTTP request to HTTPS"
+  },
+  "effort": {
+    "label": {
+      "en": "About 10 minutes"
+    },
+    "minutes": 10
+  },
+  "detail": {
+    "en": "The site answers over plain HTTP as if it were fine. One server rule sends every such request to the HTTPS address instead."
+  },
+  "snippet": "# nginx\nserver {\n  listen 80;\n  server_name example.eu;\n  return 301 https://$host$request_uri;\n}",
+  "verifyLabel": {
+    "en": "Re-check this finding"
+  },
+  "verification": {
+    "method": "rescan"
+  },
+  "action": {
+    "kind": "agent_prompt",
+    "label": {
+      "en": "Paste into your coding assistant"
+    },
+    "forwardable": {
+      "en": "Or forward it to your developer — it reads the same either way."
+    },
+    "body": {
+      "en": "On {{domain}}, plain-HTTP requests are answered with the page instead of a redirect to HTTPS. Change the server so that every request on port 80 answers with a permanent redirect to the same path on https://{{domain}}, and nothing else. Do not touch the HTTPS server block.\n\nWhen you are done: show me the change, and tell me how to confirm that http://{{domain}}/ and http://{{domain}}/{{path}} both answer with a redirect to https."
+    }
+  }
+}

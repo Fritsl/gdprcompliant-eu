@@ -26,6 +26,7 @@ beforeAll(async () => {
     passTimeoutMs: 30_000,
     navigationTimeoutMs: 10_000,
     launch: { proxy: { server: server.proxy } },
+    ignoreHTTPSErrors: true,
   }).start();
 });
 
@@ -47,6 +48,7 @@ async function firstLoad(site: FixtureSite) {
 
 describe('fixture sites through the proxy (F-07)', () => {
   it('serves every fixture host and refuses everything else', () => {
+    expect(server.certificate).toMatch(/BEGIN CERTIFICATE/);
     expect(server.hostNames()).toEqual(
       expect.arrayContaining(['eksempelbutik.test', 'analytics.tracker.test', 'brochure.test']),
     );
@@ -92,7 +94,7 @@ describe('fixture sites through the proxy (F-07)', () => {
   });
 
   it('a host outside the fixture is refused with a 502, and TLS is refused outright', async () => {
-    const page = await browser.newPage();
+    const page = await browser.newPage({ ignoreHTTPSErrors: true });
     const before = server.refused.length;
     const response = await page.goto('http://example.com/');
     expect(response?.status()).toBe(502);
@@ -100,6 +102,10 @@ describe('fixture sites through the proxy (F-07)', () => {
     await expect(page.goto('https://example.com/')).rejects.toThrow(
       /ERR_TUNNEL_CONNECTION_FAILED|ERR_PROXY/,
     );
+    // A fixture host over TLS is fine: the tunnel is terminated here.
+    const secure = await browser.newPage({ ignoreHTTPSErrors: true });
+    expect((await secure.goto('https://brochure.test/'))?.status()).toBe(200);
+    await secure.close();
     expect(server.refused.slice(before).map((r) => `${r.method} ${r.host}`)).toEqual([
       'GET example.com',
       'CONNECT example.com',

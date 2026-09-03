@@ -1,0 +1,38 @@
+{
+  "id": "sec-06-security-headers",
+  "version": 1,
+  "findingTypeId": "SEC-06",
+  "jurisdictions": "all",
+  "kind": "self_fix",
+  "title": {
+    "en": "Add the missing security headers"
+  },
+  "effort": {
+    "label": {
+      "en": "About 15 minutes"
+    },
+    "minutes": 15
+  },
+  "detail": {
+    "en": "Three response headers a browser uses to refuse the obvious attacks: a content security policy, no MIME sniffing, no framing by other sites."
+  },
+  "snippet": "# nginx\nadd_header Content-Security-Policy \"default-src 'self'; frame-ancestors 'none'\" always;\nadd_header X-Content-Type-Options \"nosniff\" always;\nadd_header X-Frame-Options \"DENY\" always;",
+  "verifyLabel": {
+    "en": "Re-check this finding"
+  },
+  "verification": {
+    "method": "rescan"
+  },
+  "action": {
+    "kind": "agent_prompt",
+    "label": {
+      "en": "Paste into your coding assistant"
+    },
+    "forwardable": {
+      "en": "Or forward it to your developer — it reads the same either way."
+    },
+    "body": {
+      "en": "On {{domain}}, responses are missing these headers: {{fields}}. Add them to every response. Start the Content-Security-Policy in report-only mode if the site loads scripts from other hosts, then tighten it once the report is clean; send X-Content-Type-Options: nosniff and X-Frame-Options: DENY (or frame-ancestors in the policy) straight away.\n\nWhen you are done: show me the headers on https://{{domain}}/ and any policy violations the browser console reports."
+    }
+  }
+}

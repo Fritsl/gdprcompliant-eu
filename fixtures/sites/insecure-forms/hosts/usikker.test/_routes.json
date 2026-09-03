@@ -1,0 +1,14 @@
+[
+  {
+    "path": "/kontakt/send",
+    "scheme": "http",
+    "status": 301,
+    "headers": { "location": "https://usikker.test/kontakt/send" }
+  },
+  {
+    "path": "/kontakt/send",
+    "scheme": "https",
+    "status": 204,
+    "headers": {}
+  }
+]

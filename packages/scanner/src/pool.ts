@@ -43,6 +43,8 @@ export interface PoolOptions {
   readonly closeTimeoutMs?: number;
   readonly launch?: LaunchOptions;
   readonly browserType?: BrowserType;
+  // For the fixture estate, whose TLS certificate is self-signed. Never in production.
+  readonly ignoreHTTPSErrors?: boolean;
 }
 
 export class PassTimeoutError extends Error {
@@ -136,6 +138,7 @@ export class BrowserPool {
         timezoneId: target.timezone ?? DEFAULT_VISITOR.timezone,
         viewport: target.viewport ?? DEFAULT_VISITOR.viewport,
         ...(target.userAgent !== undefined ? { userAgent: target.userAgent } : {}),
+        ...(this.options.ignoreHTTPSErrors ? { ignoreHTTPSErrors: true } : {}),
       });
       context.setDefaultTimeout(this.options.navigationTimeoutMs);
       context.setDefaultNavigationTimeout(this.options.navigationTimeoutMs);

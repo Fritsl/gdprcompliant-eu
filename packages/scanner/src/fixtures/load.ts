@@ -1,13 +1,19 @@
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { FixtureExpectationSchema, FixtureRoutesFileSchema, type FixtureExpectation } from '@gc/contracts';
+import {
+  FixtureExpectationSchema,
+  FixtureHeadersFileSchema,
+  FixtureRoutesFileSchema,
+  type FixtureExpectation,
+} from '@gc/contracts';
 import type { FixtureHost } from './server.js';
 
 // fixtures/sites/<name>/
 //   expected.json                what must and must not come out (FixtureExpectationSchema)
 //   hosts/<host>/index.html      the site itself, and every third party it loads
 //   hosts/<host>/_routes.json    optional per-path overrides: redirects, headers, statuses
+//   hosts/<host>/_headers.json   optional response headers on every answer from that host
 //
 // Loading validates all of it, and reads every text file for a URL whose host is not part
 // of the fixture: a fixture that references the real internet is refused, because the
@@ -97,7 +103,14 @@ export function loadFixtureSite(dir: string, name = dir.split(/[\\/]/).filter(Bo
         if (!r.success) throw new FixtureError(name, `${host}/_routes.json: ${r.error.issues[0]?.message}`);
         routes = r.data;
       }
-      return { host, dir: hostDir, routes };
+      let headers: Record<string, string> | undefined;
+      const headersFile = join(hostDir, '_headers.json');
+      if (existsSync(headersFile)) {
+        const h = FixtureHeadersFileSchema.safeParse(JSON.parse(readFileSync(headersFile, 'utf8')));
+        if (!h.success) throw new FixtureError(name, `${host}/_headers.json: ${h.error.issues[0]?.message}`);
+        headers = h.data;
+      }
+      return { host, dir: hostDir, routes, ...(headers ? { headers } : {}) };
     });
   if (hosts.length === 0) throw new FixtureError(name, 'has no hosts');
 

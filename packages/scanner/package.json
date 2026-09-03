@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@gc/contracts": "workspace:*",
-    "playwright": "^1.62.1"
+    "playwright": "^1.62.1",
+    "selfsigned": "^5.5.0"
   }
 }

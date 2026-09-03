@@ -2,13 +2,20 @@ import { readFile, stat } from 'node:fs/promises';
 import { createServer, type IncomingMessage, type Server, type ServerResponse } from 'node:http';
 import type { AddressInfo, Socket } from 'node:net';
 import { extname, join, resolve, sep } from 'node:path';
+import { TLSSocket } from 'node:tls';
 import type { FixtureRoute } from '@gc/contracts';
+import * as selfsigned from 'selfsigned';
 
 // One local server for every host in a fixture estate. The browser is pointed at it as
 // its HTTP proxy, so a request for http://analytics.tracker.test/tag.js arrives here
 // with the full URL and is answered from hosts/analytics.tracker.test/tag.js. A host
-// that is not part of the fixture is refused with a 502 and recorded, and CONNECT (TLS)
-// is refused outright: no fixture, and nothing a fixture loads, can reach the internet.
+// that is not part of the fixture is refused with a 502 and recorded.
+//
+// HTTPS works the same way: a CONNECT for a fixture host is answered with a tunnel that
+// this server terminates itself, with a certificate it generated at start-up for every
+// fixture host. The browser is told to accept it (ignoreHTTPSErrors). A CONNECT for any
+// other host, or for a fixture host declared without TLS, is refused: no fixture, and
+// nothing a fixture loads, can reach the internet.
 //
 // This module listens; it never connects out. It is the one place outside @gc/config
 // allowed to import node:http.
@@ -17,6 +24,10 @@ export interface FixtureHost {
   readonly host: string;
   readonly dir: string;
   readonly routes: readonly FixtureRoute[];
+  // Extra response headers on every answer from this host: HSTS, CSP, and so on.
+  readonly headers?: Readonly<Record<string, string>>;
+  // A host that has no certificate at all. Default: TLS is available.
+  readonly tls?: boolean;
 }
 
 export interface RefusedRequest {
@@ -26,6 +37,8 @@ export interface RefusedRequest {
 }
 
 export interface ServedRequest {
+  readonly method: string;
+  readonly scheme: 'http' | 'https';
   readonly host: string;
   readonly path: string;
   readonly status: number;
@@ -46,6 +59,8 @@ const MIME: Record<string, string> = {
   '.woff2': 'font/woff2',
   '.txt': 'text/plain; charset=utf-8',
   '.xml': 'application/xml; charset=utf-8',
+  '.sql': 'application/sql',
+  '.zip': 'application/zip',
 };
 
 export class FixtureServer {
@@ -53,6 +68,7 @@ export class FixtureServer {
   readonly served: ServedRequest[] = [];
   private readonly hosts = new Map<string, FixtureHost>();
   private server: Server | undefined;
+  private tls: { key: string; cert: string } | undefined;
 
   constructor(hosts: Iterable<FixtureHost>) {
     for (const h of hosts) this.hosts.set(h.host.toLowerCase(), h);
@@ -73,12 +89,53 @@ export class FixtureServer {
     return `http://127.0.0.1:${this.port}`;
   }
 
+  // The certificate the tunnel presents, for clients that want to trust it explicitly.
+  get certificate(): string {
+    if (!this.tls) throw new Error('fixture server is not listening');
+    return this.tls.cert;
+  }
+
   async start(port = 0): Promise<this> {
+    const pems = await selfsigned.generate([{ name: 'commonName', value: 'fixture estate' }], {
+      keySize: 2048,
+      notAfterDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+      extensions: [
+        {
+          name: 'subjectAltName',
+          altNames: this.hostNames().map((host) => ({ type: 2, value: host })),
+        },
+      ],
+    });
+    this.tls = { key: pems.private, cert: pems.cert };
+
     const server = createServer((req, res) => void this.handle(req, res));
-    server.on('connect', (req, socket: Socket) => {
-      const host = (req.url ?? '').split(':')[0] ?? '';
-      this.refused.push({ method: 'CONNECT', host, url: req.url ?? '' });
-      socket.end('HTTP/1.1 403 Forbidden\r\nContent-Length: 0\r\n\r\n');
+    server.on('connect', (req, socket: Socket, head: Buffer) => {
+      const [hostPart, portPart] = (req.url ?? '').split(':');
+      const host = hostPart?.toLowerCase() ?? '';
+      const port = Number(portPart ?? '443');
+      const fixture = this.hosts.get(host);
+      // Some clients tunnel plain HTTP too; a CONNECT to port 80 gets a plain tunnel.
+      if (fixture && port !== 443) {
+        socket.write('HTTP/1.1 200 Connection Established\r\n\r\n');
+        if (head.length > 0) socket.unshift(head);
+        server.emit('connection', socket);
+        return;
+      }
+      if (!fixture || fixture.tls === false) {
+        this.refused.push({ method: 'CONNECT', host, url: req.url ?? '' });
+        socket.end('HTTP/1.1 403 Forbidden\r\nContent-Length: 0\r\n\r\n');
+        return;
+      }
+      socket.write('HTTP/1.1 200 Connection Established\r\n\r\n');
+      const tls = new TLSSocket(socket, {
+        isServer: true,
+        key: this.tls!.key,
+        cert: this.tls!.cert,
+      });
+      tls.on('error', () => socket.destroy());
+      if (head.length > 0) tls.unshift(head);
+      // The decrypted stream is ordinary HTTP; hand it to the same server.
+      server.emit('connection', tls);
     });
     await new Promise<void>((resolveStart, reject) => {
       server.once('error', reject);
@@ -92,22 +149,25 @@ export class FixtureServer {
     const server = this.server;
     if (!server) return;
     this.server = undefined;
+    server.closeAllConnections();
     await new Promise<void>((resolveStop) => server.close(() => resolveStop()));
   }
 
   private async handle(req: IncomingMessage, res: ServerResponse): Promise<void> {
     const raw = req.url ?? '/';
+    const scheme: 'http' | 'https' = (req.socket as TLSSocket).encrypted ? 'https' : 'http';
+    const method = req.method ?? 'GET';
     let url: URL;
     try {
       // Proxy-style requests carry the absolute URL; direct ones carry a Host header.
-      url = raw.startsWith('http://') || raw.startsWith('https://')
-        ? new URL(raw)
-        : new URL(
-            raw,
-            // Direct-style requests name their host in Host; a client that cannot set Host
-            // (fetch forbids it) says so in X-Forwarded-Host instead.
-            `http://${req.headers['x-forwarded-host'] ?? req.headers.host ?? 'unknown.invalid'}`,
-          );
+      url =
+        raw.startsWith('http://') || raw.startsWith('https://')
+          ? new URL(raw)
+          : new URL(
+              raw,
+              // A client that cannot set Host (fetch forbids it) says so in X-Forwarded-Host.
+              `${scheme}://${req.headers['x-forwarded-host'] ?? req.headers.host ?? 'unknown.invalid'}`,
+            );
     } catch {
       res.writeHead(400).end();
       return;
@@ -116,19 +176,26 @@ export class FixtureServer {
     const host = url.hostname.toLowerCase();
     const fixture = this.hosts.get(host);
     if (!fixture) {
-      this.refused.push({ method: req.method ?? 'GET', host, url: url.toString() });
-      res
-        .writeHead(502, { 'content-type': 'application/json; charset=utf-8' })
-        .end(JSON.stringify({ refused: host, reason: 'not a fixture host — fixtures never reach the internet' }));
+      this.refused.push({ method, host, url: url.toString() });
+      res.writeHead(502, { 'content-type': 'application/json; charset=utf-8' }).end(
+        JSON.stringify({
+          refused: host,
+          reason: 'not a fixture host — fixtures never reach the internet',
+        }),
+      );
       return;
     }
 
-    const route = fixture.routes.find((r) => r.path === url.pathname);
+    const extra = fixture.headers ?? {};
+    const route = fixture.routes.find(
+      (r) => r.path === url.pathname && (r.scheme === undefined || r.scheme === scheme),
+    );
     if (route) {
-      this.served.push({ host, path: url.pathname, status: route.status });
       const body = route.body ?? '';
+      this.served.push({ method, scheme, host, path: url.pathname, status: route.status });
       res.writeHead(route.status, {
         'content-length': String(Buffer.byteLength(body)),
+        ...extra,
         ...route.headers,
       });
       res.end(body);
@@ -137,17 +204,20 @@ export class FixtureServer {
 
     const file = await this.resolveFile(fixture.dir, url.pathname);
     if (!file) {
-      this.served.push({ host, path: url.pathname, status: 404 });
-      res.writeHead(404, { 'content-type': 'text/plain; charset=utf-8' }).end('not in fixture');
+      this.served.push({ method, scheme, host, path: url.pathname, status: 404 });
+      res
+        .writeHead(404, { 'content-type': 'text/plain; charset=utf-8', ...extra })
+        .end('not in fixture');
       return;
     }
     const body = await readFile(file);
-    this.served.push({ host, path: url.pathname, status: 200 });
+    this.served.push({ method, scheme, host, path: url.pathname, status: 200 });
     res
       .writeHead(200, {
         'content-type': MIME[extname(file).toLowerCase()] ?? 'application/octet-stream',
         'content-length': String(body.length),
         'cache-control': 'no-store',
+        ...extra,
       })
       .end(body);
   }
@@ -159,6 +229,8 @@ export class FixtureServer {
     } catch {
       return undefined;
     }
+    // Fixture configuration files are not part of the site.
+    if (/(^|\/)_[^/]*\.json$/.test(decoded)) return undefined;
     const root = resolve(dir);
     const candidate = resolve(root, `.${decoded}`);
     // No path may escape the host directory.

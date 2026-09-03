@@ -1,0 +1,38 @@
+{
+  "id": "sec-07-exposed-paths",
+  "version": 1,
+  "findingTypeId": "SEC-07",
+  "jurisdictions": "all",
+  "kind": "self_fix",
+  "title": {
+    "en": "Take the exposed files off the web"
+  },
+  "effort": {
+    "label": {
+      "en": "About 10 minutes"
+    },
+    "minutes": 10
+  },
+  "detail": {
+    "en": "Files that belong to the server, not the site, are being served to anyone who asks: a git checkout, an environment file, a backup. Remove them from the web root and refuse the paths."
+  },
+  "snippet": "# nginx\nlocation ~ /\\.(git|env) { deny all; return 404; }\nlocation ~ \\.(bak|sql|zip)$ { deny all; return 404; }",
+  "verifyLabel": {
+    "en": "Re-check this finding"
+  },
+  "verification": {
+    "method": "rescan"
+  },
+  "action": {
+    "kind": "agent_prompt",
+    "label": {
+      "en": "Paste into your coding assistant"
+    },
+    "forwardable": {
+      "en": "Or forward it to your developer — it reads the same either way."
+    },
+    "body": {
+      "en": "On {{domain}} these files are publicly readable: {{paths}}. Move each out of the web root (they must not be served at all), rotate any credential they contained, and add a server rule that answers 404 for dotfiles and for .bak, .sql and .zip files under the web root.\n\nWhen you are done: list what you moved, what you rotated, and how to confirm each path now answers 404."
+    }
+  }
+}

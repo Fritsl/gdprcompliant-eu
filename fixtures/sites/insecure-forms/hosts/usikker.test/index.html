@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Usikker Butik</title>
+    <!-- Loaded over plain HTTP even when the page is HTTPS: mixed content. -->
+    <script src="http://cdn.usikker.test/t.js"></script>
+  </head>
+  <body>
+    <header><h1>Usikker Butik</h1><img src="http://usikker.test/logo.svg" alt="" width="24" height="24" /></header>
+    <main>
+      <h2>Kontakt os</h2>
+      <!-- The form posts to an http:// address, which redirects to https. The first
+           request carries the fields in the clear. -->
+      <form action="http://usikker.test/kontakt/send" method="post">
+        <label>Navn <input name="navn" /></label>
+        <label>E-mail <input name="email" type="email" /></label>
+        <label>Besked <textarea name="besked"></textarea></label>
+        <button type="submit">Send</button>
+      </form>
+    </main>
+  </body>
+</html>

@@ -40,9 +40,33 @@
       "version": 1,
       "hash": "af4ce3276f89cc339f99799e2e3a689107a8dfe0acf07dbe0c4b9870a1252b0e"
     },
+    "sec-01-redirect-to-https": {
+      "version": 1,
+      "hash": "870bc25436968c78a1845dc6a9e976a31515f7b5f6d39ae8b8713ee03a3a0498"
+    },
     "sec-02-https-form-hsts": {
       "version": 1,
       "hash": "e175594dc490002bdcd855b3c42432577ec265059ca00658497f2455b4f12abe"
+    },
+    "sec-03-hsts": {
+      "version": 1,
+      "hash": "12aab3790d2a5f723c0c7ddc5a238c8fbb99783c11beb1f7754793359e603392"
+    },
+    "sec-04-mixed-content": {
+      "version": 1,
+      "hash": "733603a6dce30c8967e71155f8182aace470e6c651cd36eed7adf224e3dd7c51"
+    },
+    "sec-05-referrer-policy": {
+      "version": 1,
+      "hash": "917e88dbe74da2241728ca0fb73377be1882aa61a3305b74ca7554ff7d0f50cd"
+    },
+    "sec-06-security-headers": {
+      "version": 1,
+      "hash": "1ce695014f1c31d8e0a1db686f33ffb7dfe706a73f1b08c80a4d303cee8a877c"
+    },
+    "sec-07-exposed-paths": {
+      "version": 1,
+      "hash": "d3adc897caa18469bf5d4f7b47c912f14aaafb56c7622f153200e3387ac59431"
     },
     "sub-03-publish-list": {
       "version": 1,

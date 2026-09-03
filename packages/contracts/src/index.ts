@@ -31,3 +31,4 @@ export * from './fixture.js';
 export * from './hash.js';
 export * from './capture.js';
 export * from './cookie.js';
+export * from './security.js';

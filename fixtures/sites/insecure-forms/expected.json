@@ -1,0 +1,15 @@
+{
+  "site": "usikker.test",
+  "description": "A shop that has a certificate but does not use it: plain HTTP is served without a redirect, there is no HSTS and no security headers, the contact form posts to an http:// address that bounces to https, the HTTPS page loads a logo and a script over plain HTTP, and an .env file sits in the web root. robots.txt disallows /.env.local, so that one is never requested.",
+  "tags": [],
+  "findings": {
+    "must": ["SEC-01", "SEC-02", "SEC-03", "SEC-04", "SEC-05", "SEC-06", "SEC-07"],
+    "mustNot": ["CNS-02", "FRM-02"]
+  },
+  "network": {
+    "firstLoad": {
+      "mustContact": ["cdn.usikker.test"],
+      "mustNotContact": []
+    }
+  }
+}

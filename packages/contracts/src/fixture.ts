@@ -10,6 +10,8 @@ import { FindingTypeIdSchema, HostnameSchema, NonEmptyStringSchema } from './pri
 // hosts/<host>/_routes.json.
 export const FixtureRouteSchema = z.object({
   path: z.string().startsWith('/'),
+  // Answer only on one scheme, e.g. an http-only redirect to https.
+  scheme: z.enum(['http', 'https']).optional(),
   status: z.number().int().min(200).max(599).default(200),
   headers: z.record(z.string(), z.string()).default({}),
   body: z.string().optional(),
@@ -18,6 +20,9 @@ export type FixtureRoute = z.infer<typeof FixtureRouteSchema>;
 
 // hosts/<host>/_routes.json
 export const FixtureRoutesFileSchema = z.array(FixtureRouteSchema);
+
+// hosts/<host>/_headers.json: response headers added to every answer from that host.
+export const FixtureHeadersFileSchema = z.record(z.string().min(1), z.string());
 
 export const FixtureNetworkExpectationSchema = z.object({
   mustContact: z.array(HostnameSchema).default([]),

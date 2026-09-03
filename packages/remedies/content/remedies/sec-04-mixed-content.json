@@ -1,0 +1,38 @@
+{
+  "id": "sec-04-mixed-content",
+  "version": 1,
+  "findingTypeId": "SEC-04",
+  "jurisdictions": "all",
+  "kind": "self_fix",
+  "title": {
+    "en": "Load every resource over HTTPS"
+  },
+  "effort": {
+    "label": {
+      "en": "About 15 minutes"
+    },
+    "minutes": 15
+  },
+  "detail": {
+    "en": "The page is HTTPS but some of what it loads is not, so the padlock is half a lie and browsers block or warn. Change the addresses, or make them relative."
+  },
+  "snippet": "<!-- before -->\n<script src=\"http://cdn.example.eu/t.js\"></script>\n<!-- after -->\n<script src=\"https://cdn.example.eu/t.js\"></script>",
+  "verifyLabel": {
+    "en": "Re-check this finding"
+  },
+  "verification": {
+    "method": "rescan"
+  },
+  "action": {
+    "kind": "agent_prompt",
+    "label": {
+      "en": "Paste into your coding assistant"
+    },
+    "forwardable": {
+      "en": "Or forward it to your developer — it reads the same either way."
+    },
+    "body": {
+      "en": "On https://{{domain}} these resources are loaded over plain HTTP:\n\n{{hosts}}\n\nChange each reference to https://, or to a scheme-relative or relative address where the same host serves HTTPS. Do not remove anything; change only the scheme.\n\nWhen you are done: list every reference you changed and how to confirm that no request from https://{{domain}}/ leaves over plain HTTP."
+    }
+  }
+}

@@ -25,6 +25,7 @@ beforeAll(async () => {
     passTimeoutMs: 30_000,
     navigationTimeoutMs: 10_000,
     launch: { proxy: { server: server.proxy } },
+    ignoreHTTPSErrors: true,
   }).start();
 });
 

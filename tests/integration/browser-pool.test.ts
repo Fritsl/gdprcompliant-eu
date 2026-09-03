@@ -85,6 +85,7 @@ beforeAll(async () => {
     passTimeoutMs: 20_000,
     navigationTimeoutMs: 10_000,
     launch: launch(),
+    ignoreHTTPSErrors: true,
   }).start();
 });
 
@@ -151,6 +152,7 @@ describe('limits and deadlines (S-01)', () => {
       passTimeoutMs: 800,
       navigationTimeoutMs: 500,
       launch: launch(),
+      ignoreHTTPSErrors: true,
     }).start();
     try {
       const started = Date.now();
@@ -186,6 +188,7 @@ describe('limits and deadlines (S-01)', () => {
       navigationTimeoutMs: 2_000,
       closeTimeoutMs: 300,
       launch: launch(),
+      ignoreHTTPSErrors: true,
     }).start();
     try {
       await twitchy.run({ url: 'http://brochure.test/' }, async (page, context) => {
