@@ -154,7 +154,7 @@ export const CaseEventSchema = z
     // the record itself goes, and survives only in an export taken after it.
     event('export_produced', { bytes: z.number().int().min(0), sha256: z.string().length(64) }),
     event('deletion_requested', {
-      requestedBy: z.enum(['token', 'owner', 'operator']),
+      requestedBy: z.enum(['token', 'owner', 'operator', 'retention']),
       reason: z.string().optional(),
     }),
     event('vendor_resolved', {

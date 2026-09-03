@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@gc/contracts": "workspace:*",
-    "@gc/db": "workspace:*",
     "pg-boss": "^12.30.0",
     "zod": "^4.5.4"
   }

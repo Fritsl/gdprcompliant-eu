@@ -13,6 +13,8 @@
     "postgres": "^3.4.9",
     "@gc/contracts": "workspace:*",
     "@gc/config": "workspace:*",
-    "@gc/artefacts": "workspace:*"
+    "@gc/artefacts": "workspace:*",
+    "@gc/jobs": "workspace:*",
+    "zod": "^4.5.4"
   }
 }

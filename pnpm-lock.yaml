@@ -181,12 +181,18 @@ importers:
       '@gc/contracts':
         specifier: workspace:*
         version: link:../contracts
+      '@gc/jobs':
+        specifier: workspace:*
+        version: link:../jobs
       drizzle-orm:
         specifier: ^0.45.2
         version: 0.45.2(@opentelemetry/api@1.9.1)(pg@8.23.0)(postgres@3.4.9)
       postgres:
         specifier: ^3.4.9
         version: 3.4.9
+      zod:
+        specifier: ^4.5.4
+        version: 4.5.4
 
   packages/findings:
     dependencies:
@@ -217,9 +223,6 @@ importers:
       '@gc/contracts':
         specifier: workspace:*
         version: link:../contracts
-      '@gc/db':
-        specifier: workspace:*
-        version: link:../db
       pg-boss:
         specifier: ^12.30.0
         version: 12.30.0

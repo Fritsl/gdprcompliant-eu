@@ -207,6 +207,16 @@ export class JobQueue {
     }));
   }
 
+  // A cron schedule for a job; the same payload every time. Idempotent per job name.
+  async schedule<P, S>(job: JobDefinition<P, S>, cron: string, payload: P): Promise<void> {
+    await this.register(job);
+    await this.#boss.schedule(job.name, cron, { payload: job.payload.parse(payload) });
+  }
+
+  async unschedule<P, S>(job: JobDefinition<P, S>): Promise<void> {
+    await this.#boss.unschedule(job.name);
+  }
+
   // Runs the maintenance pass now instead of waiting for the interval.
   async supervise(): Promise<void> {
     await this.#boss.supervise();

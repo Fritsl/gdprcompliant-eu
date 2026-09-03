@@ -17,3 +17,5 @@ export * from './cases.js';
 export * from './timeline.js';
 export * from './case-state.js';
 export * from './export.js';
+export * from './retention.js';
+export * from './retention-job.js';

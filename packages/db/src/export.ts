@@ -175,7 +175,7 @@ export async function exportCase(
 }
 
 export interface DeleteOptions {
-  readonly requestedBy: 'token' | 'owner' | 'operator';
+  readonly requestedBy: 'token' | 'owner' | 'operator' | 'retention';
   readonly reason?: string;
   readonly now?: () => Date;
 }
