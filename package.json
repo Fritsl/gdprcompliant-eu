@@ -25,9 +25,10 @@
     "web:build": "pnpm -F web build",
     "web:start": "pnpm -F web start",
     "db:migrate": "node --env-file-if-exists=.env --import tsx packages/db/src/cli.ts migrate",
-    "db:generate": "drizzle-kit generate --config packages/db/drizzle.config.ts",
+    "db:generate": "drizzle-kit generate --config packages/db/drizzle.config.ts && node scripts/db-generate-fix.mjs",
     "db:up": "docker compose up -d --wait",
-    "db:down": "docker compose down"
+    "db:down": "docker compose down",
+    "db:doc": "node scripts/schema-doc.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

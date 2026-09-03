@@ -54,7 +54,9 @@ describe.skipIf(!url)('the database harness (F-02)', () => {
 
   it('each test file gets its own schema, and they do not see each other', async () => {
     expect(a.schema).not.toBe(b.schema);
-    await a.db.insert(schema.appMeta).values({ key: 'owner', value: 'a' });
+    await a.db
+      .insert(schema.appMeta)
+      .values({ key: 'owner', value: 'a', tenantId: 't-1', sourceRef: 'test' });
     const inA = await a.db.select().from(schema.appMeta);
     const inB = await b.db.select().from(schema.appMeta);
     expect(inA.map((r) => r.value)).toEqual(['a']);

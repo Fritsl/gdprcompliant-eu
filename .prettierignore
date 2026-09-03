@@ -14,3 +14,4 @@ scripts/
 apps/web/app/design-system.css
 apps/web/next-env.d.ts
 packages/findings/data/
+packages/db/migrations/

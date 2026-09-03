@@ -8,5 +8,6 @@
 export const PACKAGE = '@gc/db';
 
 export * from './client.js';
+export { SHARED_TENANT, TABLES } from './schema.js';
 export * from './migrate.js';
 export * from './testing.js';
