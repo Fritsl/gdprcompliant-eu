@@ -10,3 +10,5 @@ export * from './model-client.js';
 export * from './catalogue.js';
 export * from './dispatcher.js';
 export * from './verifier.js';
+export * from './untrusted.js';
+export * from './guards.js';

@@ -40,6 +40,8 @@ export const FIXTURE_TAGS = [
   'spa',
   'local-storage-consent',
   'cloaking',
+  // Instructions planted in the content, on every surface a model might read (A-10).
+  'injection',
 ] as const;
 export const FixtureTagSchema = z.enum(FIXTURE_TAGS);
 

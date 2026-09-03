@@ -1,0 +1,8 @@
+[
+  {
+    "path": "/",
+    "scheme": "http",
+    "status": 301,
+    "headers": { "location": "https://injected.shop.test/" }
+  }
+]

@@ -8,6 +8,7 @@ import {
   type ModelCallName,
   type ModelInput,
   type ModelOutput,
+  type UntrustedContent,
 } from '@gc/contracts';
 import {
   EgressError,
@@ -16,6 +17,8 @@ import {
   type FetchLike,
   type OutboundFetch,
 } from '@gc/config';
+import { guardOutput } from './guards.js';
+import { assemblePrompt } from './untrusted.js';
 
 // The only door to a model (T-04). Every call names an entry in the contracts registry;
 // the input is validated before anything is sent, the output is validated before
@@ -75,10 +78,12 @@ export class ModelTransportError extends Error {
 export interface ModelRequest<N extends ModelCallName> {
   readonly name: N;
   readonly input: ModelInput<N>;
-  // The prompt. Anything scraped inside it arrives wrapped as UntrustedContent in the
-  // input and is delimited by the prompt builder (A-10); this client does not look.
+  // The instructions. Scraped material never goes in here: it arrives wrapped as
+  // UntrustedContent or Evidence in the input (or in `untrusted`), and the client fences
+  // and labels it after the instructions (A-10). A prompt that pastes it is refused.
   readonly system: string;
   readonly user: string;
+  readonly untrusted?: readonly UntrustedContent[];
   // For deterministic replay where the endpoint supports it.
   readonly seed?: number;
 }
@@ -120,9 +125,10 @@ export class ModelClient {
     }
 
     const schema = modelOutputJsonSchema(name);
+    const prompt = assemblePrompt(name, request, input.data);
     const messages: Message[] = [
-      { role: 'system', content: request.system },
-      { role: 'user', content: request.user },
+      { role: 'system', content: prompt.system },
+      { role: 'user', content: prompt.user },
     ];
     const attempts: ModelAttempt[] = [];
 
@@ -139,7 +145,7 @@ export class ModelClient {
         response_format: { type: 'json_schema', json_schema: { name, schema, strict: true } },
       };
       const outcome = await this.post('chat/completions', body, (text) =>
-        this.parseCompletion(name, text),
+        this.parseCompletion(name, input.data as ModelInput<N>, text),
       );
       if (outcome.ok) return outcome.value;
       const record: ModelAttempt = {
@@ -229,7 +235,11 @@ export class ModelClient {
     return parse(text);
   }
 
-  private parseCompletion<N extends ModelCallName>(name: N, text: string): Outcome<ModelOutput<N>> {
+  private parseCompletion<N extends ModelCallName>(
+    name: N,
+    input: ModelInput<N>,
+    text: string,
+  ): Outcome<ModelOutput<N>> {
     let envelope: unknown;
     try {
       envelope = JSON.parse(text);
@@ -257,6 +267,11 @@ export class ModelClient {
     }
     const output = parseModelOutput(name, content);
     if (!output.ok) return { ok: false, transport: false, issues: output.issues, raw: content };
+    // Well-formed is not enough: the answer must have stayed inside what it was given (A-10).
+    const guard = guardOutput(name, input, output.value);
+    if (guard.length > 0) {
+      return { ok: false, transport: false, issues: guard.map((g) => `guard: ${g}`), raw: content };
+    }
     return { ok: true, value: output.value };
   }
 }
