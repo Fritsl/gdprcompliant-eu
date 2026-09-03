@@ -1,0 +1,15 @@
+{
+  "site": "brochure.test",
+  "description": "A four-page brochure site that loads nothing from anyone and stores nothing on the visitor's device. A correct scan raises nothing, and never suggests a banner.",
+  "tags": ["clean"],
+  "findings": {
+    "must": [],
+    "mustNot": ["CNS-02", "CNS-09", "VND-06", "REC-01", "FRM-02"]
+  },
+  "network": {
+    "firstLoad": {
+      "mustContact": [],
+      "mustNotContact": []
+    }
+  }
+}

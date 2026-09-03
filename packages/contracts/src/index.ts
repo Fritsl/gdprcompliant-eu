@@ -27,3 +27,4 @@ export * from './duty.js';
 export * from './planner.js';
 export * from './model.js';
 export * from './json-schema.js';
+export * from './fixture.js';

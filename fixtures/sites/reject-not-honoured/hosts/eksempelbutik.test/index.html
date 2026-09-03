@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Eksempelbutik</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="http://consent.cmp.test/cmp.js"></script>
+    <!-- The bug this fixture isolates: the tag loads here, on every page load, before
+         anyone has said anything to the banner. -->
+    <script src="http://analytics.tracker.test/tag.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Eksempelbutik</h1>
+      <nav><a href="/">Forside</a> <a href="/produkter.html">Produkter</a> <a href="/kontakt.html">Kontakt</a></nav>
+    </header>
+    <main>
+      <h2>Ugens tilbud</h2>
+      <ul class="products">
+        <li>Uldtæppe — 499 kr.</li>
+        <li>Termokande — 249 kr.</li>
+        <li>Notesbog, 3 stk. — 89 kr.</li>
+      </ul>
+    </main>
+    <footer>
+      <p>Eksempelbutik ApS · Testvej 1 · 2100 København Ø</p>
+      <p><a href="/privatliv.html">Privatlivspolitik</a></p>
+    </footer>
+    <div id="cmp" class="cmp" role="dialog" aria-labelledby="cmp-title" hidden>
+      <h2 id="cmp-title">Cookies</h2>
+      <p>Vi bruger cookies til statistik og markedsføring.</p>
+      <button id="cmp-accept" type="button">Accepter alle</button>
+      <button id="cmp-reject" type="button">Afvis alle</button>
+    </div>
+    <img src="http://pixel.social.test/px.svg" alt="" width="1" height="1" />
+  </body>
+</html>

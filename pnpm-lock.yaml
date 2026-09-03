@@ -156,7 +156,11 @@ importers:
 
   packages/rules: {}
 
-  packages/scanner: {}
+  packages/scanner:
+    dependencies:
+      '@gc/contracts':
+        specifier: workspace:*
+        version: link:../contracts
 
 packages:
 

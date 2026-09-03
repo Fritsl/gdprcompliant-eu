@@ -1,0 +1,23 @@
+{
+  "site": "eksempelbutik.test",
+  "description": "A shop with a consent banner that records the refusal and acts on nothing: the analytics tag and the social pixel fire on page load regardless.",
+  "tags": [],
+  "findings": {
+    "must": ["CNS-02"],
+    "mustNot": ["FRM-02", "SEC-02", "VND-06"]
+  },
+  "network": {
+    "firstLoad": {
+      "mustContact": ["consent.cmp.test", "analytics.tracker.test", "pixel.social.test"],
+      "mustNotContact": []
+    },
+    "afterReject": {
+      "mustContact": ["analytics.tracker.test", "pixel.social.test"],
+      "mustNotContact": []
+    },
+    "afterAccept": {
+      "mustContact": ["analytics.tracker.test", "pixel.social.test"],
+      "mustNotContact": []
+    }
+  }
+}

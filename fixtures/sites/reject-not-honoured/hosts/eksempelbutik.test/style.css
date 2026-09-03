@@ -1,0 +1,8 @@
+body { font-family: system-ui, sans-serif; margin: 0; color: #222; }
+header, main, footer { padding: 16px 24px; }
+header { border-bottom: 1px solid #ddd; }
+nav a { margin-right: 12px; }
+.products { padding-left: 20px; }
+.cmp { position: fixed; left: 16px; right: 16px; bottom: 16px; padding: 16px; background: #fff; border: 1px solid #999; box-shadow: 0 8px 24px rgba(0,0,0,.2); }
+.cmp[hidden] { display: none; }
+.cmp button { margin-right: 8px; }

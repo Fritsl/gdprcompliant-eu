@@ -207,9 +207,11 @@ describe('every outbound call goes through @gc/config', () => {
     return out;
   };
   const egress = join(ROOT, 'packages', 'config', 'src', 'egress.ts');
+  // The fixture server (F-07) listens on a local port and never connects out.
+  const fixtureServer = join(ROOT, 'packages', 'scanner', 'src', 'fixtures', 'server.ts');
   const files = [join(ROOT, 'packages'), join(ROOT, 'apps')]
     .flatMap((d) => walk(d))
-    .filter((f) => f !== egress);
+    .filter((f) => f !== egress && f !== fixtureServer);
 
   it('no package or app calls fetch or an HTTP client directly', () => {
     const direct =

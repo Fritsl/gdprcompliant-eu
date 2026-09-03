@@ -21,7 +21,7 @@ export const SUITES: readonly Suite[] = [
   {
     name: 'integration',
     gate: 'required',
-    needs: ['database', 'cassettes'],
+    needs: ['database', 'cassettes', 'browser'],
     budgetSeconds: 300,
     testTimeoutMs: 30_000,
   },

@@ -24,6 +24,8 @@ export default tseslint.config(
       'artifacts/**',
       // The prototype is vanilla ES5-style on purpose and has its own harness.
       'apps/prototype/**',
+      // Fixture sites are deliberately broken browser pages, not project code.
+      'fixtures/**',
     ],
   },
   js.configs.recommended,
@@ -35,7 +37,8 @@ export default tseslint.config(
     // rest before any bytes leave. The one place allowed to touch fetch is the egress
     // module itself; tests/unit/config scans for the same thing.
     files: ['packages/**/*.ts', 'apps/**/*.ts', 'apps/**/*.tsx'],
-    ignores: ['packages/config/src/egress.ts'],
+    // The fixture server (F-07) listens; it never connects out.
+    ignores: ['packages/config/src/egress.ts', 'packages/scanner/src/fixtures/server.ts'],
     rules: {
       'no-restricted-globals': [
         'error',
