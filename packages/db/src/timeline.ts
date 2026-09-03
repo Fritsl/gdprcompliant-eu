@@ -18,10 +18,12 @@ export interface AppendEvent {
 }
 
 // Two writers racing for the same sequence number collide on the unique index; the
-// loser reads the new head and tries again, so the order is the order of commits.
+// loser waits a few milliseconds, reads the new head and tries again, so the order is
+// the order of commits.
 export async function appendCaseEvent(db: Db, input: AppendEvent): Promise<CaseEvent> {
   let lastError: unknown;
-  for (let attempt = 0; attempt < 5; attempt += 1) {
+  for (let attempt = 0; attempt < 25; attempt += 1) {
+    if (attempt > 0) await new Promise((r) => setTimeout(r, 5 + Math.random() * 20 * attempt));
     const [head] = await db
       .select({ seq: sql<number>`coalesce(max(${caseEvents.seq}), 0)::int` })
       .from(caseEvents)
@@ -58,7 +60,7 @@ export async function appendCaseEvent(db: Db, input: AppendEvent): Promise<CaseE
       lastError = e;
     }
   }
-  throw new Error(`could not append to ${input.caseId} after five attempts`, {
+  throw new Error(`could not append to ${input.caseId} after twenty-five attempts`, {
     cause: lastError,
   });
 }
