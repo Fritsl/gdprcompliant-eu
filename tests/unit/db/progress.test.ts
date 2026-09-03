@@ -59,11 +59,11 @@ describe('reminders are owner-initiated', () => {
     ]);
     const members = readFileSync(join(ROOT, 'packages', 'db', 'src', 'members.ts'), 'utf8');
     // One call site, inside remindMember, which only the owner's route reaches.
-    const calls = members.split('queueMail(').slice(1);
+    const calls = members.split('await queueMail(').slice(1);
     const reminderCalls = calls.filter((c) => c.slice(0, 200).includes("'reminder'"));
     expect(reminderCalls).toHaveLength(1);
     const remindAt = members.indexOf('export async function remindMember');
-    const callAt = members.indexOf('queueMail(', remindAt);
+    const callAt = members.indexOf('await queueMail(', remindAt);
     expect(callAt).toBeGreaterThan(remindAt);
     expect(members.slice(callAt, callAt + 200)).toContain("'reminder'");
     const retention = readFileSync(join(ROOT, 'packages', 'db', 'src', 'retention.ts'), 'utf8');
