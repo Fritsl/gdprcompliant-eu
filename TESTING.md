@@ -145,3 +145,17 @@ Under fifteen items, each a yes-or-no observation rather than a judgement call. 
 the case page read well printed; does the Danish sound like Danish; does the trust page look
 like a seal to someone glancing at it; is the first screen on a phone actually usable. Things
 that need eyes and taste — which is exactly why everything else must not.
+
+---
+
+## Running the suites
+
+One vitest project per suite, generated from the tagged manifest in `tests/suites.ts`:
+which suites the gate requires, what each needs (database, cassettes, browser, model),
+and its time budget. `pnpm test:<suite>` runs one; `pnpm test` runs them all.
+
+The unit project blocks sockets, DNS and `fetch` in every worker (`tests/setup/no-network.ts`),
+so a unit test that reaches for a database or the internet fails immediately with a message
+saying which suite it belongs in. Reports land in `artifacts/`: `junit.xml`, an HTML report
+under `report/`, and coverage under `coverage/`. `pnpm test:coverage:check` fails below 70%
+lines, and below 85% in findings, rules and remedies.

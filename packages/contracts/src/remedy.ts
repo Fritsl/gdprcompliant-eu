@@ -90,7 +90,10 @@ export function actionShape<T extends z.ZodType>(text: T) {
   ]);
 }
 
-export function remedyShape<T extends z.ZodType>(text: T, extra: z.ZodRawShape = {}) {
+export function remedyShape<T extends z.ZodType, E extends z.ZodRawShape = Record<never, never>>(
+  text: T,
+  extra: E = {} as E,
+) {
   const action = actionShape(text);
   const base = {
     ...extra,

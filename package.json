@@ -7,7 +7,7 @@
     "node": ">=22"
   },
   "scripts": {
-    "typecheck": "tsc --build",
+    "typecheck": "tsc --build && tsc -p tsconfig.test.json",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -22,25 +22,26 @@
     "proto": "node apps/prototype/smoke.mjs && node apps/prototype/build.mjs"
   },
   "devDependencies": {
+    "@eslint/js": "^9.17.0",
     "@types/node": "^22.10.5",
     "@vitest/coverage-v8": "^2.1.8",
+    "@vitest/ui": "2.1.9",
     "eslint": "^9.17.0",
     "prettier": "^3.4.2",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.19.0",
-    "vitest": "^2.1.8",
-    "@eslint/js": "^9.17.0"
+    "vitest": "^2.1.8"
   },
   "dependencies": {
-    "@gc/contracts": "workspace:*",
-    "@gc/db": "workspace:*",
-    "@gc/scanner": "workspace:*",
-    "@gc/findings": "workspace:*",
-    "@gc/rules": "workspace:*",
-    "@gc/remedies": "workspace:*",
     "@gc/agent": "workspace:*",
-    "@gc/corpus": "workspace:*",
     "@gc/artefacts": "workspace:*",
-    "@gc/config": "workspace:*"
+    "@gc/config": "workspace:*",
+    "@gc/contracts": "workspace:*",
+    "@gc/corpus": "workspace:*",
+    "@gc/db": "workspace:*",
+    "@gc/findings": "workspace:*",
+    "@gc/remedies": "workspace:*",
+    "@gc/rules": "workspace:*",
+    "@gc/scanner": "workspace:*"
   }
 }
