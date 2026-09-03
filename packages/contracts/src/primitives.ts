@@ -23,6 +23,47 @@ export type Jurisdiction = z.infer<typeof JurisdictionSchema>;
 export const SUPPORTED_JURISDICTIONS = ['DK', 'DE'] as const;
 export type SupportedJurisdiction = (typeof SUPPORTED_JURISDICTIONS)[number];
 
+// The European Economic Area: the 27 member states plus Iceland, Liechtenstein and
+// Norway. Inside it, personal data moves freely; outside it, a transfer needs a basis
+// (S-08), and the system itself never sends data there at all (F-10).
+export const EEA_COUNTRIES = [
+  'AT',
+  'BE',
+  'BG',
+  'HR',
+  'CY',
+  'CZ',
+  'DK',
+  'EE',
+  'FI',
+  'FR',
+  'DE',
+  'GR',
+  'HU',
+  'IE',
+  'IT',
+  'LV',
+  'LT',
+  'LU',
+  'MT',
+  'NL',
+  'PL',
+  'PT',
+  'RO',
+  'SK',
+  'SI',
+  'ES',
+  'SE',
+  'IS',
+  'LI',
+  'NO',
+] as const;
+const EEA = new Set<string>(EEA_COUNTRIES);
+
+export function isEea(jurisdiction: string): boolean {
+  return jurisdiction === 'EU' || EEA.has(jurisdiction);
+}
+
 export const LocaleSchema = z
   .string()
   .regex(/^[a-z]{2}(-[A-Z]{2})?$/, 'BCP 47 language, optionally with region')

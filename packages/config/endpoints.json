@@ -1,0 +1,38 @@
+[
+  {
+    "host": "eur-lex.europa.eu",
+    "purpose": "corpus",
+    "jurisdiction": "EU",
+    "note": "Regulation (EU) 2016/679 and Directive 2002/58/EC, consolidated texts"
+  },
+  {
+    "host": "www.retsinformation.dk",
+    "purpose": "corpus",
+    "jurisdiction": "DK",
+    "note": "Databeskyttelsesloven and the Danish cookie order"
+  },
+  {
+    "host": "www.datatilsynet.dk",
+    "purpose": "corpus",
+    "jurisdiction": "DK",
+    "note": "Guidance and published decisions"
+  },
+  {
+    "host": "www.gesetze-im-internet.de",
+    "purpose": "corpus",
+    "jurisdiction": "DE",
+    "note": "BDSG and TDDDG"
+  },
+  {
+    "host": "datacvr.virk.dk",
+    "purpose": "registry",
+    "jurisdiction": "DK",
+    "note": "Det Centrale Virksomhedsregister"
+  },
+  {
+    "host": "www.handelsregister.de",
+    "purpose": "registry",
+    "jurisdiction": "DE",
+    "note": "Gemeinsames Registerportal der Länder"
+  }
+]

@@ -28,6 +28,41 @@ export default tseslint.config(
   ...tseslint.configs.recommended,
   { languageOptions: { globals: node } },
   {
+    // F-10: every outbound host is declared with a purpose and a jurisdiction, and every
+    // outbound call goes through @gc/config's createOutboundFetch, which refuses the
+    // rest before any bytes leave. The one place allowed to touch fetch is the egress
+    // module itself; tests/unit/config scans for the same thing.
+    files: ['packages/**/*.ts', 'apps/**/*.ts', 'apps/**/*.tsx'],
+    ignores: ['packages/config/src/egress.ts'],
+    rules: {
+      'no-restricted-globals': [
+        'error',
+        {
+          name: 'fetch',
+          message: 'Use createOutboundFetch from @gc/config — hosts are allowlisted (F-10).',
+        },
+      ],
+      'no-restricted-imports': [
+        'error',
+        {
+          paths: [
+            'undici',
+            'axios',
+            'got',
+            'node-fetch',
+            'node:http',
+            'node:https',
+            'http',
+            'https',
+          ].map((name) => ({
+            name,
+            message: 'Use createOutboundFetch from @gc/config — hosts are allowlisted (F-10).',
+          })),
+        },
+      ],
+    },
+  },
+  {
     // I-02: a finding has a stable identity; the article, the authority and the guide
     // text are jurisdiction-scoped bindings. An article number hard-coded in a detector
     // is how the product quietly becomes Danish-only. Scoped to the packages that will

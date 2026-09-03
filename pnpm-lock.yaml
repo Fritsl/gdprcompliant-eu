@@ -14,6 +14,9 @@ importers:
       '@gc/artefacts':
         specifier: workspace:*
         version: link:packages/artefacts
+      '@gc/config':
+        specifier: workspace:*
+        version: link:packages/config
       '@gc/contracts':
         specifier: workspace:*
         version: link:packages/contracts
@@ -64,6 +67,15 @@ importers:
   packages/agent: {}
 
   packages/artefacts: {}
+
+  packages/config:
+    dependencies:
+      '@gc/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      zod:
+        specifier: ^4.5.4
+        version: 4.5.4
 
   packages/contracts:
     dependencies:

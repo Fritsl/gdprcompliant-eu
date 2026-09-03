@@ -40,6 +40,7 @@
     "@gc/remedies": "workspace:*",
     "@gc/agent": "workspace:*",
     "@gc/corpus": "workspace:*",
-    "@gc/artefacts": "workspace:*"
+    "@gc/artefacts": "workspace:*",
+    "@gc/config": "workspace:*"
   }
 }
