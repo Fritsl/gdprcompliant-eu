@@ -1,6 +1,6 @@
 # Schema
 
-Generated from `packages/db/migrations/meta/0008_snapshot.json` by `scripts/schema-doc.mjs`.
+Generated from `packages/db/migrations/meta/0009_snapshot.json` by `scripts/schema-doc.mjs`.
 Do not edit; change `packages/db/src/schema.ts`, run `pnpm db:generate`, then `pnpm db:doc`.
 
 Every table carries `tenant_id`, `created_at` and `source_ref`. `case_events` and
@@ -86,6 +86,26 @@ erDiagram
     timestamp expires_at "nullable"
     timestamp claimed_at "nullable"
     text claimed_by "nullable"
+  }
+  corpus_chunks {
+    text id "PK"
+    text tenant_id
+    timestamp created_at
+    text source_ref
+    text corpus_version
+    text instrument
+    text jurisdiction
+    text kind
+    text key
+    text article
+    text paragraph "nullable"
+    text point "nullable"
+    text heading "nullable"
+    text text
+    text hash
+    text source_url
+    timestamp retrieved_at
+    vector______ embedding "nullable"
   }
   deletion_audit {
     text id "PK"
@@ -379,6 +399,37 @@ erDiagram
 - check cases_stage: `"stage" in ('opened', 'assessed', 'working', 'documented', 'watched')`
 - check cases_lane_score: `"cases"."lane_score" between 0 and 100`
 - check cases_token_length: `length("cases"."access_token") >= 32`
+
+## corpus_chunks
+
+| Column | Type | Constraints |
+| --- | --- | --- |
+| id | text | primary key, not null |
+| tenant_id | text | not null |
+| created_at | timestamp with time zone | not null, default now() |
+| source_ref | text | not null |
+| corpus_version | text | not null |
+| instrument | text | not null |
+| jurisdiction | text | not null |
+| kind | text | not null |
+| key | text | not null |
+| article | text | not null |
+| paragraph | text |  |
+| point | text |  |
+| heading | text |  |
+| text | text | not null |
+| hash | text | not null |
+| source_url | text | not null |
+| retrieved_at | timestamp with time zone | not null |
+| embedding | vector(1024) |  |
+
+- unique index corpus_chunks_key_version (instrument, corpus_version, key)
+- index corpus_chunks_jurisdiction_idx (jurisdiction, corpus_version)
+- check corpus_chunks_shared: `"corpus_chunks"."tenant_id" = 'shared'`
+- check corpus_chunks_kind: `"kind" in ('article', 'recital', 'guidance', 'decision')`
+- check corpus_chunks_jurisdiction: `"corpus_chunks"."jurisdiction" ~ '^(EU|[A-Z]{2})$'`
+- check corpus_chunks_version: `"corpus_chunks"."corpus_version" ~ '^[0-9]{4}-[0-9]{2}-[0-9]{2}(\.[a-z0-9-]+)?$'`
+- check corpus_chunks_hash: `"corpus_chunks"."hash" ~ '^[a-f0-9]{64}$'`
 
 ## deletion_audit
 

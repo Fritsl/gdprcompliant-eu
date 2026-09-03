@@ -2,6 +2,7 @@
 //
 //   primitives   jurisdictions, locales, ids, hashes, translatable text
 //   citation     mechanical citations and the corpus key
+//   corpus       corpus chunks, versions, and what resolving a citation returns
 //   evidence     immutable observations, evidence pointers, untrusted content
 //   claim        what workers return; the verifier's verdict
 //   finding      finding types, jurisdiction bindings, persisted findings
@@ -17,6 +18,7 @@ export const PACKAGE = '@gc/contracts';
 
 export * from './primitives.js';
 export * from './citation.js';
+export * from './corpus.js';
 export * from './evidence.js';
 export * from './claim.js';
 export * from './finding.js';

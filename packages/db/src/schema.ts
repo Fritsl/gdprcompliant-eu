@@ -12,10 +12,13 @@ import {
   text,
   timestamp,
   uniqueIndex,
+  vector,
 } from 'drizzle-orm/pg-core';
 import {
   CASE_EVENT_TYPES,
   CASE_LANES,
+  CORPUS_CHUNK_KINDS,
+  CORPUS_EMBEDDING_DIMENSIONS,
   CASE_STAGES,
   EVIDENCE_KINDS,
   FINDING_AREAS,
@@ -452,6 +455,45 @@ export const deletionAudit = pgTable(
   ],
 );
 
+// The corpus (A-08): regulation, recitals, guidance and decisions cut into chunks that a
+// citation resolves to exactly or not at all. Shared reference data, readable by every
+// tenant; written only outside a tenant, by ingestion. A chunk speaks in one
+// jurisdiction: 'EU' everywhere, a country code in that country alone. The key is
+// instrument:article[:paragraph[:point]], one row per key and corpus version.
+export const corpusChunks = pgTable(
+  'corpus_chunks',
+  {
+    id: text('id').primaryKey(),
+    ...stamped,
+    corpusVersion: text('corpus_version').notNull(),
+    instrument: text('instrument').notNull(),
+    jurisdiction: text('jurisdiction').notNull(),
+    kind: text('kind').notNull(),
+    key: text('key').notNull(),
+    article: text('article').notNull(),
+    paragraph: text('paragraph'),
+    point: text('point'),
+    heading: text('heading'),
+    text: text('text').notNull(),
+    hash: text('hash').notNull(),
+    sourceUrl: text('source_url').notNull(),
+    retrievedAt: timestamp('retrieved_at', { withTimezone: true }).notNull(),
+    embedding: vector('embedding', { dimensions: CORPUS_EMBEDDING_DIMENSIONS }),
+  },
+  (t) => [
+    uniqueIndex('corpus_chunks_key_version').on(t.instrument, t.corpusVersion, t.key),
+    index('corpus_chunks_jurisdiction_idx').on(t.jurisdiction, t.corpusVersion),
+    check('corpus_chunks_shared', sql`${t.tenantId} = 'shared'`),
+    check('corpus_chunks_kind', oneOf('kind', CORPUS_CHUNK_KINDS)),
+    check('corpus_chunks_jurisdiction', sql`${t.jurisdiction} ~ '^(EU|[A-Z]{2})$'`),
+    check(
+      'corpus_chunks_version',
+      sql`${t.corpusVersion} ~ '^[0-9]{4}-[0-9]{2}-[0-9]{2}(\\.[a-z0-9-]+)?$'`,
+    ),
+    check('corpus_chunks_hash', sql`${t.hash} ~ '^[a-f0-9]{64}$'`),
+  ],
+);
+
 export const TABLES = {
   appMeta,
   tenants,
@@ -470,4 +512,5 @@ export const TABLES = {
   deletionAudit,
   caseMembers,
   mailOutbox,
+  corpusChunks,
 } as const;

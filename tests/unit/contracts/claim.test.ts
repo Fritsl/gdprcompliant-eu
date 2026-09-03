@@ -18,7 +18,7 @@ describe('Claim (A-05, A-07)', () => {
     expect(ClaimSchema.safeParse({ ...observation, evidence: [] }).success).toBe(false);
   });
 
-  it('a legal claim needs a citation and a jurisdiction to resolve it in', () => {
+  it('a legal claim needs a citation, a jurisdiction to resolve it in, and the corpus version', () => {
     const legal = {
       ...observation,
       kind: 'legal',
@@ -27,11 +27,12 @@ describe('Claim (A-05, A-07)', () => {
     const r = ClaimSchema.safeParse(legal);
     expect(r.success).toBe(false);
     expect(r.error?.issues.map((i) => i.path.join('.'))).toEqual(
-      expect.arrayContaining(['citations', 'jurisdiction']),
+      expect.arrayContaining(['citations', 'jurisdiction', 'corpusVersion']),
     );
-    expect(
-      ClaimSchema.safeParse({ ...legal, citations: [citation()], jurisdiction: 'DK' }).success,
-    ).toBe(true);
+    const cited = { ...legal, citations: [citation()], jurisdiction: 'DK' };
+    expect(ClaimSchema.safeParse(cited).success).toBe(false);
+    expect(ClaimSchema.safeParse({ ...cited, corpusVersion: '2026-09-04' }).success).toBe(true);
+    expect(ClaimSchema.safeParse({ ...cited, corpusVersion: 'latest' }).success).toBe(false);
   });
 
   it('names who produced it', () => {

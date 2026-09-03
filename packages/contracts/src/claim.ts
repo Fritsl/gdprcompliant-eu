@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { CitationSchema } from './citation.js';
+import { CorpusVersionSchema } from './corpus.js';
 import { EvidenceRefSchema } from './evidence.js';
 import {
   CaseIdSchema,
@@ -36,6 +37,9 @@ export const ClaimSchema = z
     evidence: z.array(EvidenceRefSchema).min(1, 'a claim without an evidence pointer cannot exist'),
     citations: z.array(CitationSchema).default([]),
     jurisdiction: JurisdictionSchema.optional(),
+    // The corpus the citations were resolved against (A-08), so a finding stays
+    // explicable after the corpus moves on.
+    corpusVersion: CorpusVersionSchema.optional(),
     producedBy: ClaimProducerSchema,
     at: IsoDateTimeSchema,
   })
@@ -52,6 +56,13 @@ export const ClaimSchema = z
         code: 'custom',
         path: ['jurisdiction'],
         message: 'a legal claim must state the jurisdiction its citation resolves in',
+      });
+    }
+    if (c.kind === 'legal' && c.corpusVersion === undefined) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['corpusVersion'],
+        message: 'a legal claim records the corpus version its citations resolved against',
       });
     }
   })

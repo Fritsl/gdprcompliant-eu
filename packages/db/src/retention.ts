@@ -33,6 +33,7 @@ export const RETENTION: Readonly<Record<string, RetentionRule>> = {
   app_meta: { kind: 'shared_reference' },
   jurisdictions: { kind: 'shared_reference' },
   remedies: { kind: 'shared_reference' },
+  corpus_chunks: { kind: 'shared_reference' },
   tenants: { kind: 'with_case' },
   cases: { kind: 'case', unclaimedDays: 30, graceDays: UNCLAIMED_PURGE_GRACE_DAYS },
   case_events: { kind: 'with_case' },

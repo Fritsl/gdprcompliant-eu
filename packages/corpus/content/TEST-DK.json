@@ -1,0 +1,24 @@
+{
+  "instrument": "TEST-DK",
+  "title": "Test Act on Example Data, Denmark (synthetic, for the test suite)",
+  "jurisdiction": "DK",
+  "version": "2026-09-04.test",
+  "source": {
+    "url": "https://data.gdprcompliant.eu/corpus/test-dk",
+    "retrievedAt": "2026-09-04T00:00:00Z"
+  },
+  "chunks": [
+    {
+      "article": "3",
+      "paragraph": "1",
+      "heading": "Cookies and similar",
+      "text": "Storing information in terminal equipment in Denmark requires the consent of the example user, given after clear information about the purpose."
+    },
+    {
+      "article": "9",
+      "paragraph": "2",
+      "heading": "Supervisory authority",
+      "text": "Complaints concerning example data in Denmark are made to the Danish supervisory authority."
+    }
+  ]
+}

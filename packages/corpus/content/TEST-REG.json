@@ -1,0 +1,49 @@
+{
+  "instrument": "TEST-REG",
+  "title": "Test Regulation on the Processing of Example Data (synthetic, for the test suite)",
+  "jurisdiction": "EU",
+  "version": "2026-09-04.test",
+  "source": {
+    "url": "https://data.gdprcompliant.eu/corpus/test-reg",
+    "retrievedAt": "2026-09-04T00:00:00Z"
+  },
+  "chunks": [
+    {
+      "kind": "recital",
+      "article": "1",
+      "heading": "Recital 1",
+      "text": "Example data should be processed lawfully, fairly and in a transparent manner in relation to the example person."
+    },
+    {
+      "article": "5",
+      "paragraph": "1",
+      "heading": "Principles",
+      "text": "Example data shall be processed lawfully, fairly and in a transparent manner in relation to the data subject."
+    },
+    {
+      "article": "5",
+      "paragraph": "1",
+      "point": "a",
+      "heading": "Lawfulness, fairness and transparency",
+      "text": "Processed lawfully, fairly and in a transparent manner in relation to the data subject."
+    },
+    {
+      "article": "5",
+      "paragraph": "3",
+      "heading": "Storing information on terminal equipment",
+      "text": "The storing of information, or the gaining of access to information already stored, in the terminal equipment of an example user is only allowed on condition that the user has given consent, having been provided with clear and comprehensive information."
+    },
+    {
+      "article": "7",
+      "paragraph": "3",
+      "heading": "Withdrawal of consent",
+      "text": "The data subject shall have the right to withdraw consent at any time. It shall be as easy to withdraw as to give consent."
+    },
+    {
+      "article": "13",
+      "paragraph": "1",
+      "heading": "Information to be provided",
+      "text": "Where example data are collected from the data subject, the controller shall, at the time when the data are obtained, provide the data subject with the identity and the contact details of the controller."
+    }
+  ]
+}
