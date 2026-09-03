@@ -58,10 +58,18 @@ sandbox.window.PROTO.go('case');
 const counts = {};
 for (const age of ['fresh', 'working', 'watched']) {
   sandbox.window.PROTO.age(age);
-  counts[age] = (html.match(/class="f-row/g) || []).length;
+  counts[age] = (html.match(/class="step /g) || []).length;
   assert(counts[age] > 0, `case/${age}: no findings rendered`);
 }
-assert(counts.watched >= counts.fresh, 'watched should surface at least as many rows as day one');
+assert(counts.watched > counts.fresh, 'watched should add the new step the weekly watch found');
+
+for (const age of ['fresh','working','watched']) {
+  sandbox.window.PROTO.age(age);
+  const now = (html.match(/class=\"step now\"/g) || []).length;
+  assert(now === 1, `case/${age}: expected exactly one current step, found ${now}`);
+  const primaries = (html.match(/class=\"btn\"/g) || []).length;
+  assert(primaries <= 1, `case/${age}: ${primaries} primary buttons — the page must offer one next action`);
+}
 
 // The question flow must terminate rather than loop.
 sandbox.window.PROTO.go('questions');

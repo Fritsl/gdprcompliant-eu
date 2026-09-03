@@ -66,22 +66,6 @@
     var label = { self_fix: 'free fix', generated_artefact: 'one click', our_product: 'our product', partner_alternative: 'alternatives', no_solution: 'no answer yet' }[r.kind];
     return '<span class="tag t-' + r.kind + '">' + esc(label) + '</span>';
   }
-  function caseHeader() {
-    var open = openFindings().length;
-    return '' +
-      '<div class="case-head">' +
-        '<span class="caseid">' + esc(D.case.id) + '</span>' +
-        '<div class="dom"><span>Case subject</span>' + esc(D.company.domain) + '</div>' +
-        '<div class="fixes"><b>' + open + '</b><i>' + (open === 1 ? 'fix ready' : 'fixes ready') + '</i></div>' +
-        '<div class="counts">' +
-          (countBy('blocking') ? '<span class="chip c-blocking">' + countBy('blocking') + ' blocking</span>' : '') +
-          (countBy('serious') ? '<span class="chip c-serious">' + countBy('serious') + ' serious</span>' : '') +
-          (countBy('advisory') ? '<span class="chip c-advisory">' + countBy('advisory') + ' advisory</span>' : '') +
-          '<span class="chip c-ok">' + D.checks.passed + ' passed</span>' +
-          '<span class="chip c-eu">' + D.questions.filter(function (q) { return !q.answered; }).length + ' questions for you</span>' +
-        '</div>' +
-      '</div>';
-  }
 
   /* ── screens ─────────────────────────────────────────────────────── */
 
@@ -90,19 +74,15 @@
   render.front = function () {
     return '<div class="screen"><div class="fd">' +
       '<div>' +
-        '<h1>Does your website actually respect a&nbsp;"no"?</h1>' +
-        '<p class="sub">Most don\'t. We check in under a minute, show you the evidence, and give you the fix. Free, no account, nothing to install.</p>' +
+        '<p class="eyebrow">Free · no account · about 40 seconds</p>' +
+        '<h1>Is your website GDPR compliant?</h1>' +
+        '<p class="sub">Type your address below. We run the test automatically, then walk you through fixing whatever we find — one step at a time.</p>' +
       '</div>' +
       '<form onsubmit="return PROTO.go(\'scanning\')">' +
         '<input type="text" value="eksempelbutik.dk" aria-label="Your website address" spellcheck="false">' +
-        '<button class="btn" type="submit">Check my site</button>' +
+        '<button class="btn" type="submit">Run the free test</button>' +
       '</form>' +
-      '<p class="fine">We only look at what any visitor\'s browser can see.</p>' +
-      '<div class="fd-trust">' +
-        '<span>Runs in about 40 seconds</span>' +
-        '<span>Hosted in the EU</span>' +
-        '<span>Every finding comes with a fix</span>' +
-      '</div>' +
+      '<p class="fine">Nothing to install. We only need the address.</p>' +
       '</div></div>';
   };
 
@@ -134,32 +114,85 @@
       '<div class="scan-steps">' + rows + '</div>' +
       (done
         ? '<div style="margin-top:26px;display:flex;gap:12px;flex-wrap:wrap;align-items:center">' +
-            '<button class="btn" onclick="PROTO.go(\'case\')">Open case ' + esc(D.case.id) + '</button>' +
-            '<span class="muted" style="font-size:13.5px">12 findings · 12 fixes ready</span></div>'
+            '<button class="btn" onclick="PROTO.go(\'case\')">See what to do about it</button>' +
+            '<span class="muted" style="font-size:13.5px">12 things to fix · grouped into 7 steps</span></div>'
         : '<p class="muted" style="margin-top:22px;font-size:13.5px">This normally takes about 40 seconds.</p>') +
       '</div></div>';
   };
 
-  render.case = function () {
-    var order = { fresh: 0, working: 1, watched: 2 };
-    var trackHtml = D.track.map(function (t, i) {
-      var reached = i <= (state.caseAge === 'fresh' ? 1 : state.caseAge === 'working' ? 2 : 4);
-      var current = (state.caseAge === 'fresh' && i === 1) || (state.caseAge === 'working' && i === 2) || (state.caseAge === 'watched' && i === 4);
-      var sub = t.sub;
-      if (t.key === 'working') sub = (findings().length - openFindings().length) + ' of ' + findings().length + ' closed';
-      return '<div class="' + (current ? 'now' : reached ? 'on' : '') + '">' + esc(t.label) + '<em>' + esc(sub) + '</em></div>';
-    }).join('');
+  // The case page is a plan, not a triage board. One expanded step at a time,
+  // everything finished collapsed above it, everything ahead previewed below.
+  function planSteps() {
+    var list = D.steps.map(function (s) {
+      var done = state.caseAge === 'fresh' ? false
+        : state.caseAge === 'working' ? s.doneIn === 'working'
+        : true;
+      return { s: s, done: done };
+    });
+    if (state.caseAge === 'watched') list.push({ s: D.watchStep, done: false });
+    return list;
+  }
 
-    var list = findings().sort(function (a, b) {
-      var w = { blocking: 0, serious: 1, advisory: 2 };
-      return (isClosed(a) - isClosed(b)) || (w[a.severity] - w[b.severity]);
-    }).map(function (f) {
-      return '<button class="f-row' + (isClosed(f) ? ' closed' : '') + '" onclick="PROTO.openFinding(\'' + f.id + '\')">' +
-        '<span class="fid">' + esc(f.id) + '</span>' +
-        '<span class="ft">' + esc(f.title) + '</span>' +
-        '<span class="go">›</span>' +
-        '<span class="fr">' + sevBadge(f) + (isClosed(f) ? '' : remedyTag(f.remedy) + '<span>' + esc(f.remedy.title) + '</span>') + '</span>' +
-      '</button>';
+  function stepMinutes(s) { return s.minutesLabel || ('about ' + s.minutes + ' minutes'); }
+
+  function stepFindingRows(s) {
+    if (!s.findings.length) return '';
+    return '<div class="step-items">' + s.findings.map(function (id) {
+      var f = findingById(id);
+      return '<button class="step-item" onclick="PROTO.openFinding(\'' + f.id + '\')">' +
+        '<span class="si-t">' + esc(f.title) + '</span>' +
+        '<span class="si-r">' + esc(f.remedy.title) + '</span>' +
+        '<span class="go">›</span></button>';
+    }).join('') + '</div>';
+  }
+
+  render.case = function () {
+    var plan = planSteps();
+    var doneN = plan.filter(function (p) { return p.done; }).length;
+    var current = plan.filter(function (p) { return !p.done; })[0];
+    var left = plan.filter(function (p) { return !p.done; })
+                   .reduce(function (a, p) { return a + (p.s.minutes || 0); }, 0);
+    var pct = Math.round((doneN / plan.length) * 100);
+
+    var lead, sub;
+    if (state.caseAge === 'fresh') {
+      lead = 'We found 12 things to fix. Here they are as ' + plan.length + ' steps.';
+      sub = 'Start at the top. Each one tells you exactly what to change, and you can stop and come back whenever you like.';
+    } else if (state.caseAge === 'working') {
+      lead = 'Four steps down, three to go.';
+      sub = 'The quick technical ones are finished. What is left needs a few answers from you and one decision.';
+    } else {
+      lead = 'You finished all seven — then something changed.';
+      sub = 'This is the normal rhythm. We keep looking every week, and when something moves you get one new step, not a new report.';
+    }
+
+    var body = plan.map(function (p) {
+      var s = p.s;
+      if (p.done) {
+        return '<div class="step done">' +
+          '<span class="step-n">✓</span>' +
+          '<div class="step-body"><h3>' + esc(s.title) + '</h3>' +
+          '<span class="step-meta">Done ' + esc(s.doneOn || '') + '</span></div></div>';
+      }
+      if (current && current.s === s) {
+        return '<div class="step now">' +
+          '<span class="step-n">' + s.n + '</span>' +
+          '<div class="step-body">' +
+            '<p class="step-kick">Your next step</p>' +
+            '<h3>' + esc(s.title) + '</h3>' +
+            '<p class="step-plain">' + esc(s.plain) + '</p>' +
+            stepFindingRows(s) +
+            '<div class="step-act">' +
+              '<button class="btn" onclick="PROTO.startStep(' + s.n + ')">' + esc(s.action) + '</button>' +
+              '<span class="step-meta">' + esc(stepMinutes(s)) + ' · ' + esc(s.who) + '</span>' +
+            '</div>' +
+            (s.invite ? '<p class="step-hand">' + esc(s.invite) + ' — <button class="lnk" onclick="PROTO.go(\'colleagues\')">pass this on</button></p>' : '') +
+          '</div></div>';
+      }
+      return '<div class="step next">' +
+        '<span class="step-n">' + s.n + '</span>' +
+        '<div class="step-body"><h3>' + esc(s.title) + '</h3>' +
+        '<span class="step-meta">' + esc(stepMinutes(s)) + '</span></div></div>';
     }).join('');
 
     var tl = timeline().slice().reverse().map(function (e) {
@@ -168,37 +201,39 @@
         '<span class="d">' + esc(e.detail) + '</span></span></li>';
     }).join('');
 
-    return '<div class="screen">' + caseHeader() +
-      '<div class="track">' + trackHtml + '</div>' +
-      '<div class="case-grid">' +
-        '<div>' +
-          '<div class="sec-t"><h3>What we found</h3><span class="n">' + findings().length + ' findings · every one with a fix</span></div>' +
-          '<div class="f-list">' + list + '</div>' +
-          '<div class="sec-t" style="margin-top:28px"><h3>What we could not determine</h3><span class="n">' + D.undetermined.length + ' open questions</span></div>' +
-          '<div class="f-list">' + D.undetermined.map(function (u) {
-            return '<div class="f-row" style="cursor:default;grid-template-columns:auto 1fr">' +
-              '<span class="fid">' + esc(u.id) + '</span>' +
-              '<span class="ft">' + esc(u.title) + '</span>' +
-              '<span class="fr" style="grid-column:2"><span class="tag t-no_solution">not determined</span>' +
-              '<span style="flex:1 1 100%;line-height:1.45;margin-top:2px">' + esc(u.reason) + '</span>' +
-              '<span class="mono" style="font-size:11.5px;color:var(--eu)">→ ' + esc(u.resolve) + '</span></span>' +
-            '</div>';
-          }).join('') + '</div>' +
-          '<p class="muted" style="margin-top:16px;font-size:14px">' +
-            (state.caseAge === 'fresh' ? 'Four more things we could only check with your permission. ' : 'These resolve as you answer. ') +
-            '<button class="btn btn-2 btn-sm" onclick="PROTO.go(\'questions\')">Go deeper — still free</button></p>' +
-        '</div>' +
-        '<div>' +
-          '<div class="sec-t"><h3>What has happened</h3><span class="n">' + timeline().length + ' entries</span></div>' +
-          '<div class="card"><ul class="tl">' + tl + '</ul>' +
-            '<p class="own" style="margin:0">This case belongs to ' + esc(D.company.legalName) + '. ' + esc(D.case.participants) + ' people can see it. ' +
-            'You can export or delete all of it at any time — including the evidence we stored.</p></div>' +
-          '<div style="margin-top:20px;display:flex;gap:9px;flex-wrap:wrap">' +
-            '<button class="btn btn-2 btn-sm" onclick="PROTO.go(\'colleagues\')">Share inward</button>' +
-            '<button class="btn btn-2 btn-sm" onclick="PROTO.go(\'trust\')">Share outward</button>' +
-            '<button class="btn btn-2 btn-sm" onclick="PROTO.go(\'supply\')">Supply chain</button>' +
-          '</div>' +
-        '</div>' +
+    return '<div class="screen narrow">' +
+      '<div class="plan-top">' +
+        '<span class="caseid">' + esc(D.case.id) + '</span>' +
+        '<span class="plan-dom">' + esc(D.company.domain) + '</span>' +
+        '<span class="plan-saved">Saved automatically · come back any time</span>' +
+      '</div>' +
+
+      '<h2 class="plan-lead">' + esc(lead) + '</h2>' +
+      '<p class="plan-sub">' + esc(sub) + '</p>' +
+
+      '<div class="plan-prog">' +
+        '<div class="pp-bar"><i style="width:' + pct + '%"></i></div>' +
+        '<span class="pp-txt">' + doneN + ' of ' + plan.length + ' done' +
+        (left ? ' · about ' + left + ' minutes left' : '') + '</span>' +
+      '</div>' +
+
+      '<div class="steps">' + body + '</div>' +
+
+      '<div class="plan-foot">' +
+        '<details class="drawer"><summary>Two things we could not work out on our own</summary><div class="body">' +
+          D.undetermined.concat([{
+            id: 'VND-11', title: findingById('VND-11').title,
+            reason: findingById('VND-11').remedy.detail, resolve: 'Nobody has a good answer to this yet'
+          }]).map(function (u) {
+            return '<div class="und"><b>' + esc(u.title) + '</b><p>' + esc(u.reason) + '</p>' +
+              '<span class="mono">' + esc(u.resolve) + '</span></div>';
+          }).join('') +
+        '</div></details>' +
+        '<details class="drawer"><summary>Everything that has happened (' + timeline().length + ')</summary><div class="body">' +
+          '<ul class="tl">' + tl + '</ul>' +
+        '</div></details>' +
+        '<p class="plan-own">This case belongs to ' + esc(D.company.legalName) + '. ' +
+          esc(D.case.participants) + ' people can see it. You can export or delete all of it — including the evidence we stored — at any time.</p>' +
       '</div></div>';
   };
 
@@ -477,6 +512,14 @@
       return false;
     },
     openFinding: function (id) { state.finding = id; state.screen = 'finding'; setHash('#/finding'); draw(); },
+    startStep: function (n) {
+      var all = D.steps.concat([D.watchStep]);
+      var s = all.filter(function (x) { return x.n === n; })[0];
+      if (!s) return;
+      if (s.goTo) return this.go(s.goTo);
+      if (s.findings.length) return this.openFinding(s.findings[0]);
+      this.go('case');
+    },
     age: function (a) { state.caseAge = a; draw(); },
     answer: function () { state.qIndex++; draw(); },
     resetQ: function () { state.qIndex = 0; draw(); },

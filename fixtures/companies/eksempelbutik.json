@@ -198,7 +198,7 @@
       "title": "Session replay records what people type on the checkout page",
       "severity": "serious",
       "area": "Observation",
-      "closesIn": "watched",
+      "closesIn": "working",
       "why": "A replay tool is active on the checkout with input masking switched off. It captures keystrokes as they are typed — including the address and card fields — before anyone presses submit.",
       "citations": [
         { "instrument": "GDPR", "ref": "Art. 6", "note": "lawfulness of processing" },
@@ -417,6 +417,100 @@
       "detail": "This is the ordinary way compliance decays. Somebody in marketing added a pixel for a campaign. It needs the same consent gate as the rest.",
       "verifyLabel": "Re-check this finding"
     }
+  },
+
+  "steps": [
+    {
+      "n": 1,
+      "title": "Make your cookie banner do what it says",
+      "plain": "Right now, clicking \"reject\" doesn't actually stop anything. Of everything on this list, this is the one that matters most.",
+      "minutes": 20,
+      "who": "Whoever manages the website",
+      "findings": ["CNS-02"],
+      "action": "Show me how",
+      "doneIn": "working",
+      "doneOn": "3 Sep"
+    },
+    {
+      "n": 2,
+      "title": "Fix two quick things on your forms",
+      "plain": "Your contact form sends details unencrypted for a moment, and the newsletter box is tied to accepting the terms. Both are small changes.",
+      "minutes": 15,
+      "who": "Whoever manages the website",
+      "findings": ["SEC-02", "FRM-02"],
+      "action": "Show me the first one",
+      "doneIn": "working",
+      "doneOn": "3 Sep"
+    },
+    {
+      "n": 3,
+      "title": "Stop sending visitor details to servers you don't control",
+      "plain": "Two things on your site quietly hand data to other companies before anyone agrees to it — your fonts, and a tool that records what people type.",
+      "minutes": 25,
+      "who": "Whoever manages the website",
+      "findings": ["VND-06", "REC-01"],
+      "action": "Show me the first one",
+      "doneIn": "working",
+      "doneOn": "3 Sep"
+    },
+    {
+      "n": 4,
+      "title": "Tell people what they're entitled to",
+      "plain": "Your privacy policy is missing two short paragraphs. We've written them — you just need to read them and say yes.",
+      "minutes": 5,
+      "who": "You",
+      "findings": ["POL-09"],
+      "action": "Read the two paragraphs",
+      "doneIn": "working",
+      "doneOn": "5 Sep"
+    },
+    {
+      "n": 5,
+      "title": "Answer four questions about how you work",
+      "plain": "Four things we can't see from outside. Each one is a single tap, and you can always say \"check it for me\" instead.",
+      "minutes": 10,
+      "who": "You, or a colleague",
+      "findings": [],
+      "goTo": "questions",
+      "action": "Start the four questions",
+      "invite": "Two of these belong to IT — you can pass them on",
+      "doneIn": "watched",
+      "doneOn": "4 Sep"
+    },
+    {
+      "n": 6,
+      "title": "Publish the three documents you're missing",
+      "plain": "We write them from your answers, so they describe what you actually do. Someone with authority reads and signs, then they go live on your site.",
+      "minutes": 20,
+      "who": "You or whoever handles contracts",
+      "findings": ["DPA-01", "SUB-03", "POL-04"],
+      "goTo": "artefact",
+      "action": "Read the first draft",
+      "doneIn": "watched",
+      "doneOn": "8 Sep"
+    },
+    {
+      "n": 7,
+      "title": "Two decisions only you can make",
+      "plain": "These aren't tasks with a right answer — they're choices about cost and convenience. We'll lay out the options and you decide.",
+      "minutes": 0,
+      "minutesLabel": "A conversation, not a task",
+      "who": "You",
+      "findings": ["TRF-01", "AI-03"],
+      "action": "See the options",
+      "doneIn": "watched",
+      "doneOn": "10 Sep"
+    }
+  ],
+
+  "watchStep": {
+    "n": 8,
+    "title": "Something changed on your site",
+    "plain": "Someone added a tracking tag to your checkout page on Tuesday. This is normal — it's why we keep looking every week.",
+    "minutes": 20,
+    "who": "Whoever added it, probably marketing",
+    "findings": ["CNS-09"],
+    "action": "Show me how"
   },
 
   "undetermined": [

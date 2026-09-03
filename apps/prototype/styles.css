@@ -162,7 +162,66 @@ p{margin:0 0 1em}
 .scan-bar{height:4px; background:var(--surface-3); border-radius:3px; overflow:hidden; margin-top:22px}
 .scan-bar i{display:block; height:100%; background:var(--eu); transition:width .5s ease}
 
-/* ─────────────────────────────────── case page */
+/* ─────────────────────────────────── case page: the plan */
+.plan-top{display:flex; gap:12px 18px; align-items:center; flex-wrap:wrap; margin-bottom:26px; padding-bottom:16px; border-bottom:1px solid var(--rule)}
+.plan-dom{font-family:var(--mono); font-size:14px; color:var(--ink-2)}
+.plan-saved{margin-left:auto; font-size:12.5px; color:var(--ink-3)}
+.plan-lead{font-family:var(--serif); font-weight:500; font-size:clamp(25px,4vw,36px); line-height:1.16; letter-spacing:-.014em; margin-bottom:10px; text-wrap:balance; max-width:22ch}
+.plan-sub{font-size:16.5px; color:var(--ink-2); max-width:56ch; margin-bottom:24px}
+.plan-prog{display:flex; align-items:center; gap:14px; margin-bottom:26px; flex-wrap:wrap}
+.pp-bar{flex:1 1 200px; height:6px; background:var(--surface-3); border-radius:4px; overflow:hidden}
+.pp-bar i{display:block; height:100%; background:var(--ok); border-radius:4px; transition:width .4s ease}
+.pp-txt{font-family:var(--mono); font-size:12.5px; color:var(--ink-3); white-space:nowrap}
+
+.steps{display:grid; gap:10px}
+.step{display:grid; grid-template-columns:38px 1fr; gap:14px; align-items:start; padding:14px 18px; border:1px solid var(--rule); border-radius:10px; background:var(--surface)}
+.step-n{
+  width:28px; height:28px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;
+  font-family:var(--mono); font-size:13px; font-weight:600; background:var(--surface-2); color:var(--ink-3);
+  border:1px solid var(--rule-2); flex:none;
+}
+.step-body h3{font-size:16.5px; font-weight:650; line-height:1.32}
+.step-meta{font-family:var(--mono); font-size:11.5px; color:var(--ink-3)}
+
+.step.done{background:transparent; border-color:transparent; padding-block:8px}
+.step.done .step-n{background:var(--ok-bg); border-color:var(--ok-line); color:var(--ok)}
+.step.done .step-body h3{font-weight:500; color:var(--ink-3); font-size:15.5px}
+
+.step.next{opacity:.72}
+.step.next .step-body h3{font-weight:550; font-size:15.5px; color:var(--ink-2)}
+
+.step.now{
+  border-color:var(--eu-line); border-width:2px; padding:22px 24px 24px; background:var(--surface);
+  box-shadow:var(--shadow-lg); grid-template-columns:38px 1fr;
+}
+.step.now .step-n{background:var(--eu); border-color:var(--eu); color:var(--paper); width:32px; height:32px; font-size:14px}
+.step-kick{font-family:var(--mono); font-size:10.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--eu); margin:0 0 6px}
+.step.now .step-body h3{font-family:var(--serif); font-weight:500; font-size:clamp(20px,3vw,25px); letter-spacing:-.01em; line-height:1.2; margin-bottom:8px}
+.step-plain{font-size:15.5px; color:var(--ink-2); max-width:56ch; margin-bottom:16px}
+.step-items{display:grid; gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:8px; overflow:hidden; margin-bottom:18px}
+.step-item{
+  background:var(--surface-2); border:0; width:100%; text-align:left; padding:11px 14px;
+  display:grid; grid-template-columns:1fr auto auto; gap:12px; align-items:baseline; font-size:14px;
+}
+.step-item:hover{background:var(--surface-3)}
+.step-item .si-t{color:var(--ink); line-height:1.35}
+.step-item .si-r{font-family:var(--mono); font-size:11.5px; color:var(--eu); white-space:nowrap}
+.step-item .go{color:var(--ink-3)}
+.step-act{display:flex; gap:14px; align-items:center; flex-wrap:wrap}
+.step-hand{margin:14px 0 0; font-size:13.5px; color:var(--ink-3)}
+.lnk{background:none; border:0; padding:0; color:var(--eu); text-decoration:underline; text-underline-offset:2px; font-size:inherit}
+
+.plan-foot{margin-top:34px; border-top:1px solid var(--rule); padding-top:8px}
+.plan-foot .drawer{border-bottom:1px solid var(--rule)}
+.plan-foot .drawer summary{padding:13px 0; text-transform:none; letter-spacing:0; font-family:var(--sans); font-size:14.5px}
+.plan-foot .drawer .body{padding:0 0 18px}
+.und{padding:12px 0; border-bottom:1px solid var(--rule)}
+.und:last-child{border-bottom:0}
+.und b{font-size:14.5px}
+.und p{margin:4px 0 6px; font-size:14px; color:var(--ink-2); max-width:62ch}
+.und .mono{font-family:var(--mono); font-size:11.5px; color:var(--eu)}
+.plan-own{margin:18px 0 0; font-size:13px; color:var(--ink-3); max-width:64ch}
+
 .case-head{display:flex; gap:16px 26px; align-items:center; flex-wrap:wrap; margin-bottom:22px}
 .case-head .dom{font-family:var(--mono); font-size:15px; font-weight:500}
 .case-head .dom span{display:block; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); font-weight:400; margin-bottom:3px}
