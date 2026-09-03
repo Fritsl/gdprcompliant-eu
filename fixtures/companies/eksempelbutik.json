@@ -67,7 +67,7 @@
         "kind": "self_fix",
         "title": "Move the tags behind the consent state",
         "effort": "About 20 minutes",
-        "detail": "Your tags fire on page load rather than on the consent event. Wrap each non-essential tag in a consent check and re-publish. The snippet below is the pattern for the container you are using.",
+        "detail": "Your tags fire on page load rather than on the consent event. Wrap each non-essential tag in a consent check and re-publish.",
         "snippet": "// before — fires immediately\nloadTag('analytics');\n\n// after — waits for a real decision\nwindow.addEventListener('CookieConsentDecision', (e) => {\n  if (e.detail.categories.includes('statistics')) loadTag('analytics');\n});",
         "verifyLabel": "Re-check this finding"
       }
@@ -96,7 +96,7 @@
         "kind": "generated_artefact",
         "title": "Generate your processing agreement and sub-processor page",
         "effort": "One click, then a review",
-        "detail": "We can draft both from what this case already knows — your vendors, where they sit, and what they handle. You review, a named person signs, and it publishes to your own site.",
+        "detail": "Drafted from your vendors, where they sit, and what they handle.",
         "cta": "Preview the draft",
         "verifyLabel": "Re-check once published"
       }
@@ -125,7 +125,7 @@
         "kind": "self_fix",
         "title": "Point the form at the https address and add HSTS",
         "effort": "About 5 minutes",
-        "detail": "Change the form action to the https address so nothing is sent over the redirect, then add the header below so browsers never try http again.",
+        "detail": "Change the form action to the https address so nothing is sent over the redirect. Then add HSTS, so browsers never try http again.",
         "snippet": "# nginx\nadd_header Strict-Transport-Security \"max-age=63072000; includeSubDomains\" always;",
         "verifyLabel": "Re-check this finding"
       }
@@ -154,9 +154,9 @@
         "kind": "our_product",
         "title": "Move those four people to GDPR Chat",
         "effort": "Same day",
-        "detail": "Same experience your staff already know, hosted in the EU, with a processing agreement and no training on your content. This is our own product — we are telling you that plainly.",
+        "detail": "Same experience your staff already know, hosted in the EU, with a processing agreement and no training on your content.",
         "cta": "See what it would cost",
-        "alternativeNote": "There is no free fix for this one. If you would rather not use ours, we list three European alternatives.",
+        "alternativeNote": "No free fix exists for this one. Three European alternatives, if you would rather not use ours.",
         "verifyLabel": "Mark as handled"
       }
     },
@@ -184,7 +184,7 @@
         "kind": "partner_alternative",
         "title": "Compare European alternatives",
         "effort": "A decision, not a task",
-        "detail": "This is a choice with real trade-offs and switching cost. Three European-owned options we have checked, with what each would and would not solve.",
+        "detail": "Real switching cost, so take your time. Three European-owned options we have checked.",
         "options": [
           "Mailbox provider, DE — mail only, keeps your files where they are",
           "Collaboration suite, FR — mail and files, migration tooling included",
@@ -246,7 +246,7 @@
         "kind": "generated_artefact",
         "title": "Rewrite the section from your register",
         "effort": "One click, after two answers",
-        "detail": "We need two things from you first — how long you keep orders, and how long you keep newsletter sign-ups. Then this section writes itself from your register rather than from a template.",
+        "detail": "We need two things from you first — how long you keep orders, and how long you keep newsletter sign-ups. Then the section writes itself from your register.",
         "cta": "Answer the two questions",
         "verifyLabel": "Re-check once published"
       }
@@ -387,7 +387,7 @@
         "kind": "no_solution",
         "title": "We have no good answer to this yet",
         "effort": "Logged",
-        "detail": "There is no reliable public way to attribute an anonymised CDN host. We have written this down with your sector and country. If it turns out that thousands of European companies have the same unanswerable question, that is what tells us to go and build something for it.",
+        "detail": "There is no reliable public way to attribute an anonymised CDN host. Logged with your sector and country.",
         "askLabel": "Do you know what this is?",
         "verifyLabel": null
       }
@@ -423,7 +423,7 @@
     {
       "n": 1,
       "title": "Make your cookie banner do what it says",
-      "plain": "Right now, clicking \"reject\" doesn't actually stop anything. Of everything on this list, this is the one that matters most.",
+      "plain": "Clicking \"reject\" doesn't stop anything. Nine companies still receive data about people who said no.",
       "minutes": 20,
       "who": "Whoever manages the website",
       "findings": ["CNS-02"],
@@ -434,7 +434,7 @@
     {
       "n": 2,
       "title": "Fix two quick things on your forms",
-      "plain": "Your contact form sends details unencrypted for a moment, and the newsletter box is tied to accepting the terms. Both are small changes.",
+      "plain": "Your contact form sends details unencrypted for a moment. The newsletter box is tied to accepting the terms.",
       "minutes": 15,
       "who": "Whoever manages the website",
       "findings": ["SEC-02", "FRM-02"],
@@ -456,7 +456,7 @@
     {
       "n": 4,
       "title": "Tell people what they're entitled to",
-      "plain": "Your privacy policy is missing two short paragraphs. We've written them — you just need to read them and say yes.",
+      "plain": "Your privacy policy is missing two short paragraphs. We've written them.",
       "minutes": 5,
       "who": "You",
       "findings": ["POL-09"],
@@ -467,20 +467,20 @@
     {
       "n": 5,
       "title": "Answer four questions about how you work",
-      "plain": "Four things we can't see from outside. Each one is a single tap, and you can always say \"check it for me\" instead.",
+      "plain": "Four things we can't see from the outside.",
       "minutes": 10,
       "who": "You, or a colleague",
       "findings": [],
       "goTo": "questions",
       "action": "Start the four questions",
-      "invite": "Two of these belong to IT — you can pass them on",
+      "invite": "Two of these belong to IT",
       "doneIn": "watched",
       "doneOn": "4 Sep"
     },
     {
       "n": 6,
       "title": "Publish the three documents you're missing",
-      "plain": "We write them from your answers, so they describe what you actually do. Someone with authority reads and signs, then they go live on your site.",
+      "plain": "Written from your answers, so they describe what you actually do.",
       "minutes": 20,
       "who": "You or whoever handles contracts",
       "findings": ["DPA-01", "SUB-03", "POL-04"],
@@ -492,7 +492,7 @@
     {
       "n": 7,
       "title": "Two decisions only you can make",
-      "plain": "These aren't tasks with a right answer — they're choices about cost and convenience. We'll lay out the options and you decide.",
+      "plain": "Not tasks with a right answer. Choices about cost, convenience, and who you want holding your data.",
       "minutes": 0,
       "minutesLabel": "A conversation, not a task",
       "who": "You",
@@ -506,7 +506,7 @@
   "watchStep": {
     "n": 8,
     "title": "Something changed on your site",
-    "plain": "Someone added a tracking tag to your checkout page on Tuesday. This is normal — it's why we keep looking every week.",
+    "plain": "Someone added a tracking tag to your checkout page on Tuesday.",
     "minutes": 20,
     "who": "Whoever added it, probably marketing",
     "findings": ["CNS-09"],
@@ -551,7 +551,7 @@
     {
       "id": "Q1",
       "text": "You run Microsoft 365. Do your customer files sit in SharePoint or OneDrive?",
-      "why": "It decides whether your file storage belongs in the register as a separate processing activity, and whether the transfer question applies to files as well as mail.",
+      "why": "If client files sit there too, the same question about US access applies to them, not just to your mail.",
       "unlocks": "3 checks",
       "options": ["Yes", "No", "Check it for me"]
     },
@@ -672,7 +672,7 @@
     "headline": "Eksempelbutik ApS · privacy work in progress",
     "updated": "11 September 2026",
     "caseRef": "DK-26-0M4K",
-    "statement": "We check this website and our data practices continuously. This page shows what has been done and when. It is not a certification and nobody has approved it.",
+    "statement": "We check this website and our data practices every week. This is not a certification and nobody has approved it.",
     "closed": [
       { "text": "Refusing cookies now genuinely stops all non-essential tracking", "on": "3 Sep" },
       { "text": "Contact form moved fully to encrypted transport", "on": "3 Sep" },
@@ -683,7 +683,7 @@
       { "text": "Staff assistant moved to an EU-hosted service", "on": "10 Sep" },
       { "text": "Retention periods set for every purpose", "on": "10 Sep" }
     ],
-    "openNote": "Two items are open and being worked on. We do not list open items here — our customers can ask us and we will tell them.",
+    "openNote": "Two items are open. Ask us and we will tell you what they are.",
     "cta": "Check your own website"
   },
 
@@ -700,7 +700,7 @@
         ["Entities / countries", "1 / 1", "low"],
         ["Regulated sector", "No", "low"]
       ],
-      "read": "Small online retailer, no budget signals. Serve them completely through the automated product and ask for the referral when something closes. Do not assign a consultant.",
+      "read": "No budget signals. Automated product only — do not assign a consultant. Ask for the referral when something closes.",
       "visible": "This case has been opened by Frits AI twice. Both are on the customer's timeline."
     },
     "queue": [

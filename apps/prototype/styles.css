@@ -406,3 +406,9 @@ p{margin:0 0 1em}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
 @media print{.proto-bar,.proto-nav,.proto-note{display:none}.screen{padding:0}}
+
+.waiting{list-style:none; margin:0; padding:0; display:grid; gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:9px; overflow:hidden}
+.waiting li{background:var(--surface); padding:12px 14px; display:grid; grid-template-columns:1fr auto; gap:4px 12px; align-items:center}
+.waiting .w-who{font-size:14.5px; font-weight:600}
+.waiting .w-st{grid-column:1; font-family:var(--mono); font-size:11.5px; color:var(--ink-3)}
+.waiting .btn{grid-column:2; grid-row:1/3}

@@ -16,16 +16,16 @@
   };
 
   var SCREENS = [
-    { id: 'front',      label: 'Front door',   note: 'One field, one button, no account. The whole entry surface.' },
-    { id: 'scanning',   label: 'Scanning',     note: 'The three passes, running. Real stage names, not a fake spinner.' },
-    { id: 'case',       label: 'Case',         note: 'The centrepiece. Switch between the three ages of a case above.' },
-    { id: 'finding',    label: 'Finding',      note: 'Evidence and the remedy. Pick any finding from the case page.' },
-    { id: 'questions',  label: 'Questions',    note: 'One at a time. Yes / No / Check it for me — never a form.' },
-    { id: 'colleagues', label: 'Colleagues',   note: 'Four role lists and the invitation that comes from a colleague.' },
-    { id: 'supply',     label: 'Supply chain', note: 'Mapped from published documents, three levels deep.' },
-    { id: 'artefact',   label: 'Artefact',     note: 'A generated processing agreement, with the sign-off step.' },
-    { id: 'trust',      label: 'Trust page',   note: 'Public, opt-in. Dated work in progress — never a seal.' },
-    { id: 'internal',   label: 'Internal',     note: 'What we see. Nothing here is hidden from the customer.' }
+    { id: 'front',      label: 'Front door',   note: 'The whole entry surface.' },
+    { id: 'scanning',   label: 'Scanning',     note: 'The three passes, running.' },
+    { id: 'case',       label: 'Case',         note: 'Switch between the three ages of a case, above right.' },
+    { id: 'finding',    label: 'Finding',      note: 'Evidence, and the remedy.' },
+    { id: 'questions',  label: 'Questions',    note: 'One question at a time.' },
+    { id: 'colleagues', label: 'Colleagues',   note: 'Four role lists, and the invitation.' },
+    { id: 'supply',     label: 'Supply chain', note: 'Three levels deep.' },
+    { id: 'artefact',   label: 'Artefact',     note: 'A generated processing agreement, and the sign-off.' },
+    { id: 'trust',      label: 'Trust page',   note: 'Public, opt-in, dated.' },
+    { id: 'internal',   label: 'Internal',     note: 'What we see.' }
   ];
 
   var state = { screen: 'front', caseAge: 'working', finding: 'CNS-02', qIndex: 0, scanStep: 0 };
@@ -76,13 +76,12 @@
       '<div>' +
         '<p class="eyebrow">Free · no account · about 40 seconds</p>' +
         '<h1>Is your website GDPR compliant?</h1>' +
-        '<p class="sub">Type your address below. We run the test automatically, then walk you through fixing whatever we find — one step at a time.</p>' +
+        '<p class="sub">Every problem comes with the fix.</p>' +
       '</div>' +
       '<form onsubmit="return PROTO.go(\'scanning\')">' +
         '<input type="text" value="eksempelbutik.dk" aria-label="Your website address" spellcheck="false">' +
         '<button class="btn" type="submit">Run the free test</button>' +
       '</form>' +
-      '<p class="fine">Nothing to install. We only need the address.</p>' +
       '</div></div>';
   };
 
@@ -109,7 +108,6 @@
     return '<div class="screen"><div class="scan">' +
       '<p class="eyebrow">Checking</p>' +
       '<h2>' + esc(D.company.domain) + '</h2>' +
-      '<p class="muted" style="font-size:14.5px">We load your front page three times — once ignoring the banner, once refusing everything, once accepting — and compare what happens.</p>' +
       '<div class="scan-bar"><i style="width:' + pct + '%"></i></div>' +
       '<div class="scan-steps">' + rows + '</div>' +
       (done
@@ -157,13 +155,13 @@
     var lead, sub;
     if (state.caseAge === 'fresh') {
       lead = 'We found 12 things to fix. Here they are as ' + plan.length + ' steps.';
-      sub = 'Start at the top. Each one tells you exactly what to change, and you can stop and come back whenever you like.';
+      sub = '';
     } else if (state.caseAge === 'working') {
       lead = 'Four steps down, three to go.';
-      sub = 'The quick technical ones are finished. What is left needs a few answers from you and one decision.';
+      sub = 'What is left needs answers from you, and one decision.';
     } else {
       lead = 'You finished all seven — then something changed.';
-      sub = 'This is the normal rhythm. We keep looking every week, and when something moves you get one new step, not a new report.';
+      sub = 'We check every week.';
     }
 
     var body = plan.map(function (p) {
@@ -209,7 +207,7 @@
       '</div>' +
 
       '<h2 class="plan-lead">' + esc(lead) + '</h2>' +
-      '<p class="plan-sub">' + esc(sub) + '</p>' +
+      (sub ? '<p class="plan-sub">' + esc(sub) + '</p>' : '') +
 
       '<div class="plan-prog">' +
         '<div class="pp-bar"><i style="width:' + pct + '%"></i></div>' +
@@ -232,8 +230,9 @@
         '<details class="drawer"><summary>Everything that has happened (' + timeline().length + ')</summary><div class="body">' +
           '<ul class="tl">' + tl + '</ul>' +
         '</div></details>' +
-        '<p class="plan-own">This case belongs to ' + esc(D.company.legalName) + '. ' +
-          esc(D.case.participants) + ' people can see it. You can export or delete all of it — including the evidence we stored — at any time.</p>' +
+        '<p class="plan-own">Owned by ' + esc(D.company.legalName) + ' · ' + esc(D.case.participants) +
+          ' people have access · <button class="lnk" onclick="PROTO.noop(this)">export everything</button> · ' +
+          '<button class="lnk" onclick="PROTO.noop(this)">delete the case and its evidence</button></p>' +
       '</div></div>';
   };
 
@@ -273,7 +272,7 @@
         ? '<div class="cites">' + f.citations.map(function (c) {
             return '<span class="cite">' + esc(c.instrument) + ' ' + esc(c.ref) + ' <em>· ' + esc(c.note) + '</em></span>';
           }).join('') + '</div>'
-        : '<div class="cites"><span class="cite" style="color:var(--ink-3);background:transparent;border-style:dashed">No legal claim made — this is an observation</span></div>') +
+        : '<div class="cites"><span class="cite" style="color:var(--ink-3);background:transparent;border-style:dashed">No legal claim — an observation</span></div>') +
       '<details class="drawer card" open><summary>The evidence behind this</summary><div class="body">' +
         '<p class="ev-cap">' + esc(f.evidence.caption) + '</p>' + ev +
       '</div></details>' +
@@ -292,8 +291,7 @@
     if (state.qIndex >= qs.length) {
       return '<div class="screen"><div class="q-wrap q-done">' +
         '<div class="big">That is everything we need for now.</div>' +
-        '<p class="muted">Four answers opened nine new checks and filled eleven rows of your processing register. ' +
-        'We will come back to you when something needs a decision.</p>' +
+        '<p class="muted">Nine new checks opened and eleven rows of your processing register filled.</p>' +
         '<div style="margin-top:20px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">' +
         '<button class="btn" onclick="PROTO.go(\'case\')">Back to the case</button>' +
         '<button class="btn btn-2" onclick="PROTO.resetQ()">Run through again</button></div>' +
@@ -313,7 +311,6 @@
       '<p class="q-why">' + esc(q.why) + '</p>' +
       '<p class="q-unlock">Answering this unlocks ' + esc(q.unlocks) + '</p>' +
       '<div class="q-opts">' + opts + '</div>' +
-      '<p class="muted" style="margin-top:22px;font-size:13px">We only ask what we cannot work out ourselves, and only when the answer changes something.</p>' +
     '</div></div>';
   };
 
@@ -333,7 +330,6 @@
     return '<div class="screen">' +
       '<p class="eyebrow">Share inward</p>' +
       '<h2 class="h-serif" style="font-size:clamp(24px,3.6vw,34px);margin-bottom:10px">Four people, twenty minutes each</h2>' +
-      '<p class="muted" style="max-width:62ch;font-size:15.5px">Nobody receives a questionnaire. Each person gets a short list of things they actually control, with a button on every one, and an option to say "I don\'t know, check for me".</p>' +
       '<div class="roles" style="margin-top:24px">' + roles + '</div>' +
       '<div class="invite">' +
         '<div class="mailmock">' +
@@ -343,9 +339,15 @@
           '<p class="muted" style="margin:0;font-size:13px">No account needed. You\'ll see only your part.</p>' +
         '</div>' +
         '<div>' +
-          '<h4 style="font-size:16px;margin-bottom:8px">Why it comes from Mette</h4>' +
-          '<p class="muted" style="font-size:14.5px">An invitation from a colleague gets opened. An invitation from a vendor nobody has heard of gets deleted. The case sends it in her name, and she can see who hasn\'t finished.</p>' +
-          '<div class="dont">We never email their colleagues on our own initiative, and the invitation link is single-purpose, expiring and revocable.</div>' +
+          '<h4 style="font-size:16px;margin-bottom:12px">Still waiting on</h4>' +
+          '<ul class="waiting">' +
+            '<li><span class="w-who">HR</span><span class="w-st">Not invited</span>' +
+              '<button class="btn btn-2 btn-sm" onclick="PROTO.noop(this)">Invite</button></li>' +
+            '<li><span class="w-who">Lars · IT</span><span class="w-st">2 of 4 · last opened 3 days ago</span>' +
+              '<button class="btn btn-2 btn-sm" onclick="PROTO.noop(this)">Remind</button></li>' +
+            '<li><span class="w-who">Sofie · Finance</span><span class="w-st">2 of 4 · last opened yesterday</span>' +
+              '<button class="btn btn-2 btn-sm" onclick="PROTO.noop(this)">Remind</button></li>' +
+          '</ul>' +
         '</div>' +
       '</div></div>';
   };
@@ -365,13 +367,12 @@
     return '<div class="screen">' +
       '<p class="eyebrow">Mapped from published documents · 3 September</p>' +
       '<h2 class="h-serif" style="font-size:clamp(24px,3.6vw,34px);margin-bottom:10px">Who else touches your customers\' data</h2>' +
-      '<p class="muted" style="max-width:64ch;font-size:15.5px">We read your vendors\' own processing agreements and sub-processor lists, then read theirs. Nobody at ' + esc(D.company.legalName) + ' has ever seen this list in full — and neither had your vendors\' own customers.</p>' +
+      '<p class="muted" style="max-width:64ch;font-size:15.5px">Read from your vendors\' own processing agreements and sub-processor lists, and then from theirs.</p>' +
       '<div class="card pad sc" style="margin-top:22px">' + levels + '</div>' +
       '<div style="margin-top:18px;display:flex;gap:22px;flex-wrap:wrap;font-size:13.5px" class="muted">' +
         '<span><b style="color:var(--ink)">21</b> sub-processors</span>' +
         '<span><b style="color:var(--ink)">9</b> established outside the EEA</span>' +
         '<span><b style="color:var(--ink)">3</b> levels deep</span>' +
-        '<span>Every edge carries the document and date it came from</span>' +
       '</div>' +
       '<div style="margin-top:22px;display:flex;gap:10px;flex-wrap:wrap">' +
         '<button class="btn" onclick="PROTO.go(\'artefact\')">Publish this as your sub-processor list</button>' +
@@ -384,7 +385,6 @@
     return '<div class="screen narrow">' +
       '<p class="eyebrow">Generated artefact · preview before anything is published</p>' +
       '<h2 class="h-serif" style="font-size:clamp(24px,3.6vw,32px);margin-bottom:8px">This describes what you actually do</h2>' +
-      '<p class="muted" style="max-width:62ch;font-size:15.5px">Every clause traces to something in your case. Where the register has a gap, it says so instead of inventing text.</p>' +
       '<div class="doc">' +
         '<div class="doc-h"><h3>' + esc(a.title) + '</h3><div class="sub">' + esc(a.subtitle) + '</div>' +
           '<div class="from">Generated from ' + esc(a.generatedFrom) + '</div></div>' +
@@ -402,7 +402,7 @@
   render.trust = function () {
     var t = D.trust;
     return '<div class="screen"><div class="trust">' +
-      '<p class="eyebrow" style="text-align:center;margin-bottom:14px">What their customers see · published by them, not by us</p>' +
+      '<p class="eyebrow" style="text-align:center;margin-bottom:14px">eksempelbutik.dk/privatliv</p>' +
       '<div class="trust-card">' +
         '<div class="trust-h"><h2>' + esc(t.headline) + '</h2>' +
           '<div class="meta"><span>Last checked ' + esc(t.updated) + '</span><span>Case ' + esc(t.caseRef) + '</span><span>Checked by GDPRcompliant.eu</span></div></div>' +
@@ -415,8 +415,8 @@
           '<button class="btn" onclick="PROTO.go(\'front\')">' + esc(t.cta) + '</button>' +
         '</div>' +
       '</div>' +
-      '<p class="muted" style="font-size:13px;margin-top:16px;text-align:center;max-width:58ch;margin-inline:auto">' +
-        'Off by default. Publishing is an explicit, reversible act recorded on the timeline. It never says approved, certified or compliant — and it never lists what is still open.</p>' +
+      '<p class="muted" style="font-size:13px;margin-top:16px;text-align:center">' +
+        '<button class="lnk" onclick="PROTO.noop(this)">Unpublish this page</button></p>' +
     '</div></div>';
   };
 
@@ -455,8 +455,7 @@
       '<div class="card scroll-x"><table class="qtbl"><thead><tr>' +
         '<th>Case</th><th>Company</th><th>Lane</th><th>Signal</th><th>Open</th><th>What to open the call with</th>' +
       '</tr></thead><tbody>' + rows + '</tbody></table></div>' +
-      '<p class="muted" style="font-size:13.5px;margin-top:16px;max-width:66ch">Lane changes nothing about what the customer receives — it only decides whether a person reaches out. ' +
-      'Small companies get the entire automated product; larger ones get the entire automated product plus a consultant.</p>' +
+      '<p class="muted" style="font-size:13.5px;margin-top:16px;max-width:66ch">Lane decides whether a person reaches out. It never changes what the customer receives.</p>' +
     '</div></div>';
   };
 

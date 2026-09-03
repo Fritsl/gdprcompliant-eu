@@ -76,6 +76,22 @@ sandbox.window.PROTO.go('questions');
 for (let i = 0; i < data.questions.length; i++) sandbox.window.PROTO.answer();
 assert(/That is everything/.test(html), 'questions: flow does not reach its end state');
 
+// Copy discipline. Text that points at the interface, or narrates what the adjacent
+// control does, is dead weight — the control is right there. Checked against the product
+// screens only; the .proto-* chrome is scaffolding and may describe itself.
+const NARRATION = [
+  'below', 'above', 'on this page', 'you just need', 'simply click',
+  'as you can see', 'this page shows', 'what you see here',
+];
+for (const s of SCREENS) {
+  sandbox.window.PROTO.go(s);
+  const product = html.slice(html.indexOf('<div class="screen'));
+  const text = product.replace(/<pre[\s\S]*?<\/pre>/g, ' ').replace(/<[^>]+>/g, ' ');
+  for (const phrase of NARRATION) {
+    assert(!text.toLowerCase().includes(phrase), `${s}: copy points at the interface — "${phrase}"`);
+  }
+}
+
 // Claim discipline (O-03) — none of these may appear in customer-facing copy.
 sandbox.window.PROTO.go('trust');
 for (const banned of ['certified', 'certificate', 'approved by', 'fully compliant', 'guaranteed']) {
