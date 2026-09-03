@@ -243,3 +243,52 @@ export function parseModelOutput<N extends ModelCallName>(name: N, raw: unknown)
     ),
   };
 }
+
+// --- Transport envelopes -------------------------------------------------------------
+// The OpenAI-compatible wire shapes the model client (T-04) accepts. Validated like any
+// other model output: an envelope that does not match is a failed attempt, not a crash.
+
+export const ChatCompletionResponseSchema = z.object({
+  id: z.string().optional(),
+  model: z.string().optional(),
+  choices: z
+    .array(
+      z.object({
+        message: z.object({
+          role: z.string().optional(),
+          content: z.string().nullable(),
+        }),
+        finish_reason: z.string().nullable().optional(),
+      }),
+    )
+    .min(1),
+  usage: z
+    .object({
+      prompt_tokens: z.number().int().optional(),
+      completion_tokens: z.number().int().optional(),
+      total_tokens: z.number().int().optional(),
+    })
+    .optional(),
+});
+export type ChatCompletionResponse = z.infer<typeof ChatCompletionResponseSchema>;
+
+export const EmbeddingInputSchema = z.array(z.string().min(1)).min(1).max(256);
+export type EmbeddingInput = z.infer<typeof EmbeddingInputSchema>;
+
+export const EmbeddingResponseSchema = z.object({
+  data: z
+    .array(
+      z.object({
+        index: z.number().int().min(0),
+        embedding: z.array(z.number()).min(1),
+      }),
+    )
+    .min(1),
+  usage: z
+    .object({
+      prompt_tokens: z.number().int().optional(),
+      total_tokens: z.number().int().optional(),
+    })
+    .optional(),
+});
+export type EmbeddingResponse = z.infer<typeof EmbeddingResponseSchema>;
