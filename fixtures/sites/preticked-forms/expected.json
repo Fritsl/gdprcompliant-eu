@@ -1,0 +1,15 @@
+{
+  "site": "tilmeld.test",
+  "description": "A shop whose forms decide for the visitor: the newsletter box is ticked in the markup, a second consent box is ticked and hidden with CSS, a third is ticked by script after load, one required checkbox covers both the terms and the newsletter, and the checkout (card number) and contact form (symptoms) collect sensitive data with no notice beside them.",
+  "tags": [],
+  "findings": {
+    "must": ["FRM-01", "FRM-02", "FRM-03"],
+    "mustNot": ["CNS-02", "SEC-02", "POL-01"]
+  },
+  "network": {
+    "firstLoad": {
+      "mustContact": [],
+      "mustNotContact": []
+    }
+  }
+}

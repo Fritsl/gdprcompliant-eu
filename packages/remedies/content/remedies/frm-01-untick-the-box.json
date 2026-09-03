@@ -1,0 +1,38 @@
+{
+  "id": "frm-01-untick-the-box",
+  "version": 1,
+  "findingTypeId": "FRM-01",
+  "jurisdictions": "all",
+  "kind": "self_fix",
+  "title": {
+    "en": "Leave the box unticked"
+  },
+  "effort": {
+    "label": {
+      "en": "About 5 minutes"
+    },
+    "minutes": 5
+  },
+  "detail": {
+    "en": "A box the visitor never touched is not a choice. Remove the checked attribute, remove the script that sets it, and show the box where a person can see it."
+  },
+  "snippet": "<label><input type=\"checkbox\" name=\"newsletter\"> Yes to the newsletter</label>",
+  "verifyLabel": {
+    "en": "Re-check this finding"
+  },
+  "verification": {
+    "method": "rescan"
+  },
+  "action": {
+    "kind": "agent_prompt",
+    "label": {
+      "en": "Paste into your coding assistant"
+    },
+    "forwardable": {
+      "en": "Or forward it to your developer — it reads the same either way."
+    },
+    "body": {
+      "en": "On {{domain}} at {{path}}, the consent checkbox with id \"{{control_id}}\" (label \"{{label}}\") is already ticked when the page loads. Remove the checked attribute from the markup and any script that sets .checked on it, make sure the checkbox is visible (no display:none, visibility:hidden, zero size or off-screen positioning), and make sure the value is only sent when the visitor has ticked it themselves.\n\nWhen you are done: show me the change and how to confirm the box is unticked and visible on a fresh load of https://{{domain}}{{path}}."
+    }
+  }
+}

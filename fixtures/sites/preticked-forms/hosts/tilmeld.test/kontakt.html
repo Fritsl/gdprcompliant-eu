@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <title>Kontakt</title>
+  </head>
+  <body>
+    <h1>Kontakt klinikken</h1>
+    <!-- Asks about symptoms, with no word on what happens to the answer. -->
+    <form action="/kontakt/send" method="post">
+      <label>Navn <input name="navn" /></label>
+      <label>E-mail <input name="email" type="email" /></label>
+      <label for="symptomer">Beskriv dine symptomer</label>
+      <textarea id="symptomer" name="symptomer"></textarea>
+      <button type="submit">Send</button>
+    </form>
+    <h2>Søg</h2>
+    <!-- A search box is a form too; it collects nothing about the person. -->
+    <form action="/soeg" method="get">
+      <input name="q" placeholder="Søg i butikken" />
+      <button type="submit">Søg</button>
+    </form>
+  </body>
+</html>

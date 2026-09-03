@@ -9,7 +9,11 @@
     "area": "Security",
     "detector": "scanner/checks/security#form_downgrade"
   },
-  { "findingTypeId": "SEC-03", "area": "Security", "detector": "scanner/checks/security#hsts" },
+  {
+    "findingTypeId": "SEC-03",
+    "area": "Security",
+    "detector": "scanner/checks/security#hsts"
+  },
   {
     "findingTypeId": "SEC-04",
     "area": "Security",
@@ -30,5 +34,24 @@
     "area": "Security",
     "detector": "scanner/checks/security#exposed_paths"
   },
-  { "findingTypeId": "POL-01", "area": "Notice", "detector": "scanner/discovery/policies#missing" }
+  {
+    "findingTypeId": "POL-01",
+    "area": "Notice",
+    "detector": "scanner/discovery/policies#missing"
+  },
+  {
+    "findingTypeId": "FRM-01",
+    "area": "Collection",
+    "detector": "scanner/checks/forms#preticked"
+  },
+  {
+    "findingTypeId": "FRM-02",
+    "area": "Collection",
+    "detector": "scanner/checks/forms#bundled"
+  },
+  {
+    "findingTypeId": "FRM-03",
+    "area": "Collection",
+    "detector": "scanner/checks/forms#no_notice"
+  }
 ]

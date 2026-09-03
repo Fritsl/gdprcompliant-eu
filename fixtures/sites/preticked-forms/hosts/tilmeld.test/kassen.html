@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <title>Kassen</title>
+  </head>
+  <body>
+    <h1>Kassen</h1>
+    <!-- One required checkbox covers both the terms and the newsletter. A card number is
+         asked for, and nothing on the page says what happens to any of it. The SMS box
+         is unticked in the markup and ticked by script once the page has loaded. -->
+    <form action="/kassen/send" method="post" id="checkout">
+      <label>Navn <input name="navn" autocomplete="name" /></label>
+      <label>E-mail <input name="email" type="email" /></label>
+      <label>Adresse <input name="adresse" autocomplete="street-address" /></label>
+      <label>Postnummer <input name="postnummer" autocomplete="postal-code" /></label>
+      <label>Kortnummer <input name="kortnummer" autocomplete="cc-number" inputmode="numeric" /></label>
+      <label><input type="checkbox" id="accept" name="accept" required /> Jeg accepterer handelsbetingelserne og vil gerne modtage nyhedsbrevet</label>
+      <label><input type="checkbox" id="sms" name="sms" /> Send mig tilbud på SMS</label>
+      <button type="submit">Gennemfør køb</button>
+    </form>
+    <script>
+      window.addEventListener('load', function () {
+        document.getElementById('sms').checked = true;
+      });
+    </script>
+  </body>
+</html>

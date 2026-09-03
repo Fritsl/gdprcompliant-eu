@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <title>Nyhedsbrev</title>
+  </head>
+  <body>
+    <h1>Tilmeld dig nyhedsbrevet</h1>
+    <section>
+      <!-- Ticked in the markup: the visitor has to opt out. -->
+      <!-- The second box is ticked too, and hidden with CSS so nobody can untick it. -->
+      <form action="/tilmeld/send" method="post">
+        <label>E-mail <input name="email" type="email" required /></label>
+        <label><input type="checkbox" id="nyhedsbrev" name="nyhedsbrev" checked /> Ja tak, send mig nyhedsbrevet</label>
+        <label style="display: none"><input type="checkbox" id="profilering" name="profilering" checked /> Tilpas tilbud til mig ud fra hvad jeg kigger på</label>
+        <p>Vi bruger din e-mail til at sende nyhedsbrevet. <a href="/privatlivspolitik.html">Læs hvordan vi behandler dine oplysninger</a>.</p>
+        <button type="submit">Tilmeld</button>
+      </form>
+    </section>
+    <footer><a href="/privatlivspolitik.html">Privatlivspolitik</a></footer>
+  </body>
+</html>

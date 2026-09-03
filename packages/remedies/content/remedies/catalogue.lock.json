@@ -24,9 +24,17 @@
       "version": 1,
       "hash": "8c606d5f43657f0f6eff2ddff525a48b662885beab542f40d4e475cadf26e9f6"
     },
+    "frm-01-untick-the-box": {
+      "version": 1,
+      "hash": "bab87ad2d26471e7215639b0d209677a380eb9f19a5cbab3f8bb0ab8dbf06b32"
+    },
     "frm-02-split-checkboxes": {
       "version": 1,
       "hash": "ef971ec41d9e90602facc8a5a8f8dd4f89e2612204ff3f7352dbc56a5ecd3fce"
+    },
+    "frm-03-notice-at-collection": {
+      "version": 1,
+      "hash": "dee33522786558ff87e9dc814364f3bb32ed9fc3ad33c03175aa8803334a67f5"
     },
     "pol-01-write-privacy-policy": {
       "version": 1,

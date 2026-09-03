@@ -1,0 +1,6 @@
+# Everything is committed with LF. On Windows checkouts core.autocrlf otherwise turns a
+# stash pop into a line-ending rewrite, which breaks prettier and the generated docs.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.woff2 binary
