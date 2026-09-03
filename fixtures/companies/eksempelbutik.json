@@ -1445,6 +1445,14 @@
     "GDPR Art. 13(2)(a)": {
       "ref": "Regulation (EU) 2016/679, Article 13(2)(a)",
       "text": "the period for which the personal data will be stored, or if that is not possible, the criteria used to determine that period;"
+    },
+    "GDPR Art. 83(5)": {
+      "ref": "Regulation (EU) 2016/679, Article 83(5), opening words",
+      "text": "Infringements of the following provisions shall, in accordance with paragraph 2, be subject to administrative fines up to 20 000 000 EUR, or in the case of an undertaking, up to 4 % of the total worldwide annual turnover of the preceding financial year, whichever is higher:"
+    },
+    "GDPR Art. 44": {
+      "ref": "Regulation (EU) 2016/679, Article 44",
+      "text": "Any transfer of personal data which are undergoing processing or which are intended for processing after transfer to a third country or to an international organisation shall take place only if, subject to the other provisions of this Regulation, the conditions laid down in this Chapter are complied with by the controller and processor, including for onward transfers of personal data from the third country or an international organisation to another third country or to another international organisation."
     }
   },
   "report": {
@@ -1619,5 +1627,130 @@
       "cta": "See what a meeting costs",
       "selfServeFirst": "Most questions do not need this. Ask again in your own words first — the assistant can usually get there."
     }
+  },
+  "dives": {
+    "CNS-02": {
+      "fragment": "Rejecting all cookies leaves 9 of 14 trackers running",
+      "from": "Step 1 · finding CNS-02",
+      "answer": "Your banner records the refusal but nothing acts on it. The tags are hard-wired into the page rather than waiting for the consent event, so refusing changes nothing about what loads.",
+      "grounded": {
+        "title": "From your case",
+        "rows": [
+          [
+            "Observed",
+            "9 of 14 hosts identical between refuse and accept"
+          ],
+          [
+            "Consent platform",
+            "Present and recording choices correctly"
+          ],
+          [
+            "Where it breaks",
+            "Tag firing, not the banner"
+          ]
+        ],
+        "note": "This is why replacing the banner would not help."
+      },
+      "law": "ePrivacy Art. 5(3)",
+      "lawNote": "Consent is required before storing or accessing anything on the visitor’s device.",
+      "followups": [
+        "How do we fix this?",
+        "What fine could we get for this?",
+        "Does this apply to our app too?"
+      ]
+    },
+    "fine-CNS-02": {
+      "fragment": "What fine could we get for this?",
+      "from": "Follow-up",
+      "answer": "Two different regimes apply, and people usually conflate them. The cookie rule itself comes from the ePrivacy Directive as implemented in Danish law, enforced by Erhvervsstyrelsen, and its penalties are modest. The processing that follows from invalid consent is GDPR, enforced by Datatilsynet, and that is where the large numbers live. For a company your size, Danish practice has been guidance and orders first — fines have followed only when an order was ignored.",
+      "grounded": {
+        "title": "For your situation",
+        "rows": [
+          [
+            "Turnover band",
+            "Not yet provided — needed to size any figure"
+          ],
+          [
+            "Prior contact",
+            "No authority correspondence recorded"
+          ],
+          [
+            "Comparable Danish cases",
+            "Orders to comply, not fines, at this size"
+          ]
+        ],
+        "note": "We will not invent a number for you. The realistic first outcome is an order with a deadline."
+      },
+      "law": "GDPR Art. 83(5)",
+      "lawNote": "The headline maximum. It is a ceiling across the whole Union, not a tariff, and Article 83(2) lists what an authority must weigh before landing anywhere near it.",
+      "followups": [
+        "What would Datatilsynet actually do first?",
+        "How long would we have to fix it?"
+      ]
+    },
+    "asia-shipping": {
+      "fragment": "Do we also need to do this when we ship something to Asia?",
+      "from": "Follow-up",
+      "answer": "Yes, and it is a separate question from the cookie one. Sending a customer’s name and address to a carrier outside the EEA is a transfer in its own right, and it needs a basis regardless of what your website does.",
+      "grounded": {
+        "title": "From your case",
+        "rows": [
+          [
+            "Shipping broker",
+            "Established in Denmark"
+          ],
+          [
+            "Carriers behind it",
+            "4, mapped from the broker’s own sub-processor list"
+          ],
+          [
+            "Outside the EEA",
+            "Not yet determined for the carrier chain"
+          ]
+        ],
+        "note": "This opens a check we have not run. Your broker’s list names the carriers but not where each one processes."
+      },
+      "law": "GDPR Art. 44",
+      "lawNote": "The phrase that matters is “including for onward transfers” — your broker passing data to a carrier is covered, not just your own sending.",
+      "followups": [
+        "Add this as a check on my case",
+        "Who is responsible, us or the broker?"
+      ]
+    },
+    "GDPR Art. 30(5)": {
+      "fragment": "The obligations referred to in paragraphs 1 and 2 shall not apply to an enterprise or an organisation employing fewer than 250 persons",
+      "from": "Quoted article",
+      "answer": "The exemption reads generously and almost never applies. The three conditions after “unless” are alternatives, so any one of them brings the obligation back — and “the processing is not occasional” catches nearly every business that has customers.",
+      "grounded": {
+        "title": "From your case",
+        "rows": [
+          [
+            "Headcount",
+            "10–49 · under the threshold"
+          ],
+          [
+            "Occasional?",
+            "No — daily order processing"
+          ],
+          [
+            "Result",
+            "The exemption does not apply to you"
+          ]
+        ],
+        "note": "One row out of three decides it."
+      },
+      "law": "GDPR Art. 30(5)",
+      "lawNote": "Read the three conditions as a list of alternatives, not a set of requirements.",
+      "followups": [
+        "What has to be in the record?",
+        "Show me our record"
+      ]
+    }
+  },
+  "diveDefaults": {
+    "opener": "Tell me more about this:",
+    "disclaimer": "An AI assistant, not a lawyer. Every answer shows where it came from.",
+    "escalationCta": "Book a paid hour with an adviser",
+    "escalationNote": "Try asking in your own words first — this usually gets there."
   }
 }

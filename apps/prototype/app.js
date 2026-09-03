@@ -30,7 +30,7 @@
     { id: 'internal',   label: 'Internal',     note: 'What we see.' }
   ];
 
-  var state = { screen: 'front', caseAge: 'working', finding: 'CNS-02', qIndex: 0, scanStep: 0, scanOutcome: 'clean' };
+  var state = { screen: 'front', caseAge: 'working', finding: 'CNS-02', qIndex: 0, scanStep: 0, scanOutcome: 'clean', dive: null };
   var timer = null;
 
   /* ── derived data ────────────────────────────────────────────────── */
@@ -161,7 +161,7 @@
     return '<div class="step-items">' + s.findings.map(function (id) {
       var f = findingById(id);
       return '<button class="step-item" onclick="PROTO.openFinding(\'' + f.id + '\')">' +
-        '<span class="si-t">' + esc(f.title) + '</span>' +
+        '<span class="si-t">' + dl(f.id, f.title) + '</span>' +
         '<span class="si-r">' + esc(f.remedy.title) + '</span>' +
         '<span class="go">›</span></button>';
     }).join('') + '</div>';
@@ -289,7 +289,7 @@
     return '<div class="screen narrow">' +
       '<button class="btn btn-2 btn-sm" onclick="PROTO.go(\'case\')" style="margin-bottom:22px">‹ Back to case ' + esc(D.case.id) + '</button>' +
       '<div class="fd-head"><span class="fid mono muted">' + esc(f.id) + '</span>' + sevBadge(f) + '<span class="muted" style="font-size:13px">' + esc(f.area) + '</span></div>' +
-      '<h2 class="fd-title h-serif">' + esc(f.title) + '</h2>' +
+      '<h2 class="fd-title h-serif">' + dl(f.id, f.title) + '</h2>' +
       '<p class="why">' + esc(f.why) + '</p>' +
       (f.citations.length
         ? '<div class="cites">' + f.citations.map(function (c) {
@@ -501,7 +501,7 @@
 
     var articles = r.articlesUsed.map(function (k) {
       var a = D.articles[k];
-      return '<div class="law"><div class="law-ref">' + esc(a.ref) + '</div>' +
+      return '<div class="law"><div class="law-ref">' + dl(k, a.ref) + '</div>' +
         '<blockquote>' + esc(a.text) + '</blockquote></div>';
     }).join('');
 
@@ -567,7 +567,7 @@
         '</div>' +
 
         '<div class="law">' +
-          '<div class="law-ref">' + esc(law.ref) + '</div>' +
+          '<div class="law-ref">' + dl(m.law, law.ref) + '</div>' +
           '<blockquote>' + esc(law.text) + '</blockquote>' +
           '<p class="law-n">' + esc(m.lawNote) + '</p>' +
         '</div>' +
@@ -602,6 +602,81 @@
     '</div>';
   };
 
+  /* ── dive points ───────────────────────────────────────────────────
+     Any element can open a conversation already scoped to it. On a page there is
+     no thread to append to, so turn zero carries the fragment, the case as fact,
+     and the corpus. See docs/decisions/dive-points.md. */
+
+  // Wraps text in a dive point. Nothing to expand → no dive point, per the
+  // gating rules carried over from GDPRchat.
+  function dl(key, text) {
+    if (!D.dives[key]) return esc(text);
+    return '<button class="dive" data-k="' + esc(key) + '" onclick="PROTO.dive(\'' + esc(key).replace(/'/g, "\\'") + '\')" ' +
+      'title="Ask about this">' + esc(text) + '</button>';
+  }
+
+  function diveOverlay() {
+    if (!state.dive) return '';
+    var v = D.dives[state.dive];
+    if (!v) return '';
+    var law = D.articles[v.law];
+    var dd = D.diveDefaults;
+
+    return '<div class="dv-scrim" onclick="PROTO.closeDive()"></div>' +
+      '<div class="dv" role="dialog" aria-label="Ask about this">' +
+        '<div class="dv-top">' +
+          '<span class="dv-from">' + esc(v.from) + '</span>' +
+          '<button class="dv-x" onclick="PROTO.closeDive()" aria-label="Close">×</button>' +
+        '</div>' +
+        '<div class="dv-body">' +
+          '<div class="dv-turn0">' +
+            '<span class="dv-op">' + esc(dd.opener) + '</span>' +
+            '<span class="dv-frag">' + esc(v.fragment) + '</span>' +
+          '</div>' +
+
+          '<p class="ans">' + esc(v.answer) + '</p>' +
+
+          '<div class="ground">' +
+            '<div class="g-h">' + esc(v.grounded.title) + '</div>' +
+            '<table class="g-t"><tbody>' + v.grounded.rows.map(function (r) {
+              return '<tr><td>' + esc(r[0]) + '</td><td>' + esc(r[1]) + '</td></tr>';
+            }).join('') + '</tbody></table>' +
+            '<p class="g-n">' + esc(v.grounded.note) + '</p>' +
+          '</div>' +
+
+          (law
+            ? '<div class="law">' +
+                '<div class="law-ref">' + esc(law.ref) + '</div>' +
+                '<blockquote>' + esc(law.text) + '</blockquote>' +
+                '<p class="law-n">' + esc(v.lawNote) + '</p>' +
+              '</div>'
+            : '<div class="law"><div class="law-ref">' + esc(v.law) + '</div>' +
+                '<p class="law-n">' + esc(v.lawNote) + '</p></div>') +
+
+          '<div class="dv-fu">' + v.followups.map(function (f) {
+            var k = f === 'What fine could we get for this?' ? 'fine-CNS-02'
+                  : /Asia/i.test(f) ? 'asia-shipping' : null;
+            return k && D.dives[k]
+              ? '<button class="s-chip" onclick="PROTO.dive(\'' + k + '\')">' + esc(f) + '</button>'
+              : '<button class="s-chip" onclick="PROTO.noop(this)">' + esc(f) + '</button>';
+          }).join('') +
+            '<button class="s-chip" onclick="PROTO.dive(\'asia-shipping\')">Do we also need this when we ship to Asia?</button>' +
+          '</div>' +
+
+          '<div class="ask" style="margin-top:18px">' +
+            '<input type="text" placeholder="Ask a follow-up" aria-label="Ask a follow-up">' +
+            '<button class="btn" onclick="PROTO.noop(this)">Ask</button>' +
+          '</div>' +
+
+          '<p class="adv-disc">' + esc(dd.disclaimer) + '</p>' +
+          '<div class="esc">' +
+            '<p class="esc-first">' + esc(dd.escalationNote) + '</p>' +
+            '<button class="btn btn-2 btn-sm" onclick="PROTO.noop(this)">' + esc(dd.escalationCta) + '</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+  }
+
   /* ── chrome and routing ──────────────────────────────────────────── */
 
   function chrome() {
@@ -633,7 +708,7 @@
   }
 
   function draw() {
-    app.innerHTML = chrome() + (render[state.screen] || render.front)();
+    app.innerHTML = chrome() + (render[state.screen] || render.front)() + diveOverlay();
     window.scrollTo(0, 0);
     if (state.screen === 'scanning') startScan(); else stopScan();
   }
@@ -671,6 +746,8 @@
       this.go('case');
     },
     age: function (a) { state.caseAge = a; draw(); },
+    dive: function (k) { state.dive = k; draw(); },
+    closeDive: function () { state.dive = null; draw(); },
     outcome: function (o) { state.scanOutcome = o; state.scanStep = 0; draw(); },
     answer: function () { state.qIndex++; draw(); },
     resetQ: function () { state.qIndex = 0; draw(); },

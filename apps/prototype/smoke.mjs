@@ -153,6 +153,25 @@ for (const screen of ['report', 'advisor']) {
   }
 }
 
+// Dive points: every dive opens, quotes the fragment it was opened from, grounds the
+// answer in the case, and offers a way onward. Gating means a dive never exists for
+// something with nothing to expand.
+for (const key of Object.keys(data.dives)) {
+  const v = data.dives[key];
+  sandbox.window.PROTO.dive(key);
+  assert(/class="dv"/.test(html), `dive/${key}: overlay did not open`);
+  assert(html.includes(data.diveDefaults.opener), `dive/${key}: turn zero is missing the opener`);
+  assert(html.includes(v.fragment.slice(0, 40)), `dive/${key}: the fragment it was opened from is not shown`);
+  assert(/class="ground"/.test(html), `dive/${key}: the answer is not grounded in the case`);
+  assert(v.followups.length > 0, `dive/${key}: offers no way onward`);
+  assert(v.fragment.length <= 300, `dive/${key}: fragment is ${v.fragment.length} chars — the cap is 300`);
+  if (data.articles[v.law]) {
+    assert(html.includes(data.articles[v.law].text), `dive/${key}: law is not quoted verbatim`);
+  }
+}
+sandbox.window.PROTO.closeDive();
+assert(!/class="dv"/.test(html), 'dive: overlay did not close');
+
 // Claim discipline (O-03) — none of these may appear in customer-facing copy.
 sandbox.window.PROTO.go('trust');
 for (const banned of ['certified', 'certificate', 'approved by', 'fully compliant', 'guaranteed']) {
