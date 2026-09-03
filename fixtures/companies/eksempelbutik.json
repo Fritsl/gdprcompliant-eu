@@ -1611,6 +1611,13 @@
       "What happens if someone asks us to delete their data?",
       "Do we need a data protection officer?",
       "Show me Article 13 in full"
-    ]
+    ],
+    "escalation": {
+      "when": "Shown only after the assistant has genuinely tried and cannot settle it from your case and the law.",
+      "headline": "Still stuck on this one?",
+      "body": "Book an hour with one of our advisers. Paid, and we will tell you the price before you book.",
+      "cta": "See what a meeting costs",
+      "selfServeFirst": "Most questions do not need this. Ask again in your own words first — the assistant can usually get there."
+    }
   }
 }

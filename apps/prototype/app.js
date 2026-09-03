@@ -592,6 +592,12 @@
         return '<button class="s-chip" onclick="PROTO.noop(this)">' + esc(s) + '</button>';
       }).join('') + '</div>' +
       '<p class="adv-disc">' + esc(a.disclaimer) + '</p>' +
+      '<div class="esc">' +
+        '<div class="esc-h">' + esc(a.escalation.headline) + '</div>' +
+        '<p>' + esc(a.escalation.body) + '</p>' +
+        '<p class="esc-first">' + esc(a.escalation.selfServeFirst) + '</p>' +
+        '<button class="btn btn-2 btn-sm" onclick="PROTO.noop(this)">' + esc(a.escalation.cta) + '</button>' +
+      '</div>' +
       '<div style="margin-top:20px"><button class="btn btn-2 btn-sm" onclick="PROTO.go(\'report\')">Turn this into a report</button></div>' +
     '</div>';
   };
