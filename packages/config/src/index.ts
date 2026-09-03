@@ -9,3 +9,4 @@ export const PACKAGE = '@gc/config';
 export * from './schema.js';
 export * from './load.js';
 export * from './egress.js';
+export * from './cassette.js';

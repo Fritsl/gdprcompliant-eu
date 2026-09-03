@@ -159,3 +159,10 @@ so a unit test that reaches for a database or the internet fails immediately wit
 saying which suite it belongs in. Reports land in `artifacts/`: `junit.xml`, an HTML report
 under `report/`, and coverage under `coverage/`. `pnpm test:coverage:check` fails below 70%
 lines, and below 85% in findings, rules and remedies.
+
+Every outbound HTTP call goes through `createRecordedFetch` from `@gc/config` and is
+answered from `fixtures/cassettes/` unless `GC_NETWORK` says otherwise: `replay` is the
+default and what CI runs, and a missing cassette is an error rather than a live call;
+`record` makes the call through the endpoint allowlist and writes the cassette, redacted;
+`live` records nothing and is for the canary alone. Re-record with
+`GC_NETWORK=record pnpm test:integration -- <filter>` and commit the cassettes with the change.

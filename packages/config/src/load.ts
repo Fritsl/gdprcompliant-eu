@@ -110,6 +110,7 @@ export function loadConfig(
     },
     scanner: { concurrency: e.SCAN_CONCURRENCY, egress: 'target-only' },
     endpoints: [...seen.values()],
+    network: { mode: e.GC_NETWORK },
   });
   return Object.freeze(config);
 }
@@ -150,6 +151,7 @@ export function redact(config: Config): Record<string, unknown> {
     model: { ...config.model, ...(config.model.apiKey !== undefined ? { apiKey: '••••' } : {}) },
     scanner: config.scanner,
     endpoints: config.endpoints,
+    network: config.network,
     secretKeys: [...SECRET_KEYS],
   };
 }

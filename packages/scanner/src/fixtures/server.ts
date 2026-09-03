@@ -102,7 +102,12 @@ export class FixtureServer {
       // Proxy-style requests carry the absolute URL; direct ones carry a Host header.
       url = raw.startsWith('http://') || raw.startsWith('https://')
         ? new URL(raw)
-        : new URL(raw, `http://${req.headers.host ?? 'unknown.invalid'}`);
+        : new URL(
+            raw,
+            // Direct-style requests name their host in Host; a client that cannot set Host
+            // (fetch forbids it) says so in X-Forwarded-Host instead.
+            `http://${req.headers['x-forwarded-host'] ?? req.headers.host ?? 'unknown.invalid'}`,
+          );
     } catch {
       res.writeHead(400).end();
       return;
@@ -121,8 +126,12 @@ export class FixtureServer {
     const route = fixture.routes.find((r) => r.path === url.pathname);
     if (route) {
       this.served.push({ host, path: url.pathname, status: route.status });
-      res.writeHead(route.status, { 'content-length': '0', ...route.headers });
-      res.end(route.body ?? '');
+      const body = route.body ?? '';
+      res.writeHead(route.status, {
+        'content-length': String(Buffer.byteLength(body)),
+        ...route.headers,
+      });
+      res.end(body);
       return;
     }
 

@@ -62,6 +62,13 @@ export const EnvSchema = z.object({
   // Deployment-specific hosts, as a JSON array of endpoints. The checked-in list covers
   // the shared services; the model endpoint is per deployment and goes here.
   ENDPOINTS_EXTRA: z.string().optional().describe('JSON array of {host, purpose, jurisdiction}'),
+  // How outbound calls behave (F-09). replay answers from committed cassettes and treats a
+  // missing one as an error; record makes the live call and writes the cassette; live makes
+  // the call and records nothing. Nothing ever makes a live call by accident.
+  GC_NETWORK: z
+    .enum(['replay', 'record', 'live'])
+    .default('replay')
+    .describe('replay, record or live'),
 });
 export type Env = z.infer<typeof EnvSchema>;
 
@@ -81,5 +88,6 @@ export const ConfigSchema = z.object({
     egress: z.literal('target-only'),
   }),
   endpoints: z.array(EndpointSchema).min(1),
+  network: z.object({ mode: z.enum(['replay', 'record', 'live']) }),
 });
 export type Config = z.infer<typeof ConfigSchema>;
