@@ -228,6 +228,43 @@ sandbox.window.PROTO.dive('CNS-02');
 assert(!/class="fab"/.test(html), 'a dive is already a conversation — the shortcut must stand down');
 sandbox.window.PROTO.closeDive();
 
+// A prompt the customer has to edit is a prompt we did not finish. We know the domain,
+// the paths and the hostnames, so they must already be in it.
+const VAGUE = ['this site', 'our site', 'your site', 'our website', 'the site', 'your domain', '[', 'YOUR_'];
+for (const f of allFindings) {
+  const a = f.remedy.action;
+  if (!a || a.kind !== 'agent_prompt') continue;
+  assert(a.body.includes(data.company.domain), `${f.id}: prompt never names ${data.company.domain}`);
+  for (const v of VAGUE) {
+    assert(!a.body.toLowerCase().includes(v.toLowerCase()), `${f.id}: prompt says "${v}" instead of the real value`);
+  }
+  // The evidence already names the specific hosts or paths; the prompt should too.
+  // Hostnames, paths, and quoted identifiers or labels all count as concrete —
+  // FRM-02 names the checkbox id and its exact Danish label, not a hostname.
+  const specifics = (a.body.match(/[a-z0-9-]+\.[a-z]{2,}|\/[a-z]+|"[^"]{2,}"/gi) || []).length;
+  assert(specifics >= 3, `${f.id}: prompt names only ${specifics} concrete things — too generic to act on`);
+}
+
+// The bot has to be visible next to statements, on the screens where people read them.
+sandbox.window.PROTO.resetQ();
+for (const s of ['case', 'finding', 'report', 'questions', 'trust']) {
+  sandbox.window.PROTO.go(s);
+  const bots = (html.match(/class="bot"/g) || []).length;
+  assert(bots > 0, `${s}: nothing on this screen can be asked about`);
+}
+sandbox.window.PROTO.go('report');
+assert((html.match(/class="bot"/g) || []).length >= 8, 'report: the matrix rows should each be askable');
+
+// A bot must open a conversation that is actually populated, including for findings
+// nobody wrote a conversation for.
+for (const f of allFindings) {
+  sandbox.window.PROTO.dive(f.id);
+  assert(/class="dv"/.test(html), `dive/${f.id}: bot opened nothing`);
+  assert(html.includes(data.diveDefaults.opener), `dive/${f.id}: opened without turn zero`);
+  assert(/class="ground"/.test(html), `dive/${f.id}: opened without the case behind it`);
+}
+sandbox.window.PROTO.closeDive();
+
 // Claim discipline (O-03) — none of these may appear in customer-facing copy.
 sandbox.window.PROTO.go('trust');
 for (const banned of ['certified', 'certificate', 'approved by', 'fully compliant', 'guaranteed']) {

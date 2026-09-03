@@ -158,7 +158,7 @@
           "kind": "agent_prompt",
           "label": "Paste into your coding assistant",
           "forwardable": "Or forward it to your developer — it reads the same either way.",
-          "body": "Third-party tracking tags on this site load on page load instead of after the visitor has consented. The consent banner itself works correctly and records the choice — the problem is where the tags fire.\n\nFind every non-essential tag (analytics, advertising, social, session replay) and make each one load only after the consent event fires with its matching category. The consent platform's own script is essential and must keep loading immediately.\n\nDo not modify the banner or the consent platform configuration.\n\nWhen you are done: list which tags you changed and which you deliberately left alone, and tell me how to verify that refusing consent now prevents each one from loading."
+          "body": "On eksempelbutik.dk these nine third-party hosts load on page load, before the visitor has consented:\n\n  connect.facebook.net\n  www.google-analytics.com\n  static.hotjar.com\n  www.clarity.ms\n  googleads.g.doubleclick.net\n  snap.licdn.com\n  analytics.tiktok.com\n  cdn.pdst.fm\n  bat.bing.com\n\nThe consent banner itself works correctly and records the choice — the problem is where the tags fire, not the banner. Leave the banner and its configuration alone. consent.cookiebot.com is essential and must keep loading immediately.\n\nMake each of the nine hosts above load only after the consent event fires with its matching category (statistics, marketing or preferences).\n\nWhen you are done: list which of the nine you changed and which you deliberately left alone, and tell me how to verify that refusing consent now prevents each one from loading."
         }
       }
     },
@@ -230,7 +230,7 @@
           "kind": "agent_prompt",
           "label": "Paste into your coding assistant",
           "forwardable": "Or forward it to your developer — it reads the same either way.",
-          "body": "Our contact form at /kontakt posts to an http:// URL which then 301-redirects to https. That means the first request — carrying name, email, telephone and message — travels unencrypted.\n\nChange the form action to post directly to the https URL so nothing is sent over the redirect. Then add a Strict-Transport-Security response header with a max-age of at least two years, including subdomains.\n\nWhen you are done: tell me which files you changed, and how to confirm no request from this form leaves over plain http."
+          "body": "On eksempelbutik.dk the contact form at /kontakt posts to http://eksempelbutik.dk/kontakt/send, which 301-redirects to https://eksempelbutik.dk/kontakt/send. The first request carries navn, email, telefon and besked in the clear.\n\nChange the form action to post directly to https://eksempelbutik.dk/kontakt/send so nothing travels over the redirect. Then add a Strict-Transport-Security response header with max-age of at least 63072000, including subdomains.\n\nWhen you are done: tell me which files you changed and how to confirm no request from this form leaves over plain http."
         }
       }
     },
@@ -362,7 +362,7 @@
           "kind": "agent_prompt",
           "label": "Paste into your coding assistant",
           "forwardable": "Or forward it to your developer — it reads the same either way.",
-          "body": "A session replay tool is active on our checkout at /kassen with input masking switched off, so it records what customers type — including address and payment fields — before they submit.\n\nTwo changes, and the second matters more than the first:\n1. Enable input masking globally for the replay tool.\n2. Prevent the replay script from loading at all on any path under /kassen.\n\nWhen you are done: show me the change and how to verify the script is entirely absent on the checkout pages."
+          "body": "On eksempelbutik.dk, Microsoft Clarity (www.clarity.ms) is active on the checkout at /kassen with maskAllInputs set to false. It records what customers type into navn, adresse, postnr, email, telefon and kortnummer before they submit anything.\n\nTwo changes, and the second matters more than the first:\n1. Set maskAllInputs to true globally.\n2. Prevent the Clarity script from loading at all on any path under /kassen.\n\nWhen you are done: show me the change and how to verify the script is entirely absent on /kassen."
         }
       }
     },
@@ -434,7 +434,7 @@
           "kind": "agent_prompt",
           "label": "Paste into your coding assistant",
           "forwardable": "Or forward it to your developer — it reads the same either way.",
-          "body": "This site loads two web font families from Google's servers. Every visitor's IP address therefore reaches a third party before they have agreed to anything.\n\nDownload both families, self-host them under our own domain, and replace the external stylesheet link with local @font-face declarations using font-display: swap. The rendered typography must stay identical — same weights, same styles, same fallbacks.\n\nWhen you are done: list the files you changed and confirm that no request to a Google domain remains anywhere in the page load."
+          "body": "eksempelbutik.dk loads two font families from Google — a stylesheet from fonts.googleapis.com and three font files from fonts.gstatic.com (Inter and Lora). Every visitor's IP address therefore reaches Google before they have agreed to anything.\n\nDownload Inter and Lora, self-host them under eksempelbutik.dk, and replace the fonts.googleapis.com stylesheet link with local @font-face declarations using font-display: swap. Rendered typography must stay identical — same weights, same styles, same fallback stacks.\n\nWhen you are done: list the files you changed and confirm that no request to fonts.googleapis.com or fonts.gstatic.com remains anywhere in the page load."
         }
       }
     },
@@ -504,7 +504,7 @@
           "kind": "agent_prompt",
           "label": "Paste into your coding assistant",
           "forwardable": "Or forward it to your developer — it reads the same either way.",
-          "body": "On our checkout at /kassen, one required checkbox currently covers both accepting the terms and joining the newsletter.\n\nSplit it into two controls. Accepting the terms stays required. The newsletter becomes a separate, optional checkbox, unticked by default. Store the newsletter choice as its own value with its own timestamp, separate from terms acceptance, so we can later show who opted in and when.\n\nWhen you are done: show me the change and where the newsletter opt-in is recorded."
+          "body": "On eksempelbutik.dk at /kassen, one required checkbox with id \"news\" currently covers both accepting the terms and joining the newsletter. Its label reads \"Jeg accepterer handelsbetingelserne og vil gerne modtage nyhedsbrevet\", and the order cannot be placed without ticking it.\n\nSplit it into two controls. Accepting the terms stays required. The newsletter becomes a separate optional checkbox, unticked by default. Store the newsletter choice as its own value with its own timestamp, separate from terms acceptance, so we can later show who opted in and when.\n\nWhen you are done: show me the change and where the newsletter opt-in is recorded."
         }
       }
     },
@@ -908,7 +908,8 @@
         "Yes",
         "No",
         "Check it for me"
-      ]
+      ],
+      "dive": "TRF-01"
     },
     {
       "id": "Q2",
@@ -920,7 +921,8 @@
         "Yes",
         "No",
         "Not sure"
-      ]
+      ],
+      "dive": "AI-03"
     },
     {
       "id": "Q3",
@@ -931,7 +933,8 @@
         "5 years",
         "As long as the account exists",
         "I don't know"
-      ]
+      ],
+      "dive": "POL-04"
     },
     {
       "id": "Q4",
@@ -942,7 +945,8 @@
         "Mette",
         "Sofie",
         "Someone else"
-      ]
+      ],
+      "dive": "DPA-01"
     }
   ],
   "roles": [
@@ -1524,52 +1528,62 @@
       {
         "area": "Consent",
         "state": "open",
-        "note": "A new tag appeared on the checkout on 8 Sep"
+        "note": "A new tag appeared on the checkout on 8 Sep",
+        "ref": "CNS-09"
       },
       {
         "area": "Recipients",
         "state": "done",
-        "note": "All 14 identified; fonts self-hosted"
+        "note": "All 14 identified; fonts self-hosted",
+        "ref": "VND-06"
       },
       {
         "area": "Transfers",
         "state": "done",
-        "note": "9 outside the EEA, all named and covered"
+        "note": "9 outside the EEA, all named and covered",
+        "ref": "TRF-01"
       },
       {
         "area": "Notice",
         "state": "done",
-        "note": "Policy rewritten from the register on 10 Sep"
+        "note": "Policy rewritten from the register on 10 Sep",
+        "ref": "POL-04"
       },
       {
         "area": "Collection",
         "state": "done",
-        "note": "Newsletter consent separated at checkout"
+        "note": "Newsletter consent separated at checkout",
+        "ref": "FRM-02"
       },
       {
         "area": "Observation",
         "state": "done",
-        "note": "Session replay removed from the checkout"
+        "note": "Session replay removed from the checkout",
+        "ref": "REC-01"
       },
       {
         "area": "Security",
         "state": "done",
-        "note": "Form transport fixed; headers in place"
+        "note": "Form transport fixed; headers in place",
+        "ref": "SEC-02"
       },
       {
         "area": "Contracts",
         "state": "done",
-        "note": "Agreement and sub-processor list published"
+        "note": "Agreement and sub-processor list published",
+        "ref": "DPA-01"
       },
       {
         "area": "Records",
         "state": "open",
-        "note": "Register complete except deletion schedule"
+        "note": "Register complete except deletion schedule",
+        "ref": "DPA-01"
       },
       {
         "area": "Attribution",
         "state": "undetermined",
-        "note": "One third-party host still unidentified"
+        "note": "One third-party host still unidentified",
+        "ref": "VND-11"
       }
     ],
     "actions": [
@@ -1802,6 +1816,36 @@
       "followups": [
         "What has to be in the record?",
         "Show me our record"
+      ]
+    },
+    "trust-page": {
+      "fragment": "We check this website and our data practices every week. This is not a certification and nobody has approved it.",
+      "from": "Public trust page",
+      "answer": "It is deliberately worded that way. Saying more than this would be a claim we cannot stand behind — and a page that looks like a certificate invites the regulator you are trying to reassure people about.",
+      "grounded": {
+        "title": "From your case",
+        "rows": [
+          [
+            "Published",
+            "11 Sep 2026 · by you, reversibly"
+          ],
+          [
+            "Shows",
+            "11 closed items, dated"
+          ],
+          [
+            "Never shows",
+            "What is still open — that stays yours"
+          ]
+        ],
+        "note": "Anyone can ask you directly about the open items. We do not publish them."
+      },
+      "law": null,
+      "lawNote": "Formal certification under Article 42 requires an accredited body. This is not that, and does not claim to be.",
+      "followups": [
+        "Can we put this on our own site?",
+        "What if a customer asks what is still open?",
+        "Who can see this page?"
       ]
     }
   },

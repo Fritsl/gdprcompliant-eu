@@ -184,6 +184,7 @@
       return '<button class="step-item" onclick="PROTO.openFinding(\'' + f.id + '\')">' +
         '<span class="si-t">' + dl(f.id, f.title) + '</span>' +
         '<span class="si-r">' + esc(f.remedy.title) + '</span>' +
+        '<span class="si-b">' + bot(f.id, f.title) + '</span>' +
         '<span class="go">›</span></button>';
     }).join('') + '</div>';
   }
@@ -222,7 +223,7 @@
           '<div class="step-body">' +
             '<p class="step-kick">Your next step</p>' +
             '<h3>' + esc(s.title) + '</h3>' +
-            '<p class="step-plain">' + esc(s.plain) + '</p>' +
+            '<p class="step-plain">' + esc(s.plain) + bot(s.findings[0] || '', s.title) + '</p>' +
             stepFindingRows(s) +
             '<div class="step-act">' +
               '<button class="btn" onclick="PROTO.startStep(' + s.n + ')">' + esc(s.action) + '</button>' +
@@ -311,7 +312,7 @@
       '<button class="btn btn-2 btn-sm" onclick="PROTO.go(\'case\')" style="margin-bottom:22px">‹ Back to case ' + esc(D.case.id) + '</button>' +
       '<div class="fd-head"><span class="fid mono muted">' + esc(f.id) + '</span>' + sevBadge(f) + '<span class="muted" style="font-size:13px">' + esc(f.area) + '</span></div>' +
       '<h2 class="fd-title h-serif">' + dl(f.id, f.title) + '</h2>' +
-      '<p class="why">' + esc(f.why) + '</p>' +
+      '<p class="why">' + esc(f.why) + bot(f.id, f.title) + '</p>' +
       (f.citations.length
         ? '<div class="cites">' + f.citations.map(function (c) {
             return '<span class="cite">' + esc(c.instrument) + ' ' + esc(c.ref) + ' <em>· ' + esc(c.note) + '</em></span>';
@@ -321,7 +322,7 @@
         '<p class="ev-cap">' + esc(f.evidence.caption) + '</p>' + ev +
       '</div></details>' +
       '<div class="rem-card k-' + r.kind + '">' +
-        '<div class="rem-h"><h3>' + esc(r.title) + '</h3>' + remedyTag(r) + '<span class="muted mono" style="font-size:11.5px;margin-left:auto">' + esc(r.effort) + '</span></div>' +
+        '<div class="rem-h"><h3>' + esc(r.title) + '</h3>' + bot(f.id, r.title) + remedyTag(r) + '<span class="muted mono" style="font-size:11.5px;margin-left:auto">' + esc(r.effort) + '</span></div>' +
         '<p>' + esc(r.detail) + '</p>' +
         (r.options ? '<ul class="rem-opts">' + r.options.map(function (o) { return '<li>' + esc(o) + '</li>'; }).join('') + '</ul>' : '') +
         actionBlock(r, f.id) +
@@ -359,7 +360,7 @@
       '<p class="eyebrow">Question ' + (state.qIndex + 1) + ' of ' + qs.length + '</p>' +
       (q.context ? '<p class="q-context">' + esc(q.context) + '</p>' : '') +
       '<h2 class="q-text">' + esc(q.text) + '</h2>' +
-      '<p class="q-why">' + esc(q.why) + '</p>' +
+      '<p class="q-why">' + esc(q.why) + bot(q.dive || '', q.text) + '</p>' +
       '<p class="q-unlock">Answering this unlocks ' + esc(q.unlocks) + '</p>' +
       '<div class="q-opts">' + opts + '</div>' +
     '</div></div>';
@@ -457,7 +458,7 @@
       '<div class="trust-card">' +
         '<div class="trust-h"><h2>' + esc(t.headline) + '</h2>' +
           '<div class="meta"><span>Last checked ' + esc(t.updated) + '</span><span>Case ' + esc(t.caseRef) + '</span><span>Checked by GDPRcompliant.eu</span></div></div>' +
-        '<div class="trust-st">' + esc(t.statement) + '</div>' +
+        '<div class="trust-st">' + esc(t.statement) + bot('trust-page', 'this page') + '</div>' +
         '<ul class="trust-list">' + t.closed.map(function (c) {
           return '<li><span class="tick">✓</span><span>' + esc(c.text) + '</span><time>' + esc(c.on) + '</time></li>';
         }).join('') + '</ul>' +
@@ -517,12 +518,12 @@
     var matrix = r.matrix.map(function (m) {
       return '<tr><td class="m-area">' + esc(m.area) + '</td>' +
         '<td><span class="m-state m-' + m.state + '">' + esc(stateLabel[m.state]) + '</span></td>' +
-        '<td class="m-note">' + esc(m.note) + '</td></tr>';
+        '<td class="m-note">' + esc(m.note) + bot(m.ref || '', m.area) + '</td></tr>';
     }).join('');
 
     var actions = r.actions.map(function (a) {
       return '<tr><td class="a-n">' + a.n + '</td><td class="a-w">' + esc(a.what) +
-        '<span class="a-ref">' + esc(a.ref) + '</span></td>' +
+        '<span class="a-ref">' + esc(a.ref) + '</span>' + bot(a.ref, a.what) + '</td>' +
         '<td>' + esc(a.who) + '</td><td class="a-when">' + esc(a.when) + '</td></tr>';
     }).join('');
 
@@ -629,6 +630,51 @@
     '</div>';
   };
 
+  /* ── the bot, next to anything worth asking about ──────────────────
+     A visible glyph rather than a subtle underline. Clicking opens the chat with
+     everything already loaded — the thing that was clicked, the case, the law. */
+  var BOT_SVG = '<svg viewBox="0 0 20 20" width="13" height="13" aria-hidden="true" focusable="false">' +
+    '<rect x="3.5" y="6" width="13" height="10" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"/>' +
+    '<circle cx="7.6" cy="11" r="1.3" fill="currentColor"/>' +
+    '<circle cx="12.4" cy="11" r="1.3" fill="currentColor"/>' +
+    '<path d="M10 6V3.2M10 2.2a1 1 0 100 .1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>' +
+    '<path d="M1.6 10.2v2.4M18.4 10.2v2.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>' +
+    '</svg>';
+
+  // Synthesised from the finding when no conversation has been authored, so a bot can
+  // sit beside anything without someone hand-writing 40 answers first.
+  function resolveDive(key) {
+    if (D.dives[key]) return D.dives[key];
+    var f = findingById(key);
+    if (!f || f.id !== key) return null;
+    var cite = (f.citations && f.citations[0]) || null;
+    return {
+      fragment: f.title,
+      from: f.id + ' · ' + f.area,
+      answer: f.why,
+      grounded: {
+        title: 'From your case',
+        rows: [
+          ['Severity', f.severity],
+          ['Evidence', f.evidence.caption],
+          ['What closes it', f.remedy.title],
+        ],
+        note: 'Everything here came from the scan, not from the model.',
+      },
+      law: cite ? cite.instrument + ' ' + cite.ref : null,
+      lawNote: cite ? cite.note : 'No legal claim — an observation.',
+      followups: ['How do we fix this?', 'What fine could we get for this?', 'Who should do this?'],
+      synthesised: true,
+    };
+  }
+
+  /** A bot glyph that opens the chat already loaded with this thing. */
+  function bot(key, label) {
+    if (!resolveDive(key)) return '';
+    return '<button class="bot" onclick="PROTO.dive(\'' + String(key).replace(/'/g, "\\'") + '\')" ' +
+      'aria-label="Ask about ' + esc(label || key) + '" title="Ask about this">' + BOT_SVG + '</button>';
+  }
+
   /* ── dive points ───────────────────────────────────────────────────
      Any element can open a conversation already scoped to it. On a page there is
      no thread to append to, so turn zero carries the fragment, the case as fact,
@@ -637,14 +683,14 @@
   // Wraps text in a dive point. Nothing to expand → no dive point, per the
   // gating rules carried over from GDPRchat.
   function dl(key, text) {
-    if (!D.dives[key]) return esc(text);
+    if (!resolveDive(key)) return esc(text);
     return '<button class="dive" data-k="' + esc(key) + '" onclick="PROTO.dive(\'' + esc(key).replace(/'/g, "\\'") + '\')" ' +
       'title="Ask about this">' + esc(text) + '</button>';
   }
 
   function diveOverlay() {
     if (!state.dive) return '';
-    var v = D.dives[state.dive];
+    var v = resolveDive(state.dive);
     if (!v) return '';
     var law = D.articles[v.law];
     var dd = D.diveDefaults;
