@@ -1,0 +1,15 @@
+{
+  "site": "klinik.test",
+  "description": "A clinic whose patient intake page (national id number, symptoms) runs a session replay tool with no per-field masking markers, and loads a metrics script that reads the canvas back, measures text across thirty font families and renders silent audio: device fingerprinting.",
+  "tags": [],
+  "findings": {
+    "must": ["REC-01", "FPR-01", "FPR-02", "FPR-03", "FRM-03"],
+    "mustNot": ["FRM-01", "FRM-02", "SEC-02"]
+  },
+  "network": {
+    "firstLoad": {
+      "mustContact": ["static.hotjar.com", "fp.metrics.test"],
+      "mustNotContact": []
+    }
+  }
+}

@@ -53,5 +53,25 @@
     "findingTypeId": "FRM-03",
     "area": "Collection",
     "detector": "scanner/checks/forms#no_notice"
+  },
+  {
+    "findingTypeId": "REC-01",
+    "area": "Observation",
+    "detector": "scanner/checks/replay#replay_on_sensitive"
+  },
+  {
+    "findingTypeId": "FPR-01",
+    "area": "Observation",
+    "detector": "scanner/checks/replay#canvas"
+  },
+  {
+    "findingTypeId": "FPR-02",
+    "area": "Observation",
+    "detector": "scanner/checks/replay#font"
+  },
+  {
+    "findingTypeId": "FPR-03",
+    "area": "Observation",
+    "detector": "scanner/checks/replay#audio"
   }
 ]

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <title>Ny patient</title>
+    <script src="https://static.hotjar.com/c/hotjar-123.js?sv=6"></script>
+    <script src="https://fp.metrics.test/fp.js"></script>
+  </head>
+  <body>
+    <h1>Ny patient</h1>
+    <!-- National id number and symptoms, typed while a replay tool records the page.
+         No field carries data-hj-suppress; nothing says what happens to the answers. -->
+    <form action="/intake/send" method="post">
+      <label>Navn <input name="navn" autocomplete="name" /></label>
+      <label>CPR-nummer <input name="cpr" inputmode="numeric" /></label>
+      <label for="symptomer">Beskriv dine symptomer</label>
+      <textarea id="symptomer" name="symptomer"></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </body>
+</html>

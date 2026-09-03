@@ -1,0 +1,38 @@
+{
+  "id": "fpr-03-audio-fingerprint",
+  "version": 1,
+  "findingTypeId": "FPR-03",
+  "jurisdictions": "all",
+  "kind": "self_fix",
+  "title": {
+    "en": "Remove the script that fingerprints the audio stack"
+  },
+  "effort": {
+    "label": {
+      "en": "About 15 minutes"
+    },
+    "minutes": 15
+  },
+  "detail": {
+    "en": "A script generates a sound nobody hears and reads the processed signal back; the tiny differences between devices are the identifier. Remove the script, or switch the feature off with the vendor."
+  },
+  "snippet": "<!-- remove the tag, or load it only after consent -->\n<!-- <script src=\"https://{{host}}/…\"></script> -->",
+  "verifyLabel": {
+    "en": "Re-check this finding"
+  },
+  "verification": {
+    "method": "rescan"
+  },
+  "action": {
+    "kind": "agent_prompt",
+    "label": {
+      "en": "Paste into your coding assistant"
+    },
+    "forwardable": {
+      "en": "Or forward it to your developer — it reads the same either way."
+    },
+    "body": {
+      "en": "On {{domain}}, a script served from {{host}} creates an OfflineAudioContext with an oscillator on {{page}} and reads the rendered samples back. Nothing is played; that is device fingerprinting.\n\nFind where the {{host}} script is included and remove it. If it belongs to a vendor we need, ask them for the setting that disables device fingerprinting and apply it, or load their script only after the visitor has consented.\n\nWhen you are done: show me the change and how to confirm no script on https://{{domain}}{{page}} creates an audio context on a fresh load."
+    }
+  }
+}

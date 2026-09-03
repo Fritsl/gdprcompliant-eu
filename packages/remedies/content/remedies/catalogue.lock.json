@@ -24,6 +24,18 @@
       "version": 1,
       "hash": "8c606d5f43657f0f6eff2ddff525a48b662885beab542f40d4e475cadf26e9f6"
     },
+    "fpr-01-canvas-fingerprint": {
+      "version": 1,
+      "hash": "b73c0ffa43ff4ac77a2ad838dcca171fb7995b970eef362f654992cc87f5bd97"
+    },
+    "fpr-02-font-fingerprint": {
+      "version": 1,
+      "hash": "13c11e04a146417dbe3530a2b62455d6bc8fdd252b2f50a6fbb3f3b90d5a93bc"
+    },
+    "fpr-03-audio-fingerprint": {
+      "version": 1,
+      "hash": "9d5befedb39a37cbbd49efa4ad9bd011f5a568777632fdd51beff3cb6a7687db"
+    },
     "frm-01-untick-the-box": {
       "version": 1,
       "hash": "bab87ad2d26471e7215639b0d209677a380eb9f19a5cbab3f8bb0ab8dbf06b32"
