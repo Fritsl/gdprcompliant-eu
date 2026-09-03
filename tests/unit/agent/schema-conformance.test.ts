@@ -311,7 +311,7 @@ const VALID: Case[] = [
   {
     name: 'classify_cookies',
     valid: {
-      cookies: [{ name: '_ga', host: 'eksempelbutik.dk', category: 'statistics', confidence: 0.9 }],
+      cookies: [{ name: '_ga', host: 'eksempelbutik.dk', category: 'analytics', confidence: 0.9 }],
     },
   },
 ];

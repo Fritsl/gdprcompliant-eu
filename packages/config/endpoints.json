@@ -34,5 +34,11 @@
     "purpose": "registry",
     "jurisdiction": "DE",
     "note": "Gemeinsames Registerportal der Länder"
+  },
+  {
+    "host": "data.gdprcompliant.eu",
+    "purpose": "corpus",
+    "jurisdiction": "DK",
+    "note": "EU mirror of the Open Cookie Database; GitHub is outside the EEA"
   }
 ]

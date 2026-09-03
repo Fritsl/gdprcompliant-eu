@@ -1,0 +1,9 @@
+{
+  "source": "Open Cookie Database",
+  "url": "https://raw.githubusercontent.com/jkwakman/Open-Cookie-Database/master/open-cookie-database.csv",
+  "licence": "Apache-2.0",
+  "version": "55ea2a99bd1b1e8033e74cc5534fcedb3df2a51e8a8612de6a58b5e75bb44262",
+  "commit": "749c37c17eb910fa95621f4fee34d9a6d4126c23",
+  "fetchedAt": "2026-09-03T18:50:00.000Z",
+  "entries": 2266
+}

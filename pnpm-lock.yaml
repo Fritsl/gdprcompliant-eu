@@ -134,7 +134,14 @@ importers:
 
   packages/db: {}
 
-  packages/findings: {}
+  packages/findings:
+    dependencies:
+      '@gc/config':
+        specifier: workspace:*
+        version: link:../config
+      '@gc/contracts':
+        specifier: workspace:*
+        version: link:../contracts
 
   packages/i18n:
     dependencies:

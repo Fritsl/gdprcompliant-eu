@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { CaseSchema } from './case.js';
+import { CookieCategorySchema } from './cookie.js';
 import { ClaimSchema } from './claim.js';
 import { EvidenceRefSchema, EvidenceSchema, UntrustedContentSchema } from './evidence.js';
 import { FindingSchema } from './finding.js';
@@ -185,7 +186,8 @@ export const MODEL_CALLS = {
     }),
   },
 
-  // Cookie classification (S-06), for cookies the deterministic table does not know.
+  // A suggestion for cookies the database does not know (S-06). The classification is
+  // always the database's; a suggestion is recorded as a suggestion, never as a category.
   classify_cookies: {
     input: z.object({
       cookies: z
@@ -206,7 +208,7 @@ export const MODEL_CALLS = {
           z.strictObject({
             name: NonEmptyStringSchema,
             host: HostnameSchema,
-            category: z.enum(['essential', 'preferences', 'statistics', 'marketing', 'unknown']),
+            category: CookieCategorySchema,
             confidence: z.number().min(0).max(1),
           }),
         )
