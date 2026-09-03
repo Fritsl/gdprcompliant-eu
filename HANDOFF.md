@@ -16,9 +16,12 @@ companies a list of problems; this hands them a plan and the things that close i
 
 ## Where you are
 
-**11 of 112 done.** Phase 0 is complete and signed off, and `F-01` has laid the
-toolchain, so the graph is open. Six tasks were claimable at the time of writing:
-`F-02`, `F-04`, `F-07`, `F-08`, `F-10`, `U-01`.
+**24 of 112 done.** Phase 0 is complete and signed off; phase 1 is 6 of 11 and phase 2 is
+8 of 34. Contracts, config with the EU-only allowlist, the test harness, record and
+replay, i18n, the remedy catalogue and resolver, the model client, the web shell, the
+fixture estate, the browser pool, Pass A and cookie classification are in. The remaining
+phase 1 items (`F-02`, `F-03`, `F-05`, `F-06`, `T-07`) all wait on a Postgres with
+pgvector, which needs Docker; see the notes at the end of this file.
 
 Do not trust that list — ask:
 
@@ -157,3 +160,22 @@ is unfinished and names it. A task whose tests were deferred is not done, it is 
 
 If the plan is wrong, say so in the task log and raise it — do not silently build a
 different architecture. The plan is a hypothesis, but it is a shared one.
+
+## Notes from the session of 3 September 2026
+
+- **`F-02` is blocked on this machine, not on the plan.** Docker Desktop would not bring
+  its engine up (the docker-desktop WSL distro stayed stopped) and later crashed. The
+  local Postgres 17 has no pgvector. Everything downstream of `F-02` needs a database:
+  start there when Docker works, or point `DATABASE_URL` at any Postgres 16 with pgvector.
+- **The web app builds with webpack, not Turbopack.** The packages use NodeNext resolution
+  (imports name `.js`, sources are `.ts`); webpack maps one to the other via an extension
+  alias in `apps/web/next.config.ts`, Turbopack does not yet. The scripts pass `--webpack`.
+- **Two EU hosts are assumed and not yet stood up:** `data.gdprcompliant.eu` for the Open
+  Cookie Database (upstream is GitHub, outside the EEA) and the model endpoint declared via
+  `ENDPOINTS_EXTRA`. See `packages/config/endpoints.json` and `.env.example`.
+- **Playwright's Chromium is installed locally** (`pnpm exec playwright install chromium`);
+  CI needs the same step before the integration and e2e suites.
+- **The lazy-tracker fixture expects `CNS-01`, which has no catalogue remedy yet.** `S-05`
+  or `R-03` must add one before `R-02`'s completeness check is switched on.
+- **Danish is optional in `packages/i18n/content/locales.json`** until `R-03` fills it; flip
+  `required` then and the coverage check will hold the line.
