@@ -172,6 +172,62 @@ for (const key of Object.keys(data.dives)) {
 sandbox.window.PROTO.closeDive();
 assert(!/class="dv"/.test(html), 'dive: overlay did not close');
 
+// Actions. A remedy the customer cannot act on without translating it themselves is not
+// finished. Code and config fixes ship as a forwardable prompt; people problems ship as a
+// drafted message. The raw snippet is the fallback, never the headline.
+const allFindings = data.findings.concat([data.newInWatch]);
+for (const f of allFindings) {
+  const a = f.remedy.action;
+  if (f.remedy.kind === 'self_fix') {
+    assert(!!a, `${f.id}: a self-service fix with nothing to forward`);
+  }
+  if (!a) continue;
+  assert(['agent_prompt', 'message'].includes(a.kind), `${f.id}: unknown action kind "${a.kind}"`);
+  assert(a.body.length > 150, `${f.id}: action body is ${a.body.length} chars — too thin to act on`);
+  if (a.kind === 'agent_prompt') {
+    // A prompt that does not ask for confirmation leaves the person unable to tell
+    // whether it worked, which is the whole point of the fix-and-verify loop.
+    assert(/verify|confirm|tell me|show me|list /i.test(a.body), `${f.id}: prompt never asks for verification`);
+    assert(!/\bwe\b.*\bour product\b/i.test(a.body), `${f.id}: prompt is selling rather than instructing`);
+  } else {
+    assert(!!a.subject && !!a.to, `${f.id}: a drafted message with no subject or no recipient`);
+    assert(!/\[.*?\]/.test(a.body), `${f.id}: message still has an unfilled placeholder`);
+  }
+}
+
+// The action must lead; the raw code is demoted to a fallback behind a disclosure.
+sandbox.window.PROTO.openFinding('CNS-02');
+assert(/class="act-b/.test(html), 'CNS-02: no action block rendered');
+assert(html.indexOf('act-b') < html.indexOf('code-alt'), 'CNS-02: raw code appears before the action');
+assert(/class="drawer code-alt"/.test(html), 'CNS-02: the code change is no longer reachable at all');
+
+// Speed. If the fix is "tell someone", sending it must be one click from the finding —
+// not copy, switch program, paste. And the assistant is reachable from everywhere.
+const messageFindings = allFindings.filter((f) => f.remedy.action && f.remedy.action.kind === 'message');
+assert(messageFindings.length > 0, 'no drafted messages at all');
+for (const f of messageFindings) {
+  sandbox.window.PROTO.openFinding(f.id);
+  assert(/class="act-send"/.test(html), `${f.id}: a drafted message with no way to send it`);
+  sandbox.window.PROTO.compose(f.id);
+  assert(/class="cmp"/.test(html), `${f.id}: compose sheet did not open`);
+  assert(html.includes(f.remedy.action.subject), `${f.id}: compose opened without the subject filled in`);
+  assert(html.includes(f.remedy.action.to), `${f.id}: compose opened without a recipient`);
+  sandbox.window.PROTO.closeCompose();
+  assert(!/class="cmp"/.test(html), `${f.id}: compose sheet did not close`);
+}
+for (const s of SCREENS) {
+  sandbox.window.PROTO.go(s);
+  if (s === 'advisor') {
+    assert(!/class="fab"/.test(html), 'advisor: should not offer a shortcut to itself');
+  } else {
+    assert(/class="fab"/.test(html), `${s}: the assistant is not reachable from here`);
+  }
+}
+sandbox.window.PROTO.go('case');
+sandbox.window.PROTO.dive('CNS-02');
+assert(!/class="fab"/.test(html), 'a dive is already a conversation — the shortcut must stand down');
+sandbox.window.PROTO.closeDive();
+
 // Claim discipline (O-03) — none of these may appear in customer-facing copy.
 sandbox.window.PROTO.go('trust');
 for (const banned of ['certified', 'certificate', 'approved by', 'fully compliant', 'guaranteed']) {

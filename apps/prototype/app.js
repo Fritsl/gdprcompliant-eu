@@ -30,7 +30,7 @@
     { id: 'internal',   label: 'Internal',     note: 'What we see.' }
   ];
 
-  var state = { screen: 'front', caseAge: 'working', finding: 'CNS-02', qIndex: 0, scanStep: 0, scanOutcome: 'clean', dive: null };
+  var state = { screen: 'front', caseAge: 'working', finding: 'CNS-02', qIndex: 0, scanStep: 0, scanOutcome: 'clean', dive: null, compose: null };
   var timer = null;
 
   /* ── derived data ────────────────────────────────────────────────── */
@@ -64,6 +64,27 @@
     if (isClosed(f)) return '<span class="sev sev-closed">Closed</span>';
     return '<span class="sev sev-' + f.severity + '">' + esc(f.severity) + '</span>';
   }
+  // The deliverable is the thing you can forward, not the thing you have to translate.
+  // Code and config fixes ship as a prompt; people problems ship as a drafted message.
+  var actionSeq = 0;
+  function actionBlock(r, fid) {
+    var a = r.action;
+    if (!a) return '';
+    var id = 'act' + (++actionSeq);
+    var isMsg = a.kind === 'message';
+    var text = isMsg ? 'Subject: ' + a.subject + '\n\n' + a.body : a.body;
+    return '<div class="act-b' + (isMsg ? ' act-msg' : '') + '">' +
+      '<div class="act-h">' +
+        '<span class="act-l">' + esc(a.label) + '</span>' +
+        (isMsg ? '<button class="act-send" onclick="PROTO.compose(\'' + fid + '\')">✉ Send</button>' : '') +
+        '<button class="act-c" onclick="PROTO.copy(\'' + id + '\', this)">' + esc(D.actionLabels.copy) + '</button>' +
+      '</div>' +
+      (isMsg ? '<div class="act-to">To: ' + esc(a.to) + '</div>' : '') +
+      '<pre class="act-t" id="' + id + '">' + esc(text) + '</pre>' +
+      (a.forwardable ? '<p class="act-f">' + esc(a.forwardable) + '</p>' : '') +
+    '</div>';
+  }
+
   function remedyTag(r) {
     var label = { self_fix: 'free fix', generated_artefact: 'one click', our_product: 'our product', partner_alternative: 'alternatives', no_solution: 'no answer yet' }[r.kind];
     return '<span class="tag t-' + r.kind + '">' + esc(label) + '</span>';
@@ -303,7 +324,13 @@
         '<div class="rem-h"><h3>' + esc(r.title) + '</h3>' + remedyTag(r) + '<span class="muted mono" style="font-size:11.5px;margin-left:auto">' + esc(r.effort) + '</span></div>' +
         '<p>' + esc(r.detail) + '</p>' +
         (r.options ? '<ul class="rem-opts">' + r.options.map(function (o) { return '<li>' + esc(o) + '</li>'; }).join('') + '</ul>' : '') +
-        (r.snippet ? '<pre class="pre">' + esc(r.snippet) + '</pre>' : '') +
+        actionBlock(r, f.id) +
+        (r.snippet
+          ? (r.action
+              ? '<details class="drawer code-alt"><summary>' + esc(D.actionLabels.showCode) + '</summary>' +
+                  '<div class="body"><pre class="pre">' + esc(r.snippet) + '</pre></div></details>'
+              : '<pre class="pre">' + esc(r.snippet) + '</pre>')
+          : '') +
         (r.alternativeNote ? '<p class="muted" style="font-size:13.5px">' + esc(r.alternativeNote) + '</p>' : '') +
         '<div class="rem-acts">' + acts + '</div>' +
       '</div></div>';
@@ -677,6 +704,39 @@
       '</div>';
   }
 
+  /* ── compose sheet ─────────────────────────────────────────────────
+     When the fix is "tell someone", the fix should be sending it, not copying
+     text into another program. One click to open, one to send. */
+  function composeSheet() {
+    if (!state.compose) return '';
+    var f = findingById(state.compose);
+    var a = f.remedy.action;
+    if (!a || a.kind !== 'message') return '';
+    return '<div class="dv-scrim" onclick="PROTO.closeCompose()"></div>' +
+      '<div class="cmp" role="dialog" aria-label="Send message">' +
+        '<div class="dv-top">' +
+          '<span class="dv-from">' + esc(f.id) + ' · new message</span>' +
+          '<button class="dv-x" onclick="PROTO.closeCompose()" aria-label="Close">×</button>' +
+        '</div>' +
+        '<div class="cmp-f"><label>To</label><input type="text" value="' + esc(a.to) + '"></div>' +
+        '<div class="cmp-f"><label>Subject</label><input type="text" value="' + esc(a.subject) + '"></div>' +
+        '<textarea class="cmp-body" aria-label="Message">' + esc(a.body) + '</textarea>' +
+        '<div class="cmp-foot">' +
+          '<button class="btn" onclick="PROTO.noop(this)">Send</button>' +
+          '<button class="btn btn-2" onclick="PROTO.copy(\'cmpbody\', this)">Copy instead</button>' +
+          '<span class="cmp-n">Logged on the case when it goes.</span>' +
+        '</div>' +
+      '</div>';
+  }
+
+  /* ── the assistant, everywhere ─────────────────────────────────────
+     Available from every screen, not only from the one that is about asking. */
+  function fab() {
+    if (state.dive || state.compose || state.screen === 'advisor') return '';
+    return '<button class="fab" onclick="PROTO.go(\'advisor\')" aria-label="Ask about this">' +
+      '<span class="fab-i" aria-hidden="true">?</span><span class="fab-t">Ask</span></button>';
+  }
+
   /* ── chrome and routing ──────────────────────────────────────────── */
 
   function chrome() {
@@ -708,7 +768,7 @@
   }
 
   function draw() {
-    app.innerHTML = chrome() + (render[state.screen] || render.front)() + diveOverlay();
+    app.innerHTML = chrome() + (render[state.screen] || render.front)() + diveOverlay() + composeSheet() + fab();
     window.scrollTo(0, 0);
     if (state.screen === 'scanning') startScan(); else stopScan();
   }
@@ -747,6 +807,24 @@
     },
     age: function (a) { state.caseAge = a; draw(); },
     dive: function (k) { state.dive = k; draw(); },
+    copy: function (id, btn) {
+      var el = document.getElementById(id);
+      var txt = el ? (el.textContent || '') : '';
+      var done = function () {
+        var was = btn.textContent;
+        btn.textContent = D.actionLabels.copied;
+        setTimeout(function () { btn.textContent = was; }, 1600);
+      };
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(txt).then(done, function () { btn.textContent = 'Select it and copy'; });
+          return;
+        }
+      } catch (e) { /* fall through */ }
+      btn.textContent = 'Select it and copy';
+    },
+    compose: function (id) { state.compose = id; draw(); },
+    closeCompose: function () { state.compose = null; draw(); },
     closeDive: function () { state.dive = null; draw(); },
     outcome: function (o) { state.scanOutcome = o; state.scanStep = 0; draw(); },
     answer: function () { state.qIndex++; draw(); },
