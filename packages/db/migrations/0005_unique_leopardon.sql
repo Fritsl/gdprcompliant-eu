@@ -1,0 +1,1 @@
+ALTER TABLE "case_events" ADD CONSTRAINT "case_events_actor" CHECK (coalesce("case_events"."actor"->>'kind', '') in ('person', 'agent', 'scanner', 'watcher', 'system'));

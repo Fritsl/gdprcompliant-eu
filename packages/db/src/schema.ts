@@ -152,6 +152,11 @@ export const caseEvents = pgTable(
     uniqueIndex('case_events_case_seq').on(t.caseId, t.seq),
     check('case_events_seq', sql`${t.seq} >= 1`),
     check('case_events_type', oneOf('type', CASE_EVENT_TYPES)),
+    // Every event names its actor (C-02): one of the kinds the contract knows.
+    check(
+      'case_events_actor',
+      sql`coalesce(${t.actor}->>'kind', '') in ('person', 'agent', 'scanner', 'watcher', 'system')`,
+    ),
     index('case_events_tenant_idx').on(t.tenantId),
   ],
 );

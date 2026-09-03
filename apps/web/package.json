@@ -16,7 +16,8 @@
     "react": "19",
     "react-dom": "19",
     "server-only": "^0.0.1",
-    "@gc/db": "workspace:*"
+    "@gc/db": "workspace:*",
+    "@gc/artefacts": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "19",

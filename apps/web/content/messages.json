@@ -115,5 +115,25 @@
   "demand.all": {
     "en": "all",
     "da": "alle"
+  },
+  "timeline.heading": {
+    "en": "Timeline",
+    "da": "Tidslinje"
+  },
+  "timeline.lead": {
+    "en": "Everything that happened on this case, dated and attributed. Nothing here can be edited or removed.",
+    "da": "Alt der er sket på sagen, dateret og med afsender. Intet her kan redigeres eller fjernes."
+  },
+  "timeline.download": {
+    "en": "Download as PDF",
+    "da": "Hent som PDF"
+  },
+  "timeline.generated": {
+    "en": "Generated",
+    "da": "Genereret"
+  },
+  "timeline.page": {
+    "en": "Page {{page}} of {{pages}}",
+    "da": "Side {{page}} af {{pages}}"
   }
 }

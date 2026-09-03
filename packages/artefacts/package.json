@@ -7,5 +7,14 @@
   "types": "./src/index.ts",
   "scripts": {
     "typecheck": "tsc --build"
+  },
+  "dependencies": {
+    "@gc/contracts": "workspace:*",
+    "@gc/i18n": "workspace:*",
+    "pdfkit": "^0.20.2",
+    "zod": "^4.5.4"
+  },
+  "devDependencies": {
+    "@types/pdfkit": "^0.17.6"
   }
 }

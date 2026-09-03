@@ -3,15 +3,14 @@ import { and, eq, gt, isNull, lt, or, sql } from 'drizzle-orm';
 import {
   CASE_NUMBER_ALPHABET,
   CASE_NUMBER_PATTERN,
-  CaseEventSchema,
   CompanySchema,
   sha256,
-  type CaseEvent,
   type Company,
 } from '@gc/contracts';
-import type { Connection, Db } from './client.js';
+import type { Connection } from './client.js';
 import { caseClaims, caseEvents, cases, tenants } from './schema.js';
 import { withTenant } from './tenant.js';
+import { appendEvent } from './timeline.js';
 
 // The case object (C-01): opens on the first scan with a number a person can read out,
 // under a tenant of its own and no account; reachable by its token until it expires;
@@ -43,45 +42,6 @@ export function newCaseNumber(country: string, now: Date, random: Random = defau
 export const newTenantId = (): string => `t-${randomBytes(9).toString('hex')}`;
 const newToken = (): string => randomBytes(32).toString('hex');
 const newClaimCode = (): string => randomBytes(16).toString('hex');
-
-// ---- events -----------------------------------------------------------------------
-
-async function appendEvent(
-  db: Db,
-  tenantId: string,
-  caseId: string,
-  at: Date,
-  actor: CaseEvent['actor'],
-  type: CaseEvent['type'],
-  payload: CaseEvent['payload'],
-): Promise<void> {
-  const [last] = await db
-    .select({ seq: sql<number>`coalesce(max(${caseEvents.seq}), 0)::int` })
-    .from(caseEvents)
-    .where(eq(caseEvents.caseId, caseId));
-  const seq = (last?.seq ?? 0) + 1;
-  const event = CaseEventSchema.parse({
-    id: `${caseId}:${seq}`,
-    tenantId,
-    caseId,
-    seq,
-    at: at.toISOString(),
-    actor,
-    type,
-    payload,
-  });
-  await db.insert(caseEvents).values({
-    id: event.id,
-    tenantId,
-    sourceRef: `case:${caseId}`,
-    caseId,
-    seq,
-    at,
-    actor: event.actor,
-    type: event.type,
-    payload: event.payload,
-  });
-}
 
 // ---- opening ----------------------------------------------------------------------
 
