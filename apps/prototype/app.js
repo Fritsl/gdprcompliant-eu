@@ -28,7 +28,7 @@
     { id: 'internal',   label: 'Internal',     note: 'What we see.' }
   ];
 
-  var state = { screen: 'front', caseAge: 'working', finding: 'CNS-02', qIndex: 0, scanStep: 0 };
+  var state = { screen: 'front', caseAge: 'working', finding: 'CNS-02', qIndex: 0, scanStep: 0, scanOutcome: 'clean' };
   var timer = null;
 
   /* ── derived data ────────────────────────────────────────────────── */
@@ -99,22 +99,43 @@
   ];
 
   render.scanning = function () {
+    var out = state.scanOutcome === 'clean' ? null : D.scanOutcomes[state.scanOutcome];
+    var ov = (out && out.overrides) || {};
+    var firstOv = Object.keys(ov).map(Number).sort(function (a, b) { return a - b; })[0];
     var pct = Math.round((state.scanStep / SCAN_STEPS.length) * 100);
+
     var rows = SCAN_STEPS.map(function (s, i) {
-      var cls = i < state.scanStep ? 'ok' : i === state.scanStep ? 'on' : 'todo';
-      return '<div class="scan-step ' + cls + '"><span class="dot"></span><span class="t">' + esc(s[0]) + '</span><span class="n">' + esc(s[1]) + '</span></div>';
+      var reached = i < state.scanStep;
+      var cls;
+      if (ov[i] && reached) cls = ov[i];
+      else if (out && out.skipRest && reached && i > firstOv) cls = 'skip';
+      else cls = reached ? 'ok' : i === state.scanStep ? 'on' : 'todo';
+      var mark = { undet: 'could not tell', skip: 'skipped', na: 'not needed', fail: 'no response' }[cls] || s[1];
+      return '<div class="scan-step ' + cls + '"><span class="dot"></span><span class="t">' + esc(s[0]) + '</span><span class="n">' + esc(mark) + '</span></div>';
     }).join('');
+
     var done = state.scanStep >= SCAN_STEPS.length;
+    var tail;
+    if (!done) {
+      tail = '<p class="muted" style="margin-top:22px;font-size:13.5px">This normally takes about 40 seconds.</p>';
+    } else if (out) {
+      tail = '<div class="scan-out' + (out.clean ? ' good' : '') + '">' +
+        '<h3>' + esc(out.headline) + '</h3>' +
+        '<p>' + esc(out.body) + '</p>' +
+        (out.consequence ? '<p class="cons">' + esc(out.consequence) + '</p>' : '') +
+        '<button class="btn" onclick="PROTO.go(\'' + (state.scanOutcome === 'unreachable' ? 'front' : 'case') + '\')">' + esc(out.cta) + '</button>' +
+      '</div>';
+    } else {
+      tail = '<div style="margin-top:26px;display:flex;gap:12px;flex-wrap:wrap;align-items:center">' +
+        '<button class="btn" onclick="PROTO.go(\'case\')">See what to do about it</button>' +
+        '<span class="muted" style="font-size:13.5px">12 things to fix · grouped into 7 steps</span></div>';
+    }
+
     return '<div class="screen"><div class="scan">' +
       '<p class="eyebrow">Checking</p>' +
       '<h2>' + esc(D.company.domain) + '</h2>' +
       '<div class="scan-bar"><i style="width:' + pct + '%"></i></div>' +
-      '<div class="scan-steps">' + rows + '</div>' +
-      (done
-        ? '<div style="margin-top:26px;display:flex;gap:12px;flex-wrap:wrap;align-items:center">' +
-            '<button class="btn" onclick="PROTO.go(\'case\')">See what to do about it</button>' +
-            '<span class="muted" style="font-size:13.5px">12 things to fix · grouped into 7 steps</span></div>'
-        : '<p class="muted" style="margin-top:22px;font-size:13.5px">This normally takes about 40 seconds.</p>') +
+      '<div class="scan-steps">' + rows + '</div>' + tail +
       '</div></div>';
   };
 
@@ -307,6 +328,7 @@
     return '<div class="screen"><div class="q-wrap">' +
       '<div class="q-prog">' + prog + '</div>' +
       '<p class="eyebrow">Question ' + (state.qIndex + 1) + ' of ' + qs.length + '</p>' +
+      (q.context ? '<p class="q-context">' + esc(q.context) + '</p>' : '') +
       '<h2 class="q-text">' + esc(q.text) + '</h2>' +
       '<p class="q-why">' + esc(q.why) + '</p>' +
       '<p class="q-unlock">Answering this unlocks ' + esc(q.unlocks) + '</p>' +
@@ -466,13 +488,21 @@
       return '<button onclick="PROTO.go(\'' + s.id + '\')" aria-current="' + (state.screen === s.id) + '">' + esc(s.label) + '</button>';
     }).join('');
     var meta = SCREENS.filter(function (s) { return s.id === state.screen; })[0];
-    var ageToggle = state.screen === 'case'
-      ? '<span style="margin-left:auto;display:flex;gap:6px;align-items:center">Age of case:' +
+    var toggle = '';
+    if (state.screen === 'case') {
+      toggle = '<span class="proto-toggle">Age of case:' +
         ['fresh', 'working', 'watched'].map(function (a) {
           return '<button class="btn btn-2 btn-sm" style="' + (state.caseAge === a ? 'border-color:var(--gold);background:var(--gold-soft)' : '') + '" onclick="PROTO.age(\'' + a + '\')">' +
             (a === 'fresh' ? 'Day one' : a === 'working' ? 'Week one' : 'Under watch') + '</button>';
-        }).join('') + '</span>'
-      : '';
+        }).join('') + '</span>';
+    } else if (state.screen === 'scanning') {
+      var outs = [['clean', 'Typical site'], ['noBannerNeeded', 'No banner, none needed'], ['noRefusal', 'No way to refuse'], ['unreachable', 'Unreachable']];
+      toggle = '<span class="proto-toggle">Outcome:' +
+        outs.map(function (o) {
+          return '<button class="btn btn-2 btn-sm" style="' + (state.scanOutcome === o[0] ? 'border-color:var(--gold);background:var(--gold-soft)' : '') + '" onclick="PROTO.outcome(\'' + o[0] + '\')">' + esc(o[1]) + '</button>';
+        }).join('') + '</span>';
+    }
+    var ageToggle = toggle;
     return '<div class="proto-bar">' +
         '<span class="proto-badge">Prototype · nothing behind it</span>' +
         '<span class="proto-name"><b>GDPRcompliant.eu</b> · X-01…X-09</span>' +
@@ -520,8 +550,10 @@
       this.go('case');
     },
     age: function (a) { state.caseAge = a; draw(); },
+    outcome: function (o) { state.scanOutcome = o; state.scanStep = 0; draw(); },
     answer: function () { state.qIndex++; draw(); },
     resetQ: function () { state.qIndex = 0; draw(); },
+    tick: function () { if (state.scanStep < SCAN_STEPS.length) state.scanStep++; draw(); },
     verify: function (btn) {
       btn.outerHTML = '<span class="verified">✓ Re-checked — this finding is now closed</span>';
     },

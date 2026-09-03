@@ -70,6 +70,31 @@ git. Never batch-edit other people's task files.
 8. **Tests come with the task, not after it.** Every task's `verify` line is its definition
    of done. A task whose tests were deferred is not done, it is blocked.
 
+9. **Write for the reader, not about the product.** Every line of user-facing text must
+   either tell someone something they do not know, or let them do something. Text that
+   describes the control sitting next to it, or explains why we built something the way we
+   did, gets deleted — not shortened.
+
+   | Never write this | Why it is dead weight |
+   |---|---|
+   | "Each one is a single tap, and you can always say 'check it for me' instead." | The buttons are visible directly underneath. |
+   | "We only ask what we cannot work out ourselves." | Justifying ourselves to someone who never complained. |
+   | "Type your address below." | They can see the field. |
+   | "This is normal — it's why we keep looking every week." | Explaining our business model to a customer. |
+   | "It never says approved, certified or compliant." | A note to ourselves that escaped into the product. |
+   | "We've written them — you just need to read them and say yes." | The second half narrates the button. |
+
+   Two specific rules that follow from it. **A statement and a question never share a
+   sentence** — what we already know goes in its own field and is rendered separately, so
+   the question stands alone and is unmistakably the question. And **when a paragraph
+   exists to explain a design decision, replace it with the control it was describing**:
+   the colleagues screen lost an essay about why invitations come from a colleague and
+   gained a list of who has not finished, with Invite and Remind.
+
+   The narration guard in `apps/prototype/smoke.mjs` fails the build on the most common
+   forms ("below", "above", "on this page", "you just need"). Extend that list when you
+   find a new one; do not argue with it.
+
 ## Conventions
 
 - TypeScript, strict. `pnpm` workspaces. Zod for every boundary schema, defined once in

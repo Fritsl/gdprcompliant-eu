@@ -71,10 +71,44 @@ for (const age of ['fresh','working','watched']) {
   assert(primaries <= 1, `case/${age}: ${primaries} primary buttons — the page must offer one next action`);
 }
 
+// A site with nothing non-essential before consent must not be told off for having no
+// banner. gdprchat.eu is exactly this case: no cookies, so no banner, and that is correct.
+for (const [name, o] of Object.entries(data.scanOutcomes)) {
+  sandbox.window.PROTO.go('scanning');
+  sandbox.window.PROTO.outcome(name);
+  for (let i = 0; i < 12; i++) sandbox.window.PROTO.tick();
+  assert(html.includes(o.headline), `scan/${name}: outcome headline not shown`);
+  if (o.clean) {
+    assert(/not needed/.test(html), `scan/${name}: must mark the banner checks not needed, not failed`);
+    assert(!/could not tell|no response/.test(html), `scan/${name}: a clean site must not read as a failed test`);
+    assert(/scan-out good/.test(html), `scan/${name}: a correct result must not be styled as a problem`);
+  }
+}
+sandbox.window.PROTO.outcome('clean');
+
 // The question flow must terminate rather than loop.
 sandbox.window.PROTO.go('questions');
 for (let i = 0; i < data.questions.length; i++) sandbox.window.PROTO.answer();
 assert(/That is everything/.test(html), 'questions: flow does not reach its end state');
+
+// A question is one question and nothing else. Anything we already know goes in
+// `context`, rendered separately, so the reader is never handed a statement and a
+// question in the same breath. This matters more once the planner writes these
+// rather than a human.
+for (const q of data.questions) {
+  assert(/^[^.!?]*\?$/.test(q.text.trim()), `${q.id}: the question field must hold only the question — move the statement to context`);
+  if (q.context) {
+    assert(!q.context.includes('?'), `${q.id}: context must not ask anything`);
+  }
+  // And the options must actually answer what was asked.
+  const wantsYesNo = /^(do|does|did|is|are|was|were|have|has|had|can|could|will|would|should)\b/i.test(q.text.trim());
+  const offersYesNo = q.options.some((o) => /^yes$/i.test(o)) && q.options.some((o) => /^no$/i.test(o));
+  assert(
+    wantsYesNo === offersYesNo,
+    `${q.id}: "${q.text}" ${wantsYesNo ? 'takes Yes/No but is not offered them' : 'is not a yes/no question but offers Yes/No'}`
+  );
+  assert(q.options.length >= 2 && q.options.length <= 4, `${q.id}: ${q.options.length} options — keep it to a tap`);
+}
 
 // Copy discipline. Text that points at the interface, or narrates what the adjacent
 // control does, is dead weight — the control is right there. Checked against the product
