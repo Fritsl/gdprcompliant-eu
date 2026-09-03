@@ -16,12 +16,13 @@ companies a list of problems; this hands them a plan and the things that close i
 
 ## Where you are
 
-**24 of 112 done.** Phase 0 is complete and signed off; phase 1 is 6 of 11 and phase 2 is
-8 of 34. Contracts, config with the EU-only allowlist, the test harness, record and
+**25 of 112 done.** Phase 0 is complete and signed off; phase 1 is 6 of 11 and phase 2 is
+9 of 34. Contracts, config with the EU-only allowlist, the test harness, record and
 replay, i18n, the remedy catalogue and resolver, the model client, the web shell, the
-fixture estate, the browser pool, Pass A and cookie classification are in. The remaining
-phase 1 items (`F-02`, `F-03`, `F-05`, `F-06`, `T-07`) all wait on a Postgres with
-pgvector, which needs Docker; see the notes at the end of this file.
+fixture estate (now with TLS), the browser pool, Pass A, cookie classification and the
+security surface checks are in. The remaining phase 1 items (`F-02`, `F-03`, `F-05`,
+`F-06`, `T-07`) all wait on a Postgres with pgvector, which needs Docker; see the notes
+at the end of this file.
 
 Do not trust that list — ask:
 
@@ -179,3 +180,14 @@ different architecture. The plan is a hypothesis, but it is a shared one.
   or `R-03` must add one before `R-02`'s completeness check is switched on.
 - **Danish is optional in `packages/i18n/content/locales.json`** until `R-03` fills it; flip
   `required` then and the coverage check will hold the line.
+- **The fixture estate speaks TLS.** The proxy terminates CONNECT tunnels with a
+  certificate it generates at start-up; pools and contexts that use it pass
+  `ignoreHTTPSErrors: true`. A host can opt out with `tls: false` on its `FixtureHost`.
+  A CONNECT to any port other than 443 is a plain tunnel, because Playwright's request
+  context tunnels plain HTTP that way.
+- **Unit-only coverage is carrying browser-bound code.** `pnpm test:coverage:check` runs
+  the unit project alone, and `packages/scanner`'s pool, passes and checks are only
+  exercised by integration tests, so the global figure has slid from 98% to 76% against a
+  70% floor. Either run coverage across unit and integration in CI (a browser is there
+  anyway) or exclude those modules from the unit denominator; decide before the next
+  scanner task lands.
