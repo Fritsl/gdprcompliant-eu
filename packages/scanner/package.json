@@ -9,6 +9,7 @@
     "typecheck": "tsc --build"
   },
   "dependencies": {
-    "@gc/contracts": "workspace:*"
+    "@gc/contracts": "workspace:*",
+    "playwright": "^1.62.1"
   }
 }

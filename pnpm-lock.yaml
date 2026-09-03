@@ -161,6 +161,9 @@ importers:
       '@gc/contracts':
         specifier: workspace:*
         version: link:../contracts
+      playwright:
+        specifier: ^1.62.1
+        version: 1.62.1
 
 packages:
 
