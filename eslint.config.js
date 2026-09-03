@@ -18,6 +18,8 @@ export default tseslint.config(
   {
     ignores: [
       '**/dist/**',
+      '**/.next/**',
+      'apps/web/next-env.d.ts',
       '**/node_modules/**',
       'artifacts/**',
       // The prototype is vanilla ES5-style on purpose and has its own harness.

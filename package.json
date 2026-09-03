@@ -7,7 +7,7 @@
     "node": ">=22"
   },
   "scripts": {
-    "typecheck": "tsc --build && tsc -p tsconfig.test.json",
+    "typecheck": "tsc --build && tsc -p tsconfig.test.json && pnpm -F web typecheck",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -20,7 +20,10 @@
     "test:perf": "vitest run --project perf",
     "test:coverage:check": "vitest run --project unit --coverage",
     "proto": "node apps/prototype/smoke.mjs && node apps/prototype/build.mjs",
-    "check:i18n-coverage": "node scripts/i18n-coverage.mjs"
+    "check:i18n-coverage": "node scripts/i18n-coverage.mjs",
+    "web:dev": "pnpm -F web dev",
+    "web:build": "pnpm -F web build",
+    "web:start": "pnpm -F web start"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
@@ -28,6 +31,8 @@
     "@vitest/coverage-v8": "^2.1.8",
     "@vitest/ui": "2.1.9",
     "eslint": "^9.17.0",
+    "lighthouse": "^13.4.1",
+    "playwright": "^1.62.1",
     "prettier": "^3.4.2",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.19.0",
@@ -41,9 +46,9 @@
     "@gc/corpus": "workspace:*",
     "@gc/db": "workspace:*",
     "@gc/findings": "workspace:*",
+    "@gc/i18n": "workspace:*",
     "@gc/remedies": "workspace:*",
     "@gc/rules": "workspace:*",
-    "@gc/scanner": "workspace:*",
-    "@gc/i18n": "workspace:*"
+    "@gc/scanner": "workspace:*"
   }
 }

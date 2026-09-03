@@ -11,3 +11,5 @@ tasks/
 fixtures/
 scripts/
 *.md
+apps/web/app/design-system.css
+apps/web/next-env.d.ts

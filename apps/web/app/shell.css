@@ -1,0 +1,116 @@
+/* The app shell: header, locale switch, theme toggle, footer. Built on the design-system
+   tokens only; no colour or type appears here that is not a token. */
+
+.skip {
+  position: absolute;
+  left: 8px;
+  top: -48px;
+  padding: 8px 12px;
+  background: var(--surface);
+  color: var(--eu);
+  border: 1px solid var(--eu-line);
+  border-radius: 6px;
+  z-index: 100;
+}
+.skip:focus {
+  top: 8px;
+}
+
+.shell-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 14px 24px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--rule);
+}
+.shell-brand {
+  font-family: var(--mono);
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+.shell-locales {
+  display: flex;
+  gap: 4px;
+}
+.shell-locales a {
+  padding: 4px 10px;
+  border-radius: 6px;
+  color: var(--ink-2);
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+.shell-locales a:hover {
+  color: var(--ink);
+  background: var(--surface-2);
+}
+.shell-locales a[aria-current='page'] {
+  color: var(--eu);
+  background: var(--eu-soft);
+  border-color: var(--eu-line);
+  font-weight: 600;
+}
+
+.theme-toggle {
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border: 0;
+  padding: 0;
+}
+.theme-toggle legend {
+  float: left;
+  padding: 0;
+  margin-right: 6px;
+  color: var(--ink-3);
+  font-size: 13px;
+}
+.theme-toggle label {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
+.shell-main {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 48px 24px 72px;
+}
+.home h1 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(30px, 4.5vw, 44px);
+  line-height: 1.15;
+  margin-bottom: 18px;
+}
+.home p {
+  font-size: 18px;
+  color: var(--ink-2);
+  max-width: 62ch;
+}
+.home-soon {
+  color: var(--ink-3);
+  font-family: var(--mono);
+  font-size: 14px;
+}
+
+.shell-footer {
+  padding: 24px;
+  border-top: 1px solid var(--rule);
+  color: var(--ink-3);
+  font-size: 14px;
+}
+.shell-footer p {
+  margin: 0 0 4px;
+}
+
+[data-fallback] {
+  text-decoration: underline dotted var(--rule-2);
+  text-underline-offset: 3px;
+}

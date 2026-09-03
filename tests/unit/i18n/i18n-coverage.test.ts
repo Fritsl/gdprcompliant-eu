@@ -163,7 +163,7 @@ describe('the coverage check lists untranslated content per locale', () => {
     expect(da!.translated).toBeGreaterThan(0);
     expect(da!.missing.length).toBeGreaterThan(0);
     expect(da!.missing[0]).toEqual({
-      file: expect.stringMatching(/^packages\/.*\.json$/),
+      file: expect.stringMatching(/^(?:apps|packages)\/.*\.json$/),
       path: expect.any(String),
     });
     const text = report(cov);
@@ -199,6 +199,6 @@ describe('the coverage check lists untranslated content per locale', () => {
     const root = mkdtempSync(join(tmpdir(), 'i18n-root-'));
     mkdirSync(join(root, 'packages', 'empty', 'src'), { recursive: true });
     expect(contentFiles(root)).toEqual([]);
-    expect(coverage({ root, locales: readLocales() }).strings).toBe(0);
+    expect(coverage({ root }).strings).toBe(0);
   });
 });

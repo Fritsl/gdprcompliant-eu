@@ -1,0 +1,63 @@
+{
+  "shell.name": {
+    "en": "GDPRcompliant.eu",
+    "da": "GDPRcompliant.eu",
+    "de": "GDPRcompliant.eu"
+  },
+  "shell.tagline": {
+    "en": "A plan and the things that close it, for European companies.",
+    "da": "En plan og det, der lukker den, for europæiske virksomheder.",
+    "de": "Ein Plan und das, was ihn abschließt, für europäische Unternehmen."
+  },
+  "shell.skip": {
+    "en": "Skip to content",
+    "da": "Spring til indhold",
+    "de": "Zum Inhalt springen"
+  },
+  "shell.theme.label": {
+    "en": "Theme",
+    "da": "Tema",
+    "de": "Design"
+  },
+  "shell.theme.system": {
+    "en": "System",
+    "da": "System",
+    "de": "System"
+  },
+  "shell.theme.light": {
+    "en": "Light",
+    "da": "Lys",
+    "de": "Hell"
+  },
+  "shell.theme.dark": {
+    "en": "Dark",
+    "da": "Mørk",
+    "de": "Dunkel"
+  },
+  "shell.language": {
+    "en": "Language",
+    "da": "Sprog",
+    "de": "Sprache"
+  },
+  "shell.footer.operator": {
+    "en": "Frits AI ApS, Copenhagen",
+    "da": "Frits AI ApS, København",
+    "de": "Frits AI ApS, Kopenhagen"
+  },
+  "shell.footer.notCertification": {
+    "en": "Nothing here is a certification, and nobody has approved anything.",
+    "da": "Intet her er en certificering, og ingen har godkendt noget.",
+    "de": "Nichts hier ist eine Zertifizierung, und niemand hat etwas genehmigt."
+  },
+  "home.heading": {
+    "en": "Everyone else hands you a list of problems.",
+    "da": "Alle andre giver dig en liste med problemer."
+  },
+  "home.lead": {
+    "en": "Enter a domain, get a numbered case: every finding answered with something you can act on, and watched every week afterwards.",
+    "da": "Indtast et domæne og få en nummereret sag: hvert fund besvaret med noget, du kan handle på, og overvåget hver uge bagefter."
+  },
+  "home.soon": {
+    "en": "The scanner opens here."
+  }
+}

@@ -1,12 +1,14 @@
 import { readFileSync } from 'node:fs';
 import { z } from 'zod';
 import { DEFAULT_LOCALE, LocaleSchema, type Locale } from '@gc/contracts';
+import localesJson from '../content/locales.json' with { type: 'json' };
 
 // The locales the product speaks are content: packages/i18n/content/locales.json.
 // Adding one is a change to that file, and to the content files that carry its text —
 // never to code. `required` means the coverage check fails while any string lacks it.
-
-export const LOCALES_FILE = new URL('../content/locales.json', import.meta.url);
+//
+// The file is imported as a module rather than read from disk so that bundlers (the web
+// app) and Node (workers, tests) see the same thing without path arithmetic.
 
 export const LocaleInfoSchema = z.object({
   code: LocaleSchema,
@@ -49,16 +51,21 @@ export const LocalesFileSchema = z
   });
 export type LocalesFile = z.infer<typeof LocalesFileSchema>;
 
-export function readLocales(url: URL = LOCALES_FILE): LocalesFile {
-  const parsed = LocalesFileSchema.safeParse(JSON.parse(readFileSync(url, 'utf8')));
+export function parseLocales(raw: unknown, source = 'locales.json'): LocalesFile {
+  const parsed = LocalesFileSchema.safeParse(raw);
   if (!parsed.success) {
     const detail = parsed.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; ');
-    throw new Error(`${url.pathname}: ${detail}`);
+    throw new Error(`${source}: ${detail}`);
   }
   return parsed.data;
 }
 
-const file = readLocales();
+// Read a locales file from disk: tests use this with their own files.
+export function readLocales(file: string | URL): LocalesFile {
+  return parseLocales(JSON.parse(readFileSync(file, 'utf8')), String(file));
+}
+
+const file = parseLocales(localesJson, 'packages/i18n/content/locales.json');
 
 export const LOCALES: readonly LocaleInfo[] = file.locales;
 export const LOCALE_CODES: readonly Locale[] = file.locales.map((l) => l.code);

@@ -4,7 +4,7 @@
 //   node scripts/i18n-coverage.mjs            report; exit 1 if a required locale has gaps
 //   node scripts/i18n-coverage.mjs --json     the same, as JSON
 //
-// Content is every packages/*/content/**/*.json. A translatable string is an object whose
+// Content is every packages/*/content/**/*.json and apps/*/content/**/*.json. A translatable string is an object whose
 // keys are all locale codes, whose values are all strings, and which has an `en` variant
 // (the same shape test as packages/i18n/src/localise.ts). The locales, and which of them
 // are required, come from packages/i18n/content/locales.json — adding a locale is a
@@ -59,18 +59,19 @@ function walk(dir, out = []) {
   return out;
 }
 
+// Content lives in packages/*/content and apps/*/content.
 export function contentFiles(root = ROOT) {
-  const packages = join(root, 'packages');
-  let dirs = [];
-  try {
-    dirs = readdirSync(packages);
-  } catch {
-    return [];
+  const dirs = [];
+  for (const group of ['packages', 'apps']) {
+    let names = [];
+    try {
+      names = readdirSync(join(root, group));
+    } catch {
+      continue;
+    }
+    for (const name of names) dirs.push(join(root, group, name, 'content'));
   }
-  return dirs
-    .map((d) => join(packages, d, 'content'))
-    .flatMap((d) => walk(d))
-    .sort();
+  return dirs.flatMap((d) => walk(d)).sort();
 }
 
 export function readLocales(file = LOCALES_FILE) {
