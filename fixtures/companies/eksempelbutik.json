@@ -548,7 +548,19 @@
       "area": "Recipients",
       "closesIn": null,
       "why": "Something on your site loads from a host we cannot trace to a company. We are not going to guess. Until someone identifies it, you cannot list it in your policy or your register, and neither can we.",
-      "citations": [],
+      "citations": [
+
+        {
+
+          "instrument": "GDPR",
+
+          "ref": "Art. 13(1)(e)",
+
+          "note": "recipients must be named"
+
+        }
+
+      ],
       "evidence": {
         "kind": "text",
         "caption": "Unresolved after registry, WHOIS and certificate lookup",

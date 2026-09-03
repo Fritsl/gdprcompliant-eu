@@ -1,0 +1,245 @@
+import { z } from 'zod';
+import { CaseSchema } from './case.js';
+import { ClaimSchema } from './claim.js';
+import { EvidenceRefSchema, EvidenceSchema, UntrustedContentSchema } from './evidence.js';
+import { FindingSchema } from './finding.js';
+import { TaskCostSchema, TaskProposalSchema, TaskTypeSchema } from './planner.js';
+import {
+  FindingTypeIdSchema,
+  HostnameSchema,
+  JurisdictionSchema,
+  LocaleSchema,
+  NonEmptyStringSchema,
+} from './primitives.js';
+
+// Every model call has its input and output schema here and nowhere else (F-04, T-04).
+// Inputs are what the prompt builder receives, already typed, with scraped material
+// wrapped as untrusted (A-10). Outputs are strict objects: an unknown key is a parse
+// failure, and a parse failure has one defined behaviour — retry once, then fail loudly.
+//
+// The model never asserts a fact. Where an output makes a claim about the world it must
+// point at evidence or quote a passage, and the verifier (A-07) checks the pointer.
+
+const Prose = z.string().trim().min(1).max(4000);
+
+export const GroundedRowSchema = z.strictObject({
+  label: NonEmptyStringSchema,
+  value: NonEmptyStringSchema,
+});
+export type GroundedRow = z.infer<typeof GroundedRowSchema>;
+
+const PassageSchema = z.object({
+  key: NonEmptyStringSchema.describe('Citation key, see citationKey()'),
+  ref: NonEmptyStringSchema,
+  text: z.string(),
+});
+
+export const MODEL_CALLS = {
+  // Turn a finding and its evidence into the plain-language "why".
+  explain_finding: {
+    input: z.object({
+      finding: FindingSchema,
+      evidence: z.array(EvidenceSchema).min(1),
+      locale: LocaleSchema,
+      untrusted: z.array(UntrustedContentSchema).default([]),
+    }),
+    output: z.strictObject({
+      why: Prose,
+      grounded: z.array(GroundedRowSchema).min(1),
+      evidence: z.array(EvidenceRefSchema).min(1),
+    }),
+  },
+
+  // Order the open findings into steps a person can take, one at a time.
+  prioritise_plan: {
+    input: z.object({
+      findings: z.array(FindingSchema).min(1),
+      locale: LocaleSchema,
+    }),
+    output: z.strictObject({
+      steps: z
+        .array(
+          z.strictObject({
+            n: z.number().int().min(1),
+            title: Prose,
+            plain: Prose,
+            minutes: z.number().int().min(1),
+            who: Prose,
+            findingTypeIds: z.array(FindingTypeIdSchema).min(1),
+          }),
+        )
+        .min(1),
+    }),
+  },
+
+  // Draft a message a customer can send in one click.
+  draft_message: {
+    input: z.object({
+      finding: FindingSchema,
+      evidence: z.array(EvidenceSchema).min(1),
+      recipientRole: NonEmptyStringSchema,
+      locale: LocaleSchema,
+      untrusted: z.array(UntrustedContentSchema).default([]),
+    }),
+    output: z.strictObject({
+      to: Prose,
+      subject: Prose,
+      body: Prose,
+    }),
+  },
+
+  // Draft a prompt for the customer's coding assistant. It must name the real domain,
+  // hosts and paths; the caller checks that against the input.
+  draft_agent_prompt: {
+    input: z.object({
+      finding: FindingSchema,
+      evidence: z.array(EvidenceSchema).min(1),
+      domain: HostnameSchema,
+      locale: LocaleSchema,
+    }),
+    output: z.strictObject({
+      body: Prose,
+    }),
+  },
+
+  // Read a policy (S-10): for each required element, present, absent or undetermined.
+  // "Present" must quote the clause verbatim so it can be checked by substring match.
+  analyse_policy_clauses: {
+    input: z.object({
+      document: UntrustedContentSchema,
+      elements: z.array(NonEmptyStringSchema).min(1),
+      jurisdiction: JurisdictionSchema,
+      locale: LocaleSchema,
+    }),
+    output: z
+      .strictObject({
+        clauses: z
+          .array(
+            z.strictObject({
+              element: NonEmptyStringSchema,
+              status: z.enum(['present', 'absent', 'undetermined']),
+              quote: z.string().optional(),
+              note: z.string().optional(),
+            }),
+          )
+          .min(1),
+      })
+      .superRefine((o, ctx) => {
+        o.clauses.forEach((c, i) => {
+          if (c.status === 'present' && (c.quote === undefined || c.quote.trim() === '')) {
+            ctx.addIssue({
+              code: 'custom',
+              path: ['clauses', i, 'quote'],
+              message: 'a clause reported present must be quoted verbatim',
+            });
+          }
+        });
+      }),
+  },
+
+  // The verifier's second pass (A-07): does the evidence actually support the claim?
+  review_claim: {
+    input: z.object({
+      claim: ClaimSchema,
+      evidence: z.array(EvidenceSchema).min(1),
+      passages: z.array(PassageSchema).default([]),
+    }),
+    output: z.strictObject({
+      supported: z.boolean(),
+      reason: Prose,
+    }),
+  },
+
+  // The planner (A-06): propose tasks from the closed catalogue.
+  plan_tasks: {
+    input: z.object({
+      case: CaseSchema,
+      openFindingTypeIds: z.array(FindingTypeIdSchema),
+      budget: TaskCostSchema,
+      availableTypes: z.array(TaskTypeSchema).min(1),
+    }),
+    output: z.strictObject({
+      tasks: z.array(TaskProposalSchema),
+    }),
+  },
+
+  // The assistant, from any element on a page: answer from the case and the corpus.
+  answer_question: {
+    input: z.object({
+      question: NonEmptyStringSchema,
+      locale: LocaleSchema,
+      grounding: z.array(GroundedRowSchema).default([]),
+      passages: z.array(PassageSchema).default([]),
+      untrusted: z.array(UntrustedContentSchema).default([]),
+    }),
+    output: z.strictObject({
+      answer: Prose,
+      grounded: z.array(GroundedRowSchema),
+      law: z
+        .strictObject({
+          key: NonEmptyStringSchema,
+          quote: NonEmptyStringSchema.describe('Verbatim from the passage'),
+        })
+        .optional(),
+      followups: z.array(Prose).max(3),
+    }),
+  },
+
+  // Cookie classification (S-06), for cookies the deterministic table does not know.
+  classify_cookies: {
+    input: z.object({
+      cookies: z
+        .array(
+          z.object({
+            name: NonEmptyStringSchema,
+            host: HostnameSchema,
+            path: z.string().optional(),
+            expires: z.string().optional(),
+            httpOnly: z.boolean().optional(),
+          }),
+        )
+        .min(1),
+    }),
+    output: z.strictObject({
+      cookies: z
+        .array(
+          z.strictObject({
+            name: NonEmptyStringSchema,
+            host: HostnameSchema,
+            category: z.enum(['essential', 'preferences', 'statistics', 'marketing', 'unknown']),
+            confidence: z.number().min(0).max(1),
+          }),
+        )
+        .min(1),
+    }),
+  },
+} as const satisfies Record<string, { input: z.ZodType; output: z.ZodType }>;
+
+export type ModelCallName = keyof typeof MODEL_CALLS;
+export const MODEL_CALL_NAMES = Object.keys(MODEL_CALLS) as ModelCallName[];
+
+export type ModelInput<N extends ModelCallName> = z.input<(typeof MODEL_CALLS)[N]['input']>;
+export type ModelOutput<N extends ModelCallName> = z.infer<(typeof MODEL_CALLS)[N]['output']>;
+
+export type ModelParse<N extends ModelCallName> =
+  { ok: true; value: ModelOutput<N> } | { ok: false; issues: string[] };
+
+// The one way to turn raw model text into a typed value. Never JSON.parse at a call site.
+export function parseModelOutput<N extends ModelCallName>(name: N, raw: unknown): ModelParse<N> {
+  let candidate: unknown = raw;
+  if (typeof raw === 'string') {
+    try {
+      candidate = JSON.parse(raw);
+    } catch {
+      return { ok: false, issues: ['output is not JSON'] };
+    }
+  }
+  const result = MODEL_CALLS[name].output.safeParse(candidate);
+  if (result.success) return { ok: true, value: result.data as ModelOutput<N> };
+  return {
+    ok: false,
+    issues: result.error.issues.map(
+      (i) => `${i.path.map(String).join('.') || '(root)'}: ${i.message}`,
+    ),
+  };
+}

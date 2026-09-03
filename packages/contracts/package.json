@@ -6,6 +6,10 @@
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "scripts": {
-    "typecheck": "tsc --build"
+    "typecheck": "tsc --build",
+    "test": "pnpm -w exec vitest run --project unit tests/unit/contracts"
+  },
+  "dependencies": {
+    "zod": "^4.5.4"
   }
 }
