@@ -17,3 +17,4 @@ export * from './embed.js';
 export * from './store.js';
 export * from './cellar.js';
 export * from './audit.js';
+export * from './verifier.js';

@@ -1,6 +1,6 @@
 # Schema
 
-Generated from `packages/db/migrations/meta/0009_snapshot.json` by `scripts/schema-doc.mjs`.
+Generated from `packages/db/migrations/meta/0010_snapshot.json` by `scripts/schema-doc.mjs`.
 Do not edit; change `packages/db/src/schema.ts`, run `pnpm db:generate`, then `pnpm db:doc`.
 
 Every table carries `tenant_id`, `created_at` and `source_ref`. `case_events` and
@@ -86,6 +86,22 @@ erDiagram
     timestamp expires_at "nullable"
     timestamp claimed_at "nullable"
     text claimed_by "nullable"
+  }
+  claim_verdicts {
+    text id "PK"
+    text tenant_id
+    timestamp created_at
+    text source_ref
+    text case_id
+    text claim_id
+    text claim_kind
+    text statement
+    text verdict
+    jsonb checks
+    text reason "nullable"
+    timestamp at
+    timestamp reviewed_at "nullable"
+    text reviewed_by "nullable"
   }
   corpus_chunks {
     text id "PK"
@@ -259,6 +275,7 @@ erDiagram
   cases ||--o{ case_members : "case_id"
   jurisdictions ||--o{ cases : "jurisdiction"
   tenants ||--o{ cases : "tenant_id"
+  cases ||--o{ claim_verdicts : "case_id"
   cases ||--o{ demand_entries : "case_id"
   cases ||--o{ evidence : "case_id"
   findings ||--o{ finding_evidence : "finding_id"
@@ -399,6 +416,33 @@ erDiagram
 - check cases_stage: `"stage" in ('opened', 'assessed', 'working', 'documented', 'watched')`
 - check cases_lane_score: `"cases"."lane_score" between 0 and 100`
 - check cases_token_length: `length("cases"."access_token") >= 32`
+
+## claim_verdicts
+
+| Column | Type | Constraints |
+| --- | --- | --- |
+| id | text | primary key, not null |
+| tenant_id | text | not null |
+| created_at | timestamp with time zone | not null, default now() |
+| source_ref | text | not null |
+| case_id | text | not null |
+| claim_id | text | not null |
+| claim_kind | text | not null |
+| statement | text | not null |
+| verdict | text | not null |
+| checks | jsonb | not null |
+| reason | text |  |
+| at | timestamp with time zone | not null |
+| reviewed_at | timestamp with time zone |  |
+| reviewed_by | text |  |
+
+- case_id → cases(id)
+- index claim_verdicts_case_idx (case_id, at)
+- index claim_verdicts_queue_idx (verdict, reviewed_at, at)
+- check claim_verdicts_verdict: `"verdict" in ('accepted', 'rejected')`
+- check claim_verdicts_kind: `"claim_kind" in ('observation', 'legal', 'drafting')`
+- check claim_verdicts_reason: `"claim_verdicts"."verdict" = 'accepted' OR coalesce("claim_verdicts"."reason", '') <> ''`
+- check claim_verdicts_checks: `jsonb_typeof("claim_verdicts"."checks") = 'array' AND jsonb_array_length("claim_verdicts"."checks") >= 1`
 
 ## corpus_chunks
 

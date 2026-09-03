@@ -138,7 +138,7 @@ describe.skipIf(!url)('tenant isolation (F-05)', () => {
       from pg_class c join pg_namespace n on n.oid = c.relnamespace
       where n.nspname = ${t.schema} and c.relkind = 'r' and c.relname <> '__drizzle_migrations'
       order by 1`;
-    expect(rows.length).toBe(18);
+    expect(rows.length).toBe(19);
     for (const r of rows) {
       expect(r.relrowsecurity, `${r.relname} enabled`).toBe(true);
       expect(r.relforcerowsecurity, `${r.relname} forced`).toBe(true);

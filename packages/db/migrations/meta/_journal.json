@@ -71,6 +71,13 @@
       "when": 1788477106291,
       "tag": "0009_spooky_union_jack",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1788478747300,
+      "tag": "0010_last_mojo",
+      "breakpoints": true
     }
   ]
 }

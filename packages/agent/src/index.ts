@@ -9,3 +9,4 @@ export const PACKAGE = '@gc/agent';
 export * from './model-client.js';
 export * from './catalogue.js';
 export * from './dispatcher.js';
+export * from './verifier.js';

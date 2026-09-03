@@ -9,7 +9,7 @@ with a fixed clock.
 | Rule | Tables | What happens |
 | --- | --- | --- |
 | `shared_reference` | app_meta, jurisdictions, remedies, corpus_chunks | Reference data with no personal data; kept. |
-| `with_case` | tenants, case_events, evidence, findings, finding_evidence, vendors, processing_activities, answers, case_members, mail_outbox | Go with the case: the owner's delete, or the unclaimed expiry below, removes them through the same `delete_case`. The tenant goes with its last case. |
+| `with_case` | tenants, case_events, evidence, findings, finding_evidence, vendors, processing_activities, answers, case_members, mail_outbox, claim_verdicts | Go with the case: the owner's delete, or the unclaimed expiry below, removes them through the same `delete_case`. The tenant goes with its last case. |
 | `case` | cases | Claimed: until the owner deletes it. Unclaimed: expires 30 days after opening (the token stops working the moment it does), and is purged 7 days later. |
 | `claim` | case_claims | A used code, or an expired unused one, is deleted 30 days later. |
 | `months` | demand_entries | 24 months from `seen_at`, then deleted (docs/decisions/demand-ledger.md). |

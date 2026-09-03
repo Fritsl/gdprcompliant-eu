@@ -27,6 +27,7 @@ import {
   SEVERITIES,
   VENDOR_RESOLUTIONS,
   VENDOR_ROLES,
+  VERIFIER_CHECKS,
 } from '@gc/contracts';
 
 // The relational spine (F-03). Every table carries the same three columns: tenant_id,
@@ -455,6 +456,46 @@ export const deletionAudit = pgTable(
   ],
 );
 
+// The verifier's verdicts (A-07): one row per claim checked, accepted or rejected, with
+// the checks it ran and, for a rejection, the reason. A rejection sits in the internal
+// review queue until someone has looked at it (reviewed_at).
+export const claimVerdicts = pgTable(
+  'claim_verdicts',
+  {
+    id: text('id').primaryKey(),
+    ...stamped,
+    caseId: text('case_id')
+      .notNull()
+      .references(() => cases.id),
+    claimId: text('claim_id').notNull(),
+    claimKind: text('claim_kind').notNull(),
+    statement: text('statement').notNull(),
+    verdict: text('verdict').notNull(),
+    checks: jsonb('checks').notNull(),
+    reason: text('reason'),
+    at: timestamp('at', { withTimezone: true }).notNull(),
+    reviewedAt: timestamp('reviewed_at', { withTimezone: true }),
+    reviewedBy: text('reviewed_by'),
+  },
+  (t) => [
+    check('claim_verdicts_verdict', oneOf('verdict', ['accepted', 'rejected'])),
+    check('claim_verdicts_kind', oneOf('claim_kind', ['observation', 'legal', 'drafting'])),
+    check(
+      'claim_verdicts_reason',
+      sql`${t.verdict} = 'accepted' OR coalesce(${t.reason}, '') <> ''`,
+    ),
+    check(
+      'claim_verdicts_checks',
+      sql`jsonb_typeof(${t.checks}) = 'array' AND jsonb_array_length(${t.checks}) >= 1`,
+    ),
+    index('claim_verdicts_case_idx').on(t.caseId, t.at),
+    index('claim_verdicts_queue_idx').on(t.verdict, t.reviewedAt, t.at),
+  ],
+);
+// The check names the verdict rows may carry are the contract's; referenced here so
+// the two cannot drift without a type error.
+export const CLAIM_VERDICT_CHECKS = VERIFIER_CHECKS;
+
 // The corpus (A-08): regulation, recitals, guidance and decisions cut into chunks that a
 // citation resolves to exactly or not at all. Shared reference data, readable by every
 // tenant; written only outside a tenant, by ingestion. A chunk speaks in one
@@ -513,4 +554,5 @@ export const TABLES = {
   caseMembers,
   mailOutbox,
   corpusChunks,
+  claimVerdicts,
 } as const;
