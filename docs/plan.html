@@ -1,0 +1,425 @@
+<title>GDPRcompliant.eu Build Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap">
+<style>
+:root{
+  --paper:#f4f6fa; --surface:#ffffff; --surface-2:#eaeff7;
+  --ink:#0f1a2e; --ink-2:#3d4a63; --ink-3:#6b7790;
+  --rule:#d5dde9; --rule-2:#b6c2d4;
+  --eu:#003399; --eu-soft:#e5ecfa; --eu-line:#b9caee;
+  --gold:#ffcc00; --gold-deep:#7a5c00; --gold-soft:#fff5d1;
+  --crit:#a81f16; --crit-bg:#fbeae8; --crit-line:#eec6c1;
+  --ok:#0f5c45; --ok-bg:#e2f1eb; --ok-line:#bcdccf;
+  --shadow:0 1px 2px rgba(15,26,46,.06), 0 8px 24px -16px rgba(15,26,46,.28);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0a1019; --surface:#111a29; --surface-2:#182234;
+    --ink:#e9eef7; --ink-2:#b2becf; --ink-3:#8492a8;
+    --rule:#233047; --rule-2:#33425c;
+    --eu:#83a8ff; --eu-soft:#152340; --eu-line:#2b3f66;
+    --gold:#ffcc00; --gold-deep:#ffd94f; --gold-soft:#2c2410;
+    --crit:#ff9184; --crit-bg:#301a19; --crit-line:#4d2a26;
+    --ok:#74dcb0; --ok-bg:#0f2a22; --ok-line:#1e4438;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0a1019; --surface:#111a29; --surface-2:#182234;
+  --ink:#e9eef7; --ink-2:#b2becf; --ink-3:#8492a8;
+  --rule:#233047; --rule-2:#33425c;
+  --eu:#83a8ff; --eu-soft:#152340; --eu-line:#2b3f66;
+  --gold:#ffcc00; --gold-deep:#ffd94f; --gold-soft:#2c2410;
+  --crit:#ff9184; --crit-bg:#301a19; --crit-line:#4d2a26;
+  --ok:#74dcb0; --ok-bg:#0f2a22; --ok-line:#1e4438;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+body{background:var(--paper); color:var(--ink); font-family:"Public Sans","Segoe UI",system-ui,sans-serif; font-size:16.5px; line-height:1.62; margin:0; -webkit-font-smoothing:antialiased}
+.wrap{max-width:1160px; margin-inline:auto; padding-inline:clamp(20px,5vw,56px)}
+.prose{max-width:68ch}
+p{margin:0 0 1em}
+a{color:var(--eu)}
+:focus-visible{outline:2px solid var(--eu); outline-offset:3px; border-radius:3px}
+strong{font-weight:650; color:var(--ink)}
+em{font-family:Newsreader,Georgia,serif; font-style:italic; font-size:1.06em}
+code{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:.86em; background:var(--surface-2); padding:1px 5px; border-radius:4px}
+
+.mast{border-bottom:1px solid var(--rule); background:var(--surface)}
+.mast-in{padding-block:clamp(36px,5.5vw,58px) 0; display:grid; gap:24px}
+.eyebrow{font-family:"IBM Plex Mono",monospace; font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3)}
+h1{font-family:Newsreader,Georgia,serif; font-weight:500; font-size:clamp(36px,5.6vw,60px); line-height:1.03; letter-spacing:-.018em; margin:0; text-wrap:balance}
+h1 .tld{color:var(--eu)}
+.standfirst{font-family:Newsreader,Georgia,serif; font-size:clamp(19px,2.2vw,23px); line-height:1.44; color:var(--ink-2); max-width:46ch; margin:0}
+.mast-meta{display:flex; flex-wrap:wrap; border-top:1px solid var(--rule); margin-top:6px}
+.mast-meta div{padding:14px 26px 16px 0; margin-right:26px; border-right:1px solid var(--rule); font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--ink-2)}
+.mast-meta div:last-child{border-right:0}
+.mast-meta span{display:block; color:var(--ink-3); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; margin-bottom:3px}
+.rule-eu{height:4px; background:linear-gradient(90deg,var(--eu) 0 62%, var(--gold) 62% 100%)}
+
+.band{padding-block:clamp(42px,5.5vw,64px); border-bottom:1px solid var(--rule)}
+.band-head{display:flex; align-items:baseline; gap:16px; margin-bottom:8px}
+.band-no{font-family:"IBM Plex Mono",monospace; font-size:12px; font-weight:500; color:var(--eu); letter-spacing:.06em}
+h2{font-family:Newsreader,Georgia,serif; font-weight:500; letter-spacing:-.012em; font-size:clamp(26px,3.4vw,36px); line-height:1.15; margin:0; text-wrap:balance}
+.kicker{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3); margin:0 0 28px}
+h3{font-size:15px; font-weight:700; margin:30px 0 8px}
+
+.gate{background:var(--surface); border:1px solid var(--rule); border-left:5px solid var(--gold); border-radius:2px 8px 8px 2px; padding:26px 30px; margin:26px 0; box-shadow:var(--shadow); max-width:74ch}
+.gate .lbl{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold-deep); display:block; margin-bottom:10px}
+.gate p:last-child{margin-bottom:0}
+
+pre{background:var(--surface); border:1px solid var(--rule); border-radius:8px; padding:18px 20px; overflow-x:auto; font-family:"IBM Plex Mono",monospace; font-size:13px; line-height:1.7; margin:20px 0; color:var(--ink-2)}
+pre b{color:var(--ink); font-weight:600}
+pre .cm{color:var(--ink-3)}
+
+/* board */
+.board{display:grid; gap:18px; margin:28px 0}
+.ph{background:var(--surface); border:1px solid var(--rule); border-radius:10px; padding:20px 22px 22px}
+.ph-gate{border-color:var(--gold); border-width:1px; box-shadow:var(--shadow)}
+.ph-h{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap}
+.ph-n{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.13em; text-transform:uppercase; color:var(--eu); font-weight:600}
+.ph-gate .ph-n{color:var(--gold-deep)}
+.ph-h h3{margin:0; font-size:19px; font-weight:700; font-family:Newsreader,Georgia,serif; letter-spacing:-.008em}
+.ph-c{margin-left:auto; font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--ink-3)}
+.ph-g{margin:6px 0 16px; font-size:14.5px; color:var(--ink-2); max-width:80ch}
+.chips{display:grid; grid-template-columns:repeat(auto-fill,minmax(268px,1fr)); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:7px; overflow:hidden}
+.chip{background:var(--surface-2); padding:9px 12px; display:flex; align-items:baseline; gap:9px; font-size:13.5px}
+.cid{font-family:"IBM Plex Mono",monospace; font-size:11.5px; font-weight:600; color:var(--eu); white-space:nowrap}
+.ct{color:var(--ink-2); flex:1; line-height:1.35}
+.ce{font-family:"IBM Plex Mono",monospace; font-size:10.5px; color:var(--ink-3); white-space:nowrap}
+.chip-gate{background:var(--gold-soft)}
+.chip-gate .cid{color:var(--gold-deep)}
+.chip-gate .ct{color:var(--ink); font-weight:600}
+.chip-done{background:var(--ok-bg)}
+.chip-done .cid,.chip-done .ce{color:var(--ok)}
+.chip-done .ct{color:var(--ink-3)}
+
+.crit{display:grid; gap:0; margin:26px 0; max-width:92ch}
+.crit-i{display:grid; grid-template-columns:74px 1fr; gap:22px; padding:16px 0; border-top:1px solid var(--rule)}
+.crit-i:last-child{border-bottom:1px solid var(--rule)}
+.crit-i .cid{padding-top:2px}
+.crit-i h4{margin:0 0 4px; font-size:15.5px; font-weight:650}
+.crit-i p{margin:0; font-size:14.5px; color:var(--ink-2)}
+
+.tbl-scroll{overflow-x:auto; margin:24px 0}
+table{border-collapse:collapse; width:100%; min-width:640px; font-size:14.5px; background:var(--surface); border:1px solid var(--rule); border-radius:8px}
+thead th{text-align:left; font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); padding:12px 16px; border-bottom:1px solid var(--rule); white-space:nowrap}
+tbody td{padding:12px 16px; border-bottom:1px solid var(--rule); vertical-align:top; color:var(--ink-2)}
+tbody tr:last-child td{border-bottom:0}
+tbody td:first-child{font-weight:650; color:var(--ink)}
+td .tid{font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--eu); font-weight:500}
+.num{font-variant-numeric:tabular-nums; white-space:nowrap; font-family:"IBM Plex Mono",monospace; font-size:13px}
+
+.inv{display:grid; gap:8px; margin:22px 0; max-width:82ch}
+.inv li{list-style:none; padding:9px 14px; background:var(--surface); border:1px solid var(--rule); border-left:3px solid var(--ok); border-radius:0 6px 6px 0; font-size:14.5px; color:var(--ink-2)}
+.inv{padding:0}
+
+.ask{background:var(--eu-soft); border:1px solid var(--eu-line); border-radius:10px; padding:26px 30px; margin:26px 0; max-width:74ch}
+.ask h3{margin-top:0}
+.ask ol{margin:0; padding-left:1.2em; display:grid; gap:8px; font-size:15px; color:var(--ink-2)}
+.ask ol b{color:var(--ink)}
+
+footer{padding:26px 0 46px; font-size:12.5px; color:var(--ink-3); font-family:"IBM Plex Mono",monospace}
+
+@media (max-width:720px){
+  .crit-i{grid-template-columns:1fr; gap:4px}
+  .chips{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+</style>
+
+<header class="mast">
+  <div class="wrap mast-in">
+    <div class="eyebrow">Implementation plan · Frits AI ApS · September 2026</div>
+    <h1>GDPRcompliant<span class="tld">.eu</span> Build Plan</h1>
+    <p class="standfirst">A finished design and an unstarted engine. 112 tasks, one file each, claimable in parallel. Hand this to an agent and it knows exactly where to start.</p>
+    <div class="mast-meta">
+      <div><span>Tasks</span>112 · 9 done</div>
+      <div><span>Streams</span>14, worked in parallel</div>
+      <div><span>The gate</span>X-10, your sign-off</div>
+      <div><span>Repo</span>gdprcompliant-eu · 12 commits</div>
+    </div>
+  </div>
+  <div class="rule-eu"></div>
+</header>
+
+<main class="wrap">
+
+<section class="band">
+  <div class="band-head"><div class="band-no">§01</div><h2>Start here</h2></div>
+  <p class="kicker">For whoever — or whatever — picks this up</p>
+  <div class="prose">
+    <p><strong>GDPRcompliant.eu</strong> is a free scanner for European companies that opens a numbered, shareable <em>case</em>, answers every finding with something the customer can act on, and keeps watching afterwards. The sentence that settles most arguments: everyone else hands European companies a list of problems; this hands them a plan and the things that close it.</p>
+    <p>The design is finished. The engine is not. Phase 0 built and smoke-tested twelve screens driven by a single fixture; phases 1 to 6 stand at 0 of 102, all blocked behind one open task.</p>
+  </div>
+<pre><span class="cm"># clone, then</span>
+<b>cat HANDOFF.md</b>          <span class="cm">the entry point, written for an agent</span>
+<b>node scripts/tasks.mjs next</b>
+X-10  Clickthrough assembly and review with Frits (S, phase 0)
+
+<b>node scripts/tasks.mjs claim X-10 --as builder</b>
+<b>node scripts/tasks.mjs done X-10 --note "signed off"</b></pre>
+  <div class="gate">
+    <span class="lbl">The gate is structural, not a promise</span>
+    <p><code>F-01</code> — the first foundation task — <strong>depends on <code>X-10</code></strong>, Frits's sign-off on the prototype. The tool will not offer phase 1 work to anyone until that closes, and editing the dependency to unblock yourself is the one move explicitly out of bounds. Everything downstream inherits the gate through <code>F-01</code>.</p>
+  </div>
+  <div class="prose">
+    <p>The prototype is the design specification, not a sketch. <code>apps/prototype/styles.css</code> is the real design system and ports to the app unchanged at <code>F-01</code>. <code>fixtures/companies/eksempelbutik.json</code> becomes a real test fixture in phase 2, and its shape is the contract. Only the framework glue is disposable — it is vanilla on purpose.</p>
+    <p>Before changing any screen, read <code>apps/prototype/smoke.mjs</code>. Its 430 assertions are not a formality: each block is a product rule turned into a check. A finding cannot exist without a remedy. The case page shows exactly one current step. A clean site is a pass, never a failed test. Copy may not narrate the interface. Quoted law must match the corpus character for character. Agent prompts must name the real domain and hostnames, never "this site".</p>
+  </div>
+</section>
+
+<section class="band">
+  <div class="band-head"><div class="band-no">§02</div><h2>How agents claim work</h2></div>
+  <p class="kicker">One file per task · no merge conflicts by construction</p>
+  <div class="prose">
+    <p>Each task is its own markdown file with flat frontmatter. Claiming, working and completing touch exactly one file, so two agents working in parallel never collide in git. The CLI is dependency-aware — it only ever offers work whose foundations are actually finished.</p>
+  </div>
+<pre><span class="cm"># what can be started right now</span>
+<b>node scripts/tasks.mjs next</b>
+X-01  Prototype scaffold and design system (M, phase 0)
+
+<span class="cm"># take it, work, then close it</span>
+<b>node scripts/tasks.mjs claim X-01 --as design-agent</b>
+<b>node scripts/tasks.mjs done X-01 --note "tokens, themes, locale switch"</b>
+
+<span class="cm"># status, any time — reads the files, so it cannot drift</span>
+<b>node scripts/tasks.mjs board</b>
+<b>node scripts/tasks.mjs check</b>   <span class="cm">→ ok 107 tasks, no integrity problems</span></pre>
+  <div class="prose">
+    <p>Two refusals are built in, because they're the ways task boards normally rot. <code>done</code> refuses while acceptance criteria are unticked. <code>claim</code> refuses when a dependency is unfinished, and names which one.</p>
+  </div>
+</section>
+
+<section class="band">
+  <div class="band-head"><div class="band-no">§03</div><h2>The board</h2></div>
+  <p class="kicker">All 112 · generated from the task files, not typed by hand</p>
+  <div class="board">
+<section class="ph ph-gate">
+<div class="ph-h"><span class="ph-n">Phase 0</span><h3>Prototype</h3><span class="ph-c">9 / 10 done</span></div>
+<p class="ph-g">Every screen clickable, nothing behind it. Signed off before engine code exists.</p>
+<div class="chips">
+<div class="chip chip-done"><span class="cid">X-01</span><span class="ct">Prototype scaffold and design system</span><span class="ce">✓ M</span></div>
+<div class="chip chip-done"><span class="cid">X-02</span><span class="ct">The mock case dataset</span><span class="ce">✓ S</span></div>
+<div class="chip chip-done"><span class="cid">X-03</span><span class="ct">Front door and scan progress</span><span class="ce">✓ M</span></div>
+<div class="chip chip-done"><span class="cid">X-04</span><span class="ct">The case page</span><span class="ce">✓ L</span></div>
+<div class="chip chip-done"><span class="cid">X-05</span><span class="ct">Finding detail, evidence and the four remedies</span><span class="ce">✓ M</span></div>
+<div class="chip chip-done"><span class="cid">X-06</span><span class="ct">Questions, one at a time</span><span class="ce">✓ M</span></div>
+<div class="chip chip-done"><span class="cid">X-07</span><span class="ct">Colleague branches and invitations</span><span class="ce">✓ M</span></div>
+<div class="chip chip-done"><span class="cid">X-08</span><span class="ct">Supply chain, artefacts and the trust page</span><span class="ce">✓ M</span></div>
+<div class="chip chip-done"><span class="cid">X-09</span><span class="ct">Internal screens</span><span class="ce">✓ S</span></div>
+<div class="chip chip-gate"><span class="cid">X-10</span><span class="ct">Clickthrough assembly and review with Frits</span><span class="ce">S</span></div>
+</div>
+</section>
+<section class="ph">
+<div class="ph-h"><span class="ph-n">Phase 1</span><h3>Foundations</h3><span class="ph-c">0 / 11 done</span></div>
+<p class="ph-g">A repo where a test can fail for the right reason.</p>
+<div class="chips">
+<div class="chip"><span class="cid">F-01</span><span class="ct">Monorepo scaffold and toolchain</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">F-02</span><span class="ct">Postgres + pgvector, Drizzle, migration harness</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">F-03</span><span class="ct">Core relational schema</span><span class="ce">L</span></div>
+<div class="chip"><span class="cid">F-04</span><span class="ct">Shared contracts package (@gc/contracts)</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">F-05</span><span class="ct">Multi-tenancy isolation, provable</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">F-06</span><span class="ct">Durable job queue and resumability</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">F-07</span><span class="ct">Fixture site infrastructure</span><span class="ce">L</span></div>
+<div class="chip"><span class="cid">F-08</span><span class="ct">Test harness: projects, gates, reporting</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">F-09</span><span class="ct">Network record and replay</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">F-10</span><span class="ct">Config, secrets and the EU-only constraint</span><span class="ce">S</span></div>
+<div class="chip"><span class="cid">T-07</span><span class="ct">Tenancy and access-control suite</span><span class="ce">M</span></div>
+</div>
+</section>
+<section class="ph">
+<div class="ph-h"><span class="ph-n">Phase 2</span><h3>The wedge</h3><span class="ph-c">0 / 34 done</span></div>
+<p class="ph-g">Public scanner live: three passes, 20 findings, every one with a fix.</p>
+<div class="chips">
+<div class="chip"><span class="cid">A-07</span><span class="ct">The verifier gate</span><span class="ce">L</span></div>
+<div class="chip"><span class="cid">A-08</span><span class="ct">Corpus retrieval with jurisdiction filter</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">A-10</span><span class="ct">Prompt-injection defences for untrusted content</span><span class="ce">L</span></div>
+<div class="chip"><span class="cid">I-01</span><span class="ct">Translatable content model</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">I-02</span><span class="ct">Jurisdiction bindings</span><span class="ce">L</span></div>
+<div class="chip"><span class="cid">O-03</span><span class="ct">Claim discipline in customer-facing language</span><span class="ce">S</span></div>
+<div class="chip"><span class="cid">R-01</span><span class="ct">Remedy schema and catalogue store</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">R-02</span><span class="ct">Enforce: no finding without a remedy</span><span class="ce">S</span></div>
+<div class="chip"><span class="cid">R-03</span><span class="ct">Twenty remedy guides, English and Danish</span><span class="ce">L</span></div>
+<div class="chip"><span class="cid">R-04</span><span class="ct">Remedy resolver and solution catalogue</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">R-05</span><span class="ct">Demand ledger</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">S-01</span><span class="ct">Browser pool with clean-profile isolation</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">S-02</span><span class="ct">Pass A collector</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">S-03</span><span class="ct">Consent banner detection and refusal-path automation</span><span class="ce">L</span></div>
+<div class="chip"><span class="cid">S-04</span><span class="ct">Pass B and Pass C collectors</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">S-05</span><span class="ct">Three-pass differ</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">S-06</span><span class="ct">Cookie classification</span><span class="ce">S</span></div>
+<div class="chip"><span class="cid">S-07</span><span class="ct">Host to legal entity resolution</span><span class="ce">L</span></div>
+<div class="chip"><span class="cid">S-08</span><span class="ct">Transfer and jurisdiction determination</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">S-09</span><span class="ct">Policy discovery and fetch</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">S-10</span><span class="ct">Article 13/14 clause analysis</span><span class="ce">L</span></div>
+<div class="chip"><span class="cid">S-11</span><span class="ct">Form inventory and consent patterns</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">S-12</span><span class="ct">Security surface checks</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">S-13</span><span class="ct">Session replay and fingerprinting detection</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">S-14</span><span class="ct">Finding assembly and severity</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">S-15</span><span class="ct">The twenty launch finding types</span><span class="ce">L</span></div>
+<div class="chip"><span class="cid">T-01</span><span class="ct">The fixture site suite</span><span class="ce">L</span></div>
+<div class="chip"><span class="cid">T-02</span><span class="ct">Golden expectations and the differ</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">T-03</span><span class="ct">Citation resolution suite</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">T-04</span><span class="ct">Schema conformance for every model output</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">T-06</span><span class="ct">Adversarial suite</span><span class="ce">L</span></div>
+<div class="chip"><span class="cid">U-01</span><span class="ct">Next.js app shell, tokens, locale routing</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">U-02</span><span class="ct">The front door</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">U-06</span><span class="ct">Guide pages</span><span class="ce">M</span></div>
+</div>
+</section>
+<section class="ph">
+<div class="ph-h"><span class="ph-n">Phase 3</span><h3>The case</h3><span class="ph-c">0 / 12 done</span></div>
+<p class="ph-g">A numbered case that persists, shares and re-verifies.</p>
+<div class="chips">
+<div class="chip"><span class="cid">C-01</span><span class="ct">Case object, numbering and ownership</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">C-02</span><span class="ct">Timeline events</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">C-03</span><span class="ct">Case state machine</span><span class="ce">S</span></div>
+<div class="chip"><span class="cid">C-04</span><span class="ct">Export and delete — proving the case is theirs</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">C-05</span><span class="ct">Re-scan and fix verification loop</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">I-03</span><span class="ct">Locale from the target, not the visitor</span><span class="ce">S</span></div>
+<div class="chip"><span class="cid">T-09</span><span class="ct">End-to-end journeys</span><span class="ce">L</span></div>
+<div class="chip"><span class="cid">U-03</span><span class="ct">The case page</span><span class="ce">L</span></div>
+<div class="chip"><span class="cid">U-04</span><span class="ct">Remedy interactions</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">U-05</span><span class="ct">Public trust page</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">U-07</span><span class="ct">Share flows</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">V-01</span><span class="ct">Status report, generated at any moment</span><span class="ce">L</span></div>
+</div>
+</section>
+<section class="ph">
+<div class="ph-h"><span class="ph-n">Phase 4</span><h3>Depth</h3><span class="ph-c">0 / 12 done</span></div>
+<p class="ph-g">Public record and the contract chain. The part nobody else does.</p>
+<div class="chips">
+<div class="chip"><span class="cid">D-01</span><span class="ct">DNS, TXT, SPF and MX collection</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">D-02</span><span class="ct">Certificate transparency enumeration</span><span class="ce">S</span></div>
+<div class="chip"><span class="cid">D-03</span><span class="ct">Business registry adapters</span><span class="ce">L</span></div>
+<div class="chip"><span class="cid">D-04</span><span class="ct">Job advert stack extraction</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">D-05</span><span class="ct">App listing and data-safety comparison</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">D-06</span><span class="ct">Processing agreement discovery and Article 28 analysis</span><span class="ce">L</span></div>
+<div class="chip"><span class="cid">D-07</span><span class="ct">Sub-processor extraction and recursion</span><span class="ce">L</span></div>
+<div class="chip"><span class="cid">D-08</span><span class="ct">Supply-chain map</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">D-09</span><span class="ct">Sector inference and question selection</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">D-10</span><span class="ct">One question at a time</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">D-11</span><span class="ct">Crawl etiquette and scan authorisation</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">L-01</span><span class="ct">Qualification signal and lane routing</span><span class="ce">M</span></div>
+</div>
+</section>
+<section class="ph">
+<div class="ph-h"><span class="ph-n">Phase 5</span><h3>The system</h3><span class="ph-c">0 / 23 done</span></div>
+<p class="ph-g">Graph, rules, planner, verifier, advisor. It stops being a scanner.</p>
+<div class="chips">
+<div class="chip"><span class="cid">A-01</span><span class="ct">Case graph schema</span><span class="ce">L</span></div>
+<div class="chip"><span class="cid">A-02</span><span class="ct">Obligations engine and rule language</span><span class="ce">L</span></div>
+<div class="chip"><span class="cid">A-03</span><span class="ct">First forty rules across two jurisdictions</span><span class="ce">L</span></div>
+<div class="chip"><span class="cid">A-04</span><span class="ct">Typed task catalogue and dispatcher</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">A-05</span><span class="ct">Worker implementations</span><span class="ce">L</span></div>
+<div class="chip"><span class="cid">A-06</span><span class="ct">The planner</span><span class="ce">L</span></div>
+<div class="chip"><span class="cid">A-09</span><span class="ct">Human sign-off gate</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">G-01</span><span class="ct">Processing register seeded from evidence</span><span class="ce">L</span></div>
+<div class="chip"><span class="cid">G-02</span><span class="ct">Privacy policy and cookie declaration generators</span><span class="ce">L</span></div>
+<div class="chip"><span class="cid">G-03</span><span class="ct">DPA and sub-processor page generators</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">G-04</span><span class="ct">Evidence pack export</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">G-05</span><span class="ct">Drift check: policy versus live site</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">L-02</span><span class="ct">Consultant view of the same case</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">L-03</span><span class="ct">Commercial queue</span><span class="ce">S</span></div>
+<div class="chip"><span class="cid">L-04</span><span class="ct">Referral and benchmarks</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">P-01</span><span class="ct">Roles and scoped task lists</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">P-02</span><span class="ct">Invitations from a colleague</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">P-03</span><span class="ct">Shared progress and chasing</span><span class="ce">S</span></div>
+<div class="chip"><span class="cid">T-05</span><span class="ct">Behavioural eval sets</span><span class="ce">L</span></div>
+<div class="chip"><span class="cid">V-02</span><span class="ct">Case-grounded advisor</span><span class="ce">L</span></div>
+<div class="chip"><span class="cid">V-03</span><span class="ct">Verbatim law, guaranteed</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">V-04</span><span class="ct">Advisor safety and limits</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">V-05</span><span class="ct">Dive points on every element</span><span class="ce">L</span></div>
+</div>
+</section>
+<section class="ph">
+<div class="ph-h"><span class="ph-n">Phase 6</span><h3>Delivery</h3><span class="ph-c">0 / 10 done</span></div>
+<p class="ph-g">Everything green, canary stable, handed over.</p>
+<div class="chips">
+<div class="chip"><span class="cid">I-04</span><span class="ct">Second jurisdiction end to end</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">O-01</span><span class="ct">Our own compliance, published</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">O-02</span><span class="ct">Retention and deletion jobs</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">O-04</span><span class="ct">Observability</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">O-05</span><span class="ct">The delivery gate</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">T-08</span><span class="ct">Jurisdiction matrix suite</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">T-10</span><span class="ct">Canary corpus and drift alarm</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">T-11</span><span class="ct">Performance budget</span><span class="ce">S</span></div>
+<div class="chip"><span class="cid">T-12</span><span class="ct">Delivery gate script and manual smoke checklist</span><span class="ce">M</span></div>
+<div class="chip"><span class="cid">U-08</span><span class="ct">Accessibility, responsive and print pass</span><span class="ce">M</span></div>
+</div>
+</section>
+  </div>
+</section>
+
+<section class="band">
+  <div class="band-head"><div class="band-no">§04</div><h2>The six that actually decide this</h2></div>
+  <p class="kicker">Where to look when you want to know if it's going well</p>
+  <div class="crit">
+    <div class="crit-i"><span class="cid">X-10</span><div><h4>Your sign-off</h4><p>The gate. Everything downstream waits on it, so a slow review here is the cheapest delay in the whole plan and a rushed one is the most expensive.</p></div></div>
+    <div class="crit-i"><span class="cid">S-03</span><div><h4>Banner detection and refusal automation</h4><p>The hardest task in phase 2 and the one the entire wedge rests on. When it can't find a refusal path it must say so rather than pass a site it never actually tested.</p></div></div>
+    <div class="crit-i"><span class="cid">A-07</span><div><h4>The verifier gate</h4><p>Pulled forward into phase 2 because the policy reader needs it. Nothing enters the graph without evidence and a citation that mechanically resolves. The load-bearing safety component.</p></div></div>
+    <div class="crit-i"><span class="cid">I-02</span><div><h4>Jurisdiction bindings</h4><p>Cheap now, a rewrite later. No article number may appear in detector code. Skip this and the product is permanently Danish.</p></div></div>
+    <div class="crit-i"><span class="cid">T-01</span><div><h4>The fixture site suite</h4><p>Twenty-five deliberately broken websites with known-correct expectations. Its coverage is the ceiling on how much anyone can trust the scanner.</p></div></div>
+    <div class="crit-i"><span class="cid">R-02</span><div><h4>No finding without a remedy</h4><p>Half a day of work that turns the product's central promise into a database constraint. It's what stops this decaying into the problem-list tool we set out not to build.</p></div></div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="band-head"><div class="band-no">§05</div><h2>Testing, because you won't be doing it</h2></div>
+  <p class="kicker">Nine layers · one command · a manual list under fifteen items</p>
+  <div class="prose">
+    <p>This is harder than usual for three reasons: the system reads the live internet, which changes; it uses a language model, which is non-deterministic; and it makes claims about the law, where being confidently wrong is worse than being silent. Each layer exists for a specific one of those.</p>
+  </div>
+
+  <div class="tbl-scroll">
+    <table>
+      <thead><tr><th>Layer</th><th>What it catches</th><th>Task</th></tr></thead>
+      <tbody>
+        <tr><td>Fixture sites</td><td>25 deliberately broken websites with known-correct expectations — including 4 clean ones that must produce <em>zero</em> findings. A scanner that cries wolf is worse than none.</td><td class="tid">T-01</td></tr>
+        <tr><td>Deterministic replay</td><td>CI never touches the live internet. A missing cassette is a hard error, never a silent live call. A flaky suite is a suite nobody trusts.</td><td class="tid">F-09</td></tr>
+        <tr><td>Citation resolution</td><td>Every citation resolves to a real paragraph and every quote is confirmed by exact substring match — in code, not by asking a model. The cheapest high-value test here.</td><td class="tid">T-03</td></tr>
+        <tr><td>Schema conformance</td><td>No model output enters unvalidated; a call site without validation fails the build.</td><td class="tid">T-04</td></tr>
+        <tr><td>Behavioural evals</td><td>Labelled scenario sets with declared thresholds, tracked over time, run against the self-hosted model.</td><td class="tid">T-05</td></tr>
+        <tr><td>Adversarial</td><td>Injection in page text, comments, alt text, CSS, the policy, the DPA. Plus cloaking, resource exhaustion, and attempts to use the scanner as a proxy.</td><td class="tid">T-06</td></tr>
+        <tr><td>Boundaries</td><td>Cross-tenant reads, writes, joins, exports and invitation links, tried on every push. Plus the jurisdiction matrix.</td><td class="tid">T-07/08</td></tr>
+        <tr><td>Journeys</td><td>Scan → fix → re-check → close. Invite → complete → register fills. Export, delete, prove it's gone.</td><td class="tid">T-09</td></tr>
+        <tr><td>Canary corpus</td><td>200 real sites nightly. Fixtures prove we built what we designed; the canary proves it still works on the actual internet.</td><td class="tid">T-10</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Invariants — enforced at build time, so whole bug categories can't exist</h3>
+  <ul class="inv">
+    <li>A finding cannot be persisted without a remedy, or without evidence</li>
+    <li>A new table without a row-level-security policy fails lint</li>
+    <li>A table without a declared retention rule fails CI</li>
+    <li>An article number appearing in detector code fails lint</li>
+    <li>The words <em>certificate</em>, <em>approved</em>, or <em>compliant</em>-as-a-verdict in customer-facing copy, in any locale, fail the build</li>
+    <li>Identical scans produce byte-identical finding sets</li>
+  </ul>
+
+  <div class="prose">
+    <p>One command decides whether it's fit to hand over — <code>pnpm run gate</code> — running every suite, the canary comparison and the invariants, printing a single verdict with a named owner for anything red. <strong>Red is a stop, not a caveat.</strong> What stays manual is deliberately tiny: does the case page read well printed, does the Danish sound like Danish, does the trust page look like a seal to someone glancing at it. Things that need eyes and taste, which is exactly why everything else must not.</p>
+  </div>
+</section>
+
+<section class="band" style="border-bottom:0">
+  <div class="band-head"><div class="band-no">§06</div><h2>What is still open</h2></div>
+  <p class="kicker">Three, and only the first blocks anything</p>
+  <div class="ask">
+    <ol>
+      <li><b>The sign-off.</b> Click through the prototype and close <code>X-10</code>. Everything else in the plan waits on it, so a slow review here is the cheapest delay available and a rushed one is the most expensive.</li>
+      <li><b>How many agents in parallel.</b> Phase 1 supports three or four without collision — foundations, schema and the test harness are largely independent. Phase 2 opens wider.</li>
+      <li><b>Whether to deploy the prototype anywhere permanent</b>, so it can be forwarded without a Claude link.</li>
+    </ol>
+  </div>
+  <div class="prose">
+    <p>Nothing else needs deciding to start. The stack, the repo layout, the test strategy and the order of work are all settled in <code>PLAN.md</code> and <code>TESTING.md</code>, and where they turn out to be wrong the working agreement says to raise it in the task log rather than quietly build something else.</p>
+  </div>
+</section>
+
+<footer class="wrap">GDPRcompliant.eu · implementation plan · 112 tasks · Frits AI ApS · September 2026</footer>
+</main>
