@@ -16,12 +16,13 @@ companies a list of problems; this hands them a plan and the things that close i
 
 ## Where you are
 
-**27 of 112 done.** Phase 0 is complete and signed off; phase 1 is 7 of 11 and phase 2 is
-10 of 34. Contracts, config with the EU-only allowlist, the test harness, record and
+**30 of 112 done.** Phase 0 is complete and signed off; phase 1 is 9 of 11 and phase 2 is
+11 of 34. Contracts, config with the EU-only allowlist, the test harness, record and
 replay, i18n, the remedy catalogue and resolver, the model client, the web shell, the
 fixture estate (with TLS), the browser pool, Pass A, cookie classification, the security
-surface checks, policy discovery and the database harness are in. The database is up
-(`pnpm db:up`), so `F-03`, `F-05`, `F-06` and `T-07` are open.
+surface checks, policy discovery, the database harness, the schema spine, the finding-needs-
+a-remedy constraint and row-level security with a per-transaction tenant context are in.
+The database is up (`pnpm db:up`); `F-06` and `T-07` are open.
 
 Do not trust that list — ask:
 

@@ -24,6 +24,10 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm -r typecheck
       - run: pnpm lint
+      # Every table carries row-level security, or the build fails (F-05); every finding
+      # type carries a remedy in every jurisdiction, or the build fails (R-02).
+      - run: pnpm check:rls
+      - run: pnpm check:finding-completeness
       - run: pnpm format:check
       - run: pnpm test:unit
       # The prototype is the design specification; its 430 assertions encode product

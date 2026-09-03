@@ -15,6 +15,13 @@
       "when": 1788465845164,
       "tag": "0001_talented_phantom_reporter",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1788466877858,
+      "tag": "0002_rls",
+      "breakpoints": true
     }
   ]
 }

@@ -29,7 +29,8 @@
     "db:up": "docker compose up -d --wait",
     "db:down": "docker compose down",
     "db:doc": "node scripts/schema-doc.mjs",
-    "check:finding-completeness": "node --import tsx scripts/finding-completeness.ts"
+    "check:finding-completeness": "node --import tsx scripts/finding-completeness.ts",
+    "check:rls": "node scripts/rls-check.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
@@ -37,6 +38,7 @@
     "@vitest/coverage-v8": "^2.1.8",
     "@vitest/ui": "2.1.9",
     "drizzle-kit": "^0.31.10",
+    "drizzle-orm": "^0.45.2",
     "eslint": "^9.17.0",
     "lighthouse": "^13.4.1",
     "playwright": "^1.62.1",
