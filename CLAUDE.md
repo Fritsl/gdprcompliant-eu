@@ -30,14 +30,21 @@ node scripts/tasks.mjs done X-01 --note "one line on what shipped"
 If you get stuck: `node scripts/tasks.mjs block X-01 --reason "..."` and move on. If you
 claimed something and did nothing: `release`.
 
-**Claiming and completing touches exactly one file**, so parallel agents never collide in
+**Claiming and completing touches exactly one file**, so parallel agents rarely collide in
 git. Never batch-edit other people's task files.
+
+If others are working at the same time: `git pull --rebase` before you claim, and push
+the moment you close — a claim nobody can see is a claim two agents will make. The full
+set of rules is in `HANDOFF.md` under *Working alongside other agents*.
 
 ## Rules that are not negotiable
 
-1. **Phase 0 gates everything.** The whole plan starts with a non-functional UI that Frits
-   reviews and signs off (`X-10`). No engine code until then. The dependency graph enforces
-   this — `F-01` depends on `X-10` — so don't route around it.
+1. **The prototype is the design specification.** Phase 0 is built and signed off, so the
+   graph is open — but `apps/prototype/` is now the reference, not a sketch. Its
+   `styles.css` is the real design system and ports unchanged; the fixture at
+   `fixtures/companies/eksempelbutik.json` becomes a real test fixture in phase 2 and its
+   shape is the contract. Read `apps/prototype/smoke.mjs` before changing any screen: its
+   430 assertions are product rules, not formalities, and CI runs them on every push.
 
 2. **A finding without a remedy cannot exist.** Not a guideline, a database constraint
    (`R-02`). If you are adding a detector, you are also adding a remedy in every supported

@@ -16,28 +16,69 @@ companies a list of problems; this hands them a plan and the things that close i
 
 ## Where you are
 
-| | |
-|---|---|
-| Phase 0 · Prototype | **9 of 10 done.** Every screen built and clickable. |
-| Phase 0 · `X-10` | **Open.** Frits's sign-off. Nothing downstream starts until it closes. |
-| Phases 1–6 | 0 of 102. All blocked behind `X-10` through `F-01`. |
+**11 of 112 done.** Phase 0 is complete and signed off, and `F-01` has laid the
+toolchain, so the graph is open. Six tasks were claimable at the time of writing:
+`F-02`, `F-04`, `F-07`, `F-08`, `F-10`, `U-01`.
 
-Run `node scripts/tasks.mjs board` for the live picture. It reads the task files
-directly, so it cannot drift.
+Do not trust that list — ask:
+
+```bash
+node scripts/tasks.mjs board     # the live picture
+node scripts/tasks.mjs next      # what you can claim right now
+```
+
+Both read the task files directly, so they cannot drift from reality.
 
 ## Start here
 
 ```bash
-node scripts/tasks.mjs next                 # what is claimable right now
-node scripts/tasks.mjs show X-10
-node scripts/tasks.mjs claim X-10 --as <your-name>
+git pull
+node scripts/tasks.mjs next
+node scripts/tasks.mjs show F-04            # read one in full before taking it
+node scripts/tasks.mjs claim F-04 --as <your-name>
 ```
 
-`X-10` is a review session with Frits, not code. If it is still open, your job is to
-prepare that review, not to route around it. **`F-01` depends on `X-10` and the tool
-enforces it** — do not edit the dependency to unblock yourself.
+Then build it. When every acceptance criterion is genuinely met, tick the boxes in the
+task file, run the `verify` command at the bottom of it, and:
 
-Once `X-10` closes, `next` will offer `F-01` and the graph opens from there.
+```bash
+node scripts/tasks.mjs done F-04 --note "one line on what shipped"
+git add -A && git commit -m "F-04: shared contracts package" && git push
+```
+
+`done` refuses while any acceptance box is unticked. `claim` refuses when a dependency
+is unfinished and names it. If a dependency is blocking you, that is the system working
+— take something else rather than editing the graph.
+
+## Working alongside other agents
+
+Several agents can run at once. Claiming and closing touch exactly one file, so the task
+files themselves almost never conflict. What does conflict is everything else.
+
+**Pull before you claim, push as soon as you close.** A claim nobody can see is a claim
+two agents will make.
+
+```bash
+git pull --rebase        # before claiming, and again before pushing
+git push                 # immediately after `done`, not at the end of the day
+```
+
+If a push is rejected, `git pull --rebase` then push again. Do not force.
+
+Four more rules that keep parallel work calm:
+
+- **Never touch a task file you did not claim.** If `status: doing` and the owner is not
+  you, leave it alone — even to fix a typo.
+- **Shared files are where collisions actually happen**: `package.json`, `pnpm-lock.yaml`,
+  `tsconfig.json`, `eslint.config.js`, `vitest.workspace.ts`. Touch them only when your
+  task genuinely requires it, keep the change minimal, and push straight away.
+- **Prefer tasks in different streams.** Two agents in `F-*` will meet in the root config;
+  one in `F-*` and one in `U-*` will not.
+- **A stale claim is worse than no claim.** If you stop working on something, run
+  `release`, or `block` it with a reason. Do not leave it held.
+
+Right now the six open tasks are genuinely independent, so up to three or four agents is
+comfortable. Beyond that they will spend more time rebasing than building.
 
 ## The prototype is the design specification
 
