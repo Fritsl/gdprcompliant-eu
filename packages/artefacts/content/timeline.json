@@ -1,118 +1,282 @@
 {
   "actors": {
-    "scanner": { "en": "Scanner", "da": "Scanner" },
-    "watcher": { "en": "Weekly check", "da": "Ugentligt tjek" },
-    "system": { "en": "System", "da": "System" },
-    "agent": { "en": "Assistant", "da": "Assistent" }
+    "scanner": {
+      "en": "Scanner",
+      "da": "Scanner"
+    },
+    "watcher": {
+      "en": "Weekly check",
+      "da": "Ugentligt tjek"
+    },
+    "system": {
+      "en": "System",
+      "da": "System"
+    },
+    "agent": {
+      "en": "Assistant",
+      "da": "Assistent"
+    }
   },
   "events": {
     "case_opened": {
-      "text": { "en": "Case opened", "da": "Sag åbnet" },
-      "detail": { "en": "from the {{source}}", "da": "fra {{source}}" }
+      "text": {
+        "en": "Case opened",
+        "da": "Sag åbnet"
+      },
+      "detail": {
+        "en": "from the {{source}}",
+        "da": "fra {{source}}"
+      }
     },
     "scan_started": {
-      "text": { "en": "Scan started", "da": "Scanning startet" },
-      "detail": { "en": "{{kind}} · {{scanId}}", "da": "{{kind}} · {{scanId}}" }
+      "text": {
+        "en": "Scan started",
+        "da": "Scanning startet"
+      },
+      "detail": {
+        "en": "{{kind}} · {{scanId}}",
+        "da": "{{kind}} · {{scanId}}"
+      }
     },
     "scan_completed": {
-      "text": { "en": "Scan completed", "da": "Scanning gennemført" },
+      "text": {
+        "en": "Scan completed",
+        "da": "Scanning gennemført"
+      },
       "detail": {
         "en": "{{checksRun}} checks · {{checksPassed}} passed · {{findings}} findings · {{undetermined}} undetermined",
         "da": "{{checksRun}} tjek · {{checksPassed}} bestået · {{findings}} konstateringer · {{undetermined}} uafklarede"
       }
     },
     "scan_failed": {
-      "text": { "en": "Scan failed", "da": "Scanning mislykkedes" },
-      "detail": { "en": "{{reason}} {{detail}}", "da": "{{reason}} {{detail}}" }
+      "text": {
+        "en": "Scan failed",
+        "da": "Scanning mislykkedes"
+      },
+      "detail": {
+        "en": "{{reason}} {{detail}}",
+        "da": "{{reason}} {{detail}}"
+      }
     },
     "finding_raised": {
-      "text": { "en": "Finding raised", "da": "Konstatering rejst" },
-      "detail": { "en": "{{typeId}} · {{severity}}", "da": "{{typeId}} · {{severity}}" }
+      "text": {
+        "en": "Finding raised",
+        "da": "Konstatering rejst"
+      },
+      "detail": {
+        "en": "{{typeId}} · {{severity}}",
+        "da": "{{typeId}} · {{severity}}"
+      }
     },
     "finding_closed": {
-      "text": { "en": "Finding closed", "da": "Konstatering lukket" },
+      "text": {
+        "en": "Finding closed",
+        "da": "Konstatering lukket"
+      },
       "detail": {
         "en": "{{findingId}} · verified by {{verifiedBy}}",
         "da": "{{findingId}} · bekræftet ved {{verifiedBy}}"
       }
     },
     "finding_regressed": {
-      "text": { "en": "Finding came back", "da": "Konstatering vendt tilbage" },
-      "detail": { "en": "{{findingId}}", "da": "{{findingId}}" }
+      "text": {
+        "en": "Finding came back",
+        "da": "Konstatering vendt tilbage"
+      },
+      "detail": {
+        "en": "{{findingId}}",
+        "da": "{{findingId}}"
+      }
     },
     "fix_verification_failed": {
-      "text": { "en": "Fix not verified", "da": "Rettelse ikke bekræftet" },
-      "detail": { "en": "{{findingId}} {{detail}}", "da": "{{findingId}} {{detail}}" }
+      "text": {
+        "en": "Fix not verified",
+        "da": "Rettelse ikke bekræftet"
+      },
+      "detail": {
+        "en": "{{findingId}} {{detail}}",
+        "da": "{{findingId}} {{detail}}"
+      }
     },
     "check_undetermined": {
-      "text": { "en": "Could not determine", "da": "Kunne ikke afgøres" },
-      "detail": { "en": "{{typeId}} · {{reason}}", "da": "{{typeId}} · {{reason}}" }
+      "text": {
+        "en": "Could not determine",
+        "da": "Kunne ikke afgøres"
+      },
+      "detail": {
+        "en": "{{typeId}} · {{reason}}",
+        "da": "{{typeId}} · {{reason}}"
+      }
     },
     "question_asked": {
-      "text": { "en": "Question asked", "da": "Spørgsmål stillet" },
-      "detail": { "en": "{{questionId}}", "da": "{{questionId}}" }
+      "text": {
+        "en": "Question asked",
+        "da": "Spørgsmål stillet"
+      },
+      "detail": {
+        "en": "{{questionId}}",
+        "da": "{{questionId}}"
+      }
     },
     "question_answered": {
-      "text": { "en": "Question answered", "da": "Spørgsmål besvaret" },
-      "detail": { "en": "{{questionId}}: {{answer}}", "da": "{{questionId}}: {{answer}}" }
+      "text": {
+        "en": "Question answered",
+        "da": "Spørgsmål besvaret"
+      },
+      "detail": {
+        "en": "{{questionId}}: {{answer}}",
+        "da": "{{questionId}}: {{answer}}"
+      }
     },
     "artefact_generated": {
-      "text": { "en": "Document generated", "da": "Dokument genereret" },
-      "detail": { "en": "{{kind}} · {{artefactId}}", "da": "{{kind}} · {{artefactId}}" }
+      "text": {
+        "en": "Document generated",
+        "da": "Dokument genereret"
+      },
+      "detail": {
+        "en": "{{kind}} · {{artefactId}}",
+        "da": "{{kind}} · {{artefactId}}"
+      }
     },
     "artefact_published": {
-      "text": { "en": "Document published", "da": "Dokument offentliggjort" },
-      "detail": { "en": "{{kind}} {{url}}", "da": "{{kind}} {{url}}" }
+      "text": {
+        "en": "Document published",
+        "da": "Dokument offentliggjort"
+      },
+      "detail": {
+        "en": "{{kind}} {{url}}",
+        "da": "{{kind}} {{url}}"
+      }
     },
     "colleague_invited": {
-      "text": { "en": "Colleague invited", "da": "Kollega inviteret" },
-      "detail": { "en": "{{role}}", "da": "{{role}}" }
+      "text": {
+        "en": "Colleague invited",
+        "da": "Kollega inviteret"
+      },
+      "detail": {
+        "en": "{{role}}",
+        "da": "{{role}}"
+      }
     },
     "colleague_joined": {
-      "text": { "en": "Joined the case", "da": "Kom med på sagen" },
-      "detail": { "en": "{{role}}", "da": "{{role}}" }
+      "text": {
+        "en": "Joined the case",
+        "da": "Kom med på sagen"
+      },
+      "detail": {
+        "en": "{{role}}",
+        "da": "{{role}}"
+      }
     },
     "reminder_sent": {
-      "text": { "en": "Reminder sent", "da": "Påmindelse sendt" },
-      "detail": { "en": "{{role}}", "da": "{{role}}" }
+      "text": {
+        "en": "Reminder sent",
+        "da": "Påmindelse sendt"
+      },
+      "detail": {
+        "en": "{{role}}",
+        "da": "{{role}}"
+      }
     },
     "watch_run": {
-      "text": { "en": "Weekly check ran", "da": "Ugentligt tjek kørt" },
+      "text": {
+        "en": "Weekly check ran",
+        "da": "Ugentligt tjek kørt"
+      },
       "detail": {
         "en": "{{changes}} change(s) · {{scanId}}",
         "da": "{{changes}} ændring(er) · {{scanId}}"
       }
     },
     "meeting_requested": {
-      "text": { "en": "Meeting requested", "da": "Møde ønsket" },
-      "detail": { "en": "{{topic}}", "da": "{{topic}}" }
+      "text": {
+        "en": "Meeting requested",
+        "da": "Møde ønsket"
+      },
+      "detail": {
+        "en": "{{topic}}",
+        "da": "{{topic}}"
+      }
     },
     "note_added": {
-      "text": { "en": "Note", "da": "Note" },
-      "detail": { "en": "{{text}}", "da": "{{text}}" }
+      "text": {
+        "en": "Note",
+        "da": "Note"
+      },
+      "detail": {
+        "en": "{{text}}",
+        "da": "{{text}}"
+      }
     },
     "claim_rejected": {
-      "text": { "en": "Ownership claim refused", "da": "Ejerskab afvist" },
-      "detail": { "en": "{{reason}}", "da": "{{reason}}" }
+      "text": {
+        "en": "Ownership claim refused",
+        "da": "Ejerskab afvist"
+      },
+      "detail": {
+        "en": "{{reason}}",
+        "da": "{{reason}}"
+      }
     },
     "vendor_resolved": {
-      "text": { "en": "Vendor identified", "da": "Leverandør identificeret" },
-      "detail": { "en": "{{vendorId}} · {{resolution}}", "da": "{{vendorId}} · {{resolution}}" }
+      "text": {
+        "en": "Vendor identified",
+        "da": "Leverandør identificeret"
+      },
+      "detail": {
+        "en": "{{vendorId}} · {{resolution}}",
+        "da": "{{vendorId}} · {{resolution}}"
+      }
     },
     "claim_requested": {
-      "text": { "en": "Ownership requested", "da": "Ejerskab anmodet" },
-      "detail": { "en": "{{email}}", "da": "{{email}}" }
+      "text": {
+        "en": "Ownership requested",
+        "da": "Ejerskab anmodet"
+      },
+      "detail": {
+        "en": "{{email}}",
+        "da": "{{email}}"
+      }
     },
     "case_claimed": {
-      "text": { "en": "Case claimed", "da": "Sag overtaget" },
+      "text": {
+        "en": "Case claimed",
+        "da": "Sag overtaget"
+      },
       "detail": {
         "en": "{{method}} · {{email}}{{by}} {{reason}}",
         "da": "{{method}} · {{email}}{{by}} {{reason}}"
       }
     },
     "case_expired": {
-      "text": { "en": "Case expired unclaimed", "da": "Sag udløbet uden ejer" },
-      "detail": { "en": "after {{unclaimedFor}} days", "da": "efter {{unclaimedFor}} dage" }
+      "text": {
+        "en": "Case expired unclaimed",
+        "da": "Sag udløbet uden ejer"
+      },
+      "detail": {
+        "en": "after {{unclaimedFor}} days",
+        "da": "efter {{unclaimedFor}} dage"
+      }
+    },
+    "export_produced": {
+      "text": {
+        "en": "Export produced",
+        "da": "Eksport lavet"
+      },
+      "detail": {
+        "en": "{{bytes}} bytes · sha256 {{sha256}}",
+        "da": "{{bytes}} bytes · sha256 {{sha256}}"
+      }
+    },
+    "deletion_requested": {
+      "text": {
+        "en": "Deletion requested",
+        "da": "Sletning bestilt"
+      },
+      "detail": {
+        "en": "by {{requestedBy}} {{reason}}",
+        "da": "af {{requestedBy}} {{reason}}"
+      }
     }
   }
 }

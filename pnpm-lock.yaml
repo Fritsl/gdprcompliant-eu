@@ -172,6 +172,9 @@ importers:
 
   packages/db:
     dependencies:
+      '@gc/artefacts':
+        specifier: workspace:*
+        version: link:../artefacts
       '@gc/config':
         specifier: workspace:*
         version: link:../config

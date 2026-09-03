@@ -376,6 +376,25 @@ export const demandEntries = pgTable(
   ],
 );
 
+// What remains after a hard delete (C-04): that a case was deleted, when, and how much
+// went. The id is the hash of the case number; nothing here names a company or a person.
+export const deletionAudit = pgTable(
+  'deletion_audit',
+  {
+    id: text('id').primaryKey(),
+    ...stamped,
+    country: text('country').notNull(),
+    year: integer('year').notNull(),
+    deletedAt: timestamp('deleted_at', { withTimezone: true }).notNull(),
+    requestedBy: text('requested_by').notNull(),
+    rowsRemoved: integer('rows_removed').notNull(),
+  },
+  (t) => [
+    check('deletion_audit_id', sql`${t.id} ~ '^[a-f0-9]{64}$'`),
+    check('deletion_audit_shared', sql`${t.tenantId} = 'shared'`),
+  ],
+);
+
 export const TABLES = {
   appMeta,
   tenants,
@@ -391,4 +410,5 @@ export const TABLES = {
   answers,
   demandEntries,
   caseClaims,
+  deletionAudit,
 } as const;

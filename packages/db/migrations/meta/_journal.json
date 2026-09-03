@@ -43,6 +43,13 @@
       "when": 1788470648784,
       "tag": "0005_unique_leopardon",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1788471576538,
+      "tag": "0006_clammy_the_phantom",
+      "breakpoints": true
     }
   ]
 }

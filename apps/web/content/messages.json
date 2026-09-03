@@ -135,5 +135,81 @@
   "timeline.page": {
     "en": "Page {{page}} of {{pages}}",
     "da": "Side {{page}} af {{pages}}"
+  },
+  "case.heading": {
+    "en": "Case",
+    "da": "Sag"
+  },
+  "case.holds": {
+    "en": "What this case holds",
+    "da": "Hvad sagen indeholder"
+  },
+  "case.holds.findings": {
+    "en": "findings",
+    "da": "konstateringer"
+  },
+  "case.holds.evidence": {
+    "en": "evidence records: what the scanner saw on the site, with a hash of each",
+    "da": "bevisposter: hvad scanneren så på sitet, med en hash af hver"
+  },
+  "case.holds.answers": {
+    "en": "answers you gave",
+    "da": "svar du har givet"
+  },
+  "case.holds.events": {
+    "en": "timeline events",
+    "da": "tidslinjeposter"
+  },
+  "case.holds.vendors": {
+    "en": "vendors identified",
+    "da": "identificerede leverandører"
+  },
+  "case.who": {
+    "en": "Who can see it",
+    "da": "Hvem kan se det"
+  },
+  "case.who.unclaimed": {
+    "en": "Anyone who has this link. Nobody else: the case belongs to its own tenant, and the database refuses every other tenant.",
+    "da": "Alle der har dette link. Ingen andre: sagen hører til sin egen lejer, og databasen afviser alle andre lejere."
+  },
+  "case.who.claimed": {
+    "en": "The address that claimed it, and anyone that address invites. Nobody else: the database refuses every other tenant.",
+    "da": "Den adresse der har overtaget sagen, og dem den inviterer. Ingen andre: databasen afviser alle andre lejere."
+  },
+  "case.export": {
+    "en": "Download everything as one file",
+    "da": "Hent alt som én fil"
+  },
+  "case.export.note": {
+    "en": "JSON, with the timeline PDF inside. Every export is written to the timeline.",
+    "da": "JSON, med tidslinjen som PDF indeni. Hver eksport skrives på tidslinjen."
+  },
+  "case.delete": {
+    "en": "Delete this case permanently",
+    "da": "Slet sagen permanent"
+  },
+  "case.delete.note": {
+    "en": "Everything listed goes, at once and for good. What remains is a record that a case from this country and year was deleted, and how many rows went. Not its number, not the company.",
+    "da": "Alt det nævnte forsvinder, på én gang og for altid. Tilbage bliver en notits om, at en sag fra dette land og år blev slettet, og hvor mange rækker der forsvandt. Ikke sagens nummer, ikke virksomheden."
+  },
+  "case.delete.confirm": {
+    "en": "Type the case number to confirm",
+    "da": "Skriv sagsnummeret for at bekræfte"
+  },
+  "case.timeline": {
+    "en": "Timeline",
+    "da": "Tidslinje"
+  },
+  "deleted.heading": {
+    "en": "Deleted",
+    "da": "Slettet"
+  },
+  "deleted.lead": {
+    "en": "The case and everything in it are gone. This is the only record that remains.",
+    "da": "Sagen og alt i den er væk. Dette er den eneste notits, der er tilbage."
+  },
+  "deleted.rows": {
+    "en": "rows removed",
+    "da": "rækker fjernet"
   }
 }

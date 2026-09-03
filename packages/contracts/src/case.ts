@@ -149,6 +149,14 @@ export const CaseEventSchema = z
       reason: z.string().optional(),
     }),
     event('case_expired', { unclaimedFor: z.number().int().min(0) }),
+    // Proving the case is theirs (C-04): a full export, and a hard delete. The export
+    // event stays on the timeline; the deletion event is the last thing written before
+    // the record itself goes, and survives only in an export taken after it.
+    event('export_produced', { bytes: z.number().int().min(0), sha256: z.string().length(64) }),
+    event('deletion_requested', {
+      requestedBy: z.enum(['token', 'owner', 'operator']),
+      reason: z.string().optional(),
+    }),
     event('vendor_resolved', {
       vendorId: IdSchema,
       resolution: z.enum(['resolved', 'unresolved', 'ambiguous']),
