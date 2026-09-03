@@ -31,7 +31,7 @@ sandbox.window.scrollTo = () => {};
 vm.createContext(sandbox);
 vm.runInContext(js, sandbox, { filename: 'app.js' });
 
-const SCREENS = ['front', 'scanning', 'case', 'finding', 'questions', 'colleagues', 'supply', 'artefact', 'trust', 'internal'];
+const SCREENS = ['front', 'scanning', 'case', 'finding', 'questions', 'colleagues', 'supply', 'artefact', 'trust', 'report', 'advisor', 'internal'];
 const problems = [];
 let checks = 0;
 
@@ -123,6 +123,33 @@ for (const s of SCREENS) {
   const text = product.replace(/<pre[\s\S]*?<\/pre>/g, ' ').replace(/<[^>]+>/g, ' ');
   for (const phrase of NARRATION) {
     assert(!text.toLowerCase().includes(phrase), `${s}: copy points at the interface — "${phrase}"`);
+  }
+}
+
+// Verbatim guarantee. Every article the product shows must resolve to the corpus and be
+// reproduced character for character — this is the prototype stand-in for T-03. A model
+// must never be the thing that types an article number or its text.
+const quoted = new Set([...data.report.articlesUsed, ...data.advisor.thread.filter(m => m.law).map(m => m.law)]);
+for (const key of quoted) {
+  const art = data.articles[key];
+  assert(!!art, `${key}: quoted but not in the corpus`);
+  if (!art) continue;
+  assert(art.text.length > 80, `${key}: corpus text looks truncated`);
+  assert(art.ref.startsWith('Regulation (EU) 2016/679, Article '), `${key}: reference is not a resolvable citation`);
+}
+// What the prototype can actually prove is that the renderer never mangles a quote:
+// every blockquote it emits must equal a corpus entry exactly — not truncated, not
+// ellipsised, not annotated inside the quotation. Proving the text is *genuine* needs a
+// second independent source and belongs to T-03, which compares corpus against output.
+const corpusTexts = new Set(Object.values(data.articles).map((a) => a.text));
+for (const screen of ['report', 'advisor']) {
+  sandbox.window.PROTO.go(screen);
+  const blocks = [...html.matchAll(/<blockquote>([\s\S]*?)<\/blockquote>/g)].map((m) =>
+    m[1].replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+  );
+  assert(blocks.length > 0, `${screen}: no law quoted at all`);
+  for (const b of blocks) {
+    assert(corpusTexts.has(b), `${screen}: a quoted passage does not match the corpus exactly — the renderer altered it`);
   }
 }
 

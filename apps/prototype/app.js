@@ -25,6 +25,8 @@
     { id: 'supply',     label: 'Supply chain', note: 'Three levels deep.' },
     { id: 'artefact',   label: 'Artefact',     note: 'A generated processing agreement, and the sign-off.' },
     { id: 'trust',      label: 'Trust page',   note: 'Public, opt-in, dated.' },
+    { id: 'report',     label: 'Report',       note: 'The PDF, at any point. Status matrix, actions, law in full.' },
+    { id: 'advisor',    label: 'Advisor',      note: 'Knows the law and this case, and can compare them.' },
     { id: 'internal',   label: 'Internal',     note: 'What we see.' }
   ];
 
@@ -479,6 +481,119 @@
       '</tr></thead><tbody>' + rows + '</tbody></table></div>' +
       '<p class="muted" style="font-size:13.5px;margin-top:16px;max-width:66ch">Lane decides whether a person reaches out. It never changes what the customer receives.</p>' +
     '</div></div>';
+  };
+
+  render.report = function () {
+    var r = D.report;
+    var stateLabel = { done: 'In order', open: 'Open', undetermined: 'Not determined', na: 'Not applicable' };
+
+    var matrix = r.matrix.map(function (m) {
+      return '<tr><td class="m-area">' + esc(m.area) + '</td>' +
+        '<td><span class="m-state m-' + m.state + '">' + esc(stateLabel[m.state]) + '</span></td>' +
+        '<td class="m-note">' + esc(m.note) + '</td></tr>';
+    }).join('');
+
+    var actions = r.actions.map(function (a) {
+      return '<tr><td class="a-n">' + a.n + '</td><td class="a-w">' + esc(a.what) +
+        '<span class="a-ref">' + esc(a.ref) + '</span></td>' +
+        '<td>' + esc(a.who) + '</td><td class="a-when">' + esc(a.when) + '</td></tr>';
+    }).join('');
+
+    var articles = r.articlesUsed.map(function (k) {
+      var a = D.articles[k];
+      return '<div class="law"><div class="law-ref">' + esc(a.ref) + '</div>' +
+        '<blockquote>' + esc(a.text) + '</blockquote></div>';
+    }).join('');
+
+    return '<div class="screen narrow">' +
+      '<div class="rep-bar">' +
+        '<span class="muted">Generated ' + esc(r.generated) + '</span>' +
+        '<button class="btn" onclick="PROTO.noop(this)">Download PDF</button>' +
+        '<button class="btn btn-2" onclick="PROTO.noop(this)">Email to a colleague</button>' +
+      '</div>' +
+
+      '<div class="paper">' +
+        '<div class="paper-head">' +
+          '<div>' +
+            '<p class="eyebrow">' + esc(r.caseRef) + '</p>' +
+            '<h2>' + esc(r.title) + '</h2>' +
+            '<p class="p-sub">' + esc(r.subject) + '</p>' +
+          '</div>' +
+          '<div class="p-meta"><span>' + esc(r.generated) + '</span><span>' + esc(r.standing) + '</span></div>' +
+        '</div>' +
+
+        '<div class="paper-s">' +
+          '<h3>Where things stand</h3>' +
+          '<p class="p-lead">' + esc(r.summary) + '</p>' +
+          '<table class="matrix"><thead><tr><th>Area</th><th>Status</th><th>Latest</th></tr></thead>' +
+            '<tbody>' + matrix + '</tbody></table>' +
+        '</div>' +
+
+        '<div class="paper-s">' +
+          '<h3>What needs doing</h3>' +
+          '<table class="acts"><thead><tr><th></th><th>Action</th><th>Who</th><th>Effort</th></tr></thead>' +
+            '<tbody>' + actions + '</tbody></table>' +
+        '</div>' +
+
+        '<div class="paper-s">' +
+          '<h3>The law this report refers to</h3>' +
+          '<p class="p-lead">Quoted in full, as written.</p>' +
+          articles +
+        '</div>' +
+
+        '<div class="paper-foot">' +
+          '<p class="disc">' + esc(r.disclaimer) + '</p>' +
+          '<p class="src">' + esc(r.footer) + ' · gdprcompliant.eu</p>' +
+        '</div>' +
+      '</div></div>';
+  };
+
+  render.advisor = function () {
+    var a = D.advisor;
+
+    var thread = a.thread.map(function (m) {
+      if (m.role === 'user') return '<div class="msg-u"><div class="bub">' + esc(m.text) + '</div></div>';
+
+      var law = D.articles[m.law];
+      return '<div class="msg-a">' +
+        '<p class="ans">' + esc(m.answer) + '</p>' +
+
+        '<div class="ground">' +
+          '<div class="g-h">' + esc(m.grounded.title) + '</div>' +
+          '<table class="g-t"><tbody>' + m.grounded.rows.map(function (row) {
+            return '<tr><td>' + esc(row[0]) + '</td><td>' + esc(row[1]) + '</td></tr>';
+          }).join('') + '</tbody></table>' +
+          '<p class="g-n">' + esc(m.grounded.note) + '</p>' +
+        '</div>' +
+
+        '<div class="law">' +
+          '<div class="law-ref">' + esc(law.ref) + '</div>' +
+          '<blockquote>' + esc(law.text) + '</blockquote>' +
+          '<p class="law-n">' + esc(m.lawNote) + '</p>' +
+        '</div>' +
+
+        '<div class="msg-acts">' + m.actions.map(function (x) {
+          return '<button class="btn btn-2 btn-sm" onclick="PROTO.noop(this)">' + esc(x) + '</button>';
+        }).join('') + '</div>' +
+      '</div>';
+    }).join('');
+
+    return '<div class="screen narrow">' +
+      '<div class="adv-head">' +
+        '<h2 class="h-serif" style="font-size:clamp(22px,3.4vw,30px)">Ask about your own situation</h2>' +
+        '<p class="adv-g">' + esc(a.grounding) + '</p>' +
+      '</div>' +
+      '<div class="thread">' + thread + '</div>' +
+      '<div class="ask">' +
+        '<input type="text" placeholder="Ask anything about your case or the law" aria-label="Ask a question">' +
+        '<button class="btn" onclick="PROTO.noop(this)">Ask</button>' +
+      '</div>' +
+      '<div class="sugg">' + a.suggestions.map(function (s) {
+        return '<button class="s-chip" onclick="PROTO.noop(this)">' + esc(s) + '</button>';
+      }).join('') + '</div>' +
+      '<p class="adv-disc">' + esc(a.disclaimer) + '</p>' +
+      '<div style="margin-top:20px"><button class="btn btn-2 btn-sm" onclick="PROTO.go(\'report\')">Turn this into a report</button></div>' +
+    '</div>';
   };
 
   /* ── chrome and routing ──────────────────────────────────────────── */

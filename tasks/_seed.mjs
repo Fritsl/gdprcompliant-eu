@@ -17,6 +17,7 @@ export const streams = {
   L: 'Lanes — qualification, consultant view, referral',
   I: 'International — jurisdiction bindings and locales',
   O: 'Ops — security, retention, delivery',
+  V: 'Advisor and reports — the status report, and the assistant that knows both the law and this case',
   T: 'Testing — the harness that stands in for a human tester',
 };
 
@@ -1202,6 +1203,62 @@ export const tasks = [
     verify: 'pnpm run gate',
   },
 
+  {
+    id: 'V-01', stream: 'V', phase: 3, est: 'L', depends: ['C-02', 'A-08'],
+    title: 'Status report, generated at any moment',
+    goal: 'A PDF a person can hand to a colleague, a board or an auditor, produced from the case as it stands right now — not only when finished.',
+    acceptance: [
+      'Status matrix by area, with an explicit not-determined state that is never dressed up as a pass',
+      'Numbered action points carrying owner and effort, ordered the same way the plan is',
+      'Every article the report relies on is quoted in full from the corpus, with a resolvable reference',
+      'Reproducible: the same case at the same point produces an identical document',
+      'Readable printed in greyscale, and carries the case URL so a reader can get to the live version',
+      'Regenerating is one click and always available, including mid-progress',
+    ],
+    verify: 'pnpm test:integration -- report-render',
+    notes: 'The report is the artefact that travels. Someone who never ran the scan will read it first.',
+  },
+  {
+    id: 'V-02', stream: 'V', phase: 5, est: 'L', depends: ['A-01', 'A-08', 'A-07'],
+    title: 'Case-grounded advisor',
+    goal: 'An assistant holding two things at once — the full legal corpus, and the actual case — so it can answer "we have this, do we need that?"',
+    acceptance: [
+      'Every answer separates three things: the answer, what this case says, and what the law says',
+      'Facts about the company come from the graph with a link to the evidence, never from the model',
+      'Retrieval is jurisdiction-filtered; a Danish case never gets German law as authority',
+      'Refuses to answer where the case has no evidence, and says which question would settle it',
+      'Answers can be appended to the report, carrying their citations',
+      'Runs on the self-hosted stack — a customer case never leaves the tenant',
+    ],
+    verify: 'pnpm test:evals -- advisor',
+    notes: 'Reuses the corpus and EU inference behind gdprchat.eu. The new part is grounding in the case, which is what makes it worth building rather than pointing people at the existing chat.',
+  },
+  {
+    id: 'V-03', stream: 'V', phase: 5, est: 'M', depends: ['V-02'],
+    title: 'Verbatim law, guaranteed',
+    goal: 'Show legal text word for word, and make it structurally impossible for a model to be the thing that typed it.',
+    acceptance: [
+      'Quoted passages are fetched from the corpus by identifier and rendered without passing through a model',
+      'A rendered quotation is compared character for character against the corpus entry before it is displayed',
+      'Truncation, ellipsis or annotation inside a quotation fails the check rather than degrading quietly',
+      'Every quotation carries instrument, article and paragraph, and the corpus version it came from',
+      'Consolidated text is dated, so an amended article is never shown as current without its date',
+    ],
+    verify: 'pnpm test:integration -- verbatim && pnpm run check:citations',
+  },
+  {
+    id: 'V-04', stream: 'V', phase: 5, est: 'M', depends: ['V-02', 'A-10'],
+    title: 'Advisor safety and limits',
+    goal: 'It is an assistant, not counsel, and the interface has to carry that without becoming a nag.',
+    acceptance: [
+      'Not-legal-advice notice present on the surface and on every export, never only in terms',
+      'Declines to advise on litigation, enforcement responses and regulator correspondence, and offers the escalation path',
+      'Case content is untrusted input: a policy or contract that tries to instruct the advisor is rejected',
+      'Conversations are tenant-scoped and deletable with the case',
+      'An eval set of 20 questions it should refuse, with the expected refusal shape',
+    ],
+    verify: 'pnpm test:evals -- advisor-safety && pnpm test:adversarial -- advisor',
+  },
   // ---------------------------------------------------------------- TESTING
   {
     id: 'T-01', stream: 'T', phase: 2, est: 'L', depends: ['F-07'],

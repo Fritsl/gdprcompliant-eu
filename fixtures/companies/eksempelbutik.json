@@ -1432,5 +1432,185 @@
       "sectors": "all",
       "answer": "ours"
     }
-  ]
+  ],
+  "articles": {
+    "GDPR Art. 28(3)": {
+      "ref": "Regulation (EU) 2016/679, Article 28(3), first subparagraph",
+      "text": "Processing by a processor shall be governed by a contract or other legal act under Union or Member State law, that is binding on the processor with regard to the controller and that sets out the subject-matter and duration of the processing, the nature and purpose of the processing, the type of personal data and categories of data subjects and the obligations and rights of the controller."
+    },
+    "GDPR Art. 30(5)": {
+      "ref": "Regulation (EU) 2016/679, Article 30(5)",
+      "text": "The obligations referred to in paragraphs 1 and 2 shall not apply to an enterprise or an organisation employing fewer than 250 persons unless the processing it carries out is likely to result in a risk to the rights and freedoms of data subjects, the processing is not occasional, or the processing includes special categories of data as referred to in Article 9(1) or personal data relating to criminal convictions and offences referred to in Article 10."
+    },
+    "GDPR Art. 13(2)(a)": {
+      "ref": "Regulation (EU) 2016/679, Article 13(2)(a)",
+      "text": "the period for which the personal data will be stored, or if that is not possible, the criteria used to determine that period;"
+    }
+  },
+  "report": {
+    "title": "GDPR status report",
+    "subject": "Eksempelbutik ApS · eksempelbutik.dk",
+    "caseRef": "DK-26-0M4K",
+    "generated": "11 September 2026, 14:20",
+    "standing": "A snapshot. Ask for a new one whenever you like — nothing here is final.",
+    "summary": "11 of 12 findings closed. Two areas are still open and one could not be determined from outside.",
+    "matrix": [
+      {
+        "area": "Consent",
+        "state": "open",
+        "note": "A new tag appeared on the checkout on 8 Sep"
+      },
+      {
+        "area": "Recipients",
+        "state": "done",
+        "note": "All 14 identified; fonts self-hosted"
+      },
+      {
+        "area": "Transfers",
+        "state": "done",
+        "note": "9 outside the EEA, all named and covered"
+      },
+      {
+        "area": "Notice",
+        "state": "done",
+        "note": "Policy rewritten from the register on 10 Sep"
+      },
+      {
+        "area": "Collection",
+        "state": "done",
+        "note": "Newsletter consent separated at checkout"
+      },
+      {
+        "area": "Observation",
+        "state": "done",
+        "note": "Session replay removed from the checkout"
+      },
+      {
+        "area": "Security",
+        "state": "done",
+        "note": "Form transport fixed; headers in place"
+      },
+      {
+        "area": "Contracts",
+        "state": "done",
+        "note": "Agreement and sub-processor list published"
+      },
+      {
+        "area": "Records",
+        "state": "open",
+        "note": "Register complete except deletion schedule"
+      },
+      {
+        "area": "Attribution",
+        "state": "undetermined",
+        "note": "One third-party host still unidentified"
+      }
+    ],
+    "actions": [
+      {
+        "n": 1,
+        "what": "Gate the new checkout tag behind consent",
+        "who": "Mette · Marketing",
+        "when": "About 20 minutes",
+        "ref": "CNS-09"
+      },
+      {
+        "n": 2,
+        "what": "Set the deletion job for orders past retention",
+        "who": "Lars · IT",
+        "when": "About 30 minutes",
+        "ref": "REC-02"
+      },
+      {
+        "n": 3,
+        "what": "Identify or remove the unattributed CDN host",
+        "who": "Lars · IT",
+        "when": "Unknown",
+        "ref": "VND-11"
+      }
+    ],
+    "articlesUsed": [
+      "GDPR Art. 28(3)",
+      "GDPR Art. 30(5)",
+      "GDPR Art. 13(2)(a)"
+    ],
+    "disclaimer": "Prepared automatically from evidence collected on the dates shown. It is not a legal opinion and not a certification. Have a lawyer read anything you intend to rely on.",
+    "footer": "gdprcompliant.eu/case/DK-26-0M4K"
+  },
+  "advisor": {
+    "disclaimer": "An AI assistant, not a lawyer. It quotes the law exactly and shows you where every answer came from, but it can still be wrong.",
+    "grounding": "Knows case DK-26-0M4K and the full text of the GDPR, the ePrivacy Directive, Danish implementing law and Datatilsynet guidance.",
+    "thread": [
+      {
+        "role": "user",
+        "text": "We only have 12 employees. Do we really need a record of processing activities?"
+      },
+      {
+        "role": "assistant",
+        "answer": "Yes. The under-250 exemption exists, but it falls away as soon as processing is more than occasional — and yours is continuous.",
+        "grounded": {
+          "title": "From your case",
+          "rows": [
+            [
+              "Headcount band",
+              "10–49 · from the business register"
+            ],
+            [
+              "Processing",
+              "Customer orders, daily · not occasional"
+            ],
+            [
+              "Special categories",
+              "None found"
+            ]
+          ],
+          "note": "The middle row is the one that decides it."
+        },
+        "law": "GDPR Art. 30(5)",
+        "lawNote": "The three conditions are alternatives — any one of them removes the exemption.",
+        "actions": [
+          "Add this to my report",
+          "Show me my register"
+        ]
+      },
+      {
+        "role": "user",
+        "text": "We use Microsoft 365 for mail. Do we need an agreement with them?"
+      },
+      {
+        "role": "assistant",
+        "answer": "Yes, and you already have one — Microsoft publishes standard terms that meet Article 28. Your case has it recorded as accepted on 8 September. The open question is not the agreement, it is the transfer.",
+        "grounded": {
+          "title": "From your case",
+          "rows": [
+            [
+              "Agreement",
+              "Accepted 8 Sep · recorded by Sofie"
+            ],
+            [
+              "Contracting entity",
+              "Established in the EU"
+            ],
+            [
+              "Ultimate parent",
+              "Established in the US · finding TRF-01"
+            ]
+          ],
+          "note": "Article 28 is satisfied. Chapter V is the part still open."
+        },
+        "law": "GDPR Art. 28(3)",
+        "lawNote": "This is the first subparagraph only. The list of required clauses continues at points (a) to (h).",
+        "actions": [
+          "Open TRF-01",
+          "Add this to my report"
+        ]
+      }
+    ],
+    "suggestions": [
+      "How long must we keep customer orders?",
+      "What happens if someone asks us to delete their data?",
+      "Do we need a data protection officer?",
+      "Show me Article 13 in full"
+    ]
+  }
 }
