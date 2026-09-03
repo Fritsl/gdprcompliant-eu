@@ -1,0 +1,17 @@
+{
+  "version": "2026-09-04",
+  "decisions": [
+    {
+      "body": "LG München I",
+      "reference": "3 O 17493/20",
+      "jurisdiction": "DE",
+      "scope": "EU",
+      "decidedAt": "2022-01-20",
+      "title": "Endurteil v. 20.01.2022 – 3 O 17493/20 (embedding Google Fonts from Google's servers)",
+      "source": {
+        "url": "https://www.gesetze-bayern.de/Content/Document/Y-300-Z-BECKRS-B-2022-N-612",
+        "retrievedAt": "2026-09-04T00:40:00Z"
+      }
+    }
+  ]
+}

@@ -29,6 +29,8 @@ jobs:
       - run: pnpm check:rls
       - run: pnpm check:finding-completeness
       - run: pnpm check:retention
+      # Every citation in the content set resolves to a paragraph as published (T-03).
+      - run: pnpm check:citations
       - run: pnpm format:check
       - run: pnpm test:unit
       # The prototype is the design specification; its 430 assertions encode product

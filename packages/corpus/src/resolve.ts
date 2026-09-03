@@ -3,6 +3,7 @@ import {
   type Citation,
   type CitationResolution,
   type CorpusChunk,
+  type DecisionsRegistry,
   type Jurisdiction,
 } from '@gc/contracts';
 
@@ -27,6 +28,41 @@ export interface ResolveOptions {
 // Newest first, by the version string's natural order (dates sort as text).
 export const newestVersion = (versions: Iterable<string>): string | undefined =>
   [...new Set(versions)].sort().at(-1);
+
+// A decision citation resolves to a registry entry by body and case number, exactly,
+// and only where the law it read speaks: a judgment on Union law anywhere in the Union,
+// one on a national act at home.
+export function resolveDecision(
+  registry: DecisionsRegistry,
+  citation: Citation,
+  jurisdiction: Jurisdiction,
+): CitationResolution {
+  if (citation.kind !== 'decision') {
+    return { ok: false, reason: 'unsupported_kind', detail: `not a decision citation` };
+  }
+  const hits = registry.decisions.filter(
+    (d) => d.body === citation.body && d.reference === citation.reference,
+  );
+  if (hits.length !== 1) {
+    return {
+      ok: false,
+      reason: 'no_such_paragraph',
+      detail:
+        hits.length === 0
+          ? `${citation.body}, ${citation.reference} is not a decision the corpus knows`
+          : `${citation.body}, ${citation.reference} matches ${hits.length} decisions`,
+    };
+  }
+  const decision = hits[0]!;
+  if (!speaksIn(decision.scope, jurisdiction)) {
+    return {
+      ok: false,
+      reason: 'wrong_jurisdiction',
+      detail: `${citation.body}, ${citation.reference} reads ${decision.scope} law, which does not speak in ${jurisdiction}`,
+    };
+  }
+  return { ok: true, decision, corpusVersion: registry.version };
+}
 
 export function resolveInChunks(
   chunks: readonly CorpusChunk[],

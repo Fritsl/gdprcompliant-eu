@@ -93,6 +93,26 @@ export function citationKey(c: Citation): string {
 const ARTICLE_REF =
   /^Art(?:icle|\.)?\s*(\d+[a-z]?)(?:[–-]\d+[a-z]?)?(?:\((\d+)\))?(?:\(([a-z]+)\))?$/i;
 
+// Parse a display reference of the form "LG München I, 3 O 17493/20" or "CJEU, C-673/17"
+// into a decision citation: the deciding body, then the case number, comma-separated.
+export function parseDecisionRef(
+  ref: string,
+  extra: { note?: string; jurisdiction?: string } = {},
+): DecisionCitation | undefined {
+  const m = /^([^,]+),\s*(.+)$/.exec(ref.trim());
+  if (!m) return undefined;
+  const candidate: Record<string, unknown> = {
+    kind: 'decision',
+    body: m[1]!.trim(),
+    reference: m[2]!.trim(),
+    ref: ref.trim(),
+  };
+  if (extra.note !== undefined) candidate['note'] = extra.note;
+  if (extra.jurisdiction !== undefined) candidate['jurisdiction'] = extra.jurisdiction;
+  const parsed = DecisionCitationSchema.safeParse(candidate);
+  return parsed.success ? parsed.data : undefined;
+}
+
 export function parseProvisionRef(
   instrument: string,
   ref: string,

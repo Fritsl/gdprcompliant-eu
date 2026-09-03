@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@gc/agent": "workspace:*",
+    "@gc/config": "workspace:*",
     "@gc/contracts": "workspace:*",
     "@gc/db": "workspace:*",
     "drizzle-orm": "^0.45.2",

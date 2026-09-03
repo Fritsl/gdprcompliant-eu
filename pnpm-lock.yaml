@@ -185,6 +185,9 @@ importers:
       '@gc/agent':
         specifier: workspace:*
         version: link:../agent
+      '@gc/config':
+        specifier: workspace:*
+        version: link:../config
       '@gc/contracts':
         specifier: workspace:*
         version: link:../contracts

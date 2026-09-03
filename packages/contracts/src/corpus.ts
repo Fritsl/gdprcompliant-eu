@@ -108,15 +108,54 @@ export const CorpusDocumentSchema = z
   .describe('An instrument as curated content, cut into addressable chunks');
 export type CorpusDocument = z.infer<typeof CorpusDocumentSchema>;
 
+// A decision the corpus knows: court or authority, case number, when, and where the
+// text was read. `jurisdiction` is where the body sits; `scope` is the law it read —
+// 'EU' for a judgment on Union law, which speaks in every member state, or the
+// country whose own act it interpreted, which speaks there alone. A decision citation resolves to one of these or fails. `text` holds
+// the passage as published when it has been ingested; until then a quote against the
+// decision cannot be confirmed and the audit says so.
+export const DecisionEntrySchema = z
+  .object({
+    body: NonEmptyStringSchema,
+    reference: NonEmptyStringSchema,
+    jurisdiction: JurisdictionSchema,
+    scope: JurisdictionSchema,
+    decidedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    title: NonEmptyStringSchema,
+    source: z.object({ url: UrlSchema, retrievedAt: IsoDateTimeSchema }),
+    text: z.string().optional(),
+  })
+  .describe('A decision the corpus can resolve a citation to');
+export type DecisionEntry = z.infer<typeof DecisionEntrySchema>;
+
+export const DecisionsRegistrySchema = z
+  .object({ version: CorpusVersionSchema, decisions: z.array(DecisionEntrySchema) })
+  .superRefine((r, ctx) => {
+    const seen = new Set<string>();
+    r.decisions.forEach((d, i) => {
+      const key = `${d.body}:${d.reference}`;
+      if (seen.has(key))
+        ctx.addIssue({ code: 'custom', path: ['decisions', i], message: `duplicate ${key}` });
+      seen.add(key);
+    });
+  });
+export type DecisionsRegistry = z.infer<typeof DecisionsRegistrySchema>;
+
 export const RESOLUTION_FAILURES = [
   'unknown_instrument',
   'no_such_paragraph',
   'wrong_jurisdiction',
   'unsupported_kind',
+  'quote_unverifiable',
 ] as const;
 
 export const CitationResolutionSchema = z.discriminatedUnion('ok', [
   z.object({ ok: z.literal(true), chunk: CorpusChunkSchema, corpusVersion: CorpusVersionSchema }),
+  z.object({
+    ok: z.literal(true),
+    decision: DecisionEntrySchema,
+    corpusVersion: CorpusVersionSchema,
+  }),
   z.object({
     ok: z.literal(false),
     reason: z.enum(RESOLUTION_FAILURES),

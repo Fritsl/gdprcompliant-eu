@@ -6,6 +6,12 @@
     "note": "Regulation (EU) 2016/679 and Directive 2002/58/EC, consolidated texts"
   },
   {
+    "host": "publications.europa.eu",
+    "purpose": "corpus",
+    "jurisdiction": "EU",
+    "note": "The Publications Office cellar: the Official Journal texts behind EUR-Lex"
+  },
+  {
     "host": "www.retsinformation.dk",
     "purpose": "corpus",
     "jurisdiction": "DK",

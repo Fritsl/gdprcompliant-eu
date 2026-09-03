@@ -26,7 +26,7 @@ const cite = (instrument: string, ref: string) => parseProvisionRef(instrument, 
 
 describe('content', () => {
   it('every checked-in instrument validates and every chunk carries its identifiers', () => {
-    expect(docs.map((d) => d.instrument)).toEqual(['TEST-DK', 'TEST-REG']);
+    expect(docs.map((d) => d.instrument)).toEqual(['GDPR', 'TEST-DK', 'TEST-REG', 'ePrivacy']);
     for (const c of chunks) {
       expect(CorpusChunkSchema.safeParse(c).success).toBe(true);
       expect(c.jurisdiction).toMatch(/^(EU|[A-Z]{2})$/);

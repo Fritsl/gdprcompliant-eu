@@ -44,7 +44,9 @@ async function failsWith(work: Promise<unknown>, pattern: RegExp): Promise<void>
 beforeAll(async () => {
   if (!url) return;
   db = await createTestDatabase(url);
-  for (const doc of loadCorpusDocuments()) await ingestCorpus(db, doc, embed);
+  for (const doc of loadCorpusDocuments().filter((d) => d.instrument.startsWith('TEST-'))) {
+    await ingestCorpus(db, doc, embed);
+  }
 });
 
 afterAll(async () => {

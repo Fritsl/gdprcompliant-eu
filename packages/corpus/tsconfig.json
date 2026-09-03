@@ -2,5 +2,10 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": { "rootDir": "src", "outDir": "dist" },
   "include": ["src/**/*.ts"],
-  "references": [{ "path": "../agent" }, { "path": "../contracts" }, { "path": "../db" }]
+  "references": [
+    { "path": "../agent" },
+    { "path": "../config" },
+    { "path": "../contracts" },
+    { "path": "../db" }
+  ]
 }

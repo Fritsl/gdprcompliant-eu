@@ -1,0 +1,26 @@
+{
+  "recordedAt": "2026-09-03T23:25:05.990Z",
+  "request": {
+    "method": "GET",
+    "url": "https://publications.europa.eu/resource/celex/02002L0058-20091219",
+    "headers": {
+      "accept": "application/xhtml+xml",
+      "accept-language": "eng"
+    },
+    "body": null
+  },
+  "response": {
+    "status": 303,
+    "statusText": "",
+    "headers": {
+      "cache-control": "no-store",
+      "connection": "keep-alive",
+      "content-security-policy": "script-src 'self';",
+      "content-type": "application/xhtml+xml;charset=UTF-8",
+      "date": "Thu, 03 Sep 2026 23:25:06 GMT",
+      "location": "http://publications.europa.eu/resource/cellar/6def8269-d337-4373-83c1-8c57678fc93f.0006.03/DOC_3",
+      "transfer-encoding": "chunked"
+    },
+    "body": ""
+  }
+}

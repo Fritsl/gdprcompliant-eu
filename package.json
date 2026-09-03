@@ -31,7 +31,9 @@
     "db:doc": "node scripts/schema-doc.mjs",
     "check:finding-completeness": "node --import tsx scripts/finding-completeness.ts",
     "check:rls": "node scripts/rls-check.mjs",
-    "check:retention": "node --import tsx scripts/retention-check.mjs"
+    "check:retention": "node --import tsx scripts/retention-check.mjs",
+    "check:citations": "node --import tsx scripts/check-citations.ts",
+    "corpus:ingest": "node --env-file-if-exists=.env --import tsx scripts/corpus-ingest.ts"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

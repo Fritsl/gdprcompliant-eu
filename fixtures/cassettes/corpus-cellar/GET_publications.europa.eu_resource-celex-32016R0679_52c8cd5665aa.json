@@ -1,0 +1,26 @@
+{
+  "recordedAt": "2026-09-03T23:25:05.508Z",
+  "request": {
+    "method": "GET",
+    "url": "https://publications.europa.eu/resource/celex/32016R0679",
+    "headers": {
+      "accept": "application/xhtml+xml",
+      "accept-language": "eng"
+    },
+    "body": null
+  },
+  "response": {
+    "status": 303,
+    "statusText": "",
+    "headers": {
+      "cache-control": "no-store",
+      "connection": "keep-alive",
+      "content-security-policy": "script-src 'self';",
+      "content-type": "application/xhtml+xml;charset=UTF-8",
+      "date": "Thu, 03 Sep 2026 23:25:05 GMT",
+      "location": "http://publications.europa.eu/resource/cellar/3e485e15-11bd-11e6-ba9a-01aa75ed71a1.0006.03/DOC_1",
+      "transfer-encoding": "chunked"
+    },
+    "body": ""
+  }
+}
