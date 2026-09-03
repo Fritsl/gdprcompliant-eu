@@ -1259,6 +1259,21 @@ export const tasks = [
     ],
     verify: 'pnpm test:evals -- advisor-safety && pnpm test:adversarial -- advisor',
   },
+  {
+    id: 'V-05', stream: 'V', phase: 5, est: 'L', depends: ['V-02'],
+    title: 'Dive points on every element',
+    goal: 'Any finding, step, quoted article or phrase opens a conversation already scoped to it. Modelled on GDPRchat Zen dive-deeper — see docs/decisions/dive-points.md.',
+    acceptance: [
+      'A dive from a page seeds turn zero with the fragment, the case as structured fact, and jurisdiction-filtered corpus; after that it is an ordinary conversation and further dives append',
+      'Fragment handling matches GDPRchat: markdown stripped, capped at 300 characters, prefixed with the localised Tell me more about this',
+      'Gating carried over: nothing to expand, and elements that already offer a specific next action, get no dive point',
+      'The fragment is delimited and labelled as quoted data — it often originates from the customer website or a contract',
+      'Retrieval re-runs scoped to the fragment rather than to the whole case',
+      'Every dive is a timeline event, so the case shows what was asked about',
+    ],
+    verify: 'pnpm test:evals -- dive-points && pnpm test:adversarial -- dive-injection',
+    notes: 'The mechanism in GDPRchat is about fifteen lines because the conversation already holds the context. Ours has to build turn zero, and that is the whole task.',
+  },
   // ---------------------------------------------------------------- TESTING
   {
     id: 'T-01', stream: 'T', phase: 2, est: 'L', depends: ['F-07'],
