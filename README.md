@@ -35,3 +35,18 @@ parallel agents never collide in git.
 The plan starts with a **non-functional UI** — every screen clickable, nothing behind it —
 which Frits reviews and signs off (`X-10`) before any engine code is written. The dependency
 graph enforces it: `F-01` depends on `X-10`. Don't route around the gate.
+
+## The prototype (phase 0)
+
+```bash
+node apps/prototype/smoke.mjs     # 79 assertions across all ten screens
+node apps/prototype/build.mjs     # → apps/prototype/dist/prototype.html
+```
+
+That output is a single self-contained file — open it from disk, or host it anywhere.
+Ten screens driven by `fixtures/companies/eksempelbutik.json`, which phase 2 adopts as a
+test fixture unchanged. Nothing is wired to anything; controls that would do something
+say so when you press them.
+
+`X-01`–`X-09` are done. `X-10` — Frits's sign-off — is open, and phase 1 stays blocked
+until it closes.

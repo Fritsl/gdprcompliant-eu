@@ -1,0 +1,627 @@
+{
+  "_comment": "X-02 · The mock case dataset. Drives every prototype screen, and is shaped to the real contracts so phase 2 can adopt it as a test fixture unchanged. Fictional company; every number here is invented.",
+
+  "company": {
+    "domain": "eksempelbutik.dk",
+    "legalName": "Eksempelbutik ApS",
+    "country": "DK",
+    "locale": "da",
+    "sector": "Retail trade via mail order houses or internet",
+    "sectorCode": "47.91.10",
+    "headcountBand": "10–49",
+    "registry": "Det Centrale Virksomhedsregister",
+    "sellsService": true,
+    "entities": 1
+  },
+
+  "case": {
+    "id": "DK-26-0M4K",
+    "opened": "2026-09-03T09:14:00Z",
+    "owner": { "name": "Mette", "role": "Marketing" },
+    "participants": 4,
+    "watched": true,
+    "lane": "self-serve",
+    "laneScore": 34
+  },
+
+  "checks": { "run": 23, "passed": 11 },
+
+  "track": [
+    { "key": "opened",     "label": "Opened",     "sub": "3 Sep, 09:14" },
+    { "key": "assessed",   "label": "Assessed",   "sub": "12 findings, 12 fixes" },
+    { "key": "working",    "label": "Working",    "sub": "5 of 12 closed" },
+    { "key": "documented", "label": "Documented", "sub": "register, policy, DPA" },
+    { "key": "watched",    "label": "Watched",    "sub": "weekly, ongoing" }
+  ],
+
+  "findings": [
+    {
+      "id": "CNS-02",
+      "title": "Rejecting all cookies leaves 9 of 14 trackers running",
+      "severity": "blocking",
+      "area": "Consent",
+      "closesIn": "working",
+      "why": "When someone refuses, the site keeps loading the same third parties it loads for someone who agreed. The refusal is recorded in your banner but never acted on, so nine companies still receive data about that visitor.",
+      "citations": [
+        { "instrument": "ePrivacy", "ref": "Art. 5(3)", "note": "consent before storage or access" },
+        { "instrument": "GDPR", "ref": "Art. 7(3)", "note": "withdrawal as easy as consent" }
+      ],
+      "evidence": {
+        "kind": "diff",
+        "caption": "Pass B (reject all) vs Pass C (accept all) — 9 hosts identical",
+        "rows": [
+          ["connect.facebook.net", "loaded", "loaded", "identical"],
+          ["www.google-analytics.com", "loaded", "loaded", "identical"],
+          ["static.hotjar.com", "loaded", "loaded", "identical"],
+          ["www.clarity.ms", "loaded", "loaded", "identical"],
+          ["googleads.g.doubleclick.net", "loaded", "loaded", "identical"],
+          ["snap.licdn.com", "loaded", "loaded", "identical"],
+          ["analytics.tiktok.com", "loaded", "loaded", "identical"],
+          ["cdn.pdst.fm", "loaded", "loaded", "identical"],
+          ["bat.bing.com", "loaded", "loaded", "identical"],
+          ["consent.cookiebot.com", "loaded", "loaded", "essential"],
+          ["fonts.gstatic.com", "loaded", "loaded", "see VND-06"]
+        ]
+      },
+      "remedy": {
+        "kind": "self_fix",
+        "title": "Move the tags behind the consent state",
+        "effort": "About 20 minutes",
+        "detail": "Your tags fire on page load rather than on the consent event. Wrap each non-essential tag in a consent check and re-publish. The snippet below is the pattern for the container you are using.",
+        "snippet": "// before — fires immediately\nloadTag('analytics');\n\n// after — waits for a real decision\nwindow.addEventListener('CookieConsentDecision', (e) => {\n  if (e.detail.categories.includes('statistics')) loadTag('analytics');\n});",
+        "verifyLabel": "Re-check this finding"
+      }
+    },
+    {
+      "id": "DPA-01",
+      "title": "You sell a service but publish no data processing agreement",
+      "severity": "blocking",
+      "area": "Contracts",
+      "closesIn": "watched",
+      "why": "Your customers hand you their customers' personal data, which makes you their processor. They are required to have an agreement with you covering it, and right now there is nothing on your site for them to sign or accept.",
+      "citations": [
+        { "instrument": "GDPR", "ref": "Art. 28(3)", "note": "required content of a processor agreement" }
+      ],
+      "evidence": {
+        "kind": "text",
+        "caption": "/vilkaar and /handelsbetingelser fetched — no Article 28 terms found",
+        "lines": [
+          "GET /vilkaar → 200 · 8,412 bytes · da",
+          "searched for: instruction · confidentiality · sub-processor · breach notification · deletion · audit",
+          "matched: none",
+          "GET /handelsbetingelser → 200 · consumer terms only"
+        ]
+      },
+      "remedy": {
+        "kind": "generated_artefact",
+        "title": "Generate your processing agreement and sub-processor page",
+        "effort": "One click, then a review",
+        "detail": "We can draft both from what this case already knows — your vendors, where they sit, and what they handle. You review, a named person signs, and it publishes to your own site.",
+        "cta": "Preview the draft",
+        "verifyLabel": "Re-check once published"
+      }
+    },
+    {
+      "id": "SEC-02",
+      "title": "Contact form posts through an HTTP redirect before reaching TLS",
+      "severity": "blocking",
+      "area": "Security",
+      "closesIn": "working",
+      "why": "The form submits to an address that redirects. For the length of that first request the message and the sender's details travel unencrypted, which anyone on the same network can read.",
+      "citations": [
+        { "instrument": "GDPR", "ref": "Art. 32(1)", "note": "appropriate technical measures" }
+      ],
+      "evidence": {
+        "kind": "text",
+        "caption": "Observed on /kontakt",
+        "lines": [
+          "POST http://eksempelbutik.dk/kontakt/send",
+          "  → 301 Moved Permanently",
+          "  → https://eksempelbutik.dk/kontakt/send",
+          "form fields in the first request: navn, email, telefon, besked"
+        ]
+      },
+      "remedy": {
+        "kind": "self_fix",
+        "title": "Point the form at the https address and add HSTS",
+        "effort": "About 5 minutes",
+        "detail": "Change the form action to the https address so nothing is sent over the redirect, then add the header below so browsers never try http again.",
+        "snippet": "# nginx\nadd_header Strict-Transport-Security \"max-age=63072000; includeSubDomains\" always;",
+        "verifyLabel": "Re-check this finding"
+      }
+    },
+    {
+      "id": "AI-03",
+      "title": "Staff are pasting customer data into a US chat assistant",
+      "severity": "serious",
+      "area": "Transfers",
+      "closesIn": "watched",
+      "why": "You told us four people use it for customer correspondence. That sends customer names, addresses and order details to a processor you have no agreement with, in a country outside the EEA.",
+      "citations": [
+        { "instrument": "GDPR", "ref": "Art. 28", "note": "processing without an agreement" },
+        { "instrument": "GDPR", "ref": "Art. 44", "note": "general principle for transfers" }
+      ],
+      "evidence": {
+        "kind": "answer",
+        "caption": "From your own answer on 4 September",
+        "lines": [
+          "Question: Do staff use AI assistants with customer data?",
+          "Answer: Yes — about 4 people, for writing customer replies",
+          "Answered by Mette · 4 Sep 08:22"
+        ]
+      },
+      "remedy": {
+        "kind": "our_product",
+        "title": "Move those four people to GDPR Chat",
+        "effort": "Same day",
+        "detail": "Same experience your staff already know, hosted in the EU, with a processing agreement and no training on your content. This is our own product — we are telling you that plainly.",
+        "cta": "See what it would cost",
+        "alternativeNote": "There is no free fix for this one. If you would rather not use ours, we list three European alternatives.",
+        "verifyLabel": "Mark as handled"
+      }
+    },
+    {
+      "id": "TRF-01",
+      "title": "Mail and files sit with a US-parented provider",
+      "severity": "serious",
+      "area": "Transfers",
+      "closesIn": "watched",
+      "why": "Your mail and document storage are with a provider whose ultimate parent is established in the United States. European data residency does not change which courts can compel that parent, and your policy names no basis for the transfer.",
+      "citations": [
+        { "instrument": "GDPR", "ref": "Art. 44–49", "note": "transfers to third countries" }
+      ],
+      "evidence": {
+        "kind": "text",
+        "caption": "From your DNS records",
+        "lines": [
+          "MX  eksempelbutik-dk.mail.protection.outlook.com  (priority 0)",
+          "TXT MS=ms84213907",
+          "TXT v=spf1 include:spf.protection.outlook.com include:servers.mcsv.net -all",
+          "contracting entity: EU · ultimate parent: US"
+        ]
+      },
+      "remedy": {
+        "kind": "partner_alternative",
+        "title": "Compare European alternatives",
+        "effort": "A decision, not a task",
+        "detail": "This is a choice with real trade-offs and switching cost. Three European-owned options we have checked, with what each would and would not solve.",
+        "options": [
+          "Mailbox provider, DE — mail only, keeps your files where they are",
+          "Collaboration suite, FR — mail and files, migration tooling included",
+          "Collaboration suite, DE — mail and files, on-premise option"
+        ],
+        "verifyLabel": "Re-check after a change"
+      }
+    },
+    {
+      "id": "REC-01",
+      "title": "Session replay records what people type on the checkout page",
+      "severity": "serious",
+      "area": "Observation",
+      "closesIn": "watched",
+      "why": "A replay tool is active on the checkout with input masking switched off. It captures keystrokes as they are typed — including the address and card fields — before anyone presses submit.",
+      "citations": [
+        { "instrument": "GDPR", "ref": "Art. 6", "note": "lawfulness of processing" },
+        { "instrument": "GDPR", "ref": "Art. 35", "note": "impact assessment for systematic monitoring" }
+      ],
+      "evidence": {
+        "kind": "text",
+        "caption": "Observed on /kassen",
+        "lines": [
+          "www.clarity.ms/tag/... loaded on pass A (before any consent)",
+          "config: maskAllInputs = false",
+          "fields in scope: navn, adresse, postnr, email, telefon, kortnummer"
+        ]
+      },
+      "remedy": {
+        "kind": "self_fix",
+        "title": "Turn masking on and exclude the checkout",
+        "effort": "About 10 minutes",
+        "detail": "Two changes: mask all input by default, and stop the tool loading on the checkout path entirely. The second is the one that matters.",
+        "snippet": "// mask everything, then exclude the checkout entirely\nwindow.clarity('set', 'maskAllInputs', true);\nif (location.pathname.startsWith('/kassen')) {\n  /* do not load the replay tag at all */\n}",
+        "verifyLabel": "Re-check this finding"
+      }
+    },
+    {
+      "id": "POL-04",
+      "title": "Your privacy policy states no retention period for anything",
+      "severity": "serious",
+      "area": "Notice",
+      "closesIn": "watched",
+      "why": "People are entitled to know how long you keep their data, for each purpose. Your policy describes what you collect and why, but never says for how long.",
+      "citations": [
+        { "instrument": "GDPR", "ref": "Art. 13(2)(a)", "note": "storage period must be stated" }
+      ],
+      "evidence": {
+        "kind": "text",
+        "caption": "/privatlivspolitik · 2,140 words · searched for a stated duration",
+        "lines": [
+          "matched: none",
+          "searched: opbevar* · slet* · periode · år · måneder · retention",
+          "nearest text: \"Vi opbevarer dine oplysninger så længe det er nødvendigt.\"",
+          "that phrase is not a period"
+        ]
+      },
+      "remedy": {
+        "kind": "generated_artefact",
+        "title": "Rewrite the section from your register",
+        "effort": "One click, after two answers",
+        "detail": "We need two things from you first — how long you keep orders, and how long you keep newsletter sign-ups. Then this section writes itself from your register rather than from a template.",
+        "cta": "Answer the two questions",
+        "verifyLabel": "Re-check once published"
+      }
+    },
+    {
+      "id": "VND-06",
+      "title": "Web fonts load from a US endpoint, sending every visitor's IP address",
+      "severity": "serious",
+      "area": "Recipients",
+      "closesIn": "working",
+      "why": "Two fonts are fetched from an external host on every page load. That transmits each visitor's IP address to a third party before they have agreed to anything, and a German court has awarded damages over exactly this.",
+      "citations": [
+        { "instrument": "Case law", "ref": "LG München I, 3 O 17493/20", "note": "damages for embedded web fonts" }
+      ],
+      "evidence": {
+        "kind": "text",
+        "caption": "Four requests on pass A, before any interaction",
+        "lines": [
+          "GET https://fonts.googleapis.com/css2?family=Inter...",
+          "GET https://fonts.gstatic.com/s/inter/v13/...woff2",
+          "GET https://fonts.gstatic.com/s/inter/v13/...woff2",
+          "GET https://fonts.gstatic.com/s/lora/v32/...woff2"
+        ]
+      },
+      "remedy": {
+        "kind": "self_fix",
+        "title": "Self-host the two fonts",
+        "effort": "About 15 minutes",
+        "detail": "Download the two families, put them beside your stylesheet, and declare them locally. Nothing leaves your server and the page gets slightly faster.",
+        "snippet": "@font-face {\n  font-family: 'Inter';\n  src: url('/fonts/inter-v13.woff2') format('woff2');\n  font-display: swap;\n}",
+        "verifyLabel": "Re-check this finding"
+      }
+    },
+    {
+      "id": "POL-09",
+      "title": "No mention of the right to complain to Datatilsynet",
+      "severity": "advisory",
+      "area": "Notice",
+      "closesIn": "working",
+      "why": "Your policy lists most of the rights people have, but omits the right to lodge a complaint with the supervisory authority, which has to be stated.",
+      "citations": [
+        { "instrument": "GDPR", "ref": "Art. 13(2)(d)", "note": "right to lodge a complaint" }
+      ],
+      "evidence": {
+        "kind": "text",
+        "caption": "/privatlivspolitik · rights section",
+        "lines": [
+          "present: indsigt · berigtigelse · sletning · begrænsning · dataportabilitet",
+          "absent: klage til tilsynsmyndighed",
+          "absent: tilbagetrækning af samtykke"
+        ]
+      },
+      "remedy": {
+        "kind": "generated_artefact",
+        "title": "Add the two missing paragraphs",
+        "effort": "One click",
+        "detail": "Two paragraphs, in Danish, naming the right authority for your country and the correct way to withdraw consent for your setup.",
+        "cta": "Preview the text",
+        "verifyLabel": "Re-check once published"
+      }
+    },
+    {
+      "id": "FRM-02",
+      "title": "Newsletter sign-up is bundled with accepting the terms",
+      "severity": "advisory",
+      "area": "Collection",
+      "closesIn": "working",
+      "why": "One checkbox at checkout covers both agreeing to the terms and joining the newsletter. Consent to marketing has to be a separate, freely given choice.",
+      "citations": [
+        { "instrument": "GDPR", "ref": "Art. 4(11)", "note": "freely given, specific consent" }
+      ],
+      "evidence": {
+        "kind": "text",
+        "caption": "/kassen · single input covering two purposes",
+        "lines": [
+          "<input type=\"checkbox\" id=\"accept\" required>",
+          "label: \"Jeg accepterer handelsbetingelserne og vil gerne modtage nyhedsbrevet\"",
+          "required = true — the order cannot be placed without also joining"
+        ]
+      },
+      "remedy": {
+        "kind": "self_fix",
+        "title": "Split it into two checkboxes",
+        "effort": "About 10 minutes",
+        "detail": "Terms stays required. The newsletter becomes a second, optional, unticked box. Your list gets smaller and considerably more valuable.",
+        "snippet": "<label><input type=\"checkbox\" required> Jeg accepterer handelsbetingelserne</label>\n<label><input type=\"checkbox\"> Ja tak til nyhedsbrevet</label>",
+        "verifyLabel": "Re-check this finding"
+      }
+    },
+    {
+      "id": "SUB-03",
+      "title": "No sub-processor list published",
+      "severity": "advisory",
+      "area": "Contracts",
+      "closesIn": "watched",
+      "why": "Your own customers need to know who else touches their data through you, and to be told when that changes. We have already mapped 21 of them from your vendors' own documents.",
+      "citations": [
+        { "instrument": "GDPR", "ref": "Art. 28(2)", "note": "authorisation for sub-processors" }
+      ],
+      "evidence": {
+        "kind": "text",
+        "caption": "Supply chain mapped from published documents",
+        "lines": [
+          "21 sub-processors found across 3 levels",
+          "8 direct · 11 second level · 2 third level",
+          "9 established outside the EEA",
+          "source: each vendor's own published list, dated"
+        ]
+      },
+      "remedy": {
+        "kind": "generated_artefact",
+        "title": "Publish the list we already built",
+        "effort": "One click, then a review",
+        "detail": "It stays current — when a vendor changes their own list, this case notices and tells you.",
+        "cta": "See the supply chain",
+        "verifyLabel": "Re-check once published"
+      }
+    },
+    {
+      "id": "VND-11",
+      "title": "One third-party host could not be identified",
+      "severity": "advisory",
+      "area": "Recipients",
+      "closesIn": null,
+      "why": "Something on your site loads from a host we cannot trace to a company. We are not going to guess. Until someone identifies it, you cannot list it in your policy or your register, and neither can we.",
+      "citations": [],
+      "evidence": {
+        "kind": "text",
+        "caption": "Unresolved after registry, WHOIS and certificate lookup",
+        "lines": [
+          "host: cdn-edge-7742.b-cdn-static.net",
+          "loaded on: /produkter, /kassen",
+          "registrar privacy service · no organisation on certificate",
+          "not present in our vendor registry"
+        ]
+      },
+      "remedy": {
+        "kind": "no_solution",
+        "title": "We have no good answer to this yet",
+        "effort": "Logged",
+        "detail": "There is no reliable public way to attribute an anonymised CDN host. We have written this down with your sector and country. If it turns out that thousands of European companies have the same unanswerable question, that is what tells us to go and build something for it.",
+        "askLabel": "Do you know what this is?",
+        "verifyLabel": null
+      }
+    }
+  ],
+
+  "newInWatch": {
+    "id": "CNS-09",
+    "title": "A new tracker appeared on the checkout page",
+    "severity": "serious",
+    "area": "Consent",
+    "why": "Something added a tag to /kassen on Tuesday that was not there last week. It fires before any consent.",
+    "citations": [ { "instrument": "ePrivacy", "ref": "Art. 5(3)", "note": "consent before storage or access" } ],
+    "evidence": {
+      "kind": "text",
+      "caption": "Weekly watch · 11 Sep vs 4 Sep",
+      "lines": [
+        "new on /kassen: analytics.tiktok.com",
+        "first seen: 8 Sep, between 14:00 and 22:00",
+        "fires on pass A — before any interaction"
+      ]
+    },
+    "remedy": {
+      "kind": "self_fix",
+      "title": "Ask who added it, then gate it like the others",
+      "effort": "About 20 minutes",
+      "detail": "This is the ordinary way compliance decays. Somebody in marketing added a pixel for a campaign. It needs the same consent gate as the rest.",
+      "verifyLabel": "Re-check this finding"
+    }
+  },
+
+  "undetermined": [
+    {
+      "id": "POL-11",
+      "title": "Whether your policy names a legal basis for marketing",
+      "reason": "The section describes marketing but the wording is ambiguous about whether it relies on consent or on legitimate interests. We will not guess which — the answer changes what you have to offer people.",
+      "resolve": "One question, or a lawyer's eye"
+    },
+    {
+      "id": "SEC-07",
+      "title": "Whether old customer records are actually deleted",
+      "reason": "Nothing a visitor's browser can see would tell us. It needs either an answer from you or a look at the system.",
+      "resolve": "Ask IT, or connect the system read-only"
+    }
+  ],
+
+  "timeline": [
+    { "at": "3 Sep 09:14", "actor": "scanner",  "text": "Case opened from the public scanner", "detail": "23 checks · 12 findings · every one with a fix", "state": "opened" },
+    { "at": "3 Sep 09:31", "actor": "Mette",    "text": "Reject path fixed", "detail": "CNS-02 · verified by re-scan", "closed": true, "state": "working" },
+    { "at": "3 Sep 09:48", "actor": "Mette",    "text": "Contact form moved to https", "detail": "SEC-02 · verified by re-scan", "closed": true, "state": "working" },
+    { "at": "3 Sep 11:02", "actor": "Lars",     "text": "Lars (IT) joined the case", "detail": "took 4 items", "state": "working" },
+    { "at": "3 Sep 14:40", "actor": "agent",    "text": "Supply chain mapped", "detail": "3 levels · 21 sub-processors · 9 outside the EEA", "state": "working" },
+    { "at": "3 Sep 16:05", "actor": "Lars",     "text": "Fonts self-hosted", "detail": "VND-06 · verified by re-scan", "closed": true, "state": "working" },
+    { "at": "4 Sep 08:20", "actor": "Mette",    "text": "Newsletter opt-in separated at checkout", "detail": "FRM-02 · verified by re-scan", "closed": true, "state": "working" },
+    { "at": "4 Sep 08:22", "actor": "Mette",    "text": "Answered: yes, staff use an AI assistant with customer data", "detail": "opened 2 new checks", "state": "working" },
+    { "at": "4 Sep 09:10", "actor": "Sofie",    "text": "Sofie (Finance) joined the case", "detail": "took 4 items", "state": "working" },
+    { "at": "5 Sep 10:33", "actor": "agent",    "text": "Rights paragraphs added to the policy", "detail": "POL-09 · signed off by Mette", "closed": true, "state": "working" },
+    { "at": "8 Sep 13:20", "actor": "Sofie",    "text": "Processing agreement published at /vilkaar", "detail": "DPA-01 · signed off by Sofie", "closed": true, "state": "watched" },
+    { "at": "8 Sep 13:21", "actor": "agent",    "text": "Sub-processor list published", "detail": "SUB-03 · 21 entries, kept current", "closed": true, "state": "watched" },
+    { "at": "9 Sep 15:02", "actor": "Lars",     "text": "Session replay removed from the checkout", "detail": "REC-01 · verified by re-scan", "closed": true, "state": "watched" },
+    { "at": "10 Sep 11:40","actor": "Mette",    "text": "Staff moved to an EU assistant", "detail": "AI-03 · 4 seats", "closed": true, "state": "watched" },
+    { "at": "10 Sep 16:15","actor": "Sofie",    "text": "Retention periods set and policy rewritten", "detail": "POL-04 · signed off by Sofie", "closed": true, "state": "watched" },
+    { "at": "11 Sep 06:00","actor": "watcher",  "text": "Weekly watch: a new tracker appeared on /kassen", "detail": "CNS-09 · assigned to Mette", "alert": true, "state": "watched" }
+  ],
+
+  "questions": [
+    {
+      "id": "Q1",
+      "text": "You run Microsoft 365. Do your customer files sit in SharePoint or OneDrive?",
+      "why": "It decides whether your file storage belongs in the register as a separate processing activity, and whether the transfer question applies to files as well as mail.",
+      "unlocks": "3 checks",
+      "options": ["Yes", "No", "Check it for me"]
+    },
+    {
+      "id": "Q2",
+      "text": "Do staff use AI assistants with customer data?",
+      "why": "If yes, that is a processor you almost certainly have no agreement with, and it is usually outside the EEA.",
+      "unlocks": "2 checks",
+      "answered": "Yes — about 4 people",
+      "options": ["Yes", "No", "Not sure"]
+    },
+    {
+      "id": "Q3",
+      "text": "How long do you keep customer orders after the last purchase?",
+      "why": "Your policy has to state a period, and Danish bookkeeping law sets a floor you cannot go below. We will reconcile the two.",
+      "unlocks": "POL-04 and the register",
+      "options": ["5 years", "As long as the account exists", "I don't know"]
+    },
+    {
+      "id": "Q4",
+      "text": "Who should receive requests from people asking for their data?",
+      "why": "You need a named route with a one-month clock. Right now requests would arrive at a shared inbox nobody owns.",
+      "unlocks": "the request inbox",
+      "options": ["Mette", "Sofie", "Someone else"]
+    }
+  ],
+
+  "roles": [
+    {
+      "who": "Marketing", "person": "Mette", "eta": "~15 min", "done": 3, "auto": 3,
+      "items": [
+        { "text": "Confirm which tracking tools are still in use", "kind": "confirm", "done": true },
+        { "text": "Fix the reject path so refusing actually refuses", "kind": "fix", "done": true },
+        { "text": "Separate the newsletter opt-in at checkout", "kind": "fix", "done": true },
+        { "text": "Approve the new cookie text", "kind": "approve", "done": false }
+      ]
+    },
+    {
+      "who": "IT / Operations", "person": "Lars", "eta": "~30 min", "done": 2, "auto": 1,
+      "items": [
+        { "text": "Confirm the 14 services we found in your DNS records", "kind": "confirm", "done": true },
+        { "text": "Self-host the two web fonts", "kind": "fix", "done": true },
+        { "text": "Remove session replay from the checkout", "kind": "fix", "done": false },
+        { "text": "Set a deletion job for orders older than the retention period", "kind": "fix", "done": false }
+      ]
+    },
+    {
+      "who": "HR", "person": "not yet invited", "eta": "~20 min", "done": 0, "auto": 2,
+      "items": [
+        { "text": "Approve the staff privacy notice we drafted", "kind": "approve", "done": false },
+        { "text": "Set how long job applications are kept", "kind": "answer", "done": false },
+        { "text": "Confirm the payroll provider", "kind": "confirm", "done": false },
+        { "text": "Flag any staff monitoring tools in use", "kind": "answer", "done": false }
+      ]
+    },
+    {
+      "who": "Finance / Legal", "person": "Sofie", "eta": "~25 min", "done": 2, "auto": 2,
+      "items": [
+        { "text": "Confirm which vendors you have a signed agreement with", "kind": "confirm", "done": true },
+        { "text": "Review and sign the processing agreement", "kind": "approve", "done": true },
+        { "text": "Resolve the bookkeeping vs erasure conflict", "kind": "answer", "done": false },
+        { "text": "Nominate who answers data requests", "kind": "answer", "done": false }
+      ]
+    }
+  ],
+
+  "supplyChain": {
+    "levels": ["Eksempelbutik", "Direct processors", "Sub-processors", "Third level"],
+    "nodes": [
+      { "id": "you",  "label": "Eksempelbutik ApS", "level": 0, "juris": "DK" },
+      { "id": "ms",   "label": "Mail & files suite", "level": 1, "juris": "IE", "parent": "US" },
+      { "id": "shop", "label": "Webshop platform",   "level": 1, "juris": "CA" },
+      { "id": "pay",  "label": "Payment provider",   "level": 1, "juris": "DK" },
+      { "id": "mail", "label": "Newsletter tool",    "level": 1, "juris": "US" },
+      { "id": "desk", "label": "Support desk",       "level": 1, "juris": "IE", "parent": "US" },
+      { "id": "ship", "label": "Shipping broker",    "level": 1, "juris": "DK" },
+      { "id": "acct", "label": "Accounting system",  "level": 1, "juris": "DK" },
+      { "id": "host", "label": "Hosting",            "level": 1, "juris": "DE" },
+      { "id": "aws",  "label": "Cloud infrastructure", "level": 2, "juris": "IE", "parent": "US" },
+      { "id": "cdn",  "label": "Content delivery",   "level": 2, "juris": "US" },
+      { "id": "sms",  "label": "SMS gateway",        "level": 2, "juris": "SE" },
+      { "id": "obs",  "label": "Error monitoring",   "level": 2, "juris": "US" },
+      { "id": "kyc",  "label": "Identity checks",    "level": 2, "juris": "DK" },
+      { "id": "arch", "label": "Backup archive",     "level": 2, "juris": "DE" },
+      { "id": "trns", "label": "Translation service", "level": 2, "juris": "DE" },
+      { "id": "carr", "label": "Carriers (4)",       "level": 2, "juris": "DK" },
+      { "id": "dc1",  "label": "Data centre",        "level": 3, "juris": "IE" },
+      { "id": "dc2",  "label": "Data centre",        "level": 3, "juris": "SE" }
+    ],
+    "edges": [
+      ["you","ms"],["you","shop"],["you","pay"],["you","mail"],["you","desk"],["you","ship"],["you","acct"],["you","host"],
+      ["ms","aws"],["shop","aws"],["shop","cdn"],["shop","obs"],["mail","aws"],["mail","cdn"],
+      ["desk","aws"],["desk","sms"],["pay","kyc"],["ship","carr"],["acct","arch"],["host","arch"],["desk","trns"],
+      ["aws","dc1"],["arch","dc2"]
+    ]
+  },
+
+  "artefact": {
+    "title": "Databehandleraftale",
+    "subtitle": "Eksempelbutik ApS as processor · generated from case DK-26-0M4K",
+    "generatedFrom": "12 register entries · 21 mapped sub-processors · 4 answers you gave",
+    "sections": [
+      { "h": "1 · Parties and subject matter", "traces": "register · company entity", "body": "Identifies the controller and Eksempelbutik ApS as processor, and states that processing is carried out only on documented instructions." },
+      { "h": "2 · Nature and purpose", "traces": "3 register entries", "body": "Order handling, customer correspondence and delivery, for the duration of the customer relationship." },
+      { "h": "3 · Categories of data and data subjects", "traces": "form inventory · register", "body": "Name, address, email, telephone, order history. Data subjects are the controller's own customers." },
+      { "h": "4 · Confidentiality and security", "traces": "security findings", "body": "Personnel bound to confidentiality; measures listed by reference to the current state of the case, including the two items still open." },
+      { "h": "5 · Sub-processors", "traces": "21 mapped entries", "body": "General authorisation with 30 days' notice of change, and the current list published and dated at /underdatabehandlere." },
+      { "h": "6 · Transfers", "traces": "9 non-EEA recipients", "body": "Standard contractual clauses annexed for each recipient outside the EEA, with the transfer assessment referenced." },
+      { "h": "7 · Assistance, breach and deletion", "traces": "register · retention answers", "body": "Assistance with requests, notification without undue delay and in any event within 48 hours, deletion or return at the end of the relationship." }
+    ],
+    "gaps": [
+      "Section 4 will name two security measures as still open until REC-01 and the deletion job are closed."
+    ],
+    "signoff": { "required": true, "who": "Sofie", "role": "Finance / Legal", "note": "A named person has to sign this before it can be published. This is not legal advice — have your lawyer read it." }
+  },
+
+  "trust": {
+    "headline": "Eksempelbutik ApS · privacy work in progress",
+    "updated": "11 September 2026",
+    "caseRef": "DK-26-0M4K",
+    "statement": "We check this website and our data practices continuously. This page shows what has been done and when. It is not a certification and nobody has approved it.",
+    "closed": [
+      { "text": "Refusing cookies now genuinely stops all non-essential tracking", "on": "3 Sep" },
+      { "text": "Contact form moved fully to encrypted transport", "on": "3 Sep" },
+      { "text": "Web fonts self-hosted — no visitor IP leaves our servers", "on": "3 Sep" },
+      { "text": "Newsletter consent separated from accepting terms", "on": "4 Sep" },
+      { "text": "Processing agreement and sub-processor list published", "on": "8 Sep" },
+      { "text": "Session replay removed from the checkout", "on": "9 Sep" },
+      { "text": "Staff assistant moved to an EU-hosted service", "on": "10 Sep" },
+      { "text": "Retention periods set for every purpose", "on": "10 Sep" }
+    ],
+    "openNote": "Two items are open and being worked on. We do not list open items here — our customers can ask us and we will tell them.",
+    "cta": "Check your own website"
+  },
+
+  "internal": {
+    "brief": {
+      "headline": "Eksempelbutik ApS · DK-26-0M4K",
+      "lane": "Self-serve",
+      "score": 34,
+      "signals": [
+        ["Headcount band", "10–49", "low"],
+        ["Sector", "Online retail", "low"],
+        ["Subdomains", "6", "low"],
+        ["Enterprise systems", "None detected", "low"],
+        ["Entities / countries", "1 / 1", "low"],
+        ["Regulated sector", "No", "low"]
+      ],
+      "read": "Small online retailer, no budget signals. Serve them completely through the automated product and ask for the referral when something closes. Do not assign a consultant.",
+      "visible": "This case has been opened by Frits AI twice. Both are on the customer's timeline."
+    },
+    "queue": [
+      { "case": "DK-26-0M4K", "company": "Eksempelbutik ApS", "lane": "Self-serve", "score": 34, "open": 2, "hook": "—", "why": "Small retailer, no budget signals" },
+      { "case": "DE-26-1QR8", "company": "Nordbach Logistik GmbH", "lane": "Human", "score": 81, "open": 17, "hook": "AI-03 · staff using US assistant with driver data", "why": "240 staff, works council, 3 entities" },
+      { "case": "DK-26-0N19", "company": "Revisionshuset A/S", "lane": "Human", "score": 76, "open": 22, "hook": "TRF-01 · client files in a US-parented suite", "why": "Accounting firm, regulated, client confidentiality" },
+      { "case": "NL-26-04TZ", "company": "Zorgpunt Groep BV", "lane": "Human", "score": 88, "open": 31, "hook": "REC-01 · replay active on a patient intake form", "why": "Health data, 600 staff, impact assessment overdue" },
+      { "case": "DK-26-0P52", "company": "Bygma Digital ApS", "lane": "Self-serve", "score": 41, "open": 6, "hook": "—", "why": "Borderline — recheck if headcount grows" }
+    ]
+  },
+
+  "demandLedger": [
+    { "gap": "Attributing anonymised CDN hosts to a legal entity", "seen": 1847, "sectors": "all", "answer": "none" },
+    { "gap": "EU-hosted session replay with real masking guarantees", "seen": 1204, "sectors": "retail, health", "answer": "none" },
+    { "gap": "Reconciling national bookkeeping law with erasure requests", "seen": 980, "sectors": "retail, professional services", "answer": "partial" },
+    { "gap": "Shadow AI use with no processor agreement", "seen": 3391, "sectors": "all", "answer": "ours" }
+  ]
+}
