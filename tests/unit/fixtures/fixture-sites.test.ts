@@ -22,7 +22,7 @@ const expected = (over: Record<string, unknown> = {}) =>
 
 describe('the fixture estate (F-07)', () => {
   it('every fixture loads, validates, and names a site among its hosts', () => {
-    expect(sites.map((s) => s.name)).toEqual(['clean-brochure', 'reject-not-honoured']);
+    expect(sites.map((s) => s.name)).toEqual(['clean-brochure', 'lazy-tracker', 'reject-not-honoured']);
     for (const s of sites) {
       expect(s.hosts.map((h) => h.host)).toContain(s.expected.site);
       expect(externalReferences(s)).toEqual([]);

@@ -1,38 +1,48 @@
-import { chromium, type Browser, type Page } from 'playwright';
+import { chromium, type Browser } from 'playwright';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-import { FixtureServer, loadFixtureSites, type FixtureSite } from '@gc/scanner';
+import {
+  BrowserPool,
+  FixtureServer,
+  collectPassA,
+  loadFixtureSites,
+  type FixtureSite,
+} from '@gc/scanner';
 
 // The fixture estate, end to end: every host served by the fixture server, a real
-// Chromium sent through it as its proxy, and each fixture's first-load network
-// expectation checked against what the browser actually requested. Nothing reaches the
-// internet: a stranger gets a 502, TLS gets refused.
+// Chromium sent through it as its proxy, and each fixture's first-load expectation
+// checked against what Pass A actually captured. Nothing reaches the internet: a
+// stranger gets a 502, TLS gets refused.
 
 const sites = loadFixtureSites();
 let server: FixtureServer;
 let browser: Browser;
+let pool: BrowserPool;
 
 beforeAll(async () => {
   server = await new FixtureServer(sites.flatMap((s) => s.hosts)).start();
   browser = await chromium.launch({ proxy: { server: server.proxy } });
+  pool = await new BrowserPool({
+    concurrency: 2,
+    passTimeoutMs: 30_000,
+    navigationTimeoutMs: 10_000,
+    launch: { proxy: { server: server.proxy } },
+  }).start();
 });
 
 afterAll(async () => {
+  await pool?.stop();
   await browser?.close();
   await server?.stop();
 });
 
-async function firstLoad(
-  site: FixtureSite,
-): Promise<{ page: Page; hosts: Set<string>; failed: string[] }> {
-  const context = await browser.newContext();
-  const page = await context.newPage();
-  const hosts = new Set<string>();
-  const failed: string[] = [];
-  page.on('request', (r) => hosts.add(new URL(r.url()).hostname));
-  page.on('requestfailed', (r) => failed.push(`${r.url()} ${r.failure()?.errorText ?? ''}`));
-  const response = await page.goto(`http://${site.expected.site}/`, { waitUntil: 'networkidle' });
-  expect(response?.status(), site.name).toBe(200);
-  return { page, hosts, failed };
+async function firstLoad(site: FixtureSite) {
+  const { capture } = await collectPassA(pool, { url: `http://${site.expected.site}/` });
+  expect(capture.status, site.name).toBe(200);
+  return {
+    capture,
+    hosts: new Set(capture.requests.map((r) => r.host)),
+    failed: capture.requests.filter((r) => r.failed).map((r) => `${r.url} ${r.failed}`),
+  };
 }
 
 describe('fixture sites through the proxy (F-07)', () => {
@@ -44,7 +54,7 @@ describe('fixture sites through the proxy (F-07)', () => {
 
   for (const site of sites) {
     it(`${site.name}: the first load contacts exactly what expected.json says`, async () => {
-      const { page, hosts, failed } = await firstLoad(site);
+      const { hosts, failed } = await firstLoad(site);
       const { mustContact, mustNotContact } = site.expected.network.firstLoad;
       for (const h of mustContact) expect(hosts, `${site.name} never contacted ${h}`).toContain(h);
       for (const h of mustNotContact) expect(hosts, `${site.name} contacted ${h}`).not.toContain(h);
@@ -52,32 +62,33 @@ describe('fixture sites through the proxy (F-07)', () => {
       const own = new Set(site.hosts.map((h) => h.host));
       for (const h of hosts) expect(own.has(h), `${site.name} reached ${h}`).toBe(true);
       expect(failed).toEqual([]);
-      await page.context().close();
     });
   }
 
   it('the reference fixture actually has the bug: the tag fires before any consent', async () => {
     const site = sites.find((s) => s.name === 'reject-not-honoured')!;
-    const { page, hosts } = await firstLoad(site);
+    let bannerVisible = false;
+    const { capture, hosts } = await collectPassA(
+      pool,
+      { url: `http://${site.expected.site}/` },
+      { inspect: async (page) => void (bannerVisible = await page.locator('#cmp').isVisible()) },
+    ).then((r) => ({ capture: r.capture, hosts: new Set(r.capture.requests.map((q) => q.host)) }));
     expect(hosts).toContain('analytics.tracker.test');
-    expect(await page.locator('#cmp').isVisible()).toBe(true);
-    const cookies = await page.context().cookies();
-    expect(cookies.map((c) => c.name)).toContain('_trk');
+    expect(bannerVisible).toBe(true);
+    expect(capture.cookies.map((c) => c.name)).toContain('_trk');
     expect(
       server.served.some(
         (s) => s.host === 'analytics.tracker.test' && s.path === '/collect' && s.status === 204,
       ),
     ).toBe(true);
-    await page.context().close();
   });
 
-  it('the clean control loads nothing from anyone and sets no cookie', async () => {
+  it('the clean control loads nothing from anyone and stores nothing', async () => {
     const site = sites.find((s) => s.name === 'clean-brochure')!;
-    const { page, hosts } = await firstLoad(site);
+    const { capture, hosts } = await firstLoad(site);
     expect([...hosts]).toEqual(['brochure.test']);
-    expect(await page.context().cookies()).toEqual([]);
-    expect(await page.evaluate(() => localStorage.length)).toBe(0);
-    await page.context().close();
+    expect(capture.cookies).toEqual([]);
+    expect(capture.storage).toEqual([]);
   });
 
   it('a host outside the fixture is refused with a 502, and TLS is refused outright', async () => {

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lazyshop</title>
+  </head>
+  <body>
+    <header><h1>Lazyshop</h1></header>
+    <main>
+      <p>Alt til hjemmet. Fri fragt over 499 kr.</p>
+    </main>
+    <script>
+      // Remembers the visitor on the device without asking.
+      localStorage.setItem('lazyshop_visitor', 'v-' + Math.random().toString(36).slice(2));
+      // The bug this fixture isolates: the tracker is injected on a timer, four seconds
+      // after load. Nothing has been clicked, and nothing was asked.
+      setTimeout(function () {
+        var s = document.createElement('script');
+        s.src = 'http://lazy.tracker.test/tag.js';
+        document.head.appendChild(s);
+      }, 4000);
+    </script>
+  </body>
+</html>
