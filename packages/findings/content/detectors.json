@@ -73,5 +73,10 @@
     "findingTypeId": "FPR-03",
     "area": "Observation",
     "detector": "scanner/checks/replay#audio"
+  },
+  {
+    "findingTypeId": "EXP-01",
+    "area": "Security",
+    "detector": "scanner/ct/enumerate#exposed_hosts"
   }
 ]

@@ -321,9 +321,9 @@ describe.skipIf(!url)('tenant A against tenant B, every way across (T-07)', () =
     expect(view?.member).toMatchObject({ caseId: A.caseId, tenantId: A.tenantId, role: 'it' });
     expect(view?.lists.map((l) => l.role)).toEqual(['it']);
     expect(leaksB(view)).toEqual([]);
-    expect(
-      await memberView(t, B.memberToken.slice(0, 63) + '0', { locale: 'en', remedy }),
-    ).toBeUndefined();
+    // One hex digit off B's token: never B's, whatever the last digit was.
+    const forged = B.memberToken.slice(0, 63) + (B.memberToken.endsWith('0') ? '1' : '0');
+    expect(await memberView(t, forged, { locale: 'en', remedy })).toBeUndefined();
     expect(await memberView(t, 'f'.repeat(64), { locale: 'en', remedy })).toBeUndefined();
     // The owner of A cannot grant A's member anything on B.
     await expect(grantFullAccess(t, A.tenantId, B.caseId, A.memberId)).rejects.toThrow(/no member/);

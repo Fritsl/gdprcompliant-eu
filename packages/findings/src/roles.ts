@@ -66,6 +66,7 @@ export const ROLE_BY_PREFIX: Readonly<Record<string, Role>> = {
   REC: 'it',
   VND: 'it',
   SEC: 'it',
+  EXP: 'it',
 };
 
 export interface RoleSubject {

@@ -40,5 +40,11 @@
     "purpose": "corpus",
     "jurisdiction": "DK",
     "note": "EU mirror of the Open Cookie Database; GitHub is outside the EEA"
+  },
+  {
+    "host": "ct.gdprcompliant.eu",
+    "purpose": "registry",
+    "jurisdiction": "DK",
+    "note": "EU mirror of the certificate transparency log search (crt.sh is outside the EEA)"
   }
 ]

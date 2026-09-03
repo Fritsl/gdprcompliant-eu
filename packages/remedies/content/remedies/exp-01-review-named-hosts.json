@@ -1,0 +1,38 @@
+{
+  "id": "exp-01-review-named-hosts",
+  "version": 1,
+  "findingTypeId": "EXP-01",
+  "jurisdictions": "all",
+  "kind": "self_fix",
+  "title": {
+    "en": "Check the hosts your certificates name"
+  },
+  "effort": {
+    "label": {
+      "en": "About 30 minutes"
+    },
+    "minutes": 30
+  },
+  "detail": {
+    "en": "Every certificate you issue names its hosts in a public log, so staging, admin and test hosts are easy to find. Each one should be gone, behind a login, or meant to be public."
+  },
+  "snippet": "# nginx: an internal host answers only on the office network\nallow 10.0.0.0/8;\ndeny all;",
+  "verifyLabel": {
+    "en": "Re-check this finding"
+  },
+  "verification": {
+    "method": "rescan"
+  },
+  "action": {
+    "kind": "agent_prompt",
+    "label": {
+      "en": "Paste into your coding assistant"
+    },
+    "forwardable": {
+      "en": "Or forward it to your developer — it reads the same either way."
+    },
+    "body": {
+      "en": "Public certificate logs name these hosts under {{domain}}: {{hosts}}. Their names suggest non-production or internal services. For each one, decide whether it should exist at all, and if it should, whether it should answer to the public internet or only behind a login or the office network. Remove what is dead, restrict what is internal, and make sure none of them serves a copy of production data.\n\nWhen you are done: list each host with what you decided and how to confirm it from outside the network."
+    }
+  }
+}

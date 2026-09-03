@@ -18,3 +18,4 @@ export * from './evidence.js';
 export * from './checks/index.js';
 export * from './discovery/index.js';
 export * from './dns/index.js';
+export * from './ct/index.js';
