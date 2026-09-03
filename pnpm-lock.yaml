@@ -29,6 +29,9 @@ importers:
       '@gc/findings':
         specifier: workspace:*
         version: link:packages/findings
+      '@gc/i18n':
+        specifier: workspace:*
+        version: link:packages/i18n
       '@gc/remedies':
         specifier: workspace:*
         version: link:packages/remedies
@@ -99,11 +102,23 @@ importers:
 
   packages/findings: {}
 
+  packages/i18n:
+    dependencies:
+      '@gc/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      zod:
+        specifier: ^4.5.4
+        version: 4.5.4
+
   packages/remedies:
     dependencies:
       '@gc/contracts':
         specifier: workspace:*
         version: link:../contracts
+      '@gc/i18n':
+        specifier: workspace:*
+        version: link:../i18n
 
   packages/rules: {}
 

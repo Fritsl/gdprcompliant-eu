@@ -70,9 +70,9 @@ export const LocaleSchema = z
   .describe('Locale, e.g. en, da, de');
 export type Locale = z.infer<typeof LocaleSchema>;
 
+// The fallback locale is structural: LocalisedText requires it. Which other locales
+// exist is content, in packages/i18n/content/locales.json (I-01), never code.
 export const DEFAULT_LOCALE = 'en' as const;
-export const SUPPORTED_LOCALES = ['en', 'da', 'de'] as const;
-export type SupportedLocale = (typeof SUPPORTED_LOCALES)[number];
 
 // Translatable content (I-01): a record of locale variants. English is the fallback and
 // is therefore mandatory; a missing variant in another locale is reported, never silent.

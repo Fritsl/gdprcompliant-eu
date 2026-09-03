@@ -6,6 +6,7 @@ import { PACKAGE as contracts } from '@gc/contracts';
 import { PACKAGE as corpus } from '@gc/corpus';
 import { PACKAGE as db } from '@gc/db';
 import { PACKAGE as findings } from '@gc/findings';
+import { PACKAGE as i18n } from '@gc/i18n';
 import { PACKAGE as remedies } from '@gc/remedies';
 import { PACKAGE as rules } from '@gc/rules';
 import { PACKAGE as scanner } from '@gc/scanner';
@@ -20,6 +21,7 @@ describe('workspace scaffold', () => {
       corpus,
       db,
       findings,
+      i18n,
       remedies,
       rules,
       scanner,
@@ -31,6 +33,7 @@ describe('workspace scaffold', () => {
       corpus: '@gc/corpus',
       db: '@gc/db',
       findings: '@gc/findings',
+      i18n: '@gc/i18n',
       remedies: '@gc/remedies',
       rules: '@gc/rules',
       scanner: '@gc/scanner',

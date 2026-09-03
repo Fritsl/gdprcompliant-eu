@@ -8,9 +8,6 @@
   "references": [
     {
       "path": "../contracts"
-    },
-    {
-      "path": "../i18n"
     }
   ]
 }

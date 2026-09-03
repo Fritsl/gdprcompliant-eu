@@ -1,11 +1,11 @@
 import {
-  DEFAULT_LOCALE,
   RenderedRemedySchema,
   type Locale,
   type LocalisedText,
   type Remedy,
   type RenderedRemedy,
 } from '@gc/contracts';
+import { localise } from '@gc/i18n';
 
 // One locale out of a catalogue entry. A missing variant falls back to English and is
 // named in `missing`, so the caller can show it and the i18n coverage check (I-01) can
@@ -35,10 +35,9 @@ export interface Localised {
 }
 
 function pick(text: LocalisedText, locale: Locale, path: string, missing: string[]): string {
-  const variant = text[locale];
-  if (typeof variant === 'string') return variant;
-  missing.push(path);
-  return text[DEFAULT_LOCALE] as string;
+  const picked = localise(text, locale);
+  if (picked.fellBack) missing.push(path);
+  return picked.value;
 }
 
 function localiseAt(

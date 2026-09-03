@@ -2,12 +2,8 @@ import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import {
-  REMEDY_KINDS,
-  SUPPORTED_JURISDICTIONS,
-  SUPPORTED_LOCALES,
-  type Remedy,
-} from '@gc/contracts';
+import { REMEDY_KINDS, SUPPORTED_JURISDICTIONS, type Remedy } from '@gc/contracts';
+import { LOCALE_CODES } from '@gc/i18n';
 import {
   Catalogue,
   CatalogueError,
@@ -126,7 +122,7 @@ describe('locale scope', () => {
 
   it('every entry renders in every supported locale as a valid rendered remedy', () => {
     for (const entry of catalogue.all()) {
-      for (const locale of SUPPORTED_LOCALES) {
+      for (const locale of LOCALE_CODES) {
         const { rendered } = renderRemedy(entry.remedy, locale);
         expect(rendered.kind).toBe(entry.remedy.kind);
         expect(rendered.locale).toBe(locale);
