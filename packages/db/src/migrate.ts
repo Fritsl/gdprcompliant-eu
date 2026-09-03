@@ -1,3 +1,4 @@
+import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { migrate as drizzleMigrate } from 'drizzle-orm/postgres-js/migrator';
 import type { Connection } from './client.js';
@@ -6,7 +7,9 @@ import type { Connection } from './client.js';
 // table, and running again applies nothing. The journal lives in the same schema as the
 // objects, so an isolated test schema carries its own.
 
-export const MIGRATIONS_DIR = fileURLToPath(new URL('../migrations/', import.meta.url));
+// Built from the module path rather than new URL(..., import.meta.url): a bundler treats
+// the latter as an asset to resolve, and the migrations are read at runtime, not bundled.
+export const MIGRATIONS_DIR = resolve(dirname(fileURLToPath(import.meta.url)), '..', 'migrations');
 
 export interface MigrateResult {
   // Migrations recorded after the run, and how many this run added.

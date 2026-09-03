@@ -313,6 +313,35 @@ export const answers = pgTable(
   (t) => [uniqueIndex('answers_case_question').on(t.caseId, t.questionId)],
 );
 
+// The demand ledger (R-05): every no_solution outcome, with the company's bands and
+// never its name. Read across tenants only through demand_ranked(k), which is defined
+// in the migration. Purpose and retention: docs/decisions/demand-ledger.md.
+export const demandEntries = pgTable(
+  'demand_entries',
+  {
+    id: text('id').primaryKey(),
+    ...stamped,
+    caseId: text('case_id')
+      .notNull()
+      .references(() => cases.id),
+    findingTypeId: text('finding_type_id').notNull(),
+    jurisdiction: text('jurisdiction').notNull(),
+    gap: text('gap').notNull(),
+    cause: text('cause').notNull(),
+    answer: text('answer').notNull(),
+    sector: text('sector'),
+    sectorCode: text('sector_code'),
+    headcountBand: text('headcount_band'),
+    country: text('country').notNull(),
+    seenAt: timestamp('seen_at', { withTimezone: true }).notNull(),
+  },
+  (t) => [
+    check('demand_entries_answer', oneOf('answer', ['none', 'partial', 'ours'])),
+    index('demand_entries_type_idx').on(t.findingTypeId, t.jurisdiction),
+    index('demand_entries_seen_idx').on(t.seenAt),
+  ],
+);
+
 export const TABLES = {
   appMeta,
   tenants,
@@ -326,4 +355,5 @@ export const TABLES = {
   vendors,
   processingActivities,
   answers,
+  demandEntries,
 } as const;

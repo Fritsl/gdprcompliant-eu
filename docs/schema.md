@@ -1,6 +1,6 @@
 # Schema
 
-Generated from `packages/db/migrations/meta/0002_snapshot.json` by `scripts/schema-doc.mjs`.
+Generated from `packages/db/migrations/meta/0003_snapshot.json` by `scripts/schema-doc.mjs`.
 Do not edit; change `packages/db/src/schema.ts`, run `pnpm db:generate`, then `pnpm db:doc`.
 
 Every table carries `tenant_id`, `created_at` and `source_ref`. `case_events` and
@@ -54,6 +54,23 @@ erDiagram
     text lane
     integer lane_score
     text stage
+  }
+  demand_entries {
+    text id "PK"
+    text tenant_id
+    timestamp created_at
+    text source_ref
+    text case_id
+    text finding_type_id
+    text jurisdiction
+    text gap
+    text cause
+    text answer
+    text sector "nullable"
+    text sector_code "nullable"
+    text headcount_band "nullable"
+    text country
+    timestamp seen_at
   }
   evidence {
     text id "PK"
@@ -165,6 +182,7 @@ erDiagram
   cases ||--o{ case_events : "case_id"
   jurisdictions ||--o{ cases : "jurisdiction"
   tenants ||--o{ cases : "tenant_id"
+  cases ||--o{ demand_entries : "case_id"
   cases ||--o{ evidence : "case_id"
   findings ||--o{ finding_evidence : "finding_id"
   evidence ||--o{ finding_evidence : "evidence_id"
@@ -251,6 +269,31 @@ erDiagram
 - check cases_lane: `"lane" in ('self-serve', 'human')`
 - check cases_stage: `"stage" in ('opened', 'assessed', 'working', 'documented', 'watched')`
 - check cases_lane_score: `"cases"."lane_score" between 0 and 100`
+
+## demand_entries
+
+| Column | Type | Constraints |
+| --- | --- | --- |
+| id | text | primary key, not null |
+| tenant_id | text | not null |
+| created_at | timestamp with time zone | not null, default now() |
+| source_ref | text | not null |
+| case_id | text | not null |
+| finding_type_id | text | not null |
+| jurisdiction | text | not null |
+| gap | text | not null |
+| cause | text | not null |
+| answer | text | not null |
+| sector | text |  |
+| sector_code | text |  |
+| headcount_band | text |  |
+| country | text | not null |
+| seen_at | timestamp with time zone | not null |
+
+- case_id → cases(id)
+- index demand_entries_type_idx (finding_type_id, jurisdiction)
+- index demand_entries_seen_idx (seen_at)
+- check demand_entries_answer: `"answer" in ('none', 'partial', 'ours')`
 
 ## evidence
 

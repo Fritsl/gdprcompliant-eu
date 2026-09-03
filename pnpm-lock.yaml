@@ -96,6 +96,9 @@ importers:
       '@gc/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts
+      '@gc/db':
+        specifier: workspace:*
+        version: link:../../packages/db
       '@gc/i18n':
         specifier: workspace:*
         version: link:../../packages/i18n

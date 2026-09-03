@@ -75,6 +75,7 @@ describe.skipIf(!url)('the core relational schema (F-03)', () => {
       'app_meta',
       'case_events',
       'cases',
+      'demand_entries',
       'evidence',
       'finding_evidence',
       'findings',

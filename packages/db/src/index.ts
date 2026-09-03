@@ -12,3 +12,4 @@ export { SHARED_TENANT, TABLES } from './schema.js';
 export * from './migrate.js';
 export * from './testing.js';
 export * from './tenant.js';
+export * from './demand.js';

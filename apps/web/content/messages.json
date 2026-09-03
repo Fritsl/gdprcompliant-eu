@@ -59,5 +59,61 @@
   },
   "home.soon": {
     "en": "The scanner opens here."
+  },
+  "demand.heading": {
+    "en": "Where the catalogue has no answer",
+    "da": "Hvor kataloget ikke har et svar"
+  },
+  "demand.lead": {
+    "en": "Every finding the catalogue could not close, counted across customers. A group with fewer than three customers is left out.",
+    "da": "Hver konstatering kataloget ikke kunne lukke, talt på tværs af kunder. En gruppe med færre end tre kunder udelades."
+  },
+  "demand.empty": {
+    "en": "Nothing recorded yet.",
+    "da": "Intet registreret endnu."
+  },
+  "demand.download": {
+    "en": "Download as CSV",
+    "da": "Hent som CSV"
+  },
+  "demand.col.finding": {
+    "en": "Finding",
+    "da": "Konstatering"
+  },
+  "demand.col.jurisdiction": {
+    "en": "Jurisdiction",
+    "da": "Jurisdiktion"
+  },
+  "demand.col.country": {
+    "en": "Country",
+    "da": "Land"
+  },
+  "demand.col.sector": {
+    "en": "Sector",
+    "da": "Branche"
+  },
+  "demand.col.headcount": {
+    "en": "Headcount",
+    "da": "Ansatte"
+  },
+  "demand.col.tenants": {
+    "en": "Customers",
+    "da": "Kunder"
+  },
+  "demand.col.cases": {
+    "en": "Cases",
+    "da": "Sager"
+  },
+  "demand.col.first": {
+    "en": "First seen",
+    "da": "Først set"
+  },
+  "demand.col.last": {
+    "en": "Last seen",
+    "da": "Senest set"
+  },
+  "demand.all": {
+    "en": "all",
+    "da": "alle"
   }
 }
