@@ -32,6 +32,12 @@ export const CompanySchema = z
   .describe('The company a case is about');
 export type Company = z.infer<typeof CompanySchema>;
 
+// The characters a case number is drawn from (C-01): no 0/O, 1/I/L or U, so a number
+// read aloud over the phone comes back the same. The id schema accepts the wider set
+// because the design fixtures predate the rule.
+export const CASE_NUMBER_ALPHABET = '23456789ABCDEFGHJKMNPQRSTVWXYZ';
+export const CASE_NUMBER_PATTERN = /^[A-Z]{2}-\d{2}-[23456789ABCDEFGHJKMNPQRSTVWXYZ]{4}$/;
+
 export const CASE_LANES = ['self-serve', 'human'] as const;
 export const CaseLaneSchema = z.enum(CASE_LANES);
 export type CaseLane = z.infer<typeof CaseLaneSchema>;
@@ -133,6 +139,16 @@ export const CaseEventSchema = z
     event('meeting_requested', { topic: z.string().optional() }),
     event('note_added', { text: NonEmptyStringSchema }),
     event('claim_rejected', { claimId: IdSchema, reason: NonEmptyStringSchema }),
+    // Ownership (C-01): a case opens with no account and is claimed later by proving
+    // control of an address at the scanned domain, or by an explicit override.
+    event('claim_requested', { claimId: IdSchema, email: NonEmptyStringSchema }),
+    event('case_claimed', {
+      method: z.enum(['email', 'override']),
+      email: z.string().optional(),
+      by: z.string().optional(),
+      reason: z.string().optional(),
+    }),
+    event('case_expired', { unclaimedFor: z.number().int().min(0) }),
     event('vendor_resolved', {
       vendorId: IdSchema,
       resolution: z.enum(['resolved', 'unresolved', 'ambiguous']),

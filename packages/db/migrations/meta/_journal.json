@@ -29,6 +29,13 @@
       "when": 1788469434652,
       "tag": "0003_magical_firebrand",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1788470002813,
+      "tag": "0004_silky_the_hood",
+      "breakpoints": true
     }
   ]
 }

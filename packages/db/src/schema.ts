@@ -93,6 +93,14 @@ export const cases = pgTable(
     lane: text('lane').notNull(),
     laneScore: integer('lane_score').notNull().default(0),
     stage: text('stage').notNull().default('opened'),
+    // Ownership (C-01). An unclaimed case is reachable only by its token, which is 256
+    // random bits, and only until expires_at; claiming clears the expiry.
+    accessToken: text('access_token')
+      .notNull()
+      .default(sql`replace(gen_random_uuid()::text || gen_random_uuid()::text, '-', '')`),
+    expiresAt: timestamp('expires_at', { withTimezone: true }),
+    claimedAt: timestamp('claimed_at', { withTimezone: true }),
+    claimedBy: text('claimed_by'),
   },
   (t) => [
     foreignKey({ columns: [t.tenantId], foreignColumns: [tenants.id], name: 'cases_tenant_fk' }),
@@ -100,8 +108,29 @@ export const cases = pgTable(
     check('cases_lane', oneOf('lane', CASE_LANES)),
     check('cases_stage', oneOf('stage', CASE_STAGES)),
     check('cases_lane_score', sql`${t.laneScore} between 0 and 100`),
+    check('cases_token_length', sql`length(${t.accessToken}) >= 32`),
+    uniqueIndex('cases_access_token').on(t.accessToken),
     index('cases_tenant_idx').on(t.tenantId),
+    index('cases_domain_idx').on(t.tenantId, sql`(${t.company}->>'domain')`),
   ],
+);
+
+// A pending proof of control over an address at the scanned domain (C-01). The code
+// itself is never stored, only its hash; it goes out by mail and comes back once.
+export const caseClaims = pgTable(
+  'case_claims',
+  {
+    id: text('id').primaryKey(),
+    ...stamped,
+    caseId: text('case_id')
+      .notNull()
+      .references(() => cases.id),
+    email: text('email').notNull(),
+    codeHash: text('code_hash').notNull(),
+    expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+    usedAt: timestamp('used_at', { withTimezone: true }),
+  },
+  (t) => [index('case_claims_case_idx').on(t.caseId)],
 );
 
 // Append-only. A trigger in the migration raises on UPDATE and DELETE.
@@ -356,4 +385,5 @@ export const TABLES = {
   processingActivities,
   answers,
   demandEntries,
+  caseClaims,
 } as const;
