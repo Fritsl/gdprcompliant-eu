@@ -20,3 +20,4 @@ export * from './export.js';
 export * from './retention.js';
 export * from './retention-job.js';
 export * from './members.js';
+export * from './progress.js';

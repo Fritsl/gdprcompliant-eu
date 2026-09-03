@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { Progress } from '@/components/Progress';
 import { Text } from '@/components/Text';
 import { loadMemberList } from '@/lib/case';
 import { asLocale, t } from '@/lib/i18n';
@@ -30,6 +31,7 @@ export default async function MemberPage({
       <p>
         <Text of={t(locale, 'member.from')} /> {view.member.invitedBy}
       </p>
+      <Progress progress={view.progress} locale={locale} />
       {checked ? (
         <p role="status">
           <Text of={t(locale, 'member.checked')} />

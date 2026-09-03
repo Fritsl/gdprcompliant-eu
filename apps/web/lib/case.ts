@@ -2,6 +2,7 @@ import 'server-only';
 import {
   RateLimited,
   caseByToken,
+  caseProgress,
   caseSummary,
   caseTimeline,
   connect,
@@ -15,6 +16,7 @@ import {
   requestCheck,
   revokeInvitation,
   withTenant,
+  type CaseProgress,
   type CaseSummary,
   type Connection,
   type DeletionStub,
@@ -74,7 +76,7 @@ export function loadCaseByToken(token: string): Promise<CaseView | undefined> {
 export function loadCaseSummary(
   token: string,
   locale: Locale,
-): Promise<(CaseSummary & { members: MemberSummary[] }) | undefined> {
+): Promise<(CaseSummary & { members: MemberSummary[]; progress: CaseProgress }) | undefined> {
   return withConnection(async (connection) => {
     const found = await caseByToken(connection, token);
     if (!found) return undefined;
@@ -83,7 +85,8 @@ export function loadCaseSummary(
       baseUrl: appBaseUrl(),
       locale,
     });
-    return { ...summary, members };
+    const progress = await caseProgress(connection, found.tenantId, found.caseId);
+    return { ...summary, members, progress };
   });
 }
 
@@ -193,11 +196,17 @@ const remedyOf = (id: string) => {
 };
 
 // First visit joins; every visit shows the list. No account anywhere.
-export function loadMemberList(invite: string, locale: Locale): Promise<MemberView | undefined> {
+export function loadMemberList(
+  invite: string,
+  locale: Locale,
+): Promise<(MemberView & { progress: CaseProgress }) | undefined> {
   return withConnection(async (connection) => {
     const joined = await joinByInvite(connection, invite);
     if (!joined) return undefined;
-    return memberView(connection, invite, { locale, remedy: remedyOf });
+    const view = await memberView(connection, invite, { locale, remedy: remedyOf });
+    if (!view) return undefined;
+    const progress = await caseProgress(connection, joined.tenantId, joined.caseId);
+    return { ...view, progress };
   });
 }
 

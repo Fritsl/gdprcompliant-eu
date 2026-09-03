@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { Progress } from '@/components/Progress';
 import { Text } from '@/components/Text';
 import { loadCaseSummary, type ColleagueOutcome } from '@/lib/case';
 import { asLocale, t } from '@/lib/i18n';
@@ -23,7 +24,7 @@ export default async function CasePage({
   if (!locale) notFound();
   const view = await loadCaseSummary(token, locale);
   if (!view) notFound();
-  const { counts, members } = view;
+  const { counts, members, progress } = view;
   const base = `/${locale}/c/${token}`;
   const who = view.claimed ? t(locale, 'case.who.claimed') : t(locale, 'case.who.unclaimed');
   const outcome = (await searchParams).outcome as ColleagueOutcome | undefined;
@@ -79,6 +80,8 @@ export default async function CasePage({
         <Text of={t(locale, 'case.who')} as="h2" />
         <Text of={who} as="p" />
       </section>
+
+      <Progress progress={progress} locale={locale} />
 
       <section className="colleagues">
         <Text of={t(locale, 'colleagues.heading')} as="h2" />

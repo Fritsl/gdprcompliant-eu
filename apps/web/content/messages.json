@@ -307,5 +307,37 @@
   "colleagues.error.tooMany": {
     "en": "Too many invitations in the last hour. Try again later.",
     "da": "For mange invitationer den seneste time. Prøv igen senere."
+  },
+  "progress.heading": {
+    "en": "Where the case stands",
+    "da": "Hvor sagen står"
+  },
+  "progress.stage": {
+    "en": "Stage",
+    "da": "Trin"
+  },
+  "progress.done": {
+    "en": "done",
+    "da": "klaret"
+  },
+  "progress.open": {
+    "en": "open",
+    "da": "åbne"
+  },
+  "progress.role.marketing": {
+    "en": "Marketing",
+    "da": "Marketing"
+  },
+  "progress.role.it": {
+    "en": "IT / Operations",
+    "da": "IT / Drift"
+  },
+  "progress.role.hr": {
+    "en": "HR",
+    "da": "HR"
+  },
+  "progress.role.finance": {
+    "en": "Finance / Legal",
+    "da": "Økonomi / Jura"
   }
 }
