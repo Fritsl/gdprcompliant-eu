@@ -16,7 +16,7 @@ companies a list of problems; this hands them a plan and the things that close i
 
 ## Where you are
 
-**51 of 112 done.** Phase 0 and phase 1 are complete; phase 2 is 14 of 34, phase 3 has
+**52 of 112 done.** Phase 0 and phase 1 are complete; phase 2 is 14 of 34, phase 3 has
 begun, DNS collection opens phase 4 and the task catalogue opens phase 5. Contracts,
 config with the EU-only allowlist, the test harness, record and replay, i18n, the remedy
 catalogue and resolver, the model client, the web shell, the fixture estate (with TLS),
@@ -28,8 +28,8 @@ with numbering, tokens and claiming, the append-only timeline with its PDF, the 
 machine, export and hard delete, retention with its nightly sweep, the typed task
 catalogue with its budgeted dispatcher, roles with scoped lists, the tenancy matrix that
 runs on every push, DNS collection with its curated service map, certificate transparency
-enumeration, invitations from a colleague, and shared progress are in. The database is up
-(`pnpm db:up`); nothing in phase 1 is open.
+enumeration, invitations from a colleague, shared progress, and the evidence pack are in.
+The database is up (`pnpm db:up`); nothing in phase 1 is open.
 
 Do not trust that list — ask:
 

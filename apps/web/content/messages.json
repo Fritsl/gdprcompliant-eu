@@ -339,5 +339,13 @@
   "progress.role.finance": {
     "en": "Finance / Legal",
     "da": "Økonomi / Jura"
+  },
+  "case.pack": {
+    "en": "Download the evidence pack",
+    "da": "Hent bevispakken"
+  },
+  "case.pack.note": {
+    "en": "A zip of plain files: the case as JSON, every evidence record, the timeline as PDF, and a manifest of hashes. Dated the moment it is made.",
+    "da": "En zip med almindelige filer: sagen som JSON, hver bevispost, tidslinjen som PDF og en liste med hashes. Dateret i det øjeblik den laves."
   }
 }

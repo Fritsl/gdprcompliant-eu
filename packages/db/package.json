@@ -16,6 +16,7 @@
     "@gc/artefacts": "workspace:*",
     "@gc/jobs": "workspace:*",
     "zod": "^4.5.4",
-    "@gc/findings": "workspace:*"
+    "@gc/findings": "workspace:*",
+    "@gc/remedies": "workspace:*"
   }
 }

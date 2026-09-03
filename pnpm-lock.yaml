@@ -151,6 +151,9 @@ importers:
       '@gc/i18n':
         specifier: workspace:*
         version: link:../i18n
+      fflate:
+        specifier: 0.8.3
+        version: 0.8.3
       pdfkit:
         specifier: ^0.20.2
         version: 0.20.2
@@ -196,6 +199,9 @@ importers:
       '@gc/jobs':
         specifier: workspace:*
         version: link:../jobs
+      '@gc/remedies':
+        specifier: workspace:*
+        version: link:../remedies
       drizzle-orm:
         specifier: ^0.45.2
         version: 0.45.2(@opentelemetry/api@1.9.1)(pg@8.23.0)(postgres@3.4.9)

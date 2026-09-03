@@ -51,17 +51,21 @@ describe('reminders are owner-initiated', () => {
     const files = [join(ROOT, 'packages'), join(ROOT, 'apps')].flatMap((d) => walk(d));
     const writers = files.filter(
       (f) =>
-        /'reminder'/.test(readFileSync(f, 'utf8')) && /queueMail(/.test(readFileSync(f, 'utf8')),
+        /'reminder'/.test(readFileSync(f, 'utf8')) &&
+        readFileSync(f, 'utf8').includes('queueMail('),
     );
     expect(writers.map((f) => f.replace(ROOT, '').split('\\').join('/'))).toEqual([
       'packages/db/src/members.ts',
     ]);
     const members = readFileSync(join(ROOT, 'packages', 'db', 'src', 'members.ts'), 'utf8');
     // One call site, inside remindMember, which only the owner's route reaches.
-    expect(members.match(/'reminder',/g)?.length).toBe(1);
-    expect(members.indexOf("'reminder',")).toBeGreaterThan(
-      members.indexOf('export async function remindMember'),
-    );
+    const calls = members.split('queueMail(').slice(1);
+    const reminderCalls = calls.filter((c) => c.slice(0, 200).includes("'reminder'"));
+    expect(reminderCalls).toHaveLength(1);
+    const remindAt = members.indexOf('export async function remindMember');
+    const callAt = members.indexOf('queueMail(', remindAt);
+    expect(callAt).toBeGreaterThan(remindAt);
+    expect(members.slice(callAt, callAt + 200)).toContain("'reminder'");
     const retention = readFileSync(join(ROOT, 'packages', 'db', 'src', 'retention.ts'), 'utf8');
     const job = readFileSync(join(ROOT, 'packages', 'db', 'src', 'retention-job.ts'), 'utf8');
     expect(retention + job).not.toMatch(/remind/i);

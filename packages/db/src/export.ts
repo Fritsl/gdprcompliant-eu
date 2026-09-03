@@ -38,7 +38,9 @@ export interface CaseSummary {
   };
 }
 
-async function loadAll(db: Db, caseId: string) {
+export type CaseBundle = Awaited<ReturnType<typeof loadCaseBundle>>;
+
+export async function loadCaseBundle(db: Db, caseId: string) {
   const [c] = await db.select().from(cases).where(eq(cases.id, caseId)).limit(1);
   if (!c) throw new Error(`no case ${caseId}`);
   const [f, e, a, v, p, cl, d, events] = await Promise.all([
@@ -73,7 +75,7 @@ export async function caseSummary(
   caseId: string,
 ): Promise<CaseSummary> {
   return withTenant(connection, tenantId, async (db) => {
-    const all = await loadAll(db, caseId);
+    const all = await loadCaseBundle(db, caseId);
     return {
       caseId,
       stage: all.c.stage,
@@ -122,7 +124,7 @@ export async function exportCase(
   const started = Date.now();
   const now = (options.now ?? (() => new Date()))();
   return withTenant(connection, tenantId, async (db) => {
-    const all = await loadAll(db, caseId);
+    const all = await loadCaseBundle(db, caseId);
     const model = timelineModel(caseId, all.events, { locale: options.locale });
     const pdf = await timelinePdf(model, {
       title: 'Timeline',

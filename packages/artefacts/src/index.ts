@@ -7,3 +7,4 @@ export const PACKAGE = '@gc/artefacts';
 
 export * from './timeline.js';
 export * from './timeline-pdf.js';
+export * from './evidence-pack.js';

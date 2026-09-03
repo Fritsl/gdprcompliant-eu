@@ -164,6 +164,12 @@ export default async function CasePage({
           </a>
         </p>
         <Text of={t(locale, 'case.export.note')} as="p" />
+        <p>
+          <a href={`${base}/evidence-pack.zip`} download={`${view.caseId}-evidence-pack.zip`}>
+            <Text of={t(locale, 'case.pack')} />
+          </a>
+        </p>
+        <Text of={t(locale, 'case.pack.note')} as="p" />
       </section>
 
       <section>

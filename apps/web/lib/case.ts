@@ -7,11 +7,13 @@ import {
   caseTimeline,
   connect,
   deleteCase,
+  evidencePack,
   exportCase,
   inviteMember,
   joinByInvite,
   listMembers,
   memberView,
+  recordPackGenerated,
   remindMember,
   requestCheck,
   revokeInvitation,
@@ -110,6 +112,21 @@ export function deleteForToken(token: string, confirm: string): Promise<Deletion
     return deleteCase(connection, found.tenantId, found.caseId, {
       requestedBy: found.claimed ? 'owner' : 'token',
     });
+  });
+}
+
+// The evidence pack (G-04), dated now; handing one out is on the timeline afterwards.
+export function packForToken(
+  token: string,
+  locale: Locale,
+): Promise<{ caseId: string; zip: Uint8Array; sha256: string } | undefined> {
+  return withConnection(async (connection) => {
+    const found = await caseByToken(connection, token);
+    if (!found) return undefined;
+    const at = new Date();
+    const pack = await evidencePack(connection, found.tenantId, found.caseId, { locale, at });
+    await recordPackGenerated(connection, found.tenantId, found.caseId, pack, at);
+    return { caseId: found.caseId, zip: pack.zip, sha256: pack.sha256 };
   });
 }
 
