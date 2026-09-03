@@ -23,17 +23,23 @@
     "check:i18n-coverage": "node scripts/i18n-coverage.mjs",
     "web:dev": "pnpm -F web dev",
     "web:build": "pnpm -F web build",
-    "web:start": "pnpm -F web start"
+    "web:start": "pnpm -F web start",
+    "db:migrate": "node --env-file-if-exists=.env --import tsx packages/db/src/cli.ts migrate",
+    "db:generate": "drizzle-kit generate --config packages/db/drizzle.config.ts",
+    "db:up": "docker compose up -d --wait",
+    "db:down": "docker compose down"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
     "@types/node": "^22.10.5",
     "@vitest/coverage-v8": "^2.1.8",
     "@vitest/ui": "2.1.9",
+    "drizzle-kit": "^0.31.10",
     "eslint": "^9.17.0",
     "lighthouse": "^13.4.1",
     "playwright": "^1.62.1",
     "prettier": "^3.4.2",
+    "tsx": "^4.23.13",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.19.0",
     "vitest": "^2.1.8"

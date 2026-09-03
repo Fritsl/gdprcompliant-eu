@@ -1,0 +1,29 @@
+# The one database: Postgres 16 with pgvector. Case graph, job queue and corpus
+# embeddings all live here (PLAN.md). `pnpm db:up` brings it up and waits until it
+# answers; `pnpm db:migrate` applies the migrations.
+#
+# Two databases are created: `gdprcompliant` for development, `gc_test` for the
+# integration suite, which never touches the first (see docker/postgres/init.sql).
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: gc-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: gc
+      POSTGRES_PASSWORD: gc
+      POSTGRES_DB: gdprcompliant
+    ports:
+      - '${GC_DB_PORT:-5432}:5432'
+    volumes:
+      - gc-postgres:/var/lib/postgresql/data
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/10-init.sql:ro
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U gc -d gdprcompliant']
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+volumes:
+  gc-postgres:
