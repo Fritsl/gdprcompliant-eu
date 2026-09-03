@@ -28,7 +28,8 @@
     "db:generate": "drizzle-kit generate --config packages/db/drizzle.config.ts && node scripts/db-generate-fix.mjs",
     "db:up": "docker compose up -d --wait",
     "db:down": "docker compose down",
-    "db:doc": "node scripts/schema-doc.mjs"
+    "db:doc": "node scripts/schema-doc.mjs",
+    "check:finding-completeness": "node --import tsx scripts/finding-completeness.ts"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

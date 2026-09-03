@@ -161,6 +161,12 @@ importers:
       '@gc/contracts':
         specifier: workspace:*
         version: link:../contracts
+      '@gc/remedies':
+        specifier: workspace:*
+        version: link:../remedies
+      zod:
+        specifier: ^4.5.4
+        version: 4.5.4
 
   packages/i18n:
     dependencies:

@@ -1,0 +1,42 @@
+{
+  "id": "cns-01-gate-before-interaction",
+  "version": 1,
+  "findingTypeId": "CNS-01",
+  "jurisdictions": "all",
+  "kind": "self_fix",
+  "title": {
+    "en": "Hold the tags until someone has actually agreed",
+    "da": "Hold tags tilbage, indtil nogen faktisk har sagt ja"
+  },
+  "effort": {
+    "label": {
+      "en": "About 20 minutes",
+      "da": "Cirka 20 minutter"
+    },
+    "minutes": 20
+  },
+  "detail": {
+    "en": "Third-party tags load the moment the page does, before the visitor has been asked anything. Each non-essential tag waits for the consent event instead.",
+    "da": "Tredjeparts-tags indlæses i samme øjeblik som siden, før den besøgende er blevet spurgt om noget. Hvert ikke-nødvendigt tag venter i stedet på samtykke-hændelsen."
+  },
+  "snippet": "// before — fires on page load\nloadTag('analytics');\n\n// after — waits for a real decision\nwindow.addEventListener('CookieConsentDecision', (e) => {\n  if (e.detail.categories.includes('statistics')) loadTag('analytics');\n});",
+  "verifyLabel": {
+    "en": "Re-check this finding",
+    "da": "Tjek dette fund igen"
+  },
+  "verification": {
+    "method": "rescan"
+  },
+  "action": {
+    "kind": "agent_prompt",
+    "label": {
+      "en": "Paste into your coding assistant"
+    },
+    "forwardable": {
+      "en": "Or forward it to your developer — it reads the same either way."
+    },
+    "body": {
+      "en": "On {{domain}} these third-party hosts are contacted on the first page load, before the visitor has interacted with anything:\n\n{{hosts}}\n\nMake each of them load only after the consent event fires with its matching category (statistics, marketing or preferences). Leave the consent banner itself and anything strictly necessary for the site to work as it is.\n\nWhen you are done: list which hosts you changed and which you deliberately left alone, and tell me how to verify that a first visit with no interaction now contacts none of them."
+    }
+  }
+}

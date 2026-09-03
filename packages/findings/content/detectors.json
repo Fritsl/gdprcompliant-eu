@@ -1,0 +1,34 @@
+[
+  {
+    "findingTypeId": "SEC-01",
+    "area": "Security",
+    "detector": "scanner/checks/security#transport"
+  },
+  {
+    "findingTypeId": "SEC-02",
+    "area": "Security",
+    "detector": "scanner/checks/security#form_downgrade"
+  },
+  { "findingTypeId": "SEC-03", "area": "Security", "detector": "scanner/checks/security#hsts" },
+  {
+    "findingTypeId": "SEC-04",
+    "area": "Security",
+    "detector": "scanner/checks/security#mixed_content"
+  },
+  {
+    "findingTypeId": "SEC-05",
+    "area": "Security",
+    "detector": "scanner/checks/security#referrer_policy"
+  },
+  {
+    "findingTypeId": "SEC-06",
+    "area": "Security",
+    "detector": "scanner/checks/security#security_headers"
+  },
+  {
+    "findingTypeId": "SEC-07",
+    "area": "Security",
+    "detector": "scanner/checks/security#exposed_paths"
+  },
+  { "findingTypeId": "POL-01", "area": "Notice", "detector": "scanner/discovery/policies#missing" }
+]
