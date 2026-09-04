@@ -27,6 +27,15 @@ export interface GuideLibrary {
   completeLocales(): Locale[];
 }
 
+// The locales a guide is written in, in full: every field, every step, every keyword.
+export function guideLocales(g: Guide): Locale[] {
+  const locales: Locale[] = ['en', 'da', 'de'];
+  const texts = [g.title, g.wrong, g.why, g.confirm, ...g.steps, ...g.keywords];
+  return locales.filter((locale) =>
+    texts.every((t) => typeof t[locale] === 'string' && t[locale]!.length > 0),
+  );
+}
+
 export function loadGuides(dir = GUIDES_DIR): GuideLibrary {
   const files = readdirSync(dir)
     .filter((f) => f.endsWith('.json'))
@@ -64,12 +73,7 @@ export function loadGuides(dir = GUIDES_DIR): GuideLibrary {
     forFinding: (typeId) => types.get(typeId),
     completeLocales: () => {
       const locales: Locale[] = ['en', 'da', 'de'];
-      return locales.filter((locale) =>
-        guides.every((g) => {
-          const texts = [g.title, g.wrong, g.why, g.confirm, ...g.steps, ...g.keywords];
-          return texts.every((t) => typeof t[locale] === 'string' && t[locale]!.length > 0);
-        }),
-      );
+      return locales.filter((locale) => guides.every((g) => guideLocales(g).includes(locale)));
     },
   };
 }

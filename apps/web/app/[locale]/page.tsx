@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { ScanForm } from '@/components/ScanForm';
 import { Text } from '@/components/Text';
 import { asLocale, t } from '@/lib/i18n';
 
@@ -41,22 +42,7 @@ export default async function Home({
           <Text of={refusal} />
         </p>
       ) : null}
-      <form method="post" action={`/${locale}/scan`}>
-        <input
-          type="text"
-          name="domain"
-          inputMode="url"
-          autoComplete="url"
-          autoCapitalize="off"
-          spellCheck={false}
-          required
-          aria-label={t(locale, 'front.field').text}
-          placeholder={t(locale, 'front.placeholder').text}
-        />
-        <button className="btn" type="submit">
-          {t(locale, 'front.cta').text}
-        </button>
-      </form>
+      <ScanForm locale={locale} />
     </article>
   );
 }

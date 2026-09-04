@@ -1,13 +1,50 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { ScanForm } from '@/components/ScanForm';
 import { Text } from '@/components/Text';
-import { guideView } from '@/lib/guides';
+import { guidePages, guideUrl, guideView, languagesOf } from '@/lib/guides';
 import { asLocale, t } from '@/lib/i18n';
 
-// One guide (S-15, R-03): what is wrong, why it matters, what to change, how to see it
-// worked, the rule it rests on per jurisdiction, and the change as code where there is
-// one. A standalone page, so it stands up as a landing page from a search.
+// One guide (S-15, R-03, U-06): what is wrong, why it matters, what to change, how to
+// see it worked, the rule it rests on per jurisdiction, the change as code where there
+// is one, and the scan form at the end. Generated at build time for every locale the
+// guide is written in, with its canonical address and its hreflang set, so it stands up
+// as a landing page from a search.
 
-export const dynamic = 'force-dynamic';
+export const dynamicParams = false;
+
+// Every page that exists, from the bottom up: the locale and the id together, one
+// entry per locale the guide is written in.
+export function generateStaticParams() {
+  return guidePages().flatMap((p) => p.locales.map((locale) => ({ locale, id: p.id })));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; id: string }>;
+}): Promise<Metadata> {
+  const { locale: localeParam, id } = await params;
+  const locale = asLocale(localeParam);
+  if (!locale) return {};
+  const guide = guideView(id, locale);
+  if (!guide) return {};
+  const url = guideUrl(locale, id);
+  return {
+    title: `${guide.title} · ${t(locale, 'shell.name').text}`,
+    description: guide.wrong,
+    keywords: [...guide.keywords],
+    alternates: { canonical: url, languages: languagesOf(guide.locales, id) },
+    openGraph: {
+      type: 'article',
+      url,
+      locale,
+      siteName: t(locale, 'shell.name').text,
+      title: guide.title,
+      description: guide.wrong,
+    },
+  };
+}
 
 export default async function GuidePage({
   params,
@@ -20,7 +57,12 @@ export default async function GuidePage({
   const guide = guideView(id, locale);
   if (!guide) notFound();
   return (
-    <article className="screen narrow guide" data-guide={guide.id} data-type={guide.findingTypeId}>
+    <article
+      className="screen narrow guide"
+      data-guide={guide.id}
+      data-type={guide.findingTypeId}
+      data-locales={guide.locales.join(' ')}
+    >
       <p className="eyebrow">
         <Text of={t(locale, 'guide.finding')} /> {guide.findingTypeId} · {guide.area}
       </p>
@@ -72,15 +114,16 @@ export default async function GuidePage({
             </li>
           ))}
         </ul>
+        <p>
+          <a className="lnk" href={`/${locale}/guides`}>
+            <Text of={t(locale, 'guide.all')} />
+          </a>
+        </p>
       </section>
-      <p className="step-act">
-        <a className="btn" href={`/${locale}`} data-cta="">
-          <Text of={t(locale, 'guide.check')} />
-        </a>{' '}
-        <a className="lnk" href={`/${locale}/guides`}>
-          <Text of={t(locale, 'guide.all')} />
-        </a>
-      </p>
+      <section className="fd" data-scan="">
+        <Text of={t(locale, 'guide.check')} as="h2" />
+        <ScanForm locale={locale} />
+      </section>
     </article>
   );
 }

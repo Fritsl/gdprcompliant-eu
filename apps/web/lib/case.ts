@@ -62,6 +62,7 @@ import type {
   Remedy,
   TaskProposal,
 } from '@gc/contracts';
+import { siteUrl } from '@/lib/site';
 
 // The schema to read from, when a test points the app at a disposable one. Production
 // leaves it unset and reads public.
@@ -70,8 +71,7 @@ export const searchPath = (env: Record<string, string | undefined>): { searchPat
   return path ? { searchPath: path.split(',') } : {};
 };
 
-export const appBaseUrl = (env: Record<string, string | undefined> = process.env): string =>
-  env['APP_BASE_URL'] ?? 'http://localhost:3000';
+export const appBaseUrl = siteUrl;
 
 // A case reached by its token (C-01): resolve the token, then act as that tenant.
 // No database, no token match, or an expired case all come back as nothing found.

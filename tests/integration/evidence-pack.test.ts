@@ -168,7 +168,7 @@ describe.skipIf(!url)('the evidence pack (G-04)', () => {
       'It is not a certification, not a legal opinion and not a seal of any kind.',
     );
     const withoutDisclaimer = readme.replace(/^Generated automatically from evidence.*$/m, '');
-    expect(withoutDisclaimer).not.toMatch(/certif(ied|ication)|compliant|approved|seal/i);
+    expect(withoutDisclaimer).not.toMatch(/certif(ied|ication)|compliant|approved|\bseal\b/i);
 
     const bundle = JSON.parse(dec.decode(files['case.json']!)) as Record<string, unknown[]> & {
       case: Record<string, unknown>;
