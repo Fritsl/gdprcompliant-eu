@@ -1363,5 +1363,25 @@
     "en": "Behaviour version",
     "da": "Adfærdsversion",
     "de": "Verhaltensversion"
+  },
+  "case.holds.supplyChain": {
+    "en": "Supply chain map",
+    "da": "Kort over leverandørkæden",
+    "de": "Karte der Lieferkette"
+  },
+  "supplyChain.back": {
+    "en": "Back to the case",
+    "da": "Tilbage til sagen",
+    "de": "Zurück zum Fall"
+  },
+  "supplyChain.lead": {
+    "en": "Who processes personal data for the company, and who they use in turn, as the record and the suppliers’ own published lists say. Each box links to the evidence that placed it.",
+    "da": "Hvem der behandler personoplysninger for virksomheden, og hvem de selv bruger, som fortegnelsen og leverandørernes egne offentliggjorte lister siger. Hver boks linker til det bevis, der placerede den.",
+    "de": "Wer personenbezogene Daten für das Unternehmen verarbeitet und wen diese ihrerseits einsetzen, wie das Verzeichnis und die von den Anbietern selbst veröffentlichten Listen es sagen. Jedes Kästchen verweist auf den Beleg, der es dorthin gesetzt hat."
+  },
+  "supplyChain.evidence": {
+    "en": "What placed each company",
+    "da": "Hvad der placerede hver virksomhed",
+    "de": "Was jedes Unternehmen dorthin gesetzt hat"
   }
 }

@@ -133,14 +133,18 @@ async function cookiesOf(
 // The suppliers the confirmed register names as recipients (G-03), each with the
 // activities that share data with it. The graph key is carried so the supply chain the
 // walk wrote (D-07) can be matched to the same supplier.
-function processorsOf(rows: readonly RegisterRow[], graph: CaseGraph): ProcessorInput[] {
+export function processorsOf(
+  rows: readonly RegisterRow[],
+  graph: CaseGraph,
+  includeDrafts = false,
+): ProcessorInput[] {
   const keys = new Map(graph.nodes.map((n) => [n.id, n.key]));
   const byKey = new Map<
     string,
     { nodeId: string; key: string; name: string; country?: string; activities: RegisterRow[] }
   >();
   for (const r of rows) {
-    if (r.draft) continue;
+    if (r.draft && !includeDrafts) continue;
     for (const x of r.recipients) {
       const key = keys.get(x.nodeId) ?? x.nodeId;
       const p = byKey.get(key) ?? {
@@ -159,7 +163,7 @@ function processorsOf(rows: readonly RegisterRow[], graph: CaseGraph): Processor
 
 // The supply chain as the graph holds it (D-07): every engages edge that is not a
 // cycle, with the company it names, who engaged it, and the list it was read from.
-function subProcessorsOf(graph: CaseGraph): SubProcessorRow[] {
+export function subProcessorsOf(graph: CaseGraph): SubProcessorRow[] {
   const nodes = new Map(graph.nodes.map((n) => [n.id, n]));
   const text = (v: unknown) => (typeof v === 'string' ? v : undefined);
   return graph.edges

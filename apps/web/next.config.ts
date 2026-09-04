@@ -18,7 +18,7 @@ const config: NextConfig = {
     '@gc/agent',
   ],
   // The Postgres driver stays a Node module; bundling it breaks its sockets.
-  serverExternalPackages: ['postgres', 'pdfkit', 'pg-boss', 'pg'],
+  serverExternalPackages: ['postgres', 'pdfkit', 'pg-boss', 'pg', 'sharp'],
   // The packages use NodeNext resolution: imports name the emitted .js, sources are .ts.
   // webpack maps one to the other; Turbopack does not yet, so the scripts pass --webpack.
   webpack: (config) => {

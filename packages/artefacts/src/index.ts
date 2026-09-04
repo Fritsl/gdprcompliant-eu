@@ -16,3 +16,4 @@ export * from './report.js';
 export * from './report-pdf.js';
 export * from './ourselves.js';
 export * from './agreement.js';
+export * from './supply-chain-map.js';

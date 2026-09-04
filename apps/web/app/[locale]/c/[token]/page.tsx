@@ -554,6 +554,11 @@ export default async function CasePage({
           <li data-referrals={view.referral.count}>
             {view.referral.count} <Text of={t(locale, 'case.holds.referrals')} />
           </li>
+          <li data-supply-chain="">
+            <a href={`${base}/supply-chain`} data-supply-chain-link="">
+              <Text of={t(locale, 'case.holds.supplyChain')} />
+            </a>
+          </li>
           <li data-questions-open={questions.open} data-questions-answered={questions.answered}>
             {questions.open} <Text of={t(locale, 'case.holds.questions')} /> ·{' '}
             <a href={`${base}/questions`} data-questions-link="">
