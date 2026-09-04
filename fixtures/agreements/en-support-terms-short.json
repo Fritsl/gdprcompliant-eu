@@ -1,0 +1,51 @@
+{
+  "name": "en-support-terms-short",
+  "locale": "en",
+  "jurisdiction": "DK",
+  "vendor": { "host": "tickettoo.test", "name": "TicketToo" },
+  "modelledOn": "A help-desk vendor's one-page 'DPA' that names the parties and the breach window and little else.",
+  "text": "TicketToo Data Processing Terms\n\nThese terms apply between TicketToo Ltd, 12 Camden Row, Dublin 8, Ireland (the processor) and the customer using TicketToo to answer support requests (the controller).\n\nTicketToo processes the personal data in support tickets only on the customer's documented instructions, which are these terms and the settings in the customer's account.\n\nTicketToo keeps ticket data secure using encryption in transit and at rest and access controls, as described in our security overview.\n\nTicketToo may engage sub-processors to provide the service and will publish their names.\n\nIf TicketToo becomes aware of a personal data breach affecting the customer's ticket data, it will notify the customer within 48 hours.\n\nThe customer can delete tickets at any time from the account.\n\nTicketToo may transfer ticket data to any country in which it or its sub-processors operate.",
+  "expected": {
+    "parties": {
+      "status": "present",
+      "quote": "These terms apply between TicketToo Ltd, 12 Camden Row, Dublin 8, Ireland (the processor) and the customer using TicketToo to answer support requests (the controller)."
+    },
+    "subject_and_duration": { "status": "absent" },
+    "nature_and_purpose": { "status": "absent" },
+    "data_and_subjects": { "status": "absent" },
+    "controller_rights": { "status": "absent" },
+    "documented_instructions": {
+      "status": "present",
+      "quote": "TicketToo processes the personal data in support tickets only on the customer's documented instructions, which are these terms and the settings in the customer's account."
+    },
+    "confidentiality": { "status": "absent" },
+    "security_measures": {
+      "status": "present",
+      "quote": "TicketToo keeps ticket data secure using encryption in transit and at rest and access controls, as described in our security overview."
+    },
+    "subprocessor_authorisation": { "status": "undetermined" },
+    "subprocessor_objection": {
+      "status": "present",
+      "quote": "TicketToo may engage sub-processors to provide the service and will publish their names."
+    },
+    "assist_data_subject_rights": { "status": "absent" },
+    "assist_obligations": { "status": "absent" },
+    "breach_notification": {
+      "status": "present",
+      "quote": "If TicketToo becomes aware of a personal data breach affecting the customer's ticket data, it will notify the customer within 48 hours."
+    },
+    "deletion_or_return": { "status": "undetermined" },
+    "audits": { "status": "absent" },
+    "transfer_annex": {
+      "status": "present",
+      "quote": "TicketToo may transfer ticket data to any country in which it or its sub-processors operate."
+    }
+  },
+  "expectedSpecifics": {
+    "breach_window": { "status": "met", "hours": 48 },
+    "subprocessor_objection": { "status": "not_met" },
+    "transfer_annex": { "status": "not_met" }
+  },
+  "expectedVerdict": "inadequate",
+  "reasoning": "One page that names the parties, the instruction principle, a security sentence and a 48-hour breach notice, and leaves seven elements out: no subject-matter, nature, data or subjects, no controller rights, no confidentiality, no assistance of either kind, no audits. \"May engage sub-processors and will publish their names\" is neither an authorisation the controller gives (undetermined) nor notice with a way to object (the check fails); a customer deleting tickets during the service is not deletion or return at its end (undetermined); and transfers to \"any country\" with nothing annexed fail. Inadequate on many counts."
+}

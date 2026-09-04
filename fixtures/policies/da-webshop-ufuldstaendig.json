@@ -1,0 +1,39 @@
+{
+  "name": "da-webshop-ufuldstaendig",
+  "locale": "da",
+  "jurisdiction": "DK",
+  "text": "Persondatapolitik\n\nStrikkeriet ApS, Nørregade 21, 8000 Aarhus C, er dataansvarlig. Kontakt os på kundeservice@strikkeriet.test.\n\nNår du handler hos os, behandler vi navn, adresse, e-mail, telefonnummer og ordreoplysninger for at levere din ordre og håndtere reklamationer; grundlaget er købsaftalen, jf. databeskyttelsesforordningens artikel 6, stk. 1, litra b. Tilmelder du dig nyhedsbrevet, sender vi det på grundlag af dit samtykke, jf. artikel 6, stk. 1, litra a.\n\nVi videregiver ordreoplysninger til GLS og PostNord for levering og til Quickpay for betaling.\n\nVi gemmer dine oplysninger, så længe det er nødvendigt.\n\nDu kan til enhver tid afmelde nyhedsbrevet via linket i mailen og dermed trække dit samtykke tilbage.\n\nDu er ikke forpligtet til at give os dine oplysninger, men uden navn og adresse kan vi ikke sende din ordre.\n\nVi træffer ingen automatiske afgørelser om dig.",
+  "expected": {
+    "controller": {
+      "status": "present",
+      "quote": "Strikkeriet ApS, Nørregade 21, 8000 Aarhus C, er dataansvarlig. Kontakt os på kundeservice@strikkeriet.test."
+    },
+    "dpo": { "status": "absent" },
+    "purposes_basis": {
+      "status": "present",
+      "quote": "Når du handler hos os, behandler vi navn, adresse, e-mail, telefonnummer og ordreoplysninger for at levere din ordre og håndtere reklamationer; grundlaget er købsaftalen, jf. databeskyttelsesforordningens artikel 6, stk. 1, litra b."
+    },
+    "legitimate_interests": { "status": "absent" },
+    "recipients": {
+      "status": "present",
+      "quote": "Vi videregiver ordreoplysninger til GLS og PostNord for levering og til Quickpay for betaling."
+    },
+    "transfers": { "status": "absent" },
+    "retention": { "status": "undetermined" },
+    "rights": { "status": "absent" },
+    "withdrawal": {
+      "status": "present",
+      "quote": "Du kan til enhver tid afmelde nyhedsbrevet via linket i mailen og dermed trække dit samtykke tilbage."
+    },
+    "complaint": { "status": "absent" },
+    "obligation": {
+      "status": "present",
+      "quote": "Du er ikke forpligtet til at give os dine oplysninger, men uden navn og adresse kan vi ikke sende din ordre."
+    },
+    "automated": {
+      "status": "present",
+      "quote": "Vi træffer ingen automatiske afgørelser om dig."
+    }
+  },
+  "reasoning": "A small shop's policy that got the transactional half right and forgot the reader's side: no rights, no authority to complain to, and retention \"as long as necessary\", which is a phrase, not a period or a criterion, so undetermined. Withdrawal, the consequence of not providing data and the absence of automated decisions are each stated in one clear sentence and count as present; nothing rests on legitimate interests and no transfer is mentioned, so both absent."
+}

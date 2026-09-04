@@ -1,0 +1,81 @@
+{
+  "name": "en-backup-adequacy",
+  "locale": "en",
+  "jurisdiction": "DK",
+  "vendor": { "host": "vaultsafe.test", "name": "VaultSafe" },
+  "modelledOn": "A backup provider's agreement, complete, whose only transfer goes to Switzerland under the Commission's adequacy decision.",
+  "text": "VaultSafe Data Processing Agreement\n\nThis Agreement is entered into between VaultSafe AG, Bahnhofstrasse 21, 8001 Zürich, Switzerland, acting through its EU subsidiary VaultSafe Europe ApS, Njalsgade 76, 2300 Copenhagen S (together the \"Processor\") and the customer subscribing to the VaultSafe backup service (the \"Controller\"). The Controller is the controller of the backed-up data and the Processor acts only on its documented instructions.\n\n1. Subject-matter and duration. The subject-matter is the encrypted backup and restoration of the Controller's servers and files; the processing lasts for the term of the subscription and the retention period the Controller configures, and ends with deletion under clause 11.\n\n2. Nature and purpose. The Processor receives encrypted backup sets from the Controller's systems, stores them redundantly, and returns them on request, for the sole purpose of enabling the Controller to restore its data.\n\n3. Personal data and data subjects. The personal data are whatever the Controller's systems contain, typically customer records, employee files and correspondence; the data subjects are the Controller's customers, employees and business contacts.\n\n4. Controller's obligations and rights. The Controller decides what is backed up and for how long, holds the encryption keys, may instruct the Processor in writing, may audit under clause 12, may object to sub-processors under clause 8 and may require deletion of every backup set at any time; the Controller is responsible for the lawfulness of the data it backs up.\n\n5. Instructions. The Processor processes personal data only on documented instructions from the Controller, including with regard to transfers of personal data to a third country, unless required to do so by Union or Member State law, in which case it informs the Controller before processing unless the law prohibits it.\n\n6. Confidentiality. The Processor ensures that every person it authorises to handle backup sets has committed themselves to confidentiality in writing, and that no person can read a backup set without the Controller's key.\n\n7. Security. The Processor implements the measures in Annex 2, including client-side encryption with keys the Processor never holds, encrypted storage across two sites, two-factor authentication, tamper-evident logging and quarterly restore tests.\n\n8. Sub-processors. The Controller authorises the sub-processors in Annex 3, each bound by a written contract imposing the same obligations as this Agreement, for which the Processor remains fully liable. The Processor gives the Controller at least 30 days' notice in writing before adding or replacing a sub-processor, and the Controller may object within that period; an unresolved objection lets the Controller terminate without charge.\n\n9. Data subject requests. The Processor assists the Controller with appropriate technical and organisational measures in responding to requests from data subjects, in particular by restoring or deleting the sets the Controller identifies.\n\n10. Other obligations. The Processor assists the Controller in ensuring compliance with its obligations on security of processing, notification of personal data breaches and data protection impact assessments, taking into account the nature of the processing and the information available to the Processor.\n\n11. Breaches. The Processor notifies the Controller without undue delay and at the latest within 24 hours after becoming aware of a personal data breach affecting backup sets, and provides the information the Controller needs for its own notification as it becomes available.\n\n12. Deletion and return. At the end of the service the Processor, at the Controller's choice, returns the backup sets or deletes them, and deletes all copies at both sites within 14 days, unless Union or Member State law requires storage.\n\n13. Audits. The Processor makes available to the Controller all information necessary to demonstrate compliance with this Agreement and allows for and contributes to audits, including inspections, conducted by the Controller or another auditor mandated by the Controller, on 30 days' notice.\n\n14. Transfers. Backup sets are stored in Denmark and in Switzerland. The transfer to Switzerland rests on the European Commission's adequacy decision for Switzerland; no personal data is transferred to any other country outside the European Economic Area.\n\nAnnex 2: Security measures. Annex 3: Sub-processors.",
+  "expected": {
+    "parties": {
+      "status": "present",
+      "quote": "The Controller is the controller of the backed-up data and the Processor acts only on its documented instructions."
+    },
+    "subject_and_duration": {
+      "status": "present",
+      "quote": "The subject-matter is the encrypted backup and restoration of the Controller's servers and files; the processing lasts for the term of the subscription and the retention period the Controller configures, and ends with deletion under clause 11."
+    },
+    "nature_and_purpose": {
+      "status": "present",
+      "quote": "The Processor receives encrypted backup sets from the Controller's systems, stores them redundantly, and returns them on request, for the sole purpose of enabling the Controller to restore its data."
+    },
+    "data_and_subjects": {
+      "status": "present",
+      "quote": "The personal data are whatever the Controller's systems contain, typically customer records, employee files and correspondence; the data subjects are the Controller's customers, employees and business contacts."
+    },
+    "controller_rights": {
+      "status": "present",
+      "quote": "The Controller decides what is backed up and for how long, holds the encryption keys, may instruct the Processor in writing, may audit under clause 12, may object to sub-processors under clause 8 and may require deletion of every backup set at any time"
+    },
+    "documented_instructions": {
+      "status": "present",
+      "quote": "The Processor processes personal data only on documented instructions from the Controller, including with regard to transfers of personal data to a third country, unless required to do so by Union or Member State law"
+    },
+    "confidentiality": {
+      "status": "present",
+      "quote": "The Processor ensures that every person it authorises to handle backup sets has committed themselves to confidentiality in writing, and that no person can read a backup set without the Controller's key."
+    },
+    "security_measures": {
+      "status": "present",
+      "quote": "The Processor implements the measures in Annex 2, including client-side encryption with keys the Processor never holds, encrypted storage across two sites, two-factor authentication, tamper-evident logging and quarterly restore tests."
+    },
+    "subprocessor_authorisation": {
+      "status": "present",
+      "quote": "The Controller authorises the sub-processors in Annex 3, each bound by a written contract imposing the same obligations as this Agreement, for which the Processor remains fully liable."
+    },
+    "subprocessor_objection": {
+      "status": "present",
+      "quote": "The Processor gives the Controller at least 30 days' notice in writing before adding or replacing a sub-processor, and the Controller may object within that period; an unresolved objection lets the Controller terminate without charge."
+    },
+    "assist_data_subject_rights": {
+      "status": "present",
+      "quote": "The Processor assists the Controller with appropriate technical and organisational measures in responding to requests from data subjects, in particular by restoring or deleting the sets the Controller identifies."
+    },
+    "assist_obligations": {
+      "status": "present",
+      "quote": "The Processor assists the Controller in ensuring compliance with its obligations on security of processing, notification of personal data breaches and data protection impact assessments"
+    },
+    "breach_notification": {
+      "status": "present",
+      "quote": "The Processor notifies the Controller without undue delay and at the latest within 24 hours after becoming aware of a personal data breach affecting backup sets"
+    },
+    "deletion_or_return": {
+      "status": "present",
+      "quote": "At the end of the service the Processor, at the Controller's choice, returns the backup sets or deletes them, and deletes all copies at both sites within 14 days"
+    },
+    "audits": {
+      "status": "present",
+      "quote": "The Processor makes available to the Controller all information necessary to demonstrate compliance with this Agreement and allows for and contributes to audits, including inspections, conducted by the Controller or another auditor mandated by the Controller"
+    },
+    "transfer_annex": {
+      "status": "present",
+      "quote": "The transfer to Switzerland rests on the European Commission's adequacy decision for Switzerland; no personal data is transferred to any other country outside the European Economic Area."
+    }
+  },
+  "expectedSpecifics": {
+    "breach_window": { "status": "met", "hours": 24 },
+    "subprocessor_objection": { "status": "met" },
+    "transfer_annex": { "status": "met" }
+  },
+  "expectedVerdict": "adequate",
+  "reasoning": "Complete, and the one transfer is the kind that needs no annex: Switzerland under an adequacy decision, named as such, with every other destination ruled out. The breach notice is 24 hours; sub-processors come with 30 days and an objection. The fixture exists so the transfer check accepts an adequacy decision as well as standard clauses."
+}

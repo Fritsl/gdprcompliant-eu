@@ -1,0 +1,78 @@
+{
+  "name": "da-chat-widget-us",
+  "locale": "da",
+  "jurisdiction": "DK",
+  "vendor": { "host": "snakkeboks.test", "name": "Snakkeboks" },
+  "modelledOn": "A Danish reseller's agreement for a chat widget whose servers sit in the United States; it says so and annexes nothing, and forgets deletion.",
+  "text": "Databehandleraftale – Snakkeboks chat\n\nSnakkeboks ApS, Vesterbro 45, 9000 Aalborg (\"Databehandleren\"), leverer en chatløsning til kunden (\"Den Dataansvarlige\") og behandler i den forbindelse personoplysninger på Den Dataansvarliges vegne og efter dennes instruks.\n\n1. Genstand og varighed. Behandlingens genstand er drift af chatwidgetten på Den Dataansvarliges hjemmeside og opbevaring af samtaler, så længe abonnementet løber.\n\n2. Karakter og formål. Databehandleren modtager, viser og gemmer chatbeskeder mellem Den Dataansvarliges besøgende og medarbejdere, med det formål at Den Dataansvarlige kan yde kundeservice.\n\n3. Oplysninger og registrerede. Der behandles navn, e-mail, IP-adresse, samtaleindhold og eventuelle vedhæftede filer om Den Dataansvarliges besøgende og kunder samt de medarbejdere, der besvarer chatten.\n\n4. Den Dataansvarliges rettigheder og forpligtelser. Den Dataansvarlige kan instruere Databehandleren skriftligt, kan gøre indsigelse mod nye underdatabehandlere, kan føre tilsyn efter punkt 11 og er ansvarlig for, at behandlingen har et lovligt grundlag.\n\n5. Instruks. Databehandleren behandler kun personoplysningerne efter dokumenteret instruks fra Den Dataansvarlige, medmindre det kræves efter EU-retten eller dansk ret, hvor Databehandleren i så fald underretter Den Dataansvarlige inden behandlingen.\n\n6. Fortrolighed. Databehandlerens medarbejdere med adgang til samtaler er pålagt tavshedspligt i deres ansættelsesaftale.\n\n7. Sikkerhed. Databehandleren gennemfører de sikkerhedsforanstaltninger, der er beskrevet i bilag A, herunder kryptering af samtaler under overførsel og i hvile, adgangsstyring og logning.\n\n8. Underdatabehandlere. Den Dataansvarlige giver generel godkendelse til de underdatabehandlere, der er anført i bilag B, og Databehandleren pålægger dem skriftligt de samme forpligtelser. Databehandleren varsler ændringer pr. e-mail mindst 30 dage før, og Den Dataansvarlige kan gøre indsigelse inden for fristen.\n\n9. Bistand. Databehandleren bistår Den Dataansvarlige med at besvare anmodninger fra registrerede og med forpligtelserne om behandlingssikkerhed, anmeldelse af brud på persondatasikkerheden og konsekvensanalyser, i det omfang det er muligt.\n\n10. Brud på persondatasikkerheden. Databehandleren underretter Den Dataansvarlige uden ugrundet ophold og senest 48 timer efter at være blevet bekendt med et brud, med de oplysninger Den Dataansvarlige skal bruge.\n\n11. Tilsyn. Databehandleren stiller de oplysninger, der er nødvendige for at påvise overholdelse af aftalen, til rådighed og giver mulighed for og bidrager til revisioner, herunder inspektioner, foretaget af Den Dataansvarlige eller en revisor bemyndiget af denne.\n\n12. Placering. Chatplatformen drives af vores leverandør i USA, og samtaler opbevares på servere i USA.\n\nBilag A: Sikkerhedsforanstaltninger. Bilag B: Underdatabehandlere.",
+  "expected": {
+    "parties": {
+      "status": "present",
+      "quote": "Snakkeboks ApS, Vesterbro 45, 9000 Aalborg (\"Databehandleren\"), leverer en chatløsning til kunden (\"Den Dataansvarlige\") og behandler i den forbindelse personoplysninger på Den Dataansvarliges vegne og efter dennes instruks."
+    },
+    "subject_and_duration": {
+      "status": "present",
+      "quote": "Behandlingens genstand er drift af chatwidgetten på Den Dataansvarliges hjemmeside og opbevaring af samtaler, så længe abonnementet løber."
+    },
+    "nature_and_purpose": {
+      "status": "present",
+      "quote": "Databehandleren modtager, viser og gemmer chatbeskeder mellem Den Dataansvarliges besøgende og medarbejdere, med det formål at Den Dataansvarlige kan yde kundeservice."
+    },
+    "data_and_subjects": {
+      "status": "present",
+      "quote": "Der behandles navn, e-mail, IP-adresse, samtaleindhold og eventuelle vedhæftede filer om Den Dataansvarliges besøgende og kunder samt de medarbejdere, der besvarer chatten."
+    },
+    "controller_rights": {
+      "status": "present",
+      "quote": "Den Dataansvarlige kan instruere Databehandleren skriftligt, kan gøre indsigelse mod nye underdatabehandlere, kan føre tilsyn efter punkt 11 og er ansvarlig for, at behandlingen har et lovligt grundlag."
+    },
+    "documented_instructions": {
+      "status": "present",
+      "quote": "Databehandleren behandler kun personoplysningerne efter dokumenteret instruks fra Den Dataansvarlige, medmindre det kræves efter EU-retten eller dansk ret"
+    },
+    "confidentiality": {
+      "status": "present",
+      "quote": "Databehandlerens medarbejdere med adgang til samtaler er pålagt tavshedspligt i deres ansættelsesaftale."
+    },
+    "security_measures": {
+      "status": "present",
+      "quote": "Databehandleren gennemfører de sikkerhedsforanstaltninger, der er beskrevet i bilag A, herunder kryptering af samtaler under overførsel og i hvile, adgangsstyring og logning."
+    },
+    "subprocessor_authorisation": {
+      "status": "present",
+      "quote": "Den Dataansvarlige giver generel godkendelse til de underdatabehandlere, der er anført i bilag B, og Databehandleren pålægger dem skriftligt de samme forpligtelser."
+    },
+    "subprocessor_objection": {
+      "status": "present",
+      "quote": "Databehandleren varsler ændringer pr. e-mail mindst 30 dage før, og Den Dataansvarlige kan gøre indsigelse inden for fristen."
+    },
+    "assist_data_subject_rights": {
+      "status": "present",
+      "quote": "Databehandleren bistår Den Dataansvarlige med at besvare anmodninger fra registrerede"
+    },
+    "assist_obligations": {
+      "status": "present",
+      "quote": "med forpligtelserne om behandlingssikkerhed, anmeldelse af brud på persondatasikkerheden og konsekvensanalyser, i det omfang det er muligt"
+    },
+    "breach_notification": {
+      "status": "present",
+      "quote": "Databehandleren underretter Den Dataansvarlige uden ugrundet ophold og senest 48 timer efter at være blevet bekendt med et brud"
+    },
+    "deletion_or_return": { "status": "absent" },
+    "audits": {
+      "status": "present",
+      "quote": "Databehandleren stiller de oplysninger, der er nødvendige for at påvise overholdelse af aftalen, til rådighed og giver mulighed for og bidrager til revisioner, herunder inspektioner, foretaget af Den Dataansvarlige eller en revisor bemyndiget af denne."
+    },
+    "transfer_annex": {
+      "status": "present",
+      "quote": "Chatplatformen drives af vores leverandør i USA, og samtaler opbevares på servere i USA."
+    }
+  },
+  "expectedSpecifics": {
+    "breach_window": { "status": "met", "hours": 48 },
+    "subprocessor_objection": { "status": "met" },
+    "transfer_annex": { "status": "not_met" }
+  },
+  "expectedVerdict": "inadequate",
+  "reasoning": "The reseller says plainly that conversations sit on servers in the United States and annexes nothing for it: the transfer check fails. Nothing says what happens to the conversations when the subscription ends: deletion or return is absent. Both make the agreement inadequate. The rest is in order, with 48 hours for a breach and 30 days and an objection for sub-processors; one clause is quoted twice, once for each kind of assistance it promises."
+}

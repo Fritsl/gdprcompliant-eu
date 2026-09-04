@@ -52,5 +52,6 @@
       "status": "present",
       "quote": "Eine automatisierte Entscheidungsfindung einschließlich Profiling findet nicht statt."
     }
-  }
+  },
+  "reasoning": "A complete German shop notice: every one of the twelve elements is stated in its own sentence and quoted, including the officer, the interest behind a balancing, a transfer with its safeguard, a retention period, the rights, withdrawal, the authority, the consequence of not providing data and a statement on automated decisions. The German control the incomplete ones are read against."
 }

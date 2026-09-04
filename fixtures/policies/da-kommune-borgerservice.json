@@ -1,0 +1,48 @@
+{
+  "name": "da-kommune-borgerservice",
+  "locale": "da",
+  "jurisdiction": "DK",
+  "text": "Sådan behandler Borgerservice dine oplysninger\n\nHolbæk Kommune, Kanalstræde 2, 4300 Holbæk, CVR 29189447, er dataansvarlig for de oplysninger, Borgerservice behandler om dig. Du kan kontakte os på borgerservice@holb.test eller telefon 72 36 36 36.\n\nKommunens databeskyttelsesrådgiver kan kontaktes på dpo@holb.test.\n\nVi behandler dit navn, CPR-nummer, adresse og de oplysninger, du giver os i din henvendelse, for at behandle din sag om pas, kørekort, flytning eller sundhedskort. Grundlaget er, at behandlingen er nødvendig for at udføre en opgave i samfundets interesse eller som henhører under offentlig myndighedsudøvelse, jf. artikel 6, stk. 1, litra e, og for CPR-nummeret databeskyttelseslovens § 11.\n\nVi videregiver oplysninger til Rigspolitiet ved pas og kørekort, til Udbetaling Danmark og til andre myndigheder, når loven kræver det.\n\nVi opbevarer sagerne efter arkivlovens regler og afleverer dem til Rigsarkivet; sager om pas og kørekort slettes hos os fem år efter afslutningen.\n\nDu har ret til indsigt, berigtigelse, sletning, begrænsning af behandling og indsigelse. Retten til sletning gælder ikke, hvor vi har pligt til at opbevare oplysningerne.\n\nDu kan klage til Datatilsynet, Carl Jacobsens Vej 35, 2500 Valby, dt@datatilsynet.dk.\n\nDu har pligt til at give os de oplysninger, loven kræver for at behandle din sag; giver du dem ikke, kan vi ikke behandle den.\n\nVi træffer ikke afgørelser alene på grundlag af automatisk behandling.",
+  "expected": {
+    "controller": {
+      "status": "present",
+      "quote": "Holbæk Kommune, Kanalstræde 2, 4300 Holbæk, CVR 29189447, er dataansvarlig for de oplysninger, Borgerservice behandler om dig. Du kan kontakte os på borgerservice@holb.test eller telefon 72 36 36 36."
+    },
+    "dpo": {
+      "status": "present",
+      "quote": "Kommunens databeskyttelsesrådgiver kan kontaktes på dpo@holb.test."
+    },
+    "purposes_basis": {
+      "status": "present",
+      "quote": "Vi behandler dit navn, CPR-nummer, adresse og de oplysninger, du giver os i din henvendelse, for at behandle din sag om pas, kørekort, flytning eller sundhedskort. Grundlaget er, at behandlingen er nødvendig for at udføre en opgave i samfundets interesse eller som henhører under offentlig myndighedsudøvelse, jf. artikel 6, stk. 1, litra e, og for CPR-nummeret databeskyttelseslovens § 11."
+    },
+    "legitimate_interests": { "status": "absent" },
+    "recipients": {
+      "status": "present",
+      "quote": "Vi videregiver oplysninger til Rigspolitiet ved pas og kørekort, til Udbetaling Danmark og til andre myndigheder, når loven kræver det."
+    },
+    "transfers": { "status": "absent" },
+    "retention": {
+      "status": "present",
+      "quote": "Vi opbevarer sagerne efter arkivlovens regler og afleverer dem til Rigsarkivet; sager om pas og kørekort slettes hos os fem år efter afslutningen."
+    },
+    "rights": {
+      "status": "present",
+      "quote": "Du har ret til indsigt, berigtigelse, sletning, begrænsning af behandling og indsigelse. Retten til sletning gælder ikke, hvor vi har pligt til at opbevare oplysningerne."
+    },
+    "withdrawal": { "status": "absent" },
+    "complaint": {
+      "status": "present",
+      "quote": "Du kan klage til Datatilsynet, Carl Jacobsens Vej 35, 2500 Valby, dt@datatilsynet.dk."
+    },
+    "obligation": {
+      "status": "present",
+      "quote": "Du har pligt til at give os de oplysninger, loven kræver for at behandle din sag; giver du dem ikke, kan vi ikke behandle den."
+    },
+    "automated": {
+      "status": "present",
+      "quote": "Vi træffer ikke afgørelser alene på grundlag af automatisk behandling."
+    }
+  },
+  "reasoning": "A public authority: the basis is the public task, with the national provision for the national identifier, and nothing rests on legitimate interests or consent, so those are absent, not missing. Rights are listed and portability is left out, which is right for a public task and still present. Retention names both the archive rules and a period; a sentence saying decisions are not made by automated processing alone is present. No transfer is mentioned."
+}

@@ -1,0 +1,75 @@
+{
+  "name": "da-regnskab-mangler-instruks",
+  "locale": "da",
+  "jurisdiction": "DK",
+  "vendor": { "host": "bogholderiet.test", "name": "Bogholderiet" },
+  "modelledOn": "A bookkeeping bureau's agreement written by the bureau itself: good on security and deletion, silent on instructions and on who may be engaged.",
+  "text": "Databehandleraftale – Bogholderiet ApS\n\nBogholderiet ApS, Torvegade 3, 5700 Svendborg (\"Databehandleren\") fører bogholderi for kunden (\"Den Dataansvarlige\") og behandler i den forbindelse personoplysninger på Den Dataansvarliges vegne.\n\n1. Genstand og varighed. Behandlingens genstand er bogføring, fakturering og afstemning for Den Dataansvarlige, så længe samarbejdsaftalen løber, og indtil oplysningerne er slettet eller tilbageleveret efter punkt 9.\n\n2. Karakter og formål. Databehandleren registrerer, kontrollerer og arkiverer bilag og posteringer, med det formål at Den Dataansvarliges regnskab er korrekt og rettidigt.\n\n3. Oplysninger og registrerede. Der behandles navn, adresse, CVR- eller CPR-nummer, kontonummer, fakturabeløb og betalingshistorik om Den Dataansvarliges kunder, leverandører og medarbejdere.\n\n4. Den Dataansvarliges rettigheder og forpligtelser. Den Dataansvarlige har ret til at føre tilsyn efter punkt 10, til at gøre indsigelse mod nye underdatabehandlere efter punkt 6 og til at kræve oplysningerne slettet eller tilbageleveret, og er ansvarlig for, at behandlingen har et lovligt grundlag.\n\n5. Fortrolighed og sikkerhed. Databehandlerens medarbejdere har underskrevet en fortrolighedserklæring. Databehandleren gennemfører de tekniske og organisatoriske foranstaltninger i bilag 1, herunder kryptering af regnskabssystemet, personlige logins med tofaktor, adgangslogning og daglig backup.\n\n6. Ændring af underdatabehandlere. Databehandleren underretter Den Dataansvarlige skriftligt mindst 30 dage før, en underdatabehandler skiftes ud, og Den Dataansvarlige kan gøre indsigelse inden for fristen.\n\n7. Bistand. Databehandleren bistår Den Dataansvarlige med at besvare anmodninger fra registrerede om deres rettigheder og med forpligtelserne om behandlingssikkerhed, anmeldelse af brud på persondatasikkerheden og konsekvensanalyser.\n\n8. Brud på persondatasikkerheden. Databehandleren underretter Den Dataansvarlige uden ugrundet ophold og senest 36 timer efter at være blevet bekendt med et brud på persondatasikkerheden.\n\n9. Sletning og tilbagelevering. Ved samarbejdets ophør tilbageleverer eller sletter Databehandleren efter Den Dataansvarliges valg alle personoplysninger og sletter kopier inden for 30 dage, medmindre bogføringsloven kræver opbevaring.\n\n10. Tilsyn. Databehandleren stiller de oplysninger, der er nødvendige for at påvise overholdelse af aftalen, til rådighed og giver mulighed for og bidrager til revisioner, herunder inspektioner, foretaget af Den Dataansvarlige eller en revisor bemyndiget af denne.\n\n11. Overførsel. Alle oplysninger behandles i Danmark; der sker ingen overførsel til lande uden for EU/EØS.\n\nBilag 1: Sikkerhedsforanstaltninger.",
+  "expected": {
+    "parties": {
+      "status": "present",
+      "quote": "Bogholderiet ApS, Torvegade 3, 5700 Svendborg (\"Databehandleren\") fører bogholderi for kunden (\"Den Dataansvarlige\") og behandler i den forbindelse personoplysninger på Den Dataansvarliges vegne."
+    },
+    "subject_and_duration": {
+      "status": "present",
+      "quote": "Behandlingens genstand er bogføring, fakturering og afstemning for Den Dataansvarlige, så længe samarbejdsaftalen løber, og indtil oplysningerne er slettet eller tilbageleveret efter punkt 9."
+    },
+    "nature_and_purpose": {
+      "status": "present",
+      "quote": "Databehandleren registrerer, kontrollerer og arkiverer bilag og posteringer, med det formål at Den Dataansvarliges regnskab er korrekt og rettidigt."
+    },
+    "data_and_subjects": {
+      "status": "present",
+      "quote": "Der behandles navn, adresse, CVR- eller CPR-nummer, kontonummer, fakturabeløb og betalingshistorik om Den Dataansvarliges kunder, leverandører og medarbejdere."
+    },
+    "controller_rights": {
+      "status": "present",
+      "quote": "Den Dataansvarlige har ret til at føre tilsyn efter punkt 10, til at gøre indsigelse mod nye underdatabehandlere efter punkt 6 og til at kræve oplysningerne slettet eller tilbageleveret, og er ansvarlig for, at behandlingen har et lovligt grundlag."
+    },
+    "documented_instructions": { "status": "absent" },
+    "confidentiality": {
+      "status": "present",
+      "quote": "Databehandlerens medarbejdere har underskrevet en fortrolighedserklæring."
+    },
+    "security_measures": {
+      "status": "present",
+      "quote": "Databehandleren gennemfører de tekniske og organisatoriske foranstaltninger i bilag 1, herunder kryptering af regnskabssystemet, personlige logins med tofaktor, adgangslogning og daglig backup."
+    },
+    "subprocessor_authorisation": { "status": "absent" },
+    "subprocessor_objection": {
+      "status": "present",
+      "quote": "Databehandleren underretter Den Dataansvarlige skriftligt mindst 30 dage før, en underdatabehandler skiftes ud, og Den Dataansvarlige kan gøre indsigelse inden for fristen."
+    },
+    "assist_data_subject_rights": {
+      "status": "present",
+      "quote": "Databehandleren bistår Den Dataansvarlige med at besvare anmodninger fra registrerede om deres rettigheder"
+    },
+    "assist_obligations": {
+      "status": "present",
+      "quote": "med forpligtelserne om behandlingssikkerhed, anmeldelse af brud på persondatasikkerheden og konsekvensanalyser"
+    },
+    "breach_notification": {
+      "status": "present",
+      "quote": "Databehandleren underretter Den Dataansvarlige uden ugrundet ophold og senest 36 timer efter at være blevet bekendt med et brud på persondatasikkerheden."
+    },
+    "deletion_or_return": {
+      "status": "present",
+      "quote": "Ved samarbejdets ophør tilbageleverer eller sletter Databehandleren efter Den Dataansvarliges valg alle personoplysninger og sletter kopier inden for 30 dage"
+    },
+    "audits": {
+      "status": "present",
+      "quote": "Databehandleren stiller de oplysninger, der er nødvendige for at påvise overholdelse af aftalen, til rådighed og giver mulighed for og bidrager til revisioner, herunder inspektioner, foretaget af Den Dataansvarlige eller en revisor bemyndiget af denne."
+    },
+    "transfer_annex": {
+      "status": "present",
+      "quote": "Alle oplysninger behandles i Danmark; der sker ingen overførsel til lande uden for EU/EØS."
+    }
+  },
+  "expectedSpecifics": {
+    "breach_window": { "status": "met", "hours": 36 },
+    "subprocessor_objection": { "status": "met" },
+    "transfer_annex": { "status": "met" }
+  },
+  "expectedVerdict": "inadequate",
+  "reasoning": "The bureau never binds itself to process only on the controller's documented instructions, and never says a sub-processor needs the controller's prior written authorisation; a notice-and-objection clause for changes is there, but it presupposes an authorisation the agreement does not give. Two absences, so inadequate, while the three specific checks pass: 36 hours, 30 days with an objection, and data kept in Denmark."
+}

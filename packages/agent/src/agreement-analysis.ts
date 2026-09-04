@@ -95,14 +95,14 @@ const UNDUE_DELAY =
   /without (undue|unreasonable) delay|without delay|immediately|promptly|as soon as|uden ugrundet ophold|uden unødig(t)? (forsinkelse|ophold)|uden ugrundet forsinkelse|straks|omgående|snarest|hurtigst muligt|unverzüglich|ohne (unangemessene|schuldhafte) Verzögerung|ohne schuldhaftes Zögern|umgehend|sofort/i;
 
 const NOTICE =
-  /\b(inform|notif|announce|advise|notice|underret|orienter|varsl|meddel|informier|mitteil|benachrichtig|ankündig|unterricht|vorab)/i;
+  /\b(inform|notif|announce|advise|notice|underret|orienter|varsl|meddel|informier|mitteil|benachrichtig|ankündig|kündigt|unterricht|vorab|vorher|voraus)/i;
 const OBJECTION =
   /\b(object|opposi|indsigelse|modsætte|protest|widerspr|widerspruch|einspruch|einwand)/i;
 
 const SAFEGUARD =
   /standard contractual clauses|standard data protection clauses|\bSCCs?\b|standardkontraktbestemmelser|standardkontraktklausuler|standardkontrakt|Standardvertragsklauseln|Standarddatenschutzklauseln|adequacy decision|adequate level of protection|tilstrækkelighedsafgørelse|tilstrækkeligt beskyttelsesniveau|Angemessenheitsbeschluss|angemessenes Schutzniveau|binding corporate rules|bindende virksomhedsregler|verbindliche interne Datenschutzvorschriften|Data Privacy Framework/i;
 const NO_TRANSFER =
-  /\b(no transfer|not (be )?transferred|are not transferred|is not transferred|only within the (EU|EEA|European)|within the EEA|within the European Economic Area|within the EU|inden for (EU|EØS)|ikke overføre|overføres ikke|innerhalb (der EU|des EWR|der Europäischen Union|des Europäischen Wirtschaftsraums)|nicht (in Drittländer |in ein Drittland )?übermittelt|keine Übermittlung|keine Drittlandübermittlung)/i;
+  /\b(no transfer|no [^.;]*(is|are) transferred|not (be )?transferred|are not transferred|is not transferred|only within the (EU|EEA|European)|within the EEA|within the European Economic Area|within the EU|inden for (EU|EØS)|ingen overførsel|ikke overføre|overføres ikke|innerhalb (der EU|des EWR|der Europäischen Union|des Europäischen Wirtschaftsraums)|nicht (in Drittländer |in ein Drittland )?übermittelt|[^.;]*findet nicht statt|keine Übermittlung|keine Drittlandübermittlung)/i;
 
 const numberOf = (raw: string): number => {
   const n = Number(raw);

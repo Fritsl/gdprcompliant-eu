@@ -1,0 +1,30 @@
+{
+  "name": "de-newsletter-nur",
+  "locale": "de",
+  "jurisdiction": "DE",
+  "text": "Datenschutz\n\nWenn Sie unseren Newsletter abonnieren, speichern wir Ihre E-Mail-Adresse und den Zeitpunkt der Anmeldung, um Ihnen unseren Newsletter zu senden. Grundlage ist Ihre Einwilligung.\n\nDen Versand übernimmt für uns die Mailflug GmbH, Berlin.\n\nSie können den Newsletter jederzeit über den Link am Ende jeder E-Mail abbestellen; damit widerrufen Sie Ihre Einwilligung.\n\nWir nutzen Matomo, um zu sehen, welche Seiten gelesen werden.\n\nBei Fragen schreiben Sie an redaktion@stadtblatt.test.",
+  "expected": {
+    "controller": { "status": "undetermined" },
+    "dpo": { "status": "absent" },
+    "purposes_basis": {
+      "status": "present",
+      "quote": "Wenn Sie unseren Newsletter abonnieren, speichern wir Ihre E-Mail-Adresse und den Zeitpunkt der Anmeldung, um Ihnen unseren Newsletter zu senden. Grundlage ist Ihre Einwilligung."
+    },
+    "legitimate_interests": { "status": "absent" },
+    "recipients": {
+      "status": "present",
+      "quote": "Den Versand übernimmt für uns die Mailflug GmbH, Berlin."
+    },
+    "transfers": { "status": "absent" },
+    "retention": { "status": "absent" },
+    "rights": { "status": "absent" },
+    "withdrawal": {
+      "status": "present",
+      "quote": "Sie können den Newsletter jederzeit über den Link am Ende jeder E-Mail abbestellen; damit widerrufen Sie Ihre Einwilligung."
+    },
+    "complaint": { "status": "absent" },
+    "obligation": { "status": "absent" },
+    "automated": { "status": "absent" }
+  },
+  "reasoning": "A newsletter-only notice with an email address but no name or postal address of whoever is responsible, so the controller is undetermined rather than present; the purpose, its basis, the mailing provider and the withdrawal are stated in single sentences. Eight elements are simply not there, which is the point of the fixture: a policy this short is mostly absences, and the reader must say so rather than read things into it. Matomo is mentioned without a word on retention, rights or a complaint."
+}

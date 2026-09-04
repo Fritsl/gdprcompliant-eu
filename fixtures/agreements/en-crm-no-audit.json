@@ -1,0 +1,75 @@
+{
+  "name": "en-crm-no-audit",
+  "locale": "en",
+  "jurisdiction": "DK",
+  "vendor": { "host": "leadloop.test", "name": "LeadLoop" },
+  "modelledOn": "A small CRM vendor's agreement that handles the data and the breach well but offers no audit right and no help beyond data subject requests.",
+  "text": "LeadLoop Data Processing Agreement\n\nThis Agreement is between LeadLoop ApS, Vestergade 9, 8000 Aarhus C (the \"Processor\") and the customer holding a LeadLoop workspace (the \"Controller\"). The Controller determines the purposes and means of the processing and the Processor acts only on its behalf.\n\n1. Subject-matter and duration. The subject-matter is the storage and management of the Controller's sales contacts and deal notes in the LeadLoop workspace; the processing lasts for the term of the subscription and the deletion period below.\n\n2. Nature and purpose. The Processor stores, indexes, displays and backs up the contact records and notes so that the Controller's staff can manage their sales pipeline.\n\n3. Data and data subjects. The personal data are names, job titles, employers, email addresses, phone numbers and free-text notes; the data subjects are the Controller's prospects, customers and their contact persons.\n\n4. The Controller. The Controller is responsible for the lawfulness of the data it enters and for its instructions, may instruct the Processor in writing, may object to sub-processors under clause 8 and may require deletion or return of the data at any time.\n\n5. Instructions. The Processor processes the personal data only on documented instructions from the Controller, including with regard to transfers to a third country, unless Union or Member State law requires otherwise, in which case it informs the Controller before processing unless the law prohibits it.\n\n6. Confidentiality. Every LeadLoop employee with access to workspace data has signed a confidentiality undertaking as part of their employment contract.\n\n7. Security. The Processor implements the technical and organisational measures in Appendix A, including encrypted storage, TLS for all connections, two-factor authentication for staff and daily backups kept for 14 days.\n\n8. Sub-processors. The Controller authorises the sub-processors listed in Appendix B, each bound by a written agreement imposing the obligations of this Agreement. The Processor gives the Controller 30 days' notice by email before adding a sub-processor, and the Controller may object within that period, in which case the Processor will not use the new sub-processor for the Controller's data.\n\n9. Data subject requests. The Processor assists the Controller with appropriate technical measures in responding to requests from data subjects, and provides export and deletion tools for that purpose.\n\n10. Breaches. The Processor notifies the Controller without undue delay, and no later than 36 hours after becoming aware of a personal data breach concerning the Controller's data, and supplies what it knows about the breach as it learns it.\n\n11. Deletion. At the end of the subscription the Processor, at the Controller's choice, returns the workspace data as an export or deletes it, and deletes all copies including backups within 30 days.\n\n12. Transfers. All workspace data is hosted in Denmark and Sweden; no personal data is transferred outside the European Economic Area.\n\nAppendix A: Security measures. Appendix B: Sub-processors.",
+  "expected": {
+    "parties": {
+      "status": "present",
+      "quote": "This Agreement is between LeadLoop ApS, Vestergade 9, 8000 Aarhus C (the \"Processor\") and the customer holding a LeadLoop workspace (the \"Controller\")."
+    },
+    "subject_and_duration": {
+      "status": "present",
+      "quote": "The subject-matter is the storage and management of the Controller's sales contacts and deal notes in the LeadLoop workspace; the processing lasts for the term of the subscription and the deletion period below."
+    },
+    "nature_and_purpose": {
+      "status": "present",
+      "quote": "The Processor stores, indexes, displays and backs up the contact records and notes so that the Controller's staff can manage their sales pipeline."
+    },
+    "data_and_subjects": {
+      "status": "present",
+      "quote": "The personal data are names, job titles, employers, email addresses, phone numbers and free-text notes; the data subjects are the Controller's prospects, customers and their contact persons."
+    },
+    "controller_rights": {
+      "status": "present",
+      "quote": "The Controller is responsible for the lawfulness of the data it enters and for its instructions, may instruct the Processor in writing, may object to sub-processors under clause 8 and may require deletion or return of the data at any time."
+    },
+    "documented_instructions": {
+      "status": "present",
+      "quote": "The Processor processes the personal data only on documented instructions from the Controller, including with regard to transfers to a third country, unless Union or Member State law requires otherwise"
+    },
+    "confidentiality": {
+      "status": "present",
+      "quote": "Every LeadLoop employee with access to workspace data has signed a confidentiality undertaking as part of their employment contract."
+    },
+    "security_measures": {
+      "status": "present",
+      "quote": "The Processor implements the technical and organisational measures in Appendix A, including encrypted storage, TLS for all connections, two-factor authentication for staff and daily backups kept for 14 days."
+    },
+    "subprocessor_authorisation": {
+      "status": "present",
+      "quote": "The Controller authorises the sub-processors listed in Appendix B, each bound by a written agreement imposing the obligations of this Agreement."
+    },
+    "subprocessor_objection": {
+      "status": "present",
+      "quote": "The Processor gives the Controller 30 days' notice by email before adding a sub-processor, and the Controller may object within that period, in which case the Processor will not use the new sub-processor for the Controller's data."
+    },
+    "assist_data_subject_rights": {
+      "status": "present",
+      "quote": "The Processor assists the Controller with appropriate technical measures in responding to requests from data subjects, and provides export and deletion tools for that purpose."
+    },
+    "assist_obligations": { "status": "absent" },
+    "breach_notification": {
+      "status": "present",
+      "quote": "The Processor notifies the Controller without undue delay, and no later than 36 hours after becoming aware of a personal data breach concerning the Controller's data"
+    },
+    "deletion_or_return": {
+      "status": "present",
+      "quote": "At the end of the subscription the Processor, at the Controller's choice, returns the workspace data as an export or deletes it, and deletes all copies including backups within 30 days."
+    },
+    "audits": { "status": "absent" },
+    "transfer_annex": {
+      "status": "present",
+      "quote": "All workspace data is hosted in Denmark and Sweden; no personal data is transferred outside the European Economic Area."
+    }
+  },
+  "expectedSpecifics": {
+    "breach_window": { "status": "met", "hours": 36 },
+    "subprocessor_objection": { "status": "met" },
+    "transfer_annex": { "status": "met" }
+  },
+  "expectedVerdict": "inadequate",
+  "reasoning": "Fourteen elements are stated and quoted, and all three specific checks pass: 36 hours for a breach, 30 days and an objection for a sub-processor, and an express no-transfer sentence. Two elements are missing outright: nothing offers the controller information or audits, and nothing promises help with security, breach notification or impact assessments beyond data subject requests. Two absences make the agreement inadequate however good the rest is."
+}

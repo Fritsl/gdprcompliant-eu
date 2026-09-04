@@ -1,0 +1,57 @@
+{
+  "name": "en-hr-recruiting-de",
+  "locale": "en",
+  "jurisdiction": "DE",
+  "text": "Applicant privacy notice\n\nNordlicht Software GmbH, Kaiserstraße 40, 60329 Frankfurt am Main, is the controller for the personal data you provide when you apply for a job with us. Contact: careers@nordlicht.test.\n\nYou can reach our data protection officer at dpo@nordlicht.test.\n\nWe process your application documents, your contact details and your interview notes to assess your application and to fill the position; the legal basis is Section 26 of the Federal Data Protection Act and, for the contract we may enter into, Article 6(1)(b) GDPR. We keep applications on file for future openings only with your consent.\n\nWe run structured interviews and score them on the basis of our legitimate interest in a fair and comparable selection.\n\nOur legitimate interest is to compare candidates on the same criteria and to keep a record of why a decision was made.\n\nYour application is stored in the recruiting platform of Greenhouse Software, Inc., and is read by the hiring managers of the team you apply to and by our recruiters.\n\nGreenhouse Software, Inc. is based in the United States; the transfer rests on the standard contractual clauses, and a copy is available from our data protection officer.\n\nWe delete unsuccessful applications six months after the position is filled, unless you have consented to a longer period, in which case we keep them for two years.\n\nYou have the right of access, rectification, erasure, restriction of processing, objection and data portability.\n\nWhere you have consented to us keeping your application on file, you can withdraw that consent at any time by writing to careers@nordlicht.test.\n\nYou can lodge a complaint with the Hessian Commissioner for Data Protection and Freedom of Information.\n\nProviding your application data is voluntary, but without it we cannot consider you for the position.\n\nNo decision about your application is made by automated means alone; a person reads every application.",
+  "expected": {
+    "controller": {
+      "status": "present",
+      "quote": "Nordlicht Software GmbH, Kaiserstraße 40, 60329 Frankfurt am Main, is the controller for the personal data you provide when you apply for a job with us. Contact: careers@nordlicht.test."
+    },
+    "dpo": {
+      "status": "present",
+      "quote": "You can reach our data protection officer at dpo@nordlicht.test."
+    },
+    "purposes_basis": {
+      "status": "present",
+      "quote": "We process your application documents, your contact details and your interview notes to assess your application and to fill the position; the legal basis is Section 26 of the Federal Data Protection Act and, for the contract we may enter into, Article 6(1)(b) GDPR."
+    },
+    "legitimate_interests": {
+      "status": "present",
+      "quote": "Our legitimate interest is to compare candidates on the same criteria and to keep a record of why a decision was made."
+    },
+    "recipients": {
+      "status": "present",
+      "quote": "Your application is stored in the recruiting platform of Greenhouse Software, Inc., and is read by the hiring managers of the team you apply to and by our recruiters."
+    },
+    "transfers": {
+      "status": "present",
+      "quote": "Greenhouse Software, Inc. is based in the United States; the transfer rests on the standard contractual clauses, and a copy is available from our data protection officer."
+    },
+    "retention": {
+      "status": "present",
+      "quote": "We delete unsuccessful applications six months after the position is filled, unless you have consented to a longer period, in which case we keep them for two years."
+    },
+    "rights": {
+      "status": "present",
+      "quote": "You have the right of access, rectification, erasure, restriction of processing, objection and data portability."
+    },
+    "withdrawal": {
+      "status": "present",
+      "quote": "Where you have consented to us keeping your application on file, you can withdraw that consent at any time by writing to careers@nordlicht.test."
+    },
+    "complaint": {
+      "status": "present",
+      "quote": "You can lodge a complaint with the Hessian Commissioner for Data Protection and Freedom of Information."
+    },
+    "obligation": {
+      "status": "present",
+      "quote": "Providing your application data is voluntary, but without it we cannot consider you for the position."
+    },
+    "automated": {
+      "status": "present",
+      "quote": "No decision about your application is made by automated means alone; a person reads every application."
+    }
+  },
+  "reasoning": "An applicant notice under German law written in English, which the set lacked: the national employment provision as basis, the interest behind structured scoring, a named platform in the United States with its safeguard, a retention period that changes with consent, and a plain sentence ruling out decisions made by automated means alone. Twelve present; the reasoning the reader must follow is that a statement of no automated decision satisfies the element."
+}

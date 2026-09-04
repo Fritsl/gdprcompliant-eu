@@ -1,0 +1,81 @@
+{
+  "name": "de-ticketing-kein-widerspruch",
+  "locale": "de",
+  "jurisdiction": "DE",
+  "vendor": { "host": "kartenwerk.test", "name": "Kartenwerk" },
+  "modelledOn": "A German ticketing platform whose agreement is complete except that sub-processors change with a notice on a web page and no way to object.",
+  "text": "Auftragsverarbeitungsvertrag Kartenwerk\n\nDie Kartenwerk GmbH, Reeperbahn 1, 20359 Hamburg (\"Auftragsverarbeiter\"), betreibt für den Veranstalter (\"Verantwortlicher\") den Ticketverkauf und verarbeitet dabei personenbezogene Daten ausschließlich in dessen Auftrag.\n\n1. Gegenstand und Dauer. Gegenstand ist der Verkauf und Versand von Eintrittskarten für die Veranstaltungen des Verantwortlichen sowie die Einlasskontrolle; die Verarbeitung dauert für die Laufzeit des Plattformvertrags an und endet mit der Löschung nach Ziffer 11.\n\n2. Art und Zweck. Kartenwerk nimmt Bestellungen entgegen, wickelt die Zahlung ab, versendet Tickets und prüft sie am Einlass, damit der Verantwortliche seine Veranstaltungen durchführen kann.\n\n3. Datenarten und betroffene Personen. Verarbeitet werden Name, E-Mail-Adresse, Anschrift, Zahlungsreferenz, Bestellhistorie und Einlasszeitpunkt; betroffen sind die Ticketkäufer und Besucher des Verantwortlichen.\n\n4. Rechte und Pflichten des Verantwortlichen. Der Verantwortliche ist für die Rechtmäßigkeit verantwortlich, erteilt Weisungen über das Veranstalterkonto oder schriftlich, kann Kontrollen nach Ziffer 12 durchführen und die Löschung oder Herausgabe der Daten verlangen.\n\n5. Weisungen. Kartenwerk verarbeitet die Daten nur auf dokumentierte Weisung des Verantwortlichen, auch bei Übermittlungen in Drittländer, sofern nicht das Recht der Union oder eines Mitgliedstaats etwas anderes verlangt; dann wird der Verantwortliche vorab informiert.\n\n6. Vertraulichkeit. Alle Mitarbeiter mit Datenzugriff sind schriftlich zur Vertraulichkeit verpflichtet.\n\n7. Sicherheit. Kartenwerk setzt die in Anhang 1 beschriebenen Maßnahmen um: verschlüsselte Übertragung, verschlüsselte Datenbanken, Zwei-Faktor-Anmeldung, getrennte Mandanten, tägliche Sicherungen.\n\n8. Unterauftragsverarbeiter. Der Verantwortliche genehmigt die in Anhang 2 genannten Unterauftragsverarbeiter allgemein; Kartenwerk verpflichtet sie auf dieselben Pflichten. Kartenwerk kann Unterauftragsverarbeiter jederzeit hinzuziehen oder ersetzen und veröffentlicht die aktuelle Liste auf kartenwerk.test/unterauftragsverarbeiter.\n\n9. Unterstützung bei Betroffenenrechten. Kartenwerk unterstützt den Verantwortlichen mit geeigneten technischen und organisatorischen Maßnahmen bei der Beantwortung von Anträgen betroffener Personen.\n\n10. Weitere Unterstützung. Kartenwerk unterstützt den Verantwortlichen bei den Pflichten zur Sicherheit der Verarbeitung, zur Meldung von Datenschutzverletzungen und zur Datenschutz-Folgenabschätzung.\n\n11. Datenschutzverletzungen. Kartenwerk meldet dem Verantwortlichen eine Verletzung des Schutzes personenbezogener Daten unverzüglich, spätestens innerhalb von 48 Stunden nach Bekanntwerden.\n\n12. Löschung und Rückgabe. Nach Vertragsende gibt Kartenwerk die Daten nach Wahl des Verantwortlichen zurück oder löscht sie und löscht Kopien innerhalb von 30 Tagen, soweit keine Aufbewahrungspflicht besteht.\n\n13. Kontrollen. Kartenwerk stellt alle zum Nachweis der Einhaltung erforderlichen Informationen bereit und ermöglicht Überprüfungen einschließlich Inspektionen durch den Verantwortlichen oder einen beauftragten Prüfer.\n\n14. Drittlandübermittlung. Die Daten werden in Rechenzentren in Deutschland und Frankreich verarbeitet; eine Übermittlung in Drittländer findet nicht statt.\n\nAnhang 1: Technische und organisatorische Maßnahmen. Anhang 2: Unterauftragsverarbeiter.",
+  "expected": {
+    "parties": {
+      "status": "present",
+      "quote": "Die Kartenwerk GmbH, Reeperbahn 1, 20359 Hamburg (\"Auftragsverarbeiter\"), betreibt für den Veranstalter (\"Verantwortlicher\") den Ticketverkauf und verarbeitet dabei personenbezogene Daten ausschließlich in dessen Auftrag."
+    },
+    "subject_and_duration": {
+      "status": "present",
+      "quote": "Gegenstand ist der Verkauf und Versand von Eintrittskarten für die Veranstaltungen des Verantwortlichen sowie die Einlasskontrolle; die Verarbeitung dauert für die Laufzeit des Plattformvertrags an und endet mit der Löschung nach Ziffer 11."
+    },
+    "nature_and_purpose": {
+      "status": "present",
+      "quote": "Kartenwerk nimmt Bestellungen entgegen, wickelt die Zahlung ab, versendet Tickets und prüft sie am Einlass, damit der Verantwortliche seine Veranstaltungen durchführen kann."
+    },
+    "data_and_subjects": {
+      "status": "present",
+      "quote": "Verarbeitet werden Name, E-Mail-Adresse, Anschrift, Zahlungsreferenz, Bestellhistorie und Einlasszeitpunkt; betroffen sind die Ticketkäufer und Besucher des Verantwortlichen."
+    },
+    "controller_rights": {
+      "status": "present",
+      "quote": "Der Verantwortliche ist für die Rechtmäßigkeit verantwortlich, erteilt Weisungen über das Veranstalterkonto oder schriftlich, kann Kontrollen nach Ziffer 12 durchführen und die Löschung oder Herausgabe der Daten verlangen."
+    },
+    "documented_instructions": {
+      "status": "present",
+      "quote": "Kartenwerk verarbeitet die Daten nur auf dokumentierte Weisung des Verantwortlichen, auch bei Übermittlungen in Drittländer, sofern nicht das Recht der Union oder eines Mitgliedstaats etwas anderes verlangt"
+    },
+    "confidentiality": {
+      "status": "present",
+      "quote": "Alle Mitarbeiter mit Datenzugriff sind schriftlich zur Vertraulichkeit verpflichtet."
+    },
+    "security_measures": {
+      "status": "present",
+      "quote": "Kartenwerk setzt die in Anhang 1 beschriebenen Maßnahmen um: verschlüsselte Übertragung, verschlüsselte Datenbanken, Zwei-Faktor-Anmeldung, getrennte Mandanten, tägliche Sicherungen."
+    },
+    "subprocessor_authorisation": {
+      "status": "present",
+      "quote": "Der Verantwortliche genehmigt die in Anhang 2 genannten Unterauftragsverarbeiter allgemein; Kartenwerk verpflichtet sie auf dieselben Pflichten."
+    },
+    "subprocessor_objection": {
+      "status": "present",
+      "quote": "Kartenwerk kann Unterauftragsverarbeiter jederzeit hinzuziehen oder ersetzen und veröffentlicht die aktuelle Liste auf kartenwerk.test/unterauftragsverarbeiter."
+    },
+    "assist_data_subject_rights": {
+      "status": "present",
+      "quote": "Kartenwerk unterstützt den Verantwortlichen mit geeigneten technischen und organisatorischen Maßnahmen bei der Beantwortung von Anträgen betroffener Personen."
+    },
+    "assist_obligations": {
+      "status": "present",
+      "quote": "Kartenwerk unterstützt den Verantwortlichen bei den Pflichten zur Sicherheit der Verarbeitung, zur Meldung von Datenschutzverletzungen und zur Datenschutz-Folgenabschätzung."
+    },
+    "breach_notification": {
+      "status": "present",
+      "quote": "Kartenwerk meldet dem Verantwortlichen eine Verletzung des Schutzes personenbezogener Daten unverzüglich, spätestens innerhalb von 48 Stunden nach Bekanntwerden."
+    },
+    "deletion_or_return": {
+      "status": "present",
+      "quote": "Nach Vertragsende gibt Kartenwerk die Daten nach Wahl des Verantwortlichen zurück oder löscht sie und löscht Kopien innerhalb von 30 Tagen"
+    },
+    "audits": {
+      "status": "present",
+      "quote": "Kartenwerk stellt alle zum Nachweis der Einhaltung erforderlichen Informationen bereit und ermöglicht Überprüfungen einschließlich Inspektionen durch den Verantwortlichen oder einen beauftragten Prüfer."
+    },
+    "transfer_annex": {
+      "status": "present",
+      "quote": "Die Daten werden in Rechenzentren in Deutschland und Frankreich verarbeitet; eine Übermittlung in Drittländer findet nicht statt."
+    }
+  },
+  "expectedSpecifics": {
+    "breach_window": { "status": "met", "hours": 48 },
+    "subprocessor_objection": { "status": "not_met" },
+    "transfer_annex": { "status": "met" }
+  },
+  "expectedVerdict": "inadequate",
+  "reasoning": "Every element is stated, and the breach and transfer checks pass. The sub-processor clause, though, lets the platform add or replace suppliers at any time and merely publishes a list: no notice in advance and no way to object, so the check fails and the agreement is inadequate on that one clause. The point of the fixture: a single mechanism missing from an otherwise complete contract."
+}

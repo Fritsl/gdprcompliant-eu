@@ -103,9 +103,110 @@ function claim(over: Partial<Claim>): Claim {
 export interface Scenario {
   readonly label: string;
   readonly claim: Claim;
+  // Why the gate must pass it, or why it must stop it (T-05).
+  readonly why: string;
 }
 
-export const TRUE_CLAIMS: Scenario[] = [
+// The reasoning behind each label, by the label's family; every scenario carries its own.
+const WHY: readonly [RegExp, string][] = [
+  [
+    /^cookie before consent/,
+    'The pointer names stored evidence with the right hash, the quote is in it, and the ePrivacy paragraph resolves at the claimed corpus version: every mechanical check passes.',
+  ],
+  [
+    /^tracker request on reject-all/,
+    'A request row is the evidence, the host is quoted from it, and the consent point of Union law resolves for a Danish case.',
+  ],
+  [
+    /^pre-ticked consent box/,
+    'The form markup is the evidence and the checked attribute is quoted verbatim; the definition of consent resolves.',
+  ],
+  [
+    /^observation without law/,
+    'An observation makes no legal claim, so it needs no citation and no corpus version; the pointer and the quote are enough.',
+  ],
+  [
+    /^two pointers, one quote/,
+    'Two evidence pointers, one of them quoted: each pointer is checked on its own and the quote against its own body.',
+  ],
+  [
+    /^article-level citation/,
+    'A range citation resolves to its first article; a claim may cite at article level when the whole article is the authority.',
+  ],
+  [
+    /^point citation with quote/,
+    'A citation down to the point, with a quote from the law that is in the passage as published.',
+  ],
+  [
+    /^drafting claim with evidence/,
+    'A drafting claim asserts nothing about the law; it carries the evidence it was drafted from and nothing more is required.',
+  ],
+  [
+    /^German case, Union law/,
+    'Union law speaks in every member state, so a German case may cite the Regulation; the withdrawal quote is in the passage.',
+  ],
+  [
+    /^quote spanning collapsed whitespace/,
+    'The corpus collapses runs of whitespace when it cuts the text; a quote that differs only in whitespace is the same words.',
+  ],
+  [
+    /^missing evidence/,
+    'The pointer names an evidence row that was never stored: a claim about nothing the case holds, stopped at the first check.',
+  ],
+  [
+    /^tampered hash/,
+    'The evidence exists but the pointer carries another hash: either the evidence changed or the pointer was forged, and either way the claim cannot rest on it.',
+  ],
+  [
+    /^fabricated quote/,
+    'The quote is not a substring of the stored body, character for character; a paraphrase or an invention is not a quote.',
+  ],
+  [
+    /^invented article/,
+    'The cited article or paragraph is not in the instrument at that version: a citation that mechanically resolves to nothing is the hallucination the gate exists for.',
+  ],
+  [
+    /^unknown instrument/,
+    'The instrument is not in the corpus at all; nothing can be checked against it, so nothing may rest on it.',
+  ],
+  [
+    /^foreign national instrument/,
+    "National law of another member state does not speak in this case's jurisdiction; a Danish case may not cite German national law as authority.",
+  ],
+  [
+    /^misquoted law/,
+    'The paragraph resolves but the quote is not in it as published: the law is being made to say something it does not.',
+  ],
+  [
+    /^stale corpus version/,
+    'The claim names a corpus version the corpus never had; a citation is only checkable against the text it was checked against.',
+  ],
+  [
+    /^evidence from another case/,
+    'The evidence row belongs to a different case: a pointer across the tenant boundary is refused even when the hash matches.',
+  ],
+  [
+    /^instruction in evidence/,
+    'The evidence body carries an instruction to the reviewer and is quoted for something it does not say; the quote check stops it before any model reads it.',
+  ],
+  [
+    /^unknown decision/,
+    'A decision the registry does not know cannot be cited; a case reference has to resolve to a recorded decision.',
+  ],
+  [
+    /^guidance citation/,
+    'Guidance citations do not resolve to a corpus paragraph yet, so a claim resting on one alone is refused rather than waved through.',
+  ],
+];
+export const whyFor = (label: string): string => {
+  const hit = WHY.find(([re]) => re.test(label));
+  if (!hit) throw new Error(`no reasoning for scenario "${label}"`);
+  return hit[1];
+};
+const withWhy = (list: readonly Omit<Scenario, 'why'>[]): Scenario[] =>
+  list.map((s) => ({ ...s, why: whyFor(s.label) }));
+
+const TRUE: Omit<Scenario, 'why'>[] = [
   { label: 'cookie before consent, ePrivacy 5(3)', claim: claim({}) },
   {
     label: 'tracker request on reject-all, GDPR 6(1)(a)',
@@ -190,7 +291,7 @@ export const TRUE_CLAIMS: Scenario[] = [
 
 const fabricated = (k: number) => `header:${sha256(`missing-${k}`).slice(0, 16)}`;
 
-export const POISONED_CLAIMS: Scenario[] = [
+const POISONED: Omit<Scenario, 'why'>[] = [
   // Evidence that does not exist (1–8).
   ...[1, 2, 3, 4, 5, 6, 7, 8].map((k) => ({
     label: `missing evidence ${k}`,
@@ -293,6 +394,9 @@ export const POISONED_CLAIMS: Scenario[] = [
     }),
   },
 ];
+
+export const TRUE_CLAIMS: Scenario[] = withWhy(TRUE);
+export const POISONED_CLAIMS: Scenario[] = withWhy(POISONED);
 
 export function poisonDeps(
   chunks: readonly CorpusChunk[],

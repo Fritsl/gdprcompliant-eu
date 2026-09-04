@@ -1,0 +1,48 @@
+{
+  "name": "de-arztpraxis",
+  "locale": "de",
+  "jurisdiction": "DE",
+  "text": "Datenschutzhinweise der Praxis Dr. med. Lena Vogt\n\nVerantwortlich ist die Praxis Dr. med. Lena Vogt, Lindenstraße 8, 50674 Köln, Telefon 0221 123456, praxis@vogt.test.\n\nUnsere Datenschutzbeauftragte erreichen Sie unter datenschutz@vogt.test.\n\nWir verarbeiten Ihre Stammdaten, Befunde, Diagnosen und Abrechnungsdaten, um Sie zu behandeln und die Behandlung abzurechnen; Rechtsgrundlage sind Art. 9 Abs. 2 lit. h DSGVO in Verbindung mit § 22 BDSG und der Behandlungsvertrag (Art. 6 Abs. 1 lit. b DSGVO).\n\nIhre Daten erhalten die Kassenärztliche Vereinigung Nordrhein, Ihre Krankenkasse, Labore, an die wir Proben senden, und die Ärzte, an die wir Sie überweisen.\n\nDie Behandlungsdokumentation bewahren wir zehn Jahre nach Abschluss der Behandlung auf, wie § 630f BGB es verlangt; Abrechnungsunterlagen zehn Jahre nach Ende des Kalenderjahres.\n\nSie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Widerspruch und Datenübertragbarkeit.\n\nSie können sich bei der Landesbeauftragten für Datenschutz und Informationsfreiheit Nordrhein-Westfalen beschweren.\n\nOhne Ihre Stammdaten und Ihre Versichertenkarte können wir Sie nicht behandeln und nicht abrechnen.\n\nWir treffen keine automatisierten Entscheidungen im Einzelfall und erstellen keine Profile.",
+  "expected": {
+    "controller": {
+      "status": "present",
+      "quote": "Verantwortlich ist die Praxis Dr. med. Lena Vogt, Lindenstraße 8, 50674 Köln, Telefon 0221 123456, praxis@vogt.test."
+    },
+    "dpo": {
+      "status": "present",
+      "quote": "Unsere Datenschutzbeauftragte erreichen Sie unter datenschutz@vogt.test."
+    },
+    "purposes_basis": {
+      "status": "present",
+      "quote": "Wir verarbeiten Ihre Stammdaten, Befunde, Diagnosen und Abrechnungsdaten, um Sie zu behandeln und die Behandlung abzurechnen; Rechtsgrundlage sind Art. 9 Abs. 2 lit. h DSGVO in Verbindung mit § 22 BDSG und der Behandlungsvertrag (Art. 6 Abs. 1 lit. b DSGVO)."
+    },
+    "legitimate_interests": { "status": "absent" },
+    "recipients": {
+      "status": "present",
+      "quote": "Ihre Daten erhalten die Kassenärztliche Vereinigung Nordrhein, Ihre Krankenkasse, Labore, an die wir Proben senden, und die Ärzte, an die wir Sie überweisen."
+    },
+    "transfers": { "status": "absent" },
+    "retention": {
+      "status": "present",
+      "quote": "Die Behandlungsdokumentation bewahren wir zehn Jahre nach Abschluss der Behandlung auf, wie § 630f BGB es verlangt; Abrechnungsunterlagen zehn Jahre nach Ende des Kalenderjahres."
+    },
+    "rights": {
+      "status": "present",
+      "quote": "Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Widerspruch und Datenübertragbarkeit."
+    },
+    "withdrawal": { "status": "absent" },
+    "complaint": {
+      "status": "present",
+      "quote": "Sie können sich bei der Landesbeauftragten für Datenschutz und Informationsfreiheit Nordrhein-Westfalen beschweren."
+    },
+    "obligation": {
+      "status": "present",
+      "quote": "Ohne Ihre Stammdaten und Ihre Versichertenkarte können wir Sie nicht behandeln und nicht abrechnen."
+    },
+    "automated": {
+      "status": "present",
+      "quote": "Wir treffen keine automatisierten Entscheidungen im Einzelfall und erstellen keine Profile."
+    }
+  },
+  "reasoning": "A medical practice: the special-category basis is named with the national provision, retention is tied to the statute, and a sentence saying there is no automated decision counts as present because the element asks whether such decisions exist. Nothing rests on legitimate interests or on consent, so those two are absent, and no transfer is mentioned at all."
+}

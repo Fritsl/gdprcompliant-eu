@@ -50,5 +50,6 @@
       "status": "present",
       "quote": "Auf Grundlage Ihrer Trainingsdaten erstellt die App automatisch Trainingsempfehlungen; diese Profilbildung hat keine rechtliche Wirkung für Sie und Sie können sie in den Einstellungen abschalten."
     }
-  }
+  },
+  "reasoning": "A fitness app under German law. Ten elements are stated in their own sentences and quoted: the provider, purposes with their bases, the interest behind the analytics, the recipient and the transfer with its safeguard, retention, rights, withdrawal, the authority and the profiling with its consequence. Nothing names an officer and nothing says whether providing data is required, so those two are absent."
 }

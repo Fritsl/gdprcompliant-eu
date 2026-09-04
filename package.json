@@ -43,7 +43,8 @@
     "check:citations": "node --import tsx scripts/check-citations.ts",
     "corpus:ingest": "node --env-file-if-exists=.env --import tsx scripts/corpus-ingest.ts",
     "canary:check": "node --import tsx scripts/canary-check.ts",
-    "canary:run": "node --env-file-if-exists=.env --import tsx scripts/canary-run.ts"
+    "canary:run": "node --env-file-if-exists=.env --import tsx scripts/canary-run.ts",
+    "evals:history": "node scripts/evals-history.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

@@ -1,3 +1,5 @@
+import { recordEvalResult } from './record.js';
+import { thresholdOf } from './sets.js';
 import { describe, expect, it } from 'vitest';
 import { loadConfig } from '@gc/config';
 import { ModelClient, createModelReview, verifyClaim } from '@gc/agent';
@@ -30,8 +32,15 @@ describe('verifier: mechanical stage', () => {
     console.log(
       `verifier eval (mechanical): true ${accepted.length}/${TRUE_CLAIMS.length} accepted; poisoned ${rejected}/${POISONED_CLAIMS.length} rejected`,
     );
+    recordEvalResult({
+      set: 'verifier',
+      mode: 'pipeline',
+      agreed: accepted.length + rejected,
+      total: TRUE_CLAIMS.length + POISONED_CLAIMS.length,
+      threshold: thresholdOf('verifier'),
+    });
     expect(accepted).toHaveLength(TRUE_CLAIMS.length);
-    expect(rejected / POISONED_CLAIMS.length).toBeGreaterThanOrEqual(0.98);
+    expect(rejected / POISONED_CLAIMS.length).toBeGreaterThanOrEqual(thresholdOf('verifier'));
   });
 });
 

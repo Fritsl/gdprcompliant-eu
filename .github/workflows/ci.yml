@@ -137,6 +137,12 @@ jobs:
           --health-retries 10
     env:
       GC_TEST_DATABASE_URL: postgres://gc:gc@localhost:5432/gc_test
+      # The self-hosted model (T-05): set as repository secrets when there is one to
+      # measure. Empty means the pipeline is proved against the labels and no model is called.
+      MODEL_BASE_URL: ${{ secrets.SELF_HOSTED_MODEL_BASE_URL }}
+      MODEL_API_KEY: ${{ secrets.SELF_HOSTED_MODEL_API_KEY }}
+      MODEL_CHAT: ${{ secrets.SELF_HOSTED_MODEL_CHAT }}
+      MODEL_EMBEDDING: ${{ secrets.SELF_HOSTED_MODEL_EMBEDDING }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -147,3 +153,18 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm test:evals
+      # The numbers every run leaves, kept fourteen days as an artifact and, when the
+      # model was measured, folded into the committed history so the table moves.
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eval-results
+          path: artifacts/evals
+          retention-days: 14
+      - run: pnpm evals:history
+      - if: env.MODEL_BASE_URL != '' && github.ref == 'refs/heads/main'
+        run: |
+          git config user.name 'evals'
+          git config user.email 'evals@gdprcompliant.eu'
+          git add docs/evals-history.json docs/evals.md
+          git diff --cached --quiet || git commit -m "evals: history $(date -u +%F)" && git push || true

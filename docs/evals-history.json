@@ -1,0 +1,52 @@
+{
+  "rows": [
+    {
+      "at": "2026-09-04T14:38:29.909Z",
+      "commit": "b773540",
+      "set": "planner",
+      "mode": "pipeline",
+      "model": null,
+      "agreed": 20,
+      "total": 20,
+      "rate": 1,
+      "threshold": 0.9,
+      "passed": true
+    },
+    {
+      "at": "2026-09-04T14:38:30.332Z",
+      "commit": "b773540",
+      "set": "policy-clauses",
+      "mode": "pipeline",
+      "model": null,
+      "agreed": 20,
+      "total": 20,
+      "rate": 1,
+      "threshold": 0.95,
+      "passed": true
+    },
+    {
+      "at": "2026-09-04T14:38:31.747Z",
+      "commit": "b773540",
+      "set": "verifier",
+      "mode": "pipeline",
+      "model": null,
+      "agreed": 60,
+      "total": 60,
+      "rate": 1,
+      "threshold": 0.98,
+      "passed": true
+    },
+    {
+      "at": "2026-09-04T14:38:32.913Z",
+      "commit": "b773540",
+      "set": "dpa-analysis",
+      "mode": "pipeline",
+      "model": null,
+      "agreed": 20,
+      "total": 20,
+      "rate": 1,
+      "threshold": 0.95,
+      "passed": true
+    }
+  ]
+}

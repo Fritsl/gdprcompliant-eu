@@ -59,14 +59,19 @@ site gets a labelled scenario set with a declared pass threshold:
 
 | Set | Scenarios | Threshold |
 |---|---|---|
-| Policy clause analysis (`S-10`) | 12 policies, expert-labelled | ≥ 95% agreement |
-| Processing agreement analysis (`D-06`) | 10 real-world agreements | ≥ 95% agreement |
-| Planner next-action (`A-06`) | 20 graph states | ≥ 90% sensible |
-| Verifier rejection (`A-07`) | 50 poisoned claims | ≥ 98% rejected |
+| Policy clause analysis (`S-10`) | 20 policies, labelled with their reasoning | ≥ 95% agreement |
+| Processing agreement analysis (`D-06`) | 20 agreements, labelled with their reasoning | ≥ 95% agreement |
+| Planner next-action (`A-06`) | 20 graph states, each with its reasoning | ≥ 90% sensible |
+| Verifier rejection (`A-07`) | 60 claims (10 true, 50 poisoned), each with its reasoning | ≥ 98% rejected |
 
-Results are tracked over time, so a prompt change that quietly degrades quality is visible
-rather than discovered by a customer. Evals run against the **self-hosted** configuration —
-quality on a model you don't ship is not quality.
+The sets are declared once, in `tests/evals/sets.ts`: each eval reads its threshold from
+there, and `tests/evals/sets.test.ts` holds every set to at least twenty scenarios with a
+written reason each, and holds this table to the registry. Every run appends its numbers to
+`artifacts/evals/results.jsonl`; `scripts/evals-history.mjs` folds them into
+`docs/evals-history.json` and renders `docs/evals.md`, so a prompt change that moves a number
+is a line in a table rather than something a customer discovers. Evals run against the
+**self-hosted** configuration — quality on a model you don't ship is not quality — and the
+registry test refuses a hosted provider's API as the model under measurement.
 
 ### 6 · Adversarial (`T-06`, `A-10`) — treat this as security, not prompt hygiene
 

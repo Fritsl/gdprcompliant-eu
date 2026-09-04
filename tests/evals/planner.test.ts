@@ -1,3 +1,5 @@
+import { recordEvalResult } from './record.js';
+import { thresholdOf } from './sets.js';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -135,7 +137,14 @@ describe('the heuristic planner', () => {
   it('picks a sensible next task on at least 90% of the scenarios', () => {
     const { agreed, misses } = agreement((s) => heuristicProposals(inputOf(s))[0]?.type);
     if (misses.length > 0) console.log('heuristic misses', misses);
-    expect(agreed / fixture.scenarios.length).toBeGreaterThanOrEqual(0.9);
+    recordEvalResult({
+      set: 'planner',
+      mode: 'pipeline',
+      agreed,
+      total: fixture.scenarios.length,
+      threshold: thresholdOf('planner'),
+    });
+    expect(agreed / fixture.scenarios.length).toBeGreaterThanOrEqual(thresholdOf('planner'));
   });
 
   it('stays within the catalogue and the budget, and the dispatcher accepts every plan', async () => {
@@ -299,7 +308,14 @@ describe.skipIf(!modelConfigured)('the model, measured', () => {
     }
     const { agreed, misses } = agreement((s) => picks.get(s.name));
     console.log(`model agreement ${agreed}/${fixture.scenarios.length}`, misses);
-    expect(agreed / fixture.scenarios.length).toBeGreaterThanOrEqual(0.9);
+    recordEvalResult({
+      set: 'planner',
+      mode: 'model',
+      agreed,
+      total: fixture.scenarios.length,
+      threshold: thresholdOf('planner'),
+    });
+    expect(agreed / fixture.scenarios.length).toBeGreaterThanOrEqual(thresholdOf('planner'));
   }, 600_000);
 });
 

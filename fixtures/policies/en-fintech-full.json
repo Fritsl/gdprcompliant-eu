@@ -1,0 +1,57 @@
+{
+  "name": "en-fintech-full",
+  "locale": "en",
+  "jurisdiction": "DK",
+  "text": "Privacy notice for the Kronekort app\n\nKronekort ApS, Amagertorv 3, 1160 Copenhagen K, CVR 41223344, is the controller of the personal data described here. You can write to privacy@kronekort.test.\n\nOur data protection officer can be reached at dpo@kronekort.test.\n\nWe process your identity details, account and transaction data and device data to open and run your card account and to comply with anti-money-laundering rules; the legal bases are the performance of our contract with you (Article 6(1)(b)) and our legal obligations (Article 6(1)(c)). We process app usage data to improve the app on the basis of our legitimate interest in a reliable product (Article 6(1)(f)).\n\nOur legitimate interest is to keep the app stable, to detect misuse and to develop the features our customers ask for.\n\nWe share your data with our card issuer Nordisk Kortservice A/S, with Danske Betalinger for clearing, with our identity verification provider Verifai B.V. in the Netherlands, and with the authorities where the law requires it.\n\nVerifai B.V. stores identity documents in the Netherlands. Our fraud monitoring is provided by Sentinel Inc. in the United States under the standard contractual clauses adopted by the European Commission.\n\nWe keep transaction records for five years after the end of the year they were made, as the Anti-Money Laundering Act requires, and app usage data for twelve months.\n\nYou have the right to access, rectify and erase your data, to restrict or object to its processing, and to receive it in a portable format.\n\nWhere we rely on your consent, for example for marketing messages, you can withdraw it at any time in the app under Settings.\n\nYou can complain to Datatilsynet, Carl Jacobsens Vej 35, 2500 Valby.\n\nYou must provide identity details to open an account; without them we cannot offer you a card, because the law requires us to know our customers.\n\nWe use automated decision-making when we assess a card application: the app checks your identity documents and your transaction history against our risk rules and declines applications that fail them. You can ask a person to review any automated decision by writing to privacy@kronekort.test.",
+  "expected": {
+    "controller": {
+      "status": "present",
+      "quote": "Kronekort ApS, Amagertorv 3, 1160 Copenhagen K, CVR 41223344, is the controller of the personal data described here. You can write to privacy@kronekort.test."
+    },
+    "dpo": {
+      "status": "present",
+      "quote": "Our data protection officer can be reached at dpo@kronekort.test."
+    },
+    "purposes_basis": {
+      "status": "present",
+      "quote": "We process your identity details, account and transaction data and device data to open and run your card account and to comply with anti-money-laundering rules; the legal bases are the performance of our contract with you (Article 6(1)(b)) and our legal obligations (Article 6(1)(c))."
+    },
+    "legitimate_interests": {
+      "status": "present",
+      "quote": "Our legitimate interest is to keep the app stable, to detect misuse and to develop the features our customers ask for."
+    },
+    "recipients": {
+      "status": "present",
+      "quote": "We share your data with our card issuer Nordisk Kortservice A/S, with Danske Betalinger for clearing, with our identity verification provider Verifai B.V. in the Netherlands, and with the authorities where the law requires it."
+    },
+    "transfers": {
+      "status": "present",
+      "quote": "Our fraud monitoring is provided by Sentinel Inc. in the United States under the standard contractual clauses adopted by the European Commission."
+    },
+    "retention": {
+      "status": "present",
+      "quote": "We keep transaction records for five years after the end of the year they were made, as the Anti-Money Laundering Act requires, and app usage data for twelve months."
+    },
+    "rights": {
+      "status": "present",
+      "quote": "You have the right to access, rectify and erase your data, to restrict or object to its processing, and to receive it in a portable format."
+    },
+    "withdrawal": {
+      "status": "present",
+      "quote": "Where we rely on your consent, for example for marketing messages, you can withdraw it at any time in the app under Settings."
+    },
+    "complaint": {
+      "status": "present",
+      "quote": "You can complain to Datatilsynet, Carl Jacobsens Vej 35, 2500 Valby."
+    },
+    "obligation": {
+      "status": "present",
+      "quote": "You must provide identity details to open an account; without them we cannot offer you a card, because the law requires us to know our customers."
+    },
+    "automated": {
+      "status": "present",
+      "quote": "We use automated decision-making when we assess a card application: the app checks your identity documents and your transaction history against our risk rules and declines applications that fail them."
+    }
+  },
+  "reasoning": "A regulated financial app that says everything: a named controller and officer, purposes paired with their bases, the interest behind the balancing, named recipients, a transfer with its safeguard, retention tied to the statute, the rights, withdrawal, the authority, the consequence of not providing identity, and an automated decision described with its logic and a route to a person. Twelve of twelve present; the set needs a full notice in English under Danish law to pair with the Danish and German full ones."
+}

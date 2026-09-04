@@ -40,5 +40,6 @@
     "automated": {
       "status": "absent"
     }
-  }
+  },
+  "reasoning": "A blog whose privacy page is really a cookie notice, read under Danish law. No controller is named. Purposes and recipients are alluded to without a basis or a name, so both are undetermined. The other nine elements are not there. Mostly absences, with two elements too vague to count either way."
 }

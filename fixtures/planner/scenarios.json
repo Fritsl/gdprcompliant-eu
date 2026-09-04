@@ -3,7 +3,13 @@
   "case": {
     "id": "DK-26-PLAN",
     "tenantId": "t-plan",
-    "company": { "domain": "eksempelbutik.dk", "legalName": "Eksempelbutik ApS", "country": "DK", "locale": "da", "headcountBand": "10–49" },
+    "company": {
+      "domain": "eksempelbutik.dk",
+      "legalName": "Eksempelbutik ApS",
+      "country": "DK",
+      "locale": "da",
+      "headcountBand": "10–49"
+    },
     "jurisdiction": "DK",
     "locale": "da",
     "openedAt": "2026-09-04T09:14:00Z",
@@ -14,25 +20,328 @@
     "stage": "opened"
   },
   "scenarios": [
-    { "name": "a fresh case, nothing read", "open": [], "state": { "scanned": false }, "acceptable": ["crawl"] },
-    { "name": "a fresh case with a tight budget", "open": [], "state": { "scanned": false }, "budget": 25, "acceptable": ["crawl"] },
-    { "name": "scanned, one recipient unresolved", "open": ["TRF-01"], "state": { "scanned": true, "unresolvedVendors": 1 }, "acceptable": ["registry_lookup"] },
-    { "name": "scanned, everything resolved, a transfer open", "open": ["TRF-01"], "state": { "scanned": true, "unresolvedVendors": 0 }, "acceptable": ["research"] },
-    { "name": "scanned, a contract stored and a contract duty open", "open": ["DPA-01"], "state": { "scanned": true, "documentEvidenceIds": ["document:abc123"] }, "acceptable": ["read_contract"] },
-    { "name": "scanned, a contract stored but no contract duty", "open": ["SEC-03"], "state": { "scanned": true, "documentEvidenceIds": ["document:abc123"] }, "acceptable": ["research", "verify_claims", "crawl"], "anyOrNone": true },
-    { "name": "no policy, register confirmed", "open": ["POL-01"], "state": { "scanned": true, "registerRows": 3, "registerConfirmed": 3 }, "acceptable": ["research", "draft"] },
-    { "name": "no policy, register still drafts", "open": ["POL-01"], "state": { "scanned": true, "registerRows": 3, "registerConfirmed": 0 }, "acceptable": ["research"] },
-    { "name": "no policy, register confirmed, research done and budget for the draft only", "open": ["POL-01"], "state": { "scanned": true, "registerRows": 3, "registerConfirmed": 3 }, "available": ["draft", "verify_claims"], "acceptable": ["draft"] },
-    { "name": "policy published, nothing open", "open": [], "state": { "scanned": true, "registerRows": 3, "registerConfirmed": 3, "policyPublished": true }, "acceptable": [], "anyOrNone": true },
-    { "name": "claims waiting for the verifier", "open": [], "state": { "scanned": true, "unverifiedClaimIds": ["claim:1", "claim:2"] }, "acceptable": ["verify_claims"] },
-    { "name": "claims waiting and a recipient unresolved", "open": ["TRF-01"], "state": { "scanned": true, "unresolvedVendors": 2, "unverifiedClaimIds": ["claim:1"] }, "acceptable": ["registry_lookup"] },
-    { "name": "a cookie finding open, nothing else", "open": ["CNS-01"], "state": { "scanned": true }, "acceptable": ["research"] },
-    { "name": "a form notice finding open", "open": ["FRM-03"], "state": { "scanned": true }, "acceptable": ["research"] },
-    { "name": "only security findings open", "open": ["SEC-01", "SEC-03"], "state": { "scanned": true }, "acceptable": [], "anyOrNone": true },
-    { "name": "a duty applies with no finding yet", "open": [], "duties": [{ "ruleId": "transfer-safeguards", "title": "Have a basis for every transfer outside the EEA", "status": "applies", "findingTypeIds": ["TRF-01"] }], "state": { "scanned": true }, "acceptable": ["research"] },
-    { "name": "a contract duty applies and a document is stored", "open": [], "duties": [{ "ruleId": "processor-contract", "title": "Have a contract with every processor", "status": "applies", "findingTypeIds": ["DPA-01"] }], "state": { "scanned": true, "documentEvidenceIds": ["document:dpa1"] }, "acceptable": ["read_contract"] },
-    { "name": "not scanned but the crawler is not offered", "open": [], "state": { "scanned": false, "unverifiedClaimIds": ["claim:9"] }, "available": ["verify_claims", "research"], "acceptable": ["verify_claims"] },
-    { "name": "German case, transfer open", "open": ["TRF-01"], "state": { "scanned": true }, "jurisdiction": "DE", "locale": "de", "acceptable": ["research"] },
-    { "name": "everything at once: unresolved, contract, no policy, claims", "open": ["TRF-01", "DPA-01", "POL-01"], "state": { "scanned": true, "unresolvedVendors": 1, "documentEvidenceIds": ["document:dpa1"], "registerRows": 2, "registerConfirmed": 2, "unverifiedClaimIds": ["claim:1"] }, "acceptable": ["registry_lookup", "read_contract"] }
+    {
+      "name": "a fresh case, nothing read",
+      "open": [],
+      "state": {
+        "scanned": false
+      },
+      "acceptable": [
+        "crawl"
+      ],
+      "reasoning": "Nothing has been read from the site, so no other task has anything to work on; the only sensible first move is to crawl the first load and the refusal."
+    },
+    {
+      "name": "a fresh case with a tight budget",
+      "open": [],
+      "state": {
+        "scanned": false
+      },
+      "budget": 25,
+      "acceptable": [
+        "crawl"
+      ],
+      "reasoning": "The budget is small but the crawl is the cheapest thing that produces evidence, and every other task needs its output; spending the little there is on anything else would leave the case blind."
+    },
+    {
+      "name": "scanned, one recipient unresolved",
+      "open": [
+        "TRF-01"
+      ],
+      "state": {
+        "scanned": true,
+        "unresolvedVendors": 1
+      },
+      "acceptable": [
+        "registry_lookup"
+      ],
+      "reasoning": "The scan found a recipient nobody could name, and a transfer duty is open against it; the register lookup is the one task that turns an unnamed host into a legal entity the transfer analysis can reason about."
+    },
+    {
+      "name": "scanned, everything resolved, a transfer open",
+      "open": [
+        "TRF-01"
+      ],
+      "state": {
+        "scanned": true,
+        "unresolvedVendors": 0
+      },
+      "acceptable": [
+        "research"
+      ],
+      "reasoning": "Every recipient is named, so a lookup would add nothing; the open transfer duty needs the law behind it fetched so the finding can be explained and cited."
+    },
+    {
+      "name": "scanned, a contract stored and a contract duty open",
+      "open": [
+        "DPA-01"
+      ],
+      "state": {
+        "scanned": true,
+        "documentEvidenceIds": [
+          "document:abc123"
+        ]
+      },
+      "acceptable": [
+        "read_contract"
+      ],
+      "reasoning": "A processing agreement is on the case and the contract duty is open, so reading the stored document for what it settles comes before any research or drafting."
+    },
+    {
+      "name": "scanned, a contract stored but no contract duty",
+      "open": [
+        "SEC-03"
+      ],
+      "state": {
+        "scanned": true,
+        "documentEvidenceIds": [
+          "document:abc123"
+        ]
+      },
+      "acceptable": [
+        "research",
+        "verify_claims",
+        "crawl"
+      ],
+      "anyOrNone": true,
+      "reasoning": "The stored document has no open duty to settle, so reading it is not obviously first; research on the open security finding, verifying waiting claims or crawling deeper are all defensible, and none is wrong."
+    },
+    {
+      "name": "no policy, register confirmed",
+      "open": [
+        "POL-01"
+      ],
+      "state": {
+        "scanned": true,
+        "registerRows": 3,
+        "registerConfirmed": 3
+      },
+      "acceptable": [
+        "research",
+        "draft"
+      ],
+      "reasoning": "The register is confirmed, so a policy could be drafted now; researching the notice duty first is equally sensible when nothing has been fetched for it yet. Either of the two is a sound first move."
+    },
+    {
+      "name": "no policy, register still drafts",
+      "open": [
+        "POL-01"
+      ],
+      "state": {
+        "scanned": true,
+        "registerRows": 3,
+        "registerConfirmed": 0
+      },
+      "acceptable": [
+        "research"
+      ],
+      "reasoning": "A policy cannot be written from unconfirmed rows, so drafting would be refused; researching the notice duty is the only task that advances the case while the rows wait for a person."
+    },
+    {
+      "name": "no policy, register confirmed, research done and budget for the draft only",
+      "open": [
+        "POL-01"
+      ],
+      "state": {
+        "scanned": true,
+        "registerRows": 3,
+        "registerConfirmed": 3
+      },
+      "available": [
+        "draft",
+        "verify_claims"
+      ],
+      "acceptable": [
+        "draft"
+      ],
+      "reasoning": "Research is already done and the register is confirmed; the remaining budget covers exactly the draft, so anything else would spend the money and leave the policy unwritten."
+    },
+    {
+      "name": "policy published, nothing open",
+      "open": [],
+      "state": {
+        "scanned": true,
+        "registerRows": 3,
+        "registerConfirmed": 3,
+        "policyPublished": true
+      },
+      "acceptable": [],
+      "anyOrNone": true,
+      "reasoning": "With the policy published and no finding or duty open there is nothing a task would improve; any choice or no choice at all is acceptable, and a planner that invents work here is wrong."
+    },
+    {
+      "name": "claims waiting for the verifier",
+      "open": [],
+      "state": {
+        "scanned": true,
+        "unverifiedClaimIds": [
+          "claim:1",
+          "claim:2"
+        ]
+      },
+      "acceptable": [
+        "verify_claims"
+      ],
+      "reasoning": "Claims that have not passed the gate cannot enter the graph or be shown; verifying them is the only task that moves them, and nothing else is pending."
+    },
+    {
+      "name": "claims waiting and a recipient unresolved",
+      "open": [
+        "TRF-01"
+      ],
+      "state": {
+        "scanned": true,
+        "unresolvedVendors": 2,
+        "unverifiedClaimIds": [
+          "claim:1"
+        ]
+      },
+      "acceptable": [
+        "registry_lookup"
+      ],
+      "reasoning": "Both a lookup and a verification are pending; the unresolved recipient blocks a transfer duty and the lookup is cheaper and earlier in the fixed sequence, so it comes first."
+    },
+    {
+      "name": "a cookie finding open, nothing else",
+      "open": [
+        "CNS-01"
+      ],
+      "state": {
+        "scanned": true
+      },
+      "acceptable": [
+        "research"
+      ],
+      "reasoning": "A consent finding is open and nothing is unresolved or stored; fetching the law behind the consent duty is what lets the finding be explained, so research is the sensible first task."
+    },
+    {
+      "name": "a form notice finding open",
+      "open": [
+        "FRM-03"
+      ],
+      "state": {
+        "scanned": true
+      },
+      "acceptable": [
+        "research"
+      ],
+      "reasoning": "A form-notice finding is open with no document and no unresolved recipient; the notice-at-collection duty needs its law fetched before anything can be drafted."
+    },
+    {
+      "name": "only security findings open",
+      "open": [
+        "SEC-01",
+        "SEC-03"
+      ],
+      "state": {
+        "scanned": true
+      },
+      "acceptable": [],
+      "anyOrNone": true,
+      "reasoning": "Security findings carry their remedies without legal research, no recipient is unresolved and nothing is stored; there is no task that would help, so an empty plan or any harmless task is acceptable."
+    },
+    {
+      "name": "a duty applies with no finding yet",
+      "open": [],
+      "duties": [
+        {
+          "ruleId": "transfer-safeguards",
+          "title": "Have a basis for every transfer outside the EEA",
+          "status": "applies",
+          "findingTypeIds": [
+            "TRF-01"
+          ]
+        }
+      ],
+      "state": {
+        "scanned": true
+      },
+      "acceptable": [
+        "research"
+      ],
+      "reasoning": "A duty the rules engine says applies has no finding yet; researching it is what turns an applicable duty into an explained finding, and nothing else is pending."
+    },
+    {
+      "name": "a contract duty applies and a document is stored",
+      "open": [],
+      "duties": [
+        {
+          "ruleId": "processor-contract",
+          "title": "Have a contract with every processor",
+          "status": "applies",
+          "findingTypeIds": [
+            "DPA-01"
+          ]
+        }
+      ],
+      "state": {
+        "scanned": true,
+        "documentEvidenceIds": [
+          "document:dpa1"
+        ]
+      },
+      "acceptable": [
+        "read_contract"
+      ],
+      "reasoning": "The contract duty applies and a document is on the case; reading the document settles whether the duty is met before any finding is raised, so it comes before research."
+    },
+    {
+      "name": "not scanned but the crawler is not offered",
+      "open": [],
+      "state": {
+        "scanned": false,
+        "unverifiedClaimIds": [
+          "claim:9"
+        ]
+      },
+      "available": [
+        "verify_claims",
+        "research"
+      ],
+      "acceptable": [
+        "verify_claims"
+      ],
+      "reasoning": "The crawler is not among the available tasks, so the fixed sequence cannot start with it; verifying the claims already waiting is the only offered task with something to do."
+    },
+    {
+      "name": "German case, transfer open",
+      "open": [
+        "TRF-01"
+      ],
+      "state": {
+        "scanned": true
+      },
+      "jurisdiction": "DE",
+      "locale": "de",
+      "acceptable": [
+        "research"
+      ],
+      "reasoning": "The same reasoning as the Danish transfer case: every recipient is named, the transfer duty is open, and research fetches the law; the jurisdiction changes the corpus, not the choice."
+    },
+    {
+      "name": "everything at once: unresolved, contract, no policy, claims",
+      "open": [
+        "TRF-01",
+        "DPA-01",
+        "POL-01"
+      ],
+      "state": {
+        "scanned": true,
+        "unresolvedVendors": 1,
+        "documentEvidenceIds": [
+          "document:dpa1"
+        ],
+        "registerRows": 2,
+        "registerConfirmed": 2,
+        "unverifiedClaimIds": [
+          "claim:1"
+        ]
+      },
+      "acceptable": [
+        "registry_lookup",
+        "read_contract"
+      ],
+      "reasoning": "Everything is pending at once; the fixed sequence puts the register lookup and the contract reading first because they are cheap and unblock the transfer and contract duties, and both are acceptable as the first pick."
+    }
   ]
 }

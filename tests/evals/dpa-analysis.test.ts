@@ -1,7 +1,9 @@
+import { recordEvalResult } from './record.js';
+import { thresholdOf } from './sets.js';
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { describe, expect, it, vi } from 'vitest';
+import { afterAll, describe, expect, it, vi } from 'vitest';
 import { loadConfig } from '@gc/config';
 import {
   AGREEMENT_FINDINGS,
@@ -142,8 +144,8 @@ const deps: VerifierDeps = {
 };
 
 describe('the labelled agreements', () => {
-  it('are ten, label every element, quote what they say is present verbatim, and reach every verdict', () => {
-    expect(fixtures).toHaveLength(10);
+  it('are twenty, label every element, quote what they say is present verbatim, and reach every verdict', () => {
+    expect(fixtures).toHaveLength(20);
     const ids = AGREEMENT_ELEMENTS.map((e) => e.id);
     for (const p of fixtures) {
       expect(Object.keys(p.expected).sort(), p.name).toEqual([...ids].sort());
@@ -172,7 +174,18 @@ describe('the labelled agreements', () => {
 });
 
 describe('the pipeline, with a model that answers the labels', () => {
+  const scored: boolean[] = [];
+  afterAll(() => {
+    recordEvalResult({
+      set: 'dpa-analysis',
+      mode: 'pipeline',
+      agreed: scored.filter(Boolean).length,
+      total: fixtures.length,
+      threshold: thresholdOf('dpa-analysis'),
+    });
+  });
   it.each(fixtures.map((p) => [p.name, p] as const))('%s', async (_, p) => {
+    scored.push(false);
     const analysis = await analyseAgreement(labelledModel(p), input(p));
 
     // 1. Each element, individually, with its quote or its explicit absence.
@@ -234,6 +247,7 @@ describe('the pipeline, with a model that answers the labels', () => {
         'accepted',
       );
     }
+    scored[scored.length - 1] = true;
   });
 
   it('a quote that is not in the document is refused, and an unanswered element is undetermined', async () => {
@@ -360,10 +374,15 @@ describe.skipIf(!modelConfigured)('the model, measured', () => {
       if (analysis.verdict === p.expectedVerdict) verdicts += 1;
       else misses.push(`${p.name}: verdict ${analysis.verdict}, expected ${p.expectedVerdict}`);
     }
-    console.log(
-      `dpa analysis eval: ${agreed}/${total} elements agree (${((agreed / total) * 100).toFixed(1)}%), ${verdicts}/${fixtures.length} verdicts${misses.length ? `\n  ${misses.join('\n  ')}` : ''}`,
-    );
-    expect(agreed / total).toBeGreaterThanOrEqual(0.95);
+    recordEvalResult({
+      set: 'dpa-analysis',
+      mode: 'model',
+      agreed,
+      total,
+      threshold: thresholdOf('dpa-analysis'),
+      misses: [...misses, `${verdicts}/${fixtures.length} verdicts agree`],
+    });
+    expect(agreed / total).toBeGreaterThanOrEqual(thresholdOf('dpa-analysis'));
   });
 });
 

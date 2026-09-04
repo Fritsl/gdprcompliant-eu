@@ -1,0 +1,81 @@
+{
+  "name": "da-hosting-alt-i-orden",
+  "locale": "da",
+  "jurisdiction": "DK",
+  "vendor": { "host": "nordhost.test", "name": "Nordhost" },
+  "modelledOn": "A Danish hosting company's agreement following the supervisory authority's standard clauses, complete, with data kept inside the EEA.",
+  "text": "Databehandleraftale mellem Nordhost A/S og kunden\n\nNordhost A/S, Sønder Boulevard 100, 1720 København V, CVR 28374655 (\"Databehandleren\"), behandler personoplysninger på vegne af den kunde, der har indgået en hostingaftale med Nordhost (\"Den Dataansvarlige\"). Den Dataansvarlige afgør formål og hjælpemidler; Databehandleren handler alene efter instruks.\n\n1. Genstand og varighed. Behandlingens genstand er hosting af Den Dataansvarliges hjemmesider, databaser og e-mail, og behandlingen varer, så længe hostingaftalen løber, samt den sletningsperiode, der følger af punkt 11.\n\n2. Karakter og formål. Databehandleren opbevarer, sikkerhedskopierer og leverer Den Dataansvarliges data til dennes brugere og besøgende, med det ene formål at levere hostingydelsen.\n\n3. Personoplysninger og registrerede. Personoplysningerne er dem, Den Dataansvarlige vælger at lægge på sine systemer, typisk navne, kontaktoplysninger, kundeoplysninger og e-mails, og de registrerede er Den Dataansvarliges kunder, brugere, medarbejdere og leverandører.\n\n4. Den Dataansvarliges rettigheder og forpligtelser. Den Dataansvarlige har ret til at instruere Databehandleren, til at føre tilsyn efter punkt 12, til at gøre indsigelse mod nye underdatabehandlere efter punkt 8 og til at kræve oplysningerne slettet eller tilbageleveret; Den Dataansvarlige er ansvarlig for, at behandlingen har et lovligt grundlag.\n\n5. Instruks. Databehandleren behandler kun personoplysningerne efter dokumenteret instruks fra Den Dataansvarlige, herunder for overførsel til tredjelande, medmindre det kræves efter EU-retten eller dansk ret, og underretter i så fald Den Dataansvarlige inden behandlingen, medmindre loven forbyder det.\n\n6. Fortrolighed. Databehandleren sikrer, at alle personer med adgang til personoplysningerne er underlagt tavshedspligt efter ansættelseskontrakt eller lov.\n\n7. Sikkerhed. Databehandleren gennemfører de tekniske og organisatoriske foranstaltninger i bilag 2, herunder kryptering af data i hvile og under transport, adgangsstyring med tofaktor, logning, segmentering af kundemiljøer og daglig backup i et andet datacenter.\n\n8. Underdatabehandlere. Databehandleren anvender kun de underdatabehandlere, der er anført i bilag 3, med Den Dataansvarliges generelle skriftlige godkendelse, og pålægger dem ved skriftlig aftale de samme forpligtelser som i denne aftale. Databehandleren varsler skriftligt mindst 30 dage før, en underdatabehandler tilføjes eller udskiftes, og Den Dataansvarlige kan gøre indsigelse inden for fristen og opsige aftalen, hvis indsigelsen ikke imødekommes.\n\n9. Bistand til de registrerede. Databehandleren bistår Den Dataansvarlige med passende tekniske og organisatoriske foranstaltninger med at besvare anmodninger fra registrerede om udøvelse af deres rettigheder.\n\n10. Bistand med sikkerhed, brud og konsekvensanalyser. Databehandleren bistår Den Dataansvarlige med at overholde forpligtelserne om behandlingssikkerhed, anmeldelse af brud på persondatasikkerheden og konsekvensanalyser, under hensyntagen til behandlingens karakter og de oplysninger, Databehandleren har.\n\n11. Brud på persondatasikkerheden. Databehandleren underretter Den Dataansvarlige uden ugrundet ophold og senest 24 timer efter at være blevet bekendt med et brud på persondatasikkerheden, med de oplysninger Den Dataansvarlige skal bruge til sin anmeldelse.\n\n12. Sletning og tilbagelevering. Ved hostingaftalens ophør sletter eller tilbageleverer Databehandleren efter Den Dataansvarliges valg alle personoplysninger og sletter eksisterende kopier og backup inden for 30 dage, medmindre lovgivningen kræver opbevaring.\n\n13. Tilsyn. Databehandleren stiller alle oplysninger, der er nødvendige for at påvise overholdelse af denne aftale, til rådighed for Den Dataansvarlige og giver mulighed for og bidrager til revisioner, herunder inspektioner, foretaget af Den Dataansvarlige eller en revisor bemyndiget af denne.\n\n14. Overførsel til tredjelande. Alle data behandles i Databehandlerens datacentre i Danmark; der sker ingen overførsel af personoplysninger til lande uden for EU/EØS.\n\nBilag 2: Sikkerhedsforanstaltninger. Bilag 3: Underdatabehandlere.",
+  "expected": {
+    "parties": {
+      "status": "present",
+      "quote": "Nordhost A/S, Sønder Boulevard 100, 1720 København V, CVR 28374655 (\"Databehandleren\"), behandler personoplysninger på vegne af den kunde, der har indgået en hostingaftale med Nordhost (\"Den Dataansvarlige\")."
+    },
+    "subject_and_duration": {
+      "status": "present",
+      "quote": "Behandlingens genstand er hosting af Den Dataansvarliges hjemmesider, databaser og e-mail, og behandlingen varer, så længe hostingaftalen løber, samt den sletningsperiode, der følger af punkt 11."
+    },
+    "nature_and_purpose": {
+      "status": "present",
+      "quote": "Databehandleren opbevarer, sikkerhedskopierer og leverer Den Dataansvarliges data til dennes brugere og besøgende, med det ene formål at levere hostingydelsen."
+    },
+    "data_and_subjects": {
+      "status": "present",
+      "quote": "Personoplysningerne er dem, Den Dataansvarlige vælger at lægge på sine systemer, typisk navne, kontaktoplysninger, kundeoplysninger og e-mails, og de registrerede er Den Dataansvarliges kunder, brugere, medarbejdere og leverandører."
+    },
+    "controller_rights": {
+      "status": "present",
+      "quote": "Den Dataansvarlige har ret til at instruere Databehandleren, til at føre tilsyn efter punkt 12, til at gøre indsigelse mod nye underdatabehandlere efter punkt 8 og til at kræve oplysningerne slettet eller tilbageleveret; Den Dataansvarlige er ansvarlig for, at behandlingen har et lovligt grundlag."
+    },
+    "documented_instructions": {
+      "status": "present",
+      "quote": "Databehandleren behandler kun personoplysningerne efter dokumenteret instruks fra Den Dataansvarlige, herunder for overførsel til tredjelande, medmindre det kræves efter EU-retten eller dansk ret"
+    },
+    "confidentiality": {
+      "status": "present",
+      "quote": "Databehandleren sikrer, at alle personer med adgang til personoplysningerne er underlagt tavshedspligt efter ansættelseskontrakt eller lov."
+    },
+    "security_measures": {
+      "status": "present",
+      "quote": "Databehandleren gennemfører de tekniske og organisatoriske foranstaltninger i bilag 2, herunder kryptering af data i hvile og under transport, adgangsstyring med tofaktor, logning, segmentering af kundemiljøer og daglig backup i et andet datacenter."
+    },
+    "subprocessor_authorisation": {
+      "status": "present",
+      "quote": "Databehandleren anvender kun de underdatabehandlere, der er anført i bilag 3, med Den Dataansvarliges generelle skriftlige godkendelse, og pålægger dem ved skriftlig aftale de samme forpligtelser som i denne aftale."
+    },
+    "subprocessor_objection": {
+      "status": "present",
+      "quote": "Databehandleren varsler skriftligt mindst 30 dage før, en underdatabehandler tilføjes eller udskiftes, og Den Dataansvarlige kan gøre indsigelse inden for fristen og opsige aftalen, hvis indsigelsen ikke imødekommes."
+    },
+    "assist_data_subject_rights": {
+      "status": "present",
+      "quote": "Databehandleren bistår Den Dataansvarlige med passende tekniske og organisatoriske foranstaltninger med at besvare anmodninger fra registrerede om udøvelse af deres rettigheder."
+    },
+    "assist_obligations": {
+      "status": "present",
+      "quote": "Databehandleren bistår Den Dataansvarlige med at overholde forpligtelserne om behandlingssikkerhed, anmeldelse af brud på persondatasikkerheden og konsekvensanalyser"
+    },
+    "breach_notification": {
+      "status": "present",
+      "quote": "Databehandleren underretter Den Dataansvarlige uden ugrundet ophold og senest 24 timer efter at være blevet bekendt med et brud på persondatasikkerheden"
+    },
+    "deletion_or_return": {
+      "status": "present",
+      "quote": "Ved hostingaftalens ophør sletter eller tilbageleverer Databehandleren efter Den Dataansvarliges valg alle personoplysninger og sletter eksisterende kopier og backup inden for 30 dage"
+    },
+    "audits": {
+      "status": "present",
+      "quote": "Databehandleren stiller alle oplysninger, der er nødvendige for at påvise overholdelse af denne aftale, til rådighed for Den Dataansvarlige og giver mulighed for og bidrager til revisioner, herunder inspektioner, foretaget af Den Dataansvarlige eller en revisor bemyndiget af denne."
+    },
+    "transfer_annex": {
+      "status": "present",
+      "quote": "Alle data behandles i Databehandlerens datacentre i Danmark; der sker ingen overførsel af personoplysninger til lande uden for EU/EØS."
+    }
+  },
+  "expectedSpecifics": {
+    "breach_window": { "status": "met", "hours": 24 },
+    "subprocessor_objection": { "status": "met" },
+    "transfer_annex": { "status": "met" }
+  },
+  "expectedVerdict": "adequate",
+  "reasoning": "A hosting agreement in the shape of the authority's standard clauses: every element is stipulated in its own numbered clause. The breach notice commits to 24 hours; a new sub-processor is announced 30 days ahead with a right to object and to terminate; and the transfer clause says in as many words that no data leaves the EEA. Adequate, and the Danish control for the set."
+}

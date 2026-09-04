@@ -1,0 +1,75 @@
+{
+  "name": "en-analytics-undetermined",
+  "locale": "en",
+  "jurisdiction": "DE",
+  "vendor": { "host": "plausibly.test", "name": "Plausibly" },
+  "modelledOn": "A privacy-minded analytics vendor whose agreement is complete except for two clauses that hedge instead of committing.",
+  "text": "Plausibly Data Processing Agreement\n\nThis agreement forms part of the Plausibly Terms between Plausibly OÜ, Narva mnt 5, 10117 Tallinn, Estonia (\"Plausibly\", the processor) and the account holder (\"Customer\", the controller). Plausibly processes the personal data described below solely on Customer's behalf.\n\n1. Subject-matter and duration. The subject-matter is the measurement of visits to Customer's websites; the processing lasts for the term of the account and until deletion under section 11.\n\n2. Nature and purpose. Plausibly receives page-view events from Customer's sites, aggregates them into visitor and page counts, and shows Customer the resulting reports, for the purpose of letting Customer understand its traffic.\n\n3. Data and data subjects. The personal data are IP addresses, truncated on receipt, and user-agent strings, processed for a few hours to derive a daily visitor identifier; the data subjects are visitors to Customer's websites.\n\n4. Customer's obligations and rights. Customer is responsible for the lawfulness of the measurement and for informing its visitors; Customer may instruct Plausibly in writing, audit under section 12, object to sub-processors under section 8 and require deletion at any time.\n\n5. Instructions. Plausibly processes personal data only on documented instructions from Customer, including with regard to transfers to a third country, unless required by Union or Member State law, in which case Plausibly informs Customer beforehand unless the law prohibits it.\n\n6. Personnel. Plausibly's team is small and everyone on it understands that customer data is confidential.\n\n7. Security. Plausibly implements the technical and organisational measures in Annex 1, including encryption in transit and at rest, no storage of raw IP addresses, single-purpose servers and access limited to two named engineers with hardware keys.\n\n8. Sub-processors. Customer gives general authorisation for the sub-processors in Annex 2 (currently one hosting provider in Germany), each bound by a written agreement imposing equivalent obligations. Plausibly keeps the list on its website up to date and will consider any concern Customer raises about a listed sub-processor.\n\n9. Data subject requests. Plausibly assists Customer with appropriate technical and organisational measures in responding to requests from data subjects, though it holds no data that identifies a visitor after the day of the visit.\n\n10. Other assistance. Plausibly assists Customer in ensuring compliance with its obligations on security of processing, breach notification and data protection impact assessments, taking into account the nature of the processing and the information available to it.\n\n11. Breaches. Plausibly notifies Customer without undue delay after becoming aware of a personal data breach affecting Customer's data.\n\n12. Deletion. At the end of the account Plausibly, at Customer's choice, exports the aggregated reports to Customer or deletes them, and deletes all copies within 30 days.\n\n13. Audits. Plausibly makes available to Customer all information necessary to demonstrate compliance with this agreement and allows for and contributes to audits, including inspections, by Customer or an auditor mandated by Customer, on 30 days' notice.\n\n14. Transfers. All data is processed and stored in the European Union; no personal data is transferred outside the European Economic Area.\n\nAnnex 1: Security measures. Annex 2: Sub-processors.",
+  "expected": {
+    "parties": {
+      "status": "present",
+      "quote": "This agreement forms part of the Plausibly Terms between Plausibly OÜ, Narva mnt 5, 10117 Tallinn, Estonia (\"Plausibly\", the processor) and the account holder (\"Customer\", the controller)."
+    },
+    "subject_and_duration": {
+      "status": "present",
+      "quote": "The subject-matter is the measurement of visits to Customer's websites; the processing lasts for the term of the account and until deletion under section 11."
+    },
+    "nature_and_purpose": {
+      "status": "present",
+      "quote": "Plausibly receives page-view events from Customer's sites, aggregates them into visitor and page counts, and shows Customer the resulting reports, for the purpose of letting Customer understand its traffic."
+    },
+    "data_and_subjects": {
+      "status": "present",
+      "quote": "The personal data are IP addresses, truncated on receipt, and user-agent strings, processed for a few hours to derive a daily visitor identifier; the data subjects are visitors to Customer's websites."
+    },
+    "controller_rights": {
+      "status": "present",
+      "quote": "Customer is responsible for the lawfulness of the measurement and for informing its visitors; Customer may instruct Plausibly in writing, audit under section 12, object to sub-processors under section 8 and require deletion at any time."
+    },
+    "documented_instructions": {
+      "status": "present",
+      "quote": "Plausibly processes personal data only on documented instructions from Customer, including with regard to transfers to a third country, unless required by Union or Member State law"
+    },
+    "confidentiality": { "status": "undetermined" },
+    "security_measures": {
+      "status": "present",
+      "quote": "Plausibly implements the technical and organisational measures in Annex 1, including encryption in transit and at rest, no storage of raw IP addresses, single-purpose servers and access limited to two named engineers with hardware keys."
+    },
+    "subprocessor_authorisation": {
+      "status": "present",
+      "quote": "Customer gives general authorisation for the sub-processors in Annex 2 (currently one hosting provider in Germany), each bound by a written agreement imposing equivalent obligations."
+    },
+    "subprocessor_objection": { "status": "undetermined" },
+    "assist_data_subject_rights": {
+      "status": "present",
+      "quote": "Plausibly assists Customer with appropriate technical and organisational measures in responding to requests from data subjects, though it holds no data that identifies a visitor after the day of the visit."
+    },
+    "assist_obligations": {
+      "status": "present",
+      "quote": "Plausibly assists Customer in ensuring compliance with its obligations on security of processing, breach notification and data protection impact assessments, taking into account the nature of the processing and the information available to it."
+    },
+    "breach_notification": {
+      "status": "present",
+      "quote": "Plausibly notifies Customer without undue delay after becoming aware of a personal data breach affecting Customer's data."
+    },
+    "deletion_or_return": {
+      "status": "present",
+      "quote": "At the end of the account Plausibly, at Customer's choice, exports the aggregated reports to Customer or deletes them, and deletes all copies within 30 days."
+    },
+    "audits": {
+      "status": "present",
+      "quote": "Plausibly makes available to Customer all information necessary to demonstrate compliance with this agreement and allows for and contributes to audits, including inspections, by Customer or an auditor mandated by Customer, on 30 days' notice."
+    },
+    "transfer_annex": {
+      "status": "present",
+      "quote": "All data is processed and stored in the European Union; no personal data is transferred outside the European Economic Area."
+    }
+  },
+  "expectedSpecifics": {
+    "breach_window": { "status": "met" },
+    "subprocessor_objection": { "status": "undetermined" },
+    "transfer_annex": { "status": "met" }
+  },
+  "expectedVerdict": "undetermined",
+  "reasoning": "Nothing is absent and nothing fails, but two clauses hedge. \"Everyone understands that customer data is confidential\" is not a commitment to confidentiality or a statutory duty: undetermined. Keeping a list up to date and \"considering any concern\" is neither notice in advance nor a right to object: undetermined, and the specific check follows the label. The breach notice commits to no undue delay, which passes; no data leaves the EEA. The verdict stays open, which is what a careful reader owes a document that stops short in two places."
+}

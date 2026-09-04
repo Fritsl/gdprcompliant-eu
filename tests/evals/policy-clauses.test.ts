@@ -1,7 +1,9 @@
+import { recordEvalResult } from './record.js';
+import { thresholdOf } from './sets.js';
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { describe, expect, it, vi } from 'vitest';
+import { afterAll, describe, expect, it, vi } from 'vitest';
 import { loadConfig } from '@gc/config';
 import { sha256, type ClauseStatus, type UntrustedContent } from '@gc/contracts';
 import { ModelClient, ModelOutputError, analysePolicyClauses } from '@gc/agent';
@@ -84,8 +86,8 @@ function labelledModel(p: PolicyFixture, mutate: (clauses: unknown[]) => unknown
 }
 
 describe('the labelled policies', () => {
-  it('are twelve, label every element, and quote what they say is present verbatim', () => {
-    expect(fixtures).toHaveLength(12);
+  it('are twenty, label every element, and quote what they say is present verbatim', () => {
+    expect(fixtures).toHaveLength(20);
     const ids = DISCLOSURE_ELEMENTS.map((e) => e.id);
     for (const p of fixtures) {
       expect(Object.keys(p.expected).sort(), p.name).toEqual([...ids].sort());
@@ -101,7 +103,18 @@ describe('the labelled policies', () => {
 });
 
 describe('the pipeline, with a model that answers the labels', () => {
+  const scored: boolean[] = [];
+  afterAll(() => {
+    recordEvalResult({
+      set: 'policy-clauses',
+      mode: 'pipeline',
+      agreed: scored.filter(Boolean).length,
+      total: fixtures.length,
+      threshold: thresholdOf('policy-clauses'),
+    });
+  });
   it.each(fixtures.map((p) => [p.name, p] as const))('%s', async (_, p) => {
+    scored.push(false);
     const analysis = await analysePolicyClauses(labelledModel(p), {
       document: document(p),
       documentEvidence: evidenceOf(p),
@@ -128,6 +141,7 @@ describe('the pipeline, with a model that answers the labels', () => {
         (e) => e.id,
       ),
     );
+    scored[scored.length - 1] = true;
   });
 
   it('a quote that is not in the document is refused, and an unanswered element is undetermined', async () => {
@@ -186,10 +200,15 @@ describe.skipIf(!modelConfigured)('the model, measured', () => {
           );
       }
     }
-    console.log(
-      `policy clauses eval: ${agreed}/${total} agree (${((agreed / total) * 100).toFixed(1)}%)${misses.length ? `\n  ${misses.join('\n  ')}` : ''}`,
-    );
-    expect(agreed / total).toBeGreaterThanOrEqual(0.95);
+    recordEvalResult({
+      set: 'policy-clauses',
+      mode: 'model',
+      agreed,
+      total,
+      threshold: thresholdOf('policy-clauses'),
+      misses,
+    });
+    expect(agreed / total).toBeGreaterThanOrEqual(thresholdOf('policy-clauses'));
   });
 });
 

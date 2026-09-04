@@ -1,0 +1,81 @@
+{
+  "name": "de-payroll-frist-zu-lang",
+  "locale": "de",
+  "jurisdiction": "DE",
+  "vendor": { "host": "lohnwerk.test", "name": "Lohnwerk" },
+  "modelledOn": "A German payroll bureau's agreement, complete in every clause, whose breach notice allows five working days.",
+  "text": "Vereinbarung zur Auftragsverarbeitung (Lohnabrechnung)\n\nzwischen der Lohnwerk GmbH, Hansaallee 5, 40547 Düsseldorf (\"Auftragsverarbeiter\") und dem Kunden, für den Lohnwerk die Lohnabrechnung übernimmt (\"Verantwortlicher\"). Der Verantwortliche bleibt für die Daten seiner Beschäftigten verantwortlich; Lohnwerk verarbeitet sie ausschließlich in seinem Auftrag.\n\n§ 1 Gegenstand und Dauer. Gegenstand ist die monatliche Lohn- und Gehaltsabrechnung einschließlich der Meldungen an Finanzamt und Sozialversicherung; die Verarbeitung dauert für die Laufzeit des Dienstleistungsvertrags an und endet mit der Löschung oder Rückgabe nach § 11.\n\n§ 2 Art und Zweck. Lohnwerk erfasst, berechnet, übermittelt und archiviert Abrechnungsdaten, um die Beschäftigten des Verantwortlichen korrekt zu entlohnen und die gesetzlichen Meldepflichten zu erfüllen.\n\n§ 3 Datenarten und betroffene Personen. Verarbeitet werden Name, Anschrift, Geburtsdatum, Steuer-ID, Sozialversicherungsnummer, Bankverbindung, Gehalt, Fehlzeiten und Pfändungen; betroffen sind die gegenwärtigen und früheren Beschäftigten des Verantwortlichen.\n\n§ 4 Rechte und Pflichten des Verantwortlichen. Der Verantwortliche ist für die Rechtmäßigkeit der Verarbeitung verantwortlich, erteilt Weisungen in Textform, darf Kontrollen nach § 12 durchführen, kann neuen Unterauftragsverarbeitern widersprechen und die Löschung oder Herausgabe der Daten verlangen.\n\n§ 5 Weisungen. Lohnwerk verarbeitet die personenbezogenen Daten nur auf dokumentierte Weisung des Verantwortlichen, auch hinsichtlich einer Übermittlung in ein Drittland, es sei denn, das Recht der Union oder eines Mitgliedstaats verpflichtet dazu; dann informiert Lohnwerk den Verantwortlichen vor der Verarbeitung, soweit das Recht dies zulässt.\n\n§ 6 Vertraulichkeit. Die mit der Verarbeitung befassten Mitarbeiter von Lohnwerk sind schriftlich zur Vertraulichkeit verpflichtet und unterliegen dem Steuergeheimnis, soweit es gilt.\n\n§ 7 Sicherheit. Lohnwerk trifft die in Anlage 1 beschriebenen technischen und organisatorischen Maßnahmen, darunter verschlüsselte Übertragung und Speicherung, Rollen- und Berechtigungskonzept, Vier-Augen-Prinzip bei Auszahlungsdateien, Protokollierung und tägliche Sicherung.\n\n§ 8 Unterauftragsverarbeiter. Der Verantwortliche genehmigt die in Anlage 2 genannten Unterauftragsverarbeiter allgemein; Lohnwerk verpflichtet sie vertraglich auf dieselben Pflichten. Lohnwerk informiert den Verantwortlichen mindestens 30 Tage vor jeder Änderung schriftlich, und der Verantwortliche kann innerhalb dieser Frist widersprechen; bei einem berechtigten Widerspruch unterbleibt der Einsatz.\n\n§ 9 Unterstützung bei Betroffenenrechten. Lohnwerk unterstützt den Verantwortlichen mit geeigneten technischen und organisatorischen Maßnahmen bei der Beantwortung von Anträgen betroffener Personen und leitet eingehende Anträge unverzüglich weiter.\n\n§ 10 Unterstützung bei weiteren Pflichten. Lohnwerk unterstützt den Verantwortlichen bei der Einhaltung der Pflichten zur Sicherheit der Verarbeitung, zur Meldung von Datenschutzverletzungen und zur Datenschutz-Folgenabschätzung.\n\n§ 11 Datenschutzverletzungen. Lohnwerk meldet dem Verantwortlichen eine Verletzung des Schutzes personenbezogener Daten innerhalb von 5 Werktagen nach Bekanntwerden und stellt die für dessen Meldung erforderlichen Informationen bereit.\n\n§ 12 Löschung und Rückgabe. Nach Vertragsende gibt Lohnwerk die Abrechnungsdaten nach Wahl des Verantwortlichen zurück oder löscht sie und löscht vorhandene Kopien innerhalb von 30 Tagen, soweit keine gesetzliche Aufbewahrungspflicht entgegensteht.\n\n§ 13 Nachweise und Kontrollen. Lohnwerk stellt dem Verantwortlichen alle zum Nachweis der Einhaltung dieser Vereinbarung erforderlichen Informationen zur Verfügung und ermöglicht Überprüfungen einschließlich Inspektionen durch den Verantwortlichen oder einen von ihm beauftragten Prüfer.\n\n§ 14 Drittlandübermittlung. Die Verarbeitung erfolgt ausschließlich in Rechenzentren in Deutschland; eine Übermittlung personenbezogener Daten in Länder außerhalb des Europäischen Wirtschaftsraums findet nicht statt.\n\nAnlage 1: Technische und organisatorische Maßnahmen. Anlage 2: Unterauftragsverarbeiter.",
+  "expected": {
+    "parties": {
+      "status": "present",
+      "quote": "zwischen der Lohnwerk GmbH, Hansaallee 5, 40547 Düsseldorf (\"Auftragsverarbeiter\") und dem Kunden, für den Lohnwerk die Lohnabrechnung übernimmt (\"Verantwortlicher\")."
+    },
+    "subject_and_duration": {
+      "status": "present",
+      "quote": "Gegenstand ist die monatliche Lohn- und Gehaltsabrechnung einschließlich der Meldungen an Finanzamt und Sozialversicherung; die Verarbeitung dauert für die Laufzeit des Dienstleistungsvertrags an und endet mit der Löschung oder Rückgabe nach § 11."
+    },
+    "nature_and_purpose": {
+      "status": "present",
+      "quote": "Lohnwerk erfasst, berechnet, übermittelt und archiviert Abrechnungsdaten, um die Beschäftigten des Verantwortlichen korrekt zu entlohnen und die gesetzlichen Meldepflichten zu erfüllen."
+    },
+    "data_and_subjects": {
+      "status": "present",
+      "quote": "Verarbeitet werden Name, Anschrift, Geburtsdatum, Steuer-ID, Sozialversicherungsnummer, Bankverbindung, Gehalt, Fehlzeiten und Pfändungen; betroffen sind die gegenwärtigen und früheren Beschäftigten des Verantwortlichen."
+    },
+    "controller_rights": {
+      "status": "present",
+      "quote": "Der Verantwortliche ist für die Rechtmäßigkeit der Verarbeitung verantwortlich, erteilt Weisungen in Textform, darf Kontrollen nach § 12 durchführen, kann neuen Unterauftragsverarbeitern widersprechen und die Löschung oder Herausgabe der Daten verlangen."
+    },
+    "documented_instructions": {
+      "status": "present",
+      "quote": "Lohnwerk verarbeitet die personenbezogenen Daten nur auf dokumentierte Weisung des Verantwortlichen, auch hinsichtlich einer Übermittlung in ein Drittland, es sei denn, das Recht der Union oder eines Mitgliedstaats verpflichtet dazu"
+    },
+    "confidentiality": {
+      "status": "present",
+      "quote": "Die mit der Verarbeitung befassten Mitarbeiter von Lohnwerk sind schriftlich zur Vertraulichkeit verpflichtet und unterliegen dem Steuergeheimnis, soweit es gilt."
+    },
+    "security_measures": {
+      "status": "present",
+      "quote": "Lohnwerk trifft die in Anlage 1 beschriebenen technischen und organisatorischen Maßnahmen, darunter verschlüsselte Übertragung und Speicherung, Rollen- und Berechtigungskonzept, Vier-Augen-Prinzip bei Auszahlungsdateien, Protokollierung und tägliche Sicherung."
+    },
+    "subprocessor_authorisation": {
+      "status": "present",
+      "quote": "Der Verantwortliche genehmigt die in Anlage 2 genannten Unterauftragsverarbeiter allgemein; Lohnwerk verpflichtet sie vertraglich auf dieselben Pflichten."
+    },
+    "subprocessor_objection": {
+      "status": "present",
+      "quote": "Lohnwerk informiert den Verantwortlichen mindestens 30 Tage vor jeder Änderung schriftlich, und der Verantwortliche kann innerhalb dieser Frist widersprechen; bei einem berechtigten Widerspruch unterbleibt der Einsatz."
+    },
+    "assist_data_subject_rights": {
+      "status": "present",
+      "quote": "Lohnwerk unterstützt den Verantwortlichen mit geeigneten technischen und organisatorischen Maßnahmen bei der Beantwortung von Anträgen betroffener Personen und leitet eingehende Anträge unverzüglich weiter."
+    },
+    "assist_obligations": {
+      "status": "present",
+      "quote": "Lohnwerk unterstützt den Verantwortlichen bei der Einhaltung der Pflichten zur Sicherheit der Verarbeitung, zur Meldung von Datenschutzverletzungen und zur Datenschutz-Folgenabschätzung."
+    },
+    "breach_notification": {
+      "status": "present",
+      "quote": "Lohnwerk meldet dem Verantwortlichen eine Verletzung des Schutzes personenbezogener Daten innerhalb von 5 Werktagen nach Bekanntwerden"
+    },
+    "deletion_or_return": {
+      "status": "present",
+      "quote": "Nach Vertragsende gibt Lohnwerk die Abrechnungsdaten nach Wahl des Verantwortlichen zurück oder löscht sie und löscht vorhandene Kopien innerhalb von 30 Tagen"
+    },
+    "audits": {
+      "status": "present",
+      "quote": "Lohnwerk stellt dem Verantwortlichen alle zum Nachweis der Einhaltung dieser Vereinbarung erforderlichen Informationen zur Verfügung und ermöglicht Überprüfungen einschließlich Inspektionen durch den Verantwortlichen oder einen von ihm beauftragten Prüfer."
+    },
+    "transfer_annex": {
+      "status": "present",
+      "quote": "Die Verarbeitung erfolgt ausschließlich in Rechenzentren in Deutschland; eine Übermittlung personenbezogener Daten in Länder außerhalb des Europäischen Wirtschaftsraums findet nicht statt."
+    }
+  },
+  "expectedSpecifics": {
+    "breach_window": { "status": "not_met", "hours": 120 },
+    "subprocessor_objection": { "status": "met" },
+    "transfer_annex": { "status": "met" }
+  },
+  "expectedVerdict": "inadequate",
+  "reasoning": "Every element is present and quoted, and the payroll data are described with unusual care. The breach clause, though, allows five working days, at least 120 hours, which is longer than the controller's own 72 from becoming aware; the window check fails and that alone makes the agreement inadequate. Sub-processors come with 30 days and an objection; no data leaves the EEA."
+}

@@ -1,0 +1,45 @@
+{
+  "name": "da-forening-medlemmer",
+  "locale": "da",
+  "jurisdiction": "DK",
+  "text": "Privatlivspolitik for Roskilde Roklub\n\nRoskilde Roklub, Havnevej 12, 4000 Roskilde, CVR 55667788, er dataansvarlig for de oplysninger, vi behandler om vores medlemmer. Skriv til bestyrelsen@roskilderoklub.test.\n\nVi behandler navn, adresse, fødselsdato, telefonnummer og e-mail for at administrere dit medlemskab og opkræve kontingent; grundlaget er medlemsaftalen (artikel 6, stk. 1, litra b). Vi behandler oplysninger om deltagelse i træning og stævner for at planlægge klubbens aktiviteter på grundlag af vores legitime interesse i at drive klubben (artikel 6, stk. 1, litra f).\n\nVores legitime interesse er at kunne sætte hold, booke både og holde styr på, hvem der har ret til at ro alene.\n\nVi videregiver medlemsoplysninger til Dansk Forening for Rosport, til vores kontingentsystem Foreningsadministration ApS og til kommunen, når vi søger lokaletilskud.\n\nVi opbevarer medlemsoplysninger, så længe du er medlem, og sletter dem to år efter udmeldelse; regnskabsbilag gemmes i fem år efter regnskabsårets udløb.\n\nDu har ret til indsigt i dine oplysninger, til at få dem rettet eller slettet, til at begrænse behandlingen, til at gøre indsigelse og til dataportabilitet.\n\nDu kan klage til Datatilsynet.\n\nDu skal oplyse navn, adresse og fødselsdato for at blive medlem; uden dem kan vi ikke registrere dig som medlem eller forsikre dig gennem forbundet.\n\nBilleder fra stævner lægges på klubbens hjemmeside; sig til, hvis du ikke vil være med på dem.",
+  "expected": {
+    "controller": {
+      "status": "present",
+      "quote": "Roskilde Roklub, Havnevej 12, 4000 Roskilde, CVR 55667788, er dataansvarlig for de oplysninger, vi behandler om vores medlemmer. Skriv til bestyrelsen@roskilderoklub.test."
+    },
+    "dpo": { "status": "absent" },
+    "purposes_basis": {
+      "status": "present",
+      "quote": "Vi behandler navn, adresse, fødselsdato, telefonnummer og e-mail for at administrere dit medlemskab og opkræve kontingent; grundlaget er medlemsaftalen (artikel 6, stk. 1, litra b)."
+    },
+    "legitimate_interests": {
+      "status": "present",
+      "quote": "Vores legitime interesse er at kunne sætte hold, booke både og holde styr på, hvem der har ret til at ro alene."
+    },
+    "recipients": {
+      "status": "present",
+      "quote": "Vi videregiver medlemsoplysninger til Dansk Forening for Rosport, til vores kontingentsystem Foreningsadministration ApS og til kommunen, når vi søger lokaletilskud."
+    },
+    "transfers": { "status": "absent" },
+    "retention": {
+      "status": "present",
+      "quote": "Vi opbevarer medlemsoplysninger, så længe du er medlem, og sletter dem to år efter udmeldelse; regnskabsbilag gemmes i fem år efter regnskabsårets udløb."
+    },
+    "rights": {
+      "status": "present",
+      "quote": "Du har ret til indsigt i dine oplysninger, til at få dem rettet eller slettet, til at begrænse behandlingen, til at gøre indsigelse og til dataportabilitet."
+    },
+    "withdrawal": { "status": "undetermined" },
+    "complaint": {
+      "status": "present",
+      "quote": "Du kan klage til Datatilsynet."
+    },
+    "obligation": {
+      "status": "present",
+      "quote": "Du skal oplyse navn, adresse og fødselsdato for at blive medlem; uden dem kan vi ikke registrere dig som medlem eller forsikre dig gennem forbundet."
+    },
+    "automated": { "status": "absent" }
+  },
+  "reasoning": "A sports club: a small controller with no officer and no transfers, both absent rather than unclear. The photo line invites members to opt out of pictures but never names consent or a right to withdraw it, so withdrawal is undetermined, not present. Nothing about automated decisions, so absent. The rest is stated plainly, including the consequence of not giving the details the federation needs."
+}

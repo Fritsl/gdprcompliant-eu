@@ -1,0 +1,36 @@
+{
+  "name": "en-events-ticketing",
+  "locale": "en",
+  "jurisdiction": "DK",
+  "text": "Privacy policy – Bakkefest Tickets\n\nBakkefest ApS, Strandvejen 200, 2900 Hellerup, runs this ticket shop and is responsible for your data. Write to hello@bakkefest.test.\n\nWe use your name, email and payment details to sell you tickets and send them to you, on the basis of our contract with you. With your consent we also send you news about coming events.\n\nYour order goes to our payment provider Betal ApS and to the venue, which checks tickets at the door. Our email newsletters are sent through a mailing platform.\n\nSome of our service providers may process data outside Europe.\n\nWe keep your order for as long as we need it for accounting, and your newsletter subscription until you unsubscribe.\n\nYou can ask us what we hold about you and ask us to correct or delete it.\n\nYou can unsubscribe from the newsletter at any time using the link in every email, which withdraws your consent.\n\nComplaints can go to Datatilsynet.\n\nWe may use your purchase history to recommend events.",
+  "expected": {
+    "controller": {
+      "status": "present",
+      "quote": "Bakkefest ApS, Strandvejen 200, 2900 Hellerup, runs this ticket shop and is responsible for your data. Write to hello@bakkefest.test."
+    },
+    "dpo": { "status": "absent" },
+    "purposes_basis": {
+      "status": "present",
+      "quote": "We use your name, email and payment details to sell you tickets and send them to you, on the basis of our contract with you. With your consent we also send you news about coming events."
+    },
+    "legitimate_interests": { "status": "absent" },
+    "recipients": {
+      "status": "present",
+      "quote": "Your order goes to our payment provider Betal ApS and to the venue, which checks tickets at the door. Our email newsletters are sent through a mailing platform."
+    },
+    "transfers": { "status": "undetermined" },
+    "retention": { "status": "undetermined" },
+    "rights": { "status": "undetermined" },
+    "withdrawal": {
+      "status": "present",
+      "quote": "You can unsubscribe from the newsletter at any time using the link in every email, which withdraws your consent."
+    },
+    "complaint": {
+      "status": "present",
+      "quote": "Complaints can go to Datatilsynet."
+    },
+    "obligation": { "status": "absent" },
+    "automated": { "status": "undetermined" }
+  },
+  "reasoning": "A ticket shop that gestures at things without saying them. Providers \"may process data outside Europe\" names neither a transfer nor a safeguard: undetermined. Retention \"as long as we need it for accounting\" is not a period or a criterion a reader can check: undetermined. Access, correction and deletion are offered but restriction, objection and portability are not: undetermined rather than present. Recommending events from purchase history hints at profiling without saying whether decisions are automated: undetermined. Four undetermined labels in one policy make it the set's test of caution."
+}

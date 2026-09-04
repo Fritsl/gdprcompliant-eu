@@ -1,0 +1,78 @@
+{
+  "name": "de-shop-plattform-ohne-loeschung",
+  "locale": "de",
+  "jurisdiction": "DE",
+  "vendor": { "host": "ladenbau.test", "name": "Ladenbau" },
+  "modelledOn": "A hosted-shop platform's agreement that is complete except that it never says what happens to the shop's data when the contract ends.",
+  "text": "Auftragsverarbeitungsvertrag Ladenbau Shop-Plattform\n\nDie Ladenbau GmbH, Königsallee 60, 40212 Düsseldorf (\"Auftragsverarbeiter\"), stellt dem Händler (\"Verantwortlicher\") eine gehostete Shop-Plattform bereit und verarbeitet dabei die personenbezogenen Daten der Kunden des Händlers ausschließlich in dessen Auftrag.\n\n1. Gegenstand und Dauer. Gegenstand ist der Betrieb des Online-Shops des Verantwortlichen einschließlich Bestellabwicklung; die Verarbeitung dauert für die Laufzeit des Plattformvertrags an.\n\n2. Art und Zweck. Ladenbau speichert Kundenkonten, Warenkörbe und Bestellungen, übermittelt Versanddaten an den Versanddienst und stellt dem Verantwortlichen die Verwaltung bereit, damit dieser Waren verkaufen und liefern kann.\n\n3. Datenarten und betroffene Personen. Verarbeitet werden Name, Anschrift, E-Mail-Adresse, Telefonnummer, Bestell- und Zahlungsdaten sowie Kontodaten des Shops; betroffen sind die Kunden und Interessenten des Verantwortlichen.\n\n4. Rechte und Pflichten des Verantwortlichen. Der Verantwortliche ist für die Rechtmäßigkeit verantwortlich, erteilt Weisungen über die Shop-Verwaltung oder schriftlich, darf Kontrollen nach Ziffer 12 durchführen und kann neuen Unterauftragsverarbeitern widersprechen.\n\n5. Weisungen. Ladenbau verarbeitet die Daten nur auf dokumentierte Weisung des Verantwortlichen, auch hinsichtlich Übermittlungen in Drittländer, sofern nicht das Recht der Union oder eines Mitgliedstaats etwas anderes verlangt; in diesem Fall wird der Verantwortliche vorab informiert.\n\n6. Vertraulichkeit. Ladenbau verpflichtet alle Mitarbeiter mit Zugriff auf Shop-Daten schriftlich zur Vertraulichkeit.\n\n7. Sicherheit. Ladenbau setzt die in Anhang 1 beschriebenen technischen und organisatorischen Maßnahmen um, darunter verschlüsselte Übertragung, verschlüsselte Datenbanken, Zwei-Faktor-Anmeldung für die Shop-Verwaltung, getrennte Mandanten und tägliche Sicherungen.\n\n8. Unterauftragsverarbeiter. Der Verantwortliche genehmigt die in Anhang 2 genannten Unterauftragsverarbeiter allgemein; Ladenbau verpflichtet sie vertraglich auf dieselben Pflichten. Ladenbau kündigt Änderungen mindestens 30 Tage vorher per E-Mail an, und der Verantwortliche kann innerhalb dieser Frist widersprechen.\n\n9. Unterstützung bei Betroffenenrechten. Ladenbau unterstützt den Verantwortlichen mit geeigneten Maßnahmen bei der Beantwortung von Anträgen betroffener Personen und stellt Export- und Löschfunktionen für Kundenkonten bereit.\n\n10. Weitere Unterstützung. Ladenbau unterstützt den Verantwortlichen bei den Pflichten zur Sicherheit der Verarbeitung, zur Meldung von Datenschutzverletzungen und zur Datenschutz-Folgenabschätzung.\n\n11. Datenschutzverletzungen. Ladenbau meldet dem Verantwortlichen eine Verletzung des Schutzes personenbezogener Daten unverzüglich, spätestens innerhalb von 48 Stunden nach Bekanntwerden, und liefert die für die Meldung erforderlichen Informationen nach.\n\n12. Kontrollen. Ladenbau stellt alle zum Nachweis der Einhaltung erforderlichen Informationen bereit und ermöglicht Überprüfungen einschließlich Inspektionen durch den Verantwortlichen oder einen beauftragten Prüfer.\n\n13. Drittlandübermittlung. Die Plattform wird in Rechenzentren in Deutschland betrieben; eine Übermittlung personenbezogener Daten in Drittländer findet nicht statt.\n\nAnhang 1: Technische und organisatorische Maßnahmen. Anhang 2: Unterauftragsverarbeiter.",
+  "expected": {
+    "parties": {
+      "status": "present",
+      "quote": "Die Ladenbau GmbH, Königsallee 60, 40212 Düsseldorf (\"Auftragsverarbeiter\"), stellt dem Händler (\"Verantwortlicher\") eine gehostete Shop-Plattform bereit und verarbeitet dabei die personenbezogenen Daten der Kunden des Händlers ausschließlich in dessen Auftrag."
+    },
+    "subject_and_duration": {
+      "status": "present",
+      "quote": "Gegenstand ist der Betrieb des Online-Shops des Verantwortlichen einschließlich Bestellabwicklung; die Verarbeitung dauert für die Laufzeit des Plattformvertrags an."
+    },
+    "nature_and_purpose": {
+      "status": "present",
+      "quote": "Ladenbau speichert Kundenkonten, Warenkörbe und Bestellungen, übermittelt Versanddaten an den Versanddienst und stellt dem Verantwortlichen die Verwaltung bereit, damit dieser Waren verkaufen und liefern kann."
+    },
+    "data_and_subjects": {
+      "status": "present",
+      "quote": "Verarbeitet werden Name, Anschrift, E-Mail-Adresse, Telefonnummer, Bestell- und Zahlungsdaten sowie Kontodaten des Shops; betroffen sind die Kunden und Interessenten des Verantwortlichen."
+    },
+    "controller_rights": {
+      "status": "present",
+      "quote": "Der Verantwortliche ist für die Rechtmäßigkeit verantwortlich, erteilt Weisungen über die Shop-Verwaltung oder schriftlich, darf Kontrollen nach Ziffer 12 durchführen und kann neuen Unterauftragsverarbeitern widersprechen."
+    },
+    "documented_instructions": {
+      "status": "present",
+      "quote": "Ladenbau verarbeitet die Daten nur auf dokumentierte Weisung des Verantwortlichen, auch hinsichtlich Übermittlungen in Drittländer, sofern nicht das Recht der Union oder eines Mitgliedstaats etwas anderes verlangt"
+    },
+    "confidentiality": {
+      "status": "present",
+      "quote": "Ladenbau verpflichtet alle Mitarbeiter mit Zugriff auf Shop-Daten schriftlich zur Vertraulichkeit."
+    },
+    "security_measures": {
+      "status": "present",
+      "quote": "Ladenbau setzt die in Anhang 1 beschriebenen technischen und organisatorischen Maßnahmen um, darunter verschlüsselte Übertragung, verschlüsselte Datenbanken, Zwei-Faktor-Anmeldung für die Shop-Verwaltung, getrennte Mandanten und tägliche Sicherungen."
+    },
+    "subprocessor_authorisation": {
+      "status": "present",
+      "quote": "Der Verantwortliche genehmigt die in Anhang 2 genannten Unterauftragsverarbeiter allgemein; Ladenbau verpflichtet sie vertraglich auf dieselben Pflichten."
+    },
+    "subprocessor_objection": {
+      "status": "present",
+      "quote": "Ladenbau kündigt Änderungen mindestens 30 Tage vorher per E-Mail an, und der Verantwortliche kann innerhalb dieser Frist widersprechen."
+    },
+    "assist_data_subject_rights": {
+      "status": "present",
+      "quote": "Ladenbau unterstützt den Verantwortlichen mit geeigneten Maßnahmen bei der Beantwortung von Anträgen betroffener Personen und stellt Export- und Löschfunktionen für Kundenkonten bereit."
+    },
+    "assist_obligations": {
+      "status": "present",
+      "quote": "Ladenbau unterstützt den Verantwortlichen bei den Pflichten zur Sicherheit der Verarbeitung, zur Meldung von Datenschutzverletzungen und zur Datenschutz-Folgenabschätzung."
+    },
+    "breach_notification": {
+      "status": "present",
+      "quote": "Ladenbau meldet dem Verantwortlichen eine Verletzung des Schutzes personenbezogener Daten unverzüglich, spätestens innerhalb von 48 Stunden nach Bekanntwerden"
+    },
+    "deletion_or_return": { "status": "absent" },
+    "audits": {
+      "status": "present",
+      "quote": "Ladenbau stellt alle zum Nachweis der Einhaltung erforderlichen Informationen bereit und ermöglicht Überprüfungen einschließlich Inspektionen durch den Verantwortlichen oder einen beauftragten Prüfer."
+    },
+    "transfer_annex": {
+      "status": "present",
+      "quote": "Die Plattform wird in Rechenzentren in Deutschland betrieben; eine Übermittlung personenbezogener Daten in Drittländer findet nicht statt."
+    }
+  },
+  "expectedSpecifics": {
+    "breach_window": { "status": "met", "hours": 48 },
+    "subprocessor_objection": { "status": "met" },
+    "transfer_annex": { "status": "met" }
+  },
+  "expectedVerdict": "inadequate",
+  "reasoning": "Fifteen elements are stated and every specific check passes, but nothing says whether the shop's customer data is returned or deleted when the platform contract ends; the export function in clause 9 serves data subject requests, not the end of the service. One absence is enough: inadequate. The fixture tests that a tool for one purpose is not read as a commitment for another."
+}
