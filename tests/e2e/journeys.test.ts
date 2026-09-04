@@ -273,8 +273,25 @@ describe.skipIf(!url)('the journeys (T-09)', () => {
     );
     expect(doneAfter).toBeGreaterThan(doneBefore);
     expect(await text(owner.locator('.colleague-list'))).toContain('lars@usikker.test');
-    // The processing register that fills from a colleague's answers is G-01, not built
-    // yet; this journey stops at the progress that is real today.
+    // The register filled from the scan (G-01): rows the company confirms one by one,
+    // answering how long the data is kept as it does; the case page counts them.
+    const before = await text(owner.locator('li[data-register-confirmed]'));
+    expect(before).toMatch(/^0\/[1-9]/);
+    await owner.goto(`${caseUrl}/register`);
+    const drafts = owner.locator('li[data-key][data-status="draft"]');
+    expect(await drafts.count()).toBeGreaterThan(0);
+    const key = (await drafts.first().getAttribute('data-key')) ?? '';
+    await drafts.first().locator('input[name="retention"]').fill('12 måneder efter henvendelsen');
+    await drafts.first().locator('button[type=submit]').click();
+    await owner.waitForURL(/register\?confirmed=1/);
+    const row = owner.locator(`li[data-key="${key}"]`);
+    expect(await row.getAttribute('data-status')).toBe('confirmed');
+    expect(await text(row.locator('dd[data-retention]'))).toContain('12 måneder');
+    const record = await owner.request.get(`${caseUrl}/register.md`);
+    expect(record.status()).toBe(200);
+    expect(await record.text()).toContain('12 måneder efter henvendelsen');
+    await owner.goto(caseUrl);
+    expect(await text(owner.locator('li[data-register-confirmed]'))).toMatch(/^1\//);
     await lars.context().close();
     await owner.close();
   }, 300_000);

@@ -12,6 +12,7 @@ import {
   type RecheckView,
 } from '@/lib/case';
 import { asLocale, t } from '@/lib/i18n';
+import { registerCounts } from '@/lib/register';
 import type { Locale } from '@gc/contracts';
 
 // The case page for whoever holds the token (U-03, U-04, C-04, P-02): the case number
@@ -318,6 +319,7 @@ export default async function CasePage({
   const view = await loadCasePage(token, locale);
   if (!view) notFound();
   const { counts, members, progress, findings, trust, shares } = view;
+  const register = (await registerCounts(token)) ?? { confirmed: 0, total: 0 };
   const base = `/${locale}/c/${token}`;
   const who = view.claimed ? t(locale, 'case.who.claimed') : t(locale, 'case.who.unclaimed');
   const query = await searchParams;
@@ -526,6 +528,12 @@ export default async function CasePage({
           </li>
           <li>
             {counts.events} <Text of={t(locale, 'case.holds.events')} />
+          </li>
+          <li data-register-confirmed={register.confirmed} data-register-total={register.total}>
+            {register.confirmed}/{register.total} <Text of={t(locale, 'case.holds.register')} /> ·{' '}
+            <a href={`${base}/register`}>
+              <Text of={t(locale, 'case.register')} />
+            </a>
           </li>
         </ul>
       </section>

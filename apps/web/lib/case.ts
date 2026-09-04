@@ -87,7 +87,7 @@ export interface CaseView {
   readonly events: CaseEvent[];
 }
 
-async function withConnection<T>(
+export async function withConnection<T>(
   work: (connection: Connection) => Promise<T>,
   env: Record<string, string | undefined> = process.env,
 ): Promise<T | undefined> {
@@ -547,7 +547,7 @@ const observedAt = (observed: unknown): string => {
 };
 
 // The token's holder as an actor: a person, named by the case they hold.
-const holder = (caseId: string, name = 'Case holder') => ({
+export const holder = (caseId: string, name = 'Case holder') => ({
   kind: 'person' as const,
   userId: `token:${caseId}`,
   name,

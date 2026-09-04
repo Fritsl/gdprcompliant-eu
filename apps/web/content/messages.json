@@ -988,5 +988,40 @@
     "en": "A new draft was written.",
     "da": "Et nyt udkast er skrevet.",
     "de": "Ein neuer Entwurf wurde geschrieben."
+  },
+  "register.heading": {
+    "en": "Record of processing activities",
+    "da": "Fortegnelse over behandlingsaktiviteter",
+    "de": "Verzeichnis der Verarbeitungstätigkeiten"
+  },
+  "register.retention": {
+    "en": "How long is the data kept?",
+    "da": "Hvor længe opbevares oplysningerne?",
+    "de": "Wie lange werden die Daten aufbewahrt?"
+  },
+  "register.confirm": {
+    "en": "Confirm this row",
+    "da": "Bekræft denne række",
+    "de": "Diese Zeile bestätigen"
+  },
+  "register.download": {
+    "en": "Download the record",
+    "da": "Hent fortegnelsen",
+    "de": "Verzeichnis herunterladen"
+  },
+  "register.confirmedNow": {
+    "en": "The row is confirmed.",
+    "da": "Rækken er bekræftet.",
+    "de": "Die Zeile ist bestätigt."
+  },
+  "case.register": {
+    "en": "Processing register",
+    "da": "Fortegnelse",
+    "de": "Verarbeitungsverzeichnis"
+  },
+  "case.holds.register": {
+    "en": "register rows confirmed",
+    "da": "rækker i fortegnelsen bekræftet",
+    "de": "Zeilen des Verzeichnisses bestätigt"
   }
 }
