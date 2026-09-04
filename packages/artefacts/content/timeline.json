@@ -138,6 +138,16 @@
         "da": "{{kind}} · {{artefactId}}"
       }
     },
+    "artefact_signed": {
+      "text": {
+        "en": "Document signed",
+        "da": "Dokument underskrevet"
+      },
+      "detail": {
+        "en": "{{kind}} v{{version}}, by {{by}}",
+        "da": "{{kind}} v{{version}}, af {{by}}"
+      }
+    },
     "artefact_published": {
       "text": {
         "en": "Document published",

@@ -16,7 +16,7 @@ companies a list of problems; this hands them a plan and the things that close i
 
 ## Where you are
 
-**59 of 112 done.** Phase 0 and phase 1 are complete; phase 2 is 19 of 34, phase 3 has
+**60 of 112 done.** Phase 0 and phase 1 are complete; phase 2 is 19 of 34, phase 3 has
 begun, DNS collection opens phase 4 and the task catalogue opens phase 5. Contracts,
 config with the EU-only allowlist, the test harness, record and replay, i18n, the remedy
 catalogue and resolver, the model client, the web shell, the fixture estate (with TLS),
@@ -33,9 +33,9 @@ with exact citation resolution behind a jurisdiction filter, the citation audit 
 GDPR and ePrivacy texts as published, the verifier gate with its review queue, the
 prompt-injection defences (fenced untrusted content, output guards, the injection
 fixture), the jurisdiction binding tables with their generated lawyer's document, the
-jurisdiction matrix suite with the raise-and-store path it needed, and cases that take
-their jurisdiction and language from the target are in. The database is up (`pnpm db:up`);
-nothing in phase 1 is open.
+jurisdiction matrix suite with the raise-and-store path it needed, cases that take their
+jurisdiction and language from the target, and the human sign-off gate on generated
+documents are in. The database is up (`pnpm db:up`); nothing in phase 1 is open.
 
 Do not trust that list — ask:
 

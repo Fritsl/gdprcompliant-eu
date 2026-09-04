@@ -1,6 +1,6 @@
 # Schema
 
-Generated from `packages/db/migrations/meta/0011_snapshot.json` by `scripts/schema-doc.mjs`.
+Generated from `packages/db/migrations/meta/0012_snapshot.json` by `scripts/schema-doc.mjs`.
 Do not edit; change `packages/db/src/schema.ts`, run `pnpm db:generate`, then `pnpm db:doc`.
 
 Every table carries `tenant_id`, `created_at` and `source_ref`. `case_events` and
@@ -26,6 +26,27 @@ erDiagram
     timestamp created_at
     text source_ref
     timestamp updated_at
+  }
+  artefacts {
+    text id "PK"
+    text tenant_id
+    timestamp created_at
+    text source_ref
+    text case_id
+    text kind
+    text locale
+    integer version
+    text content
+    text hash
+    text status
+    timestamp generated_at
+    jsonb generated_by
+    timestamp signed_at "nullable"
+    jsonb signed_by "nullable"
+    integer signed_version "nullable"
+    text signed_hash "nullable"
+    timestamp published_at "nullable"
+    text published_url "nullable"
   }
   case_claims {
     text id "PK"
@@ -270,6 +291,7 @@ erDiagram
     jsonb transfer "nullable"
   }
   cases ||--o{ answers : "case_id"
+  cases ||--o{ artefacts : "case_id"
   cases ||--o{ case_claims : "case_id"
   cases ||--o{ case_events : "case_id"
   cases ||--o{ case_members : "case_id"
@@ -317,6 +339,38 @@ erDiagram
 | source_ref | text | not null |
 | updated_at | timestamp with time zone | not null, default now() |
 
+## artefacts
+
+| Column | Type | Constraints |
+| --- | --- | --- |
+| id | text | primary key, not null |
+| tenant_id | text | not null |
+| created_at | timestamp with time zone | not null, default now() |
+| source_ref | text | not null |
+| case_id | text | not null |
+| kind | text | not null |
+| locale | text | not null |
+| version | integer | not null, default 1 |
+| content | text | not null |
+| hash | text | not null |
+| status | text | not null, default 'draft' |
+| generated_at | timestamp with time zone | not null |
+| generated_by | jsonb | not null |
+| signed_at | timestamp with time zone |  |
+| signed_by | jsonb |  |
+| signed_version | integer |  |
+| signed_hash | text |  |
+| published_at | timestamp with time zone |  |
+| published_url | text |  |
+
+- case_id → cases(id)
+- unique index artefacts_case_kind (case_id, kind)
+- check artefacts_kind: `"kind" in ('privacy_policy', 'cookie_declaration', 'processing_agreement', 'processing_register', 'sub_processor_list', 'retention_schedule', 'evidence_pack', 'status_report')`
+- check artefacts_status: `"status" in ('draft', 'signed', 'published')`
+- check artefacts_hash: `"artefacts"."hash" ~ '^[a-f0-9]{64}$'`
+- check artefacts_signature: `("artefacts"."status" = 'draft') = ("artefacts"."signed_at" IS NULL) AND ("artefacts"."status" = 'draft') = ("artefacts"."signed_by" IS NULL)`
+- check artefacts_published: `("artefacts"."status" = 'published') = ("artefacts"."published_at" IS NOT NULL)`
+
 ## case_claims
 
 | Column | Type | Constraints |
@@ -353,7 +407,7 @@ erDiagram
 - unique index case_events_case_seq (case_id, seq)
 - index case_events_tenant_idx (tenant_id)
 - check case_events_seq: `"case_events"."seq" >= 1`
-- check case_events_type: `"type" in ('case_opened', 'scan_started', 'scan_completed', 'scan_failed', 'finding_raised', 'finding_closed', 'finding_regressed', 'fix_verification_failed', 'check_undetermined', 'question_asked', 'question_answered', 'artefact_generated', 'artefact_published', 'colleague_invited', 'colleague_joined', 'reminder_sent', 'invitation_revoked', 'watch_run', 'meeting_requested', 'note_added', 'locale_overridden', 'claim_rejected', 'claim_requested', 'case_claimed', 'case_expired', 'export_produced', 'deletion_requested', 'vendor_resolved')`
+- check case_events_type: `"type" in ('case_opened', 'scan_started', 'scan_completed', 'scan_failed', 'finding_raised', 'finding_closed', 'finding_regressed', 'fix_verification_failed', 'check_undetermined', 'question_asked', 'question_answered', 'artefact_generated', 'artefact_signed', 'artefact_published', 'colleague_invited', 'colleague_joined', 'reminder_sent', 'invitation_revoked', 'watch_run', 'meeting_requested', 'note_added', 'locale_overridden', 'claim_rejected', 'claim_requested', 'case_claimed', 'case_expired', 'export_produced', 'deletion_requested', 'vendor_resolved')`
 - check case_events_actor: `coalesce("case_events"."actor"->>'kind', '') in ('person', 'agent', 'scanner', 'watcher', 'system')`
 
 ## case_members

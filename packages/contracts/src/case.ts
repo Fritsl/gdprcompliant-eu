@@ -13,6 +13,7 @@ import {
   NonEmptyStringSchema,
   TenantIdSchema,
   UrlSchema,
+  Sha256Schema,
 } from './primitives.js';
 
 export const CompanySchema = z
@@ -127,6 +128,15 @@ export const CaseEventSchema = z
     event('question_asked', { questionId: IdSchema }),
     event('question_answered', { questionId: IdSchema, answer: NonEmptyStringSchema }),
     event('artefact_generated', { artefactId: IdSchema, kind: ArtefactKindSchema }),
+    // A named person signed a specific version of a document (A-09): who, which version,
+    // which bytes. Nothing is published or exported without one.
+    event('artefact_signed', {
+      artefactId: IdSchema,
+      kind: ArtefactKindSchema,
+      version: z.number().int().min(1),
+      hash: Sha256Schema,
+      by: NonEmptyStringSchema,
+    }),
     event('artefact_published', {
       artefactId: IdSchema,
       kind: ArtefactKindSchema,

@@ -47,6 +47,12 @@ export function signoffsFrom(events: readonly CaseEvent[]): PackSignoff[] {
         who: actorName(e.actor),
         what: `closed ${e.payload.findingId}, verified by ${e.payload.verifiedBy}`,
       });
+    } else if (e.type === 'artefact_signed') {
+      out.push({
+        at: e.at,
+        who: e.payload.by,
+        what: `signed ${e.payload.kind} v${e.payload.version} (sha256 ${e.payload.hash.slice(0, 12)}…)`,
+      });
     } else if (e.type === 'artefact_published') {
       out.push({ at: e.at, who: actorName(e.actor), what: `published ${e.payload.kind}` });
     } else if (e.type === 'export_produced') {

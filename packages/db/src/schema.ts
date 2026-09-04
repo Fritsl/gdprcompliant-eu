@@ -15,6 +15,7 @@ import {
   vector,
 } from 'drizzle-orm/pg-core';
 import {
+  ARTEFACT_KINDS,
   CASE_EVENT_TYPES,
   CASE_LANES,
   CORPUS_CHUNK_KINDS,
@@ -456,6 +457,47 @@ export const deletionAudit = pgTable(
   ],
 );
 
+// Generated documents (A-09): one row per document, re-generated in place with a new
+// version. A document leaves the system only after a named person has signed the
+// version and the bytes they saw; a later regeneration clears the signature.
+export const ARTEFACT_STATUSES = ['draft', 'signed', 'published'] as const;
+export const artefacts = pgTable(
+  'artefacts',
+  {
+    id: text('id').primaryKey(),
+    ...stamped,
+    caseId: text('case_id')
+      .notNull()
+      .references(() => cases.id),
+    kind: text('kind').notNull(),
+    locale: text('locale').notNull(),
+    version: integer('version').notNull().default(1),
+    content: text('content').notNull(),
+    hash: text('hash').notNull(),
+    status: text('status').notNull().default('draft'),
+    generatedAt: timestamp('generated_at', { withTimezone: true }).notNull(),
+    generatedBy: jsonb('generated_by').notNull(),
+    signedAt: timestamp('signed_at', { withTimezone: true }),
+    signedBy: jsonb('signed_by'),
+    signedVersion: integer('signed_version'),
+    signedHash: text('signed_hash'),
+    publishedAt: timestamp('published_at', { withTimezone: true }),
+    publishedUrl: text('published_url'),
+  },
+  (t) => [
+    uniqueIndex('artefacts_case_kind').on(t.caseId, t.kind),
+    check('artefacts_kind', oneOf('kind', ARTEFACT_KINDS)),
+    check('artefacts_status', oneOf('status', ARTEFACT_STATUSES)),
+    check('artefacts_hash', sql`${t.hash} ~ '^[a-f0-9]{64}$'`),
+    // A signed or published row carries its signature; a draft carries none.
+    check(
+      'artefacts_signature',
+      sql`(${t.status} = 'draft') = (${t.signedAt} IS NULL) AND (${t.status} = 'draft') = (${t.signedBy} IS NULL)`,
+    ),
+    check('artefacts_published', sql`(${t.status} = 'published') = (${t.publishedAt} IS NOT NULL)`),
+  ],
+);
+
 // The verifier's verdicts (A-07): one row per claim checked, accepted or rejected, with
 // the checks it ran and, for a rejection, the reason. A rejection sits in the internal
 // review queue until someone has looked at it (reviewed_at).
@@ -555,4 +597,5 @@ export const TABLES = {
   mailOutbox,
   corpusChunks,
   claimVerdicts,
+  artefacts,
 } as const;

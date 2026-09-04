@@ -73,6 +73,7 @@ describe.skipIf(!url)('the core relational schema (F-03)', () => {
     expect([...byTable.keys()].sort()).toEqual([
       'answers',
       'app_meta',
+      'artefacts',
       'case_claims',
       'case_events',
       'case_members',
