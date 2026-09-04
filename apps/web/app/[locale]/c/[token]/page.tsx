@@ -309,6 +309,7 @@ export default async function CasePage({
     attested?: string;
     asked?: string;
     trust?: string;
+    share?: string;
   }>;
 }) {
   const { locale: localeParam, token } = await params;
@@ -316,7 +317,7 @@ export default async function CasePage({
   if (!locale) notFound();
   const view = await loadCasePage(token, locale);
   if (!view) notFound();
-  const { counts, members, progress, findings, trust } = view;
+  const { counts, members, progress, findings, trust, shares } = view;
   const base = `/${locale}/c/${token}`;
   const who = view.claimed ? t(locale, 'case.who.claimed') : t(locale, 'case.who.unclaimed');
   const query = await searchParams;
@@ -368,7 +369,16 @@ export default async function CasePage({
           ? t(locale, 'case.trust.published')
           : query.trust === 'unpublished'
             ? t(locale, 'case.trust.unpublished')
-            : undefined;
+            : query.share === 'created'
+              ? t(locale, 'case.upward.created')
+              : query.share === 'revoked'
+                ? t(locale, 'case.upward.revoked')
+                : undefined;
+  const shareStatus = {
+    live: t(locale, 'case.upward.status.live'),
+    revoked: t(locale, 'case.upward.status.revoked'),
+    expired: t(locale, 'case.upward.status.expired'),
+  };
   const trustOn = trust.slug !== null && trust.publishedAt !== null;
   const trustHref = trust.slug ? `/${locale}/t/${trust.slug}` : undefined;
 
@@ -517,7 +527,7 @@ export default async function CasePage({
 
       <Progress progress={progress} locale={locale} />
 
-      <section className="colleagues no-print">
+      <section className="colleagues no-print" id="colleagues">
         <Text of={t(locale, 'colleagues.heading')} as="h2" />
         {error ? (
           <p role="alert">
@@ -588,6 +598,53 @@ export default async function CasePage({
             <Text of={t(locale, 'colleagues.invite')} />
           </button>
           <Text of={t(locale, 'colleagues.invite.expires')} as="p" />
+        </form>
+      </section>
+
+      <section className="no-print share-upward" id="upward">
+        <Text of={t(locale, 'case.upward')} as="h2" />
+        <Text of={t(locale, 'case.upward.shows')} as="p" />
+        {shares.length === 0 ? (
+          <Text of={t(locale, 'case.upward.none')} as="p" />
+        ) : (
+          <ul className="share-list">
+            {shares.map((s) => (
+              <li key={s.shareId} data-share={s.shareId} data-status={s.status}>
+                <strong>{s.audience || view.domain}</strong> · {s.createdBy} ·{' '}
+                <time dateTime={s.createdAt.toISOString()}>
+                  {s.createdAt.toISOString().slice(0, 10)}
+                </time>{' '}
+                · <Text of={shareStatus[s.status]} />
+                {s.link ? (
+                  <>
+                    {' '}
+                    ·{' '}
+                    <a href={s.link} data-share-link="">
+                      {s.link}
+                    </a>{' '}
+                    <form
+                      method="post"
+                      action={`${base}/share/${s.shareId}/revoke`}
+                      className="inline"
+                    >
+                      <button type="submit" className="btn btn-2 btn-sm">
+                        <Text of={t(locale, 'case.upward.revoke')} />
+                      </button>
+                    </form>
+                  </>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+        )}
+        <form method="post" action={`${base}/share/create`} className="inline">
+          <label>
+            <Text of={t(locale, 'case.upward.audience')} />{' '}
+            <input name="audience" autoComplete="off" required maxLength={80} />
+          </label>{' '}
+          <button type="submit" className="btn btn-2">
+            <Text of={t(locale, 'case.upward.create')} />
+          </button>
         </form>
       </section>
 

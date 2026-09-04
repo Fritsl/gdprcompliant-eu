@@ -171,3 +171,45 @@
     font-size: 24px;
   }
 }
+
+/* ─────────────────────────────────── the upward view (U-07): one screen */
+.upward {
+  padding-block: 14px 20px;
+}
+.upward .plan-top {
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+}
+.upward .plan-lead {
+  font-size: clamp(22px, 3vw, 28px);
+  margin-bottom: 6px;
+}
+.upward .plan-prog {
+  margin-bottom: 8px;
+}
+.upward .plan-sub {
+  margin-bottom: 12px;
+  font-size: 14.5px;
+}
+.upward .roles .role {
+  padding: 10px 14px;
+  gap: 4px;
+}
+.upward .roles .role h4 {
+  font-size: 14px;
+}
+.upward .plan-foot {
+  margin-top: 12px;
+  padding-top: 4px;
+}
+.upward .plan-foot h2 {
+  font-size: 14px;
+  margin: 6px 0;
+}
+.upward .trust-list li {
+  padding: 5px 0;
+  font-size: 13.5px;
+}
+.upward .plan-own {
+  margin-top: 8px;
+}

@@ -147,7 +147,8 @@ export async function inviteMember(
       tenantId: input.tenantId,
       caseId: input.caseId,
       at: now,
-      actor: { kind: 'system' },
+      // In the inviter's name (P-02, U-07): the record says who asked, not the machine.
+      actor: { kind: 'person', userId: `inviter:${input.caseId}`, name: invitedBy },
       type: 'colleague_invited',
       payload: { role: input.role },
     });

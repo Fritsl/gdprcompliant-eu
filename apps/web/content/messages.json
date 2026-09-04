@@ -844,5 +844,73 @@
   "trust.cta": {
     "en": "Check your own website",
     "da": "Tjek din egen hjemmeside"
+  },
+  "case.upward": {
+    "en": "Summary link",
+    "da": "Oversigtslink"
+  },
+  "case.upward.shows": {
+    "en": "One screen: how far the case is, desk by desk, and what has been fixed.",
+    "da": "Én skærm: hvor langt sagen er, afdeling for afdeling, og hvad der er rettet."
+  },
+  "case.upward.none": {
+    "en": "No summary links yet",
+    "da": "Ingen oversigtslinks endnu"
+  },
+  "case.upward.audience": {
+    "en": "Who it is for",
+    "da": "Hvem det er til"
+  },
+  "case.upward.create": {
+    "en": "Create the link",
+    "da": "Opret linket"
+  },
+  "case.upward.revoke": {
+    "en": "Revoke",
+    "da": "Træk tilbage"
+  },
+  "case.upward.status.live": {
+    "en": "Live",
+    "da": "Aktivt"
+  },
+  "case.upward.status.revoked": {
+    "en": "Revoked",
+    "da": "Trukket tilbage"
+  },
+  "case.upward.status.expired": {
+    "en": "Expired",
+    "da": "Udløbet"
+  },
+  "case.upward.created": {
+    "en": "Link created",
+    "da": "Link oprettet"
+  },
+  "case.upward.revoked": {
+    "en": "Link revoked; it answers nothing now",
+    "da": "Link trukket tilbage; det svarer intet nu"
+  },
+  "upward.for": {
+    "en": "Summary for",
+    "da": "Oversigt til"
+  },
+  "upward.open": {
+    "en": "open",
+    "da": "åbne"
+  },
+  "upward.fixed": {
+    "en": "Fixed",
+    "da": "Rettet"
+  },
+  "upward.more": {
+    "en": "more",
+    "da": "flere"
+  },
+  "upward.generated": {
+    "en": "Generated",
+    "da": "Genereret"
+  },
+  "upward.revocable": {
+    "en": "The case holder can revoke this link at any time.",
+    "da": "Sagens indehaver kan trække linket tilbage når som helst."
   }
 }

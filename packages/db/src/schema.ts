@@ -422,6 +422,34 @@ export const caseMembers = pgTable(
   ],
 );
 
+// Share links (U-07): a read-only, one-screen summary for someone above the case. Each
+// link is its own token, expiring and revocable; who it was for is on the row, so the
+// holder can tell them apart, and on the timeline.
+export const caseShares = pgTable(
+  'case_shares',
+  {
+    id: text('id').primaryKey(),
+    ...stamped,
+    caseId: text('case_id')
+      .notNull()
+      .references(() => cases.id),
+    kind: text('kind').notNull().default('upward'),
+    token: text('token').notNull(),
+    audience: text('audience').notNull().default(''),
+    createdBy: text('created_by').notNull().default(''),
+    expiresAt: timestamp('expires_at', { withTimezone: true })
+      .notNull()
+      .default(sql`now() + interval '90 days'`),
+    revokedAt: timestamp('revoked_at', { withTimezone: true }),
+  },
+  (t) => [
+    uniqueIndex('case_shares_token').on(t.token),
+    check('case_shares_kind', oneOf('kind', ['upward'])),
+    check('case_shares_token_length', sql`length(${t.token}) >= 32`),
+    index('case_shares_case_idx').on(t.caseId),
+  ],
+);
+
 // Mail the case wants sent (P-02): invitations and reminders, written here and picked
 // up by delivery. Counting rows here is what rate-limits the feature.
 export const mailOutbox = pgTable(
@@ -600,6 +628,7 @@ export const TABLES = {
   caseClaims,
   deletionAudit,
   caseMembers,
+  caseShares,
   mailOutbox,
   corpusChunks,
   claimVerdicts,

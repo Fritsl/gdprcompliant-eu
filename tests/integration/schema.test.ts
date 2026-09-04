@@ -77,6 +77,7 @@ describe.skipIf(!url)('the core relational schema (F-03)', () => {
       'case_claims',
       'case_events',
       'case_members',
+      'case_shares',
       'cases',
       'claim_verdicts',
       'corpus_chunks',

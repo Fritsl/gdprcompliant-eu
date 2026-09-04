@@ -138,14 +138,15 @@ describe.skipIf(!url)('tenant isolation (F-05)', () => {
       from pg_class c join pg_namespace n on n.oid = c.relnamespace
       where n.nspname = ${t.schema} and c.relkind = 'r' and c.relname <> '__drizzle_migrations'
       order by 1`;
-    expect(rows.length).toBe(20);
+    expect(rows.length).toBe(21);
     for (const r of rows) {
       expect(r.relrowsecurity, `${r.relname} enabled`).toBe(true);
       expect(r.relforcerowsecurity, `${r.relname} forced`).toBe(true);
       expect(r.policies, `${r.relname} policies`).toBeGreaterThan(0);
     }
     const coverage = rlsCoverage(tablesInSnapshot(), migrationsSql());
-    expect(Object.keys(coverage).sort()).toEqual(rows.map((r) => r.relname));
+    // Sorted the same way on both sides: the database collation and JS disagree on _.
+    expect(Object.keys(coverage).sort()).toEqual(rows.map((r) => r.relname).sort());
     expect(rlsProblems(coverage)).toEqual([]);
     expect(rlsProblems(rlsCoverage(['brand_new_table'], migrationsSql()))).toEqual([
       'brand_new_table: row level security is not enabled',

@@ -178,6 +178,14 @@ export const CaseEventSchema = z
     // The public progress page (U-05): on and off are explicit acts, both on the record.
     event('trust_published', { slug: NonEmptyStringSchema }),
     event('trust_unpublished', { slug: NonEmptyStringSchema }),
+    // A share link (U-07): upward, to someone who needs one screen. Created and revoked
+    // by the holder, both on the record.
+    event('share_created', {
+      shareId: IdSchema,
+      kind: z.enum(['upward']),
+      audience: z.string().optional(),
+    }),
+    event('share_revoked', { shareId: IdSchema, kind: z.enum(['upward']) }),
   ])
   .describe('An immutable timeline event');
 export type CaseEvent = z.infer<typeof CaseEventSchema>;

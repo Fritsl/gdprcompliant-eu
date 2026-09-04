@@ -327,6 +327,26 @@
         "en": "{{slug}}",
         "da": "{{slug}}"
       }
+    },
+    "share_created": {
+      "text": {
+        "en": "Summary link created",
+        "da": "Oversigtslink oprettet"
+      },
+      "detail": {
+        "en": "{{audience}}",
+        "da": "{{audience}}"
+      }
+    },
+    "share_revoked": {
+      "text": {
+        "en": "Summary link revoked",
+        "da": "Oversigtslink trukket tilbage"
+      },
+      "detail": {
+        "en": "{{shareId}}",
+        "da": "{{shareId}}"
+      }
     }
   }
 }

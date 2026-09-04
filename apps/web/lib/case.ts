@@ -13,6 +13,7 @@ import {
   caseSummary,
   caseTimeline,
   connect,
+  createShare,
   deleteCase,
   evidencePack,
   exportArtefact,
@@ -21,6 +22,7 @@ import {
   inviteMember,
   joinByInvite,
   listMembers,
+  listShares,
   memberView,
   publishArtefact,
   recheckStatus,
@@ -28,6 +30,8 @@ import {
   remindMember,
   requestCheck,
   revokeInvitation,
+  revokeShare,
+  shareByToken,
   publishTrustPage,
   signArtefact,
   trustPage,
@@ -42,6 +46,7 @@ import {
   type MemberSummary,
   type MemberView,
   type RecheckProgress,
+  type ShareSummary,
   type TrustStatus,
 } from '@gc/db';
 import type { Role } from '@gc/findings';
@@ -353,6 +358,7 @@ export interface CasePageView extends CaseSummary {
   readonly domain: string;
   readonly findings: CaseFindingView[];
   readonly trust: TrustStatus;
+  readonly shares: ShareSummary[];
 }
 
 const DEFAULT_MINUTES = 15;
@@ -496,7 +502,11 @@ export function loadCasePage(token: string, locale: Locale): Promise<CasePageVie
       };
     });
     const trust = await trustStatus(connection, found.tenantId, found.caseId);
-    return { ...summary, members, progress, domain, findings, trust };
+    const shares = await listShares(connection, found.tenantId, found.caseId, {
+      baseUrl: appBaseUrl(),
+      locale,
+    });
+    return { ...summary, members, progress, domain, findings, trust, shares };
   });
 }
 
@@ -817,6 +827,99 @@ export async function loadTrustPage(
           closedAt: f.closedAt.toISOString(),
         };
       }),
+    };
+  });
+}
+
+// ---- upward sharing (U-07) --------------------------------------------------------------
+
+// A summary link, in the holder's hands to give and to take back.
+export async function createShareForOwner(
+  token: string,
+  audience: string,
+): Promise<string | undefined> {
+  return withConnection(async (connection) => {
+    const found = await caseByToken(connection, token);
+    if (!found) return undefined;
+    const created = await createShare(connection, found.tenantId, found.caseId, {
+      audience,
+      by: holder(found.caseId),
+    });
+    return created.shareId;
+  });
+}
+
+export async function revokeShareForOwner(token: string, shareId: string): Promise<boolean> {
+  const done = await withConnection(async (connection) => {
+    const found = await caseByToken(connection, token);
+    if (!found) return false;
+    return revokeShare(connection, found.tenantId, found.caseId, shareId, {
+      by: holder(found.caseId),
+    });
+  });
+  return done ?? false;
+}
+
+export interface UpwardView {
+  readonly caseId: string;
+  readonly domain: string;
+  readonly audience: string;
+  readonly done: number;
+  readonly open: number;
+  readonly openBySeverity: Readonly<Record<'blocking' | 'serious' | 'advisory', number>>;
+  readonly roles: readonly { role: Role; open: number; done: number }[];
+  readonly fixed: TrustFixedView[];
+  readonly lastCheckedAt?: string;
+  readonly generatedAt: string;
+}
+
+// One screen for someone above the case: progress by desk and by weight, what was fixed
+// and when. Read through the share link, which is the reader's only key.
+export async function loadUpward(
+  shareToken: string,
+  locale: Locale,
+): Promise<UpwardView | undefined> {
+  return withConnection(async (connection) => {
+    const share = await shareByToken(connection, shareToken);
+    if (!share) return undefined;
+    const company = await caseCompany(connection, share.tenantId, share.caseId);
+    const progress = await caseProgress(connection, share.tenantId, share.caseId);
+    const rows = await findingsWithEvidence(connection, share.tenantId, share.caseId);
+    const events = await withTenant(connection, share.tenantId, (db) =>
+      caseTimeline(db, share.caseId),
+    );
+    const domain = company?.domain ?? '';
+    const openBySeverity = { blocking: 0, serious: 0, advisory: 0 };
+    const fixed: TrustFixedView[] = [];
+    for (const { finding } of rows) {
+      if (finding.status === 'closed') {
+        const entry = catalogue.get(finding.remedyId, finding.remedyVersion);
+        fixed.push({
+          findingId: finding.id,
+          title: fill(pick(entry?.remedy.title, locale) ?? finding.remedyId, domain),
+          closedAt: (finding.closedAt ?? finding.lastSeenAt).toISOString(),
+        });
+      } else if (finding.severity in openBySeverity) {
+        openBySeverity[finding.severity as keyof typeof openBySeverity] += 1;
+      }
+    }
+    fixed.sort((a, b) => b.closedAt.localeCompare(a.closedAt));
+    const lastChecked = events
+      .filter((e) => e.type === 'scan_completed')
+      .map((e) => e.at)
+      .sort()
+      .at(-1);
+    return {
+      caseId: share.caseId,
+      domain,
+      audience: share.audience,
+      done: progress.done,
+      open: progress.open,
+      openBySeverity,
+      roles: progress.roles.map((r) => ({ role: r.role, open: r.open, done: r.done })),
+      fixed,
+      ...(lastChecked ? { lastCheckedAt: lastChecked } : {}),
+      generatedAt: new Date().toISOString(),
     };
   });
 }
