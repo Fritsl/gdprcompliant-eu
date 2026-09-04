@@ -147,9 +147,15 @@ signed, dated report to `artifacts/`.
 
 Nothing is handed over on a red gate. Not "red but we know why" — red is a stop.
 
+`pnpm run gate -- --dry-run` prints the plan (every step, the task and owner a red would
+name, what each needs) and writes the report without running anything; `--only <step>` runs
+one. The report under `artifacts/gate/` is markdown and JSON, sealed with a hash over its own
+content and the name of who ran it, with the manual checklist appended for ticking.
+
 ## What stays manual
 
-Under fifteen items, each a yes-or-no observation rather than a judgement call. Roughly: does
+The list is `docs/smoke-checklist.md`, fourteen items, each a yes-or-no observation rather
+than a judgement call, held to that shape by a unit test. Roughly: does
 the case page read well printed; does the Danish sound like Danish; does the trust page look
 like a seal to someone glancing at it; is the first screen on a phone actually usable. Things
 that need eyes and taste — which is exactly why everything else must not.

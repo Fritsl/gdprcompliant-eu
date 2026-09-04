@@ -44,7 +44,8 @@
     "corpus:ingest": "node --env-file-if-exists=.env --import tsx scripts/corpus-ingest.ts",
     "canary:check": "node --import tsx scripts/canary-check.ts",
     "canary:run": "node --env-file-if-exists=.env --import tsx scripts/canary-run.ts",
-    "evals:history": "node scripts/evals-history.mjs"
+    "evals:history": "node scripts/evals-history.mjs",
+    "gate": "node --import tsx scripts/gate.ts"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
