@@ -22,7 +22,8 @@ export const SUITES: readonly Suite[] = [
     name: 'integration',
     gate: 'required',
     needs: ['database', 'cassettes', 'browser'],
-    budgetSeconds: 300,
+    // Fifty-odd files, most through a real browser: measured at five minutes on a laptop.
+    budgetSeconds: 600,
     testTimeoutMs: 30_000,
   },
   {
@@ -32,10 +33,12 @@ export const SUITES: readonly Suite[] = [
     budgetSeconds: 900,
     testTimeoutMs: 60_000,
   },
+  // The evals prove the pipeline against the labels without a model and measure the
+  // configured model when there is one (T-05); some sets read the database.
   {
     name: 'evals',
     gate: 'required',
-    needs: ['model'],
+    needs: ['database'],
     budgetSeconds: 1_800,
     testTimeoutMs: 120_000,
   },

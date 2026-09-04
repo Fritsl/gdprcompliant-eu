@@ -1,4 +1,5 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+import { scannerUserAgent } from '@gc/config';
 import { assembleFindings } from '@gc/findings';
 import { loadCatalogue } from '@gc/remedies';
 import {
@@ -58,7 +59,7 @@ describe('a site that cloaks', () => {
     const ev = surface.evidence.find((e) => e.id === cloak.evidence[0]!.evidenceId)!;
     expect(ev.kind).toBe('pass_diff');
     expect(JSON.parse(ev.body)).toMatchObject({
-      declaredUserAgent: 'GDPRcompliant-scanner',
+      declaredUserAgent: scannerUserAgent(),
       onlyForBrowsers: ['sporing.tracker.test'],
     });
     // And it becomes a finding a person can act on, with a remedy in every jurisdiction.

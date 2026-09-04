@@ -1,0 +1,52 @@
+# The delivery gate (O-05): one command, one verdict, on demand and once a week. The
+# report it writes is uploaded whatever the verdict; a red fails the run.
+name: Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 4 * * 1'
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: gc
+          POSTGRES_PASSWORD: gc
+          POSTGRES_DB: gc_test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U gc -d gc_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      GC_TEST_DATABASE_URL: postgres://gc:gc@localhost:5432/gc_test
+      GATE_SIGNER: github-actions (${{ github.actor }})
+      # The self-hosted model, when the repository has one to measure (T-05).
+      MODEL_BASE_URL: ${{ secrets.SELF_HOSTED_MODEL_BASE_URL }}
+      MODEL_API_KEY: ${{ secrets.SELF_HOSTED_MODEL_API_KEY }}
+      MODEL_CHAT: ${{ secrets.SELF_HOSTED_MODEL_CHAT }}
+      MODEL_EMBEDDING: ${{ secrets.SELF_HOSTED_MODEL_EMBEDDING }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 9.15.4 }
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm web:build
+      - run: pnpm run gate
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gate-report
+          path: artifacts/gate
+          if-no-files-found: ignore

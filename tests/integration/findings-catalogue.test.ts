@@ -1,3 +1,6 @@
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -22,6 +25,16 @@ const jurisdictions = [...tables.keys()].sort();
 // The certificate-log family cannot be shown by a fixture site; its own suite proves it
 // against recorded log answers (S-13).
 const PROVED_BY_CASSETTE = new Set(['EXP-01']);
+// Types no page of a fixture site can show, each proved by a suite of its own against
+// what it reads: the app-store listing (D-05) against recorded listings, the processing
+// agreement (D-06) against synthetic supplier sites and the labelled agreements. The
+// suite named here must exist, so the exemption cannot outlive its proof.
+const PROVED_ELSEWHERE: Record<string, string> = {
+  'APP-01': 'tests/integration/app-listing.test.ts',
+  'DPA-01': 'tests/integration/agreement-discovery.test.ts',
+  'DPA-02': 'tests/integration/agreement-discovery.test.ts',
+  'DPA-03': 'tests/evals/dpa-analysis.test.ts',
+};
 
 describe('the launch finding types', () => {
   it('are at least twenty, and cover consent, recipients, transfers, notice, collection, observation and security', () => {
@@ -50,7 +63,9 @@ describe('the launch finding types', () => {
     // A type raised from what the case holds (the drift check, G-05) has no page to
     // show it; its own suite proves it against the estate.
     const fromCaseData = d.detector.startsWith('db/');
-    if (!PROVED_BY_CASSETTE.has(id) && !fromCaseData) {
+    const elsewhere = PROVED_ELSEWHERE[id];
+    if (elsewhere) expect(existsSync(join(ROOT, elsewhere)), `${id}: ${elsewhere}`).toBe(true);
+    if (!PROVED_BY_CASSETTE.has(id) && !fromCaseData && !elsewhere) {
       expect(positive.length, `${id}: no fixture must raise it`).toBeGreaterThan(0);
       expect(negative.length, `${id}: no fixture must not raise it`).toBeGreaterThan(0);
       expect(checkFamilyFor(id), `${id}: no family to re-run`).toBeDefined();

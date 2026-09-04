@@ -168,7 +168,10 @@ describe.skipIf(!url)('retention (O-02)', () => {
         await new Promise((r) => setTimeout(r, 200));
       expect(runs).toHaveLength(1);
       expect(runs[0]?.at).toBe(days(402).toISOString());
-      expect((await queue.status(RETENTION_JOB, id))?.state).toBe('completed');
+      // The handler has run; pg-boss marks the job done a beat later, later still under load.
+      await expect
+        .poll(async () => (await queue.status(RETENTION_JOB, id))?.state, { timeout: 15_000 })
+        .toBe('completed');
       await expect(queue.enqueue(RETENTION_JOB, { now: 'yesterday' } as never)).rejects.toThrow(
         /payload rejected/,
       );

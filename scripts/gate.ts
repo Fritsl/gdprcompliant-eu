@@ -144,13 +144,26 @@ export function environment(env: NodeJS.ProcessEnv = process.env, root = ROOT): 
         ? join(env['HOME'] ?? '', 'Library', 'Caches', 'ms-playwright')
         : join(env['HOME'] ?? '', '.cache', 'ms-playwright'));
   return {
-    database: Boolean(env['GC_TEST_DATABASE_URL'] ?? env['DATABASE_URL']),
+    database: Boolean(env['GC_TEST_DATABASE_URL'] ?? dotEnv(root)['GC_TEST_DATABASE_URL']),
     cassettes: existsSync(cassettes) && readdirSync(cassettes).length > 0,
     browser: existsSync(browsers) && readdirSync(browsers).some((d) => d.startsWith('chromium')),
     model: Boolean(env['MODEL_BASE_URL'] && env['MODEL_CHAT']),
     commit: gitCommit(root),
     node: process.version,
   };
+}
+
+// The suites read the test database from .env under its own name (vitest.workspace.ts);
+// the gate looks in the same place, and never at DATABASE_URL.
+export function dotEnv(root: string): Record<string, string> {
+  const file = join(root, '.env');
+  const out: Record<string, string> = {};
+  if (!existsSync(file)) return out;
+  for (const line of readFileSync(file, 'utf8').split(/\r?\n/)) {
+    const m = /^\s*([A-Z0-9_]+)\s*=\s*(.*?)\s*$/.exec(line);
+    if (m) out[m[1]!] = m[2]!.replace(/^["']|["']$/g, '');
+  }
+  return out;
 }
 
 function gitCommit(root: string): string {
@@ -268,7 +281,8 @@ export function runGate(options: RunOptions = {}): GateReport {
         owner,
         detail: `not run: needs ${missing.join(', ')}`,
       });
-      continue;
+      if (step.advisory) continue;
+      break; // a red is a stop
     }
     const t0 = Date.now();
     const r = (options.exec ?? ((s) => spawnStep(s, root, env)))(step);

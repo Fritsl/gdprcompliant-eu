@@ -84,7 +84,7 @@ describe('a run', () => {
     expect(r.results.length).toBe(steps().length);
     const e2e = r.results.find((x) => x.step.id === 'e2e')!;
     expect(e2e.status).toBe('skipped');
-    expect(e2e.detail).toContain('database');
+    expect(e2e.detail).toMatch(/needs /);
     expect(r.results.find((x) => x.step.id === 'unit')!.status).toBe('planned');
     expect(verifySignature(r)).toBe(true);
     expect(formatReport(r)).toContain('dry run');
