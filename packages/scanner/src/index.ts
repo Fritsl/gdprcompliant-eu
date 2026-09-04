@@ -25,5 +25,6 @@ export * from './discovery/index.js';
 export * from './dns/index.js';
 export * from './vendors/index.js';
 export * from './transfers/index.js';
+export * from './registries/index.js';
 export * from './ct/index.js';
 export * from './consent/index.js';

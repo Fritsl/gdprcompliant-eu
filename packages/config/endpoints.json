@@ -52,5 +52,17 @@
     "purpose": "registry",
     "jurisdiction": "DK",
     "note": "EU mirror of the certificate transparency log search (crt.sh is outside the EEA)"
+  },
+  {
+    "host": "distribution.virk.dk",
+    "purpose": "registry",
+    "jurisdiction": "DK",
+    "note": "CVR system-to-system interface (Erhvervsstyrelsen), used by the cvr adapter"
+  },
+  {
+    "host": "db.offeneregister.de",
+    "purpose": "registry",
+    "jurisdiction": "DE",
+    "note": "Handelsregister copy by OKF Deutschland (ODbL), used by the offeneregister adapter"
   }
 ]

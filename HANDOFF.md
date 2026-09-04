@@ -16,7 +16,7 @@ companies a list of problems; this hands them a plan and the things that close i
 
 ## Where you are
 
-**84 of 112 done.** Phase 0, phase 1 and phase 2 are complete, phase 3 has begun, DNS
+**85 of 112 done.** Phase 0, phase 1 and phase 2 are complete, phase 3 has begun, DNS
 collection opens phase 4 and the task catalogue opens phase 5. Contracts, config with the
 EU-only allowlist, the test harness, record and replay, i18n, the remedy catalogue and
 resolver, the model client, the web shell, the fixture estate (with TLS), the browser
@@ -79,21 +79,24 @@ register, three-valued evaluation that is total and deterministic, twelve rules 
 DK and DE, `pnpm check:rule-citations` on every push), and the planner (a fixed heuristic
 sequence over the case state, a model planner held to the catalogue, the guards and the
 budget, retried once then escalated with the heuristic standing in, a rationale on every
-task, twenty scenarios measured) are in. The journeys suite (tests/e2e/journeys.test.ts)
-drives a real scan of the estate through the front door, a fix applied by changing the
-fixture's responses, a colleague's re-check, a sign-off, an export and a deletion, and CI
-runs every e2e suite on push, files one at a time because the pg-boss queue is shared
-across test schemas; The register page (draft rows from the scan, one form to confirm a
-row with its retention, the record as a download, the count on the case page) closes
-journey 2; T-09 stays blocked on A-06 and D-10 for journey 3 alone. The adversarial suite
-now covers seven injection surfaces, cloaking (a browser against the declared scanner,
-CLK-01), exhaustion (loops, stalls, huge pages, an archive bomb) and server-side request
-forgery (an egress guard in the browser pool that judges every hop), against six hostile
-fixtures tagged `adversarial`. The fixture suite (tests/integration/fixture-suite.test.ts)
-scans all twenty-six fixtures as cases and holds each to its expected.json, with four
-clean controls that must raise nothing and a coverage check that every page-raised finding
-type has a positive and a negative; each fixture also carries a committed golden.json, and
-the goldens suite names what is missing, extra or changed and only rewrites under pnpm
+task, twenty scenarios measured), and the business registry adapters (one interface, CVR
+and the Handelsregister via OffeneRegister.de, terms and pace documented and kept, unknown
+where the register is silent, one contract suite over every adapter through recorded
+cassettes) are in. The journeys suite (tests/e2e/journeys.test.ts) drives a real scan of
+the estate through the front door, a fix applied by changing the fixture's responses, a
+colleague's re-check, a sign-off, an export and a deletion, and CI runs every e2e suite on
+push, files one at a time because the pg-boss queue is shared across test schemas; The
+register page (draft rows from the scan, one form to confirm a row with its retention, the
+record as a download, the count on the case page) closes journey 2; T-09 stays blocked on
+A-06 and D-10 for journey 3 alone. The adversarial suite now covers seven injection
+surfaces, cloaking (a browser against the declared scanner, CLK-01), exhaustion (loops,
+stalls, huge pages, an archive bomb) and server-side request forgery (an egress guard in
+the browser pool that judges every hop), against six hostile fixtures tagged
+`adversarial`. The fixture suite (tests/integration/fixture-suite.test.ts) scans all
+twenty-six fixtures as cases and holds each to its expected.json, with four clean controls
+that must raise nothing and a coverage check that every page-raised finding type has a
+positive and a negative; each fixture also carries a committed golden.json, and the
+goldens suite names what is missing, extra or changed and only rewrites under pnpm
 goldens:update. Twenty-six finding types are complete end to end (detector, fixtures,
 bindings, remedy, guide in English and Danish, a line in the generated docs/findings.md),
 with a recipients family that raises transfers outside the EEA and third-party fonts, and
