@@ -16,7 +16,7 @@ companies a list of problems; this hands them a plan and the things that close i
 
 ## Where you are
 
-**81 of 112 done.** Phase 0 and phase 1 are complete; phase 2 is 29 of 34, phase 3 has
+**82 of 112 done.** Phase 0 and phase 1 are complete; phase 2 is 30 of 34, phase 3 has
 begun, DNS collection opens phase 4 and the task catalogue opens phase 5. Contracts,
 config with the EU-only allowlist, the test harness, record and replay, i18n, the remedy
 catalogue and resolver, the model client, the web shell, the fixture estate (with TLS),
@@ -57,7 +57,10 @@ pages as a search surface (generated at build for every locale a guide is writte
 canonical and hreflang in the head, a sitemap and robots file, the scan form at the end of
 every page), and the vendor registry (contracting entity and ultimate parent apart,
 provenance and a review date on every entry, hosts resolved through the maps or left
-unresolved with the host shown, `pnpm check:registries` warning on staleness) are in. The
+unresolved with the host shown, `pnpm check:registries` warning on staleness), and the
+transfer determination (adequacy list and Data Privacy Framework lookups as dated data,
+hosted-in-the-EEA told apart from controlled-from-outside in the finding text, the policy
+read for a Chapter V basis, every statement passing the claim vocabulary) are in. The
 journeys suite (tests/e2e/journeys.test.ts) drives a real scan of the estate through the
 front door, a fix applied by changing the fixture's responses, a colleague's re-check, a
 sign-off, an export and a deletion, and CI runs every e2e suite on push, files one at a

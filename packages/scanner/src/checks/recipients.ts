@@ -16,6 +16,8 @@ import {
   type RecipientObservation,
 } from '@gc/contracts';
 import { refTo, type EvidenceIdentity } from '../evidence.js';
+import { determineTransfer, transferMaps, type TransferMaps } from '../transfers/determine.js';
+import { vendorForRecipient } from '../vendors/resolve.js';
 
 // Recipients (S-15): read from the first load, before anyone was asked. Every request to
 // a host that is not the site's own is a recipient of the visitor's address and whatever
@@ -57,7 +59,13 @@ const ownHost = (capture: PassCapture): { own: string; bare: string } => {
 export function recipientChecks(
   capture: PassCapture,
   identity: EvidenceIdentity,
-  options: { readonly map?: RecipientHostMap } = {},
+  options: {
+    readonly map?: RecipientHostMap;
+    // The vendor registry with the adequacy list and DPF lookups (S-08).
+    readonly transfers?: TransferMaps;
+    // The visible text of the privacy policy, read for a Chapter V basis.
+    readonly policyText?: string;
+  } = {},
 ): RecipientChecks {
   const map = options.map ?? loadRecipientHosts();
   const { own, bare } = ownHost(capture);
@@ -122,16 +130,50 @@ export function recipientChecks(
       jurisdiction: e.recipient.jurisdiction,
     }))
     .sort((a, b) => a.host.localeCompare(b.host));
+  // Where the vendor registry knows the entity behind a recipient, the determination
+  // (S-08) rides on the observation: the contracting entity and the parent, each
+  // against the EEA, the lists as read, and the policy's Chapter V words.
+  const tmaps = options.transfers ?? transferMaps();
+  const determined = outside.map((o) => {
+    const entry = vendorForRecipient(byHost.get(o.host)!.recipient.id, tmaps);
+    if (!entry) return o;
+    const determination = determineTransfer(entry, {
+      maps: tmaps,
+      ...(options.policyText !== undefined ? { policyText: options.policyText } : {}),
+    });
+    return { ...o, determination };
+  });
+  const statements = [
+    ...new Map(
+      determined
+        .filter((o) => 'determination' in o)
+        .map((o) => [o.determination.vendorId, o.determination.statement.en] as const),
+    ).values(),
+  ];
+  const registryVersions = {
+    vendors: tmaps.registry.version,
+    adequacy: tmaps.adequacy.version,
+    dpf: tmaps.dpf.version,
+  };
   if (outside.length > 0) {
     const ev = row(
-      canonicalJson({ page: capture.finalUrl, pass: 'A', outside, mapVersion: map.version }),
+      canonicalJson({
+        page: capture.finalUrl,
+        pass: 'A',
+        outside: determined,
+        mapVersion: map.version,
+        registryVersions,
+      }),
       `requests from the first load of ${own} to hosts established outside the EEA`,
     );
     observe(
       'transfers',
       'fail',
-      `${own} sends visitors' requests to ${outside.length} host(s) whose operator the map places outside the EEA, before anyone is asked: ${outside.map((o) => `${o.host} (${o.recipient}, ${o.jurisdiction})`).join(', ')}.`,
-      { outside, mapVersion: map.version },
+      [
+        `${own} sends visitors' requests to ${outside.length} host(s) whose operator the map places outside the EEA, before anyone is asked: ${outside.map((o) => `${o.host} (${o.recipient}, ${o.jurisdiction})`).join(', ')}.`,
+        ...statements,
+      ].join(' '),
+      { outside: determined, mapVersion: map.version, registryVersions },
       outside.map((o) => o.host),
       [ev],
     );

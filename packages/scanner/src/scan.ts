@@ -93,6 +93,14 @@ export async function runChecks(
   // The first load, shared by the security surface and the recipients read.
   const passA =
     wants('security') || wants('recipients') ? collectPassA(pool, target, quiet) : undefined;
+  // The policies are read once: for their own finding, and for the transfer read (S-08),
+  // which looks in the privacy policy for a Chapter V basis.
+  const policyRun = wants('policies')
+    ? discoverPolicies(pool, target, {
+        identity: options.identity,
+        ...(options.now ? { now: options.now } : {}),
+      })
+    : undefined;
   const formsRun = wants('forms')
     ? inventoryForms(pool, target, { identity: options.identity })
     : undefined;
@@ -114,7 +122,10 @@ export async function runChecks(
       const a = await passA!;
       if (!wants('security'))
         evidence.push(...captureToEvidence(a.capture, a.screenshot, options.identity));
-      const r = recipientChecks(a.capture, options.identity);
+      const policyText = policyRun ? privacyPolicyText(await policyRun) : undefined;
+      const r = recipientChecks(a.capture, options.identity, {
+        ...(policyText !== undefined ? { policyText } : {}),
+      });
       out.recipients = [...r.observations];
       evidence.push(...r.evidence);
       count(r.observations);
@@ -145,10 +156,7 @@ export async function runChecks(
     })(),
     (async () => {
       if (!wants('policies')) return;
-      const found = await discoverPolicies(pool, target, {
-        identity: options.identity,
-        ...(options.now ? { now: options.now } : {}),
-      });
+      const found = await policyRun!;
       out.policies = found.discovery;
       evidence.push(...found.evidence);
       count([found.discovery.observation]);
@@ -192,4 +200,16 @@ export async function runChecks(
     undetermined,
     durationMs: Date.now() - started,
   };
+}
+
+// The visible text of the privacy policy the discovery found, if it found one.
+function privacyPolicyText(
+  found: Awaited<ReturnType<typeof discoverPolicies>>,
+): string | undefined {
+  const doc = found.discovery.documents.find((d) => d.kind === 'privacy');
+  if (!doc) return undefined;
+  const bodies = doc.pages
+    .map((p) => found.evidence.find((e) => e.hash === p.evidence.hash)?.body)
+    .filter((b): b is string => typeof b === 'string');
+  return bodies.length > 0 ? bodies.join('\n\n') : undefined;
 }

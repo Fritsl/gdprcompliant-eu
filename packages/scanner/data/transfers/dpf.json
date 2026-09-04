@@ -1,0 +1,75 @@
+{
+  "version": "2026-09-04",
+  "_comment": "Data Privacy Framework lookups, one per vendor registry entry whose contracting entity or parent sits in the United States: the organisation as it appears on the official list, its status there on the day it was looked up, and that day. A vendor marked not_checked has not been looked up; nothing is inferred for it. The status is what the list said, never a statement that a transfer is in order.",
+  "source": "https://www.dataprivacyframework.gov/list",
+  "lookups": [
+    {
+      "vendorId": "google",
+      "organisation": "Google LLC",
+      "status": "active",
+      "lookedUpAt": "2026-09-04"
+    },
+    {
+      "vendorId": "meta",
+      "organisation": "Meta Platforms, Inc.",
+      "status": "active",
+      "lookedUpAt": "2026-09-04"
+    },
+    {
+      "vendorId": "microsoft",
+      "organisation": "Microsoft Corporation",
+      "status": "active",
+      "lookedUpAt": "2026-09-04"
+    },
+    {
+      "vendorId": "cloudflare",
+      "organisation": "Cloudflare, Inc.",
+      "status": "active",
+      "lookedUpAt": "2026-09-04"
+    },
+    {
+      "vendorId": "stripe",
+      "organisation": "Stripe, Inc.",
+      "status": "active",
+      "lookedUpAt": "2026-09-04"
+    },
+    {
+      "vendorId": "klaviyo",
+      "organisation": "Klaviyo, Inc.",
+      "status": "active",
+      "lookedUpAt": "2026-09-04"
+    },
+    {
+      "vendorId": "mailchimp",
+      "organisation": "Intuit Inc.",
+      "status": "active",
+      "lookedUpAt": "2026-09-04"
+    },
+    {
+      "vendorId": "twilio",
+      "organisation": "Twilio Inc.",
+      "status": "active",
+      "lookedUpAt": "2026-09-04"
+    },
+    {
+      "vendorId": "hubspot",
+      "organisation": "HubSpot, Inc.",
+      "status": "active",
+      "lookedUpAt": "2026-09-04"
+    },
+    {
+      "vendorId": "amazon-web-services",
+      "organisation": "Amazon.com, Inc.",
+      "status": "active",
+      "lookedUpAt": "2026-09-04"
+    },
+    {
+      "vendorId": "apple",
+      "organisation": "Apple Inc.",
+      "status": "active",
+      "lookedUpAt": "2026-09-04"
+    },
+    { "vendorId": "tiktok", "status": "not_checked" },
+    { "vendorId": "sinch", "status": "not_checked" }
+  ]
+}

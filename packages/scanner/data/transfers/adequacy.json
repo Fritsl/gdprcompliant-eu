@@ -1,0 +1,33 @@
+{
+  "version": "2026-09-04",
+  "_comment": "Countries the European Commission has found to ensure an adequate level of protection (GDPR Art. 45), as listed on the Commission's page on the date read. A country not listed has no adequacy decision as far as this file knows; that is a fact about the list, not a verdict about anyone. reviewBy is the day the list must be read again.",
+  "source": "https://commission.europa.eu/law/law-topic/data-protection/international-dimension-data-protection/adequacy-decisions_en",
+  "verifiedAt": "2026-09-04T00:00:00Z",
+  "reviewBy": "2027-03-04",
+  "decisions": [
+    { "country": "AD", "name": "Andorra" },
+    { "country": "AR", "name": "Argentina" },
+    {
+      "country": "CA",
+      "name": "Canada",
+      "scope": "commercial organisations subject to PIPEDA"
+    },
+    { "country": "FO", "name": "Faroe Islands" },
+    { "country": "GG", "name": "Guernsey" },
+    { "country": "IL", "name": "Israel" },
+    { "country": "IM", "name": "Isle of Man" },
+    { "country": "JP", "name": "Japan" },
+    { "country": "JE", "name": "Jersey" },
+    { "country": "NZ", "name": "New Zealand" },
+    { "country": "KR", "name": "Republic of Korea" },
+    { "country": "CH", "name": "Switzerland" },
+    { "country": "GB", "name": "United Kingdom" },
+    { "country": "UY", "name": "Uruguay" },
+    {
+      "country": "US",
+      "name": "United States",
+      "scope": "organisations on the EU-U.S. Data Privacy Framework list",
+      "dpf": true
+    }
+  ]
+}

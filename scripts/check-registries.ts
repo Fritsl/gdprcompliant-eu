@@ -7,9 +7,15 @@
 // too long ago, and when a map entry has no legal entity behind it yet. A warning needs
 // a human owner; it is printed in the form GitHub Actions turns into an annotation.
 
-import { auditRegistry, staleEntries, vendorMaps } from '@gc/scanner';
+import {
+  auditRegistry,
+  auditTransferData,
+  staleEntries,
+  staleTransferData,
+  transferMaps,
+} from '@gc/scanner';
 
-const maps = vendorMaps();
+const maps = transferMaps();
 const audit = auditRegistry(maps);
 const stale = staleEntries(maps.registry, new Date());
 
@@ -19,6 +25,8 @@ const warn = (message: string) => {
 };
 
 for (const s of stale) warn(`vendor ${s.id}: ${s.detail}`);
+for (const s of staleTransferData(maps, new Date())) warn(`${s.what}: ${s.detail}`);
+audit.problems.push(...auditTransferData(maps));
 for (const u of audit.unclaimed) warn(`${u.kind} ${u.id} has no legal entity in the vendor registry yet`);
 
 if (audit.problems.length > 0) {
@@ -27,5 +35,5 @@ if (audit.problems.length > 0) {
   process.exit(1);
 }
 console.log(
-  `registries: vendors@${maps.registry.version} (${maps.registry.vendors.length}), dns-services@${maps.dns.version} (${maps.dns.services.length}), recipient-hosts@${maps.recipients.version} (${maps.recipients.hosts.length}); ${stale.length} stale, ${audit.unclaimed.length} without a legal entity yet`,
+  `registries: vendors@${maps.registry.version} (${maps.registry.vendors.length}), dns-services@${maps.dns.version} (${maps.dns.services.length}), recipient-hosts@${maps.recipients.version} (${maps.recipients.hosts.length}); ${stale.length} stale, ${audit.unclaimed.length} without a legal entity yet; adequacy@${maps.adequacy.version} (${maps.adequacy.decisions.length}), dpf@${maps.dpf.version} (${maps.dpf.lookups.length} lookups)`,
 );
