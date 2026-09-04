@@ -204,7 +204,7 @@ describe.skipIf(!url)('roles and scoped lists (P-01)', () => {
     expect(view!.lists.map((l) => l.role)).toEqual(['it']);
     expect(view!.lists[0]!.items.map((i) => i.typeId)).toEqual(['REC-01', 'SEC-03', 'VND-06']);
     expect(view!.lists[0]!.items.length).toBeLessThan(6);
-    expect(view!.visibleFindingIds.sort()).toEqual(['f-rec', 'f-sec', 'f-vnd']);
+    expect([...view!.visibleFindingIds].sort()).toEqual(['f-rec', 'f-sec', 'f-vnd']);
     expect(JSON.stringify(view)).not.toMatch(/CNS-02|FRM-02|POL-01|TRF-01|DPA-01/);
     expect(view!.lists[0]!.items[0]!.checkForMe.label).toBe('Det ved jeg ikke, tjek det for mig');
   });

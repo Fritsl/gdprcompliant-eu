@@ -22,7 +22,7 @@ const NOW = new Date('2026-09-03T09:14:00Z');
 const CASE = 'DK-26-0M4K';
 const ref = { evidenceId: 'text:0000000000000001', hash: 'a'.repeat(64) };
 
-const proposal = (type: TaskType) => ({
+const proposal = <T extends TaskType>(type: T) => ({
   type,
   payload: SAMPLE_PAYLOADS[type],
   rationale: `because ${type}`,
@@ -261,6 +261,8 @@ describe('the dispatcher runs and stops', () => {
           result: {
             taskId: task.id,
             type: task.type,
+            claims: [],
+            evidence: [],
             cost: task.cost,
             failure: { reason: 'claim ids unknown', retryable: false },
           },

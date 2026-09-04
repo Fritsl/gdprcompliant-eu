@@ -75,7 +75,7 @@ describe('a determination', () => {
   });
 
   it('for an EEA entity controlled from the United States: both places, the list, the DPF status and the date', () => {
-    const d = determineTransfer(entry('google'), { maps, policyText: undefined });
+    const d = determineTransfer(entry('google'), { maps });
     expect(TransferDeterminationSchema.safeParse(d).success).toBe(true);
     expect(d).toMatchObject({
       situation: 'eea_entity_non_eea_parent',

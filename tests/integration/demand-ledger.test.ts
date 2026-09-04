@@ -12,11 +12,27 @@ import {
   withoutTenant,
   type TestDatabase,
 } from '@gc/db';
-import { loadCatalogue, resolveAndRecord } from '@gc/remedies';
+import { loadCatalogue, resolveAndRecord, type DemandLedger } from '@gc/remedies';
 
 // The demand ledger (R-05): the write path runs from the resolver, as the tenant, on the
 // first no_solution; a tenant sees only its own rows; the ranked view drops any group
 // smaller than k tenants and never carries an identifier; CSV and page read the same.
+
+// The resolver hands over a DemandRecord whose optional fields may be explicitly undefined;
+// the store's DemandWrite wants them absent instead.
+const asLedger = (store: PostgresDemandLedger): DemandLedger => ({
+  record: ({ findingTypeId, jurisdiction, caseId, gap, cause, answer, sector, firstSeenAt }) =>
+    store.record({
+      findingTypeId,
+      jurisdiction,
+      caseId,
+      gap,
+      cause,
+      answer,
+      ...(sector === undefined ? {} : { sector }),
+      ...(firstSeenAt === undefined ? {} : { firstSeenAt }),
+    }),
+});
 
 const url = (() => {
   try {
@@ -116,11 +132,13 @@ describe.skipIf(!url)('the demand ledger (R-05)', () => {
   it('the write path runs from the resolver, as the tenant, and a real remedy writes nothing', async () => {
     for (const [i, x] of TENANTS.entries()) {
       await withTenant(t, x.id, async (tx) => {
-        const ledger = new PostgresDemandLedger(
-          tx,
-          x.id,
-          { country: x.country, sector: x.sector, headcountBand: x.band },
-          () => new Date(T0.getTime() + i * 86_400_000),
+        const ledger = asLedger(
+          new PostgresDemandLedger(
+            tx,
+            x.id,
+            { country: x.country, sector: x.sector, headcountBand: x.band },
+            () => new Date(T0.getTime() + i * 86_400_000),
+          ),
         );
         const gap = await resolveAndRecord(
           catalogue,

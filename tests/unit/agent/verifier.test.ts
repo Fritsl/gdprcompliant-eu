@@ -169,7 +169,10 @@ describe('the mechanical checks', () => {
 
 describe('the second pass', () => {
   it('runs only after the mechanical checks, and can reject but not accept', async () => {
-    const review = vi.fn(async () => ({ supported: true, reason: 'The header shows the cookie.' }));
+    const review = vi.fn<NonNullable<VerifierDeps['review']>>(async () => ({
+      supported: true,
+      reason: 'The header shows the cookie.',
+    }));
     const ok = await verifyClaim(claim(), deps({ review }));
     expect(ok.verdict).toBe('accepted');
     expect(ok.checks.at(-1)).toEqual({
@@ -178,9 +181,9 @@ describe('the second pass', () => {
       detail: 'The header shows the cookie.',
     });
     expect(review).toHaveBeenCalledTimes(1);
-    const input = review.mock.calls[0]![0] as { evidence: Evidence[]; passages: { key: string }[] };
+    const input = review.mock.calls[0]![0];
     expect(input.evidence).toEqual([stored]);
-    expect(input.passages.map((p) => p.key)).toEqual(['ePrivacy:5:3']);
+    expect(input.passages?.map((p) => p.key)).toEqual(['ePrivacy:5:3']);
 
     review.mockClear();
     const failed = await verifyClaim(

@@ -202,7 +202,7 @@ describe.skipIf(!url)('re-scans against the case', () => {
     // HSTS gets fixed: the finding is no longer observed, so it closes.
     const withoutHsts = {
       security: input.security!.filter((o) => o.findingTypeId !== 'SEC-03'),
-      forms: input.forms,
+      forms: input.forms ?? [],
     };
     const fixed = assembleFindings(withoutHsts, { ...c, now: () => at(120) });
     const r3 = await reconcileFindings(db, opened.tenantId, opened.caseId, fixed.findings, at(120));

@@ -2,9 +2,14 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "noEmit": true,
-    "lib": ["ES2023", "DOM"],
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
     "composite": false,
-    "types": ["vitest/globals", "node"]
+    "types": ["vitest/globals", "node"],
+    // The suites that exercise the web app's routes import them through '@/', the way
+    // the app does; that needs the app's bundler-style resolution, not NodeNext.
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "paths": { "@/*": ["./apps/web/*"] }
   },
   "include": ["tests/**/*.ts", "vitest.config.ts"]
 }

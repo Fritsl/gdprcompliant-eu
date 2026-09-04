@@ -101,7 +101,7 @@ describe('a site that fights back', () => {
     expect(r.ms).toBeLessThan(PASS_MS + 5_000);
     if (r.result) {
       for (const d of r.result.discovery.documents ?? []) {
-        expect(d.url).not.toMatch(/\.zip$/);
+        for (const p of d.pages) expect(p.url).not.toMatch(/\.zip$/);
       }
       for (const e of r.result.evidence) expect(e.body.length).toBeLessThan(1_000_000);
     }

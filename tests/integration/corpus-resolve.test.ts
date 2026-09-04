@@ -26,7 +26,11 @@ const url = (() => {
 })();
 
 const embed = deterministicEmbedder();
-const cite = (instrument: string, ref: string) => parseProvisionRef(instrument, ref);
+const cite = (instrument: string, ref: string) => {
+  const c = parseProvisionRef(instrument, ref);
+  if (!c) throw new Error(`${instrument} ${ref} is not a provision reference`);
+  return c;
+};
 let db: TestDatabase;
 
 // Drizzle wraps the driver's error; the policy violation is on the cause.
@@ -79,10 +83,10 @@ describe.skipIf(!url)('corpus in the database', () => {
 
   it('a citation resolves to exactly one paragraph or fails, with no nearest match', async () => {
     const hit = await resolveCitation(db, cite('TEST-REG', 'Art. 5(3)'), 'DK');
-    expect(hit.ok && hit.chunk.text).toMatch(/^The storing of information/);
+    expect(hit.ok && 'chunk' in hit && hit.chunk.text).toMatch(/^The storing of information/);
     expect(hit.ok && hit.corpusVersion).toBe('2026-09-04.test');
     const point = await resolveCitation(db, cite('TEST-REG', 'Art. 5(1)(a)'), 'DE');
-    expect(point.ok && point.chunk.id).toBe('TEST-REG:5:1:a@2026-09-04.test');
+    expect(point.ok && 'chunk' in point && point.chunk.id).toBe('TEST-REG:5:1:a@2026-09-04.test');
     for (const ref of ['Art. 5(4)', 'Art. 5', 'Art. 6(1)', 'Art. 5(3)(b)']) {
       const miss = await resolveCitation(db, cite('TEST-REG', ref), 'DK');
       expect(!miss.ok && miss.reason, ref).toBe('no_such_paragraph');

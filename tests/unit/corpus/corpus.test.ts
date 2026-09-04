@@ -22,7 +22,11 @@ import {
 
 const docs = loadCorpusDocuments();
 const chunks = docs.flatMap(documentChunks);
-const cite = (instrument: string, ref: string) => parseProvisionRef(instrument, ref);
+const cite = (instrument: string, ref: string) => {
+  const c = parseProvisionRef(instrument, ref);
+  if (!c) throw new Error(`${instrument} ${ref} is not a provision reference`);
+  return c;
+};
 
 describe('content', () => {
   it('every checked-in instrument validates and every chunk carries its identifiers', () => {
@@ -50,10 +54,12 @@ describe('content', () => {
 describe('resolution is a lookup, not a search', () => {
   it('resolves a paragraph and a point exactly, and carries the corpus version', () => {
     const p = resolveInChunks(chunks, cite('TEST-REG', 'Art. 5(3)'), 'DK');
-    expect(p.ok && p.chunk.id).toBe('TEST-REG:5:3@2026-09-04.test');
+    expect(p.ok && 'chunk' in p && p.chunk.id).toBe('TEST-REG:5:3@2026-09-04.test');
     expect(p.ok && p.corpusVersion).toBe('2026-09-04.test');
     const point = resolveInChunks(chunks, cite('TEST-REG', 'Art. 5(1)(a)'), 'DE');
-    expect(point.ok && point.chunk.heading).toBe('Lawfulness, fairness and transparency');
+    expect(point.ok && 'chunk' in point && point.chunk.heading).toBe(
+      'Lawfulness, fairness and transparency',
+    );
   });
 
   it('a paragraph that does not exist fails; the neighbour is never offered', () => {
@@ -87,7 +93,7 @@ describe('resolution is a lookup, not a search', () => {
   it('decision and guidance citations do not resolve to a paragraph yet', () => {
     const r = resolveInChunks(
       chunks,
-      { kind: 'decision', body: 'Datatilsynet', reference: '2020-31-1234' },
+      { kind: 'decision', ref: '2020-31-1234', body: 'Datatilsynet', reference: '2020-31-1234' },
       'DK',
     );
     expect(!r.ok && r.reason).toBe('unsupported_kind');

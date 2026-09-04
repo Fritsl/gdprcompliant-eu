@@ -198,12 +198,12 @@ describe.skipIf(!url)('export and delete (C-04)', () => {
     expect(bundle.case).not.toHaveProperty('tenantId');
     expect(bundle['findings']).toHaveLength(1);
     expect(bundle['evidence']).toHaveLength(1);
-    expect((bundle['evidence'][0] as { body: string }).body).toBe(`page text of ${caseId}`);
+    expect((bundle['evidence']![0] as { body: string }).body).toBe(`page text of ${caseId}`);
     expect(bundle['findingEvidence']).toHaveLength(1);
     expect(bundle['answers']).toHaveLength(1);
     expect(bundle['vendors']).toHaveLength(1);
     expect(bundle['claims']).toHaveLength(1);
-    expect(bundle['claims'][0]).not.toHaveProperty('codeHash');
+    expect(bundle['claims']![0]).not.toHaveProperty('codeHash');
     expect(bundle['demandEntries']).toHaveLength(1);
     expect((bundle['timeline'] as { type: string }[]).map((e) => e.type)).toEqual([
       'case_opened',

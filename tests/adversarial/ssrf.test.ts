@@ -106,7 +106,7 @@ describe('the browser is not a proxy into anywhere', () => {
       { identity, now: () => new Date(identity.capturedAt) },
     );
     for (const d of discovery.documents ?? []) {
-      expect(new URL(d.url).hostname).toBe('ssrf.shop.test');
+      for (const p of d.pages) expect(new URL(p.url).hostname).toBe('ssrf.shop.test');
     }
     for (const host of FORBIDDEN) expect(server.refused.map((r) => r.host)).not.toContain(host);
   }, 60_000);

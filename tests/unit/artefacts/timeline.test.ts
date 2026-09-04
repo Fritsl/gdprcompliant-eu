@@ -71,8 +71,8 @@ describe('timeline wording', () => {
       const keys = new Set(Object.keys(option.shape.payload.shape));
       const entry = TIMELINE_CONTENT.events[type]!;
       for (const text of [
-        entry.text.en,
-        entry.detail.en,
+        entry.text.en ?? '',
+        entry.detail.en ?? '',
         entry.text.da ?? '',
         entry.detail.da ?? '',
       ]) {
