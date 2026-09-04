@@ -93,6 +93,8 @@ function task<T extends TaskType>(type: T) {
     status: TaskStatusSchema.default('pending'),
     attempts: z.number().int().min(0).default(0),
     createdAt: IsoDateTimeSchema,
+    // The planner's one line on why, for the case page (A-06).
+    rationale: NonEmptyStringSchema.optional(),
   });
 }
 

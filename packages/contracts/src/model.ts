@@ -156,8 +156,31 @@ export const MODEL_CALLS = {
     input: z.object({
       case: CaseSchema,
       openFindingTypeIds: z.array(FindingTypeIdSchema),
+      // The duties the rules derived (A-02), for the planner to work from.
+      duties: z
+        .array(
+          z.object({
+            ruleId: NonEmptyStringSchema,
+            title: z.string(),
+            status: z.enum(['applies', 'not_applicable', 'undetermined']),
+            findingTypeIds: z.array(FindingTypeIdSchema).default([]),
+          }),
+        )
+        .default([]),
       budget: TaskCostSchema,
       availableTypes: z.array(TaskTypeSchema).min(1),
+      // What the case holds, as counts and ids; never scraped text.
+      state: z
+        .object({
+          scanned: z.boolean().optional(),
+          registerRows: z.number().int().min(0).optional(),
+          registerConfirmed: z.number().int().min(0).optional(),
+          unresolvedVendors: z.number().int().min(0).optional(),
+          documentEvidenceIds: z.array(z.string()).optional(),
+          unverifiedClaimIds: z.array(z.string()).optional(),
+          policyPublished: z.boolean().optional(),
+        })
+        .optional(),
     }),
     output: z.strictObject({
       tasks: z.array(TaskProposalSchema),

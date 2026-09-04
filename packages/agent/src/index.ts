@@ -14,3 +14,4 @@ export * from './untrusted.js';
 export * from './guards.js';
 export * from './policy-clauses.js';
 export * from './workers/index.js';
+export * from './planner.js';

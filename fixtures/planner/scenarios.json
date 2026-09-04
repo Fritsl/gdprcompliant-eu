@@ -1,0 +1,38 @@
+{
+  "_comment": "Twenty fixed planning scenarios (A-06): a case's state and the task type a sensible planner picks first. The heuristic planner and, when one is configured, the model are measured against them; at least 90% must agree.",
+  "case": {
+    "id": "DK-26-PLAN",
+    "tenantId": "t-plan",
+    "company": { "domain": "eksempelbutik.dk", "legalName": "Eksempelbutik ApS", "country": "DK", "locale": "da", "headcountBand": "10–49" },
+    "jurisdiction": "DK",
+    "locale": "da",
+    "openedAt": "2026-09-04T09:14:00Z",
+    "participants": 1,
+    "watched": false,
+    "lane": "self-serve",
+    "laneScore": 34,
+    "stage": "opened"
+  },
+  "scenarios": [
+    { "name": "a fresh case, nothing read", "open": [], "state": { "scanned": false }, "acceptable": ["crawl"] },
+    { "name": "a fresh case with a tight budget", "open": [], "state": { "scanned": false }, "budget": 25, "acceptable": ["crawl"] },
+    { "name": "scanned, one recipient unresolved", "open": ["TRF-01"], "state": { "scanned": true, "unresolvedVendors": 1 }, "acceptable": ["registry_lookup"] },
+    { "name": "scanned, everything resolved, a transfer open", "open": ["TRF-01"], "state": { "scanned": true, "unresolvedVendors": 0 }, "acceptable": ["research"] },
+    { "name": "scanned, a contract stored and a contract duty open", "open": ["DPA-01"], "state": { "scanned": true, "documentEvidenceIds": ["document:abc123"] }, "acceptable": ["read_contract"] },
+    { "name": "scanned, a contract stored but no contract duty", "open": ["SEC-03"], "state": { "scanned": true, "documentEvidenceIds": ["document:abc123"] }, "acceptable": ["research", "verify_claims", "crawl"], "anyOrNone": true },
+    { "name": "no policy, register confirmed", "open": ["POL-01"], "state": { "scanned": true, "registerRows": 3, "registerConfirmed": 3 }, "acceptable": ["research", "draft"] },
+    { "name": "no policy, register still drafts", "open": ["POL-01"], "state": { "scanned": true, "registerRows": 3, "registerConfirmed": 0 }, "acceptable": ["research"] },
+    { "name": "no policy, register confirmed, research done and budget for the draft only", "open": ["POL-01"], "state": { "scanned": true, "registerRows": 3, "registerConfirmed": 3 }, "available": ["draft", "verify_claims"], "acceptable": ["draft"] },
+    { "name": "policy published, nothing open", "open": [], "state": { "scanned": true, "registerRows": 3, "registerConfirmed": 3, "policyPublished": true }, "acceptable": [], "anyOrNone": true },
+    { "name": "claims waiting for the verifier", "open": [], "state": { "scanned": true, "unverifiedClaimIds": ["claim:1", "claim:2"] }, "acceptable": ["verify_claims"] },
+    { "name": "claims waiting and a recipient unresolved", "open": ["TRF-01"], "state": { "scanned": true, "unresolvedVendors": 2, "unverifiedClaimIds": ["claim:1"] }, "acceptable": ["registry_lookup"] },
+    { "name": "a cookie finding open, nothing else", "open": ["CNS-01"], "state": { "scanned": true }, "acceptable": ["research"] },
+    { "name": "a form notice finding open", "open": ["FRM-03"], "state": { "scanned": true }, "acceptable": ["research"] },
+    { "name": "only security findings open", "open": ["SEC-01", "SEC-03"], "state": { "scanned": true }, "acceptable": [], "anyOrNone": true },
+    { "name": "a duty applies with no finding yet", "open": [], "duties": [{ "ruleId": "transfer-safeguards", "title": "Have a basis for every transfer outside the EEA", "status": "applies", "findingTypeIds": ["TRF-01"] }], "state": { "scanned": true }, "acceptable": ["research"] },
+    { "name": "a contract duty applies and a document is stored", "open": [], "duties": [{ "ruleId": "processor-contract", "title": "Have a contract with every processor", "status": "applies", "findingTypeIds": ["DPA-01"] }], "state": { "scanned": true, "documentEvidenceIds": ["document:dpa1"] }, "acceptable": ["read_contract"] },
+    { "name": "not scanned but the crawler is not offered", "open": [], "state": { "scanned": false, "unverifiedClaimIds": ["claim:9"] }, "available": ["verify_claims", "research"], "acceptable": ["verify_claims"] },
+    { "name": "German case, transfer open", "open": ["TRF-01"], "state": { "scanned": true }, "jurisdiction": "DE", "locale": "de", "acceptable": ["research"] },
+    { "name": "everything at once: unresolved, contract, no policy, claims", "open": ["TRF-01", "DPA-01", "POL-01"], "state": { "scanned": true, "unresolvedVendors": 1, "documentEvidenceIds": ["document:dpa1"], "registerRows": 2, "registerConfirmed": 2, "unverifiedClaimIds": ["claim:1"] }, "acceptable": ["registry_lookup", "read_contract"] }
+  ]
+}

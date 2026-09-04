@@ -180,6 +180,7 @@ export function acceptProposal(raw: unknown, ctx: AcceptContext): PlannerTask {
     status: 'pending',
     attempts: 0,
     createdAt: ctx.now.toISOString(),
+    rationale: proposal.rationale,
   });
 }
 
