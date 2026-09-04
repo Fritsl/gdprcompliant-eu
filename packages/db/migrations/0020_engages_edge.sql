@@ -1,0 +1,2 @@
+ALTER TABLE "graph_edges" DROP CONSTRAINT "graph_edges_kind";--> statement-breakpoint
+ALTER TABLE "graph_edges" ADD CONSTRAINT "graph_edges_kind" CHECK ("kind" in ('has_purpose', 'processes', 'rests_on', 'shared_with', 'transfers_via', 'engages', 'carries_risk', 'mitigated_by', 'contradicts', 'supersedes'));

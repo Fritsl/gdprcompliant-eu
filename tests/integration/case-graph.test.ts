@@ -295,6 +295,7 @@ describe.skipIf(!url)('the case graph (A-01)', () => {
       [
         'carries_risk',
         'contradicts',
+        'engages',
         'has_purpose',
         'mitigated_by',
         'processes',

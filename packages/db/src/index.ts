@@ -37,3 +37,4 @@ export * from './lane.js';
 export * from './queue.js';
 export * from './consultant.js';
 export * from './drift.js';
+export * from './supply-chain.js';

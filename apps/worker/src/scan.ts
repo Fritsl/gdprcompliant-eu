@@ -6,6 +6,7 @@ import {
   assignLane,
   recordScan,
   seedRegister,
+  seedSupplyChain,
   type Connection,
   type ScanPayload,
   type ScanProgress,
@@ -33,11 +34,14 @@ import {
   recipientChecks,
   agreementDraft,
   discoverAgreement,
+  resolveHost,
   resolveHosts,
+  traverseSupplyChain,
   type AgreementDiscoveryResult,
+  type SupplyChainResult,
 } from '@gc/scanner';
 import type { OutboundFetch } from '@gc/config';
-import type { Evidence } from '@gc/contracts';
+import type { Evidence, SupplyChainLimits } from '@gc/contracts';
 
 // The scan worker (U-02). One job per front-door request: reach the site, run the three
 // passes and the checks, open the case in the target's own jurisdiction, record the
@@ -57,6 +61,9 @@ export interface ScanWorkerOptions {
   // Read the processing agreements the site's processors publish (D-06): at most this
   // many suppliers, through the same browser pool. Off unless asked for.
   readonly agreements?: number;
+  // Walk the published sub-processor lists of the processors whose agreement was found
+  // (D-07), within these limits. Off unless asked for.
+  readonly subProcessors?: Partial<SupplyChainLimits>;
 }
 
 export async function registerScanWorker(
@@ -223,6 +230,26 @@ export async function registerScanWorker(
       }
       for (const a of agreements) evidence.push(...a.evidence);
     }
+    // Their sub-processors, and theirs (D-07): one walk per supplier that published an
+    // agreement, at the walk's own pace, written to the graph once the case is open.
+    const chains: SupplyChainResult[] = [];
+    if (options.subProcessors) {
+      for (const a of agreements) {
+        if (a.discovery.outcome !== 'found') continue;
+        const chain = await traverseSupplyChain(
+          options.pool,
+          { url: `https://${a.discovery.vendor.host}/` },
+          {
+            identity,
+            ...(a.discovery.vendor.name ? { vendorName: a.discovery.vendor.name } : {}),
+            limits: options.subProcessors,
+            now,
+          },
+        );
+        chains.push(chain);
+        evidence.push(...chain.evidence);
+      }
+    }
     await mark(
       'policy',
       policies.discovery.observation.outcome === 'pass' ? 'ok' : 'undet',
@@ -313,6 +340,14 @@ export async function registerScanWorker(
       recipients: recipients.observations,
       consent: diffed.drafts,
     });
+    for (const c of chains) {
+      await seedSupplyChain(connection, opened.tenantId, opened.caseId, {
+        chain: c.chain,
+        scanId: job.id,
+        now: now(),
+        resolve: (h) => resolveHost(h),
+      });
+    }
     // The lane (L-01): scored from what was seen, stored, never shown to the customer.
     await assignLane(connection, opened.tenantId, opened.caseId);
     await mark('writing-up', 'ok', `${assembled.findings.length} finding(s)`);

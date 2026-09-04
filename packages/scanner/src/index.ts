@@ -31,4 +31,5 @@ export * from './consent/index.js';
 export * from './apps/index.js';
 export * from './adverts/index.js';
 export * from './agreements/index.js';
+export * from './subprocessors/index.js';
 export * from './canary/index.js';

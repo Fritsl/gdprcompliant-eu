@@ -35,6 +35,7 @@ export const GRAPH_EDGE_KINDS = [
   'rests_on', // activity → legal_basis
   'shared_with', // activity → vendor
   'transfers_via', // vendor → transfer
+  'engages', // vendor → vendor: a sub-processor named on the vendor's list (D-07)
   'carries_risk', // activity → risk
   'mitigated_by', // risk → control
   'contradicts', // node → node of the same kind and key
@@ -54,6 +55,7 @@ export const GRAPH_EDGE_ENDS: Record<
   rests_on: ['activity', 'legal_basis'],
   shared_with: ['activity', 'vendor'],
   transfers_via: ['vendor', 'transfer'],
+  engages: ['vendor', 'vendor'],
   carries_risk: ['activity', 'risk'],
   mitigated_by: ['risk', 'control'],
   contradicts: ['*', '*'],

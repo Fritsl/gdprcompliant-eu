@@ -1,6 +1,6 @@
 # Schema
 
-Generated from `packages/db/migrations/meta/0019_snapshot.json` by `scripts/schema-doc.mjs`.
+Generated from `packages/db/migrations/meta/0020_snapshot.json` by `scripts/schema-doc.mjs`.
 Do not edit; change `packages/db/src/schema.ts`, run `pnpm db:generate`, then `pnpm db:doc`.
 
 Every table carries `tenant_id`, `created_at` and `source_ref`. `case_events` and
@@ -758,7 +758,7 @@ erDiagram
 - to_node → graph_nodes(id)
 - unique index graph_edges_unique (from_node, to_node, kind)
 - index graph_edges_case_idx (case_id, kind)
-- check graph_edges_kind: `"kind" in ('has_purpose', 'processes', 'rests_on', 'shared_with', 'transfers_via', 'carries_risk', 'mitigated_by', 'contradicts', 'supersedes')`
+- check graph_edges_kind: `"kind" in ('has_purpose', 'processes', 'rests_on', 'shared_with', 'transfers_via', 'engages', 'carries_risk', 'mitigated_by', 'contradicts', 'supersedes')`
 - check graph_edges_origin: `"origin" in ('derived', 'asserted', 'answered')`
 - check graph_edges_confidence: `"graph_edges"."confidence" between 0 and 1`
 - check graph_edges_evidence: `jsonb_typeof("graph_edges"."evidence") = 'array'`
