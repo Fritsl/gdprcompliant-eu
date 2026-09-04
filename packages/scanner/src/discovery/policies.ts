@@ -29,7 +29,7 @@ export interface DiscoveryOptions {
   readonly now?: () => Date;
 }
 
-interface PageRead {
+export interface PageRead {
   readonly finalUrl: string;
   readonly status: number;
   readonly lang?: string;
@@ -62,7 +62,7 @@ const READ_PAGE = `(() => {
   };
 })()`;
 
-async function read(page: Page, url: string): Promise<PageRead | undefined> {
+export async function readPage(page: Page, url: string): Promise<PageRead | undefined> {
   let status = 0;
   try {
     const response = await page.goto(url, { waitUntil: 'load' });
@@ -148,7 +148,7 @@ export async function discoverPolicies(
       if (visited.has(key) || fetched >= maxPages || !sameSite(site, url)) return undefined;
       visited.add(key);
       fetched++;
-      return read(page, url);
+      return readPage(page, url);
     };
 
     const home = await fetchPage(target.url);
@@ -285,3 +285,5 @@ export function policyTextOf(
     evidence: doc.pages.map((p) => ({ evidenceId: p.evidence.evidenceId, hash: p.evidence.hash })),
   };
 }
+
+export type { LinkCandidate } from './patterns.js';

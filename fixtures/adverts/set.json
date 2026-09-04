@@ -1,0 +1,92 @@
+{
+  "version": "2026-09-04",
+  "_comment": "Twelve public job adverts, three languages, and the tools each names as written. Expected lists are the whole truth for scoring: a tool the extractor claims that is not listed is a false claim, and the set must be extracted with no false claim at all.",
+  "domain": "eksempelbutik.dk",
+  "adverts": [
+    {
+      "url": "https://eksempelbutik.dk/jobs/salgskonsulent",
+      "title": "Salgskonsulent til vores B2B-team",
+      "postedAt": "2026-08-28",
+      "text": "Du kommer til at arbejde med vores kunder i Salesforce, hvor alle aftaler og kontaktoplysninger ligger. Vi bruger Microsoft 365 til mail og kalender og holder møder i Microsoft Teams. Ansøgningsfrist 15. september.",
+      "expected": ["salesforce", "microsoft-365"]
+    },
+    {
+      "url": "https://eksempelbutik.dk/jobs/marketing-manager",
+      "title": "Marketing Manager",
+      "postedAt": "2026-08-30",
+      "text": "You will own our newsletter in Klaviyo, run campaigns in HubSpot and read the numbers in Google Analytics (GA4). Experience with Shopify is a plus. We work in English and Danish.",
+      "expected": ["klaviyo", "hubspot", "google-analytics", "shopify"]
+    },
+    {
+      "url": "https://eksempelbutik.dk/jobs/bogholder",
+      "title": "Bogholder, deltid",
+      "postedAt": "2026-09-01",
+      "text": "Vi bogfører i e-conomic og afstemmer betalinger fra Stripe hver uge. Du får din egen plads i vores lille team og rapporterer til økonomichefen.",
+      "expected": ["e-conomic", "stripe"]
+    },
+    {
+      "url": "https://eksempelbutik.dk/jobs/kundeservice",
+      "title": "Kundeservicemedarbejder",
+      "postedAt": "2026-09-02",
+      "text": "Du besvarer henvendelser i Zendesk og chatter med kunder på sitet. Vi lægger vægt på god tone og hurtige svar. Intern kommunikation foregår på Slack.",
+      "expected": ["zendesk", "slack"]
+    },
+    {
+      "url": "https://eksempelbutik.dk/jobs/it-supporter",
+      "title": "IT-supporter",
+      "postedAt": "2026-09-02",
+      "text": "Du drifter vores Microsoft 365-miljø, holder styr på licenser i SharePoint og hjælper kollegerne, når Outlook driller. Vi hoster vores webshop på AWS. Der er ikke tale om SAP eller andre store systemer hos os.",
+      "expected": ["microsoft-365", "aws", "sap"]
+    },
+    {
+      "url": "https://eksempelbutik.dk/karriere/hr-partner",
+      "title": "HR-Partner (m/w/d) für unser Team in Flensburg",
+      "postedAt": "2026-08-25",
+      "text": "Sie betreuen unsere Mitarbeitenden in Personio und pflegen die Stammdaten in SAP SuccessFactors. Die Kommunikation läuft über Microsoft Teams. Wir freuen uns auf Ihre Bewerbung.",
+      "expected": ["personio", "sap", "microsoft-365"]
+    },
+    {
+      "url": "https://eksempelbutik.dk/jobs/data-analyst",
+      "title": "Data Analyst",
+      "postedAt": "2026-08-20",
+      "text": "You have strong CRM experience and know your way around an ERP. You will build dashboards from our warehouse and present them to the leadership team every month. No particular tool is required; we will teach you ours.",
+      "expected": []
+    },
+    {
+      "url": "https://eksempelbutik.dk/jobs/teamleder-lager",
+      "title": "Teamleder, lager",
+      "postedAt": "2026-08-29",
+      "text": "Du leder et af vores teams på lageret og sørger for, at pakkerne kommer ud til tiden. Vi er ikke et slack sted at arbejde; der er fart på. Du får en notion om driften fra dag ét.",
+      "expected": []
+    },
+    {
+      "url": "https://eksempelbutik.dk/jobs/udvikler",
+      "title": "Frontend-udvikler",
+      "postedAt": "2026-09-03",
+      "text": "Vi styrer opgaver i Jira og dokumenterer i Confluence. Koden ligger på GitHub. Vi måler adfærd på sitet med Hotjar og Google Analytics.",
+      "expected": ["atlassian", "hotjar", "google-analytics"]
+    },
+    {
+      "url": "https://eksempelbutik.dk/jobs/intern-portal",
+      "title": "Internt opslag: Lønkonsulent",
+      "postedAt": "2026-09-01",
+      "text": "Dette opslag kan kun ses af ansatte. Vi kører løn i Workday og deler filer i OneDrive.",
+      "requiresLogin": true,
+      "expected": []
+    },
+    {
+      "url": "https://eksempelbutik.dk/jobs/gone",
+      "title": "Opslag udløbet",
+      "text": "Denne stilling er besat. Vi brugte Pipedrive.",
+      "status": 404,
+      "expected": []
+    },
+    {
+      "url": "https://eksempelbutik.dk/jobs/customer-success",
+      "title": "Customer Success Manager",
+      "postedAt": "2026-09-04",
+      "text": "You will onboard customers through Intercom, keep the pipeline in Pipedrive and automate the boring parts with Zapier. Our knowledge base lives in Notion. You will not need Dinero; finance has that covered.",
+      "expected": ["intercom", "pipedrive", "zapier", "notion", "dinero"]
+    }
+  ]
+}

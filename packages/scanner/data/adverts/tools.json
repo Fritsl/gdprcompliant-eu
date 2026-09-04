@@ -1,0 +1,204 @@
+{
+  "version": "2026-09-04",
+  "_comment": "Tools a job advert names that process personal data on the company's behalf. A tool is claimed only when one of its names appears as written, on a word boundary; `caseSensitive` guards names that are also ordinary words. `vendorId` points into vendors/registry.json where the operator is known; otherwise `country` is where the operator contracts from, read from its own terms.",
+  "tools": [
+    {
+      "id": "salesforce",
+      "label": "Salesforce",
+      "names": ["Salesforce", "Sales Cloud", "Service Cloud", "Pardot"],
+      "role": "processor",
+      "country": "US"
+    },
+    {
+      "id": "hubspot",
+      "label": "HubSpot",
+      "names": ["HubSpot"],
+      "role": "processor",
+      "vendorId": "hubspot"
+    },
+    {
+      "id": "microsoft-365",
+      "label": "Microsoft 365",
+      "names": [
+        "Microsoft 365",
+        "Office 365",
+        "Microsoft Teams",
+        "SharePoint",
+        "OneDrive",
+        "Outlook"
+      ],
+      "role": "processor",
+      "vendorId": "microsoft"
+    },
+    {
+      "id": "dynamics-365",
+      "label": "Microsoft Dynamics 365",
+      "names": ["Dynamics 365", "Microsoft Dynamics"],
+      "role": "processor",
+      "vendorId": "microsoft"
+    },
+    {
+      "id": "google-workspace",
+      "label": "Google Workspace",
+      "names": ["Google Workspace", "G Suite", "Gmail", "Google Drive"],
+      "role": "processor",
+      "vendorId": "google"
+    },
+    {
+      "id": "google-analytics",
+      "label": "Google Analytics",
+      "names": ["Google Analytics", "GA4"],
+      "role": "processor",
+      "vendorId": "google"
+    },
+    {
+      "id": "sap",
+      "label": "SAP",
+      "names": ["SAP", "S/4HANA", "SuccessFactors"],
+      "caseSensitive": true,
+      "role": "processor",
+      "country": "DE"
+    },
+    {
+      "id": "workday",
+      "label": "Workday",
+      "names": ["Workday"],
+      "caseSensitive": true,
+      "role": "processor",
+      "country": "US"
+    },
+    {
+      "id": "slack",
+      "label": "Slack",
+      "names": ["Slack"],
+      "caseSensitive": true,
+      "role": "processor",
+      "country": "US"
+    },
+    {
+      "id": "zendesk",
+      "label": "Zendesk",
+      "names": ["Zendesk"],
+      "role": "processor",
+      "country": "US"
+    },
+    {
+      "id": "intercom",
+      "label": "Intercom",
+      "names": ["Intercom"],
+      "caseSensitive": true,
+      "role": "processor",
+      "country": "US"
+    },
+    {
+      "id": "atlassian",
+      "label": "Atlassian (Jira, Confluence)",
+      "names": ["Jira", "Confluence"],
+      "caseSensitive": true,
+      "role": "processor",
+      "country": "AU"
+    },
+    {
+      "id": "shopify",
+      "label": "Shopify",
+      "names": ["Shopify"],
+      "role": "processor",
+      "country": "CA"
+    },
+    {
+      "id": "e-conomic",
+      "label": "e-conomic",
+      "names": ["e-conomic"],
+      "role": "processor",
+      "country": "DK"
+    },
+    {
+      "id": "dinero",
+      "label": "Dinero",
+      "names": ["Dinero"],
+      "caseSensitive": true,
+      "role": "processor",
+      "country": "DK"
+    },
+    {
+      "id": "personio",
+      "label": "Personio",
+      "names": ["Personio"],
+      "role": "processor",
+      "country": "DE"
+    },
+    {
+      "id": "mailchimp",
+      "label": "Mailchimp",
+      "names": ["Mailchimp", "MailChimp"],
+      "role": "processor",
+      "vendorId": "mailchimp"
+    },
+    {
+      "id": "klaviyo",
+      "label": "Klaviyo",
+      "names": ["Klaviyo"],
+      "role": "processor",
+      "vendorId": "klaviyo"
+    },
+    {
+      "id": "stripe",
+      "label": "Stripe",
+      "names": ["Stripe"],
+      "caseSensitive": true,
+      "role": "processor",
+      "vendorId": "stripe"
+    },
+    {
+      "id": "aws",
+      "label": "Amazon Web Services",
+      "names": ["AWS", "Amazon Web Services"],
+      "caseSensitive": true,
+      "role": "processor",
+      "vendorId": "amazon-web-services"
+    },
+    {
+      "id": "zapier",
+      "label": "Zapier",
+      "names": ["Zapier"],
+      "role": "processor",
+      "country": "US"
+    },
+    {
+      "id": "freshdesk",
+      "label": "Freshdesk",
+      "names": ["Freshdesk", "Freshworks"],
+      "role": "processor",
+      "country": "US"
+    },
+    {
+      "id": "pipedrive",
+      "label": "Pipedrive",
+      "names": ["Pipedrive"],
+      "role": "processor",
+      "country": "EE"
+    },
+    {
+      "id": "monday",
+      "label": "monday.com",
+      "names": ["monday.com"],
+      "role": "processor",
+      "country": "IL"
+    },
+    {
+      "id": "notion",
+      "label": "Notion",
+      "names": ["Notion"],
+      "caseSensitive": true,
+      "role": "processor",
+      "country": "US"
+    },
+    {
+      "id": "hotjar",
+      "label": "Hotjar",
+      "names": ["Hotjar"],
+      "role": "processor",
+      "vendorId": "hotjar"
+    }
+  ]
+}
