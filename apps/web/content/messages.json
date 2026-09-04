@@ -968,5 +968,25 @@
   "guide.all": {
     "en": "All guides",
     "da": "Alle vejledninger"
+  },
+  "artefact.gaps": {
+    "en": "Before this can be written",
+    "da": "Før dette kan skrives",
+    "de": "Bevor dies geschrieben werden kann"
+  },
+  "artefact.generate": {
+    "en": "Write the draft from the register",
+    "da": "Skriv udkastet ud fra fortegnelsen",
+    "de": "Entwurf aus dem Verzeichnis schreiben"
+  },
+  "artefact.regenerate": {
+    "en": "Write it again from the register",
+    "da": "Skriv det igen ud fra fortegnelsen",
+    "de": "Erneut aus dem Verzeichnis schreiben"
+  },
+  "artefact.generatedNow": {
+    "en": "A new draft was written.",
+    "da": "Et nyt udkast er skrevet.",
+    "de": "Ein neuer Entwurf wurde geschrieben."
   }
 }

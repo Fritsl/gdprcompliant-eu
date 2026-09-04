@@ -1,0 +1,244 @@
+{
+  "_comment": "The privacy policy and cookie declaration generators (G-02). Every sentence here is a template filled from graph rows or answers; a template that has nothing to fill is not written. The gap texts name what the register still lacks, so a refusal says what to do next.",
+  "policy": {
+    "title": { "en": "Privacy policy", "da": "Privatlivspolitik", "de": "Datenschutzerklärung" },
+    "intro": {
+      "en": "This is how {{company}} handles personal data on {{domain}}. It is written from the company's record of processing activities and says what the company does, in that order.",
+      "da": "Sådan behandler {{company}} personoplysninger på {{domain}}. Politikken er skrevet ud fra virksomhedens fortegnelse over behandlingsaktiviteter og siger, hvad virksomheden gør, i den rækkefølge.",
+      "de": "So behandelt {{company}} personenbezogene Daten auf {{domain}}. Diese Erklärung ist aus dem Verzeichnis der Verarbeitungstätigkeiten des Unternehmens geschrieben und sagt, was das Unternehmen tut, in dieser Reihenfolge."
+    },
+    "sections": {
+      "controller": {
+        "heading": {
+          "en": "Who is responsible",
+          "da": "Hvem er ansvarlig",
+          "de": "Wer verantwortlich ist"
+        },
+        "body": {
+          "en": "{{company}} is the controller. Address: {{address}}. Email: {{email}}.",
+          "da": "{{company}} er dataansvarlig. Adresse: {{address}}. E-mail: {{email}}.",
+          "de": "{{company}} ist der Verantwortliche. Anschrift: {{address}}. E-Mail: {{email}}."
+        }
+      },
+      "dpo": {
+        "heading": {
+          "en": "Data protection officer",
+          "da": "Databeskyttelsesrådgiver",
+          "de": "Datenschutzbeauftragter"
+        },
+        "body": {
+          "en": "The data protection officer can be reached at {{dpo}}.",
+          "da": "Databeskyttelsesrådgiveren kan kontaktes på {{dpo}}.",
+          "de": "Der Datenschutzbeauftragte ist erreichbar unter {{dpo}}."
+        },
+        "none": {
+          "en": "The company has not appointed a data protection officer.",
+          "da": "Virksomheden har ikke udpeget en databeskyttelsesrådgiver.",
+          "de": "Das Unternehmen hat keinen Datenschutzbeauftragten benannt."
+        }
+      },
+      "purposes_basis": {
+        "heading": {
+          "en": "What the data is used for, and on what basis",
+          "da": "Hvad oplysningerne bruges til, og på hvilket grundlag",
+          "de": "Wofür die Daten verwendet werden und auf welcher Grundlage"
+        },
+        "activity": {
+          "en": "{{activity}}: {{purposes}}. The data concerned: {{categories}}. Legal basis: {{bases}}.",
+          "da": "{{activity}}: {{purposes}}. Oplysningerne, det drejer sig om: {{categories}}. Retsgrundlag: {{bases}}.",
+          "de": "{{activity}}: {{purposes}}. Betroffene Daten: {{categories}}. Rechtsgrundlage: {{bases}}."
+        }
+      },
+      "legitimate_interests": {
+        "heading": {
+          "en": "The interests relied on",
+          "da": "De interesser, der lægges til grund",
+          "de": "Die zugrunde gelegten Interessen"
+        },
+        "activity": {
+          "en": "For {{activity}}, the interest is {{purposes}}. You can object at any time.",
+          "da": "For {{activity}} er interessen {{purposes}}. Du kan til enhver tid gøre indsigelse.",
+          "de": "Bei {{activity}} besteht das Interesse in {{purposes}}. Sie können jederzeit widersprechen."
+        }
+      },
+      "recipients": {
+        "heading": {
+          "en": "Who receives the data",
+          "da": "Hvem modtager oplysningerne",
+          "de": "Wer die Daten erhält"
+        },
+        "activity": {
+          "en": "For {{activity}}: {{recipients}}.",
+          "da": "For {{activity}}: {{recipients}}.",
+          "de": "Bei {{activity}}: {{recipients}}."
+        },
+        "none": {
+          "en": "The data is not passed to anyone outside the company.",
+          "da": "Oplysningerne videregives ikke til nogen uden for virksomheden.",
+          "de": "Die Daten werden an niemanden außerhalb des Unternehmens weitergegeben."
+        }
+      },
+      "transfers": {
+        "heading": {
+          "en": "Transfers outside the EEA",
+          "da": "Overførsler uden for EØS",
+          "de": "Übermittlungen außerhalb des EWR"
+        },
+        "none": {
+          "en": "No recipient outside the EEA has been observed.",
+          "da": "Der er ikke observeret nogen modtager uden for EØS.",
+          "de": "Es wurde kein Empfänger außerhalb des EWR beobachtet."
+        }
+      },
+      "retention": {
+        "heading": {
+          "en": "How long the data is kept",
+          "da": "Hvor længe oplysningerne opbevares",
+          "de": "Wie lange die Daten aufbewahrt werden"
+        },
+        "activity": {
+          "en": "{{activity}}: {{retention}}.",
+          "da": "{{activity}}: {{retention}}.",
+          "de": "{{activity}}: {{retention}}."
+        }
+      },
+      "rights": {
+        "heading": { "en": "Your rights", "da": "Dine rettigheder", "de": "Ihre Rechte" },
+        "body": {
+          "en": "You can ask to see the data the company holds about you, have it corrected or erased, have its processing restricted, object to it, and receive it in a portable form. Write to {{email}}.",
+          "da": "Du kan bede om indsigt i de oplysninger, virksomheden har om dig, få dem rettet eller slettet, få behandlingen begrænset, gøre indsigelse og få oplysningerne udleveret i et maskinlæsbart format. Skriv til {{email}}.",
+          "de": "Sie können Auskunft über die Daten verlangen, die das Unternehmen über Sie hat, sie berichtigen oder löschen lassen, die Verarbeitung einschränken lassen, widersprechen und die Daten in einem übertragbaren Format erhalten. Schreiben Sie an {{email}}."
+        }
+      },
+      "withdrawal": {
+        "heading": {
+          "en": "Withdrawing consent",
+          "da": "Tilbagekaldelse af samtykke",
+          "de": "Widerruf der Einwilligung"
+        },
+        "body": {
+          "en": "Where the basis is consent ({{activities}}), you can withdraw it at any time, with effect from then on. Write to {{email}}.",
+          "da": "Hvor grundlaget er samtykke ({{activities}}), kan du til enhver tid trække det tilbage med virkning for fremtiden. Skriv til {{email}}.",
+          "de": "Soweit die Grundlage eine Einwilligung ist ({{activities}}), können Sie sie jederzeit mit Wirkung für die Zukunft widerrufen. Schreiben Sie an {{email}}."
+        }
+      },
+      "complaint": {
+        "heading": { "en": "Complaining", "da": "Klage", "de": "Beschwerde" },
+        "body": {
+          "en": "You can complain to {{authority}}{{authorityUrl}}.",
+          "da": "Du kan klage til {{authority}}{{authorityUrl}}.",
+          "de": "Sie können sich bei {{authority}}{{authorityUrl}} beschweren."
+        }
+      },
+      "obligation": {
+        "heading": {
+          "en": "Whether you have to provide the data",
+          "da": "Om du skal give oplysningerne",
+          "de": "Ob Sie die Daten angeben müssen"
+        },
+        "body": {
+          "en": "Where the basis is a contract ({{activities}}), the data is needed to deliver it; without it the company cannot.",
+          "da": "Hvor grundlaget er en aftale ({{activities}}), er oplysningerne nødvendige for at opfylde den; uden dem kan virksomheden ikke.",
+          "de": "Soweit die Grundlage ein Vertrag ist ({{activities}}), werden die Daten zu seiner Erfüllung benötigt; ohne sie kann das Unternehmen ihn nicht erfüllen."
+        },
+        "none": {
+          "en": "None of the processing described depends on a contract with you.",
+          "da": "Ingen af de beskrevne behandlinger afhænger af en aftale med dig.",
+          "de": "Keine der beschriebenen Verarbeitungen hängt von einem Vertrag mit Ihnen ab."
+        }
+      },
+      "automated": {
+        "heading": {
+          "en": "Automated decisions",
+          "da": "Automatiske afgørelser",
+          "de": "Automatisierte Entscheidungen"
+        },
+        "body": {
+          "en": "The company makes no decisions about you by automated means alone.",
+          "da": "Virksomheden træffer ingen afgørelser om dig alene på grundlag af automatisk behandling.",
+          "de": "Das Unternehmen trifft keine Entscheidungen über Sie, die ausschließlich auf einer automatisierten Verarbeitung beruhen."
+        }
+      }
+    },
+    "law": {
+      "en": "the General Data Protection Regulation",
+      "da": "databeskyttelsesforordningen",
+      "de": "der Datenschutz-Grundverordnung (DSGVO)"
+    }
+  },
+  "cookies": {
+    "title": { "en": "Cookie declaration", "da": "Cookiedeklaration", "de": "Cookie-Erklärung" },
+    "intro": {
+      "en": "{{domain}} sets the cookies listed here, read from the site on {{date}}. Cookies that are not necessary are set only after you agree, and you can change your choice at any time.",
+      "da": "{{domain}} sætter de cookies, der er nævnt her, læst fra sitet den {{date}}. Cookies, der ikke er nødvendige, sættes først, når du har sagt ja, og du kan altid ændre dit valg.",
+      "de": "{{domain}} setzt die hier aufgeführten Cookies, gelesen von der Website am {{date}}. Nicht notwendige Cookies werden erst gesetzt, nachdem Sie zugestimmt haben, und Sie können Ihre Wahl jederzeit ändern."
+    },
+    "categories": {
+      "necessary": { "en": "Necessary", "da": "Nødvendige", "de": "Notwendig" },
+      "functional": { "en": "Functional", "da": "Funktionelle", "de": "Funktional" },
+      "analytics": { "en": "Statistics", "da": "Statistik", "de": "Statistik" },
+      "marketing": { "en": "Marketing", "da": "Markedsføring", "de": "Marketing" },
+      "personalisation": {
+        "en": "Personalisation",
+        "da": "Personalisering",
+        "de": "Personalisierung"
+      },
+      "security": { "en": "Security", "da": "Sikkerhed", "de": "Sicherheit" },
+      "unknown": {
+        "en": "Not yet classified",
+        "da": "Endnu ikke klassificeret",
+        "de": "Noch nicht eingeordnet"
+      }
+    },
+    "columns": {
+      "name": { "en": "Name", "da": "Navn", "de": "Name" },
+      "provider": { "en": "Provider", "da": "Udbyder", "de": "Anbieter" },
+      "purpose": { "en": "Purpose", "da": "Formål", "de": "Zweck" },
+      "expiry": { "en": "Expiry", "da": "Udløb", "de": "Ablauf" }
+    },
+    "session": { "en": "Session", "da": "Session", "de": "Sitzung" },
+    "days": { "en": "{{n}} days", "da": "{{n}} dage", "de": "{{n}} Tage" },
+    "source": {
+      "en": "Classification: {{source}}, version {{version}}.",
+      "da": "Klassifikation: {{source}}, version {{version}}.",
+      "de": "Einordnung: {{source}}, Version {{version}}."
+    }
+  },
+  "gaps": {
+    "no_confirmed_activity": {
+      "en": "No processing activity has been confirmed yet. Confirm the register's rows first.",
+      "da": "Ingen behandlingsaktivitet er bekræftet endnu. Bekræft først fortegnelsens rækker.",
+      "de": "Noch keine Verarbeitungstätigkeit ist bestätigt. Bestätigen Sie zuerst die Zeilen des Verzeichnisses."
+    },
+    "draft_activity": {
+      "en": "{{activity}} is still a draft.",
+      "da": "{{activity}} er stadig et udkast.",
+      "de": "{{activity}} ist noch ein Entwurf."
+    },
+    "no_basis": {
+      "en": "{{activity}} has no legal basis.",
+      "da": "{{activity}} har intet retsgrundlag.",
+      "de": "{{activity}} hat keine Rechtsgrundlage."
+    },
+    "no_retention": {
+      "en": "{{activity}}: how long the data is kept has not been answered.",
+      "da": "{{activity}}: hvor længe oplysningerne opbevares, er ikke besvaret.",
+      "de": "{{activity}}: wie lange die Daten aufbewahrt werden, ist nicht beantwortet."
+    },
+    "no_contact": {
+      "en": "The company's address and email for privacy questions have not been answered.",
+      "da": "Virksomhedens adresse og e-mail til spørgsmål om privatliv er ikke besvaret.",
+      "de": "Anschrift und E-Mail des Unternehmens für Datenschutzfragen sind nicht beantwortet."
+    },
+    "no_cookies": {
+      "en": "No cookies have been read from the site yet.",
+      "da": "Der er endnu ikke læst nogen cookies fra sitet.",
+      "de": "Es wurden noch keine Cookies von der Website gelesen."
+    },
+    "unknown_cookie": {
+      "en": "The cookie {{name}} is not in the database; its purpose has to be answered.",
+      "da": "Cookien {{name}} findes ikke i databasen; dens formål skal besvares.",
+      "de": "Das Cookie {{name}} ist nicht in der Datenbank; sein Zweck muss beantwortet werden."
+    }
+  }
+}

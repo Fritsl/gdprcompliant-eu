@@ -34,8 +34,12 @@ function kindLabel(kind: ArtefactKind, locale: Locale) {
   }
 }
 
+// Trace comments name the graph rows a paragraph came from (G-02); a reader sees the text.
 const paragraphs = (content: string) =>
   content
+    .split('\n')
+    .filter((l) => !l.startsWith('<!-- trace:'))
+    .join('\n')
     .split(/\n\s*\n/)
     .map((p) => p.trim())
     .filter((p) => p.length > 0);
@@ -57,6 +61,7 @@ export default async function ArtefactPage({
   const { outcome } = await searchParams;
   const noticeText = {
     signed: t(locale, 'artefact.signedNow'),
+    generated: t(locale, 'artefact.generatedNow'),
     published: t(locale, 'artefact.publishedNow'),
     stale: t(locale, 'artefact.stale'),
     unsigned: t(locale, 'artefact.unsigned'),
@@ -64,6 +69,7 @@ export default async function ArtefactPage({
   };
   const notice =
     outcome === 'signed' ||
+    outcome === 'generated' ||
     outcome === 'published' ||
     outcome === 'stale' ||
     outcome === 'unsigned' ||
@@ -102,6 +108,30 @@ export default async function ArtefactPage({
         >
           <Text of={notice} />
         </p>
+      ) : null}
+      {view.gaps && view.gaps.length > 0 ? (
+        <section className="gaps" data-gaps={view.gaps.length}>
+          <Text of={t(locale, 'artefact.gaps')} as="h3" />
+          <ul>
+            {view.gaps.map((g, i) => (
+              <li key={i} data-gap={g.code}>
+                {g.text}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : view.gaps ? (
+        <form method="post" action={`${here}/generate`} className="inline" data-generate="">
+          {doc ? (
+            <button type="submit" className="btn-2">
+              <Text of={t(locale, 'artefact.regenerate')} />
+            </button>
+          ) : (
+            <button type="submit" className="btn">
+              <Text of={t(locale, 'artefact.generate')} />
+            </button>
+          )}
+        </form>
       ) : null}
       {!doc ? (
         <Text of={t(locale, 'artefact.none')} as="p" />

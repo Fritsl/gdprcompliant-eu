@@ -1,4 +1,5 @@
 import 'server-only';
+import type { DocumentGap } from '@gc/artefacts';
 import {
   PostgresDemandLedger,
   RECHECK_JOB,
@@ -6,6 +7,9 @@ import {
   SignatureRequired,
   StaleSignature,
   artefactsForCase,
+  documentGaps,
+  generateDocument,
+  isGeneratedKind,
   attestFinding,
   caseByToken,
   caseCompany,
@@ -656,6 +660,8 @@ export async function askForOwner(token: string, findingId: string): Promise<boo
 export interface ArtefactView {
   readonly caseId: string;
   readonly kind: ArtefactKind;
+  // What the register still lacks before a draft can be written (G-02); empty when it can.
+  readonly gaps?: readonly DocumentGap[];
   readonly document?: {
     readonly id: string;
     readonly version: number;
@@ -685,11 +691,15 @@ export async function loadArtefact(
     const hit = await artefactRow(connection, token, kind);
     if (!hit) return undefined;
     const row = hit.row;
-    if (!row) return { caseId: hit.found.caseId, kind };
+    const gaps = isGeneratedKind(kind)
+      ? await documentGaps(connection, hit.found.tenantId, hit.found.caseId, kind)
+      : undefined;
+    if (!row) return { caseId: hit.found.caseId, kind, ...(gaps ? { gaps } : {}) };
     const signer = row.signedBy as { name?: string } | null;
     return {
       caseId: hit.found.caseId,
       kind,
+      ...(gaps ? { gaps } : {}),
       document: {
         id: row.id,
         version: row.version,
@@ -946,4 +956,24 @@ export async function loadUpward(
       generatedAt: new Date().toISOString(),
     };
   });
+}
+
+// The owner writes a draft from the register (G-02). A refusal carries the gaps; the
+// page shows the same list before the button is pressed.
+export async function generateForOwner(
+  token: string,
+  kind: ArtefactKind,
+): Promise<'generated' | 'gaps' | 'not_found'> {
+  if (!isGeneratedKind(kind)) return 'not_found';
+  const outcome = await withConnection(async (connection) => {
+    const found = await caseByToken(connection, token);
+    if (!found) return 'not_found' as const;
+    const outcome = await generateDocument(connection, found.tenantId, {
+      caseId: found.caseId,
+      kind,
+      by: { kind: 'person', userId: 'owner', name: 'owner' },
+    });
+    return outcome.ok ? ('generated' as const) : ('gaps' as const);
+  });
+  return outcome ?? 'not_found';
 }

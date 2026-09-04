@@ -31,3 +31,4 @@ export * from './trust.js';
 export * from './shares.js';
 export * from './graph.js';
 export * from './register.js';
+export * from './documents.js';

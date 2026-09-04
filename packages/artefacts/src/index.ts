@@ -8,6 +8,7 @@ export const PACKAGE = '@gc/artefacts';
 
 export * from './disclaimer.js';
 export * from './register.js';
+export * from './policy.js';
 export * from './timeline.js';
 export * from './timeline-pdf.js';
 export * from './evidence-pack.js';
