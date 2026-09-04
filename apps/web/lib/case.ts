@@ -275,6 +275,17 @@ export async function checkForMember(
     await queue.start();
     try {
       await requestCheck(queue, item.checkForMe.proposal as TaskProposal);
+      // And the real re-check of that finding (U-04, T-09), in the colleague's name.
+      await queue.enqueue(RECHECK_JOB, {
+        tenantId: view.member.tenantId,
+        caseId: view.member.caseId,
+        findingId,
+        requestedBy: {
+          kind: 'person',
+          userId: `member:${view.member.memberId}`,
+          name: invite.slice(0, 8),
+        },
+      });
       return true;
     } finally {
       await queue.stop({ graceful: true });

@@ -69,3 +69,41 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm vitest run --project integration tests/integration/tenancy.test.ts tests/integration/tenancy-matrix.test.ts
+
+  # The journeys (T-09): every e2e suite in a real browser against the fixture estate,
+  # with the worker in-process, on every push. Deterministic, because the estate is.
+  e2e:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: gc
+          POSTGRES_PASSWORD: gc
+          POSTGRES_DB: gc_test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U gc -d gc_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      GC_TEST_DATABASE_URL: postgres://gc:gc@localhost:5432/gc_test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 9.15.4 }
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm web:build
+      - run: pnpm test:e2e
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: e2e-artifacts
+          path: artifacts/
+          if-no-files-found: ignore

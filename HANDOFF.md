@@ -47,8 +47,13 @@ and the opt-in public progress page (dated, never a seal, a count of what is ope
 the share flows (inward in the inviter's name, upward as a revocable one-screen summary
 link, outward as that page), and the status report (a greyscale PDF at any moment: the
 matrix with not-determined as its own state, numbered actions with owner and effort, every
-provision quoted in full from the corpus) are in. The database is up (`pnpm db:up`);
-nothing in phase 1 is open.
+provision quoted in full from the corpus) are in. The journeys suite
+(tests/e2e/journeys.test.ts) drives a real scan of the estate through the front door, a
+fix applied by changing the fixture's responses, a colleague's re-check, a sign-off, an
+export and a deletion, and CI runs every e2e suite on push, files one at a time because
+the pg-boss queue is shared across test schemas; T-09 stays blocked on G-01, G-02 and A-05
+for its two remaining journeys. The database is up (`pnpm db:up`); nothing in phase 1 is
+open.
 
 Do not trust that list — ask:
 
