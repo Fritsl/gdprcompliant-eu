@@ -1,5 +1,5 @@
 import PDFDocument from 'pdfkit';
-import { fillTemplate, type ReportModel } from './report.js';
+import { fillTemplate, type ReportModel, assertVerbatimArticles } from './report.js';
 
 // The status report as a PDF (V-01). Black and greys only, standard fonts only, the
 // generation date and the live case address on every page. Nothing in here depends on
@@ -162,7 +162,8 @@ export function reportPdf(model: ReportModel, options: ReportPdfOptions = {}): P
       rule();
     }
 
-    // The law, in full.
+    // The law, in full: checked against the entries once more, here, where it is drawn.
+    assertVerbatimArticles(model.articles);
     heading(model.sections.law);
     doc.font('Helvetica').fontSize(9.5).fillColor(MUTED).text(model.sections.quoted);
     doc.moveDown(0.4);
@@ -180,9 +181,14 @@ export function reportPdf(model: ReportModel, options: ReportPdfOptions = {}): P
       doc
         .fontSize(8)
         .fillColor(MUTED)
-        .text(`${a.sourceLabel}: ${a.sourceUrl} · ${a.corpusVersion}`, MARGIN + 14, doc.y, {
-          width: width - 14,
-        });
+        .text(
+          `${a.asOfLabel} · ${a.sourceLabel}: ${a.sourceUrl} · ${a.corpusVersion}`,
+          MARGIN + 14,
+          doc.y,
+          {
+            width: width - 14,
+          },
+        );
       doc.x = MARGIN;
       doc.moveDown(0.6);
     }

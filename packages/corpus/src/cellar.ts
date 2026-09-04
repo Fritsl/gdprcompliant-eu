@@ -22,6 +22,8 @@ export interface CorpusSource {
   readonly title: string;
   readonly jurisdiction: Jurisdiction;
   readonly celex: string;
+  // The date the consolidated text speaks from, as the Publications Office dates it.
+  readonly textAsOf: string;
 }
 
 // The cellar answers a CELEX id with a 303 to the document; the Location it gives is
@@ -214,7 +216,11 @@ export function documentFromCellar(
     title: source.title,
     jurisdiction: source.jurisdiction,
     version: stamp.version,
-    source: { url: cellarUrl(source.celex), retrievedAt: stamp.retrievedAt },
+    source: {
+      url: cellarUrl(source.celex),
+      retrievedAt: stamp.retrievedAt,
+      textAsOf: source.textAsOf,
+    },
     chunks,
   });
 }

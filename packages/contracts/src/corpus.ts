@@ -47,7 +47,16 @@ export const CorpusChunkSchema = z
     heading: z.string().optional(),
     text: NonEmptyStringSchema,
     hash: Sha256Schema,
-    source: z.object({ url: UrlSchema, retrievedAt: IsoDateTimeSchema }),
+    // Where the text was read and when, and the date the consolidated text speaks
+    // from (V-03): an amended article is never shown as current without it.
+    source: z.object({
+      url: UrlSchema,
+      retrievedAt: IsoDateTimeSchema,
+      textAsOf: z
+        .string()
+        .regex(/^\d{4}-\d{2}-\d{2}$/)
+        .optional(),
+    }),
   })
   .describe('One paragraph-sized piece of the corpus, addressable by citation');
 export type CorpusChunk = z.infer<typeof CorpusChunkSchema>;
@@ -78,7 +87,14 @@ export const CorpusDocumentSchema = z
     title: NonEmptyStringSchema,
     jurisdiction: JurisdictionSchema,
     version: CorpusVersionSchema,
-    source: z.object({ url: UrlSchema, retrievedAt: IsoDateTimeSchema }),
+    source: z.object({
+      url: UrlSchema,
+      retrievedAt: IsoDateTimeSchema,
+      textAsOf: z
+        .string()
+        .regex(/^\d{4}-\d{2}-\d{2}$/)
+        .optional(),
+    }),
     chunks: z
       .array(
         z.object({

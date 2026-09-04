@@ -3,12 +3,14 @@
     "instrument": "GDPR",
     "title": "Regulation (EU) 2016/679 (General Data Protection Regulation)",
     "jurisdiction": "EU",
-    "celex": "32016R0679"
+    "celex": "32016R0679",
+    "textAsOf": "2016-05-04"
   },
   {
     "instrument": "ePrivacy",
     "title": "Directive 2002/58/EC (Directive on privacy and electronic communications), consolidated text of 19 December 2009",
     "jurisdiction": "EU",
-    "celex": "02002L0058-20091219"
+    "celex": "02002L0058-20091219",
+    "textAsOf": "2009-12-19"
   }
 ]

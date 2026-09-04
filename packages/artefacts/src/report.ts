@@ -10,7 +10,10 @@ import {
   type FindingArea,
   type FindingStatus,
   type Locale,
+  type Quotation,
   type Severity,
+  type VerbatimFailure,
+  verbatim,
 } from '@gc/contracts';
 import { localise } from '@gc/i18n';
 
@@ -57,6 +60,7 @@ const ContentSchema = z.object({
   areas: LocalisedRecord(FINDING_AREAS),
   roles: LocalisedRecord(['marketing', 'it', 'hr', 'finance'] as const),
   source: LocalisedTextSchema,
+  asOf: LocalisedTextSchema,
   disclaimer: LocalisedTextSchema,
   page: LocalisedTextSchema,
 });
@@ -96,12 +100,35 @@ export interface ReportUndetermined {
   readonly reason: string;
 }
 
+// A quoted article (V-03): the paragraph whole, with the quotation it was fetched as,
+// so the renderer can check what it draws against the entry, character for character.
 export interface ReportArticle {
   readonly key: string;
   readonly reference: string;
   readonly text: string;
   readonly sourceUrl: string;
   readonly corpusVersion: string;
+  readonly textAsOf: string;
+  readonly quotation: Quotation;
+}
+
+export class ReportNotVerbatim extends Error {
+  constructor(
+    public readonly article: ReportArticle,
+    public readonly failure: VerbatimFailure,
+  ) {
+    super(`${article.key} is not verbatim (${failure.reason}): ${failure.detail}`);
+    this.name = 'ReportNotVerbatim';
+  }
+}
+
+// Every article against its entry; a report is not rendered with a quotation that
+// was shortened, dotted, annotated or otherwise touched.
+export function assertVerbatimArticles(articles: readonly ReportArticle[]): void {
+  for (const a of articles) {
+    const check = verbatim(a.text, a.quotation);
+    if (!check.ok) throw new ReportNotVerbatim(a, check);
+  }
 }
 
 export interface ReportDecision {
@@ -178,7 +205,10 @@ export interface ReportModel {
   readonly columns: Record<keyof typeof REPORT_CONTENT.columns, string>;
   readonly matrix: readonly MatrixRow[];
   readonly actions: readonly ActionRow[];
-  readonly articles: readonly (ReportArticle & { readonly sourceLabel: string })[];
+  readonly articles: readonly (ReportArticle & {
+    readonly sourceLabel: string;
+    readonly asOfLabel: string;
+  })[];
   readonly decisions: readonly ReportDecision[];
   readonly advice: readonly ReportAdvice[];
   readonly disclaimer: string;
@@ -202,6 +232,7 @@ export const planOrder = <T extends { severity: Severity; typeId: string }>(a: T
   rank(a.severity) - rank(b.severity) || a.typeId.localeCompare(b.typeId);
 
 export function reportModel(input: ReportInput, options: ReportOptions): ReportModel {
+  assertVerbatimArticles(input.articles);
   const { locale } = options;
   const L = (text: Parameters<typeof localise>[0]) => localise(text, locale).value;
   const C = REPORT_CONTENT;
@@ -286,7 +317,11 @@ export function reportModel(input: ReportInput, options: ReportOptions): ReportM
     actions,
     articles: [...input.articles]
       .sort((a, b) => a.key.localeCompare(b.key))
-      .map((a) => ({ ...a, sourceLabel: L(C.source) })),
+      .map((a) => ({
+        ...a,
+        sourceLabel: L(C.source),
+        asOfLabel: fillTemplate(L(C.asOf), { date: a.textAsOf }),
+      })),
     decisions: [...input.decisions].sort((a, b) => a.key.localeCompare(b.key)),
     advice: [...(input.advice ?? [])].sort((a, b) => a.at.localeCompare(b.at)),
     disclaimer: L(C.disclaimer),

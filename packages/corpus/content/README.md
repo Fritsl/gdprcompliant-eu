@@ -3,7 +3,8 @@
 One JSON file per instrument, validated by `CorpusDocumentSchema` in `@gc/contracts`:
 the instrument id (`GDPR`, `ePrivacy`, `DK-DBL`, …), its title, the jurisdiction it
 speaks in (`EU` for Union law, a country code for a national act), the corpus version
-it was cut at, where the text was retrieved from and when, and the chunks: one per
+it was cut at, where the text was retrieved from and when, the date the consolidated text
+speaks from (`source.textAsOf`; an instrument without one cannot be quoted), and the chunks: one per
 article, one per paragraph, one per point, each with the article and, where it applies,
 the paragraph number and point letter. A chunk's key is
 `instrument:article[:paragraph[:point]]`, and it is unique within a file.

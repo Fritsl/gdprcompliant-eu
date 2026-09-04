@@ -1,6 +1,6 @@
 # Schema
 
-Generated from `packages/db/migrations/meta/0022_snapshot.json` by `scripts/schema-doc.mjs`.
+Generated from `packages/db/migrations/meta/0023_snapshot.json` by `scripts/schema-doc.mjs`.
 Do not edit; change `packages/db/src/schema.ts`, run `pnpm db:generate`, then `pnpm db:doc`.
 
 Every table carries `tenant_id`, `created_at` and `source_ref`. `case_events` and
@@ -160,6 +160,7 @@ erDiagram
     text hash
     text source_url
     timestamp retrieved_at
+    text text_as_of "nullable"
     vector______ embedding "nullable"
   }
   deletion_audit {
@@ -606,6 +607,7 @@ erDiagram
 | hash | text | not null |
 | source_url | text | not null |
 | retrieved_at | timestamp with time zone | not null |
+| text_as_of | text |  |
 | embedding | vector(1024) |  |
 
 - unique index corpus_chunks_key_version (instrument, corpus_version, key)

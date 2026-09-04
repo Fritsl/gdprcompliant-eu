@@ -604,6 +604,8 @@ export const corpusChunks = pgTable(
     hash: text('hash').notNull(),
     sourceUrl: text('source_url').notNull(),
     retrievedAt: timestamp('retrieved_at', { withTimezone: true }).notNull(),
+    // The date the consolidated text speaks from (V-03); a row without one cannot be quoted.
+    textAsOf: text('text_as_of'),
     embedding: vector('embedding', { dimensions: CORPUS_EMBEDDING_DIMENSIONS }),
   },
   (t) => [

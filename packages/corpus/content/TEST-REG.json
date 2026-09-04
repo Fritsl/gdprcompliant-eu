@@ -5,7 +5,8 @@
   "version": "2026-09-04.test",
   "source": {
     "url": "https://data.gdprcompliant.eu/corpus/test-reg",
-    "retrievedAt": "2026-09-04T00:00:00Z"
+    "retrievedAt": "2026-09-04T00:00:00Z",
+    "textAsOf": "2026-09-04"
   },
   "chunks": [
     {

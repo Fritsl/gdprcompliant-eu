@@ -18,8 +18,9 @@ import { localise } from '@gc/i18n';
 import type { Catalogue } from '@gc/remedies';
 import type { ReportAdvice, ReportArticle, ReportDecision, ReportInput } from '@gc/artefacts';
 import type { CorpusChunk, DecisionsRegistry } from '@gc/contracts';
-import { documentChunks, loadCorpusDocuments, loadDecisions } from './content.js';
+import { loadDecisions } from './content.js';
 import { resolveDecision, resolveInChunks } from './resolve.js';
+import { corpusChunks, quotationOf } from './verbatim.js';
 
 // Assembling the status report (V-01) from the case as it stands: findings with their
 // remedies and desks, what the scanner could not determine, which areas it can see at
@@ -36,6 +37,22 @@ export class ReportCitationUnresolved extends Error {
   }
 }
 
+// An article of the report is a quotation (V-03): the paragraph whole, with the hash
+// it was cut with and the date its text speaks from. An undated entry stops the report.
+function articleOf(key: string, c: Citation, chunk: CorpusChunk): ReportArticle {
+  const q = quotationOf(chunk);
+  if (!q.ok) throw new ReportCitationUnresolved(c, q.detail);
+  return {
+    key,
+    reference: c.kind === 'provision' ? `${c.instrument} ${c.ref}` : key,
+    text: q.quotation.text,
+    sourceUrl: q.quotation.source.url,
+    corpusVersion: q.quotation.corpusVersion,
+    textAsOf: q.quotation.textAsOf,
+    quotation: q.quotation,
+  };
+}
+
 export interface AssembleReportOptions {
   readonly catalogue: Catalogue;
   readonly locale: Locale;
@@ -44,10 +61,6 @@ export interface AssembleReportOptions {
   readonly chunks?: readonly CorpusChunk[];
   readonly decisions?: DecisionsRegistry;
 }
-
-let defaultChunks: CorpusChunk[] | undefined;
-const corpusChunks = (): CorpusChunk[] =>
-  (defaultChunks ??= loadCorpusDocuments().flatMap((d) => documentChunks(d)));
 
 // Areas the scanner checks from outside: any detector in the area that a check family runs.
 export const scannerAreas = (): FindingArea[] => [
@@ -98,13 +111,7 @@ export async function assembleReport(
         const r = resolveInChunks(chunks, c, jurisdiction);
         if (!r.ok) throw new ReportCitationUnresolved(c, r.detail);
         if (!('chunk' in r)) throw new ReportCitationUnresolved(c, 'resolved to no paragraph');
-        articles.set(key, {
-          key,
-          reference: `${c.instrument} ${c.ref}`,
-          text: r.chunk.text,
-          sourceUrl: r.chunk.source.url,
-          corpusVersion: r.chunk.corpusVersion,
-        });
+        articles.set(key, articleOf(key, c, r.chunk));
       } else if (c.kind === 'decision') {
         if (decisions.has(key)) continue;
         const r = resolveDecision(registry, c, jurisdiction);
@@ -150,13 +157,7 @@ export async function assembleReport(
           const r = resolveInChunks(chunks, c, jurisdiction);
           if (!r.ok) throw new ReportCitationUnresolved(c, r.detail);
           if (!('chunk' in r)) throw new ReportCitationUnresolved(c, 'resolved to no paragraph');
-          articles.set(l.key, {
-            key: l.key,
-            reference: `${c.instrument} ${c.ref}`,
-            text: r.chunk.text,
-            sourceUrl: r.chunk.source.url,
-            corpusVersion: r.chunk.corpusVersion,
-          });
+          articles.set(l.key, articleOf(l.key, c, r.chunk));
         }
         return {
           key: l.key,

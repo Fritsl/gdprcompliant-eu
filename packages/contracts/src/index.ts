@@ -50,3 +50,4 @@ export * from './benchmark.js';
 export * from './agreement.js';
 export * from './subprocessors.js';
 export * from './advice.js';
+export * from './verbatim.js';

@@ -162,6 +162,13 @@
       "when": 1788533816505,
       "tag": "0022_advice_recorded",
       "breakpoints": true
+    },
+    {
+      "idx": 23,
+      "version": "7",
+      "when": 1788535041484,
+      "tag": "0023_text_as_of",
+      "breakpoints": true
     }
   ]
 }

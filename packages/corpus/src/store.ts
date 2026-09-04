@@ -36,7 +36,11 @@ function toChunk(row: Row): CorpusChunk {
     heading: row.heading ?? undefined,
     text: row.text,
     hash: row.hash,
-    source: { url: row.sourceUrl, retrievedAt: new Date(row.retrievedAt).toISOString() },
+    source: {
+      url: row.sourceUrl,
+      retrievedAt: new Date(row.retrievedAt).toISOString(),
+      ...(row.textAsOf ? { textAsOf: row.textAsOf } : {}),
+    },
   });
 }
 
@@ -79,6 +83,7 @@ export async function ingestCorpus(
         hash: c.hash,
         sourceUrl: c.source.url,
         retrievedAt: new Date(c.source.retrievedAt),
+        textAsOf: c.source.textAsOf ?? null,
         embedding: embeddings[i]!,
       })),
     );

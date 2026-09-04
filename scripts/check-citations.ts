@@ -30,6 +30,15 @@ const files = [
   join(root, 'fixtures', 'policies'),
 ].flatMap((dir) => jsonFilesUnder(dir));
 
+// Consolidated text is dated (V-03): an instrument that does not say what date its
+// text speaks from cannot be quoted, so it cannot be in the corpus.
+const undated = corpus.filter((d) => !d.source.textAsOf);
+for (const d of undated) console.error(`  ✗ ${d.instrument}@${d.version}: no source.textAsOf`);
+if (undated.length > 0) {
+  console.error(`citations: ${undated.length} undated instrument(s)`);
+  process.exit(1);
+}
+
 const audit = auditCitations(root, files, chunks, decisions);
 console.log(
   `citations — ${corpus.map((d) => `${d.instrument}@${d.version} (${d.chunks.length})`).join(', ')}; ${decisions.decisions.length} decisions; ${audit.files} content files, ${audit.citations} citations, ${audit.quotes} quotes`,

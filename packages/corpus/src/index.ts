@@ -20,3 +20,4 @@ export * from './audit.js';
 export * from './verifier.js';
 export * from './report.js';
 export * from './advisor.js';
+export * from './verbatim.js';

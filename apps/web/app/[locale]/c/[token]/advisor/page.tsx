@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import { Text } from '@/components/Text';
+import { Verbatim } from '@/components/Verbatim';
 import { QUESTION_MAX, QUESTION_MIN, loadAdvisor } from '@/lib/advisor';
 import { asLocale, t } from '@/lib/i18n';
 
@@ -157,12 +158,13 @@ export default async function AdvisorPage({
                   <ul>
                     {a.lawSays.map((l) => (
                       <li key={l.key} data-law-key={l.key}>
-                        <strong>
-                          {l.citation.kind === 'provision'
-                            ? `${l.citation.instrument} ${l.citation.ref}`
-                            : l.key}
-                        </strong>{' '}
-                        <q>{l.quote}</q>
+                        <Verbatim
+                          cite={l.citation}
+                          jurisdiction={a.jurisdiction}
+                          corpusVersion={l.corpusVersion}
+                          mark={l.quote}
+                          locale={locale}
+                        />
                       </li>
                     ))}
                   </ul>

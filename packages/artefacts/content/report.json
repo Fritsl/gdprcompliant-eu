@@ -245,5 +245,10 @@
     "en": "Page {{p}} of {{n}}",
     "da": "Side {{p}} af {{n}}",
     "de": "Seite {{p}} von {{n}}"
+  },
+  "asOf": {
+    "en": "Text as of {{date}}",
+    "da": "Tekst pr. {{date}}",
+    "de": "Text, Stand {{date}}"
   }
 }

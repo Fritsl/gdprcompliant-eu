@@ -1478,5 +1478,20 @@
     "en": "Answer recorded",
     "da": "Svar registreret",
     "de": "Antwort aufgezeichnet"
+  },
+  "law.asOf": {
+    "en": "Text as of",
+    "da": "Tekst pr.",
+    "de": "Text, Stand"
+  },
+  "law.version": {
+    "en": "corpus",
+    "da": "korpus",
+    "de": "Korpus"
+  },
+  "law.source": {
+    "en": "Source",
+    "da": "Kilde",
+    "de": "Quelle"
   }
 }

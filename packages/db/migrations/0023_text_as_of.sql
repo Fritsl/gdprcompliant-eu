@@ -1,0 +1,1 @@
+ALTER TABLE "corpus_chunks" ADD COLUMN "text_as_of" text;
