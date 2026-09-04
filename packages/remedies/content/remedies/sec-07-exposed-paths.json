@@ -1,24 +1,28 @@
 {
   "id": "sec-07-exposed-paths",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "SEC-07",
   "jurisdictions": "all",
   "kind": "self_fix",
   "title": {
-    "en": "Take the exposed files off the web"
+    "en": "Take the exposed files off the web",
+    "de": "Die offenliegenden Dateien aus dem Web nehmen"
   },
   "effort": {
     "label": {
-      "en": "About 10 minutes"
+      "en": "About 10 minutes",
+      "de": "Etwa 10 Minuten"
     },
     "minutes": 10
   },
   "detail": {
-    "en": "Files that belong to the server, not the site, are being served to anyone who asks: a git checkout, an environment file, a backup. Remove them from the web root and refuse the paths."
+    "en": "Files that belong to the server, not the site, are being served to anyone who asks: a git checkout, an environment file, a backup. Remove them from the web root and refuse the paths.",
+    "de": "Dateien, die zum Server gehören, nicht zur Website, werden an jeden ausgeliefert, der fragt: ein Git-Checkout, eine Umgebungsdatei, ein Backup. Entfernen Sie sie aus dem Web-Root und weisen Sie die Pfade ab."
   },
   "snippet": "# nginx\nlocation ~ /\\.(git|env) { deny all; return 404; }\nlocation ~ \\.(bak|sql|zip)$ { deny all; return 404; }",
   "verifyLabel": {
-    "en": "Re-check this finding"
+    "en": "Re-check this finding",
+    "de": "Diesen Befund erneut prüfen"
   },
   "verification": {
     "method": "rescan"
@@ -26,13 +30,16 @@
   "action": {
     "kind": "agent_prompt",
     "label": {
-      "en": "Paste into your coding assistant"
+      "en": "Paste into your coding assistant",
+      "de": "In Ihren Coding-Assistenten einfügen"
     },
     "forwardable": {
-      "en": "Or forward it to your developer — it reads the same either way."
+      "en": "Or forward it to your developer — it reads the same either way.",
+      "de": "Oder leiten Sie es an Ihre Entwicklerin oder Ihren Entwickler weiter; es liest sich so oder so gleich."
     },
     "body": {
-      "en": "On {{domain}} these files are publicly readable: {{paths}}. Move each out of the web root (they must not be served at all), rotate any credential they contained, and add a server rule that answers 404 for dotfiles and for .bak, .sql and .zip files under the web root.\n\nWhen you are done: list what you moved, what you rotated, and how to confirm each path now answers 404."
+      "en": "On {{domain}} these files are publicly readable: {{paths}}. Move each out of the web root (they must not be served at all), rotate any credential they contained, and add a server rule that answers 404 for dotfiles and for .bak, .sql and .zip files under the web root.\n\nWhen you are done: list what you moved, what you rotated, and how to confirm each path now answers 404.",
+      "de": "Auf {{domain}} sind diese Dateien öffentlich lesbar: {{paths}}. Verschiebe jede aus dem Web-Root (sie dürfen gar nicht ausgeliefert werden), wechsle jedes darin enthaltene Zugangsdatum und füge eine Serverregel hinzu, die für Punktdateien und für .bak-, .sql- und .zip-Dateien unter dem Web-Root mit 404 antwortet.\n\nWenn du fertig bist: Liste auf, was du verschoben und was du gewechselt hast, und wie ich bestätige, dass jeder Pfad jetzt mit 404 antwortet."
     }
   }
 }

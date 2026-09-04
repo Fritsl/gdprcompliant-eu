@@ -10,6 +10,14 @@ import {
   loadFixtureSites,
   refTo,
 } from '@gc/scanner';
+import { loadCatalogue } from '@gc/remedies';
+
+// The remedy's current catalogue version: what the seed writes and a finding references.
+const remedyVersion = (id: string): number => {
+  const entry = loadCatalogue().get(id);
+  if (!entry) throw new Error(`no remedy ${id}`);
+  return entry.remedy.version;
+};
 
 // Pass A against the fixture estate: what it captures, how it waits, and how a capture
 // becomes evidence a finding can point at by hash.
@@ -226,7 +234,7 @@ describe('evidence is content-addressed (S-02)', () => {
       status: 'open',
       area: 'Consent',
       evidence: [ref],
-      remedy: { remedyId: 'cns-02-gate-tags', version: 1 },
+      remedy: { remedyId: 'cns-02-gate-tags', version: remedyVersion('cns-02-gate-tags') },
       firstSeenAt: identity.capturedAt,
       lastSeenAt: identity.capturedAt,
     });

@@ -3,46 +3,56 @@
   "findingTypeId": "VND-06",
   "title": {
     "en": "Web fonts are fetched from someone else’s server",
-    "da": "Webskrifttyper hentes fra en andens server"
+    "da": "Webskrifttyper hentes fra en andens server",
+    "de": "Webschriften werden vom Server eines anderen geholt"
   },
   "wrong": {
     "en": "The stylesheet loads its fonts from a font service, so every visitor’s browser contacts that service on every page, sending their address and the page they are on. The service sees the site’s whole audience.",
-    "da": "Stylesheetet indlæser sine skrifttyper fra en skrifttjeneste, så hver besøgendes browser kontakter den tjeneste på hver side og sender deres adresse og den side, de er på. Tjenesten ser hele sitets publikum."
+    "da": "Stylesheetet indlæser sine skrifttyper fra en skrifttjeneste, så hver besøgendes browser kontakter den tjeneste på hver side og sender deres adresse og den side, de er på. Tjenesten ser hele sitets publikum.",
+    "de": "Das Stylesheet lädt seine Schriften von einem Schriftdienst, sodass der Browser jeder Besucherin diesen Dienst auf jeder Seite kontaktiert und ihre Adresse und die Seite sendet, auf der sie ist. Der Dienst sieht das gesamte Publikum der Website."
   },
   "why": {
     "en": "A font file is a static asset with no reason to leave the site’s own server. Courts have treated a font service receiving visitors’ addresses as a transfer of personal data, and the fix takes an afternoon.",
-    "da": "En skriftfil er en statisk ressource, der ingen grund har til at forlade sitets egen server. Domstole har behandlet en skrifttjeneste, der modtager besøgendes adresser, som en overførsel af personoplysninger, og rettelsen tager en eftermiddag."
+    "da": "En skriftfil er en statisk ressource, der ingen grund har til at forlade sitets egen server. Domstole har behandlet en skrifttjeneste, der modtager besøgendes adresser, som en overførsel af personoplysninger, og rettelsen tager en eftermiddag.",
+    "de": "Eine Schriftdatei ist eine statische Ressource ohne Grund, den eigenen Server der Website zu verlassen. Gerichte haben einen Schriftdienst, der die Adressen der Besucher erhält, als Übermittlung personenbezogener Daten behandelt, und die Abhilfe dauert einen Nachmittag."
   },
   "steps": [
     {
       "en": "Download the font files the site uses in the formats it needs, usually woff2, with a licence that allows self-hosting; most open fonts do.",
-      "da": "Hent de skriftfiler, sitet bruger, i de formater det har brug for, som regel woff2, med en licens, der tillader selvhosting; det gør de fleste åbne skrifttyper."
+      "da": "Hent de skriftfiler, sitet bruger, i de formater det har brug for, som regel woff2, med en licens, der tillader selvhosting; det gør de fleste åbne skrifttyper.",
+      "de": "Laden Sie die Schriftdateien, die die Website nutzt, in den benötigten Formaten herunter, meist woff2, mit einer Lizenz, die Selbsthosting erlaubt; die meisten offenen Schriften tun das."
     },
     {
       "en": "Put the files on the site’s own server and change the @font-face rules in the stylesheet to point at them. The remedy shows the rule.",
-      "da": "Læg filerne på sitets egen server, og ændr @font-face-reglerne i stylesheetet, så de peger på dem. Løsningen viser reglen."
+      "da": "Læg filerne på sitets egen server, og ændr @font-face-reglerne i stylesheetet, så de peger på dem. Løsningen viser reglen.",
+      "de": "Legen Sie die Dateien auf den eigenen Server der Website und ändern Sie die @font-face-Regeln im Stylesheet so, dass sie darauf zeigen. Die Abhilfe zeigt die Regel."
     },
     {
       "en": "Remove every link and preconnect to the font service from the page head.",
-      "da": "Fjern hvert link og preconnect til skrifttjenesten fra sidens head."
+      "da": "Fjern hvert link og preconnect til skrifttjenesten fra sidens head.",
+      "de": "Entfernen Sie jeden Link und jedes preconnect zum Schriftdienst aus dem Seitenkopf."
     }
   ],
   "confirm": {
     "en": "Load the page with the network panel open and filter by font: every font request must go to your own host. Then run the check again from your case page.",
-    "da": "Indlæs siden med netværkspanelet åbent og filtrér på skrifttyper: hver skriftforespørgsel skal gå til din egen vært. Kør derefter tjekket igen fra din sagsside."
+    "da": "Indlæs siden med netværkspanelet åbent og filtrér på skrifttyper: hver skriftforespørgsel skal gå til din egen vært. Kør derefter tjekket igen fra din sagsside.",
+    "de": "Laden Sie die Seite mit offenem Netzwerk-Panel und filtern Sie nach Schriften: Jede Schriftanfrage muss an Ihren eigenen Host gehen. Führen Sie dann die Prüfung von Ihrer Fallseite aus erneut aus."
   },
   "keywords": [
     {
       "en": "self-host google fonts",
-      "da": "selvhost google fonts"
+      "da": "selvhost google fonts",
+      "de": "google fonts selbst hosten"
     },
     {
       "en": "font service privacy",
-      "da": "skrifttjeneste privatliv"
+      "da": "skrifttjeneste privatliv",
+      "de": "schriftdienst datenschutz"
     },
     {
       "en": "fonts from third party",
-      "da": "skrifttyper fra tredjepart"
+      "da": "skrifttyper fra tredjepart",
+      "de": "schriften von dritten"
     }
   ],
   "remedyId": "vnd-06-self-host-fonts"

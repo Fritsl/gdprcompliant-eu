@@ -3,46 +3,56 @@
   "findingTypeId": "APP-01",
   "title": {
     "en": "The app store listing declares data the privacy policy does not mention",
-    "da": "Appbutikkens opslag erklærer oplysninger, privatlivspolitikken ikke nævner"
+    "da": "Appbutikkens opslag erklærer oplysninger, privatlivspolitikken ikke nævner",
+    "de": "Der App-Store-Eintrag erklärt Daten, die die Datenschutzerklärung nicht nennt"
   },
   "wrong": {
     "en": "The site links to its app in a store, and the store listing declares that the app collects a category of data the published privacy policy never mentions. A person reading the listing and the policy gets two different answers to what happens to their data.",
-    "da": "Sitet linker til sin app i en butik, og butikkens opslag erklærer, at appen indsamler en kategori af oplysninger, som den offentliggjorte privatlivspolitik aldrig nævner. En person, der læser opslaget og politikken, får to forskellige svar på, hvad der sker med deres oplysninger."
+    "da": "Sitet linker til sin app i en butik, og butikkens opslag erklærer, at appen indsamler en kategori af oplysninger, som den offentliggjorte privatlivspolitik aldrig nævner. En person, der læser opslaget og politikken, får to forskellige svar på, hvad der sker med deres oplysninger.",
+    "de": "Die Website verlinkt ihre App in einem Store, und der Store-Eintrag erklärt, dass die App eine Datenkategorie erhebt, die die veröffentlichte Datenschutzerklärung nie erwähnt. Wer den Eintrag und die Erklärung liest, bekommt zwei verschiedene Antworten darauf, was mit seinen Daten geschieht."
   },
   "why": {
     "en": "The policy has to say what is collected and why, before it is collected. The store declaration is a public statement by the same company; when the two disagree, at least one is untrue, and the policy is the one people are told to rely on.",
-    "da": "Politikken skal sige, hvad der indsamles og hvorfor, før det indsamles. Butikkens erklæring er en offentlig udtalelse fra samme virksomhed; når de to er uenige, er mindst én af dem usand, og politikken er den, folk får at vide, de kan stole på."
+    "da": "Politikken skal sige, hvad der indsamles og hvorfor, før det indsamles. Butikkens erklæring er en offentlig udtalelse fra samme virksomhed; når de to er uenige, er mindst én af dem usand, og politikken er den, folk får at vide, de kan stole på.",
+    "de": "Die Erklärung muss sagen, was erhoben wird und warum, bevor es erhoben wird. Die Store-Angabe ist eine öffentliche Aussage desselben Unternehmens; widersprechen sich beide, ist mindestens eine unwahr, und die Erklärung ist die, auf die sich die Menschen verlassen sollen."
   },
   "steps": [
     {
       "en": "Read which categories the finding names and check with whoever built the app whether it really collects them.",
-      "da": "Læs, hvilke kategorier fundet nævner, og tjek med dem, der byggede appen, om den virkelig indsamler dem."
+      "da": "Læs, hvilke kategorier fundet nævner, og tjek med dem, der byggede appen, om den virkelig indsamler dem.",
+      "de": "Lesen Sie, welche Kategorien der Befund nennt, und klären Sie mit denen, die die App gebaut haben, ob sie diese wirklich erhebt."
     },
     {
       "en": "If it does, confirm the activity in the register with what is collected and why, and have the policy written again from the register.",
-      "da": "Hvis den gør, så bekræft aktiviteten i fortegnelsen med, hvad der indsamles og hvorfor, og få politikken skrevet igen ud fra fortegnelsen."
+      "da": "Hvis den gør, så bekræft aktiviteten i fortegnelsen med, hvad der indsamles og hvorfor, og få politikken skrevet igen ud fra fortegnelsen.",
+      "de": "Wenn ja, bestätigen Sie die Tätigkeit im Verzeichnis mit dem, was erhoben wird und warum, und lassen Sie die Erklärung aus dem Verzeichnis neu schreiben."
     },
     {
       "en": "If it does not, correct the declaration in the store so the listing says what the app actually does.",
-      "da": "Hvis den ikke gør, så ret erklæringen i butikken, så opslaget siger, hvad appen faktisk gør."
+      "da": "Hvis den ikke gør, så ret erklæringen i butikken, så opslaget siger, hvad appen faktisk gør.",
+      "de": "Wenn nein, berichtigen Sie die Angabe im Store, damit der Eintrag sagt, was die App tatsächlich tut."
     },
     {
       "en": "Publish the new policy at the same address as the old one.",
-      "da": "Offentliggør den nye politik på samme adresse som den gamle."
+      "da": "Offentliggør den nye politik på samme adresse som den gamle.",
+      "de": "Veröffentlichen Sie die neue Erklärung unter derselben Adresse wie die alte."
     }
   ],
   "confirm": {
     "en": "Open the published policy and the store listing side by side: every category the listing declares is named in the policy. Then run the check again from your case page.",
-    "da": "Åbn den offentliggjorte politik og butikkens opslag ved siden af hinanden: hver kategori, opslaget erklærer, er nævnt i politikken. Kør derefter tjekket igen fra din sagsside."
+    "da": "Åbn den offentliggjorte politik og butikkens opslag ved siden af hinanden: hver kategori, opslaget erklærer, er nævnt i politikken. Kør derefter tjekket igen fra din sagsside.",
+    "de": "Öffnen Sie die veröffentlichte Erklärung und den Store-Eintrag nebeneinander: Jede Kategorie, die der Eintrag erklärt, ist in der Erklärung genannt. Führen Sie dann die Prüfung von Ihrer Fallseite aus erneut aus."
   },
   "keywords": [
     {
       "en": "app privacy label does not match privacy policy",
-      "da": "appens privatlivsmærkat stemmer ikke med privatlivspolitikken"
+      "da": "appens privatlivsmærkat stemmer ikke med privatlivspolitikken",
+      "de": "app-datenschutzlabel passt nicht zur datenschutzerklärung"
     },
     {
       "en": "google play data safety differs from privacy policy",
-      "da": "google play datasikkerhed afviger fra privatlivspolitik"
+      "da": "google play datasikkerhed afviger fra privatlivspolitik",
+      "de": "google play datensicherheit weicht von datenschutzerklärung ab"
     }
   ],
   "remedyId": "app-01-say-what-the-app-collects"

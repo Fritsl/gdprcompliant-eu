@@ -1,23 +1,27 @@
 {
   "id": "cns-09-new-tracker",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "CNS-09",
   "jurisdictions": "all",
   "kind": "self_fix",
   "title": {
-    "en": "Ask who added it, then gate it like the others"
+    "en": "Ask who added it, then gate it like the others",
+    "de": "Fragen, wer es hinzugefügt hat, und es dann wie die anderen absichern"
   },
   "effort": {
     "label": {
-      "en": "About 20 minutes"
+      "en": "About 20 minutes",
+      "de": "Etwa 20 Minuten"
     },
     "minutes": 20
   },
   "detail": {
-    "en": "This is the ordinary way compliance decays. Somebody in marketing added a pixel for a campaign. It needs the same consent gate as the rest."
+    "en": "This is the ordinary way compliance decays. Somebody in marketing added a pixel for a campaign. It needs the same consent gate as the rest.",
+    "de": "So verfällt Compliance im Alltag. Jemand im Marketing hat für eine Kampagne ein Pixel hinzugefügt. Es braucht dieselbe Einwilligungssperre wie der Rest."
   },
   "verifyLabel": {
-    "en": "Re-check this finding"
+    "en": "Re-check this finding",
+    "de": "Diesen Befund erneut prüfen"
   },
   "verification": {
     "method": "rescan"
@@ -25,16 +29,20 @@
   "action": {
     "kind": "message",
     "label": {
-      "en": "Send this to the team"
+      "en": "Send this to the team",
+      "de": "Das an das Team senden"
     },
     "to": {
-      "en": "Whoever runs campaigns"
+      "en": "Whoever runs campaigns",
+      "de": "Wer die Kampagnen verantwortet"
     },
     "subject": {
-      "en": "A tracking tag went onto the {{page}} page on {{day}}"
+      "en": "A tracking tag went onto the {{page}} page on {{day}}",
+      "de": "Ein Tracking-Tag ist am {{day}} auf die Seite {{page}} gekommen"
     },
     "body": {
-      "en": "Hi,\n\nA {{tracker}} tracking tag appeared on our {{page}} page sometime on {{day}}. It fires before visitors have agreed to anything, which undoes a fix we made earlier.\n\nTwo things:\n\nIf you added it for a campaign, tell me and I will get it gated properly rather than removed — it can stay, it just has to wait for consent like the others.\n\nIf you did not add it, tell me that too, because then we need to find out who did.\n\nNo drama either way."
+      "en": "Hi,\n\nA {{tracker}} tracking tag appeared on our {{page}} page sometime on {{day}}. It fires before visitors have agreed to anything, which undoes a fix we made earlier.\n\nTwo things:\n\nIf you added it for a campaign, tell me and I will get it gated properly rather than removed — it can stay, it just has to wait for consent like the others.\n\nIf you did not add it, tell me that too, because then we need to find out who did.\n\nNo drama either way.",
+      "de": "Hallo,\n\nein {{tracker}}-Tracking-Tag ist irgendwann am {{day}} auf unserer Seite {{page}} aufgetaucht. Es feuert, bevor Besucher irgendetwas zugestimmt haben, und macht damit eine frühere Korrektur zunichte.\n\nZwei Dinge:\n\nWenn du es für eine Kampagne hinzugefügt hast, sag mir Bescheid, dann lasse ich es sauber absichern statt entfernen; es kann bleiben, muss aber wie die anderen auf die Einwilligung warten.\n\nWenn du es nicht hinzugefügt hast, sag mir das auch, denn dann müssen wir herausfinden, wer es war.\n\nKein Drama, so oder so."
     }
   }
 }

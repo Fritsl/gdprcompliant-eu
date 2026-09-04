@@ -1,27 +1,31 @@
 {
   "id": "cns-06-untick-the-toggles",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "CNS-06",
   "jurisdictions": "all",
   "kind": "self_fix",
   "title": {
     "en": "Start every optional category switched off",
-    "da": "Start hver valgfri kategori slået fra"
+    "da": "Start hver valgfri kategori slået fra",
+    "de": "Jede optionale Kategorie ausgeschaltet starten lassen"
   },
   "effort": {
     "label": {
       "en": "About 5 minutes",
-      "da": "Cirka 5 minutter"
+      "da": "Cirka 5 minutter",
+      "de": "Etwa 5 Minuten"
     },
     "minutes": 5
   },
   "detail": {
     "en": "The settings open with the optional categories already on, so saving without touching anything agrees to all of them. A choice the visitor did not make is not consent. Only the necessary category may start on, and it is the one that cannot be changed.",
-    "da": "Indstillingerne åbner med de valgfrie kategorier allerede slået til, så at gemme uden at røre noget siger ja til dem alle. Et valg, den besøgende ikke har truffet, er ikke samtykke. Kun den nødvendige kategori må starte slået til, og den er den, der ikke kan ændres."
+    "da": "Indstillingerne åbner med de valgfrie kategorier allerede slået til, så at gemme uden at røre noget siger ja til dem alle. Et valg, den besøgende ikke har truffet, er ikke samtykke. Kun den nødvendige kategori må starte slået til, og den er den, der ikke kan ændres.",
+    "de": "Die Einstellungen öffnen sich mit bereits eingeschalteten optionalen Kategorien, sodass Speichern ohne Berührung allen zustimmt. Eine Wahl, die die Besucherin nicht getroffen hat, ist keine Einwilligung. Nur die notwendige Kategorie darf eingeschaltet starten, und sie ist die, die sich nicht ändern lässt."
   },
   "verifyLabel": {
     "en": "Re-check this finding",
-    "da": "Tjek dette fund igen"
+    "da": "Tjek dette fund igen",
+    "de": "Diesen Befund erneut prüfen"
   },
   "verification": {
     "method": "rescan"
@@ -29,13 +33,16 @@
   "action": {
     "kind": "agent_prompt",
     "label": {
-      "en": "Paste into your coding assistant"
+      "en": "Paste into your coding assistant",
+      "de": "In Ihren Coding-Assistenten einfügen"
     },
     "forwardable": {
-      "en": "Or forward it to your developer — it reads the same either way."
+      "en": "Or forward it to your developer — it reads the same either way.",
+      "de": "Oder leiten Sie es an Ihre Entwicklerin oder Ihren Entwickler weiter; es liest sich so oder so gleich."
     },
     "body": {
-      "en": "On {{domain}} the cookie settings open with the optional categories (statistics, marketing, preferences) switched on by default.\n\nChange the defaults so every optional category starts switched off, and only the strictly necessary category is on and locked. Saving without changes must then store a refusal of every optional category.\n\nWhen you are done: tell me the default state of each toggle and how to verify that saving untouched settings sets no optional cookie."
+      "en": "On {{domain}} the cookie settings open with the optional categories (statistics, marketing, preferences) switched on by default.\n\nChange the defaults so every optional category starts switched off, and only the strictly necessary category is on and locked. Saving without changes must then store a refusal of every optional category.\n\nWhen you are done: tell me the default state of each toggle and how to verify that saving untouched settings sets no optional cookie.",
+      "de": "Auf {{domain}} öffnen sich die Cookie-Einstellungen mit standardmäßig eingeschalteten optionalen Kategorien (Statistik, Marketing, Präferenzen).\n\nÄndere die Voreinstellungen so, dass jede optionale Kategorie ausgeschaltet startet und nur die unbedingt erforderliche Kategorie an und gesperrt ist. Speichern ohne Änderungen muss dann eine Ablehnung jeder optionalen Kategorie speichern.\n\nWenn du fertig bist: Nenne mir den Standardzustand jedes Schalters und wie ich prüfe, dass unberührtes Speichern kein optionales Cookie setzt."
     }
   }
 }

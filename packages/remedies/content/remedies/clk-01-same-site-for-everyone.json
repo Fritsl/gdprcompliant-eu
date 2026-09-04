@@ -1,28 +1,32 @@
 {
   "id": "clk-01-same-site-for-everyone",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "CLK-01",
   "jurisdictions": "all",
   "kind": "self_fix",
   "title": {
     "en": "Serve every visitor the same site",
-    "da": "Vis alle besøgende det samme site"
+    "da": "Vis alle besøgende det samme site",
+    "de": "Jedem Besucher dieselbe Website ausliefern"
   },
   "effort": {
     "label": {
       "en": "About 30 minutes",
-      "da": "Cirka 30 minutter"
+      "da": "Cirka 30 minutter",
+      "de": "Etwa 30 Minuten"
     },
     "minutes": 30
   },
   "detail": {
     "en": "The site loads different third parties depending on who is asking: a visitor's browser gets trackers that a declared scanner never sees. Whatever the reason, a check that cannot see what visitors get is not a check, and what visitors get is what the rules are about.",
-    "da": "Sitet indlæser forskellige tredjeparter alt efter, hvem der spørger: en besøgendes browser får trackere, som en deklareret scanner aldrig ser. Uanset grunden er et tjek, der ikke kan se, hvad de besøgende får, ikke et tjek, og det er det, de besøgende får, reglerne handler om."
+    "da": "Sitet indlæser forskellige tredjeparter alt efter, hvem der spørger: en besøgendes browser får trackere, som en deklareret scanner aldrig ser. Uanset grunden er et tjek, der ikke kan se, hvad de besøgende får, ikke et tjek, og det er det, de besøgende får, reglerne handler om.",
+    "de": "Die Website lädt je nachdem, wer fragt, andere Dritte: Der Browser einer Besucherin bekommt Tracker, die ein angemeldeter Scanner nie sieht. Was immer der Grund ist: Eine Prüfung, die nicht sieht, was Besucher bekommen, ist keine Prüfung, und was Besucher bekommen, ist das, worum es in den Regeln geht."
   },
   "snippet": "# nginx: never branch on the User-Agent when deciding which tags to load\n# map $http_user_agent $tracking { ... }   <- remove rules like this\nlocation / {\n  add_header Cache-Control \"no-store\";\n}",
   "verifyLabel": {
     "en": "Re-check this finding",
-    "da": "Tjek dette fund igen"
+    "da": "Tjek dette fund igen",
+    "de": "Diesen Befund erneut prüfen"
   },
   "verification": {
     "method": "rescan"
@@ -31,15 +35,18 @@
     "kind": "agent_prompt",
     "label": {
       "en": "Paste into your coding assistant",
-      "da": "Indsæt i din kodeassistent"
+      "da": "Indsæt i din kodeassistent",
+      "de": "In Ihren Coding-Assistenten einfügen"
     },
     "forwardable": {
       "en": "Or forward it to your developer — it reads the same either way.",
-      "da": "Eller send den videre til din udvikler — den læses ens uanset."
+      "da": "Eller send den videre til din udvikler — den læses ens uanset.",
+      "de": "Oder leiten Sie es an Ihre Entwicklerin oder Ihren Entwickler weiter; es liest sich so oder so gleich."
     },
     "body": {
       "en": "On {{domain}}, the page at https://{{domain}}/ loads different third-party hosts depending on the request's User-Agent: a normal browser is served {{hosts}}, while a request identifying itself as \"GDPRcompliant-scanner\" is not. Find where the server, the tag manager or the page's own scripts branch on the User-Agent (look for \"user-agent\", \"navigator.userAgent\", \"$http_user_agent\", bot lists) and remove the branch, so every visitor is served the same tags under the same consent rules. If a bot list exists to keep crawlers out of analytics, keep it in the analytics tool's own settings, not in what the page loads.\n\nWhen you are done: state which rule was removed and show that a request with the \"GDPRcompliant-scanner\" User-Agent and a request with a browser User-Agent now load the same hosts.",
-      "da": "På {{domain}} indlæser siden https://{{domain}}/ forskellige tredjepartsværter alt efter forespørgslens User-Agent: en almindelig browser får {{hosts}}, mens en forespørgsel, der kalder sig \"GDPRcompliant-scanner\", ikke gør. Find, hvor serveren, tag manageren eller sidens egne scripts forgrener på User-Agent (søg efter \"user-agent\", \"navigator.userAgent\", \"$http_user_agent\", botlister), og fjern forgreningen, så alle besøgende får de samme tags under de samme samtykkeregler. Hvis der findes en botliste for at holde crawlere ude af statistikken, så hold den i statistikværktøjets egne indstillinger, ikke i det, siden indlæser.\n\nNår du er færdig: oplys, hvilken regel der blev fjernet, og vis, at en forespørgsel med User-Agent \"GDPRcompliant-scanner\" og en med en browsers User-Agent nu indlæser de samme værter."
+      "da": "På {{domain}} indlæser siden https://{{domain}}/ forskellige tredjepartsværter alt efter forespørgslens User-Agent: en almindelig browser får {{hosts}}, mens en forespørgsel, der kalder sig \"GDPRcompliant-scanner\", ikke gør. Find, hvor serveren, tag manageren eller sidens egne scripts forgrener på User-Agent (søg efter \"user-agent\", \"navigator.userAgent\", \"$http_user_agent\", botlister), og fjern forgreningen, så alle besøgende får de samme tags under de samme samtykkeregler. Hvis der findes en botliste for at holde crawlere ude af statistikken, så hold den i statistikværktøjets egne indstillinger, ikke i det, siden indlæser.\n\nNår du er færdig: oplys, hvilken regel der blev fjernet, og vis, at en forespørgsel med User-Agent \"GDPRcompliant-scanner\" og en med en browsers User-Agent nu indlæser de samme værter.",
+      "de": "Auf {{domain}} lädt die Seite https://{{domain}}/ je nach User-Agent der Anfrage andere Dritt-Hosts: Ein normaler Browser bekommt {{hosts}}, eine Anfrage, die sich als „GDPRcompliant-scanner“ zu erkennen gibt, nicht. Finde, wo der Server, der Tag-Manager oder die Skripte der Seite nach User-Agent verzweigen (suche nach „user-agent“, „navigator.userAgent“, „$http_user_agent“, Bot-Listen), und entferne die Verzweigung, damit jeder Besucher dieselben Tags unter denselben Einwilligungsregeln bekommt. Wenn eine Bot-Liste dazu dient, Crawler aus der Analyse herauszuhalten, belasse sie in den Einstellungen des Analysewerkzeugs, nicht in dem, was die Seite lädt.\n\nWenn du fertig bist: Sage, welche Regel entfernt wurde, und zeige, dass eine Anfrage mit dem User-Agent „GDPRcompliant-scanner“ und eine mit einem Browser-User-Agent jetzt dieselben Hosts laden."
     }
   }
 }

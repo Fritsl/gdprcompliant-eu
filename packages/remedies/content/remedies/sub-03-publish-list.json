@@ -1,26 +1,31 @@
 {
   "id": "sub-03-publish-list",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "SUB-03",
   "jurisdictions": "all",
   "kind": "generated_artefact",
   "title": {
-    "en": "Publish the list we already built"
+    "en": "Publish the list we already built",
+    "de": "Die Liste veröffentlichen, die wir schon gebaut haben"
   },
   "effort": {
     "label": {
-      "en": "One click, then a review"
+      "en": "One click, then a review",
+      "de": "Ein Klick, dann eine Durchsicht"
     }
   },
   "detail": {
-    "en": "It stays current — when a vendor changes their own list, this case notices and tells you."
+    "en": "It stays current — when a vendor changes their own list, this case notices and tells you.",
+    "de": "Sie bleibt aktuell: Ändert ein Anbieter seine eigene Liste, bemerkt dieser Fall es und sagt es Ihnen."
   },
   "artefact": "sub_processor_list",
   "cta": {
-    "en": "See the supply chain"
+    "en": "See the supply chain",
+    "de": "Die Lieferkette ansehen"
   },
   "verifyLabel": {
-    "en": "Re-check once published"
+    "en": "Re-check once published",
+    "de": "Erneut prüfen, sobald veröffentlicht"
   },
   "verification": {
     "method": "artefact_published",

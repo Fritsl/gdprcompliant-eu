@@ -1,67 +1,219 @@
 {
-  "title": { "en": "GDPR status report", "da": "GDPR-statusrapport" },
-  "generated": { "en": "Generated", "da": "Genereret" },
+  "title": {
+    "en": "GDPR status report",
+    "da": "GDPR-statusrapport",
+    "de": "DSGVO-Statusbericht"
+  },
+  "generated": {
+    "en": "Generated",
+    "da": "Genereret",
+    "de": "Erzeugt"
+  },
   "standing": {
     "en": "A snapshot. Ask for a new one whenever you like; nothing here is final.",
-    "da": "Et øjebliksbillede. Bed om et nyt, når du vil; intet her er endeligt."
+    "da": "Et øjebliksbillede. Bed om et nyt, når du vil; intet her er endeligt.",
+    "de": "Eine Momentaufnahme. Fordern Sie jederzeit eine neue an; nichts hier ist endgültig."
   },
-  "live": { "en": "Live case", "da": "Sagen live" },
+  "live": {
+    "en": "Live case",
+    "da": "Sagen live",
+    "de": "Laufender Fall"
+  },
   "summary": {
     "en": "{{closed}} of {{total}} findings closed. {{openAreas}} areas open, {{undeterminedAreas}} not determined from outside.",
-    "da": "{{closed}} af {{total}} fund lukket. {{openAreas}} områder åbne, {{undeterminedAreas}} ikke afgjort udefra."
+    "da": "{{closed}} af {{total}} fund lukket. {{openAreas}} områder åbne, {{undeterminedAreas}} ikke afgjort udefra.",
+    "de": "{{closed}} von {{total}} Befunden geschlossen. {{openAreas}} Bereiche offen, {{undeterminedAreas}} von außen nicht feststellbar."
   },
   "sections": {
-    "standing": { "en": "Where things stand", "da": "Hvor tingene står" },
-    "actions": { "en": "What needs doing", "da": "Hvad der skal gøres" },
-    "nothingToDo": { "en": "Nothing is open right now.", "da": "Intet er åbent lige nu." },
-    "law": { "en": "The law this report refers to", "da": "Den lov, rapporten henviser til" },
-    "quoted": { "en": "Quoted in full, as written.", "da": "Citeret i sin helhed, som skrevet." },
+    "standing": {
+      "en": "Where things stand",
+      "da": "Hvor tingene står",
+      "de": "Wo die Dinge stehen"
+    },
+    "actions": {
+      "en": "What needs doing",
+      "da": "Hvad der skal gøres",
+      "de": "Was zu tun ist"
+    },
+    "nothingToDo": {
+      "en": "Nothing is open right now.",
+      "da": "Intet er åbent lige nu.",
+      "de": "Gerade ist nichts offen."
+    },
+    "law": {
+      "en": "The law this report refers to",
+      "da": "Den lov, rapporten henviser til",
+      "de": "Das Recht, auf das sich dieser Bericht bezieht"
+    },
+    "quoted": {
+      "en": "Quoted in full, as written.",
+      "da": "Citeret i sin helhed, som skrevet.",
+      "de": "Im Wortlaut zitiert, wie geschrieben."
+    },
     "noLaw": {
       "en": "No provision is relied on yet.",
-      "da": "Der henvises endnu ikke til nogen bestemmelse."
+      "da": "Der henvises endnu ikke til nogen bestemmelse.",
+      "de": "Noch keine Vorschrift herangezogen."
     },
-    "decisions": { "en": "Decisions relied on", "da": "Afgørelser, der henvises til" }
+    "decisions": {
+      "en": "Decisions relied on",
+      "da": "Afgørelser, der henvises til",
+      "de": "Herangezogene Entscheidungen"
+    }
   },
   "columns": {
-    "area": { "en": "Area", "da": "Område" },
-    "status": { "en": "Status", "da": "Status" },
-    "latest": { "en": "Latest", "da": "Seneste" },
-    "action": { "en": "Action", "da": "Handling" },
-    "who": { "en": "Who", "da": "Hvem" },
-    "effort": { "en": "Effort", "da": "Indsats" }
+    "area": {
+      "en": "Area",
+      "da": "Område",
+      "de": "Bereich"
+    },
+    "status": {
+      "en": "Status",
+      "da": "Status",
+      "de": "Status"
+    },
+    "latest": {
+      "en": "Latest",
+      "da": "Seneste",
+      "de": "Zuletzt"
+    },
+    "action": {
+      "en": "Action",
+      "da": "Handling",
+      "de": "Maßnahme"
+    },
+    "who": {
+      "en": "Who",
+      "da": "Hvem",
+      "de": "Wer"
+    },
+    "effort": {
+      "en": "Effort",
+      "da": "Indsats",
+      "de": "Aufwand"
+    }
   },
   "states": {
-    "done": { "en": "In order", "da": "I orden" },
-    "open": { "en": "Open", "da": "Åben" },
-    "undetermined": { "en": "Not determined", "da": "Ikke afgjort" }
+    "done": {
+      "en": "In order",
+      "da": "I orden",
+      "de": "In Ordnung"
+    },
+    "open": {
+      "en": "Open",
+      "da": "Åben",
+      "de": "Offen"
+    },
+    "undetermined": {
+      "en": "Not determined",
+      "da": "Ikke afgjort",
+      "de": "Nicht feststellbar"
+    }
   },
   "notes": {
-    "open": { "en": "{{n}} open: {{types}}", "da": "{{n}} åbne: {{types}}" },
-    "fixed": { "en": "{{n}} fixed", "da": "{{n}} rettet" },
-    "nothingFound": { "en": "Checked, nothing found", "da": "Tjekket, intet fundet" },
-    "notChecked": { "en": "Not checked from outside", "da": "Ikke tjekket udefra" }
+    "open": {
+      "en": "{{n}} open: {{types}}",
+      "da": "{{n}} åbne: {{types}}",
+      "de": "{{n}} offen: {{types}}"
+    },
+    "fixed": {
+      "en": "{{n}} fixed",
+      "da": "{{n}} rettet",
+      "de": "{{n}} behoben"
+    },
+    "nothingFound": {
+      "en": "Checked, nothing found",
+      "da": "Tjekket, intet fundet",
+      "de": "Geprüft, nichts gefunden"
+    },
+    "notChecked": {
+      "en": "Not checked from outside",
+      "da": "Ikke tjekket udefra",
+      "de": "Von außen nicht geprüft"
+    }
   },
-  "unknownEffort": { "en": "Unknown", "da": "Ukendt" },
+  "unknownEffort": {
+    "en": "Unknown",
+    "da": "Ukendt",
+    "de": "Unbekannt"
+  },
   "areas": {
-    "Consent": { "en": "Consent", "da": "Samtykke" },
-    "Contracts": { "en": "Contracts", "da": "Aftaler" },
-    "Security": { "en": "Security", "da": "Sikkerhed" },
-    "Transfers": { "en": "Transfers", "da": "Overførsler" },
-    "Observation": { "en": "Observation", "da": "Observation" },
-    "Notice": { "en": "Notice", "da": "Oplysning" },
-    "Recipients": { "en": "Recipients", "da": "Modtagere" },
-    "Collection": { "en": "Collection", "da": "Indsamling" }
+    "Consent": {
+      "en": "Consent",
+      "da": "Samtykke",
+      "de": "Einwilligung"
+    },
+    "Contracts": {
+      "en": "Contracts",
+      "da": "Aftaler",
+      "de": "Verträge"
+    },
+    "Security": {
+      "en": "Security",
+      "da": "Sikkerhed",
+      "de": "Sicherheit"
+    },
+    "Transfers": {
+      "en": "Transfers",
+      "da": "Overførsler",
+      "de": "Übermittlungen"
+    },
+    "Observation": {
+      "en": "Observation",
+      "da": "Observation",
+      "de": "Beobachtung"
+    },
+    "Notice": {
+      "en": "Notice",
+      "da": "Oplysning",
+      "de": "Information"
+    },
+    "Recipients": {
+      "en": "Recipients",
+      "da": "Modtagere",
+      "de": "Empfänger"
+    },
+    "Collection": {
+      "en": "Collection",
+      "da": "Indsamling",
+      "de": "Erhebung"
+    }
   },
   "roles": {
-    "marketing": { "en": "Marketing", "da": "Marketing" },
-    "it": { "en": "IT", "da": "IT" },
-    "hr": { "en": "HR", "da": "HR" },
-    "finance": { "en": "Finance", "da": "Økonomi" }
+    "marketing": {
+      "en": "Marketing",
+      "da": "Marketing",
+      "de": "Marketing"
+    },
+    "it": {
+      "en": "IT",
+      "da": "IT",
+      "de": "IT"
+    },
+    "hr": {
+      "en": "HR",
+      "da": "HR",
+      "de": "Personal"
+    },
+    "finance": {
+      "en": "Finance",
+      "da": "Økonomi",
+      "de": "Finanzen"
+    }
   },
-  "source": { "en": "Source", "da": "Kilde" },
+  "source": {
+    "en": "Source",
+    "da": "Kilde",
+    "de": "Quelle"
+  },
   "disclaimer": {
     "en": "Prepared automatically from evidence collected on the dates shown. It is not a legal opinion and not a seal of any kind. Have a lawyer read anything you intend to rely on.",
-    "da": "Udarbejdet automatisk ud fra beviser indsamlet på de viste datoer. Det er ikke en juridisk vurdering og ikke et mærke af nogen art. Lad en advokat læse alt, du vil støtte dig til."
+    "da": "Udarbejdet automatisk ud fra beviser indsamlet på de viste datoer. Det er ikke en juridisk vurdering og ikke et mærke af nogen art. Lad en advokat læse alt, du vil støtte dig til.",
+    "de": "Automatisch erstellt aus Belegen, die an den angegebenen Daten erhoben wurden. Es ist keine Rechtsauskunft und kein Siegel irgendeiner Art. Lassen Sie alles, worauf Sie sich verlassen wollen, von einer Anwältin oder einem Anwalt lesen."
   },
-  "page": { "en": "Page {{p}} of {{n}}", "da": "Side {{p}} af {{n}}" }
+  "page": {
+    "en": "Page {{p}} of {{n}}",
+    "da": "Side {{p}} af {{n}}",
+    "de": "Seite {{p}} von {{n}}"
+  }
 }

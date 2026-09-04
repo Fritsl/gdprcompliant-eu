@@ -3,46 +3,56 @@
   "findingTypeId": "TRF-01",
   "title": {
     "en": "Visitors’ requests go to a service established outside the EEA",
-    "da": "Besøgendes forespørgsler går til en tjeneste etableret uden for EØS"
+    "da": "Besøgendes forespørgsler går til en tjeneste etableret uden for EØS",
+    "de": "Anfragen der Besucher gehen an einen Dienst mit Sitz außerhalb des EWR"
   },
   "wrong": {
     "en": "On the first load, the page sends requests to a host whose operator is established outside the European Economic Area. Each request carries the visitor’s address and the page they are on, before anyone has been asked.",
-    "da": "Ved første indlæsning sender siden forespørgsler til en vært, hvis operatør er etableret uden for Det Europæiske Økonomiske Samarbejdsområde. Hver forespørgsel bærer den besøgendes adresse og den side, de er på, før nogen er blevet spurgt."
+    "da": "Ved første indlæsning sender siden forespørgsler til en vært, hvis operatør er etableret uden for Det Europæiske Økonomiske Samarbejdsområde. Hver forespørgsel bærer den besøgendes adresse og den side, de er på, før nogen er blevet spurgt.",
+    "de": "Beim ersten Laden sendet die Seite Anfragen an einen Host, dessen Betreiber außerhalb des Europäischen Wirtschaftsraums niedergelassen ist. Jede Anfrage trägt die Adresse der Besucherin und die Seite, auf der sie ist, bevor jemand gefragt wurde."
   },
   "why": {
     "en": "Moving personal data out of the EEA needs a legal basis and a safeguard, and it has to be explained in the privacy policy. A service that receives every visitor’s address is a transfer whether or not the company thinks of it as one.",
-    "da": "At flytte personoplysninger ud af EØS kræver et retsgrundlag og en sikkerhedsforanstaltning, og det skal forklares i privatlivspolitikken. En tjeneste, der modtager hver besøgendes adresse, er en overførsel, uanset om virksomheden tænker på den som en."
+    "da": "At flytte personoplysninger ud af EØS kræver et retsgrundlag og en sikkerhedsforanstaltning, og det skal forklares i privatlivspolitikken. En tjeneste, der modtager hver besøgendes adresse, er en overførsel, uanset om virksomheden tænker på den som en.",
+    "de": "Personenbezogene Daten aus dem EWR zu bringen, braucht eine Rechtsgrundlage und eine Garantie, und es muss in der Datenschutzerklärung erklärt werden. Ein Dienst, der die Adresse jeder Besucherin erhält, ist eine Übermittlung, ob das Unternehmen sie so nennt oder nicht."
   },
   "steps": [
     {
       "en": "List the services the finding names and what each is for: analytics, fonts, a tag manager, a chat widget.",
-      "da": "Lav en liste over de tjenester, fundet nævner, og hvad hver er til: statistik, skrifttyper, en tag manager, en chat-widget."
+      "da": "Lav en liste over de tjenester, fundet nævner, og hvad hver er til: statistik, skrifttyper, en tag manager, en chat-widget.",
+      "de": "Listen Sie die Dienste auf, die der Befund nennt, und wozu jeder dient: Analyse, Schriften, ein Tag-Manager, ein Chat-Widget."
     },
     {
       "en": "For each, pick one: switch to a provider established in the EEA (the remedy lists options), self-host the file, or keep the service and document the transfer with its safeguard in the policy.",
-      "da": "Vælg for hver af dem én ting: skift til en leverandør etableret i EØS (løsningen nævner muligheder), host filen selv, eller behold tjenesten og dokumentér overførslen med dens sikkerhedsforanstaltning i politikken."
+      "da": "Vælg for hver af dem én ting: skift til en leverandør etableret i EØS (løsningen nævner muligheder), host filen selv, eller behold tjenesten og dokumentér overførslen med dens sikkerhedsforanstaltning i politikken.",
+      "de": "Wählen Sie für jeden eines: Wechseln Sie zu einem im EWR niedergelassenen Anbieter (die Abhilfe listet Optionen), hosten Sie die Datei selbst, oder behalten Sie den Dienst und dokumentieren Sie die Übermittlung mit ihrer Garantie in der Erklärung."
     },
     {
       "en": "Load whatever remains only after consent, so a visitor who says no sends nothing.",
-      "da": "Indlæs det, der bliver tilbage, først efter samtykke, så en besøgende, der siger nej, sender ingenting."
+      "da": "Indlæs det, der bliver tilbage, først efter samtykke, så en besøgende, der siger nej, sender ingenting.",
+      "de": "Laden Sie, was bleibt, nur nach Einwilligung, damit eine Besucherin, die Nein sagt, nichts sendet."
     }
   ],
   "confirm": {
     "en": "Open the page in a private window with the network panel open and no consent given: none of the named hosts may be contacted. Then run the check again from your case page.",
-    "da": "Åbn siden i et privat vindue med netværkspanelet åbent og uden givet samtykke: ingen af de nævnte værter må kontaktes. Kør derefter tjekket igen fra din sagsside."
+    "da": "Åbn siden i et privat vindue med netværkspanelet åbent og uden givet samtykke: ingen af de nævnte værter må kontaktes. Kør derefter tjekket igen fra din sagsside.",
+    "de": "Öffnen Sie die Seite in einem privaten Fenster mit offenem Netzwerk-Panel und ohne Einwilligung: Keiner der genannten Hosts darf kontaktiert werden. Führen Sie dann die Prüfung von Ihrer Fallseite aus erneut aus."
   },
   "keywords": [
     {
       "en": "third country transfer website",
-      "da": "overførsel til tredjeland hjemmeside"
+      "da": "overførsel til tredjeland hjemmeside",
+      "de": "drittlandübermittlung website"
     },
     {
       "en": "google fonts gdpr",
-      "da": "google fonts gdpr"
+      "da": "google fonts gdpr",
+      "de": "google fonts dsgvo"
     },
     {
       "en": "us services on website",
-      "da": "amerikanske tjenester på hjemmeside"
+      "da": "amerikanske tjenester på hjemmeside",
+      "de": "us-dienste auf der website"
     }
   ],
   "remedyId": "trf-01-european-alternatives"

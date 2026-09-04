@@ -6,11 +6,13 @@
       "id": "record-of-processing",
       "title": {
         "en": "Keep a record of processing activities",
-        "da": "Før en fortegnelse over behandlingsaktiviteter"
+        "da": "Før en fortegnelse over behandlingsaktiviteter",
+        "de": "Ein Verzeichnis der Verarbeitungstätigkeiten führen"
       },
       "summary": {
         "en": "The company keeps a written record of what it processes, why, for whom, with whom and for how long. The exemption for fewer than 250 staff falls away when the processing is not occasional or touches special categories.",
-        "da": "Virksomheden fører en skriftlig fortegnelse over, hvad den behandler, hvorfor, om hvem, med hvem og hvor længe. Undtagelsen for under 250 ansatte gælder ikke, når behandlingen ikke er lejlighedsvis eller omfatter følsomme oplysninger."
+        "da": "Virksomheden fører en skriftlig fortegnelse over, hvad den behandler, hvorfor, om hvem, med hvem og hvor længe. Undtagelsen for under 250 ansatte gælder ikke, når behandlingen ikke er lejlighedsvis eller omfatter følsomme oplysninger.",
+        "de": "Das Unternehmen führt schriftlich, was es verarbeitet, warum, über wen, mit wem und wie lange. Die Ausnahme für weniger als 250 Beschäftigte entfällt, wenn die Verarbeitung nicht nur gelegentlich erfolgt oder besondere Kategorien berührt."
       },
       "when": {
         "any": [
@@ -86,11 +88,13 @@
       "id": "information-at-collection",
       "title": {
         "en": "Tell people what happens to their details when they hand them over",
-        "da": "Fortæl folk, hvad der sker med deres oplysninger, når de afgiver dem"
+        "da": "Fortæl folk, hvad der sker med deres oplysninger, når de afgiver dem",
+        "de": "Menschen sagen, was mit ihren Angaben geschieht, wenn sie sie hergeben"
       },
       "summary": {
         "en": "Wherever the site collects personal data from a person, it says who is collecting it, why, on what basis, who receives it, how long it is kept and what the person can ask for.",
-        "da": "Hvor sitet indsamler personoplysninger fra en person, siger det, hvem der indsamler, hvorfor, på hvilket grundlag, hvem der modtager dem, hvor længe de opbevares, og hvad personen kan bede om."
+        "da": "Hvor sitet indsamler personoplysninger fra en person, siger det, hvem der indsamler, hvorfor, på hvilket grundlag, hvem der modtager dem, hvor længe de opbevares, og hvad personen kan bede om.",
+        "de": "Wo immer die Website personenbezogene Daten von einer Person erhebt, sagt sie, wer sie erhebt, warum, auf welcher Grundlage, wer sie erhält, wie lange sie aufbewahrt werden und was die Person verlangen kann."
       },
       "when": {
         "fact": "register.rows",
@@ -136,11 +140,13 @@
       "id": "consent-withdrawable",
       "title": {
         "en": "Make consent as easy to withdraw as it was to give",
-        "da": "Gør samtykke lige så let at trække tilbage som at give"
+        "da": "Gør samtykke lige så let at trække tilbage som at give",
+        "de": "Den Widerruf einer Einwilligung so einfach machen wie ihre Erteilung"
       },
       "summary": {
         "en": "Where an activity rests on consent, the person is told they can withdraw it, and withdrawing is as easy as consenting was.",
-        "da": "Hvor en aktivitet hviler på samtykke, får personen at vide, at det kan trækkes tilbage, og det er lige så let som at give det."
+        "da": "Hvor en aktivitet hviler på samtykke, får personen at vide, at det kan trækkes tilbage, og det er lige så let som at give det.",
+        "de": "Wo eine Tätigkeit auf Einwilligung beruht, wird die Person darauf hingewiesen, dass sie sie widerrufen kann, und der Widerruf ist so einfach wie die Einwilligung."
       },
       "when": {
         "fact": "register.usesConsent",
@@ -186,11 +192,13 @@
       "id": "processor-contract",
       "title": {
         "en": "Have a contract with every processor",
-        "da": "Hav en aftale med hver databehandler"
+        "da": "Hav en aftale med hver databehandler",
+        "de": "Mit jedem Auftragsverarbeiter einen Vertrag haben"
       },
       "summary": {
         "en": "Every company that processes personal data on the company's behalf does so under a written contract that sets out what it may do.",
-        "da": "Enhver virksomhed, der behandler personoplysninger på virksomhedens vegne, gør det under en skriftlig aftale, der fastlægger, hvad den må."
+        "da": "Enhver virksomhed, der behandler personoplysninger på virksomhedens vegne, gør det under en skriftlig aftale, der fastlægger, hvad den må.",
+        "de": "Jedes Unternehmen, das personenbezogene Daten im Auftrag des Unternehmens verarbeitet, tut dies unter einem schriftlichen Vertrag, der festlegt, was es darf."
       },
       "when": {
         "fact": "register.recipients",
@@ -231,11 +239,13 @@
       "id": "transfer-safeguards",
       "title": {
         "en": "Have a basis for every transfer outside the EEA",
-        "da": "Hav et grundlag for hver overførsel uden for EØS"
+        "da": "Hav et grundlag for hver overførsel uden for EØS",
+        "de": "Eine Grundlage für jede Übermittlung außerhalb des EWR haben"
       },
       "summary": {
         "en": "Where a recipient sits outside the EEA, the transfer rests on an adequacy decision or on appropriate safeguards, and the policy says which.",
-        "da": "Hvor en modtager sidder uden for EØS, hviler overførslen på en tilstrækkelighedsafgørelse eller på fornødne garantier, og politikken siger hvilken."
+        "da": "Hvor en modtager sidder uden for EØS, hviler overførslen på en tilstrækkelighedsafgørelse eller på fornødne garantier, og politikken siger hvilken.",
+        "de": "Wo ein Empfänger außerhalb des EWR sitzt, beruht die Übermittlung auf einem Angemessenheitsbeschluss oder auf geeigneten Garantien, und die Datenschutzerklärung sagt, worauf."
       },
       "when": {
         "fact": "register.recipientsOutsideEea",
@@ -286,11 +296,13 @@
       "id": "cookie-consent",
       "title": {
         "en": "Ask before setting cookies that are not necessary",
-        "da": "Spørg, før der sættes cookies, som ikke er nødvendige"
+        "da": "Spørg, før der sættes cookies, som ikke er nødvendige",
+        "de": "Fragen, bevor nicht notwendige Cookies gesetzt werden"
       },
       "summary": {
         "en": "Cookies and similar storage that are not strictly necessary for the service the visitor asked for are set only after the visitor has agreed, having been told what they are for.",
-        "da": "Cookies og lignende lagring, som ikke er strengt nødvendige for den tjeneste, den besøgende bad om, sættes først, når den besøgende har sagt ja efter at have fået at vide, hvad de bruges til."
+        "da": "Cookies og lignende lagring, som ikke er strengt nødvendige for den tjeneste, den besøgende bad om, sættes først, når den besøgende har sagt ja efter at have fået at vide, hvad de bruges til.",
+        "de": "Cookies und ähnliche Speicherung, die für den von der Besucherin gewünschten Dienst nicht unbedingt erforderlich sind, werden erst gesetzt, nachdem die Besucherin zugestimmt hat und erfahren hat, wofür sie sind."
       },
       "when": {
         "fact": "site.setsNonNecessaryCookies",
@@ -336,11 +348,13 @@
       "id": "security-of-processing",
       "title": {
         "en": "Protect the data with measures that fit the risk",
-        "da": "Beskyt oplysningerne med foranstaltninger, der passer til risikoen"
+        "da": "Beskyt oplysningerne med foranstaltninger, der passer til risikoen",
+        "de": "Die Daten mit Maßnahmen schützen, die dem Risiko entsprechen"
       },
       "summary": {
         "en": "The company takes technical and organisational measures that fit the risk of what it processes: encryption in transit, access limited to those who need it, the ability to restore, and a way to test that it works.",
-        "da": "Virksomheden træffer tekniske og organisatoriske foranstaltninger, der passer til risikoen ved det, den behandler: kryptering under transport, adgang begrænset til dem, der har brug for den, mulighed for genopretning og en måde at teste, at det virker."
+        "da": "Virksomheden træffer tekniske og organisatoriske foranstaltninger, der passer til risikoen ved det, den behandler: kryptering under transport, adgang begrænset til dem, der har brug for den, mulighed for genopretning og en måde at teste, at det virker.",
+        "de": "Das Unternehmen trifft technische und organisatorische Maßnahmen, die dem Risiko dessen entsprechen, was es verarbeitet: Verschlüsselung bei der Übertragung, Zugriff nur für die, die ihn brauchen, die Fähigkeit wiederherzustellen, und eine Möglichkeit zu prüfen, dass es funktioniert."
       },
       "when": "always",
       "citations": [
@@ -368,11 +382,13 @@
       "id": "breach-notification",
       "title": {
         "en": "Be ready to report a breach within 72 hours",
-        "da": "Vær klar til at anmelde et brud inden for 72 timer"
+        "da": "Vær klar til at anmelde et brud inden for 72 timer",
+        "de": "Bereit sein, eine Verletzung innerhalb von 72 Stunden zu melden"
       },
       "summary": {
         "en": "When personal data is breached, the company tells the supervisory authority within 72 hours of becoming aware, unless the breach is unlikely to result in a risk, and keeps a record of every breach either way.",
-        "da": "Når der sker et brud på persondatasikkerheden, underretter virksomheden tilsynsmyndigheden inden for 72 timer efter at være blevet bekendt med det, medmindre bruddet sandsynligvis ikke indebærer en risiko, og fører under alle omstændigheder en fortegnelse over hvert brud."
+        "da": "Når der sker et brud på persondatasikkerheden, underretter virksomheden tilsynsmyndigheden inden for 72 timer efter at være blevet bekendt med det, medmindre bruddet sandsynligvis ikke indebærer en risiko, og fører under alle omstændigheder en fortegnelse over hvert brud.",
+        "de": "Bei einer Verletzung des Schutzes personenbezogener Daten meldet das Unternehmen sie der Aufsichtsbehörde innerhalb von 72 Stunden nach Bekanntwerden, es sei denn, sie führt voraussichtlich nicht zu einem Risiko, und dokumentiert jede Verletzung in jedem Fall."
       },
       "when": "always",
       "citations": [
@@ -400,11 +416,13 @@
       "id": "explicit-consent-special-categories",
       "title": {
         "en": "Have a specific basis for special categories of data",
-        "da": "Hav et særligt grundlag for følsomme oplysninger"
+        "da": "Hav et særligt grundlag for følsomme oplysninger",
+        "de": "Eine besondere Grundlage für besondere Kategorien von Daten haben"
       },
       "summary": {
         "en": "Where the company processes health data or other special categories, it rests on one of the specific bases the law allows, such as the person's explicit consent, and says so.",
-        "da": "Hvor virksomheden behandler helbredsoplysninger eller andre følsomme oplysninger, hviler det på et af de særlige grundlag, loven tillader, såsom personens udtrykkelige samtykke, og det fremgår."
+        "da": "Hvor virksomheden behandler helbredsoplysninger eller andre følsomme oplysninger, hviler det på et af de særlige grundlag, loven tillader, såsom personens udtrykkelige samtykke, og det fremgår.",
+        "de": "Wo das Unternehmen Gesundheitsdaten oder andere besondere Kategorien verarbeitet, beruht dies auf einer der besonderen Grundlagen, die das Gesetz erlaubt, etwa der ausdrücklichen Einwilligung der Person, und sagt das auch."
       },
       "when": {
         "fact": "register.specialCategories",
@@ -450,11 +468,13 @@
       "id": "legitimate-interest-balancing",
       "title": {
         "en": "Weigh the interest where legitimate interest is the basis",
-        "da": "Afvej interessen, hvor legitim interesse er grundlaget"
+        "da": "Afvej interessen, hvor legitim interesse er grundlaget",
+        "de": "Die Interessen abwägen, wo berechtigtes Interesse die Grundlage ist"
       },
       "summary": {
         "en": "Where an activity rests on legitimate interest, the company has weighed its interest against the person's, can show the weighing, tells the person what the interest is and lets them object.",
-        "da": "Hvor en aktivitet hviler på legitim interesse, har virksomheden afvejet sin interesse mod personens, kan vise afvejningen, fortæller personen, hvad interessen er, og lader dem gøre indsigelse."
+        "da": "Hvor en aktivitet hviler på legitim interesse, har virksomheden afvejet sin interesse mod personens, kan vise afvejningen, fortæller personen, hvad interessen er, og lader dem gøre indsigelse.",
+        "de": "Wo eine Tätigkeit auf berechtigtem Interesse beruht, hat das Unternehmen sein Interesse gegen das der Person abgewogen, kann die Abwägung zeigen, sagt der Person, worin das Interesse besteht, und lässt sie widersprechen."
       },
       "when": {
         "fact": "register.usesLegitimateInterest",

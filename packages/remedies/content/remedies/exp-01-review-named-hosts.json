@@ -1,24 +1,28 @@
 {
   "id": "exp-01-review-named-hosts",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "EXP-01",
   "jurisdictions": "all",
   "kind": "self_fix",
   "title": {
-    "en": "Check the hosts your certificates name"
+    "en": "Check the hosts your certificates name",
+    "de": "Die Hosts prüfen, die Ihre Zertifikate nennen"
   },
   "effort": {
     "label": {
-      "en": "About 30 minutes"
+      "en": "About 30 minutes",
+      "de": "Etwa 30 Minuten"
     },
     "minutes": 30
   },
   "detail": {
-    "en": "Every certificate you issue names its hosts in a public log, so staging, admin and test hosts are easy to find. Each one should be gone, behind a login, or meant to be public."
+    "en": "Every certificate you issue names its hosts in a public log, so staging, admin and test hosts are easy to find. Each one should be gone, behind a login, or meant to be public.",
+    "de": "Jedes Zertifikat, das Sie ausstellen, nennt seine Hosts in einem öffentlichen Protokoll, sodass Staging-, Admin- und Test-Hosts leicht zu finden sind. Jeder davon sollte weg, hinter einer Anmeldung oder bewusst öffentlich sein."
   },
   "snippet": "# nginx: an internal host answers only on the office network\nallow 10.0.0.0/8;\ndeny all;",
   "verifyLabel": {
-    "en": "Re-check this finding"
+    "en": "Re-check this finding",
+    "de": "Diesen Befund erneut prüfen"
   },
   "verification": {
     "method": "rescan"
@@ -26,13 +30,16 @@
   "action": {
     "kind": "agent_prompt",
     "label": {
-      "en": "Paste into your coding assistant"
+      "en": "Paste into your coding assistant",
+      "de": "In Ihren Coding-Assistenten einfügen"
     },
     "forwardable": {
-      "en": "Or forward it to your developer — it reads the same either way."
+      "en": "Or forward it to your developer — it reads the same either way.",
+      "de": "Oder leiten Sie es an Ihre Entwicklerin oder Ihren Entwickler weiter; es liest sich so oder so gleich."
     },
     "body": {
-      "en": "Public certificate logs name these hosts under {{domain}}: {{hosts}}. Their names suggest non-production or internal services. For each one, decide whether it should exist at all, and if it should, whether it should answer to the public internet or only behind a login or the office network. Remove what is dead, restrict what is internal, and make sure none of them serves a copy of production data.\n\nWhen you are done: list each host with what you decided and how to confirm it from outside the network."
+      "en": "Public certificate logs name these hosts under {{domain}}: {{hosts}}. Their names suggest non-production or internal services. For each one, decide whether it should exist at all, and if it should, whether it should answer to the public internet or only behind a login or the office network. Remove what is dead, restrict what is internal, and make sure none of them serves a copy of production data.\n\nWhen you are done: list each host with what you decided and how to confirm it from outside the network.",
+      "de": "Öffentliche Zertifikatsprotokolle nennen diese Hosts unter {{domain}}: {{hosts}}. Ihre Namen deuten auf Nicht-Produktions- oder interne Dienste hin. Entscheide für jeden, ob er überhaupt existieren sollte, und wenn ja, ob er dem öffentlichen Internet antworten soll oder nur hinter einer Anmeldung oder im Büronetz. Entferne, was tot ist, beschränke, was intern ist, und stelle sicher, dass keiner eine Kopie der Produktionsdaten ausliefert.\n\nWenn du fertig bist: Liste jeden Host mit deiner Entscheidung auf und wie man sie von außerhalb des Netzes bestätigt."
     }
   }
 }

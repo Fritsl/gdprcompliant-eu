@@ -3,46 +3,56 @@
   "findingTypeId": "REC-01",
   "title": {
     "en": "A session-recording tool watches pages where people type sensitive details",
-    "da": "Et optageværktøj følger sider, hvor folk skriver følsomme oplysninger"
+    "da": "Et optageværktøj følger sider, hvor folk skriver følsomme oplysninger",
+    "de": "Ein Sitzungsaufzeichnungs-Werkzeug beobachtet Seiten, auf denen Menschen sensible Angaben tippen"
   },
   "wrong": {
     "en": "A tool that records how visitors move and type is loaded on a page that asks for a national identity number, a health detail, a card number or a password, and the fields are not marked to be masked. The recording holds what was typed.",
-    "da": "Et værktøj, der optager, hvordan besøgende bevæger sig og skriver, indlæses på en side, der beder om CPR-nummer, en helbredsoplysning, et kortnummer eller en adgangskode, og felterne er ikke markeret til at blive maskeret. Optagelsen rummer det, der blev skrevet."
+    "da": "Et værktøj, der optager, hvordan besøgende bevæger sig og skriver, indlæses på en side, der beder om CPR-nummer, en helbredsoplysning, et kortnummer eller en adgangskode, og felterne er ikke markeret til at blive maskeret. Optagelsen rummer det, der blev skrevet.",
+    "de": "Ein Werkzeug, das aufzeichnet, wie Besucher sich bewegen und tippen, ist auf einer Seite geladen, die nach einer Personenkennziffer, einer Gesundheitsangabe, einer Kartennummer oder einem Passwort fragt, und die Felder sind nicht zur Maskierung markiert. Die Aufzeichnung enthält, was getippt wurde."
   },
   "why": {
     "en": "A recording of someone typing their card number or a symptom is a copy of that detail, kept by a third party, for as long as the recordings are kept. Nobody agreed to that, and the tool’s own terms usually forbid it.",
-    "da": "En optagelse af nogen, der skriver sit kortnummer eller et symptom, er en kopi af den oplysning, opbevaret af en tredjepart, så længe optagelserne gemmes. Ingen sagde ja til det, og værktøjets egne vilkår forbyder det som regel."
+    "da": "En optagelse af nogen, der skriver sit kortnummer eller et symptom, er en kopi af den oplysning, opbevaret af en tredjepart, så længe optagelserne gemmes. Ingen sagde ja til det, og værktøjets egne vilkår forbyder det som regel.",
+    "de": "Eine Aufzeichnung davon, wie jemand seine Kartennummer oder ein Symptom tippt, ist eine Kopie dieser Angabe, aufbewahrt von einem Dritten, so lange die Aufzeichnungen aufbewahrt werden. Dem hat niemand zugestimmt, und die eigenen Bedingungen des Werkzeugs verbieten es meist."
   },
   "steps": [
     {
       "en": "Turn the recording tool off on every page that collects sensitive details: checkout, patient intake, account settings, login.",
-      "da": "Slå optageværktøjet fra på hver side, der indsamler følsomme oplysninger: kasse, patientindskrivning, kontoindstillinger, login."
+      "da": "Slå optageværktøjet fra på hver side, der indsamler følsomme oplysninger: kasse, patientindskrivning, kontoindstillinger, login.",
+      "de": "Schalten Sie das Aufzeichnungswerkzeug auf jeder Seite ab, die sensible Angaben erhebt: Kasse, Patientenaufnahme, Kontoeinstellungen, Anmeldung."
     },
     {
       "en": "Where the tool stays on, mark each sensitive field with the tool’s masking attribute so keystrokes are never recorded. The remedy shows the attribute for your tool.",
-      "da": "Hvor værktøjet bliver ved, så markér hvert følsomt felt med værktøjets maskeringsattribut, så tastetryk aldrig optages. Løsningen viser attributten for dit værktøj."
+      "da": "Hvor værktøjet bliver ved, så markér hvert følsomt felt med værktøjets maskeringsattribut, så tastetryk aldrig optages. Løsningen viser attributten for dit værktøj.",
+      "de": "Wo das Werkzeug bleibt, markieren Sie jedes sensible Feld mit dem Maskierungsattribut des Werkzeugs, damit Tastenanschläge nie aufgezeichnet werden. Die Abhilfe zeigt das Attribut für Ihr Werkzeug."
     },
     {
       "en": "Delete the recordings already made of those pages, and check the tool’s retention setting.",
-      "da": "Slet de optagelser, der allerede er lavet af de sider, og tjek værktøjets indstilling for opbevaring."
+      "da": "Slet de optagelser, der allerede er lavet af de sider, og tjek værktøjets indstilling for opbevaring.",
+      "de": "Löschen Sie die bereits gemachten Aufzeichnungen dieser Seiten und prüfen Sie die Aufbewahrungseinstellung des Werkzeugs."
     }
   ],
   "confirm": {
     "en": "Open the sensitive page and check in the browser’s network panel that the recording tool does not load; where it does, check the field carries the masking attribute. Then run the check again from your case page.",
-    "da": "Åbn den følsomme side og tjek i browserens netværkspanel, at optageværktøjet ikke indlæses; hvor det gør, så tjek, at feltet bærer maskeringsattributten. Kør derefter tjekket igen fra din sagsside."
+    "da": "Åbn den følsomme side og tjek i browserens netværkspanel, at optageværktøjet ikke indlæses; hvor det gør, så tjek, at feltet bærer maskeringsattributten. Kør derefter tjekket igen fra din sagsside.",
+    "de": "Öffnen Sie die sensible Seite und prüfen Sie im Netzwerk-Panel des Browsers, dass das Aufzeichnungswerkzeug nicht lädt; wo es lädt, prüfen Sie, dass das Feld das Maskierungsattribut trägt. Führen Sie dann die Prüfung von Ihrer Fallseite aus erneut aus."
   },
   "keywords": [
     {
       "en": "session replay privacy",
-      "da": "session replay privatliv"
+      "da": "session replay privatliv",
+      "de": "session replay datenschutz"
     },
     {
       "en": "hotjar masking",
-      "da": "hotjar maskering"
+      "da": "hotjar maskering",
+      "de": "hotjar maskierung"
     },
     {
       "en": "recording tool on checkout",
-      "da": "optageværktøj på kassesiden"
+      "da": "optageværktøj på kassesiden",
+      "de": "aufzeichnungswerkzeug im checkout"
     }
   ],
   "remedyId": "rec-01-mask-and-exclude-checkout"

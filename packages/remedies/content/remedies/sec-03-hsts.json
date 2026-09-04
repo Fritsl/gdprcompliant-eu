@@ -1,24 +1,28 @@
 {
   "id": "sec-03-hsts",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "SEC-03",
   "jurisdictions": "all",
   "kind": "self_fix",
   "title": {
-    "en": "Tell browsers to stay on HTTPS"
+    "en": "Tell browsers to stay on HTTPS",
+    "de": "Browsern sagen, dass sie bei HTTPS bleiben sollen"
   },
   "effort": {
     "label": {
-      "en": "About 5 minutes"
+      "en": "About 5 minutes",
+      "de": "Etwa 5 Minuten"
     },
     "minutes": 5
   },
   "detail": {
-    "en": "Without the header a returning visitor tries plain HTTP first, every time. One response header fixes that for a year."
+    "en": "Without the header a returning visitor tries plain HTTP first, every time. One response header fixes that for a year.",
+    "de": "Ohne den Header versucht eine wiederkehrende Besucherin jedes Mal zuerst reines HTTP. Ein Antwort-Header behebt das für ein Jahr."
   },
   "snippet": "# nginx\nadd_header Strict-Transport-Security \"max-age=63072000; includeSubDomains\" always;",
   "verifyLabel": {
-    "en": "Re-check this finding"
+    "en": "Re-check this finding",
+    "de": "Diesen Befund erneut prüfen"
   },
   "verification": {
     "method": "rescan"
@@ -26,13 +30,16 @@
   "action": {
     "kind": "agent_prompt",
     "label": {
-      "en": "Paste into your coding assistant"
+      "en": "Paste into your coding assistant",
+      "de": "In Ihren Coding-Assistenten einfügen"
     },
     "forwardable": {
-      "en": "Or forward it to your developer — it reads the same either way."
+      "en": "Or forward it to your developer — it reads the same either way.",
+      "de": "Oder leiten Sie es an Ihre Entwicklerin oder Ihren Entwickler weiter; es liest sich so oder so gleich."
     },
     "body": {
-      "en": "On {{domain}}, the HTTPS responses carry no Strict-Transport-Security header. Add one to every HTTPS response with a max-age of at least 63072000 and includeSubDomains, and make sure it is sent on error pages too.\n\nWhen you are done: show me the change and how to confirm the header is present on https://{{domain}}/."
+      "en": "On {{domain}}, the HTTPS responses carry no Strict-Transport-Security header. Add one to every HTTPS response with a max-age of at least 63072000 and includeSubDomains, and make sure it is sent on error pages too.\n\nWhen you are done: show me the change and how to confirm the header is present on https://{{domain}}/.",
+      "de": "Auf {{domain}} tragen die HTTPS-Antworten keinen Strict-Transport-Security-Header. Füge jeder HTTPS-Antwort einen hinzu, mit einem max-age von mindestens 63072000 und includeSubDomains, und stelle sicher, dass er auch auf Fehlerseiten gesendet wird.\n\nWenn du fertig bist: Zeige mir die Änderung und wie ich bestätige, dass der Header auf https://{{domain}}/ vorhanden ist."
     }
   }
 }

@@ -1,24 +1,28 @@
 {
   "id": "frm-03-notice-at-collection",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "FRM-03",
   "jurisdictions": "all",
   "kind": "self_fix",
   "title": {
-    "en": "Say what happens to the data, next to the form"
+    "en": "Say what happens to the data, next to the form",
+    "de": "Neben dem Formular sagen, was mit den Daten geschieht"
   },
   "effort": {
     "label": {
-      "en": "About 15 minutes"
+      "en": "About 15 minutes",
+      "de": "Etwa 15 Minuten"
     },
     "minutes": 15
   },
   "detail": {
-    "en": "One sentence beside the submit button, with a link to the privacy policy: what you use the details for, and how long you keep them. The more sensitive the fields, the more this matters."
+    "en": "One sentence beside the submit button, with a link to the privacy policy: what you use the details for, and how long you keep them. The more sensitive the fields, the more this matters.",
+    "de": "Ein Satz neben dem Absenden-Knopf, mit Link zur Datenschutzerklärung: wofür Sie die Angaben verwenden und wie lange Sie sie aufbewahren. Je sensibler die Felder, desto wichtiger."
   },
   "snippet": "<p class=\"notice\">We use these details to answer your enquiry and keep them for 12 months. <a href=\"/privacy\">How we handle your data</a>.</p>\n<button type=\"submit\">Send</button>",
   "verifyLabel": {
-    "en": "Re-check this finding"
+    "en": "Re-check this finding",
+    "de": "Diesen Befund erneut prüfen"
   },
   "verification": {
     "method": "rescan"
@@ -26,13 +30,16 @@
   "action": {
     "kind": "agent_prompt",
     "label": {
-      "en": "Paste into your coding assistant"
+      "en": "Paste into your coding assistant",
+      "de": "In Ihren Coding-Assistenten einfügen"
     },
     "forwardable": {
-      "en": "Or forward it to your developer — it reads the same either way."
+      "en": "Or forward it to your developer — it reads the same either way.",
+      "de": "Oder leiten Sie es an Ihre Entwicklerin oder Ihren Entwickler weiter; es liest sich so oder so gleich."
     },
     "body": {
-      "en": "On {{domain}} at {{path}}, the form that collects {{fields}} has no notice at the point of collection. Add a short paragraph directly above the submit button stating what the details are used for and how long they are kept, with a link to the privacy policy on {{domain}}. Keep it visible on every screen size and do not put it inside a collapsed section.\n\nWhen you are done: show me the change and the exact wording, and how to confirm it renders beside the form on https://{{domain}}{{path}}."
+      "en": "On {{domain}} at {{path}}, the form that collects {{fields}} has no notice at the point of collection. Add a short paragraph directly above the submit button stating what the details are used for and how long they are kept, with a link to the privacy policy on {{domain}}. Keep it visible on every screen size and do not put it inside a collapsed section.\n\nWhen you are done: show me the change and the exact wording, and how to confirm it renders beside the form on https://{{domain}}{{path}}.",
+      "de": "Auf {{domain}} unter {{path}} hat das Formular, das {{fields}} erhebt, keinen Hinweis am Ort der Erhebung. Füge direkt über dem Absenden-Knopf einen kurzen Absatz hinzu, der sagt, wofür die Angaben verwendet und wie lange sie aufbewahrt werden, mit Link zur Datenschutzerklärung auf {{domain}}. Halte ihn auf jeder Bildschirmgröße sichtbar und lege ihn nicht in einen eingeklappten Bereich.\n\nWenn du fertig bist: Zeige mir die Änderung und den genauen Wortlaut und wie ich bestätige, dass er neben dem Formular auf https://{{domain}}{{path}} erscheint."
     }
   }
 }

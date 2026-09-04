@@ -3,46 +3,56 @@
   "findingTypeId": "SEC-04",
   "title": {
     "en": "An HTTPS page loads pieces over plain HTTP",
-    "da": "En HTTPS-side indlæser dele over almindelig HTTP"
+    "da": "En HTTPS-side indlæser dele over almindelig HTTP",
+    "de": "Eine HTTPS-Seite lädt Teile über unverschlüsseltes HTTP"
   },
   "wrong": {
     "en": "The page is served over HTTPS, but some of what it loads, an image, a script or a stylesheet, comes over plain HTTP. Browsers block or warn about it, and a script loaded that way can be swapped by anyone on the path.",
-    "da": "Siden leveres over HTTPS, men noget af det, den indlæser, et billede, et script eller et stylesheet, kommer over almindelig HTTP. Browsere blokerer eller advarer om det, og et script, der indlæses sådan, kan udskiftes af enhver på vejen."
+    "da": "Siden leveres over HTTPS, men noget af det, den indlæser, et billede, et script eller et stylesheet, kommer over almindelig HTTP. Browsere blokerer eller advarer om det, og et script, der indlæses sådan, kan udskiftes af enhver på vejen.",
+    "de": "Die Seite wird über HTTPS ausgeliefert, aber manches, was sie lädt, ein Bild, ein Skript oder ein Stylesheet, kommt über reines HTTP. Browser blockieren das oder warnen, und ein so geladenes Skript kann von jedem auf dem Weg ausgetauscht werden."
   },
   "why": {
     "en": "Mixed content undoes the promise the padlock makes. A visitor sees a warning instead of the padlock, and a script fetched in the clear is a way into the page for anyone between the visitor and the server.",
-    "da": "Blandet indhold ophæver det løfte, hængelåsen giver. En besøgende ser en advarsel i stedet for hængelåsen, og et script hentet i klartekst er en vej ind i siden for enhver mellem den besøgende og serveren."
+    "da": "Blandet indhold ophæver det løfte, hængelåsen giver. En besøgende ser en advarsel i stedet for hængelåsen, og et script hentet i klartekst er en vej ind i siden for enhver mellem den besøgende og serveren.",
+    "de": "Mixed Content macht das Versprechen des Schlosssymbols zunichte. Eine Besucherin sieht eine Warnung statt des Schlosses, und ein im Klartext geholtes Skript ist ein Einfallstor in die Seite für jeden zwischen Besucherin und Server."
   },
   "steps": [
     {
       "en": "Find every http:// address in the page’s own HTML, CSS and scripts and change it to https:// or to a protocol-relative or relative path.",
-      "da": "Find hver http://-adresse i sidens egen HTML, CSS og scripts, og ændr den til https:// eller til en protokolrelativ eller relativ sti."
+      "da": "Find hver http://-adresse i sidens egen HTML, CSS og scripts, og ændr den til https:// eller til en protokolrelativ eller relativ sti.",
+      "de": "Finden Sie jede http://-Adresse im eigenen HTML, CSS und den Skripten der Seite und ändern Sie sie auf https:// oder auf einen protokollrelativen oder relativen Pfad."
     },
     {
       "en": "Check content that comes from a database or a content system, where old links with http are common.",
-      "da": "Tjek indhold, der kommer fra en database eller et indholdssystem, hvor gamle links med http er almindelige."
+      "da": "Tjek indhold, der kommer fra en database eller et indholdssystem, hvor gamle links med http er almindelige.",
+      "de": "Prüfen Sie Inhalte aus einer Datenbank oder einem Content-System, wo alte Links mit http häufig sind."
     },
     {
       "en": "Add upgrade-insecure-requests to the Content-Security-Policy header as a safety net for anything you missed.",
-      "da": "Tilføj upgrade-insecure-requests til headeren Content-Security-Policy som et sikkerhedsnet for det, du overså."
+      "da": "Tilføj upgrade-insecure-requests til headeren Content-Security-Policy som et sikkerhedsnet for det, du overså.",
+      "de": "Fügen Sie upgrade-insecure-requests zum Content-Security-Policy-Header hinzu, als Sicherheitsnetz für alles, was Sie übersehen haben."
     }
   ],
   "confirm": {
     "en": "Open the page in a browser and check that the padlock shows without a warning; the console must list no “mixed content” messages. Then run the check again from your case page.",
-    "da": "Åbn siden i en browser og se, at hængelåsen vises uden advarsel; konsollen må ikke vise beskeder om “mixed content”. Kør derefter tjekket igen fra din sagsside."
+    "da": "Åbn siden i en browser og se, at hængelåsen vises uden advarsel; konsollen må ikke vise beskeder om “mixed content”. Kør derefter tjekket igen fra din sagsside.",
+    "de": "Öffnen Sie die Seite in einem Browser und prüfen Sie, dass das Schloss ohne Warnung erscheint; die Konsole darf keine „Mixed Content“-Meldungen auflisten. Führen Sie dann die Prüfung von Ihrer Fallseite aus erneut aus."
   },
   "keywords": [
     {
       "en": "mixed content",
-      "da": "blandet indhold"
+      "da": "blandet indhold",
+      "de": "mixed content"
     },
     {
       "en": "padlock warning",
-      "da": "hængelås advarsel"
+      "da": "hængelås advarsel",
+      "de": "schloss-warnung"
     },
     {
       "en": "insecure resources on https page",
-      "da": "usikre ressourcer på https-side"
+      "da": "usikre ressourcer på https-side",
+      "de": "unsichere ressourcen auf https-seite"
     }
   ],
   "remedyId": "sec-04-mixed-content"

@@ -1,31 +1,36 @@
 {
   "id": "pol-09-complaint-and-withdrawal-dk",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "POL-09",
   "jurisdictions": ["DK"],
   "kind": "generated_artefact",
   "title": {
     "en": "Add the two missing paragraphs",
-    "da": "Tilføj de to manglende afsnit"
+    "da": "Tilføj de to manglende afsnit",
+    "de": "Die zwei fehlenden Absätze hinzufügen"
   },
   "effort": {
     "label": {
       "en": "One click",
-      "da": "Ét klik"
+      "da": "Ét klik",
+      "de": "Ein Klick"
     }
   },
   "detail": {
     "en": "Two paragraphs in Danish: the right to complain to Datatilsynet, and how consent is withdrawn for your setup.",
-    "da": "To afsnit på dansk: retten til at klage til Datatilsynet, og hvordan samtykke trækkes tilbage i jeres opsætning."
+    "da": "To afsnit på dansk: retten til at klage til Datatilsynet, og hvordan samtykke trækkes tilbage i jeres opsætning.",
+    "de": "Zwei Absätze auf Dänisch: das Recht, sich bei Datatilsynet zu beschweren, und wie die Einwilligung in Ihrer Konstellation widerrufen wird."
   },
   "artefact": "privacy_policy",
   "cta": {
     "en": "Preview the text",
-    "da": "Se teksten"
+    "da": "Se teksten",
+    "de": "Den Text ansehen"
   },
   "verifyLabel": {
     "en": "Re-check once published",
-    "da": "Tjek igen, når den er offentliggjort"
+    "da": "Tjek igen, når den er offentliggjort",
+    "de": "Erneut prüfen, sobald veröffentlicht"
   },
   "verification": {
     "method": "artefact_published",

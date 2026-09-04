@@ -1,89 +1,110 @@
 {
   "title": {
     "en": "Record of processing activities",
-    "da": "Fortegnelse over behandlingsaktiviteter"
+    "da": "Fortegnelse over behandlingsaktiviteter",
+    "de": "Verzeichnis der Verarbeitungstätigkeiten"
   },
   "basis": {
     "en": "Kept under Article 30(1) of the General Data Protection Regulation.",
-    "da": "Ført efter databeskyttelsesforordningens artikel 30, stk. 1."
+    "da": "Ført efter databeskyttelsesforordningens artikel 30, stk. 1.",
+    "de": "Geführt nach Artikel 30 Absatz 1 der Datenschutz-Grundverordnung."
   },
   "controller": {
     "en": "Controller",
-    "da": "Dataansvarlig"
+    "da": "Dataansvarlig",
+    "de": "Verantwortlicher"
   },
   "generated": {
     "en": "Generated",
-    "da": "Udarbejdet"
+    "da": "Udarbejdet",
+    "de": "Erzeugt"
   },
   "draft": {
     "en": "Draft — read from the website, not yet confirmed by the company",
-    "da": "Udkast — læst fra hjemmesiden, endnu ikke bekræftet af virksomheden"
+    "da": "Udkast — læst fra hjemmesiden, endnu ikke bekræftet af virksomheden",
+    "de": "Entwurf — von der Website gelesen, vom Unternehmen noch nicht bestätigt"
   },
   "confirmed": {
     "en": "Confirmed",
-    "da": "Bekræftet"
+    "da": "Bekræftet",
+    "de": "Bestätigt"
   },
   "columns": {
     "activity": {
       "en": "Processing activity",
-      "da": "Behandlingsaktivitet"
+      "da": "Behandlingsaktivitet",
+      "de": "Verarbeitungstätigkeit"
     },
     "purposes": {
       "en": "Purposes",
-      "da": "Formål"
+      "da": "Formål",
+      "de": "Zwecke"
     },
     "dataSubjects": {
       "en": "Categories of data subjects",
-      "da": "Kategorier af registrerede"
+      "da": "Kategorier af registrerede",
+      "de": "Kategorien betroffener Personen"
     },
     "dataCategories": {
       "en": "Categories of personal data",
-      "da": "Kategorier af personoplysninger"
+      "da": "Kategorier af personoplysninger",
+      "de": "Kategorien personenbezogener Daten"
     },
     "legalBases": {
       "en": "Legal basis",
-      "da": "Retsgrundlag"
+      "da": "Retsgrundlag",
+      "de": "Rechtsgrundlage"
     },
     "recipients": {
       "en": "Categories of recipients",
-      "da": "Kategorier af modtagere"
+      "da": "Kategorier af modtagere",
+      "de": "Kategorien von Empfängern"
     },
     "transfers": {
       "en": "Transfers to third countries and safeguards",
-      "da": "Overførsler til tredjelande og fornødne garantier"
+      "da": "Overførsler til tredjelande og fornødne garantier",
+      "de": "Übermittlungen in Drittländer und Garantien"
     },
     "retention": {
       "en": "Envisaged time limits for erasure",
-      "da": "Forventede slettefrister"
+      "da": "Forventede slettefrister",
+      "de": "Vorgesehene Fristen für die Löschung"
     },
     "security": {
       "en": "Technical and organisational security measures",
-      "da": "Tekniske og organisatoriske sikkerhedsforanstaltninger"
+      "da": "Tekniske og organisatoriske sikkerhedsforanstaltninger",
+      "de": "Technische und organisatorische Sicherheitsmaßnahmen"
     },
     "evidence": {
       "en": "Read from",
-      "da": "Læst fra"
+      "da": "Læst fra",
+      "de": "Gelesen aus"
     },
     "status": {
       "en": "Status",
-      "da": "Status"
+      "da": "Status",
+      "de": "Status"
     }
   },
   "notYetAnswered": {
     "en": "Not yet answered",
-    "da": "Endnu ikke besvaret"
+    "da": "Endnu ikke besvaret",
+    "de": "Noch nicht beantwortet"
   },
   "none": {
     "en": "None observed",
-    "da": "Ingen observeret"
+    "da": "Ingen observeret",
+    "de": "Keine beobachtet"
   },
   "noTransfer": {
     "en": "No recipient outside the EEA observed",
-    "da": "Ingen modtager uden for EØS observeret"
+    "da": "Ingen modtager uden for EØS observeret",
+    "de": "Kein Empfänger außerhalb des EWR beobachtet"
   },
   "empty": {
     "en": "No processing activity has been read from the website yet.",
-    "da": "Der er endnu ikke læst nogen behandlingsaktivitet fra hjemmesiden."
+    "da": "Der er endnu ikke læst nogen behandlingsaktivitet fra hjemmesiden.",
+    "de": "Von der Website wurde noch keine Verarbeitungstätigkeit gelesen."
   },
   "subjects": {
     "customers": {

@@ -3,46 +3,56 @@
   "findingTypeId": "SEC-02",
   "title": {
     "en": "A form sends what people type over plain HTTP",
-    "da": "En formular sender det, folk skriver, over almindelig HTTP"
+    "da": "En formular sender det, folk skriver, over almindelig HTTP",
+    "de": "Ein Formular sendet, was Menschen tippen, über unverschlüsseltes HTTP"
   },
   "wrong": {
     "en": "A form on the site, a contact form or a login, posts its contents to an address that starts with http. The name, the message or the password travels unencrypted, whatever the page itself was served over.",
-    "da": "En formular på sitet, en kontaktformular eller et login, sender sit indhold til en adresse, der begynder med http. Navnet, beskeden eller adgangskoden rejser ukrypteret, uanset hvad siden selv blev leveret over."
+    "da": "En formular på sitet, en kontaktformular eller et login, sender sit indhold til en adresse, der begynder med http. Navnet, beskeden eller adgangskoden rejser ukrypteret, uanset hvad siden selv blev leveret over.",
+    "de": "Ein Formular der Website, ein Kontaktformular oder eine Anmeldung, sendet seinen Inhalt an eine Adresse, die mit http beginnt. Name, Nachricht oder Passwort reisen unverschlüsselt, egal worüber die Seite selbst ausgeliefert wurde."
   },
   "why": {
     "en": "The people who fill in a form are the ones who trust the site most. Sending their words in the clear is the kind of failure that is easy to prove and hard to explain, and browsers now warn about it in the form itself.",
-    "da": "De, der udfylder en formular, er dem, der stoler mest på sitet. At sende deres ord i klartekst er den slags fejl, der er let at bevise og svær at forklare, og browsere advarer nu om det i selve formularen."
+    "da": "De, der udfylder en formular, er dem, der stoler mest på sitet. At sende deres ord i klartekst er den slags fejl, der er let at bevise og svær at forklare, og browsere advarer nu om det i selve formularen.",
+    "de": "Die Menschen, die ein Formular ausfüllen, sind die, die der Website am meisten vertrauen. Ihre Worte im Klartext zu senden, ist die Art von Versagen, die leicht zu beweisen und schwer zu erklären ist, und Browser warnen inzwischen im Formular selbst davor."
   },
   "steps": [
     {
       "en": "Change the form’s action address to https, or to a relative path so it inherits the page’s own protocol.",
-      "da": "Ændr formularens action-adresse til https, eller til en relativ sti, så den arver sidens egen protokol."
+      "da": "Ændr formularens action-adresse til https, eller til en relativ sti, så den arver sidens egen protokol.",
+      "de": "Ändern Sie die action-Adresse des Formulars auf https oder auf einen relativen Pfad, damit sie das Protokoll der Seite übernimmt."
     },
     {
       "en": "Make the address the form posts to answer over https and redirect plain HTTP, so an old cached page cannot post in the clear either.",
-      "da": "Få den adresse, formularen sender til, til at svare over https og omdirigere almindelig HTTP, så en gammel cachet side heller ikke kan sende i klartekst."
+      "da": "Få den adresse, formularen sender til, til at svare over https og omdirigere almindelig HTTP, så en gammel cachet side heller ikke kan sende i klartekst.",
+      "de": "Lassen Sie die Adresse, an die das Formular sendet, über https antworten und reines HTTP weiterleiten, damit auch eine alte zwischengespeicherte Seite nicht im Klartext senden kann."
     },
     {
       "en": "Check every other form on the site the same way: contact, newsletter, search, login.",
-      "da": "Tjek hver anden formular på sitet på samme måde: kontakt, nyhedsbrev, søgning, login."
+      "da": "Tjek hver anden formular på sitet på samme måde: kontakt, nyhedsbrev, søgning, login.",
+      "de": "Prüfen Sie jedes andere Formular der Website genauso: Kontakt, Newsletter, Suche, Anmeldung."
     }
   ],
   "confirm": {
     "en": "Open the page, fill the form with test values and submit it while watching the browser’s network panel: the request must go to an https address. Then run the check again from your case page.",
-    "da": "Åbn siden, udfyld formularen med testværdier og send den, mens du kigger i browserens netværkspanel: forespørgslen skal gå til en https-adresse. Kør derefter tjekket igen fra din sagsside."
+    "da": "Åbn siden, udfyld formularen med testværdier og send den, mens du kigger i browserens netværkspanel: forespørgslen skal gå til en https-adresse. Kør derefter tjekket igen fra din sagsside.",
+    "de": "Öffnen Sie die Seite, füllen Sie das Formular mit Testwerten und senden Sie es ab, während Sie das Netzwerk-Panel des Browsers beobachten: Die Anfrage muss an eine https-Adresse gehen. Führen Sie dann die Prüfung von Ihrer Fallseite aus erneut aus."
   },
   "keywords": [
     {
       "en": "form submits over http",
-      "da": "formular sender over http"
+      "da": "formular sender over http",
+      "de": "formular sendet über http"
     },
     {
       "en": "insecure form",
-      "da": "usikker formular"
+      "da": "usikker formular",
+      "de": "unsicheres formular"
     },
     {
       "en": "mixed content form",
-      "da": "blandet indhold formular"
+      "da": "blandet indhold formular",
+      "de": "mixed content formular"
     }
   ],
   "remedyId": "sec-02-https-form-hsts"

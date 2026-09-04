@@ -1,24 +1,28 @@
 {
   "id": "fpr-03-audio-fingerprint",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "FPR-03",
   "jurisdictions": "all",
   "kind": "self_fix",
   "title": {
-    "en": "Remove the script that fingerprints the audio stack"
+    "en": "Remove the script that fingerprints the audio stack",
+    "de": "Das Skript entfernen, das den Audio-Stack fingerprintet"
   },
   "effort": {
     "label": {
-      "en": "About 15 minutes"
+      "en": "About 15 minutes",
+      "de": "Etwa 15 Minuten"
     },
     "minutes": 15
   },
   "detail": {
-    "en": "A script generates a sound nobody hears and reads the processed signal back; the tiny differences between devices are the identifier. Remove the script, or switch the feature off with the vendor."
+    "en": "A script generates a sound nobody hears and reads the processed signal back; the tiny differences between devices are the identifier. Remove the script, or switch the feature off with the vendor.",
+    "de": "Ein Skript erzeugt einen Ton, den niemand hört, und liest das verarbeitete Signal zurück; die winzigen Unterschiede zwischen Geräten sind das Kennzeichen. Entfernen Sie das Skript oder schalten Sie die Funktion beim Anbieter ab."
   },
   "snippet": "<!-- remove the tag, or load it only after consent -->\n<!-- <script src=\"https://{{host}}/…\"></script> -->",
   "verifyLabel": {
-    "en": "Re-check this finding"
+    "en": "Re-check this finding",
+    "de": "Diesen Befund erneut prüfen"
   },
   "verification": {
     "method": "rescan"
@@ -26,13 +30,16 @@
   "action": {
     "kind": "agent_prompt",
     "label": {
-      "en": "Paste into your coding assistant"
+      "en": "Paste into your coding assistant",
+      "de": "In Ihren Coding-Assistenten einfügen"
     },
     "forwardable": {
-      "en": "Or forward it to your developer — it reads the same either way."
+      "en": "Or forward it to your developer — it reads the same either way.",
+      "de": "Oder leiten Sie es an Ihre Entwicklerin oder Ihren Entwickler weiter; es liest sich so oder so gleich."
     },
     "body": {
-      "en": "On {{domain}}, a script served from {{host}} creates an OfflineAudioContext with an oscillator on {{page}} and reads the rendered samples back. Nothing is played; that is device fingerprinting.\n\nFind where the {{host}} script is included and remove it. If it belongs to a vendor we need, ask them for the setting that disables device fingerprinting and apply it, or load their script only after the visitor has consented.\n\nWhen you are done: show me the change and how to confirm no script on https://{{domain}}{{page}} creates an audio context on a fresh load."
+      "en": "On {{domain}}, a script served from {{host}} creates an OfflineAudioContext with an oscillator on {{page}} and reads the rendered samples back. Nothing is played; that is device fingerprinting.\n\nFind where the {{host}} script is included and remove it. If it belongs to a vendor we need, ask them for the setting that disables device fingerprinting and apply it, or load their script only after the visitor has consented.\n\nWhen you are done: show me the change and how to confirm no script on https://{{domain}}{{page}} creates an audio context on a fresh load.",
+      "de": "Auf {{domain}} erzeugt ein von {{host}} ausgeliefertes Skript auf {{page}} einen OfflineAudioContext mit einem Oszillator und liest die gerenderten Samples zurück. Nichts wird abgespielt; das ist Geräte-Fingerprinting.\n\nFinde, wo das {{host}}-Skript eingebunden ist, und entferne es. Gehört es zu einem Anbieter, den wir brauchen, frage ihn nach der Einstellung, die Geräte-Fingerprinting abschaltet, und wende sie an, oder lade sein Skript erst, nachdem die Besucherin eingewilligt hat.\n\nWenn du fertig bist: Zeige mir die Änderung und wie ich bestätige, dass kein Skript auf https://{{domain}}{{page}} bei einem frischen Laden einen Audio-Kontext erzeugt."
     }
   }
 }

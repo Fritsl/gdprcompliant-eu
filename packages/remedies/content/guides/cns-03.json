@@ -3,46 +3,56 @@
   "findingTypeId": "CNS-03",
   "title": {
     "en": "The banner offers no way to refuse",
-    "da": "Banneret giver ingen mulighed for at afvise"
+    "da": "Banneret giver ingen mulighed for at afvise",
+    "de": "Das Banner bietet keine Möglichkeit abzulehnen"
   },
   "wrong": {
     "en": "The banner has an accept button and nothing else: no reject, no settings, or a settings path that leads nowhere. A visitor can say yes or close the tab.",
-    "da": "Banneret har en acceptknap og intet andet: intet afvis, ingen indstillinger, eller en indstillingsvej, der fører ingen steder hen. En besøgende kan sige ja eller lukke fanen."
+    "da": "Banneret har en acceptknap og intet andet: intet afvis, ingen indstillinger, eller en indstillingsvej, der fører ingen steder hen. En besøgende kan sige ja eller lukke fanen.",
+    "de": "Das Banner hat einen Akzeptieren-Knopf und sonst nichts: kein Ablehnen, keine Einstellungen oder einen Einstellungspfad, der nirgendwohin führt. Eine Besucherin kann Ja sagen oder den Tab schließen."
   },
   "why": {
     "en": "Consent means a real choice, and a banner that only accepts is the textbook example of one that does not offer it. Every visitor sees it, and so does every authority.",
-    "da": "Samtykke betyder et reelt valg, og et banner, der kun accepterer, er lærebogseksemplet på et, der ikke giver det. Hver besøgende ser det, og det gør hvert tilsyn også."
+    "da": "Samtykke betyder et reelt valg, og et banner, der kun accepterer, er lærebogseksemplet på et, der ikke giver det. Hver besøgende ser det, og det gør hvert tilsyn også.",
+    "de": "Einwilligung bedeutet eine echte Wahl, und ein Banner, das nur akzeptiert, ist das Lehrbuchbeispiel für eines, das sie nicht bietet. Jede Besucherin sieht es, und jede Behörde auch."
   },
   "steps": [
     {
       "en": "Add a “reject all” button to the first layer of the banner, with the same weight as “accept all”.",
-      "da": "Tilføj en “afvis alle”-knap på bannerets første lag, med samme vægt som “accepter alle”."
+      "da": "Tilføj en “afvis alle”-knap på bannerets første lag, med samme vægt som “accepter alle”.",
+      "de": "Fügen Sie der ersten Ebene des Banners einen „Alle ablehnen“-Knopf hinzu, mit demselben Gewicht wie „Alle akzeptieren“."
     },
     {
       "en": "Make reject actually stop every non-essential tag, and remember the answer so the banner does not return on the next page.",
-      "da": "Få afvis til faktisk at standse hvert ikke-nødvendigt tag, og husk svaret, så banneret ikke kommer igen på næste side."
+      "da": "Få afvis til faktisk at standse hvert ikke-nødvendigt tag, og husk svaret, så banneret ikke kommer igen på næste side.",
+      "de": "Sorgen Sie dafür, dass Ablehnen tatsächlich jedes nicht notwendige Tag stoppt, und merken Sie sich die Antwort, damit das Banner auf der nächsten Seite nicht wiederkommt."
     },
     {
       "en": "If the consent tool cannot do this, change the tool; it is the tool’s one job.",
-      "da": "Hvis samtykkeværktøjet ikke kan det, så skift værktøj; det er værktøjets ene opgave."
+      "da": "Hvis samtykkeværktøjet ikke kan det, så skift værktøj; det er værktøjets ene opgave.",
+      "de": "Wenn das Einwilligungswerkzeug das nicht kann, wechseln Sie das Werkzeug; das ist seine einzige Aufgabe."
     }
   ],
   "confirm": {
     "en": "Load the page in a private window: the first thing you see must contain a way to say no, one click, no scrolling. Then run the check again from your case page.",
-    "da": "Indlæs siden i et privat vindue: det første, du ser, skal rumme en måde at sige nej på, ét klik, ingen scrolling. Kør derefter tjekket igen fra din sagsside."
+    "da": "Indlæs siden i et privat vindue: det første, du ser, skal rumme en måde at sige nej på, ét klik, ingen scrolling. Kør derefter tjekket igen fra din sagsside.",
+    "de": "Laden Sie die Seite in einem privaten Fenster: Das Erste, was Sie sehen, muss eine Möglichkeit enthalten, Nein zu sagen, ein Klick, ohne Scrollen. Führen Sie dann die Prüfung von Ihrer Fallseite aus erneut aus."
   },
   "keywords": [
     {
       "en": "cookie banner accept only",
-      "da": "cookiebanner kun accept"
+      "da": "cookiebanner kun accept",
+      "de": "cookie-banner nur akzeptieren"
     },
     {
       "en": "no reject button",
-      "da": "ingen afvis-knap"
+      "da": "ingen afvis-knap",
+      "de": "kein ablehnen-knopf"
     },
     {
       "en": "consent banner without refusal",
-      "da": "samtykkebanner uden afslag"
+      "da": "samtykkebanner uden afslag",
+      "de": "einwilligungsbanner ohne ablehnung"
     }
   ],
   "remedyId": "cns-03-offer-a-refusal"

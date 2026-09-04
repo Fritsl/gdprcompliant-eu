@@ -220,9 +220,11 @@ describe.skipIf(!url)('the core relational schema (F-03)', () => {
       content: { title: { en: 'Move the tags behind the consent state' } },
       hash: sha256('cns-02-gate-tags@1'),
     });
-    await t.db
-      .insert(schema.findings)
-      .values({ ...finding, remedyId: 'cns-02-gate-tags', remedyVersion: 1 });
+    await t.db.insert(schema.findings).values({
+      ...finding,
+      remedyId: 'cns-02-gate-tags',
+      remedyVersion: 1,
+    });
     await t.db.insert(schema.findingEvidence).values({
       findingId: 'f-1',
       evidenceId: `pass_diff:${HASH.slice(0, 16)}`,

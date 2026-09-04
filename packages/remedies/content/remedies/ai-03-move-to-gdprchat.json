@@ -1,32 +1,38 @@
 {
   "id": "ai-03-move-to-gdprchat",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "AI-03",
   "jurisdictions": "all",
   "kind": "our_product",
   "title": {
-    "en": "Move the people using it to GDPR Chat"
+    "en": "Move the people using it to GDPR Chat",
+    "de": "Die Nutzenden zu GDPR Chat umziehen"
   },
   "effort": {
     "label": {
-      "en": "Same day"
+      "en": "Same day",
+      "de": "Am selben Tag"
     }
   },
   "detail": {
-    "en": "Same experience your staff already know, hosted in the EU, with a processing agreement and no training on your content."
+    "en": "Same experience your staff already know, hosted in the EU, with a processing agreement and no training on your content.",
+    "de": "Dieselbe Erfahrung, die Ihre Mitarbeitenden schon kennen, in der EU gehostet, mit Auftragsverarbeitungsvertrag und ohne Training auf Ihren Inhalten."
   },
   "product": {
     "id": "gdprchat",
     "url": "https://gdprchat.eu"
   },
   "cta": {
-    "en": "See what it would cost"
+    "en": "See what it would cost",
+    "de": "Sehen, was es kosten würde"
   },
   "alternativeNote": {
-    "en": "No free fix exists for this one. Three European alternatives, if you would rather not use ours."
+    "en": "No free fix exists for this one. Three European alternatives, if you would rather not use ours.",
+    "de": "Dafür gibt es keine kostenlose Lösung. Drei europäische Alternativen, falls Sie lieber nicht unsere nutzen möchten."
   },
   "verifyLabel": {
-    "en": "Mark as handled"
+    "en": "Mark as handled",
+    "de": "Als erledigt markieren"
   },
   "verification": {
     "method": "attestation",
@@ -35,16 +41,20 @@
   "action": {
     "kind": "message",
     "label": {
-      "en": "Send this to the people using it"
+      "en": "Send this to the people using it",
+      "de": "Das an die Nutzenden senden"
     },
     "to": {
-      "en": "{{recipients}}"
+      "en": "{{recipients}}",
+      "de": "{{recipients}}"
     },
     "subject": {
-      "en": "Switching the assistant we use for customer replies"
+      "en": "Switching the assistant we use for customer replies",
+      "de": "Wechsel des Assistenten für Kundenantworten"
     },
     "body": {
-      "en": "Hi,\n\nWe've found that customer details — names, addresses, order information — are going into an assistant hosted outside the EU that we don't have an agreement covering. We need to stop that continuing.\n\nFrom Monday, please use the EU-hosted one for anything involving a customer. It works the same way, so there's nothing to learn.\n\nNothing you've done is a problem and nobody is in trouble. We just found it and we're fixing it.\n\nAsk me if anything is unclear."
+      "en": "Hi,\n\nWe've found that customer details — names, addresses, order information — are going into an assistant hosted outside the EU that we don't have an agreement covering. We need to stop that continuing.\n\nFrom Monday, please use the EU-hosted one for anything involving a customer. It works the same way, so there's nothing to learn.\n\nNothing you've done is a problem and nobody is in trouble. We just found it and we're fixing it.\n\nAsk me if anything is unclear.",
+      "de": "Hallo,\n\nwir haben festgestellt, dass Kundendaten — Namen, Adressen, Bestellinformationen — in einen Assistenten fließen, der außerhalb der EU gehostet wird und für den wir keinen Vertrag haben. Das muss aufhören.\n\nBitte nutzt ab Montag für alles, was Kundinnen und Kunden betrifft, den in der EU gehosteten. Er funktioniert genauso, es gibt also nichts Neues zu lernen.\n\nNichts, was ihr getan habt, ist ein Problem, und niemand hat Ärger. Wir haben es gefunden und beheben es.\n\nFragt mich, wenn etwas unklar ist."
     }
   }
 }

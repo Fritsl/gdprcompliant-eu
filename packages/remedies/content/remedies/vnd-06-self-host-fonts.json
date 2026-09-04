@@ -1,24 +1,28 @@
 {
   "id": "vnd-06-self-host-fonts",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "VND-06",
   "jurisdictions": "all",
   "kind": "self_fix",
   "title": {
-    "en": "Self-host the fonts"
+    "en": "Self-host the fonts",
+    "de": "Die Schriften selbst hosten"
   },
   "effort": {
     "label": {
-      "en": "About 15 minutes"
+      "en": "About 15 minutes",
+      "de": "Etwa 15 Minuten"
     },
     "minutes": 15
   },
   "detail": {
-    "en": "Download the families, put them beside your stylesheet, and declare them locally. Nothing leaves your server and the page gets slightly faster."
+    "en": "Download the families, put them beside your stylesheet, and declare them locally. Nothing leaves your server and the page gets slightly faster.",
+    "de": "Laden Sie die Familien herunter, legen Sie sie neben Ihr Stylesheet und deklarieren Sie sie lokal. Nichts verlässt Ihren Server, und die Seite wird etwas schneller."
   },
   "snippet": "@font-face {\n  font-family: 'Inter';\n  src: url('/fonts/inter-v13.woff2') format('woff2');\n  font-display: swap;\n}",
   "verifyLabel": {
-    "en": "Re-check this finding"
+    "en": "Re-check this finding",
+    "de": "Diesen Befund erneut prüfen"
   },
   "verification": {
     "method": "rescan"
@@ -26,13 +30,16 @@
   "action": {
     "kind": "agent_prompt",
     "label": {
-      "en": "Paste into your coding assistant"
+      "en": "Paste into your coding assistant",
+      "de": "In Ihren Coding-Assistenten einfügen"
     },
     "forwardable": {
-      "en": "Or forward it to your developer — it reads the same either way."
+      "en": "Or forward it to your developer — it reads the same either way.",
+      "de": "Oder leiten Sie es an Ihre Entwicklerin oder Ihren Entwickler weiter; es liest sich so oder so gleich."
     },
     "body": {
-      "en": "{{domain}} loads {{font_families}} from {{font_hosts}}. Every visitor's IP address therefore reaches those hosts before they have agreed to anything.\n\nDownload the families, self-host them under {{domain}}, and replace the external stylesheet link with local @font-face declarations using font-display: swap. Rendered typography must stay identical — same weights, same styles, same fallback stacks.\n\nWhen you are done: list the files you changed and confirm that no request to {{font_hosts}} remains anywhere in the page load."
+      "en": "{{domain}} loads {{font_families}} from {{font_hosts}}. Every visitor's IP address therefore reaches those hosts before they have agreed to anything.\n\nDownload the families, self-host them under {{domain}}, and replace the external stylesheet link with local @font-face declarations using font-display: swap. Rendered typography must stay identical — same weights, same styles, same fallback stacks.\n\nWhen you are done: list the files you changed and confirm that no request to {{font_hosts}} remains anywhere in the page load.",
+      "de": "{{domain}} lädt {{font_families}} von {{font_hosts}}. Die IP-Adresse jeder Besucherin erreicht diese Hosts daher, bevor sie irgendetwas zugestimmt hat.\n\nLade die Familien herunter, hoste sie selbst unter {{domain}} und ersetze den externen Stylesheet-Link durch lokale @font-face-Deklarationen mit font-display: swap. Die gerenderte Typografie muss identisch bleiben: dieselben Schnitte, dieselben Stile, dieselben Fallback-Stapel.\n\nWenn du fertig bist: Liste die geänderten Dateien auf und bestätige, dass nirgends im Seitenaufbau eine Anfrage an {{font_hosts}} bleibt."
     }
   }
 }

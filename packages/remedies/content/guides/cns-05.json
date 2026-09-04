@@ -3,46 +3,56 @@
   "findingTypeId": "CNS-05",
   "title": {
     "en": "Refusing takes more clicks than accepting",
-    "da": "Det tager flere klik at afvise end at acceptere"
+    "da": "Det tager flere klik at afvise end at acceptere",
+    "de": "Ablehnen braucht mehr Klicks als Akzeptieren"
   },
   "wrong": {
     "en": "The first layer of the banner offers “accept all” and “settings”, and the way to refuse is on a second layer, behind the settings button. Saying yes is one click; saying no is a journey.",
-    "da": "Bannerets første lag tilbyder “accepter alle” og “indstillinger”, og vejen til at afvise ligger på et andet lag, bag indstillingsknappen. At sige ja er ét klik; at sige nej er en rejse."
+    "da": "Bannerets første lag tilbyder “accepter alle” og “indstillinger”, og vejen til at afvise ligger på et andet lag, bag indstillingsknappen. At sige ja er ét klik; at sige nej er en rejse.",
+    "de": "Die erste Ebene des Banners bietet „alle akzeptieren“ und „Einstellungen“, und der Weg zum Ablehnen liegt auf einer zweiten Ebene hinter dem Einstellungsknopf. Ja sagen ist ein Klick; Nein sagen ist eine Reise."
   },
   "why": {
     "en": "When no is harder than yes, the yes is not freely given. Authorities have said so in decisions against the largest sites in Europe, and the fix is a button.",
-    "da": "Når nej er sværere end ja, er ja ikke frivilligt. Tilsyn har sagt det i afgørelser mod de største sites i Europa, og rettelsen er en knap."
+    "da": "Når nej er sværere end ja, er ja ikke frivilligt. Tilsyn har sagt det i afgørelser mod de største sites i Europa, og rettelsen er en knap.",
+    "de": "Wenn Nein schwerer ist als Ja, ist das Ja nicht freiwillig. Behörden haben das in Entscheidungen gegen die größten Websites Europas gesagt, und die Abhilfe ist ein Knopf."
   },
   "steps": [
     {
       "en": "Put a “reject all” button on the first layer, next to “accept all”, with the same size and prominence.",
-      "da": "Sæt en “afvis alle”-knap på første lag ved siden af “accepter alle”, med samme størrelse og fremtrædenhed."
+      "da": "Sæt en “afvis alle”-knap på første lag ved siden af “accepter alle”, med samme størrelse og fremtrædenhed.",
+      "de": "Setzen Sie einen „Alle ablehnen“-Knopf auf die erste Ebene, neben „Alle akzeptieren“, in derselben Größe und Auffälligkeit."
     },
     {
       "en": "Keep the settings layer for people who want to choose category by category; it is not a substitute for the button.",
-      "da": "Behold indstillingslaget til dem, der vil vælge kategori for kategori; det er ikke en erstatning for knappen."
+      "da": "Behold indstillingslaget til dem, der vil vælge kategori for kategori; det er ikke en erstatning for knappen.",
+      "de": "Behalten Sie die Einstellungsebene für Menschen, die Kategorie für Kategorie wählen wollen; sie ist kein Ersatz für den Knopf."
     },
     {
       "en": "Check the mobile layout too: the reject button must be visible without scrolling on a phone.",
-      "da": "Tjek også mobillayoutet: afvis-knappen skal kunne ses uden at scrolle på en telefon."
+      "da": "Tjek også mobillayoutet: afvis-knappen skal kunne ses uden at scrolle på en telefon.",
+      "de": "Prüfen Sie auch das mobile Layout: Der Ablehnen-Knopf muss auf einem Telefon ohne Scrollen sichtbar sein."
     }
   ],
   "confirm": {
     "en": "Load the page in a private window and count: refusing everything must take exactly one click, the same as accepting. Then run the check again from your case page.",
-    "da": "Indlæs siden i et privat vindue og tæl: at afvise alt skal tage præcis ét klik, det samme som at acceptere. Kør derefter tjekket igen fra din sagsside."
+    "da": "Indlæs siden i et privat vindue og tæl: at afvise alt skal tage præcis ét klik, det samme som at acceptere. Kør derefter tjekket igen fra din sagsside.",
+    "de": "Laden Sie die Seite in einem privaten Fenster und zählen Sie: Alles abzulehnen muss genau einen Klick kosten, so wie das Akzeptieren. Führen Sie dann die Prüfung von Ihrer Fallseite aus erneut aus."
   },
   "keywords": [
     {
       "en": "reject button hidden in settings",
-      "da": "afvis-knap gemt i indstillinger"
+      "da": "afvis-knap gemt i indstillinger",
+      "de": "ablehnen-knopf in den einstellungen versteckt"
     },
     {
       "en": "cookie banner dark pattern",
-      "da": "cookiebanner dark pattern"
+      "da": "cookiebanner dark pattern",
+      "de": "cookie-banner dark pattern"
     },
     {
       "en": "reject all first layer",
-      "da": "afvis alle første lag"
+      "da": "afvis alle første lag",
+      "de": "alle ablehnen erste ebene"
     }
   ],
   "remedyId": "cns-05-reject-on-the-first-layer"

@@ -1,6 +1,7 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import type { Finding, Jurisdiction } from '@gc/contracts';
 import {
+  caseTimeline,
   createTestDatabase,
   exportCase,
   findingsForCase,
@@ -9,15 +10,23 @@ import {
   storeEvidence,
   storeFindings,
   testDatabaseUrl,
+  withTenant,
   type TestDatabase,
 } from '@gc/db';
 import {
   UnsupportedJurisdiction,
+  bindingTables,
   draftsFromSecurity,
   findingIdentity,
   raiseFindings,
 } from '@gc/findings';
-import { loadCatalogue } from '@gc/remedies';
+import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { join, relative, sep } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { timelineModel } from '@gc/artefacts';
+import { localise } from '@gc/i18n';
+import { guideLocales, loadCatalogue, loadGuides } from '@gc/remedies';
+import { evaluate, loadRuleSets } from '@gc/rules';
 import {
   BrowserPool,
   FixtureServer,
@@ -207,4 +216,157 @@ describe('one fixture, several countries', () => {
       expect(dkExport.json).not.toContain('Bundesland');
     },
   );
+});
+
+// The second jurisdiction end to end (I-04): a German company gets German bindings, the
+// German authority and German text everywhere it reads, with no Danish string, article
+// or authority anywhere in it, and the work was content and rules only: nothing in the
+// detectors or the UI branches on a country.
+
+const I04_ROOT = fileURLToPath(new URL('../../', import.meta.url));
+const DANISH = /[æøåÆØÅ]|Datatilsynet|Databeskyttelsesloven|privatlivspolitik/;
+const de = (text: Record<string, string>) => localise(text, 'de');
+
+function walkTexts(value: unknown, out: Record<string, string>[] = []): Record<string, string>[] {
+  if (Array.isArray(value)) for (const v of value) walkTexts(v, out);
+  else if (value && typeof value === 'object') {
+    const o = value as Record<string, unknown>;
+    if (typeof o['en'] === 'string') out.push(o as Record<string, string>);
+    else for (const v of Object.values(o)) walkTexts(v, out);
+  }
+  return out;
+}
+
+function sourceFiles(dir: string, out: string[] = []): string[] {
+  for (const f of readdirSync(dir)) {
+    if (f === 'node_modules' || f === '.next' || f === 'dist') continue;
+    const p = join(dir, f);
+    if (statSync(p).isDirectory()) sourceFiles(p, out);
+    else if (/\.(ts|tsx)$/.test(f) && !/\.test\.ts$/.test(f)) out.push(p);
+  }
+  return out;
+}
+
+describe.skipIf(!url)('the second jurisdiction end to end (I-04)', () => {
+  const catalogue = loadCatalogue();
+  const guides = loadGuides();
+  const sets = loadRuleSets();
+  const table = bindingTables().get('DE')!;
+  let t: TestDatabase;
+  let caseId = '';
+  let tenantId = '';
+
+  beforeAll(async () => {
+    t = await createTestDatabase(url);
+    await seedRemedies(t, catalogue);
+    const opened = await openCase(t, {
+      company: {
+        domain: 'beispielshop.de',
+        legalName: 'Beispielshop GmbH',
+        country: 'DE',
+        locale: 'de',
+      },
+      jurisdiction: 'DE',
+      locale: 'de',
+    });
+    caseId = opened.caseId;
+    tenantId = opened.tenantId;
+  });
+
+  afterAll(async () => {
+    await t?.drop();
+  });
+
+  it('binds every finding type to German law with the German authority, and a guide written in German', () => {
+    expect(table.jurisdiction).toBe('DE');
+    expect(table.authority.name).not.toMatch(DANISH);
+    expect(table.authority.name).toMatch(/Bundesland|Landes|Aufsichtsbehörde/);
+    expect(table.authority.url).toMatch(/\.de\//);
+    for (const b of table.bindings) {
+      expect(b.citations.length, b.findingTypeId).toBeGreaterThan(0);
+      // A binding's guide, where one is written: in German. Types the planner raises
+      // rather than the scanner have no guide yet, in any language.
+      const guide = guides.byId(b.guideId);
+      if (guide) expect(guideLocales(guide), b.guideId).toContain('de');
+    }
+    expect(table.bindings.filter((b) => guides.byId(b.guideId)).length).toBeGreaterThanOrEqual(20);
+  });
+
+  it('every guide, every remedy the German case can show, every duty and every web message reads in German', () => {
+    for (const g of guides.guides)
+      for (const text of walkTexts(g)) {
+        const l = de(text);
+        expect(l.fellBack, `${g.id}: ${text['en']}`).toBe(false);
+        expect(l.value, g.id).not.toMatch(DANISH);
+      }
+    for (const entry of catalogue.entries) {
+      const r = entry.remedy;
+      const forGermany = r.jurisdictions === 'all' || r.jurisdictions.includes('DE');
+      if (!forGermany) continue;
+      for (const text of walkTexts(r)) {
+        const l = de(text);
+        expect(l.fellBack, `${r.id}: ${text['en']}`).toBe(false);
+        expect(l.value, r.id).not.toMatch(DANISH);
+      }
+    }
+    const duties = evaluate(sets, {
+      caseId,
+      jurisdiction: 'DE',
+      facts: {
+        'company.country': 'DE',
+        'company.inEea': true,
+        'register.rows': 2,
+        'company.headcountMin': 25,
+      },
+    });
+    expect(duties.length).toBeGreaterThan(30);
+    for (const d of duties) {
+      const l = de(d.title);
+      expect(l.fellBack, d.ruleId).toBe(false);
+      expect(l.value, d.ruleId).not.toMatch(DANISH);
+      expect(d.jurisdiction).toBe('DE');
+    }
+    expect(duties.some((d) => d.ruleId === 'de-authority-named')).toBe(true);
+    expect(
+      duties.some((d) => d.ruleId.startsWith('dk-') || d.ruleId === 'cpr-number-handling'),
+    ).toBe(false);
+    const messages = JSON.parse(
+      readFileSync(join(I04_ROOT, 'apps', 'web', 'content', 'messages.json'), 'utf8'),
+    ) as Record<string, Record<string, string>>;
+    for (const [key, text] of Object.entries(messages)) {
+      const l = de(text);
+      expect(l.fellBack, key).toBe(false);
+      expect(l.value, key).not.toMatch(DANISH);
+    }
+  });
+
+  it('the German case’s own record reads in German, and names no Danish authority', async () => {
+    const events = await withTenant(t, tenantId, (db) => caseTimeline(db, caseId));
+    const model = timelineModel(caseId, events, { locale: 'de' });
+    expect(model.entries.length).toBeGreaterThan(0);
+    for (const e of model.entries) {
+      expect(e.fellBack, e.type).toBe(false);
+      expect(`${e.text} ${e.detail}`, e.type).not.toMatch(DANISH);
+    }
+    expect(model.disclaimer).not.toMatch(DANISH);
+    expect(model.locale).toBe('de');
+  });
+
+  it('was content and rules only: nothing in the detectors or the UI branches on a country', () => {
+    const roots = [
+      join(I04_ROOT, 'packages', 'scanner', 'src'),
+      join(I04_ROOT, 'packages', 'findings', 'src'),
+      join(I04_ROOT, 'apps', 'web', 'app'),
+      join(I04_ROOT, 'apps', 'web', 'lib'),
+      join(I04_ROOT, 'apps', 'web', 'components'),
+    ];
+    const branch =
+      /(?:jurisdiction|country)\s*(?:===|!==|==|!=)\s*['"](?:DK|DE)['"]|['"](?:DK|DE)['"]\s*(?:===|!==)\s*(?:jurisdiction|country)|case\s+['"](?:DK|DE)['"]\s*:/;
+    const offenders = roots
+      .flatMap((r) => sourceFiles(r))
+      .filter((f) => !/[\\/]bindings\.ts$/.test(f))
+      .filter((f) => branch.test(readFileSync(f, 'utf8')))
+      .map((f) => relative(I04_ROOT, f).split(sep).join('/'));
+    expect(offenders).toEqual([]);
+  });
 });

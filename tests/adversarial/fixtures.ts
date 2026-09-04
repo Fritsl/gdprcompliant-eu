@@ -5,6 +5,14 @@ import {
   type Finding,
   type UntrustedContent,
 } from '@gc/contracts';
+import { loadCatalogue } from '@gc/remedies';
+
+// The remedy's current catalogue version: what the seed writes and a finding references.
+const remedyVersion = (id: string): number => {
+  const entry = loadCatalogue().get(id);
+  if (!entry) throw new Error(`no remedy ${id}`);
+  return entry.remedy.version;
+};
 
 // Typed objects the adversarial suites feed the model client: a case, a finding, the
 // evidence behind it, and a helper that wraps scraped text the way the scanner does.
@@ -58,7 +66,7 @@ export const FINDING: Finding = {
   status: 'open',
   area: 'Consent',
   evidence: [{ evidenceId: EVIDENCE.id, hash: EVIDENCE.hash }],
-  remedy: { remedyId: 'cns-09-new-tracker', version: 1 },
+  remedy: { remedyId: 'cns-09-new-tracker', version: remedyVersion('cns-09-new-tracker') },
   firstSeenAt: NOW,
   lastSeenAt: NOW,
 };

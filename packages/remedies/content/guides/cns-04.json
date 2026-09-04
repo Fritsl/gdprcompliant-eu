@@ -3,46 +3,56 @@
   "findingTypeId": "CNS-04",
   "title": {
     "en": "The site forgets what the visitor chose",
-    "da": "Sitet glemmer, hvad den besøgende valgte"
+    "da": "Sitet glemmer, hvad den besøgende valgte",
+    "de": "Die Website vergisst, was die Besucherin gewählt hat"
   },
   "wrong": {
     "en": "The visitor refuses, and on the next page or the next visit the banner is back, or the trackers are. Nothing recorded the choice, or what recorded it is not read.",
-    "da": "Den besøgende afviser, og på næste side eller ved næste besøg er banneret tilbage, eller trackerne er. Intet gemte valget, eller det, der gemte det, bliver ikke læst."
+    "da": "Den besøgende afviser, og på næste side eller ved næste besøg er banneret tilbage, eller trackerne er. Intet gemte valget, eller det, der gemte det, bliver ikke læst.",
+    "de": "Die Besucherin lehnt ab, und auf der nächsten Seite oder beim nächsten Besuch ist das Banner zurück, oder die Tracker sind es. Nichts hat die Wahl gespeichert, oder was sie gespeichert hat, wird nicht gelesen."
   },
   "why": {
     "en": "A choice that has to be made again every page is a choice the site is trying to wear down. It is also a sign the reject path was never wired up, only drawn.",
-    "da": "Et valg, der skal træffes igen på hver side, er et valg, sitet prøver at slide ned. Det er også et tegn på, at afvisningsvejen aldrig blev koblet til, kun tegnet."
+    "da": "Et valg, der skal træffes igen på hver side, er et valg, sitet prøver at slide ned. Det er også et tegn på, at afvisningsvejen aldrig blev koblet til, kun tegnet.",
+    "de": "Eine Wahl, die auf jeder Seite neu getroffen werden muss, ist eine Wahl, die die Website zermürben will. Es ist auch ein Zeichen, dass der Ablehnen-Pfad nie verdrahtet, nur gezeichnet wurde."
   },
   "steps": [
     {
       "en": "Store the answer where the consent tool can read it on every page: a first-party cookie or localStorage entry, with a lifetime of months.",
-      "da": "Gem svaret et sted, samtykkeværktøjet kan læse det på hver side: en førstepartscookie eller en localStorage-post med en levetid på måneder."
+      "da": "Gem svaret et sted, samtykkeværktøjet kan læse det på hver side: en førstepartscookie eller en localStorage-post med en levetid på måneder.",
+      "de": "Speichern Sie die Antwort dort, wo das Einwilligungswerkzeug sie auf jeder Seite lesen kann: ein First-Party-Cookie oder ein localStorage-Eintrag, mit einer Lebensdauer von Monaten."
     },
     {
       "en": "Read it before any tag loads, on every page, and honour a stored refusal without showing the banner again.",
-      "da": "Læs det, før noget tag indlæses, på hver side, og respekter et gemt afslag uden at vise banneret igen."
+      "da": "Læs det, før noget tag indlæses, på hver side, og respekter et gemt afslag uden at vise banneret igen.",
+      "de": "Lesen Sie sie, bevor irgendein Tag lädt, auf jeder Seite, und respektieren Sie eine gespeicherte Ablehnung, ohne das Banner erneut zu zeigen."
     },
     {
       "en": "Check that the stored value survives a reload and a new tab in the same browser.",
-      "da": "Tjek, at den gemte værdi overlever en genindlæsning og en ny fane i samme browser."
+      "da": "Tjek, at den gemte værdi overlever en genindlæsning og en ny fane i samme browser.",
+      "de": "Prüfen Sie, dass der gespeicherte Wert ein Neuladen und einen neuen Tab im selben Browser übersteht."
     }
   ],
   "confirm": {
     "en": "Reject in a private window, then reload and open another page on the site: the banner must not return, and the network panel must show no tracker. Then run the check again from your case page.",
-    "da": "Afvis i et privat vindue, genindlæs så og åbn en anden side på sitet: banneret må ikke komme tilbage, og netværkspanelet må ikke vise nogen tracker. Kør derefter tjekket igen fra din sagsside."
+    "da": "Afvis i et privat vindue, genindlæs så og åbn en anden side på sitet: banneret må ikke komme tilbage, og netværkspanelet må ikke vise nogen tracker. Kør derefter tjekket igen fra din sagsside.",
+    "de": "Lehnen Sie in einem privaten Fenster ab, laden Sie neu und öffnen Sie eine andere Seite der Website: Das Banner darf nicht wiederkommen, und das Netzwerk-Panel darf keinen Tracker zeigen. Führen Sie dann die Prüfung von Ihrer Fallseite aus erneut aus."
   },
   "keywords": [
     {
       "en": "cookie banner keeps coming back",
-      "da": "cookiebanner kommer tilbage"
+      "da": "cookiebanner kommer tilbage",
+      "de": "cookie-banner kommt immer wieder"
     },
     {
       "en": "consent not remembered",
-      "da": "samtykke ikke husket"
+      "da": "samtykke ikke husket",
+      "de": "einwilligung nicht gespeichert"
     },
     {
       "en": "reject choice forgotten",
-      "da": "afvisning glemt"
+      "da": "afvisning glemt",
+      "de": "ablehnung vergessen"
     }
   ],
   "remedyId": "cns-04-remember-the-choice"

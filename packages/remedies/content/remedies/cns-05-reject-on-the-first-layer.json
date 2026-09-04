@@ -1,27 +1,31 @@
 {
   "id": "cns-05-reject-on-the-first-layer",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "CNS-05",
   "jurisdictions": "all",
   "kind": "self_fix",
   "title": {
     "en": "Put \"Reject all\" next to \"Accept all\"",
-    "da": "Sæt \"Afvis alle\" ved siden af \"Accepter alle\""
+    "da": "Sæt \"Afvis alle\" ved siden af \"Accepter alle\"",
+    "de": "„Alle ablehnen“ neben „Alle akzeptieren“ setzen"
   },
   "effort": {
     "label": {
       "en": "About 10 minutes",
-      "da": "Cirka 10 minutter"
+      "da": "Cirka 10 minutter",
+      "de": "Etwa 10 Minuten"
     },
     "minutes": 10
   },
   "detail": {
     "en": "Accepting is one click; refusing means opening the settings and working through them. The first layer needs a refuse button as visible as the accept, and nothing else changes.",
-    "da": "At acceptere er ét klik; at afvise kræver, at man åbner indstillingerne og arbejder sig igennem dem. Første lag skal have en afvis-knap, der er lige så synlig som accept, og intet andet ændres."
+    "da": "At acceptere er ét klik; at afvise kræver, at man åbner indstillingerne og arbejder sig igennem dem. Første lag skal have en afvis-knap, der er lige så synlig som accept, og intet andet ændres.",
+    "de": "Akzeptieren ist ein Klick; Ablehnen heißt, die Einstellungen zu öffnen und sich durchzuarbeiten. Die erste Ebene braucht einen Ablehnen-Knopf, so sichtbar wie das Akzeptieren, und sonst ändert sich nichts."
   },
   "verifyLabel": {
     "en": "Re-check this finding",
-    "da": "Tjek dette fund igen"
+    "da": "Tjek dette fund igen",
+    "de": "Diesen Befund erneut prüfen"
   },
   "verification": {
     "method": "rescan"
@@ -29,13 +33,16 @@
   "action": {
     "kind": "agent_prompt",
     "label": {
-      "en": "Paste into your coding assistant"
+      "en": "Paste into your coding assistant",
+      "de": "In Ihren Coding-Assistenten einfügen"
     },
     "forwardable": {
-      "en": "Or forward it to your developer — it reads the same either way."
+      "en": "Or forward it to your developer — it reads the same either way.",
+      "de": "Oder leiten Sie es an Ihre Entwicklerin oder Ihren Entwickler weiter; es liest sich so oder so gleich."
     },
     "body": {
-      "en": "On {{domain}} the cookie banner's first layer has an accept button but no reject button; refusing only works through the settings.\n\nAdd a \"Reject all\" button to the first layer, with the same size, weight and position as the accept button. Pressing it must do what the settings path does when every optional category is off: store the refusal and close the banner.\n\nWhen you are done: tell me the two buttons' labels and how to verify that one click refuses."
+      "en": "On {{domain}} the cookie banner's first layer has an accept button but no reject button; refusing only works through the settings.\n\nAdd a \"Reject all\" button to the first layer, with the same size, weight and position as the accept button. Pressing it must do what the settings path does when every optional category is off: store the refusal and close the banner.\n\nWhen you are done: tell me the two buttons' labels and how to verify that one click refuses.",
+      "de": "Auf {{domain}} hat die erste Ebene des Cookie-Banners einen Akzeptieren-Knopf, aber keinen Ablehnen-Knopf; Ablehnen geht nur über die Einstellungen.\n\nFüge der ersten Ebene einen Knopf „Alle ablehnen“ hinzu, in derselben Größe, Stärke und Position wie der Akzeptieren-Knopf. Sein Drücken muss tun, was der Einstellungspfad tut, wenn jede optionale Kategorie aus ist: die Ablehnung speichern und das Banner schließen.\n\nWenn du fertig bist: Nenne mir die Beschriftungen der beiden Knöpfe und wie ich prüfe, dass ein Klick ablehnt."
     }
   }
 }

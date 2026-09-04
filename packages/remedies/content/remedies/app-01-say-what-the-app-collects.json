@@ -1,31 +1,36 @@
 {
   "id": "app-01-say-what-the-app-collects",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "APP-01",
   "jurisdictions": "all",
   "kind": "generated_artefact",
   "title": {
     "en": "Put what the app collects into the policy, or correct the store listing",
-    "da": "Skriv det, appen indsamler, ind i politikken, eller ret butikkens opslag"
+    "da": "Skriv det, appen indsamler, ind i politikken, eller ret butikkens opslag",
+    "de": "Was die App erhebt, in die Erklärung aufnehmen oder den Store-Eintrag berichtigen"
   },
   "effort": {
     "label": {
       "en": "A decision, then one click",
-      "da": "En beslutning, så ét klik"
+      "da": "En beslutning, så ét klik",
+      "de": "Eine Entscheidung, dann ein Klick"
     }
   },
   "detail": {
     "en": "The store listing says the app collects something the published privacy policy never mentions. One of the two is wrong. If the app really collects it, confirm the activity in the register and the policy is written again from it; if it does not, correct the declaration in the store.",
-    "da": "Butikkens opslag siger, at appen indsamler noget, den offentliggjorte privatlivspolitik aldrig nævner. En af de to tager fejl. Hvis appen virkelig indsamler det, så bekræft aktiviteten i fortegnelsen, og politikken skrives igen ud fra den; hvis ikke, så ret erklæringen i butikken."
+    "da": "Butikkens opslag siger, at appen indsamler noget, den offentliggjorte privatlivspolitik aldrig nævner. En af de to tager fejl. Hvis appen virkelig indsamler det, så bekræft aktiviteten i fortegnelsen, og politikken skrives igen ud fra den; hvis ikke, så ret erklæringen i butikken.",
+    "de": "Der Store-Eintrag sagt, die App erhebe etwas, das die veröffentlichte Datenschutzerklärung nie erwähnt. Eines von beiden ist falsch. Erhebt die App es wirklich, bestätigen Sie die Tätigkeit im Verzeichnis, und die Erklärung wird daraus neu geschrieben; wenn nicht, berichtigen Sie die Angabe im Store."
   },
   "artefact": "privacy_policy",
   "cta": {
     "en": "Preview the new draft",
-    "da": "Se det nye udkast"
+    "da": "Se det nye udkast",
+    "de": "Den neuen Entwurf ansehen"
   },
   "verifyLabel": {
     "en": "Re-check once published",
-    "da": "Tjek igen, når den er offentliggjort"
+    "da": "Tjek igen, når den er offentliggjort",
+    "de": "Erneut prüfen, sobald veröffentlicht"
   },
   "verification": {
     "method": "artefact_published",

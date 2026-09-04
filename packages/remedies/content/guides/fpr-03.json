@@ -3,46 +3,56 @@
   "findingTypeId": "FPR-03",
   "title": {
     "en": "A script renders silent audio to fingerprint the visitor",
-    "da": "Et script afspiller lydløs lyd for at tage fingeraftryk af den besøgende"
+    "da": "Et script afspiller lydløs lyd for at tage fingeraftryk af den besøgende",
+    "de": "Ein Skript rendert stummen Ton, um die Besucherin zu fingerprinten"
   },
   "wrong": {
     "en": "A script creates an audio context, generates a signal the visitor never hears and reads the result back. The numbers differ by device and driver, and they identify the visitor without a cookie.",
-    "da": "Et script opretter en lydkontekst, laver et signal, den besøgende aldrig hører, og læser resultatet tilbage. Tallene er forskellige fra enhed til enhed og driver til driver, og de identificerer den besøgende uden en cookie."
+    "da": "Et script opretter en lydkontekst, laver et signal, den besøgende aldrig hører, og læser resultatet tilbage. Tallene er forskellige fra enhed til enhed og driver til driver, og de identificerer den besøgende uden en cookie.",
+    "de": "Ein Skript erzeugt einen Audio-Kontext, generiert ein Signal, das die Besucherin nie hört, und liest das Ergebnis zurück. Die Zahlen unterscheiden sich je nach Gerät und Treiber, und sie identifizieren die Besucherin ohne Cookie."
   },
   "why": {
     "en": "Silent audio processing has one use on a web page, and it is not sound. It is a covert identifier, and it is the kind of technique authorities cite when they explain what consent is for.",
-    "da": "Lydløs lydbehandling har ét formål på en webside, og det er ikke lyd. Det er en skjult identifikator, og det er den slags teknik, tilsyn nævner, når de forklarer, hvad samtykke er til."
+    "da": "Lydløs lydbehandling har ét formål på en webside, og det er ikke lyd. Det er en skjult identifikator, og det er den slags teknik, tilsyn nævner, når de forklarer, hvad samtykke er til.",
+    "de": "Stumme Audioverarbeitung hat auf einer Webseite genau einen Nutzen, und es ist nicht der Klang. Es ist ein verdecktes Kennzeichen, und es ist die Art von Technik, die Behörden anführen, wenn sie erklären, wofür Einwilligung da ist."
   },
   "steps": [
     {
       "en": "Find the script the finding names and the tool it belongs to.",
-      "da": "Find det script, fundet nævner, og det værktøj, det hører til."
+      "da": "Find det script, fundet nævner, og det værktøj, det hører til.",
+      "de": "Finden Sie das Skript, das der Befund nennt, und das Werkzeug, zu dem es gehört."
     },
     {
       "en": "Remove the tool or turn off its fingerprinting feature.",
-      "da": "Fjern værktøjet fra siden, eller slå dets fingeraftryksfunktion fra i værktøjets egne indstillinger."
+      "da": "Fjern værktøjet fra siden, eller slå dets fingeraftryksfunktion fra i værktøjets egne indstillinger.",
+      "de": "Entfernen Sie das Werkzeug oder schalten Sie seine Fingerprinting-Funktion ab."
     },
     {
       "en": "If audio processing is a genuine feature of the page, start it only on a user action, never on load.",
-      "da": "Hvis lydbehandling er en ægte funktion på siden, så start den kun ved en brugerhandling, aldrig ved indlæsning."
+      "da": "Hvis lydbehandling er en ægte funktion på siden, så start den kun ved en brugerhandling, aldrig ved indlæsning.",
+      "de": "Wenn Audioverarbeitung eine echte Funktion der Seite ist, starten Sie sie nur auf eine Nutzeraktion hin, nie beim Laden."
     }
   ],
   "confirm": {
     "en": "Load the page without consent: no OfflineAudioContext or oscillator may be created before the visitor does anything. Then run the check again from your case page.",
-    "da": "Indlæs siden uden samtykke: ingen OfflineAudioContext eller oscillator må oprettes, før den besøgende gør noget. Kør derefter tjekket igen fra din sagsside."
+    "da": "Indlæs siden uden samtykke: ingen OfflineAudioContext eller oscillator må oprettes, før den besøgende gør noget. Kør derefter tjekket igen fra din sagsside.",
+    "de": "Laden Sie die Seite ohne Einwilligung: Kein OfflineAudioContext und kein Oszillator darf erzeugt werden, bevor die Besucherin etwas tut. Führen Sie dann die Prüfung von Ihrer Fallseite aus erneut aus."
   },
   "keywords": [
     {
       "en": "audio fingerprinting",
-      "da": "lydfingeraftryk"
+      "da": "lydfingeraftryk",
+      "de": "audio-fingerprinting"
     },
     {
       "en": "audiocontext fingerprint",
-      "da": "audiocontext fingeraftryk"
+      "da": "audiocontext fingeraftryk",
+      "de": "audiocontext-fingerprint"
     },
     {
       "en": "covert tracking",
-      "da": "skjult sporing"
+      "da": "skjult sporing",
+      "de": "verdecktes tracking"
     }
   ],
   "remedyId": "fpr-03-audio-fingerprint"

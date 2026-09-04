@@ -3,50 +3,61 @@
   "findingTypeId": "SEC-06",
   "title": {
     "en": "The basic security headers are missing",
-    "da": "De grundlæggende sikkerhedsheadere mangler"
+    "da": "De grundlæggende sikkerhedsheadere mangler",
+    "de": "Die grundlegenden Sicherheits-Header fehlen"
   },
   "wrong": {
     "en": "The responses carry none, or not all, of the three headers that tell a browser how the page may be used: a Content-Security-Policy, X-Content-Type-Options set to nosniff, and X-Frame-Options or a frame-ancestors rule.",
-    "da": "Svarene bærer ingen af, eller ikke alle, de tre headere, der fortæller en browser, hvordan siden må bruges: en Content-Security-Policy, X-Content-Type-Options sat til nosniff, og X-Frame-Options eller en frame-ancestors-regel."
+    "da": "Svarene bærer ingen af, eller ikke alle, de tre headere, der fortæller en browser, hvordan siden må bruges: en Content-Security-Policy, X-Content-Type-Options sat til nosniff, og X-Frame-Options eller en frame-ancestors-regel.",
+    "de": "Die Antworten tragen keinen oder nicht alle der drei Header, die einem Browser sagen, wie die Seite verwendet werden darf: eine Content-Security-Policy, X-Content-Type-Options auf nosniff und X-Frame-Options oder eine frame-ancestors-Regel."
   },
   "why": {
     "en": "These headers cost nothing and stop whole classes of attack: scripts injected into the page, files interpreted as something they are not, the site framed inside someone else’s page to trick visitors. Their absence is the first line of any external security report.",
-    "da": "Disse headere koster ingenting og standser hele klasser af angreb: scripts sprøjtet ind i siden, filer fortolket som noget, de ikke er, sitet indrammet i en andens side for at narre besøgende. Deres fravær er første linje i enhver ekstern sikkerhedsrapport."
+    "da": "Disse headere koster ingenting og standser hele klasser af angreb: scripts sprøjtet ind i siden, filer fortolket som noget, de ikke er, sitet indrammet i en andens side for at narre besøgende. Deres fravær er første linje i enhver ekstern sikkerhedsrapport.",
+    "de": "Diese Header kosten nichts und stoppen ganze Angriffsklassen: in die Seite eingeschleuste Skripte, als etwas anderes interpretierte Dateien, die Website in einer fremden Seite eingerahmt, um Besucher zu täuschen. Ihr Fehlen ist die erste Zeile jedes externen Sicherheitsberichts."
   },
   "steps": [
     {
       "en": "Add X-Content-Type-Options: nosniff and X-Frame-Options: DENY (or SAMEORIGIN if the site frames itself) to every response.",
-      "da": "Tilføj X-Content-Type-Options: nosniff og X-Frame-Options: DENY (eller SAMEORIGIN, hvis sitet indrammer sig selv) til hvert svar."
+      "da": "Tilføj X-Content-Type-Options: nosniff og X-Frame-Options: DENY (eller SAMEORIGIN, hvis sitet indrammer sig selv) til hvert svar.",
+      "de": "Fügen Sie jeder Antwort X-Content-Type-Options: nosniff und X-Frame-Options: DENY (oder SAMEORIGIN, wenn die Website sich selbst einrahmt) hinzu."
     },
     {
       "en": "Add a Content-Security-Policy. Start with a report-only policy that lists the hosts the site actually loads from, watch the reports for a week, then enforce it.",
-      "da": "Tilføj en Content-Security-Policy. Begynd med en report-only-politik, der nævner de værter, sitet faktisk indlæser fra, følg rapporterne en uge, og håndhæv den så."
+      "da": "Tilføj en Content-Security-Policy. Begynd med en report-only-politik, der nævner de værter, sitet faktisk indlæser fra, følg rapporterne en uge, og håndhæv den så.",
+      "de": "Fügen Sie eine Content-Security-Policy hinzu. Beginnen Sie mit einer Report-only-Richtlinie, die die Hosts auflistet, von denen die Website tatsächlich lädt, beobachten Sie die Berichte eine Woche lang und setzen Sie sie dann durch."
     },
     {
       "en": "Put the headers in the server configuration, not in individual pages, so error pages and files carry them too.",
-      "da": "Læg headerne i serveropsætningen, ikke i de enkelte sider, så fejlsider og filer også bærer dem."
+      "da": "Læg headerne i serveropsætningen, ikke i de enkelte sider, så fejlsider og filer også bærer dem.",
+      "de": "Legen Sie die Header in die Serverkonfiguration, nicht in einzelne Seiten, damit auch Fehlerseiten und Dateien sie tragen."
     }
   ],
   "confirm": {
     "en": "Open the site and read the response headers in the browser’s network panel: all three must be present on the home page and on a deeper page. Then run the check again from your case page.",
-    "da": "Åbn sitet og læs svar-headerne i browserens netværkspanel: alle tre skal være der på forsiden og på en dybere side. Kør derefter tjekket igen fra din sagsside."
+    "da": "Åbn sitet og læs svar-headerne i browserens netværkspanel: alle tre skal være der på forsiden og på en dybere side. Kør derefter tjekket igen fra din sagsside.",
+    "de": "Öffnen Sie die Website und lesen Sie die Antwort-Header im Netzwerk-Panel des Browsers: Alle drei müssen auf der Startseite und auf einer tieferen Seite vorhanden sein. Führen Sie dann die Prüfung von Ihrer Fallseite aus erneut aus."
   },
   "keywords": [
     {
       "en": "security headers",
-      "da": "sikkerhedsheadere"
+      "da": "sikkerhedsheadere",
+      "de": "sicherheits-header"
     },
     {
       "en": "content security policy",
-      "da": "content security policy"
+      "da": "content security policy",
+      "de": "content security policy"
     },
     {
       "en": "x-frame-options",
-      "da": "x-frame-options"
+      "da": "x-frame-options",
+      "de": "x-frame-options"
     },
     {
       "en": "nosniff",
-      "da": "nosniff"
+      "da": "nosniff",
+      "de": "nosniff"
     }
   ],
   "remedyId": "sec-06-security-headers"

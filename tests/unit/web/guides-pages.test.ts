@@ -45,7 +45,7 @@ describe('the guide content decides the pages', () => {
   it('every guide is written in full in English and Danish', () => {
     const guides = loadGuides();
     expect(guides.guides.length).toBeGreaterThanOrEqual(20);
-    for (const g of guides.guides) expect(guideLocales(g), g.id).toEqual(['en', 'da']);
-    expect(guides.completeLocales()).toEqual(['en', 'da']);
+    for (const g of guides.guides) expect(guideLocales(g), g.id).toEqual(['en', 'da', 'de']);
+    expect(guides.completeLocales()).toEqual(['en', 'da', 'de']);
   });
 });

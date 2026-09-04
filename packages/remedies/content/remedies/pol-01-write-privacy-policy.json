@@ -1,31 +1,36 @@
 {
   "id": "pol-01-write-privacy-policy",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "POL-01",
   "jurisdictions": "all",
   "kind": "generated_artefact",
   "title": {
     "en": "Publish a privacy policy, drafted from what we found",
-    "da": "Offentliggør en privatlivspolitik, skrevet ud fra det, vi fandt"
+    "da": "Offentliggør en privatlivspolitik, skrevet ud fra det, vi fandt",
+    "de": "Eine Datenschutzerklärung veröffentlichen, entworfen aus dem, was wir gefunden haben"
   },
   "effort": {
     "label": {
       "en": "One click, then a review",
-      "da": "Ét klik, så et gennemsyn"
+      "da": "Ét klik, så et gennemsyn",
+      "de": "Ein Klick, dann eine Durchsicht"
     }
   },
   "detail": {
     "en": "Nothing on the site tells a visitor who collects their data or why. The draft is written from the vendors, forms and cookies the scan saw, and from the answers you give; it links from the footer of every page.",
-    "da": "Intet på sitet fortæller en besøgende, hvem der indsamler deres data eller hvorfor. Udkastet skrives ud fra de leverandører, formularer og cookies, scanningen så, og ud fra dine svar; det linkes fra sidefoden på hver side."
+    "da": "Intet på sitet fortæller en besøgende, hvem der indsamler deres data eller hvorfor. Udkastet skrives ud fra de leverandører, formularer og cookies, scanningen så, og ud fra dine svar; det linkes fra sidefoden på hver side.",
+    "de": "Nichts auf der Website sagt einer Besucherin, wer ihre Daten erhebt oder warum. Der Entwurf wird aus den Anbietern, Formularen und Cookies geschrieben, die der Scan gesehen hat, und aus den Antworten, die Sie geben; er wird aus der Fußzeile jeder Seite verlinkt."
   },
   "artefact": "privacy_policy",
   "cta": {
     "en": "Preview the draft",
-    "da": "Se udkastet"
+    "da": "Se udkastet",
+    "de": "Den Entwurf ansehen"
   },
   "verifyLabel": {
     "en": "Re-check once published",
-    "da": "Tjek igen, når den er offentliggjort"
+    "da": "Tjek igen, når den er offentliggjort",
+    "de": "Erneut prüfen, sobald veröffentlicht"
   },
   "verification": {
     "method": "artefact_published",

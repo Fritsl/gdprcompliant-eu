@@ -1,26 +1,31 @@
 {
   "id": "pol-04-retention-section",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "POL-04",
   "jurisdictions": "all",
   "kind": "generated_artefact",
   "title": {
-    "en": "Rewrite the retention section from your register"
+    "en": "Rewrite the retention section from your register",
+    "de": "Den Abschnitt zur Aufbewahrung aus Ihrem Verzeichnis neu schreiben"
   },
   "effort": {
     "label": {
-      "en": "One click, after two answers"
+      "en": "One click, after two answers",
+      "de": "Ein Klick, nach zwei Antworten"
     }
   },
   "detail": {
-    "en": "We need two things from you first — how long you keep orders, and how long you keep newsletter sign-ups. Then the section writes itself from your register."
+    "en": "We need two things from you first — how long you keep orders, and how long you keep newsletter sign-ups. Then the section writes itself from your register.",
+    "de": "Wir brauchen zuerst zwei Dinge von Ihnen: wie lange Sie Bestellungen aufbewahren und wie lange Newsletter-Anmeldungen. Dann schreibt sich der Abschnitt aus Ihrem Verzeichnis von selbst."
   },
   "artefact": "privacy_policy",
   "cta": {
-    "en": "Answer the two questions"
+    "en": "Answer the two questions",
+    "de": "Die zwei Fragen beantworten"
   },
   "verifyLabel": {
-    "en": "Re-check once published"
+    "en": "Re-check once published",
+    "de": "Erneut prüfen, sobald veröffentlicht"
   },
   "verification": {
     "method": "artefact_published",

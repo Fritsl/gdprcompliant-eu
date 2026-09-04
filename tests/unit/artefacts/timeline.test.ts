@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { CASE_EVENT_TYPES, CaseEventSchema, type CaseEvent } from '@gc/contracts';
 import { TIMELINE_CONTENT, timelineContentGaps, timelineModel, timelinePdf } from '@gc/artefacts';
+import { localise } from '@gc/i18n';
 
 // The timeline wording and rendering (C-02): every event type has words, the words
 // resolve their placeholders, actors are named, and the PDF carries the dates.
@@ -113,12 +114,17 @@ describe('timeline model', () => {
     expect(JSON.stringify(model)).not.toContain('{{');
   });
 
-  it('renders Danish, and marks a fallback when a language is missing', () => {
+  it('renders Danish and German, and marks a fallback when a language is missing', () => {
     const da = timelineModel('DK-26-0M4K', events.slice(0, 2), { locale: 'da' });
     expect(da.entries.map((e) => e.text)).toEqual(['Sag åbnet', 'Scanning gennemført']);
     expect(da.entries[1]?.detail).toBe('23 tjek · 11 bestået · 12 konstateringer · 0 uafklarede');
     const de = timelineModel('DK-26-0M4K', events.slice(0, 1), { locale: 'de' });
-    expect(de.entries[0]).toMatchObject({ text: 'Case opened', fellBack: true });
+    expect(de.entries[0]).toMatchObject({ text: 'Fall eröffnet', fellBack: false });
+    // A language the wording lacks falls back to English, and the fallback is marked.
+    expect(localise({ en: 'Case opened' }, 'de')).toMatchObject({
+      value: 'Case opened',
+      fellBack: true,
+    });
   });
 });
 

@@ -1,28 +1,32 @@
 {
   "id": "cns-01-gate-before-interaction",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "CNS-01",
   "jurisdictions": "all",
   "kind": "self_fix",
   "title": {
     "en": "Hold the tags until someone has actually agreed",
-    "da": "Hold tags tilbage, indtil nogen faktisk har sagt ja"
+    "da": "Hold tags tilbage, indtil nogen faktisk har sagt ja",
+    "de": "Die Tags zurückhalten, bis jemand wirklich zugestimmt hat"
   },
   "effort": {
     "label": {
       "en": "About 20 minutes",
-      "da": "Cirka 20 minutter"
+      "da": "Cirka 20 minutter",
+      "de": "Etwa 20 Minuten"
     },
     "minutes": 20
   },
   "detail": {
     "en": "Third-party tags load the moment the page does, before the visitor has been asked anything. Each non-essential tag waits for the consent event instead.",
-    "da": "Tredjeparts-tags indlæses i samme øjeblik som siden, før den besøgende er blevet spurgt om noget. Hvert ikke-nødvendigt tag venter i stedet på samtykke-hændelsen."
+    "da": "Tredjeparts-tags indlæses i samme øjeblik som siden, før den besøgende er blevet spurgt om noget. Hvert ikke-nødvendigt tag venter i stedet på samtykke-hændelsen.",
+    "de": "Dritt-Tags laden in dem Moment, in dem die Seite lädt, bevor die Besucherin irgendetwas gefragt wurde. Stattdessen wartet jedes nicht notwendige Tag auf das Einwilligungsereignis."
   },
   "snippet": "// before — fires on page load\nloadTag('analytics');\n\n// after — waits for a real decision\nwindow.addEventListener('CookieConsentDecision', (e) => {\n  if (e.detail.categories.includes('statistics')) loadTag('analytics');\n});",
   "verifyLabel": {
     "en": "Re-check this finding",
-    "da": "Tjek dette fund igen"
+    "da": "Tjek dette fund igen",
+    "de": "Diesen Befund erneut prüfen"
   },
   "verification": {
     "method": "rescan"
@@ -30,13 +34,16 @@
   "action": {
     "kind": "agent_prompt",
     "label": {
-      "en": "Paste into your coding assistant"
+      "en": "Paste into your coding assistant",
+      "de": "In Ihren Coding-Assistenten einfügen"
     },
     "forwardable": {
-      "en": "Or forward it to your developer — it reads the same either way."
+      "en": "Or forward it to your developer — it reads the same either way.",
+      "de": "Oder leiten Sie es an Ihre Entwicklerin oder Ihren Entwickler weiter; es liest sich so oder so gleich."
     },
     "body": {
-      "en": "On {{domain}} these third-party hosts are contacted on the first page load, before the visitor has interacted with anything:\n\n{{hosts}}\n\nMake each of them load only after the consent event fires with its matching category (statistics, marketing or preferences). Leave the consent banner itself and anything strictly necessary for the site to work as it is.\n\nWhen you are done: list which hosts you changed and which you deliberately left alone, and tell me how to verify that a first visit with no interaction now contacts none of them."
+      "en": "On {{domain}} these third-party hosts are contacted on the first page load, before the visitor has interacted with anything:\n\n{{hosts}}\n\nMake each of them load only after the consent event fires with its matching category (statistics, marketing or preferences). Leave the consent banner itself and anything strictly necessary for the site to work as it is.\n\nWhen you are done: list which hosts you changed and which you deliberately left alone, and tell me how to verify that a first visit with no interaction now contacts none of them.",
+      "de": "Auf {{domain}} werden diese Dritt-Hosts beim ersten Laden der Seite kontaktiert, bevor die Besucherin mit irgendetwas interagiert hat:\n\n{{hosts}}\n\nSorge dafür, dass jeder von ihnen erst lädt, nachdem das Einwilligungsereignis mit seiner passenden Kategorie (Statistik, Marketing oder Präferenzen) ausgelöst wurde. Lass das Einwilligungsbanner selbst und alles, was für den Betrieb der Website unbedingt erforderlich ist, wie es ist.\n\nWenn du fertig bist: Liste auf, welche Hosts du geändert und welche du bewusst belassen hast, und sage mir, wie ich prüfe, dass ein erster Besuch ohne Interaktion jetzt keinen davon kontaktiert."
     }
   }
 }

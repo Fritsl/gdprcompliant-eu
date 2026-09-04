@@ -1,26 +1,31 @@
 {
   "id": "dpa-01-processing-agreement",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "DPA-01",
   "jurisdictions": "all",
   "kind": "generated_artefact",
   "title": {
-    "en": "Generate your processing agreement and sub-processor page"
+    "en": "Generate your processing agreement and sub-processor page",
+    "de": "Ihren Auftragsverarbeitungsvertrag und die Unterauftragsverarbeiter-Seite erzeugen"
   },
   "effort": {
     "label": {
-      "en": "One click, then a review"
+      "en": "One click, then a review",
+      "de": "Ein Klick, dann eine Durchsicht"
     }
   },
   "detail": {
-    "en": "Drafted from your vendors, where they sit, and what they handle."
+    "en": "Drafted from your vendors, where they sit, and what they handle.",
+    "de": "Entworfen aus Ihren Anbietern, wo sie sitzen und was sie verarbeiten."
   },
   "artefact": "processing_agreement",
   "cta": {
-    "en": "Preview the draft"
+    "en": "Preview the draft",
+    "de": "Den Entwurf ansehen"
   },
   "verifyLabel": {
-    "en": "Re-check once published"
+    "en": "Re-check once published",
+    "de": "Erneut prüfen, sobald veröffentlicht"
   },
   "verification": {
     "method": "artefact_published",

@@ -1,18 +1,51 @@
 {
   "roles": {
-    "marketing": { "en": "Marketing", "da": "Marketing" },
-    "it": { "en": "IT / Operations", "da": "IT / Drift" },
-    "hr": { "en": "HR", "da": "HR" },
-    "finance": { "en": "Finance / Legal", "da": "Økonomi / Jura" }
+    "marketing": {
+      "en": "Marketing",
+      "da": "Marketing",
+      "de": "Marketing"
+    },
+    "it": {
+      "en": "IT / Operations",
+      "da": "IT / Drift",
+      "de": "IT / Betrieb"
+    },
+    "hr": {
+      "en": "HR",
+      "da": "HR",
+      "de": "Personal"
+    },
+    "finance": {
+      "en": "Finance / Legal",
+      "da": "Økonomi / Jura",
+      "de": "Finanzen / Recht"
+    }
   },
   "kinds": {
-    "fix": { "en": "Fix", "da": "Ret" },
-    "approve": { "en": "Approve", "da": "Godkend" },
-    "confirm": { "en": "Confirm", "da": "Bekræft" },
-    "answer": { "en": "Answer", "da": "Svar" }
+    "fix": {
+      "en": "Fix",
+      "da": "Ret",
+      "de": "Beheben"
+    },
+    "approve": {
+      "en": "Approve",
+      "da": "Godkend",
+      "de": "Freigeben"
+    },
+    "confirm": {
+      "en": "Confirm",
+      "da": "Bekræft",
+      "de": "Bestätigen"
+    },
+    "answer": {
+      "en": "Answer",
+      "da": "Svar",
+      "de": "Beantworten"
+    }
   },
   "checkForMe": {
     "en": "I do not know, check it for me",
-    "da": "Det ved jeg ikke, tjek det for mig"
+    "da": "Det ved jeg ikke, tjek det for mig",
+    "de": "Ich weiß es nicht, prüft das für mich"
   }
 }

@@ -1,24 +1,28 @@
 {
   "id": "sec-06-security-headers",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "SEC-06",
   "jurisdictions": "all",
   "kind": "self_fix",
   "title": {
-    "en": "Add the missing security headers"
+    "en": "Add the missing security headers",
+    "de": "Die fehlenden Sicherheits-Header hinzufügen"
   },
   "effort": {
     "label": {
-      "en": "About 15 minutes"
+      "en": "About 15 minutes",
+      "de": "Etwa 15 Minuten"
     },
     "minutes": 15
   },
   "detail": {
-    "en": "Three response headers a browser uses to refuse the obvious attacks: a content security policy, no MIME sniffing, no framing by other sites."
+    "en": "Three response headers a browser uses to refuse the obvious attacks: a content security policy, no MIME sniffing, no framing by other sites.",
+    "de": "Drei Antwort-Header, mit denen ein Browser die offensichtlichen Angriffe abwehrt: eine Content Security Policy, kein MIME-Sniffing, kein Einrahmen durch andere Websites."
   },
   "snippet": "# nginx\nadd_header Content-Security-Policy \"default-src 'self'; frame-ancestors 'none'\" always;\nadd_header X-Content-Type-Options \"nosniff\" always;\nadd_header X-Frame-Options \"DENY\" always;",
   "verifyLabel": {
-    "en": "Re-check this finding"
+    "en": "Re-check this finding",
+    "de": "Diesen Befund erneut prüfen"
   },
   "verification": {
     "method": "rescan"
@@ -26,13 +30,16 @@
   "action": {
     "kind": "agent_prompt",
     "label": {
-      "en": "Paste into your coding assistant"
+      "en": "Paste into your coding assistant",
+      "de": "In Ihren Coding-Assistenten einfügen"
     },
     "forwardable": {
-      "en": "Or forward it to your developer — it reads the same either way."
+      "en": "Or forward it to your developer — it reads the same either way.",
+      "de": "Oder leiten Sie es an Ihre Entwicklerin oder Ihren Entwickler weiter; es liest sich so oder so gleich."
     },
     "body": {
-      "en": "On {{domain}}, responses are missing these headers: {{fields}}. Add them to every response. Start the Content-Security-Policy in report-only mode if the site loads scripts from other hosts, then tighten it once the report is clean; send X-Content-Type-Options: nosniff and X-Frame-Options: DENY (or frame-ancestors in the policy) straight away.\n\nWhen you are done: show me the headers on https://{{domain}}/ and any policy violations the browser console reports."
+      "en": "On {{domain}}, responses are missing these headers: {{fields}}. Add them to every response. Start the Content-Security-Policy in report-only mode if the site loads scripts from other hosts, then tighten it once the report is clean; send X-Content-Type-Options: nosniff and X-Frame-Options: DENY (or frame-ancestors in the policy) straight away.\n\nWhen you are done: show me the headers on https://{{domain}}/ and any policy violations the browser console reports.",
+      "de": "Auf {{domain}} fehlen den Antworten diese Header: {{fields}}. Füge sie jeder Antwort hinzu. Beginne die Content-Security-Policy im Report-only-Modus, wenn die Website Skripte von anderen Hosts lädt, und ziehe sie an, sobald der Bericht sauber ist; sende X-Content-Type-Options: nosniff und X-Frame-Options: DENY (oder frame-ancestors in der Richtlinie) sofort.\n\nWenn du fertig bist: Zeige mir die Header auf https://{{domain}}/ und alle Richtlinienverstöße, die die Browser-Konsole meldet."
     }
   }
 }

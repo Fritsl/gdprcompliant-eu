@@ -3,46 +3,56 @@
   "findingTypeId": "POL-01",
   "title": {
     "en": "No privacy policy could be found",
-    "da": "Der kunne ikke findes nogen privatlivspolitik"
+    "da": "Der kunne ikke findes nogen privatlivspolitik",
+    "de": "Keine Datenschutzerklärung gefunden"
   },
   "wrong": {
     "en": "Nothing on the home page links to a privacy policy, and none of the usual addresses answers with one. A visitor who wants to know what happens to their details has nowhere to look.",
-    "da": "Intet på forsiden linker til en privatlivspolitik, og ingen af de sædvanlige adresser svarer med en. En besøgende, der vil vide, hvad der sker med deres oplysninger, har ingen steder at kigge."
+    "da": "Intet på forsiden linker til en privatlivspolitik, og ingen af de sædvanlige adresser svarer med en. En besøgende, der vil vide, hvad der sker med deres oplysninger, har ingen steder at kigge.",
+    "de": "Nichts auf der Startseite verlinkt auf eine Datenschutzerklärung, und keine der üblichen Adressen antwortet mit einer. Wer wissen will, was mit seinen Angaben geschieht, hat keinen Ort zum Nachsehen."
   },
   "why": {
     "en": "Telling people what you do with their details is the one obligation every website has, whatever it sells. A missing policy is visible to everyone, and it is the first thing a complaint to the authority points at.",
-    "da": "At fortælle folk, hvad du gør med deres oplysninger, er den ene forpligtelse, enhver hjemmeside har, uanset hvad den sælger. En manglende politik er synlig for alle, og det er det første, en klage til tilsynet peger på."
+    "da": "At fortælle folk, hvad du gør med deres oplysninger, er den ene forpligtelse, enhver hjemmeside har, uanset hvad den sælger. En manglende politik er synlig for alle, og det er det første, en klage til tilsynet peger på.",
+    "de": "Menschen zu sagen, was Sie mit ihren Angaben tun, ist die eine Pflicht, die jede Website hat, was immer sie verkauft. Eine fehlende Erklärung sieht jeder, und sie ist das Erste, worauf eine Beschwerde bei der Behörde zeigt."
   },
   "steps": [
     {
       "en": "Write the policy from what the site actually does: which details it collects, why, for how long, who else receives them, and how to ask for access or deletion. The case can draft it from the evidence it holds.",
-      "da": "Skriv politikken ud fra det, sitet faktisk gør: hvilke oplysninger det indsamler, hvorfor, hvor længe, hvem der ellers modtager dem, og hvordan man beder om indsigt eller sletning. Sagen kan lave et udkast ud fra de beviser, den har."
+      "da": "Skriv politikken ud fra det, sitet faktisk gør: hvilke oplysninger det indsamler, hvorfor, hvor længe, hvem der ellers modtager dem, og hvordan man beder om indsigt eller sletning. Sagen kan lave et udkast ud fra de beviser, den har.",
+      "de": "Schreiben Sie die Erklärung aus dem, was die Website tatsächlich tut: welche Angaben sie erhebt, warum, wie lange, wer sie sonst erhält und wie man Auskunft oder Löschung verlangt. Der Fall kann sie aus den vorliegenden Belegen entwerfen."
     },
     {
       "en": "Publish it at a plain address such as /privatlivspolitik and link to it from the footer of every page.",
-      "da": "Læg den på en enkel adresse som /privatlivspolitik, og link til den fra sidefoden på hver side."
+      "da": "Læg den på en enkel adresse som /privatlivspolitik, og link til den fra sidefoden på hver side.",
+      "de": "Veröffentlichen Sie sie unter einer einfachen Adresse wie /datenschutz und verlinken Sie sie aus der Fußzeile jeder Seite."
     },
     {
       "en": "Keep it in the site’s own language, and add a version in each language the site is served in.",
-      "da": "Hold den på sitets eget sprog, og tilføj en version på hvert sprog, sitet vises på."
+      "da": "Hold den på sitets eget sprog, og tilføj en version på hvert sprog, sitet vises på.",
+      "de": "Halten Sie sie in der Sprache der Website und fügen Sie eine Fassung in jeder Sprache hinzu, in der die Website ausgeliefert wird."
     }
   ],
   "confirm": {
     "en": "Open the home page and find the link in the footer; the page it opens must describe your own processing, not a template. Then run the check again from your case page.",
-    "da": "Åbn forsiden og find linket i sidefoden; den side, det åbner, skal beskrive din egen behandling, ikke en skabelon. Kør derefter tjekket igen fra din sagsside."
+    "da": "Åbn forsiden og find linket i sidefoden; den side, det åbner, skal beskrive din egen behandling, ikke en skabelon. Kør derefter tjekket igen fra din sagsside.",
+    "de": "Öffnen Sie die Startseite und finden Sie den Link in der Fußzeile; die Seite, die er öffnet, muss Ihre eigene Verarbeitung beschreiben, keine Vorlage. Führen Sie dann die Prüfung von Ihrer Fallseite aus erneut aus."
   },
   "keywords": [
     {
       "en": "privacy policy missing",
-      "da": "privatlivspolitik mangler"
+      "da": "privatlivspolitik mangler",
+      "de": "datenschutzerklärung fehlt"
     },
     {
       "en": "write a privacy policy",
-      "da": "skriv en privatlivspolitik"
+      "da": "skriv en privatlivspolitik",
+      "de": "datenschutzerklärung schreiben"
     },
     {
       "en": "privacy notice website",
-      "da": "persondatapolitik hjemmeside"
+      "da": "persondatapolitik hjemmeside",
+      "de": "datenschutzhinweis website"
     }
   ],
   "remedyId": "pol-01-write-privacy-policy"

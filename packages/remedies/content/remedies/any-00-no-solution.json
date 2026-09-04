@@ -1,27 +1,31 @@
 {
   "id": "any-00-no-solution",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "ANY-00",
   "jurisdictions": "all",
   "kind": "no_solution",
   "title": {
     "en": "We have no good answer to this yet",
-    "da": "Vi har ikke et godt svar på det her endnu"
+    "da": "Vi har ikke et godt svar på det her endnu",
+    "de": "Dafür haben wir noch keine gute Antwort"
   },
   "effort": {
     "label": {
       "en": "Logged",
-      "da": "Noteret"
+      "da": "Noteret",
+      "de": "Erfasst"
     }
   },
   "detail": {
     "en": "Nothing in our catalogue closes this for your setup. Logged with your sector and country, so it counts towards what we build next.",
-    "da": "Intet i vores katalog lukker det her for jeres opsætning. Noteret med jeres branche og land, så det tæller med i det, vi bygger næste gang."
+    "da": "Intet i vores katalog lukker det her for jeres opsætning. Noteret med jeres branche og land, så det tæller med i det, vi bygger næste gang.",
+    "de": "Nichts in unserem Katalog schließt das für Ihre Konstellation. Mit Ihrer Branche und Ihrem Land erfasst, damit es zählt, wenn wir entscheiden, was wir als Nächstes bauen."
   },
   "demandGap": "No remedy in the catalogue closes the finding for this setup",
   "askLabel": {
     "en": "Tell us what would have helped",
-    "da": "Fortæl os, hvad der ville have hjulpet"
+    "da": "Fortæl os, hvad der ville have hjulpet",
+    "de": "Sagen Sie uns, was geholfen hätte"
   },
   "verification": {
     "method": "none",

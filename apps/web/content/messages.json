@@ -51,923 +51,1153 @@
   },
   "demand.heading": {
     "en": "Where the catalogue has no answer",
-    "da": "Hvor kataloget ikke har et svar"
+    "da": "Hvor kataloget ikke har et svar",
+    "de": "Wo der Katalog keine Antwort hat"
   },
   "demand.lead": {
     "en": "Every finding the catalogue could not close, counted across customers. A group with fewer than three customers is left out.",
-    "da": "Hver konstatering kataloget ikke kunne lukke, talt på tværs af kunder. En gruppe med færre end tre kunder udelades."
+    "da": "Hver konstatering kataloget ikke kunne lukke, talt på tværs af kunder. En gruppe med færre end tre kunder udelades.",
+    "de": "Jeder Befund, den der Katalog nicht schließen konnte, über alle Kunden gezählt. Eine Gruppe mit weniger als drei Kunden bleibt außen vor."
   },
   "demand.empty": {
     "en": "Nothing recorded yet.",
-    "da": "Intet registreret endnu."
+    "da": "Intet registreret endnu.",
+    "de": "Noch nichts erfasst."
   },
   "demand.download": {
     "en": "Download as CSV",
-    "da": "Hent som CSV"
+    "da": "Hent som CSV",
+    "de": "Als CSV herunterladen"
   },
   "demand.col.finding": {
     "en": "Finding",
-    "da": "Konstatering"
+    "da": "Konstatering",
+    "de": "Befund"
   },
   "demand.col.jurisdiction": {
     "en": "Jurisdiction",
-    "da": "Jurisdiktion"
+    "da": "Jurisdiktion",
+    "de": "Rechtsraum"
   },
   "demand.col.country": {
     "en": "Country",
-    "da": "Land"
+    "da": "Land",
+    "de": "Land"
   },
   "demand.col.sector": {
     "en": "Sector",
-    "da": "Branche"
+    "da": "Branche",
+    "de": "Branche"
   },
   "demand.col.headcount": {
     "en": "Headcount",
-    "da": "Ansatte"
+    "da": "Ansatte",
+    "de": "Beschäftigte"
   },
   "demand.col.tenants": {
     "en": "Customers",
-    "da": "Kunder"
+    "da": "Kunder",
+    "de": "Kunden"
   },
   "demand.col.cases": {
     "en": "Cases",
-    "da": "Sager"
+    "da": "Sager",
+    "de": "Fälle"
   },
   "demand.col.first": {
     "en": "First seen",
-    "da": "Først set"
+    "da": "Først set",
+    "de": "Zuerst gesehen"
   },
   "demand.col.last": {
     "en": "Last seen",
-    "da": "Senest set"
+    "da": "Senest set",
+    "de": "Zuletzt gesehen"
   },
   "demand.all": {
     "en": "all",
-    "da": "alle"
+    "da": "alle",
+    "de": "alle"
   },
   "timeline.heading": {
     "en": "Timeline",
-    "da": "Tidslinje"
+    "da": "Tidslinje",
+    "de": "Verlauf"
   },
   "timeline.lead": {
     "en": "Everything that happened on this case, dated and attributed. Nothing here can be edited or removed.",
-    "da": "Alt der er sket på sagen, dateret og med afsender. Intet her kan redigeres eller fjernes."
+    "da": "Alt der er sket på sagen, dateret og med afsender. Intet her kan redigeres eller fjernes.",
+    "de": "Alles, was in diesem Fall geschehen ist, datiert und zugeordnet. Nichts hier kann bearbeitet oder entfernt werden."
   },
   "timeline.download": {
     "en": "Download as PDF",
-    "da": "Hent som PDF"
+    "da": "Hent som PDF",
+    "de": "Als PDF herunterladen"
   },
   "timeline.generated": {
     "en": "Generated",
-    "da": "Genereret"
+    "da": "Genereret",
+    "de": "Erzeugt"
   },
   "timeline.page": {
     "en": "Page {{page}} of {{pages}}",
-    "da": "Side {{page}} af {{pages}}"
+    "da": "Side {{page}} af {{pages}}",
+    "de": "Seite {{page}} von {{pages}}"
   },
   "case.holds": {
     "en": "What this case holds",
-    "da": "Hvad sagen indeholder"
+    "da": "Hvad sagen indeholder",
+    "de": "Was dieser Fall enthält"
   },
   "case.holds.findings": {
     "en": "findings",
-    "da": "konstateringer"
+    "da": "konstateringer",
+    "de": "Befunde"
   },
   "case.holds.evidence": {
     "en": "evidence records: what the scanner saw on the site, with a hash of each",
-    "da": "bevisposter: hvad scanneren så på sitet, med en hash af hver"
+    "da": "bevisposter: hvad scanneren så på sitet, med en hash af hver",
+    "de": "Belege: was der Scanner auf der Website gesehen hat, jeder mit Prüfsumme"
   },
   "case.holds.answers": {
     "en": "answers you gave",
-    "da": "svar du har givet"
+    "da": "svar du har givet",
+    "de": "Antworten, die Sie gegeben haben"
   },
   "case.holds.events": {
     "en": "timeline events",
-    "da": "tidslinjeposter"
+    "da": "tidslinjeposter",
+    "de": "Verlaufseinträge"
   },
   "case.holds.vendors": {
     "en": "vendors identified",
-    "da": "identificerede leverandører"
+    "da": "identificerede leverandører",
+    "de": "identifizierte Anbieter"
   },
   "case.who.unclaimed": {
     "en": "Anyone who has this link. Nobody else: the case belongs to its own tenant, and the database refuses every other tenant.",
-    "da": "Alle der har dette link. Ingen andre: sagen hører til sin egen lejer, og databasen afviser alle andre lejere."
+    "da": "Alle der har dette link. Ingen andre: sagen hører til sin egen lejer, og databasen afviser alle andre lejere.",
+    "de": "Wer diesen Link hat. Sonst niemand: Der Fall gehört seinem eigenen Mandanten, und die Datenbank weist jeden anderen Mandanten ab."
   },
   "case.who.claimed": {
     "en": "The address that claimed it, and anyone that address invites. Nobody else: the database refuses every other tenant.",
-    "da": "Den adresse der har overtaget sagen, og dem den inviterer. Ingen andre: databasen afviser alle andre lejere."
+    "da": "Den adresse der har overtaget sagen, og dem den inviterer. Ingen andre: databasen afviser alle andre lejere.",
+    "de": "Die Adresse, die ihn übernommen hat, und wen diese Adresse einlädt. Sonst niemand: Die Datenbank weist jeden anderen Mandanten ab."
   },
   "case.export": {
     "en": "Download everything as one file",
-    "da": "Hent alt som én fil"
+    "da": "Hent alt som én fil",
+    "de": "Alles als eine Datei herunterladen"
   },
   "case.export.note": {
     "en": "JSON, with the timeline PDF inside. Every export is written to the timeline.",
-    "da": "JSON, med tidslinjen som PDF indeni. Hver eksport skrives på tidslinjen."
+    "da": "JSON, med tidslinjen som PDF indeni. Hver eksport skrives på tidslinjen.",
+    "de": "JSON, mit dem Verlaufs-PDF darin. Jeder Export wird in den Verlauf geschrieben."
   },
   "case.delete": {
     "en": "Delete this case permanently",
-    "da": "Slet sagen permanent"
+    "da": "Slet sagen permanent",
+    "de": "Diesen Fall endgültig löschen"
   },
   "case.delete.note": {
     "en": "Everything listed goes, at once and for good. What remains is a record that a case from this country and year was deleted, and how many rows went. Not its number, not the company.",
-    "da": "Alt det nævnte forsvinder, på én gang og for altid. Tilbage bliver en notits om, at en sag fra dette land og år blev slettet, og hvor mange rækker der forsvandt. Ikke sagens nummer, ikke virksomheden."
+    "da": "Alt det nævnte forsvinder, på én gang og for altid. Tilbage bliver en notits om, at en sag fra dette land og år blev slettet, og hvor mange rækker der forsvandt. Ikke sagens nummer, ikke virksomheden.",
+    "de": "Alles Aufgeführte verschwindet, sofort und für immer. Was bleibt, ist ein Eintrag, dass ein Fall aus diesem Land und Jahr gelöscht wurde, und wie viele Zeilen es waren. Nicht seine Nummer, nicht das Unternehmen."
   },
   "case.delete.confirm": {
     "en": "Type the case number to confirm",
-    "da": "Skriv sagsnummeret for at bekræfte"
+    "da": "Skriv sagsnummeret for at bekræfte",
+    "de": "Geben Sie die Fallnummer zur Bestätigung ein"
   },
   "case.timeline": {
     "en": "Timeline",
-    "da": "Tidslinje"
+    "da": "Tidslinje",
+    "de": "Verlauf"
   },
   "deleted.heading": {
     "en": "Deleted",
-    "da": "Slettet"
+    "da": "Slettet",
+    "de": "Gelöscht"
   },
   "deleted.lead": {
     "en": "The case and everything in it are gone. This is the only record that remains.",
-    "da": "Sagen og alt i den er væk. Dette er den eneste notits, der er tilbage."
+    "da": "Sagen og alt i den er væk. Dette er den eneste notits, der er tilbage.",
+    "de": "Der Fall und alles darin sind weg. Dies ist der einzige Eintrag, der bleibt."
   },
   "deleted.rows": {
     "en": "rows removed",
-    "da": "rækker fjernet"
+    "da": "rækker fjernet",
+    "de": "Zeilen entfernt"
   },
   "colleagues.heading": {
     "en": "Colleagues",
-    "da": "Kolleger"
+    "da": "Kolleger",
+    "de": "Kolleginnen und Kollegen"
   },
   "colleagues.none": {
     "en": "Nobody has been invited yet.",
-    "da": "Ingen er inviteret endnu."
+    "da": "Ingen er inviteret endnu.",
+    "de": "Noch niemand eingeladen."
   },
   "colleagues.status.invited": {
     "en": "invited, not yet opened",
-    "da": "inviteret, ikke åbnet endnu"
+    "da": "inviteret, ikke åbnet endnu",
+    "de": "eingeladen, noch nicht geöffnet"
   },
   "colleagues.status.joined": {
     "en": "working",
-    "da": "i gang"
+    "da": "i gang",
+    "de": "in Arbeit"
   },
   "colleagues.status.finished": {
     "en": "finished",
-    "da": "færdig"
+    "da": "færdig",
+    "de": "fertig"
   },
   "colleagues.status.revoked": {
     "en": "withdrawn",
-    "da": "trukket tilbage"
+    "da": "trukket tilbage",
+    "de": "zurückgezogen"
   },
   "colleagues.status.expired": {
     "en": "link expired",
-    "da": "link udløbet"
+    "da": "link udløbet",
+    "de": "Link abgelaufen"
   },
   "colleagues.open": {
     "en": "open",
-    "da": "åbne"
+    "da": "åbne",
+    "de": "offen"
   },
   "colleagues.link": {
     "en": "Their link",
-    "da": "Deres link"
+    "da": "Deres link",
+    "de": "Ihr Link"
   },
   "colleagues.remind": {
     "en": "Remind",
-    "da": "Mind om"
+    "da": "Mind om",
+    "de": "Erinnern"
   },
   "colleagues.revoke": {
     "en": "Withdraw",
-    "da": "Træk tilbage"
+    "da": "Træk tilbage",
+    "de": "Zurückziehen"
   },
   "colleagues.invite": {
     "en": "Invite",
-    "da": "Invitér"
+    "da": "Invitér",
+    "de": "Einladen"
   },
   "colleagues.invite.from": {
     "en": "Your name, as they know it",
-    "da": "Dit navn, som de kender det"
+    "da": "Dit navn, som de kender det",
+    "de": "Ihr Name, wie die Person Sie kennt"
   },
   "colleagues.invite.email": {
     "en": "Their address",
-    "da": "Deres adresse"
+    "da": "Deres adresse",
+    "de": "Ihre Adresse"
   },
   "colleagues.invite.role": {
     "en": "Their desk",
-    "da": "Deres område"
+    "da": "Deres område",
+    "de": "Ihr Bereich"
   },
   "colleagues.invite.expires": {
     "en": "The link works for 14 days, for them alone, and can be withdrawn.",
-    "da": "Linket virker i 14 dage, kun for dem, og kan trækkes tilbage."
+    "da": "Linket virker i 14 dage, kun for dem, og kan trækkes tilbage.",
+    "de": "Der Link gilt 14 Tage, nur für diese Person, und kann zurückgezogen werden."
   },
   "colleagues.error.reminded": {
     "en": "A reminder went out less than a day ago.",
-    "da": "Der er sendt en påmindelse for under et døgn siden."
+    "da": "Der er sendt en påmindelse for under et døgn siden.",
+    "de": "Vor weniger als einem Tag ging schon eine Erinnerung hinaus."
   },
   "colleagues.error.invalid": {
     "en": "That address or name did not go through.",
-    "da": "Adressen eller navnet gik ikke igennem."
+    "da": "Adressen eller navnet gik ikke igennem.",
+    "de": "Diese Adresse oder dieser Name ging nicht durch."
   },
   "member.heading": {
     "en": "Your list",
-    "da": "Din liste"
+    "da": "Din liste",
+    "de": "Ihre Liste"
   },
   "member.from": {
     "en": "Invited by",
-    "da": "Inviteret af"
+    "da": "Inviteret af",
+    "de": "Eingeladen von"
   },
   "member.none": {
     "en": "Nothing open for your desk right now.",
-    "da": "Intet åbent for dit område lige nu."
+    "da": "Intet åbent for dit område lige nu.",
+    "de": "Für Ihren Bereich ist gerade nichts offen."
   },
   "member.deferred": {
     "en": "more once these are done",
-    "da": "flere når disse er klaret"
+    "da": "flere når disse er klaret",
+    "de": "weitere, sobald diese erledigt sind"
   },
   "member.checked": {
     "en": "Sent to the assistant.",
-    "da": "Sendt til assistenten."
+    "da": "Sendt til assistenten.",
+    "de": "An den Assistenten gesendet."
   },
   "colleagues.error.tooMany": {
     "en": "Too many invitations in the last hour. Try again later.",
-    "da": "For mange invitationer den seneste time. Prøv igen senere."
+    "da": "For mange invitationer den seneste time. Prøv igen senere.",
+    "de": "Zu viele Einladungen in der letzten Stunde. Versuchen Sie es später noch einmal."
   },
   "progress.heading": {
     "en": "Where the case stands",
-    "da": "Hvor sagen står"
+    "da": "Hvor sagen står",
+    "de": "Wo der Fall steht"
   },
   "progress.stage": {
     "en": "Stage",
-    "da": "Trin"
+    "da": "Trin",
+    "de": "Phase"
   },
   "progress.done": {
     "en": "done",
-    "da": "klaret"
+    "da": "klaret",
+    "de": "erledigt"
   },
   "progress.open": {
     "en": "open",
-    "da": "åbne"
+    "da": "åbne",
+    "de": "offen"
   },
   "progress.role.marketing": {
     "en": "Marketing",
-    "da": "Marketing"
+    "da": "Marketing",
+    "de": "Marketing"
   },
   "progress.role.it": {
     "en": "IT / Operations",
-    "da": "IT / Drift"
+    "da": "IT / Drift",
+    "de": "IT / Betrieb"
   },
   "progress.role.hr": {
     "en": "HR",
-    "da": "HR"
+    "da": "HR",
+    "de": "Personal"
   },
   "progress.role.finance": {
     "en": "Finance / Legal",
-    "da": "Økonomi / Jura"
+    "da": "Økonomi / Jura",
+    "de": "Finanzen / Recht"
   },
   "case.pack": {
     "en": "Download the evidence pack",
-    "da": "Hent bevispakken"
+    "da": "Hent bevispakken",
+    "de": "Das Belegpaket herunterladen"
   },
   "case.pack.note": {
     "en": "A zip of plain files: the case as JSON, every evidence record, the timeline as PDF, and a manifest of hashes. Dated the moment it is made.",
-    "da": "En zip med almindelige filer: sagen som JSON, hver bevispost, tidslinjen som PDF og en liste med hashes. Dateret i det øjeblik den laves."
+    "da": "En zip med almindelige filer: sagen som JSON, hver bevispost, tidslinjen som PDF og en liste med hashes. Dateret i det øjeblik den laves.",
+    "de": "Ein Zip aus einfachen Dateien: der Fall als JSON, jeder Beleg, der Verlauf als PDF und ein Manifest mit Prüfsummen. Datiert auf den Moment der Erstellung."
   },
   "front.eyebrow": {
     "en": "Free · no account · about 40 seconds",
-    "da": "Gratis · ingen konto · cirka 40 sekunder"
+    "da": "Gratis · ingen konto · cirka 40 sekunder",
+    "de": "Kostenlos · kein Konto · etwa 40 Sekunden"
   },
   "front.heading": {
     "en": "Is your website GDPR compliant?",
-    "da": "Overholder din hjemmeside GDPR?"
+    "da": "Overholder din hjemmeside GDPR?",
+    "de": "Erfüllt Ihre Website die DSGVO?"
   },
   "front.sub": {
     "en": "Every problem comes with the fix.",
-    "da": "Hvert problem kommer med løsningen."
+    "da": "Hvert problem kommer med løsningen.",
+    "de": "Zu jedem Problem gibt es die Lösung."
   },
   "front.field": {
     "en": "Your website address",
-    "da": "Din hjemmesides adresse"
+    "da": "Din hjemmesides adresse",
+    "de": "Ihre Website-Adresse"
   },
   "front.placeholder": {
     "en": "yourshop.dk",
-    "da": "dinbutik.dk"
+    "da": "dinbutik.dk",
+    "de": "ihrshop.de"
   },
   "front.cta": {
     "en": "Run the free test",
-    "da": "Kør den gratis test"
+    "da": "Kør den gratis test",
+    "de": "Kostenlosen Test starten"
   },
   "front.invalid": {
     "en": "That does not look like a website address. Try something like yourshop.dk.",
-    "da": "Det ligner ikke en hjemmesideadresse. Prøv noget i stil med dinbutik.dk."
+    "da": "Det ligner ikke en hjemmesideadresse. Prøv noget i stil med dinbutik.dk.",
+    "de": "Das sieht nicht wie eine Website-Adresse aus. Versuchen Sie etwas wie ihrshop.de."
   },
   "front.limited": {
     "en": "You have started a few scans in the last hour. Give it a little while and try again.",
-    "da": "Du har startet et par scanninger den seneste time. Vent lidt, og prøv igen."
+    "da": "Du har startet et par scanninger den seneste time. Vent lidt, og prøv igen.",
+    "de": "Sie haben in der letzten Stunde einige Scans gestartet. Warten Sie kurz und versuchen Sie es noch einmal."
   },
   "front.busy": {
     "en": "A lot of sites are being checked right now. Try again in a few minutes.",
-    "da": "Mange sider bliver tjekket lige nu. Prøv igen om et par minutter."
+    "da": "Mange sider bliver tjekket lige nu. Prøv igen om et par minutter.",
+    "de": "Gerade werden viele Websites geprüft. Versuchen Sie es in ein paar Minuten noch einmal."
   },
   "scan.heading": {
     "en": "Checking your site",
-    "da": "Tjekker din side"
+    "da": "Tjekker din side",
+    "de": "Ihre Website wird geprüft"
   },
   "scan.hint": {
     "en": "This normally takes about 40 seconds.",
-    "da": "Det tager normalt cirka 40 sekunder."
+    "da": "Det tager normalt cirka 40 sekunder.",
+    "de": "Das dauert normalerweise etwa 40 Sekunden."
   },
   "scan.stage.opening": {
     "en": "Opening the page with a clean browser",
-    "da": "Åbner siden med en ren browser"
+    "da": "Åbner siden med en ren browser",
+    "de": "Die Seite wird mit einem sauberen Browser geöffnet"
   },
   "scan.stage.banner": {
     "en": "Finding the consent banner",
-    "da": "Finder samtykkebanneret"
+    "da": "Finder samtykkebanneret",
+    "de": "Das Einwilligungsbanner wird gesucht"
   },
   "scan.stage.refusing": {
     "en": "Clicking through to a real refusal",
-    "da": "Klikker igennem til et rigtigt afslag"
+    "da": "Klikker igennem til et rigtigt afslag",
+    "de": "Durchklicken bis zu einer echten Ablehnung"
   },
   "scan.stage.accepting": {
     "en": "Accepting everything, for comparison",
-    "da": "Accepterer alt, til sammenligning"
+    "da": "Accepterer alt, til sammenligning",
+    "de": "Alles akzeptieren, zum Vergleich"
   },
   "scan.stage.policy": {
     "en": "Reading your privacy policy",
-    "da": "Læser din privatlivspolitik"
+    "da": "Læser din privatlivspolitik",
+    "de": "Ihre Datenschutzerklärung wird gelesen"
   },
   "scan.stage.recipients": {
     "en": "Identifying who receives the data",
-    "da": "Identificerer, hvem der modtager data"
+    "da": "Identificerer, hvem der modtager data",
+    "de": "Wer die Daten erhält, wird ermittelt"
   },
   "scan.stage.security": {
     "en": "Checking the security a visitor can see",
-    "da": "Tjekker den sikkerhed, en besøgende kan se"
+    "da": "Tjekker den sikkerhed, en besøgende kan se",
+    "de": "Die für Besucher sichtbare Sicherheit wird geprüft"
   },
   "scan.mark.ok": {
     "en": "done",
-    "da": "færdig"
+    "da": "færdig",
+    "de": "erledigt"
   },
   "scan.mark.undet": {
     "en": "could not tell",
-    "da": "kunne ikke afgøres"
+    "da": "kunne ikke afgøres",
+    "de": "nicht feststellbar"
   },
   "scan.mark.na": {
     "en": "not needed",
-    "da": "ikke nødvendigt"
+    "da": "ikke nødvendigt",
+    "de": "nicht nötig"
   },
   "scan.mark.skip": {
     "en": "skipped",
-    "da": "sprunget over"
+    "da": "sprunget over",
+    "de": "übersprungen"
   },
   "scan.mark.fail": {
     "en": "no response",
-    "da": "intet svar"
+    "da": "intet svar",
+    "de": "keine Antwort"
   },
   "scan.outcome.case.heading": {
     "en": "Your case is ready.",
-    "da": "Din sag er klar."
+    "da": "Din sag er klar.",
+    "de": "Ihr Fall ist bereit."
   },
   "scan.outcome.case.body": {
     "en": "Every finding comes with what to do about it, and the site is checked again every week.",
-    "da": "Hvert fund kommer med, hvad der skal gøres, og siden tjekkes igen hver uge."
+    "da": "Hvert fund kommer med, hvad der skal gøres, og siden tjekkes igen hver uge.",
+    "de": "Zu jedem Befund steht, was zu tun ist, und die Website wird jede Woche erneut geprüft."
   },
   "scan.outcome.case.cta": {
     "en": "Open the case",
-    "da": "Åbn sagen"
+    "da": "Åbn sagen",
+    "de": "Fall öffnen"
   },
   "scan.outcome.noBanner.heading": {
     "en": "You do not need a cookie banner.",
-    "da": "Du har ikke brug for et cookiebanner."
+    "da": "Du har ikke brug for et cookiebanner.",
+    "de": "Sie brauchen kein Cookie-Banner."
   },
   "scan.outcome.noBanner.body": {
     "en": "Nothing is stored on a visitor’s device beyond what the site needs to work, and nothing loads from a third party before anyone agrees to anything.",
-    "da": "Intet gemmes på den besøgendes enhed ud over det, siden skal bruge for at virke, og intet indlæses fra tredjepart, før nogen har sagt ja til noget."
+    "da": "Intet gemmes på den besøgendes enhed ud over det, siden skal bruge for at virke, og intet indlæses fra tredjepart, før nogen har sagt ja til noget.",
+    "de": "Auf dem Gerät einer Besucherin wird nichts gespeichert, was die Website nicht zum Funktionieren braucht, und nichts lädt von Dritten, bevor jemand irgendetwas zugestimmt hat."
   },
   "scan.outcome.noBanner.cta": {
     "en": "See the rest of the results",
-    "da": "Se resten af resultaterne"
+    "da": "Se resten af resultaterne",
+    "de": "Die übrigen Ergebnisse ansehen"
   },
   "scan.outcome.noRefusal.heading": {
     "en": "We could not find any way to refuse on your site.",
-    "da": "Vi kunne ikke finde nogen måde at afvise på din side."
+    "da": "Vi kunne ikke finde nogen måde at afvise på din side.",
+    "de": "Wir konnten auf Ihrer Website keine Möglichkeit finden abzulehnen."
   },
   "scan.outcome.noRefusal.body": {
     "en": "There is a banner, but nothing we could click refuses. We tried its own controls and every refusal wording we know, in Danish, English and German.",
-    "da": "Der er et banner, men intet, vi kunne klikke på, afviser. Vi prøvede dets egne knapper og hver afvisningsformulering, vi kender, på dansk, engelsk og tysk."
+    "da": "Der er et banner, men intet, vi kunne klikke på, afviser. Vi prøvede dets egne knapper og hver afvisningsformulering, vi kender, på dansk, engelsk og tysk.",
+    "de": "Es gibt ein Banner, aber nichts, was wir anklicken konnten, lehnt ab. Wir haben seine eigenen Bedienelemente und jede uns bekannte Ablehnungsformulierung versucht, auf Dänisch, Englisch und Deutsch."
   },
   "scan.outcome.noRefusal.cta": {
     "en": "See what to do about it",
-    "da": "Se, hvad du kan gøre ved det"
+    "da": "Se, hvad du kan gøre ved det",
+    "de": "Was dagegen zu tun ist"
   },
   "scan.outcome.unreachable.heading": {
     "en": "We could not reach that address.",
-    "da": "Vi kunne ikke nå den adresse."
+    "da": "Vi kunne ikke nå den adresse.",
+    "de": "Wir konnten diese Adresse nicht erreichen."
   },
   "scan.outcome.unreachable.body": {
     "en": "The address did not respond. Check the spelling, or try again in a moment.",
-    "da": "Adressen svarede ikke. Tjek stavningen, eller prøv igen om lidt."
+    "da": "Adressen svarede ikke. Tjek stavningen, eller prøv igen om lidt.",
+    "de": "Die Adresse hat nicht geantwortet. Prüfen Sie die Schreibweise oder versuchen Sie es gleich noch einmal."
   },
   "scan.outcome.unreachable.cta": {
     "en": "Try again",
-    "da": "Prøv igen"
+    "da": "Prøv igen",
+    "de": "Noch einmal versuchen"
   },
   "scan.stage.firstLoad": {
     "en": "Recording what loads before you agree",
-    "da": "Registrerer, hvad der indlæses, før du siger ja"
+    "da": "Registrerer, hvad der indlæses, før du siger ja",
+    "de": "Aufzeichnen, was vor Ihrer Zustimmung lädt"
   },
   "scan.stage.afterRefusal": {
     "en": "Recording what still loads after refusing",
-    "da": "Registrerer, hvad der stadig indlæses efter afslag"
+    "da": "Registrerer, hvad der stadig indlæses efter afslag",
+    "de": "Aufzeichnen, was nach dem Ablehnen noch lädt"
   },
   "scan.stage.writingUp": {
     "en": "Writing up what we found",
-    "da": "Skriver fundene op"
+    "da": "Skriver fundene op",
+    "de": "Die Ergebnisse werden zusammengeschrieben"
   },
   "case.ready": {
     "en": "fixes ready",
-    "da": "rettelser klar"
+    "da": "rettelser klar",
+    "de": "Lösungen bereit"
   },
   "case.ready.one": {
     "en": "fix ready",
-    "da": "rettelse klar"
+    "da": "rettelse klar",
+    "de": "Lösung bereit"
   },
   "case.ready.none": {
     "en": "Nothing left to fix",
-    "da": "Intet tilbage at rette"
+    "da": "Intet tilbage at rette",
+    "de": "Nichts mehr zu beheben"
   },
   "case.progress.of": {
     "en": "of",
-    "da": "af"
+    "da": "af",
+    "de": "von"
   },
   "case.progress.done": {
     "en": "done",
-    "da": "færdige"
+    "da": "færdige",
+    "de": "erledigt"
   },
   "case.progress.about": {
     "en": "about",
-    "da": "cirka"
+    "da": "cirka",
+    "de": "etwa"
   },
   "case.progress.left": {
     "en": "min left",
-    "da": "min tilbage"
+    "da": "min tilbage",
+    "de": "Min. übrig"
   },
   "case.step.now": {
     "en": "Start here",
-    "da": "Start her"
+    "da": "Start her",
+    "de": "Hier anfangen"
   },
   "case.watch": {
     "en": "We look again every Monday",
-    "da": "Vi kigger igen hver mandag"
+    "da": "Vi kigger igen hver mandag",
+    "de": "Wir sehen jeden Montag wieder nach"
   },
   "case.evidence": {
     "en": "What we saw",
-    "da": "Det vi så"
+    "da": "Det vi så",
+    "de": "Was wir gesehen haben"
   },
   "case.evidence.quote": {
     "en": "Quoted",
-    "da": "Citeret"
+    "da": "Citeret",
+    "de": "Zitiert"
   },
   "case.evidence.none": {
     "en": "No evidence is attached to this finding.",
-    "da": "Der er ikke knyttet beviser til dette fund."
+    "da": "Der er ikke knyttet beviser til dette fund.",
+    "de": "Diesem Befund ist kein Beleg beigefügt."
   },
   "case.rule": {
     "en": "The rule",
-    "da": "Reglen"
+    "da": "Reglen",
+    "de": "Die Regel"
   },
   "case.remedy.check": {
     "en": "Check it again",
-    "da": "Tjek igen"
+    "da": "Tjek igen",
+    "de": "Erneut prüfen"
   },
   "case.remedy.attest": {
     "en": "I have done this",
-    "da": "Det har jeg gjort"
+    "da": "Det har jeg gjort",
+    "de": "Das habe ich erledigt"
   },
   "case.remedy.artefact": {
     "en": "Closes when the document is published",
-    "da": "Lukkes, når dokumentet er offentliggjort"
+    "da": "Lukkes, når dokumentet er offentliggjort",
+    "de": "Schließt sich, wenn das Dokument veröffentlicht ist"
   },
   "case.remedy.answer": {
     "en": "Closes when the question is answered",
-    "da": "Lukkes, når spørgsmålet er besvaret"
+    "da": "Lukkes, når spørgsmålet er besvaret",
+    "de": "Schließt sich, wenn die Frage beantwortet ist"
   },
   "case.remedy.none": {
     "en": "Nothing can verify this from outside",
-    "da": "Intet kan bekræfte dette udefra"
+    "da": "Intet kan bekræfte dette udefra",
+    "de": "Das lässt sich von außen nicht prüfen"
   },
   "case.attested": {
     "en": "Noted; the finding is closed on your word",
-    "da": "Noteret; fundet er lukket på dit ord"
+    "da": "Noteret; fundet er lukket på dit ord",
+    "de": "Notiert; der Befund ist auf Ihr Wort hin geschlossen"
   },
   "severity.blocking": {
     "en": "Blocking",
-    "da": "Blokerende"
+    "da": "Blokerende",
+    "de": "Blockierend"
   },
   "severity.serious": {
     "en": "Serious",
-    "da": "Alvorlig"
+    "da": "Alvorlig",
+    "de": "Schwerwiegend"
   },
   "severity.advisory": {
     "en": "Advisory",
-    "da": "Vejledende"
+    "da": "Vejledende",
+    "de": "Hinweis"
   },
   "severity.closed": {
     "en": "Fixed",
-    "da": "Rettet"
+    "da": "Rettet",
+    "de": "Behoben"
   },
   "case.asked": {
     "en": "Noted; we are looking for an answer",
-    "da": "Noteret; vi leder efter et svar"
+    "da": "Noteret; vi leder efter et svar",
+    "de": "Notiert; wir suchen eine Antwort"
   },
   "remedy.kind.selfFix": {
     "en": "Free fix",
-    "da": "Gratis rettelse"
+    "da": "Gratis rettelse",
+    "de": "Kostenlose Lösung"
   },
   "remedy.kind.generatedArtefact": {
     "en": "One click",
-    "da": "Ét klik"
+    "da": "Ét klik",
+    "de": "Ein Klick"
   },
   "remedy.kind.ourProduct": {
     "en": "Our product",
-    "da": "Vores produkt"
+    "da": "Vores produkt",
+    "de": "Unser Produkt"
   },
   "remedy.kind.partnerAlternative": {
     "en": "Alternatives",
-    "da": "Alternativer"
+    "da": "Alternativer",
+    "de": "Alternativen"
   },
   "remedy.kind.noSolution": {
     "en": "No answer yet",
-    "da": "Intet svar endnu"
+    "da": "Intet svar endnu",
+    "de": "Noch keine Antwort"
   },
   "remedy.ours": {
     "en": "This is our own product. We earn money if you choose it.",
-    "da": "Dette er vores eget produkt. Vi tjener penge, hvis du vælger det."
+    "da": "Dette er vores eget produkt. Vi tjener penge, hvis du vælger det.",
+    "de": "Das ist unser eigenes Produkt. Wir verdienen Geld, wenn Sie es wählen."
   },
   "remedy.copy": {
     "en": "Copy",
-    "da": "Kopiér"
+    "da": "Kopiér",
+    "de": "Kopieren"
   },
   "remedy.copied": {
     "en": "Copied",
-    "da": "Kopieret"
+    "da": "Kopieret",
+    "de": "Kopiert"
   },
   "remedy.copyFailed": {
     "en": "Select it and copy",
-    "da": "Markér og kopiér"
+    "da": "Markér og kopiér",
+    "de": "Markieren und kopieren"
   },
   "remedy.send": {
     "en": "Send",
-    "da": "Send"
+    "da": "Send",
+    "de": "Senden"
   },
   "remedy.to": {
     "en": "To",
-    "da": "Til"
+    "da": "Til",
+    "de": "An"
   },
   "remedy.subject": {
     "en": "Subject",
-    "da": "Emne"
+    "da": "Emne",
+    "de": "Betreff"
   },
   "remedy.showCode": {
     "en": "Show the code",
-    "da": "Vis koden"
+    "da": "Vis koden",
+    "de": "Den Code zeigen"
   },
   "remedy.fixed": {
     "en": "Fixed and re-checked",
-    "da": "Rettet og tjekket igen"
+    "da": "Rettet og tjekket igen",
+    "de": "Behoben und erneut geprüft"
   },
   "recheck.running": {
     "en": "Checking the site again",
-    "da": "Tjekker sitet igen"
+    "da": "Tjekker sitet igen",
+    "de": "Die Website wird erneut geprüft"
   },
   "recheck.closed": {
     "en": "Fixed: the check passed",
-    "da": "Rettet: tjekket bestod"
+    "da": "Rettet: tjekket bestod",
+    "de": "Behoben: Die Prüfung ist bestanden"
   },
   "recheck.open": {
     "en": "Still open: the check failed again",
-    "da": "Stadig åben: tjekket fejlede igen"
+    "da": "Stadig åben: tjekket fejlede igen",
+    "de": "Noch offen: Die Prüfung ist erneut fehlgeschlagen"
   },
   "recheck.regressed": {
     "en": "Back again: the check failed after passing before",
-    "da": "Tilbage igen: tjekket fejlede efter at have bestået før"
+    "da": "Tilbage igen: tjekket fejlede efter at have bestået før",
+    "de": "Wieder da: Die Prüfung ist fehlgeschlagen, nachdem sie zuvor bestanden war"
   },
   "recheck.unverifiable": {
     "en": "Cannot be checked from outside",
-    "da": "Kan ikke tjekkes udefra"
+    "da": "Kan ikke tjekkes udefra",
+    "de": "Lässt sich von außen nicht prüfen"
   },
   "recheck.unreachable": {
     "en": "Could not reach the site",
-    "da": "Kunne ikke nå sitet"
+    "da": "Kunne ikke nå sitet",
+    "de": "Die Website war nicht erreichbar"
   },
   "artefact.eyebrow": {
     "en": "Generated document · preview before anything is published",
-    "da": "Genereret dokument · se det, før noget offentliggøres"
+    "da": "Genereret dokument · se det, før noget offentliggøres",
+    "de": "Erzeugtes Dokument · Vorschau, bevor etwas veröffentlicht wird"
   },
   "artefact.back": {
     "en": "Back to case",
-    "da": "Tilbage til sag"
+    "da": "Tilbage til sag",
+    "de": "Zurück zum Fall"
   },
   "artefact.none": {
     "en": "No draft yet.",
-    "da": "Intet udkast endnu."
+    "da": "Intet udkast endnu.",
+    "de": "Noch kein Entwurf."
   },
   "artefact.version": {
     "en": "Version",
-    "da": "Version"
+    "da": "Version",
+    "de": "Version"
   },
   "artefact.generated": {
     "en": "generated",
-    "da": "genereret"
+    "da": "genereret",
+    "de": "erzeugt"
   },
   "artefact.signed": {
     "en": "Signed by",
-    "da": "Underskrevet af"
+    "da": "Underskrevet af",
+    "de": "Unterzeichnet von"
   },
   "artefact.published": {
     "en": "Published",
-    "da": "Offentliggjort"
+    "da": "Offentliggjort",
+    "de": "Veröffentlicht"
   },
   "artefact.signer": {
     "en": "Your name",
-    "da": "Dit navn"
+    "da": "Dit navn",
+    "de": "Ihr Name"
   },
   "artefact.sign": {
     "en": "Sign this version",
-    "da": "Underskriv denne version"
+    "da": "Underskriv denne version",
+    "de": "Diese Version unterzeichnen"
   },
   "artefact.signNote": {
     "en": "Your name goes on exactly",
-    "da": "Dit navn kommer på præcis"
+    "da": "Dit navn kommer på præcis",
+    "de": "Ihr Name steht genau auf"
   },
   "artefact.publish": {
     "en": "Record as published",
-    "da": "Registrér som offentliggjort"
+    "da": "Registrér som offentliggjort",
+    "de": "Als veröffentlicht vermerken"
   },
   "artefact.publishUrl": {
     "en": "Where it lives",
-    "da": "Hvor den ligger"
+    "da": "Hvor den ligger",
+    "de": "Wo es liegt"
   },
   "artefact.export": {
     "en": "Download the signed document",
-    "da": "Hent det underskrevne dokument"
+    "da": "Hent det underskrevne dokument",
+    "de": "Das unterzeichnete Dokument herunterladen"
   },
   "artefact.signedNow": {
     "en": "Signed",
-    "da": "Underskrevet"
+    "da": "Underskrevet",
+    "de": "Unterzeichnet"
   },
   "artefact.publishedNow": {
     "en": "Recorded as published",
-    "da": "Registreret som offentliggjort"
+    "da": "Registreret som offentliggjort",
+    "de": "Als veröffentlicht vermerkt"
   },
   "artefact.stale": {
     "en": "The document changed since you read it. Read the new version and sign again.",
-    "da": "Dokumentet er ændret, siden du læste det. Læs den nye version, og underskriv igen."
+    "da": "Dokumentet er ændret, siden du læste det. Læs den nye version, og underskriv igen.",
+    "de": "Das Dokument hat sich geändert, seit Sie es gelesen haben. Lesen Sie die neue Version und unterzeichnen Sie erneut."
   },
   "artefact.unsigned": {
     "en": "Sign it first.",
-    "da": "Underskriv først."
+    "da": "Underskriv først.",
+    "de": "Unterzeichnen Sie es zuerst."
   },
   "artefact.invalid": {
     "en": "That did not go through.",
-    "da": "Det gik ikke igennem."
+    "da": "Det gik ikke igennem.",
+    "de": "Das ging nicht durch."
   },
   "artefact.kind.privacyPolicy": {
     "en": "Privacy policy",
-    "da": "Privatlivspolitik"
+    "da": "Privatlivspolitik",
+    "de": "Datenschutzerklärung"
   },
   "artefact.kind.cookieDeclaration": {
     "en": "Cookie declaration",
-    "da": "Cookiedeklaration"
+    "da": "Cookiedeklaration",
+    "de": "Cookie-Erklärung"
   },
   "artefact.kind.processingAgreement": {
     "en": "Processing agreement",
-    "da": "Databehandleraftale"
+    "da": "Databehandleraftale",
+    "de": "Auftragsverarbeitungsvertrag"
   },
   "artefact.kind.processingRegister": {
     "en": "Processing register",
-    "da": "Fortegnelse"
+    "da": "Fortegnelse",
+    "de": "Verarbeitungsverzeichnis"
   },
   "artefact.kind.subProcessorList": {
     "en": "Sub-processor list",
-    "da": "Liste over underdatabehandlere"
+    "da": "Liste over underdatabehandlere",
+    "de": "Liste der Unterauftragsverarbeiter"
   },
   "artefact.kind.retentionSchedule": {
     "en": "Retention schedule",
-    "da": "Sletteplan"
+    "da": "Sletteplan",
+    "de": "Löschkonzept"
   },
   "artefact.kind.evidencePack": {
     "en": "Evidence pack",
-    "da": "Bevispakke"
+    "da": "Bevispakke",
+    "de": "Belegpaket"
   },
   "artefact.kind.statusReport": {
     "en": "Status report",
-    "da": "Statusrapport"
+    "da": "Statusrapport",
+    "de": "Statusbericht"
   },
   "case.trust": {
     "en": "Public progress page",
-    "da": "Offentlig fremdriftsside"
+    "da": "Offentlig fremdriftsside",
+    "de": "Öffentliche Fortschrittsseite"
   },
   "case.trust.off": {
     "en": "Not published",
-    "da": "Ikke offentliggjort"
+    "da": "Ikke offentliggjort",
+    "de": "Nicht veröffentlicht"
   },
   "case.trust.on": {
     "en": "Published",
-    "da": "Offentliggjort"
+    "da": "Offentliggjort",
+    "de": "Veröffentlicht"
   },
   "case.trust.shows": {
     "en": "It shows what has been fixed and when, and how many things are open. Never which.",
-    "da": "Den viser, hvad der er rettet og hvornår, og hvor meget der er åbent. Aldrig hvad."
+    "da": "Den viser, hvad der er rettet og hvornår, og hvor meget der er åbent. Aldrig hvad.",
+    "de": "Sie zeigt, was wann behoben wurde und wie viele Punkte offen sind. Nie welche."
   },
   "case.trust.publish": {
     "en": "Publish a public progress page",
-    "da": "Offentliggør en fremdriftsside"
+    "da": "Offentliggør en fremdriftsside",
+    "de": "Eine öffentliche Fortschrittsseite veröffentlichen"
   },
   "case.trust.unpublish": {
     "en": "Take the page down",
-    "da": "Tag siden ned"
+    "da": "Tag siden ned",
+    "de": "Die Seite zurückziehen"
   },
   "case.trust.published": {
     "en": "Published; the link works now",
-    "da": "Offentliggjort; linket virker nu"
+    "da": "Offentliggjort; linket virker nu",
+    "de": "Veröffentlicht; der Link funktioniert jetzt"
   },
   "case.trust.unpublished": {
     "en": "Taken down; the link answers nothing now",
-    "da": "Taget ned; linket svarer intet nu"
+    "da": "Taget ned; linket svarer intet nu",
+    "de": "Zurückgezogen; der Link antwortet jetzt nicht mehr"
   },
   "trust.headline": {
     "en": "privacy work in progress",
-    "da": "privatlivsarbejde i gang"
+    "da": "privatlivsarbejde i gang",
+    "de": "Datenschutzarbeit in Gang"
   },
   "trust.lastChecked": {
     "en": "Last checked",
-    "da": "Senest tjekket"
+    "da": "Senest tjekket",
+    "de": "Zuletzt geprüft"
   },
   "trust.notCheckedYet": {
     "en": "Not checked yet",
-    "da": "Ikke tjekket endnu"
+    "da": "Ikke tjekket endnu",
+    "de": "Noch nicht geprüft"
   },
   "trust.case": {
     "en": "Case",
-    "da": "Sag"
+    "da": "Sag",
+    "de": "Fall"
   },
   "trust.checkedBy": {
     "en": "Checked by GDPRcompliant.eu",
-    "da": "Tjekket af GDPRcompliant.eu"
+    "da": "Tjekket af GDPRcompliant.eu",
+    "de": "Geprüft von GDPRcompliant.eu"
   },
   "trust.published": {
     "en": "Page published",
-    "da": "Side offentliggjort"
+    "da": "Side offentliggjort",
+    "de": "Seite veröffentlicht"
   },
   "trust.statement": {
     "en": "We look at this website every week. This page is dated work in progress. It is not a seal, and nobody has approved anything.",
-    "da": "Vi kigger på denne hjemmeside hver uge. Siden er dateret arbejde i gang. Den er ikke et mærke, og ingen har godkendt noget."
+    "da": "Vi kigger på denne hjemmeside hver uge. Siden er dateret arbejde i gang. Den er ikke et mærke, og ingen har godkendt noget.",
+    "de": "Wir sehen uns diese Website jede Woche an. Diese Seite ist datierte Arbeit in Gang. Sie ist kein Siegel, und niemand hat irgendetwas genehmigt."
   },
   "trust.fixed": {
     "en": "Fixed so far",
-    "da": "Rettet indtil nu"
+    "da": "Rettet indtil nu",
+    "de": "Bisher behoben"
   },
   "trust.nothingYet": {
     "en": "Nothing fixed yet.",
-    "da": "Intet rettet endnu."
+    "da": "Intet rettet endnu.",
+    "de": "Noch nichts behoben."
   },
   "trust.open.one": {
     "en": "item is open. Ask the company and they will tell you what it is.",
-    "da": "punkt er åbent. Spørg virksomheden, og de fortæller dig hvad."
+    "da": "punkt er åbent. Spørg virksomheden, og de fortæller dig hvad.",
+    "de": "Punkt ist offen. Fragen Sie das Unternehmen, und es sagt Ihnen, welcher."
   },
   "trust.open.many": {
     "en": "items are open. Ask the company and they will tell you what they are.",
-    "da": "punkter er åbne. Spørg virksomheden, og de fortæller dig hvilke."
+    "da": "punkter er åbne. Spørg virksomheden, og de fortæller dig hvilke.",
+    "de": "Punkte sind offen. Fragen Sie das Unternehmen, und es sagt Ihnen, welche."
   },
   "trust.open.none": {
     "en": "Nothing is open right now.",
-    "da": "Intet er åbent lige nu."
+    "da": "Intet er åbent lige nu.",
+    "de": "Gerade ist nichts offen."
   },
   "trust.cta": {
     "en": "Check your own website",
-    "da": "Tjek din egen hjemmeside"
+    "da": "Tjek din egen hjemmeside",
+    "de": "Ihre eigene Website prüfen"
   },
   "case.upward": {
     "en": "Summary link",
-    "da": "Oversigtslink"
+    "da": "Oversigtslink",
+    "de": "Zusammenfassungslink"
   },
   "case.upward.shows": {
     "en": "One screen: how far the case is, desk by desk, and what has been fixed.",
-    "da": "Én skærm: hvor langt sagen er, afdeling for afdeling, og hvad der er rettet."
+    "da": "Én skærm: hvor langt sagen er, afdeling for afdeling, og hvad der er rettet.",
+    "de": "Ein Bildschirm: wie weit der Fall ist, Bereich für Bereich, und was behoben wurde."
   },
   "case.upward.none": {
     "en": "No summary links yet",
-    "da": "Ingen oversigtslinks endnu"
+    "da": "Ingen oversigtslinks endnu",
+    "de": "Noch keine Zusammenfassungslinks"
   },
   "case.upward.audience": {
     "en": "Who it is for",
-    "da": "Hvem det er til"
+    "da": "Hvem det er til",
+    "de": "Für wen er ist"
   },
   "case.upward.create": {
     "en": "Create the link",
-    "da": "Opret linket"
+    "da": "Opret linket",
+    "de": "Den Link erstellen"
   },
   "case.upward.revoke": {
     "en": "Revoke",
-    "da": "Træk tilbage"
+    "da": "Træk tilbage",
+    "de": "Widerrufen"
   },
   "case.upward.status.live": {
     "en": "Live",
-    "da": "Aktivt"
+    "da": "Aktivt",
+    "de": "Aktiv"
   },
   "case.upward.status.revoked": {
     "en": "Revoked",
-    "da": "Trukket tilbage"
+    "da": "Trukket tilbage",
+    "de": "Widerrufen"
   },
   "case.upward.status.expired": {
     "en": "Expired",
-    "da": "Udløbet"
+    "da": "Udløbet",
+    "de": "Abgelaufen"
   },
   "case.upward.created": {
     "en": "Link created",
-    "da": "Link oprettet"
+    "da": "Link oprettet",
+    "de": "Link erstellt"
   },
   "case.upward.revoked": {
     "en": "Link revoked; it answers nothing now",
-    "da": "Link trukket tilbage; det svarer intet nu"
+    "da": "Link trukket tilbage; det svarer intet nu",
+    "de": "Link widerrufen; er antwortet jetzt nicht mehr"
   },
   "upward.for": {
     "en": "Summary for",
-    "da": "Oversigt til"
+    "da": "Oversigt til",
+    "de": "Zusammenfassung für"
   },
   "upward.open": {
     "en": "open",
-    "da": "åbne"
+    "da": "åbne",
+    "de": "offen"
   },
   "upward.fixed": {
     "en": "Fixed",
-    "da": "Rettet"
+    "da": "Rettet",
+    "de": "Behoben"
   },
   "upward.more": {
     "en": "more",
-    "da": "flere"
+    "da": "flere",
+    "de": "weitere"
   },
   "upward.generated": {
     "en": "Generated",
-    "da": "Genereret"
+    "da": "Genereret",
+    "de": "Erzeugt"
   },
   "upward.revocable": {
     "en": "The case holder can revoke this link at any time.",
-    "da": "Sagens indehaver kan trække linket tilbage når som helst."
+    "da": "Sagens indehaver kan trække linket tilbage når som helst.",
+    "de": "Der Fallinhaber kann diesen Link jederzeit widerrufen."
   },
   "case.report": {
     "en": "Status report (PDF)",
-    "da": "Statusrapport (PDF)"
+    "da": "Statusrapport (PDF)",
+    "de": "Statusbericht (PDF)"
   },
   "case.report.note": {
     "en": "Generated from the case as it stands the moment you ask, with every provision quoted in full.",
-    "da": "Genereret ud fra sagen, som den står i det øjeblik, du beder om den, med hver bestemmelse citeret i sin helhed."
+    "da": "Genereret ud fra sagen, som den står i det øjeblik, du beder om den, med hver bestemmelse citeret i sin helhed.",
+    "de": "Erzeugt aus dem Fall, wie er im Moment der Anfrage steht, mit jeder Vorschrift im Wortlaut."
   },
   "case.guide": {
     "en": "Guide",
-    "da": "Vejledning"
+    "da": "Vejledning",
+    "de": "Anleitung"
   },
   "guides.heading": {
     "en": "Guides",
-    "da": "Vejledninger"
+    "da": "Vejledninger",
+    "de": "Anleitungen"
   },
   "guides.lead": {
     "en": "One page per thing a scan can find on a website: what it is, why it matters, what to change, and how to see that it worked.",
-    "da": "Én side for hver ting, en scanning kan finde på en hjemmeside: hvad det er, hvorfor det betyder noget, hvad der skal ændres, og hvordan man ser, at det virkede."
+    "da": "Én side for hver ting, en scanning kan finde på en hjemmeside: hvad det er, hvorfor det betyder noget, hvad der skal ændres, og hvordan man ser, at det virkede.",
+    "de": "Eine Seite pro Sache, die ein Scan auf einer Website finden kann: was es ist, warum es zählt, was zu ändern ist, und woran man sieht, dass es gewirkt hat."
   },
   "guide.wrong": {
     "en": "What is wrong",
-    "da": "Hvad der er galt"
+    "da": "Hvad der er galt",
+    "de": "Was nicht stimmt"
   },
   "guide.why": {
     "en": "Why it matters",
-    "da": "Hvorfor det betyder noget"
+    "da": "Hvorfor det betyder noget",
+    "de": "Warum es zählt"
   },
   "guide.steps": {
     "en": "What to change",
-    "da": "Hvad der skal ændres"
+    "da": "Hvad der skal ændres",
+    "de": "Was zu ändern ist"
   },
   "guide.confirm": {
     "en": "How to see that it worked",
-    "da": "Sådan ser du, at det virkede"
+    "da": "Sådan ser du, at det virkede",
+    "de": "Woran man sieht, dass es gewirkt hat"
   },
   "guide.law": {
     "en": "The rule it rests on",
-    "da": "Reglen, det bygger på"
+    "da": "Reglen, det bygger på",
+    "de": "Die Regel, auf der es beruht"
   },
   "guide.snippet": {
     "en": "The change, as code",
-    "da": "Ændringen som kode"
+    "da": "Ændringen som kode",
+    "de": "Die Änderung, als Code"
   },
   "guide.check": {
     "en": "Check your own website",
-    "da": "Tjek din egen hjemmeside"
+    "da": "Tjek din egen hjemmeside",
+    "de": "Ihre eigene Website prüfen"
   },
   "guide.finding": {
     "en": "Finding",
-    "da": "Fund"
+    "da": "Fund",
+    "de": "Befund"
   },
   "guide.all": {
     "en": "All guides",
-    "da": "Alle vejledninger"
+    "da": "Alle vejledninger",
+    "de": "Alle Anleitungen"
   },
   "artefact.gaps": {
     "en": "Before this can be written",

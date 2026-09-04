@@ -1,24 +1,28 @@
 {
   "id": "frm-02-split-checkboxes",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "FRM-02",
   "jurisdictions": "all",
   "kind": "self_fix",
   "title": {
-    "en": "Split it into two checkboxes"
+    "en": "Split it into two checkboxes",
+    "de": "In zwei Kästchen aufteilen"
   },
   "effort": {
     "label": {
-      "en": "About 10 minutes"
+      "en": "About 10 minutes",
+      "de": "Etwa 10 Minuten"
     },
     "minutes": 10
   },
   "detail": {
-    "en": "Terms stays required. The newsletter becomes a second, optional, unticked box. Your list gets smaller and considerably more valuable."
+    "en": "Terms stays required. The newsletter becomes a second, optional, unticked box. Your list gets smaller and considerably more valuable.",
+    "de": "Die Bedingungen bleiben Pflicht. Der Newsletter wird ein zweites, optionales, leeres Kästchen. Ihre Liste wird kleiner und deutlich wertvoller."
   },
   "snippet": "<label><input type=\"checkbox\" required> I accept the terms</label>\n<label><input type=\"checkbox\"> Yes to the newsletter</label>",
   "verifyLabel": {
-    "en": "Re-check this finding"
+    "en": "Re-check this finding",
+    "de": "Diesen Befund erneut prüfen"
   },
   "verification": {
     "method": "rescan"
@@ -26,13 +30,16 @@
   "action": {
     "kind": "agent_prompt",
     "label": {
-      "en": "Paste into your coding assistant"
+      "en": "Paste into your coding assistant",
+      "de": "In Ihren Coding-Assistenten einfügen"
     },
     "forwardable": {
-      "en": "Or forward it to your developer — it reads the same either way."
+      "en": "Or forward it to your developer — it reads the same either way.",
+      "de": "Oder leiten Sie es an Ihre Entwicklerin oder Ihren Entwickler weiter; es liest sich so oder so gleich."
     },
     "body": {
-      "en": "On {{domain}} at {{path}}, one required checkbox with id \"{{control_id}}\" currently covers both accepting the terms and joining the newsletter. Its label reads \"{{label}}\", and the order cannot be placed without ticking it.\n\nSplit it into two controls. Accepting the terms stays required. The newsletter becomes a separate optional checkbox, unticked by default. Store the newsletter choice as its own value with its own timestamp, separate from terms acceptance, so we can later show who opted in and when.\n\nWhen you are done: show me the change and where the newsletter opt-in is recorded."
+      "en": "On {{domain}} at {{path}}, one required checkbox with id \"{{control_id}}\" currently covers both accepting the terms and joining the newsletter. Its label reads \"{{label}}\", and the order cannot be placed without ticking it.\n\nSplit it into two controls. Accepting the terms stays required. The newsletter becomes a separate optional checkbox, unticked by default. Store the newsletter choice as its own value with its own timestamp, separate from terms acceptance, so we can later show who opted in and when.\n\nWhen you are done: show me the change and where the newsletter opt-in is recorded.",
+      "de": "Auf {{domain}} unter {{path}} deckt derzeit ein Pflichtkästchen mit der id „{{control_id}}“ sowohl das Akzeptieren der Bedingungen als auch die Newsletter-Anmeldung ab. Seine Beschriftung lautet „{{label}}“, und die Bestellung kann ohne Ankreuzen nicht aufgegeben werden.\n\nTeile es in zwei Bedienelemente. Das Akzeptieren der Bedingungen bleibt Pflicht. Der Newsletter wird ein separates optionales Kästchen, standardmäßig leer. Speichere die Newsletter-Wahl als eigenen Wert mit eigenem Zeitstempel, getrennt von der Annahme der Bedingungen, damit wir später zeigen können, wer sich wann angemeldet hat.\n\nWenn du fertig bist: Zeige mir die Änderung und wo die Newsletter-Anmeldung gespeichert wird."
     }
   }
 }

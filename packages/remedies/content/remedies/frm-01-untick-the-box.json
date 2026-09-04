@@ -1,24 +1,28 @@
 {
   "id": "frm-01-untick-the-box",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "FRM-01",
   "jurisdictions": "all",
   "kind": "self_fix",
   "title": {
-    "en": "Leave the box unticked"
+    "en": "Leave the box unticked",
+    "de": "Das Kästchen leer lassen"
   },
   "effort": {
     "label": {
-      "en": "About 5 minutes"
+      "en": "About 5 minutes",
+      "de": "Etwa 5 Minuten"
     },
     "minutes": 5
   },
   "detail": {
-    "en": "A box the visitor never touched is not a choice. Remove the checked attribute, remove the script that sets it, and show the box where a person can see it."
+    "en": "A box the visitor never touched is not a choice. Remove the checked attribute, remove the script that sets it, and show the box where a person can see it.",
+    "de": "Ein Kästchen, das die Besucherin nie berührt hat, ist keine Wahl. Entfernen Sie das checked-Attribut, entfernen Sie das Skript, das es setzt, und zeigen Sie das Kästchen dort, wo ein Mensch es sehen kann."
   },
   "snippet": "<label><input type=\"checkbox\" name=\"newsletter\"> Yes to the newsletter</label>",
   "verifyLabel": {
-    "en": "Re-check this finding"
+    "en": "Re-check this finding",
+    "de": "Diesen Befund erneut prüfen"
   },
   "verification": {
     "method": "rescan"
@@ -26,13 +30,16 @@
   "action": {
     "kind": "agent_prompt",
     "label": {
-      "en": "Paste into your coding assistant"
+      "en": "Paste into your coding assistant",
+      "de": "In Ihren Coding-Assistenten einfügen"
     },
     "forwardable": {
-      "en": "Or forward it to your developer — it reads the same either way."
+      "en": "Or forward it to your developer — it reads the same either way.",
+      "de": "Oder leiten Sie es an Ihre Entwicklerin oder Ihren Entwickler weiter; es liest sich so oder so gleich."
     },
     "body": {
-      "en": "On {{domain}} at {{path}}, the consent checkbox with id \"{{control_id}}\" (label \"{{label}}\") is already ticked when the page loads. Remove the checked attribute from the markup and any script that sets .checked on it, make sure the checkbox is visible (no display:none, visibility:hidden, zero size or off-screen positioning), and make sure the value is only sent when the visitor has ticked it themselves.\n\nWhen you are done: show me the change and how to confirm the box is unticked and visible on a fresh load of https://{{domain}}{{path}}."
+      "en": "On {{domain}} at {{path}}, the consent checkbox with id \"{{control_id}}\" (label \"{{label}}\") is already ticked when the page loads. Remove the checked attribute from the markup and any script that sets .checked on it, make sure the checkbox is visible (no display:none, visibility:hidden, zero size or off-screen positioning), and make sure the value is only sent when the visitor has ticked it themselves.\n\nWhen you are done: show me the change and how to confirm the box is unticked and visible on a fresh load of https://{{domain}}{{path}}.",
+      "de": "Auf {{domain}} unter {{path}} ist das Einwilligungskästchen mit der id „{{control_id}}“ (Beschriftung „{{label}}“) beim Laden der Seite bereits angekreuzt. Entferne das checked-Attribut aus dem Markup und jedes Skript, das .checked darauf setzt, stelle sicher, dass das Kästchen sichtbar ist (kein display:none, visibility:hidden, keine Nullgröße oder Positionierung außerhalb des Bildschirms), und stelle sicher, dass der Wert nur gesendet wird, wenn die Besucherin es selbst angekreuzt hat.\n\nWenn du fertig bist: Zeige mir die Änderung und wie ich bestätige, dass das Kästchen bei einem frischen Laden von https://{{domain}}{{path}} leer und sichtbar ist."
     }
   }
 }

@@ -1,31 +1,36 @@
 {
   "id": "pol-05-name-the-recipient",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "POL-05",
   "jurisdictions": "all",
   "kind": "generated_artefact",
   "title": {
     "en": "Add the recipient to the policy and publish it again",
-    "da": "Tilføj modtageren til politikken, og offentliggør den igen"
+    "da": "Tilføj modtageren til politikken, og offentliggør den igen",
+    "de": "Den Empfänger in die Erklärung aufnehmen und sie erneut veröffentlichen"
   },
   "effort": {
     "label": {
       "en": "One click, then a review",
-      "da": "Ét klik, så et gennemsyn"
+      "da": "Ét klik, så et gennemsyn",
+      "de": "Ein Klick, dann eine Durchsicht"
     }
   },
   "detail": {
     "en": "The site sends visitors' requests to a company the published policy does not name. Confirm the new recipient in the register; the policy is then written again from it, and the case checks the site against the new version.",
-    "da": "Sitet sender besøgendes forespørgsler til en virksomhed, som den offentliggjorte politik ikke nævner. Bekræft den nye modtager i fortegnelsen; politikken skrives så igen ud fra den, og sagen tjekker sitet mod den nye version."
+    "da": "Sitet sender besøgendes forespørgsler til en virksomhed, som den offentliggjorte politik ikke nævner. Bekræft den nye modtager i fortegnelsen; politikken skrives så igen ud fra den, og sagen tjekker sitet mod den nye version.",
+    "de": "Die Website sendet Anfragen der Besucher an ein Unternehmen, das die veröffentlichte Erklärung nicht nennt. Bestätigen Sie den neuen Empfänger im Verzeichnis; die Erklärung wird dann daraus neu geschrieben, und der Fall prüft die Website gegen die neue Fassung."
   },
   "artefact": "privacy_policy",
   "cta": {
     "en": "Preview the new draft",
-    "da": "Se det nye udkast"
+    "da": "Se det nye udkast",
+    "de": "Den neuen Entwurf ansehen"
   },
   "verifyLabel": {
     "en": "Re-check once published",
-    "da": "Tjek igen, når den er offentliggjort"
+    "da": "Tjek igen, når den er offentliggjort",
+    "de": "Erneut prüfen, sobald veröffentlicht"
   },
   "verification": {
     "method": "artefact_published",

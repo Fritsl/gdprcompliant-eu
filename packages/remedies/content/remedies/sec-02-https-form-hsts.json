@@ -1,24 +1,28 @@
 {
   "id": "sec-02-https-form-hsts",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "SEC-02",
   "jurisdictions": "all",
   "kind": "self_fix",
   "title": {
-    "en": "Point the form at the https address and add HSTS"
+    "en": "Point the form at the https address and add HSTS",
+    "de": "Das Formular auf die https-Adresse richten und HSTS hinzufügen"
   },
   "effort": {
     "label": {
-      "en": "About 5 minutes"
+      "en": "About 5 minutes",
+      "de": "Etwa 5 Minuten"
     },
     "minutes": 5
   },
   "detail": {
-    "en": "Change the form action to the https address so nothing is sent over the redirect. Then add HSTS, so browsers never try http again."
+    "en": "Change the form action to the https address so nothing is sent over the redirect. Then add HSTS, so browsers never try http again.",
+    "de": "Ändern Sie die Formular-Action auf die https-Adresse, damit nichts über die Weiterleitung gesendet wird. Fügen Sie dann HSTS hinzu, damit Browser nie wieder http versuchen."
   },
   "snippet": "# nginx\nadd_header Strict-Transport-Security \"max-age=63072000; includeSubDomains\" always;",
   "verifyLabel": {
-    "en": "Re-check this finding"
+    "en": "Re-check this finding",
+    "de": "Diesen Befund erneut prüfen"
   },
   "verification": {
     "method": "rescan"
@@ -26,13 +30,16 @@
   "action": {
     "kind": "agent_prompt",
     "label": {
-      "en": "Paste into your coding assistant"
+      "en": "Paste into your coding assistant",
+      "de": "In Ihren Coding-Assistenten einfügen"
     },
     "forwardable": {
-      "en": "Or forward it to your developer — it reads the same either way."
+      "en": "Or forward it to your developer — it reads the same either way.",
+      "de": "Oder leiten Sie es an Ihre Entwicklerin oder Ihren Entwickler weiter; es liest sich so oder so gleich."
     },
     "body": {
-      "en": "On {{domain}} the form at {{form_path}} posts to {{post_url_http}}, which redirects to {{post_url_https}}. The first request carries {{fields}} in the clear.\n\nChange the form action to post directly to {{post_url_https}} so nothing travels over the redirect. Then add a Strict-Transport-Security response header with max-age of at least 63072000, including subdomains.\n\nWhen you are done: tell me which files you changed and how to confirm no request from this form leaves over plain http."
+      "en": "On {{domain}} the form at {{form_path}} posts to {{post_url_http}}, which redirects to {{post_url_https}}. The first request carries {{fields}} in the clear.\n\nChange the form action to post directly to {{post_url_https}} so nothing travels over the redirect. Then add a Strict-Transport-Security response header with max-age of at least 63072000, including subdomains.\n\nWhen you are done: tell me which files you changed and how to confirm no request from this form leaves over plain http.",
+      "de": "Auf {{domain}} sendet das Formular unter {{form_path}} an {{post_url_http}}, das nach {{post_url_https}} weiterleitet. Die erste Anfrage trägt {{fields}} im Klartext.\n\nÄndere die Formular-Action so, dass sie direkt an {{post_url_https}} sendet, damit nichts über die Weiterleitung reist. Füge dann einen Strict-Transport-Security-Antwort-Header mit einem max-age von mindestens 63072000 hinzu, einschließlich Subdomains.\n\nWenn du fertig bist: Sage mir, welche Dateien du geändert hast und wie ich bestätige, dass keine Anfrage aus diesem Formular über reines http hinausgeht."
     }
   }
 }

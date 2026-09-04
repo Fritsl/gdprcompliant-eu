@@ -1,45 +1,52 @@
 {
   "id": "trf-01-european-alternatives",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "TRF-01",
   "jurisdictions": "all",
   "kind": "partner_alternative",
   "title": {
-    "en": "Compare European alternatives"
+    "en": "Compare European alternatives",
+    "de": "Europäische Alternativen vergleichen"
   },
   "effort": {
     "label": {
-      "en": "A decision, not a task"
+      "en": "A decision, not a task",
+      "de": "Eine Entscheidung, keine Aufgabe"
     }
   },
   "detail": {
-    "en": "Real switching cost, so take your time. Three European-owned options we have checked."
+    "en": "Real switching cost, so take your time. Three European-owned options we have checked.",
+    "de": "Echte Wechselkosten, also nehmen Sie sich Zeit. Drei Optionen in europäischem Eigentum, die wir geprüft haben."
   },
   "options": [
     {
       "name": "Mailbox provider",
       "jurisdiction": "DE",
       "note": {
-        "en": "mail only, keeps your files where they are"
+        "en": "mail only, keeps your files where they are",
+        "de": "nur Mail, lässt Ihre Dateien, wo sie sind"
       }
     },
     {
       "name": "Collaboration suite",
       "jurisdiction": "FR",
       "note": {
-        "en": "mail and files, migration tooling included"
+        "en": "mail and files, migration tooling included",
+        "de": "Mail und Dateien, Migrationswerkzeuge inklusive"
       }
     },
     {
       "name": "Collaboration suite",
       "jurisdiction": "DE",
       "note": {
-        "en": "mail and files, on-premise option"
+        "en": "mail and files, on-premise option",
+        "de": "Mail und Dateien, On-Premise-Option"
       }
     }
   ],
   "verifyLabel": {
-    "en": "Re-check after a change"
+    "en": "Re-check after a change",
+    "de": "Nach einer Änderung erneut prüfen"
   },
   "verification": {
     "method": "rescan"
@@ -47,16 +54,20 @@
   "action": {
     "kind": "message",
     "label": {
-      "en": "Send this to whoever decides"
+      "en": "Send this to whoever decides",
+      "de": "Das an die Person senden, die entscheidet"
     },
     "to": {
-      "en": "Whoever owns the decision"
+      "en": "Whoever owns the decision",
+      "de": "Wer die Entscheidung verantwortet"
     },
     "subject": {
-      "en": "Decision needed: where our mail and files live"
+      "en": "Decision needed: where our mail and files live",
+      "de": "Entscheidung nötig: wo unsere Mails und Dateien liegen"
     },
     "body": {
-      "en": "We need a decision, not a task.\n\nOur mail and document storage are with a provider whose ultimate parent is established in the United States. European data residency doesn't change which courts can compel that parent, and our privacy policy doesn't currently name a basis for it.\n\nThree options, none of them free:\n- Do nothing, and document the transfer basis properly. Cheapest, and defensible.\n- Move mail only. Moderate disruption, keeps files where they are.\n- Move mail and files. Largest disruption, removes the question entirely.\n\nI can get costs for the second and third if you want them. What I need from you is which direction we're going, so I can stop leaving this open."
+      "en": "We need a decision, not a task.\n\nOur mail and document storage are with a provider whose ultimate parent is established in the United States. European data residency doesn't change which courts can compel that parent, and our privacy policy doesn't currently name a basis for it.\n\nThree options, none of them free:\n- Do nothing, and document the transfer basis properly. Cheapest, and defensible.\n- Move mail only. Moderate disruption, keeps files where they are.\n- Move mail and files. Largest disruption, removes the question entirely.\n\nI can get costs for the second and third if you want them. What I need from you is which direction we're going, so I can stop leaving this open.",
+      "de": "Wir brauchen eine Entscheidung, keine Aufgabe.\n\nUnsere Mails und unsere Dokumentablage liegen bei einem Anbieter, dessen oberste Muttergesellschaft in den Vereinigten Staaten niedergelassen ist. Europäischer Speicherort ändert nichts daran, welche Gerichte diese Mutter verpflichten können, und unsere Datenschutzerklärung nennt dafür derzeit keine Grundlage.\n\nDrei Optionen, keine davon kostenlos:\n- Nichts tun und die Übermittlungsgrundlage sauber dokumentieren. Am günstigsten, und vertretbar.\n- Nur die Mails umziehen. Mäßige Störung, lässt die Dateien, wo sie sind.\n- Mails und Dateien umziehen. Größte Störung, räumt die Frage vollständig aus.\n\nFür die zweite und dritte kann ich Kosten einholen, wenn ihr sie wollt. Was ich von euch brauche, ist die Richtung, damit ich das nicht länger offen lassen muss."
     }
   }
 }

@@ -1,26 +1,30 @@
 {
   "id": "cns-02-gate-tags",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "CNS-02",
   "jurisdictions": "all",
   "kind": "self_fix",
   "title": {
     "en": "Move the tags behind the consent state",
-    "da": "Flyt dine tags om bag samtykket"
+    "da": "Flyt dine tags om bag samtykket",
+    "de": "Die Tags hinter den Einwilligungsstatus verschieben"
   },
   "effort": {
     "label": {
       "en": "About 20 minutes",
-      "da": "Cirka 20 minutter"
+      "da": "Cirka 20 minutter",
+      "de": "Etwa 20 Minuten"
     },
     "minutes": 20
   },
   "detail": {
-    "en": "Your tags fire on page load rather than on the consent event. Wrap each non-essential tag in a consent check and re-publish."
+    "en": "Your tags fire on page load rather than on the consent event. Wrap each non-essential tag in a consent check and re-publish.",
+    "de": "Ihre Tags feuern beim Laden der Seite statt beim Einwilligungsereignis. Umhüllen Sie jedes nicht notwendige Tag mit einer Einwilligungsprüfung und veröffentlichen Sie neu."
   },
   "snippet": "// before — fires immediately\nloadTag('analytics');\n\n// after — waits for a real decision\nwindow.addEventListener('CookieConsentDecision', (e) => {\n  if (e.detail.categories.includes('statistics')) loadTag('analytics');\n});",
   "verifyLabel": {
-    "en": "Re-check this finding"
+    "en": "Re-check this finding",
+    "de": "Diesen Befund erneut prüfen"
   },
   "verification": {
     "method": "rescan"
@@ -28,13 +32,16 @@
   "action": {
     "kind": "agent_prompt",
     "label": {
-      "en": "Paste into your coding assistant"
+      "en": "Paste into your coding assistant",
+      "de": "In Ihren Coding-Assistenten einfügen"
     },
     "forwardable": {
-      "en": "Or forward it to your developer — it reads the same either way."
+      "en": "Or forward it to your developer — it reads the same either way.",
+      "de": "Oder leiten Sie es an Ihre Entwicklerin oder Ihren Entwickler weiter; es liest sich so oder so gleich."
     },
     "body": {
-      "en": "On {{domain}} these third-party hosts load on page load, before the visitor has consented:\n\n{{hosts}}\n\nThe consent banner itself works correctly and records the choice — the problem is where the tags fire, not the banner. Leave the banner and its configuration alone. {{essential_hosts}} must keep loading immediately.\n\nMake each of the hosts above load only after the consent event fires with its matching category (statistics, marketing or preferences).\n\nWhen you are done: list which hosts you changed and which you deliberately left alone, and tell me how to verify that refusing consent now prevents each one from loading."
+      "en": "On {{domain}} these third-party hosts load on page load, before the visitor has consented:\n\n{{hosts}}\n\nThe consent banner itself works correctly and records the choice — the problem is where the tags fire, not the banner. Leave the banner and its configuration alone. {{essential_hosts}} must keep loading immediately.\n\nMake each of the hosts above load only after the consent event fires with its matching category (statistics, marketing or preferences).\n\nWhen you are done: list which hosts you changed and which you deliberately left alone, and tell me how to verify that refusing consent now prevents each one from loading.",
+      "de": "Auf {{domain}} laden diese Dritt-Hosts beim Laden der Seite, bevor die Besucherin eingewilligt hat:\n\n{{hosts}}\n\nDas Einwilligungsbanner selbst funktioniert korrekt und speichert die Wahl; das Problem ist, wo die Tags feuern, nicht das Banner. Lass das Banner und seine Konfiguration in Ruhe. {{essential_hosts}} müssen weiterhin sofort laden.\n\nSorge dafür, dass jeder der oben genannten Hosts erst lädt, nachdem das Einwilligungsereignis mit seiner passenden Kategorie (Statistik, Marketing oder Präferenzen) ausgelöst wurde.\n\nWenn du fertig bist: Liste auf, welche Hosts du geändert und welche du bewusst belassen hast, und sage mir, wie ich prüfe, dass eine Ablehnung jetzt jeden davon am Laden hindert."
     }
   }
 }

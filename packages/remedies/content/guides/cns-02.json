@@ -3,46 +3,56 @@
   "findingTypeId": "CNS-02",
   "title": {
     "en": "Refusing cookies changes nothing: the trackers run anyway",
-    "da": "At afvise cookies ændrer ingenting: trackerne kører alligevel"
+    "da": "At afvise cookies ændrer ingenting: trackerne kører alligevel",
+    "de": "Cookies ablehnen ändert nichts: Die Tracker laufen trotzdem"
   },
   "wrong": {
     "en": "The visitor clicks “reject all”, and the page contacts the same tracking hosts as when they click “accept all”. The banner records a choice that the site does not act on.",
-    "da": "Den besøgende klikker “afvis alle”, og siden kontakter de samme sporingsværter, som når de klikker “accepter alle”. Banneret registrerer et valg, sitet ikke handler på."
+    "da": "Den besøgende klikker “afvis alle”, og siden kontakter de samme sporingsværter, som når de klikker “accepter alle”. Banneret registrerer et valg, sitet ikke handler på.",
+    "de": "Die Besucherin klickt „alle ablehnen“, und die Seite kontaktiert dieselben Tracking-Hosts wie bei „alle akzeptieren“. Das Banner zeichnet eine Wahl auf, nach der die Website nicht handelt."
   },
   "why": {
     "en": "A refusal that is ignored is worse than no banner: the site has documented that it asked, and documented that it did not listen. This is the finding authorities fine for most often.",
-    "da": "Et afslag, der ignoreres, er værre end intet banner: sitet har dokumenteret, at det spurgte, og dokumenteret, at det ikke lyttede. Det er det fund, tilsyn oftest giver bøder for."
+    "da": "Et afslag, der ignoreres, er værre end intet banner: sitet har dokumenteret, at det spurgte, og dokumenteret, at det ikke lyttede. Det er det fund, tilsyn oftest giver bøder for.",
+    "de": "Eine ignorierte Ablehnung ist schlimmer als kein Banner: Die Website hat dokumentiert, dass sie gefragt hat, und dokumentiert, dass sie nicht zugehört hat. Das ist der Befund, für den Behörden am häufigsten Bußgelder verhängen."
   },
   "steps": [
     {
       "en": "Wire every tracking tag to the consent state, so it is loaded only after an accept and not at all after a reject. In a tag manager this is a consent trigger; in the page it is a check of the consent tool’s stored value.",
-      "da": "Koble hvert sporings-tag til samtykketilstanden, så det kun indlæses efter et ja og slet ikke efter et nej. I en tag manager er det en samtykke-trigger; på siden er det et tjek af samtykkeværktøjets gemte værdi."
+      "da": "Koble hvert sporings-tag til samtykketilstanden, så det kun indlæses efter et ja og slet ikke efter et nej. I en tag manager er det en samtykke-trigger; på siden er det et tjek af samtykkeværktøjets gemte værdi.",
+      "de": "Verdrahten Sie jedes Tracking-Tag mit dem Einwilligungsstatus, sodass es erst nach einem Akzeptieren und nach einem Ablehnen gar nicht lädt. Im Tag-Manager ist das ein Einwilligungs-Trigger; in der Seite eine Prüfung des gespeicherten Werts des Einwilligungswerkzeugs."
     },
     {
       "en": "Remove any tag that fires from the page source directly, outside the consent tool’s control.",
-      "da": "Fjern ethvert tag, der fyrer direkte fra sidens kilde, uden for samtykkeværktøjets kontrol."
+      "da": "Fjern ethvert tag, der fyrer direkte fra sidens kilde, uden for samtykkeværktøjets kontrol.",
+      "de": "Entfernen Sie jedes Tag, das direkt aus dem Seitenquelltext feuert, außerhalb der Kontrolle des Einwilligungswerkzeugs."
     },
     {
       "en": "Test the reject path, not only the accept path; the finding names the hosts that ignored it.",
-      "da": "Test afvisningsvejen, ikke kun acceptvejen; fundet nævner de værter, der ignorerede den."
+      "da": "Test afvisningsvejen, ikke kun acceptvejen; fundet nævner de værter, der ignorerede den.",
+      "de": "Testen Sie den Ablehnen-Pfad, nicht nur den Akzeptieren-Pfad; der Befund nennt die Hosts, die ihn ignoriert haben."
     }
   ],
   "confirm": {
     "en": "In a private window, reject all, then reload and watch the network panel: none of the named hosts may be contacted. Then run the check again from your case page.",
-    "da": "Afvis alle i et privat vindue, genindlæs, og se i netværkspanelet: ingen af de nævnte værter må kontaktes. Kør derefter tjekket igen fra din sagsside."
+    "da": "Afvis alle i et privat vindue, genindlæs, og se i netværkspanelet: ingen af de nævnte værter må kontaktes. Kør derefter tjekket igen fra din sagsside.",
+    "de": "Lehnen Sie in einem privaten Fenster alles ab, laden Sie neu und beobachten Sie das Netzwerk-Panel: Keiner der genannten Hosts darf kontaktiert werden. Führen Sie dann die Prüfung von Ihrer Fallseite aus erneut aus."
   },
   "keywords": [
     {
       "en": "reject all does not work",
-      "da": "afvis alle virker ikke"
+      "da": "afvis alle virker ikke",
+      "de": "alle ablehnen funktioniert nicht"
     },
     {
       "en": "trackers after rejecting cookies",
-      "da": "trackere efter afvisning af cookies"
+      "da": "trackere efter afvisning af cookies",
+      "de": "tracker nach ablehnen der cookies"
     },
     {
       "en": "cookie banner ignored",
-      "da": "cookiebanner ignoreret"
+      "da": "cookiebanner ignoreret",
+      "de": "cookie-banner ignoriert"
     }
   ],
   "remedyId": "cns-02-gate-tags"

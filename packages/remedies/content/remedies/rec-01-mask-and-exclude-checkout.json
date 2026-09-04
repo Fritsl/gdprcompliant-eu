@@ -1,24 +1,28 @@
 {
   "id": "rec-01-mask-and-exclude-checkout",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "REC-01",
   "jurisdictions": "all",
   "kind": "self_fix",
   "title": {
-    "en": "Turn masking on and exclude the checkout"
+    "en": "Turn masking on and exclude the checkout",
+    "de": "Maskierung einschalten und die Kasse ausschließen"
   },
   "effort": {
     "label": {
-      "en": "About 10 minutes"
+      "en": "About 10 minutes",
+      "de": "Etwa 10 Minuten"
     },
     "minutes": 10
   },
   "detail": {
-    "en": "Two changes: mask all input by default, and stop the tool loading on the checkout path entirely. The second is the one that matters."
+    "en": "Two changes: mask all input by default, and stop the tool loading on the checkout path entirely. The second is the one that matters.",
+    "de": "Zwei Änderungen: alle Eingaben standardmäßig maskieren und das Werkzeug auf dem Kassenpfad gar nicht mehr laden. Die zweite ist die, die zählt."
   },
   "snippet": "// mask everything, then exclude the checkout entirely\nreplay.set('maskAllInputs', true);\nif (location.pathname.startsWith('{{path}}')) {\n  /* do not load the replay tag at all */\n}",
   "verifyLabel": {
-    "en": "Re-check this finding"
+    "en": "Re-check this finding",
+    "de": "Diesen Befund erneut prüfen"
   },
   "verification": {
     "method": "rescan"
@@ -26,13 +30,16 @@
   "action": {
     "kind": "agent_prompt",
     "label": {
-      "en": "Paste into your coding assistant"
+      "en": "Paste into your coding assistant",
+      "de": "In Ihren Coding-Assistenten einfügen"
     },
     "forwardable": {
-      "en": "Or forward it to your developer — it reads the same either way."
+      "en": "Or forward it to your developer — it reads the same either way.",
+      "de": "Oder leiten Sie es an Ihre Entwicklerin oder Ihren Entwickler weiter; es liest sich so oder so gleich."
     },
     "body": {
-      "en": "On {{domain}}, {{tool}} ({{tool_host}}) is active on {{path}} with input masking off. It records what customers type into {{fields}} before they submit anything.\n\nTwo changes, and the second matters more than the first:\n1. Turn input masking on globally.\n2. Prevent the {{tool}} script from loading at all on any path under {{path}}.\n\nWhen you are done: show me the change and how to verify the script is entirely absent on {{path}}."
+      "en": "On {{domain}}, {{tool}} ({{tool_host}}) is active on {{path}} with input masking off. It records what customers type into {{fields}} before they submit anything.\n\nTwo changes, and the second matters more than the first:\n1. Turn input masking on globally.\n2. Prevent the {{tool}} script from loading at all on any path under {{path}}.\n\nWhen you are done: show me the change and how to verify the script is entirely absent on {{path}}.",
+      "de": "Auf {{domain}} ist {{tool}} ({{tool_host}}) unter {{path}} mit ausgeschalteter Eingabemaskierung aktiv. Es zeichnet auf, was Kundinnen und Kunden in {{fields}} tippen, bevor sie irgendetwas absenden.\n\nZwei Änderungen, und die zweite zählt mehr als die erste:\n1. Schalte die Eingabemaskierung global ein.\n2. Verhindere, dass das {{tool}}-Skript auf irgendeinem Pfad unter {{path}} überhaupt lädt.\n\nWenn du fertig bist: Zeige mir die Änderung und wie ich prüfe, dass das Skript unter {{path}} vollständig fehlt."
     }
   }
 }

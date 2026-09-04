@@ -3,46 +3,56 @@
   "findingTypeId": "FRM-02",
   "title": {
     "en": "One box bundles marketing consent with something the visitor must accept",
-    "da": "Ét felt bundter markedsføringssamtykke med noget, den besøgende skal acceptere"
+    "da": "Ét felt bundter markedsføringssamtykke med noget, den besøgende skal acceptere",
+    "de": "Ein Kästchen bündelt Marketing-Einwilligung mit etwas, das die Besucherin akzeptieren muss"
   },
   "wrong": {
     "en": "A single checkbox covers both accepting the terms and agreeing to marketing, or the marketing box is required to submit the form. The visitor cannot get what they came for without also saying yes to being contacted.",
-    "da": "Ét afkrydsningsfelt dækker både accept af vilkårene og ja til markedsføring, eller markedsføringsfeltet er påkrævet for at sende formularen. Den besøgende kan ikke få det, de kom efter, uden også at sige ja til at blive kontaktet."
+    "da": "Ét afkrydsningsfelt dækker både accept af vilkårene og ja til markedsføring, eller markedsføringsfeltet er påkrævet for at sende formularen. Den besøgende kan ikke få det, de kom efter, uden også at sige ja til at blive kontaktet.",
+    "de": "Ein einzelnes Kästchen deckt sowohl das Akzeptieren der Bedingungen als auch die Zustimmung zu Marketing ab, oder das Marketing-Kästchen ist Pflicht zum Absenden. Die Besucherin bekommt nicht, weswegen sie kam, ohne auch Ja zur Kontaktaufnahme zu sagen."
   },
   "why": {
     "en": "A yes that cannot be a no is not a choice. Bundled boxes are struck down whenever they are examined, and the marketing list built on them cannot be used.",
-    "da": "Et ja, der ikke kan være et nej, er ikke et valg. Bundtede felter bliver underkendt, hver gang de bliver undersøgt, og den markedsføringsliste, der er bygget på dem, kan ikke bruges."
+    "da": "Et ja, der ikke kan være et nej, er ikke et valg. Bundtede felter bliver underkendt, hver gang de bliver undersøgt, og den markedsføringsliste, der er bygget på dem, kan ikke bruges.",
+    "de": "Ein Ja, das kein Nein sein kann, ist keine Wahl. Gebündelte Kästchen werden verworfen, wann immer sie geprüft werden, und die darauf aufgebaute Marketingliste ist nicht verwendbar."
   },
   "steps": [
     {
       "en": "Give marketing its own checkbox, unticked, with a label that says what will be sent and how often.",
-      "da": "Giv markedsføring sit eget afkrydsningsfelt, ikke krydset af, med en tekst, der siger, hvad der sendes og hvor tit."
+      "da": "Giv markedsføring sit eget afkrydsningsfelt, ikke krydset af, med en tekst, der siger, hvad der sendes og hvor tit.",
+      "de": "Geben Sie Marketing ein eigenes Kästchen, leer, mit einer Beschriftung, die sagt, was gesendet wird und wie oft."
     },
     {
       "en": "Make the terms box separate and required, and the marketing box optional; the form must submit with marketing unticked.",
-      "da": "Gør vilkårsfeltet særskilt og påkrævet, og markedsføringsfeltet valgfrit; formularen skal kunne sendes med markedsføring fravalgt."
+      "da": "Gør vilkårsfeltet særskilt og påkrævet, og markedsføringsfeltet valgfrit; formularen skal kunne sendes med markedsføring fravalgt.",
+      "de": "Machen Sie das Bedingungen-Kästchen getrennt und verpflichtend und das Marketing-Kästchen optional; das Formular muss mit leerem Marketing-Kästchen absendbar sein."
     },
     {
       "en": "Store the two answers separately, so the marketing list holds only the people who ticked that box.",
-      "da": "Gem de to svar hver for sig, så markedsføringslisten kun rummer dem, der krydsede det felt af."
+      "da": "Gem de to svar hver for sig, så markedsføringslisten kun rummer dem, der krydsede det felt af.",
+      "de": "Speichern Sie die beiden Antworten getrennt, damit die Marketingliste nur die Menschen enthält, die dieses Kästchen angekreuzt haben."
     }
   ],
   "confirm": {
     "en": "Submit the form with only the terms box ticked: it must go through. Then run the check again from your case page.",
-    "da": "Send formularen med kun vilkårsfeltet krydset af: den skal gå igennem. Kør derefter tjekket igen fra din sagsside."
+    "da": "Send formularen med kun vilkårsfeltet krydset af: den skal gå igennem. Kør derefter tjekket igen fra din sagsside.",
+    "de": "Senden Sie das Formular nur mit angekreuztem Bedingungen-Kästchen ab: Es muss durchgehen. Führen Sie dann die Prüfung von Ihrer Fallseite aus erneut aus."
   },
   "keywords": [
     {
       "en": "bundled consent checkbox",
-      "da": "bundtet samtykkefelt"
+      "da": "bundtet samtykkefelt",
+      "de": "gebündeltes einwilligungskästchen"
     },
     {
       "en": "marketing consent required",
-      "da": "markedsføringssamtykke påkrævet"
+      "da": "markedsføringssamtykke påkrævet",
+      "de": "marketing-einwilligung erforderlich"
     },
     {
       "en": "separate consent for newsletter",
-      "da": "særskilt samtykke til nyhedsbrev"
+      "da": "særskilt samtykke til nyhedsbrev",
+      "de": "getrennte einwilligung für newsletter"
     }
   ],
   "remedyId": "frm-02-split-checkboxes"

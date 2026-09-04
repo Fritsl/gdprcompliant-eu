@@ -1,24 +1,28 @@
 {
   "id": "sec-04-mixed-content",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "SEC-04",
   "jurisdictions": "all",
   "kind": "self_fix",
   "title": {
-    "en": "Load every resource over HTTPS"
+    "en": "Load every resource over HTTPS",
+    "de": "Jede Ressource über HTTPS laden"
   },
   "effort": {
     "label": {
-      "en": "About 15 minutes"
+      "en": "About 15 minutes",
+      "de": "Etwa 15 Minuten"
     },
     "minutes": 15
   },
   "detail": {
-    "en": "The page is HTTPS but some of what it loads is not, so the padlock is half a lie and browsers block or warn. Change the addresses, or make them relative."
+    "en": "The page is HTTPS but some of what it loads is not, so the padlock is half a lie and browsers block or warn. Change the addresses, or make them relative.",
+    "de": "Die Seite ist HTTPS, aber manches, was sie lädt, ist es nicht, sodass das Schloss eine halbe Lüge ist und Browser blockieren oder warnen. Ändern Sie die Adressen oder machen Sie sie relativ."
   },
   "snippet": "<!-- before -->\n<script src=\"http://cdn.example.eu/t.js\"></script>\n<!-- after -->\n<script src=\"https://cdn.example.eu/t.js\"></script>",
   "verifyLabel": {
-    "en": "Re-check this finding"
+    "en": "Re-check this finding",
+    "de": "Diesen Befund erneut prüfen"
   },
   "verification": {
     "method": "rescan"
@@ -26,13 +30,16 @@
   "action": {
     "kind": "agent_prompt",
     "label": {
-      "en": "Paste into your coding assistant"
+      "en": "Paste into your coding assistant",
+      "de": "In Ihren Coding-Assistenten einfügen"
     },
     "forwardable": {
-      "en": "Or forward it to your developer — it reads the same either way."
+      "en": "Or forward it to your developer — it reads the same either way.",
+      "de": "Oder leiten Sie es an Ihre Entwicklerin oder Ihren Entwickler weiter; es liest sich so oder so gleich."
     },
     "body": {
-      "en": "On https://{{domain}} these resources are loaded over plain HTTP:\n\n{{hosts}}\n\nChange each reference to https://, or to a scheme-relative or relative address where the same host serves HTTPS. Do not remove anything; change only the scheme.\n\nWhen you are done: list every reference you changed and how to confirm that no request from https://{{domain}}/ leaves over plain HTTP."
+      "en": "On https://{{domain}} these resources are loaded over plain HTTP:\n\n{{hosts}}\n\nChange each reference to https://, or to a scheme-relative or relative address where the same host serves HTTPS. Do not remove anything; change only the scheme.\n\nWhen you are done: list every reference you changed and how to confirm that no request from https://{{domain}}/ leaves over plain HTTP.",
+      "de": "Auf https://{{domain}} werden diese Ressourcen über reines HTTP geladen:\n\n{{hosts}}\n\nÄndere jede Referenz auf https:// oder auf eine schemarelative oder relative Adresse, wo derselbe Host HTTPS ausliefert. Entferne nichts; ändere nur das Schema.\n\nWenn du fertig bist: Liste jede geänderte Referenz auf und wie ich bestätige, dass keine Anfrage von https://{{domain}}/ über reines HTTP hinausgeht."
     }
   }
 }

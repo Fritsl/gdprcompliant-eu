@@ -189,7 +189,7 @@ describe('the guide pages (U-06)', () => {
     expect(sitemap).toContain(`<loc>${BASE}/da</loc>`);
     expect(sitemap).toMatch(new RegExp(`hreflang="da" href="${BASE}/da/guides/${SAMPLE}"`));
     expect(sitemap).toMatch(new RegExp(`hreflang="x-default" href="${BASE}/en/guides/${SAMPLE}"`));
-    expect(sitemap).not.toMatch(/\/de\/guides\/[a-z]/);
+    expect(sitemap).toContain(`<loc>${BASE}/de/guides/${SAMPLE}</loc>`);
     expect(sitemap).not.toMatch(/\/c\/|\/m\/|\/s\//);
     const robots = await (await fetch(`${BASE}/robots.txt`)).text();
     expect(robots).toContain('Disallow: /*/c/');

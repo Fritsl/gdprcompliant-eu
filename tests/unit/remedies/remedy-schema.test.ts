@@ -212,14 +212,15 @@ describe('versioning and audit (lock)', () => {
         ),
     );
     expect(verifyLock(tampered, lock)).toEqual([
-      `${changed.id}: content changed without a version bump (still 1)`,
+      `${changed.id}: content changed without a version bump (still ${changed.version})`,
     ]);
   });
 
   it('a bump is recorded in the lock, and a bump without a change is reported', () => {
     const lock = buildLock(catalogue);
+    const next = sample().version + 1;
     const bumped = sample();
-    bumped.version = 2;
+    bumped.version = next;
     bumped.detail = { en: 'Reworded.' };
     const withBump = new Catalogue(
       catalogue
@@ -228,17 +229,17 @@ describe('versioning and audit (lock)', () => {
           e.remedy.id === bumped.id ? { ...e, remedy: bumped, hash: entryHash(bumped) } : e,
         ),
     );
-    expect(verifyLock(withBump, lock)[0]).toMatch(/changed to version 2 — run/);
+    expect(verifyLock(withBump, lock)[0]).toMatch(new RegExp(`changed to version ${next} — run`));
 
     const idle = sample();
-    idle.version = 2;
+    idle.version = next;
     const idleBump = new Catalogue(
       catalogue
         .all()
         .map((e) => (e.remedy.id === idle.id ? { ...e, remedy: idle, hash: entryHash(idle) } : e)),
     );
     expect(verifyLock(idleBump, lock)).toEqual([
-      `${idle.id}: version bumped to 2 without a content change`,
+      `${idle.id}: version bumped to ${next} without a content change`,
     ]);
   });
 
@@ -260,8 +261,9 @@ describe('versioning and audit (lock)', () => {
   });
 
   it('a finding pinned to a version the catalogue no longer holds gets nothing, not a newer one', () => {
-    expect(catalogue.get('cns-02-gate-tags', 1)).toBeDefined();
-    expect(catalogue.get('cns-02-gate-tags', 7)).toBeUndefined();
+    const current = catalogue.get('cns-02-gate-tags')!.remedy.version;
+    expect(catalogue.get('cns-02-gate-tags', current)).toBeDefined();
+    expect(catalogue.get('cns-02-gate-tags', current + 5)).toBeUndefined();
     expect(catalogue.get('nope')).toBeUndefined();
   });
 

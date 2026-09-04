@@ -3,46 +3,56 @@
   "findingTypeId": "CNS-07",
   "title": {
     "en": "Refusing takes a long way through the banner",
-    "da": "At afvise er en lang vej gennem banneret"
+    "da": "At afvise er en lang vej gennem banneret",
+    "de": "Ablehnen ist ein langer Weg durch das Banner"
   },
   "wrong": {
     "en": "Saying no means opening settings, switching off several categories one by one and finding a save button, six or more steps. Most people give up and accept.",
-    "da": "At sige nej betyder at åbne indstillinger, slå flere kategorier fra én ad gangen og finde en gem-knap, seks skridt eller flere. De fleste giver op og accepterer."
+    "da": "At sige nej betyder at åbne indstillinger, slå flere kategorier fra én ad gangen og finde en gem-knap, seks skridt eller flere. De fleste giver op og accepterer.",
+    "de": "Nein sagen heißt Einstellungen öffnen, mehrere Kategorien einzeln ausschalten und einen Speichern-Knopf finden, sechs oder mehr Schritte. Die meisten geben auf und akzeptieren."
   },
   "why": {
     "en": "A refusal path built to be tiring is a design choice, and it is one authorities have named in decisions. The difference between one click and six is the difference between a choice and a nudge.",
-    "da": "En afvisningsvej bygget til at trætte er et designvalg, og det er et, tilsyn har nævnt i afgørelser. Forskellen mellem ét klik og seks er forskellen mellem et valg og et puf."
+    "da": "En afvisningsvej bygget til at trætte er et designvalg, og det er et, tilsyn har nævnt i afgørelser. Forskellen mellem ét klik og seks er forskellen mellem et valg og et puf.",
+    "de": "Ein Ablehnen-Pfad, der ermüden soll, ist eine Design-Entscheidung, und eine, die Behörden in Entscheidungen benannt haben. Der Unterschied zwischen einem Klick und sechs ist der Unterschied zwischen einer Wahl und einem Schubs."
   },
   "steps": [
     {
       "en": "Add a single “reject all” control on the first layer, so nobody needs the settings layer to refuse.",
-      "da": "Tilføj én “afvis alle”-kontrol på første lag, så ingen behøver indstillingslaget for at afvise."
+      "da": "Tilføj én “afvis alle”-kontrol på første lag, så ingen behøver indstillingslaget for at afvise.",
+      "de": "Fügen Sie auf der ersten Ebene ein einzelnes „Alle ablehnen“-Element hinzu, damit niemand die Einstellungsebene zum Ablehnen braucht."
     },
     {
       "en": "On the settings layer, add one “reject all” or “save with none selected” button, so the categories never have to be switched off one at a time.",
-      "da": "På indstillingslaget, tilføj én “afvis alle”- eller “gem uden valg”-knap, så kategorierne aldrig skal slås fra én ad gangen."
+      "da": "På indstillingslaget, tilføj én “afvis alle”- eller “gem uden valg”-knap, så kategorierne aldrig skal slås fra én ad gangen.",
+      "de": "Fügen Sie auf der Einstellungsebene einen Knopf „Alle ablehnen“ oder „Ohne Auswahl speichern“ hinzu, damit die Kategorien nie einzeln ausgeschaltet werden müssen."
     },
     {
       "en": "Remove any confirmation step after refusing; the refusal is the confirmation.",
-      "da": "Fjern ethvert bekræftelsestrin efter afvisningen, for et nej, der skal bekræftes, er ikke ét klik: afvisningen er selv bekræftelsen."
+      "da": "Fjern ethvert bekræftelsestrin efter afvisningen, for et nej, der skal bekræftes, er ikke ét klik: afvisningen er selv bekræftelsen.",
+      "de": "Entfernen Sie jeden Bestätigungsschritt nach dem Ablehnen; die Ablehnung ist die Bestätigung."
     }
   ],
   "confirm": {
     "en": "Count the clicks to refuse everything, from the page loading to the banner gone: it must be one on the first layer, and no more than two through settings. Then run the check again from your case page.",
-    "da": "Tæl klikkene for at afvise alt, fra siden indlæses, til banneret er væk: det skal være ét på første lag og højst to gennem indstillinger. Kør derefter tjekket igen fra din sagsside."
+    "da": "Tæl klikkene for at afvise alt, fra siden indlæses, til banneret er væk: det skal være ét på første lag og højst to gennem indstillinger. Kør derefter tjekket igen fra din sagsside.",
+    "de": "Zählen Sie die Klicks, um alles abzulehnen, vom Laden der Seite bis zum Verschwinden des Banners: Es muss einer auf der ersten Ebene sein und höchstens zwei über die Einstellungen. Führen Sie dann die Prüfung von Ihrer Fallseite aus erneut aus."
   },
   "keywords": [
     {
       "en": "too many clicks to reject cookies",
-      "da": "for mange klik for at afvise cookies"
+      "da": "for mange klik for at afvise cookies",
+      "de": "zu viele klicks um cookies abzulehnen"
     },
     {
       "en": "cookie banner consent fatigue",
-      "da": "cookiebanner samtykketræthed"
+      "da": "cookiebanner samtykketræthed",
+      "de": "cookie-banner consent fatigue"
     },
     {
       "en": "refusal path length",
-      "da": "længde på afvisningsvej"
+      "da": "længde på afvisningsvej",
+      "de": "länge des ablehnen-pfads"
     }
   ],
   "remedyId": "cns-07-shorten-the-refusal"

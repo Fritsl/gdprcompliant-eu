@@ -1,28 +1,32 @@
 {
   "id": "cns-04-remember-the-choice",
-  "version": 1,
+  "version": 2,
   "findingTypeId": "CNS-04",
   "jurisdictions": "all",
   "kind": "self_fix",
   "title": {
     "en": "Make the banner remember the answer",
-    "da": "Få banneret til at huske svaret"
+    "da": "Få banneret til at huske svaret",
+    "de": "Das Banner die Antwort merken lassen"
   },
   "effort": {
     "label": {
       "en": "About 15 minutes",
-      "da": "Cirka 15 minutter"
+      "da": "Cirka 15 minutter",
+      "de": "Etwa 15 Minuten"
     },
     "minutes": 15
   },
   "detail": {
     "en": "The visitor said no, the banner closed, and on the next page it asked again. A choice that is not stored is not a choice: store it, read it on every load, and show the banner only when there is none.",
-    "da": "Den besøgende sagde nej, banneret lukkede, og på næste side spurgte det igen. Et valg, der ikke gemmes, er ikke et valg: gem det, læs det ved hver indlæsning, og vis kun banneret, når der ikke er et."
+    "da": "Den besøgende sagde nej, banneret lukkede, og på næste side spurgte det igen. Et valg, der ikke gemmes, er ikke et valg: gem det, læs det ved hver indlæsning, og vis kun banneret, når der ikke er et.",
+    "de": "Die Besucherin hat Nein gesagt, das Banner hat sich geschlossen, und auf der nächsten Seite hat es wieder gefragt. Eine Wahl, die nicht gespeichert wird, ist keine Wahl: Speichern Sie sie, lesen Sie sie bei jedem Laden, und zeigen Sie das Banner nur, wenn keine da ist."
   },
   "snippet": "const KEY = 'consent';\nconst stored = localStorage.getItem(KEY);\nif (!stored) showBanner();\n\nfunction decide(categories) {\n  localStorage.setItem(KEY, JSON.stringify({ categories, at: Date.now() }));\n  document.cookie = `${KEY}=${encodeURIComponent(categories.join(','))}; path=/; max-age=15552000`;\n  hideBanner();\n}",
   "verifyLabel": {
     "en": "Re-check this finding",
-    "da": "Tjek dette fund igen"
+    "da": "Tjek dette fund igen",
+    "de": "Diesen Befund erneut prüfen"
   },
   "verification": {
     "method": "rescan"
@@ -30,13 +34,16 @@
   "action": {
     "kind": "agent_prompt",
     "label": {
-      "en": "Paste into your coding assistant"
+      "en": "Paste into your coding assistant",
+      "de": "In Ihren Coding-Assistenten einfügen"
     },
     "forwardable": {
-      "en": "Or forward it to your developer — it reads the same either way."
+      "en": "Or forward it to your developer — it reads the same either way.",
+      "de": "Oder leiten Sie es an Ihre Entwicklerin oder Ihren Entwickler weiter; es liest sich so oder so gleich."
     },
     "body": {
-      "en": "On {{domain}} the cookie banner closes when a visitor refuses, but it comes back on the next page load: the refusal is not stored anywhere.\n\nStore the visitor's choice (a cookie or local storage entry with the chosen categories and a timestamp) when they decide, read it before showing the banner on every page, and show the banner only when there is no stored choice. Treat a refusal exactly like an acceptance for this purpose: it is remembered for the same length of time.\n\nWhen you are done: tell me where the choice is stored and how to verify that a refusal survives a reload."
+      "en": "On {{domain}} the cookie banner closes when a visitor refuses, but it comes back on the next page load: the refusal is not stored anywhere.\n\nStore the visitor's choice (a cookie or local storage entry with the chosen categories and a timestamp) when they decide, read it before showing the banner on every page, and show the banner only when there is no stored choice. Treat a refusal exactly like an acceptance for this purpose: it is remembered for the same length of time.\n\nWhen you are done: tell me where the choice is stored and how to verify that a refusal survives a reload.",
+      "de": "Auf {{domain}} schließt sich das Cookie-Banner, wenn eine Besucherin ablehnt, kommt aber beim nächsten Laden zurück: Die Ablehnung wird nirgends gespeichert.\n\nSpeichere die Wahl der Besucherin (ein Cookie oder ein Local-Storage-Eintrag mit den gewählten Kategorien und einem Zeitstempel), wenn sie entscheidet, lies sie auf jeder Seite, bevor du das Banner zeigst, und zeige das Banner nur, wenn keine gespeicherte Wahl vorliegt. Behandle eine Ablehnung dafür genau wie eine Zustimmung: Sie wird gleich lange gemerkt.\n\nWenn du fertig bist: Sage mir, wo die Wahl gespeichert wird und wie ich prüfe, dass eine Ablehnung ein Neuladen übersteht."
     }
   }
 }

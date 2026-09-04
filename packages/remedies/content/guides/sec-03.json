@@ -3,46 +3,56 @@
   "findingTypeId": "SEC-03",
   "title": {
     "en": "The site does not tell browsers to stay on HTTPS",
-    "da": "Sitet fortæller ikke browsere, at de skal blive på HTTPS"
+    "da": "Sitet fortæller ikke browsere, at de skal blive på HTTPS",
+    "de": "Die Website sagt Browsern nicht, dass sie bei HTTPS bleiben sollen"
   },
   "wrong": {
     "en": "The site answers over HTTPS but sends no Strict-Transport-Security header, or one that lapses within a year. A browser that has visited before will still try plain HTTP next time, and that first request can be intercepted.",
-    "da": "Sitet svarer over HTTPS, men sender ingen Strict-Transport-Security-header, eller en, der udløber inden for et år. En browser, der har besøgt sitet før, prøver stadig almindelig HTTP næste gang, og den første forespørgsel kan opsnappes."
+    "da": "Sitet svarer over HTTPS, men sender ingen Strict-Transport-Security-header, eller en, der udløber inden for et år. En browser, der har besøgt sitet før, prøver stadig almindelig HTTP næste gang, og den første forespørgsel kan opsnappes.",
+    "de": "Die Website antwortet über HTTPS, sendet aber keinen Strict-Transport-Security-Header, oder einen, der innerhalb eines Jahres abläuft. Ein Browser, der schon einmal da war, versucht beim nächsten Mal wieder reines HTTP, und diese erste Anfrage kann abgefangen werden."
   },
   "why": {
     "en": "Encrypting the site is half the job; the other half is making sure nobody ever reaches the unencrypted version. The header is one line of configuration, and its absence is on the first page of every security review.",
-    "da": "At kryptere sitet er det halve arbejde; den anden halvdel er at sikre, at ingen nogensinde når den ukrypterede version. Headeren er én linje i opsætningen, og dens fravær står på første side i enhver sikkerhedsgennemgang."
+    "da": "At kryptere sitet er det halve arbejde; den anden halvdel er at sikre, at ingen nogensinde når den ukrypterede version. Headeren er én linje i opsætningen, og dens fravær står på første side i enhver sikkerhedsgennemgang.",
+    "de": "Die Website zu verschlüsseln ist die halbe Arbeit; die andere Hälfte ist sicherzustellen, dass niemand je die unverschlüsselte Fassung erreicht. Der Header ist eine Konfigurationszeile, und sein Fehlen steht auf der ersten Seite jeder Sicherheitsprüfung."
   },
   "steps": [
     {
       "en": "Add the header Strict-Transport-Security: max-age=63072000; includeSubDomains to every HTTPS response. The remedy shows the exact line for your server.",
-      "da": "Tilføj headeren Strict-Transport-Security: max-age=63072000; includeSubDomains til hvert HTTPS-svar. Løsningen viser den præcise linje til din server."
+      "da": "Tilføj headeren Strict-Transport-Security: max-age=63072000; includeSubDomains til hvert HTTPS-svar. Løsningen viser den præcise linje til din server.",
+      "de": "Fügen Sie jeder HTTPS-Antwort den Header Strict-Transport-Security: max-age=63072000; includeSubDomains hinzu. Die Abhilfe zeigt die genaue Zeile für Ihren Server."
     },
     {
       "en": "Make sure the header is sent on error pages and redirects too, not only on pages that render.",
-      "da": "Sørg for, at headeren også sendes på fejlsider og omdirigeringer, ikke kun på sider, der vises."
+      "da": "Sørg for, at headeren også sendes på fejlsider og omdirigeringer, ikke kun på sider, der vises.",
+      "de": "Stellen Sie sicher, dass der Header auch auf Fehlerseiten und Weiterleitungen gesendet wird, nicht nur auf Seiten, die rendern."
     },
     {
       "en": "If some subdomain still needs plain HTTP, fix that first; the header applies to all of them.",
-      "da": "Hvis et subdomæne stadig har brug for almindelig HTTP, så ret det først; headeren gælder for dem alle."
+      "da": "Hvis et subdomæne stadig har brug for almindelig HTTP, så ret det først; headeren gælder for dem alle.",
+      "de": "Braucht eine Subdomain noch reines HTTP, beheben Sie das zuerst; der Header gilt für alle."
     }
   ],
   "confirm": {
     "en": "Open the site over https and look at the response headers in the browser’s network panel: Strict-Transport-Security must be there with a max-age of at least 31536000. Then run the check again from your case page.",
-    "da": "Åbn sitet over https og se på svar-headerne i browserens netværkspanel: Strict-Transport-Security skal være der med en max-age på mindst 31536000. Kør derefter tjekket igen fra din sagsside."
+    "da": "Åbn sitet over https og se på svar-headerne i browserens netværkspanel: Strict-Transport-Security skal være der med en max-age på mindst 31536000. Kør derefter tjekket igen fra din sagsside.",
+    "de": "Öffnen Sie die Website über https und schauen Sie im Netzwerk-Panel des Browsers auf die Antwort-Header: Strict-Transport-Security muss da sein, mit einem max-age von mindestens 31536000. Führen Sie dann die Prüfung von Ihrer Fallseite aus erneut aus."
   },
   "keywords": [
     {
       "en": "hsts header",
-      "da": "hsts header"
+      "da": "hsts header",
+      "de": "hsts-header"
     },
     {
       "en": "strict transport security",
-      "da": "strict transport security"
+      "da": "strict transport security",
+      "de": "strict transport security"
     },
     {
       "en": "browser keeps using http",
-      "da": "browser bliver ved med http"
+      "da": "browser bliver ved med http",
+      "de": "browser nutzt weiter http"
     }
   ],
   "remedyId": "sec-03-hsts"

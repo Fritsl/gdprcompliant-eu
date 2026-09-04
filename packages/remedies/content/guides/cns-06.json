@@ -3,46 +3,56 @@
   "findingTypeId": "CNS-06",
   "title": {
     "en": "The optional categories are switched on before the visitor chooses",
-    "da": "De valgfrie kategorier er slået til, før den besøgende vælger"
+    "da": "De valgfrie kategorier er slået til, før den besøgende vælger",
+    "de": "Die optionalen Kategorien sind eingeschaltet, bevor die Besucherin wählt"
   },
   "wrong": {
     "en": "On the banner’s settings layer, statistics, marketing or personalisation are already toggled on. A visitor who opens settings and presses save has agreed to everything without touching a switch.",
-    "da": "På bannerets indstillingslag er statistik, markedsføring eller personalisering allerede slået til. En besøgende, der åbner indstillinger og trykker gem, har sagt ja til alt uden at røre en kontakt."
+    "da": "På bannerets indstillingslag er statistik, markedsføring eller personalisering allerede slået til. En besøgende, der åbner indstillinger og trykker gem, har sagt ja til alt uden at røre en kontakt.",
+    "de": "Auf der Einstellungsebene des Banners sind Statistik, Marketing oder Personalisierung bereits eingeschaltet. Wer die Einstellungen öffnet und auf Speichern drückt, hat allem zugestimmt, ohne einen Schalter zu berühren."
   },
   "why": {
     "en": "A pre-selected yes is the same failure as a pre-ticked box on a form, and it is judged the same way. It also makes every consent the site has collected through that layer questionable.",
-    "da": "Et forudvalgt ja er den samme fejl som et forudafkrydset felt i en formular, og det bedømmes på samme måde. Det gør også hvert samtykke, sitet har indsamlet gennem det lag, tvivlsomt."
+    "da": "Et forudvalgt ja er den samme fejl som et forudafkrydset felt i en formular, og det bedømmes på samme måde. Det gør også hvert samtykke, sitet har indsamlet gennem det lag, tvivlsomt.",
+    "de": "Ein vorausgewähltes Ja ist derselbe Fehler wie ein vorangekreuztes Kästchen in einem Formular, und es wird genauso beurteilt. Es macht auch jede Einwilligung fraglich, die die Website über diese Ebene eingeholt hat."
   },
   "steps": [
     {
       "en": "Set every optional category to off by default in the consent tool’s configuration; only the necessary category may be on, and it should be shown as locked.",
-      "da": "Sæt hver valgfri kategori til fra som standard i samtykkeværktøjets opsætning; kun den nødvendige kategori må være til, og den bør vises som låst."
+      "da": "Sæt hver valgfri kategori til fra som standard i samtykkeværktøjets opsætning; kun den nødvendige kategori må være til, og den bør vises som låst.",
+      "de": "Setzen Sie in der Konfiguration des Einwilligungswerkzeugs jede optionale Kategorie standardmäßig auf Aus; nur die notwendige Kategorie darf an sein, und sie sollte als gesperrt angezeigt werden."
     },
     {
       "en": "Make “save” with nothing switched on behave exactly like “reject all”.",
-      "da": "Få “gem” med intet slået til til at opføre sig præcis som “afvis alle”."
+      "da": "Få “gem” med intet slået til til at opføre sig præcis som “afvis alle”.",
+      "de": "Lassen Sie „Speichern“ ohne eingeschaltete Kategorie genau wie „Alle ablehnen“ wirken."
     },
     {
       "en": "Ask again the visitors whose consent was collected with the switches pre-set; those answers cannot be relied on.",
-      "da": "Spørg igen de besøgende, hvis samtykke blev indsamlet med kontakterne forudindstillet; de svar kan man ikke stole på."
+      "da": "Spørg igen de besøgende, hvis samtykke blev indsamlet med kontakterne forudindstillet; de svar kan man ikke stole på.",
+      "de": "Fragen Sie die Besucher erneut, deren Einwilligung mit voreingestellten Schaltern eingeholt wurde; auf diese Antworten kann man sich nicht verlassen."
     }
   ],
   "confirm": {
     "en": "Open the banner’s settings in a private window without touching anything: every optional switch must be off. Then run the check again from your case page.",
-    "da": "Åbn bannerets indstillinger i et privat vindue uden at røre noget: hver valgfri kontakt skal være slået fra. Kør derefter tjekket igen fra din sagsside."
+    "da": "Åbn bannerets indstillinger i et privat vindue uden at røre noget: hver valgfri kontakt skal være slået fra. Kør derefter tjekket igen fra din sagsside.",
+    "de": "Öffnen Sie die Banner-Einstellungen in einem privaten Fenster, ohne etwas zu berühren: Jeder optionale Schalter muss aus sein. Führen Sie dann die Prüfung von Ihrer Fallseite aus erneut aus."
   },
   "keywords": [
     {
       "en": "pre-selected cookie categories",
-      "da": "forudvalgte cookiekategorier"
+      "da": "forudvalgte cookiekategorier",
+      "de": "vorausgewählte cookie-kategorien"
     },
     {
       "en": "consent toggles on by default",
-      "da": "samtykkekontakter til som standard"
+      "da": "samtykkekontakter til som standard",
+      "de": "einwilligungsschalter standardmäßig an"
     },
     {
       "en": "cookie settings pre-checked",
-      "da": "cookieindstillinger forudafkrydset"
+      "da": "cookieindstillinger forudafkrydset",
+      "de": "cookie-einstellungen vorangekreuzt"
     }
   ],
   "remedyId": "cns-06-untick-the-toggles"

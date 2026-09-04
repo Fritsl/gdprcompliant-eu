@@ -1,152 +1,152 @@
 {
   "entries": {
     "ai-03-move-to-gdprchat": {
-      "version": 1,
-      "hash": "de0da847a8e79bb8d2079da7f08d1a0e5322cc043d5fbd38d165ee6a2f0d8cb7"
+      "version": 2,
+      "hash": "c3200c87bd652b371e097402a1b0679c944e83ea2713bd563f034f52513833fd"
     },
     "any-00-no-solution": {
-      "version": 1,
-      "hash": "08ed715a1a963200810e0e3bc088383f09111bc291995801e936e8b4b7beb620"
+      "version": 2,
+      "hash": "4b54c1f9dcb87b1c747e9f1cff8ef671f987753b3f64fde0c2aa7f9e7d472ac2"
     },
     "app-01-say-what-the-app-collects": {
-      "version": 1,
-      "hash": "d860c4de97a9b9dada05262fddbb11fa70a5d15fd5e20f3b6c386035327a61e5"
+      "version": 2,
+      "hash": "95c87b82bcd9941ea547aab7dac110b8ff0d1ee0b7673d24a798eda1263a5098"
     },
     "clk-01-same-site-for-everyone": {
-      "version": 1,
-      "hash": "55ab63af95a094a8f23397b4c68adc3ba07c7092211300d102b58c7a81ad7512"
+      "version": 2,
+      "hash": "c2de65d86828a77d68762e6b4c9873e45bc3adcbf2e1dddd1871d58e593d6e35"
     },
     "cns-01-gate-before-interaction": {
-      "version": 1,
-      "hash": "2a8a05fa64c2954881188c14cc29efb1fbd1dd6b3d01b10e551493bad96fdb86"
+      "version": 2,
+      "hash": "8a0a53b1a1947ea933df6fc1ac48dd9bea04e66a771a0e887c11918e68425d1c"
     },
     "cns-02-gate-tags": {
-      "version": 1,
-      "hash": "ab5f5a10423e24cdbf519784746e4773e003ca4a5463b3a60f53009aa03aee0b"
+      "version": 2,
+      "hash": "ca4814fcc2f8ce16394484de275061d7f92995e85e46498a0231c4485f9b7436"
     },
     "cns-03-offer-a-refusal": {
-      "version": 1,
-      "hash": "48eaf0ba464d330e32341e223f1224d0ae1ff969ce5c3dd418827c6910be70d4"
+      "version": 2,
+      "hash": "bd5ab0fcf97f270594c6e83d9a1b8c32721992716c88382f8ee141306fbad436"
     },
     "cns-04-remember-the-choice": {
-      "version": 1,
-      "hash": "7fea2eeb10309e7097ef26bd27c61bf251f929208ca473f76ce1adf2866aa3cd"
+      "version": 2,
+      "hash": "233fa5db2b636b8c2b97d2ec8f92a9a6c4650d0f0765ced1846bfaf0c6e115a7"
     },
     "cns-05-reject-on-the-first-layer": {
-      "version": 1,
-      "hash": "86c711a3115d442c3ae8001a68a7d4d4ba252cacac39ca7fc43d2c0cb0e3376d"
+      "version": 2,
+      "hash": "a19929d90c1170cb9e4bfda9fc313bd85e115ba811485c6749a9630607b2bea4"
     },
     "cns-06-untick-the-toggles": {
-      "version": 1,
-      "hash": "e3245c6b65af014e94d99dbef433b2e6d89b7ed01241096a35ab42ba4bfe6a15"
+      "version": 2,
+      "hash": "7b68f35488a32694326a1d1292e773e9421c84df16aec986961c128a2d7baa04"
     },
     "cns-07-shorten-the-refusal": {
-      "version": 1,
-      "hash": "453b626cce396e7dc02e77d960f3296add76603d6aad2fa0c56a36fb93fec149"
+      "version": 2,
+      "hash": "f460fa49b32c1a3e7a217f85ff3e7e09a629d6d1920673d13d96b8d836c3510d"
     },
     "cns-09-new-tracker": {
-      "version": 1,
-      "hash": "8646b2fa43ed2d61000a5b76988bc2cb8c982228eb1cd54fc0576385dce26127"
+      "version": 2,
+      "hash": "c94bb40ea0dd1c934d839d80161f54311c5edf9b27dba6ffe100c483f78bd6b8"
     },
     "dpa-01-processing-agreement": {
-      "version": 1,
-      "hash": "8c606d5f43657f0f6eff2ddff525a48b662885beab542f40d4e475cadf26e9f6"
+      "version": 2,
+      "hash": "01e028145890821bdbb3947b5aff5981e333f8c9573262453ce508851c164b35"
     },
     "exp-01-review-named-hosts": {
-      "version": 1,
-      "hash": "281868614f3d4de6bf4faf816bf483a693aa779220536338910047f881ddf66e"
+      "version": 2,
+      "hash": "f7eda38ae2b497f0a056ac78c8fbfe9002eb2c9bdb799602bf6d71c99eab3cda"
     },
     "fpr-01-canvas-fingerprint": {
-      "version": 1,
-      "hash": "b73c0ffa43ff4ac77a2ad838dcca171fb7995b970eef362f654992cc87f5bd97"
+      "version": 2,
+      "hash": "f17bba2885d8fcd410e9da778710a6ac675d523e7acd03b95f87f109424fb9d0"
     },
     "fpr-02-font-fingerprint": {
-      "version": 1,
-      "hash": "13c11e04a146417dbe3530a2b62455d6bc8fdd252b2f50a6fbb3f3b90d5a93bc"
+      "version": 2,
+      "hash": "47c1082d841cd9f6424bb80854f3c7c7846fca39c7ddb5b609207ebad98703c9"
     },
     "fpr-03-audio-fingerprint": {
-      "version": 1,
-      "hash": "9d5befedb39a37cbbd49efa4ad9bd011f5a568777632fdd51beff3cb6a7687db"
+      "version": 2,
+      "hash": "03f2dfecd9fbb88a8b7c881ef864c4efebe502fd3e7a087d30d3d4b7de431a05"
     },
     "frm-01-untick-the-box": {
-      "version": 1,
-      "hash": "bab87ad2d26471e7215639b0d209677a380eb9f19a5cbab3f8bb0ab8dbf06b32"
+      "version": 2,
+      "hash": "5531e44589e09aacdb9c23e972440317c56396c2f9ea3630ba096cc81dec3f99"
     },
     "frm-02-split-checkboxes": {
-      "version": 1,
-      "hash": "ef971ec41d9e90602facc8a5a8f8dd4f89e2612204ff3f7352dbc56a5ecd3fce"
+      "version": 2,
+      "hash": "eedff8cc12a4de63baf1a5eb062514d87a3987502d9d637405a364142c19f850"
     },
     "frm-03-notice-at-collection": {
-      "version": 1,
-      "hash": "dee33522786558ff87e9dc814364f3bb32ed9fc3ad33c03175aa8803334a67f5"
+      "version": 2,
+      "hash": "b6090be4567627783734c2903db9d7baf711b80be3359a28c359139987c78b3b"
     },
     "pol-01-write-privacy-policy": {
-      "version": 1,
-      "hash": "52cd8f25fccef2a73908bab9f8b4646bf2e51096c4d8247eb84380aa0dbb9eda"
+      "version": 2,
+      "hash": "4f24825e57806d10de06756fac439433590e692e36d5a7fe81c10b50342293df"
     },
     "pol-04-retention-section": {
-      "version": 1,
-      "hash": "77c9d617c6bb080ec36d2605695023d8542311d949dd33cf80ab251960754a03"
+      "version": 2,
+      "hash": "9c4b6bffb9deb0e1d8e820e5f208937ac1a63d2edb2aa1d3409aec8c7e1cf3ba"
     },
     "pol-05-name-the-recipient": {
-      "version": 1,
-      "hash": "c1611fbb019add7699e0d8c758de5f36063cfc24e36ac6f898e972525a16b387"
+      "version": 2,
+      "hash": "20b64c2d1f4101f5d66eba77d0311f113234a995a0b7f3e58492b7a2da335c28"
     },
     "pol-09-complaint-and-withdrawal-dk": {
-      "version": 1,
-      "hash": "47cb3e7bd7ee7c5d153b145c9671f7c688bd215f0fb3790bf0cf81a3135f3871"
+      "version": 2,
+      "hash": "90c7f31bd413c868c2f6292ccab4959145e73fd32ab94dea493bf95bc51aa1cc"
     },
     "pol-09-complaint-and-withdrawal": {
-      "version": 1,
-      "hash": "b9c28681cacb1acc7641a98a52543acb5108eea2765735e7377d4a301c9c9726"
+      "version": 2,
+      "hash": "088c538e17fa815909a2576e75d47f5ae3d08cb54c4fcbc602a6d3f4a215dd05"
     },
     "rec-01-mask-and-exclude-checkout": {
-      "version": 1,
-      "hash": "af4ce3276f89cc339f99799e2e3a689107a8dfe0acf07dbe0c4b9870a1252b0e"
+      "version": 2,
+      "hash": "d7d054f6f468d2c8aad799ce8004fdb5c664daa3928527ebfc071cf3bf600643"
     },
     "sec-01-redirect-to-https": {
-      "version": 1,
-      "hash": "870bc25436968c78a1845dc6a9e976a31515f7b5f6d39ae8b8713ee03a3a0498"
+      "version": 2,
+      "hash": "7a2512ae38ab411168dfcaa9ce49a0a66e61b09ad9f7432645346eee52429c79"
     },
     "sec-02-https-form-hsts": {
-      "version": 1,
-      "hash": "e175594dc490002bdcd855b3c42432577ec265059ca00658497f2455b4f12abe"
+      "version": 2,
+      "hash": "239ca46ddd8769f76b90902d7c631a58b4b7d5b5ddc94e03a28cb36191969a55"
     },
     "sec-03-hsts": {
-      "version": 1,
-      "hash": "12aab3790d2a5f723c0c7ddc5a238c8fbb99783c11beb1f7754793359e603392"
+      "version": 2,
+      "hash": "413b7d666a3da64fe32ede72700c2baee38efaf47ddc3addf4bf2118c2735cae"
     },
     "sec-04-mixed-content": {
-      "version": 1,
-      "hash": "733603a6dce30c8967e71155f8182aace470e6c651cd36eed7adf224e3dd7c51"
+      "version": 2,
+      "hash": "0f2634590c337fa3a27ad185294b8bd2418dc16583714f4fe18e9bf27bb51740"
     },
     "sec-05-referrer-policy": {
-      "version": 1,
-      "hash": "917e88dbe74da2241728ca0fb73377be1882aa61a3305b74ca7554ff7d0f50cd"
+      "version": 2,
+      "hash": "03a4d05df2ef6d891559c7f26584a843ca2bd1a55610b0998749ab73ac54836e"
     },
     "sec-06-security-headers": {
-      "version": 1,
-      "hash": "1ce695014f1c31d8e0a1db686f33ffb7dfe706a73f1b08c80a4d303cee8a877c"
+      "version": 2,
+      "hash": "588da0f24f953b8291c773a56bbe60f992e9e620e3f8a301411c17020d23e591"
     },
     "sec-07-exposed-paths": {
-      "version": 1,
-      "hash": "d3adc897caa18469bf5d4f7b47c912f14aaafb56c7622f153200e3387ac59431"
+      "version": 2,
+      "hash": "7616823ebff6a279e01cb14a8a0c1718bbfd9fe1987795b7fdeeeec0773ac2eb"
     },
     "sub-03-publish-list": {
-      "version": 1,
-      "hash": "970325430c56de6b6f8e21582b34945368b527652a013e20a2558521a94c0e44"
+      "version": 2,
+      "hash": "b4d6c5947249bbfacd53fd4e36a335be436563028617a05cb96cd42f501bb7bd"
     },
     "trf-01-european-alternatives": {
-      "version": 1,
-      "hash": "dce1e66eb514ca9994d8da303a622788c2823972a163e8ff4b679c7ef2105f08"
+      "version": 2,
+      "hash": "792fe7c74f117b0bccfc6a6bd85df144578e8d69897a66a84d50c9db5ec506fd"
     },
     "vnd-06-self-host-fonts": {
-      "version": 1,
-      "hash": "c00da830dd1053b6136b1182a51611e2abe26fb4d14dcd20f21a625cf230e45b"
+      "version": 2,
+      "hash": "6329a3effd6648e16e3db0ecc72479ec813b7009c4b1b06fd0372b0d354f7ece"
     },
     "vnd-11-unidentified-host": {
-      "version": 1,
-      "hash": "470d6a37552401fc1093689b2b8c9688212ac2de90e48ed0757fd625b8006658"
+      "version": 2,
+      "hash": "a6c29f5e6b42e81f6d2b65f16b565f997f3f2d019bd4ec039b1c5be4cad5dc75"
     }
   }
 }

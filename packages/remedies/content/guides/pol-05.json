@@ -3,46 +3,56 @@
   "findingTypeId": "POL-05",
   "title": {
     "en": "The site sends data to a company the privacy policy does not name",
-    "da": "Sitet sender oplysninger til en virksomhed, privatlivspolitikken ikke nævner"
+    "da": "Sitet sender oplysninger til en virksomhed, privatlivspolitikken ikke nævner",
+    "de": "Die Website sendet Daten an ein Unternehmen, das die Datenschutzerklärung nicht nennt"
   },
   "wrong": {
     "en": "On the latest check, a visitor's browser was sent to a third-party host that the published privacy policy does not mention as a recipient. The policy was true when it was published; the site has since started talking to someone new, or the policy left them out.",
-    "da": "Ved den seneste kontrol blev en besøgendes browser sendt til en tredjepartsvært, som den offentliggjorte privatlivspolitik ikke nævner som modtager. Politikken var sand, da den blev offentliggjort; sitet er siden begyndt at tale med nogen ny, eller politikken udelod dem."
+    "da": "Ved den seneste kontrol blev en besøgendes browser sendt til en tredjepartsvært, som den offentliggjorte privatlivspolitik ikke nævner som modtager. Politikken var sand, da den blev offentliggjort; sitet er siden begyndt at tale med nogen ny, eller politikken udelod dem.",
+    "de": "Bei der letzten Prüfung wurde der Browser einer Besucherin an einen Dritt-Host geschickt, den die veröffentlichte Datenschutzerklärung nicht als Empfänger erwähnt. Die Erklärung war wahr, als sie veröffentlicht wurde; seitdem spricht die Website mit jemand Neuem, oder die Erklärung hat ihn ausgelassen."
   },
   "why": {
     "en": "A policy describes what the site does today. The moment a tag, a font or a widget is added, the description is behind the site, and a visitor reading it is told less than the truth. The gap is easy to close and easy for anyone to find.",
-    "da": "En politik beskriver, hvad sitet gør i dag. I det øjeblik et tag, en skrifttype eller en widget tilføjes, er beskrivelsen bagud i forhold til sitet, og en besøgende, der læser den, får mindre end sandheden at vide. Hullet er let at lukke og let for enhver at finde."
+    "da": "En politik beskriver, hvad sitet gør i dag. I det øjeblik et tag, en skrifttype eller en widget tilføjes, er beskrivelsen bagud i forhold til sitet, og en besøgende, der læser den, får mindre end sandheden at vide. Hullet er let at lukke og let for enhver at finde.",
+    "de": "Eine Erklärung beschreibt, was die Website heute tut. In dem Moment, in dem ein Tag, eine Schrift oder ein Widget hinzukommt, hinkt die Beschreibung hinterher, und wer sie liest, erfährt weniger als die Wahrheit. Die Lücke ist leicht zu schließen und für jeden leicht zu finden."
   },
   "steps": [
     {
       "en": "Read which host the finding names and decide whether the site should be sending anything there at all. If not, remove the tag or script that causes it.",
-      "da": "Læs, hvilken vært fundet nævner, og afgør, om sitet overhovedet skal sende noget dertil. Hvis ikke, så fjern det tag eller script, der forårsager det."
+      "da": "Læs, hvilken vært fundet nævner, og afgør, om sitet overhovedet skal sende noget dertil. Hvis ikke, så fjern det tag eller script, der forårsager det.",
+      "de": "Lesen Sie, welchen Host der Befund nennt, und entscheiden Sie, ob die Website überhaupt etwas dorthin senden sollte. Wenn nicht, entfernen Sie das Tag oder Skript, das es verursacht."
     },
     {
       "en": "If the recipient stays, confirm it in the register with what it receives and why, and have the policy written again from the register.",
-      "da": "Hvis modtageren bliver, så bekræft den i fortegnelsen med, hvad den modtager og hvorfor, og få politikken skrevet igen ud fra fortegnelsen."
+      "da": "Hvis modtageren bliver, så bekræft den i fortegnelsen med, hvad den modtager og hvorfor, og få politikken skrevet igen ud fra fortegnelsen.",
+      "de": "Bleibt der Empfänger, bestätigen Sie ihn im Verzeichnis mit dem, was er erhält und warum, und lassen Sie die Erklärung aus dem Verzeichnis neu schreiben."
     },
     {
       "en": "Publish the new version at the same address as the old one, so every link to the policy shows the current text.",
-      "da": "Offentliggør den nye version på samme adresse som den gamle, så hvert link til politikken viser den aktuelle tekst."
+      "da": "Offentliggør den nye version på samme adresse som den gamle, så hvert link til politikken viser den aktuelle tekst.",
+      "de": "Veröffentlichen Sie die neue Fassung unter derselben Adresse wie die alte, damit jeder Link auf die Erklärung den aktuellen Text zeigt."
     }
   ],
   "confirm": {
     "en": "Open the published policy and find the recipient named in the section on who receives the data. Then run the check again from your case page.",
-    "da": "Åbn den offentliggjorte politik og find modtageren nævnt i afsnittet om, hvem der modtager oplysningerne. Kør derefter tjekket igen fra din sagsside."
+    "da": "Åbn den offentliggjorte politik og find modtageren nævnt i afsnittet om, hvem der modtager oplysningerne. Kør derefter tjekket igen fra din sagsside.",
+    "de": "Öffnen Sie die veröffentlichte Erklärung und finden Sie den Empfänger im Abschnitt darüber, wer die Daten erhält. Führen Sie dann die Prüfung von Ihrer Fallseite aus erneut aus."
   },
   "keywords": [
     {
       "en": "privacy policy out of date",
-      "da": "privatlivspolitik forældet"
+      "da": "privatlivspolitik forældet",
+      "de": "datenschutzerklärung veraltet"
     },
     {
       "en": "recipient not named in privacy policy",
-      "da": "modtager ikke nævnt i privatlivspolitik"
+      "da": "modtager ikke nævnt i privatlivspolitik",
+      "de": "empfänger nicht in datenschutzerklärung genannt"
     },
     {
       "en": "third party added to website",
-      "da": "tredjepart tilføjet til hjemmeside"
+      "da": "tredjepart tilføjet til hjemmeside",
+      "de": "dritter zur website hinzugefügt"
     }
   ],
   "remedyId": "pol-05-name-the-recipient"
