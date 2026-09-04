@@ -1,0 +1,34 @@
+{
+  "id": "app-01-say-what-the-app-collects",
+  "version": 1,
+  "findingTypeId": "APP-01",
+  "jurisdictions": "all",
+  "kind": "generated_artefact",
+  "title": {
+    "en": "Put what the app collects into the policy, or correct the store listing",
+    "da": "Skriv det, appen indsamler, ind i politikken, eller ret butikkens opslag"
+  },
+  "effort": {
+    "label": {
+      "en": "A decision, then one click",
+      "da": "En beslutning, så ét klik"
+    }
+  },
+  "detail": {
+    "en": "The store listing says the app collects something the published privacy policy never mentions. One of the two is wrong. If the app really collects it, confirm the activity in the register and the policy is written again from it; if it does not, correct the declaration in the store.",
+    "da": "Butikkens opslag siger, at appen indsamler noget, den offentliggjorte privatlivspolitik aldrig nævner. En af de to tager fejl. Hvis appen virkelig indsamler det, så bekræft aktiviteten i fortegnelsen, og politikken skrives igen ud fra den; hvis ikke, så ret erklæringen i butikken."
+  },
+  "artefact": "privacy_policy",
+  "cta": {
+    "en": "Preview the new draft",
+    "da": "Se det nye udkast"
+  },
+  "verifyLabel": {
+    "en": "Re-check once published",
+    "da": "Tjek igen, når den er offentliggjort"
+  },
+  "verification": {
+    "method": "artefact_published",
+    "artefact": "privacy_policy"
+  }
+}

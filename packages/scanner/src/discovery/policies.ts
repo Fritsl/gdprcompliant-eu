@@ -94,7 +94,7 @@ export async function discoverPolicies(
   pool: BrowserPool,
   target: ScanTarget,
   options: DiscoveryOptions,
-): Promise<{ discovery: PolicyDiscovery; evidence: Evidence[] }> {
+): Promise<PolicyDiscoveryResult> {
   const { identity } = options;
   const maxPages = options.maxPages ?? 12;
   const now = options.now ?? (() => new Date());
@@ -257,6 +257,31 @@ export async function discoverPolicies(
             evidence: searched,
           },
     });
-    return { discovery, evidence };
+    return { discovery, evidence, homeLinks: home?.links ?? [] };
   });
+}
+
+export interface PolicyDiscoveryResult {
+  readonly discovery: PolicyDiscovery;
+  readonly evidence: Evidence[];
+  // Every link the home page carried, for the checks that read them (D-05).
+  readonly homeLinks: LinkCandidate[];
+}
+
+// The visible text of the privacy policy the discovery found, if it found one, with
+// where it was read and the evidence rows it rests on.
+export function policyTextOf(
+  found: PolicyDiscoveryResult,
+): { text: string; url: string; evidence: { evidenceId: string; hash: string }[] } | undefined {
+  const doc = found.discovery.documents.find((d) => d.kind === 'privacy');
+  if (!doc) return undefined;
+  const bodies = doc.pages
+    .map((p) => found.evidence.find((e) => e.hash === p.evidence.hash)?.body)
+    .filter((b): b is string => typeof b === 'string');
+  if (bodies.length === 0) return undefined;
+  return {
+    text: bodies.join('\n\n'),
+    url: doc.pages[0]!.finalUrl,
+    evidence: doc.pages.map((p) => ({ evidenceId: p.evidence.evidenceId, hash: p.evidence.hash })),
+  };
 }

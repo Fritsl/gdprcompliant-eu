@@ -6,7 +6,19 @@ can raise has a detector, a remedy of a declared kind in every supported jurisdi
 that resolves in the corpus, a guide a non-specialist can follow, and a fixture that proves it
 fires and one that proves it does not. A type missing any of these fails the build.
 
-27 types. Jurisdictions: DE, DK.
+28 types. Jurisdictions: DE, DK.
+
+## APP-01 · The app store listing declares data the privacy policy does not mention
+
+- Area: Notice. Default severity: serious.
+- Detector: `scanner/apps#declared_not_in_policy` (no scanner family: verified another way).
+- Remedy in DE: `app-01-say-what-the-app-collects` v1 (generated_artefact, verified by artefact_published).
+- Rests on in DE: GDPR Art. 13(1)(c) `GDPR:13:1:c`; GDPR Art. 5(1)(a) `GDPR:5:1:a`.
+- Remedy in DK: `app-01-say-what-the-app-collects` v1 (generated_artefact, verified by artefact_published).
+- Rests on in DK: GDPR Art. 13(1)(c) `GDPR:13:1:c`; GDPR Art. 5(1)(a) `GDPR:5:1:a`.
+- Guide: `app-01` (da, en).
+- Fixtures that must raise it: **none**.
+- Fixtures that must not: **none**.
 
 ## CLK-01 · The site shows a different page to scanners than to visitors
 

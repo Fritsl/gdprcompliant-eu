@@ -47,6 +47,7 @@ Not yet reviewed by a lawyer.
 | VND-06 | Recipients | Case law LG München I, 3 O 17493/20 — damages for embedded web fonts `LG München I:3 O 17493/20`<br>GDPR Art. 6(1) — a lawful basis for passing the visitor’s address to the font host `GDPR:6:1` | vnd-06 v1 |
 | VND-11 |  | GDPR Art. 13(1)(e) — recipients or categories of recipients `GDPR:13:1:e` | vnd-11 v1 |
 | CLK-01 | Recipients | GDPR Art. 5(1)(a) — processing must be transparent `GDPR:5:1:a`<br>GDPR Art. 5(2) — the controller must be able to show it `GDPR:5:2` | clk-01 v1 |
+| APP-01 | Notice | GDPR Art. 13(1)(c) — the purposes the data is collected for `GDPR:13:1:c`<br>GDPR Art. 5(1)(a) — processing must be transparent `GDPR:5:1:a` | app-01 v1 |
 
 ## DK
 
@@ -89,3 +90,4 @@ Not yet reviewed by a lawyer.
 | VND-06 | Recipients | GDPR Art. 6(1) — a lawful basis for passing the visitor’s address to the font host `GDPR:6:1`<br>Case law LG München I, 3 O 17493/20 — damages for embedded web fonts `LG München I:3 O 17493/20` | vnd-06 v1 |
 | VND-11 |  | GDPR Art. 13(1)(e) — recipients or categories of recipients `GDPR:13:1:e` | vnd-11 v1 |
 | CLK-01 | Recipients | GDPR Art. 5(1)(a) — processing must be transparent `GDPR:5:1:a`<br>GDPR Art. 5(2) — the controller must be able to show it `GDPR:5:2` | clk-01 v1 |
+| APP-01 | Notice | GDPR Art. 13(1)(c) — the purposes the data is collected for `GDPR:13:1:c`<br>GDPR Art. 5(1)(a) — processing must be transparent `GDPR:5:1:a` | app-01 v1 |

@@ -1,0 +1,120 @@
+{
+  "version": "2026-09-04",
+  "_comment": "What an app store listing can declare, mapped to the words a privacy policy uses for the same thing. `store` holds the labels each store prints; `policy` holds case-insensitive patterns per language. A declared category the policy never mentions in any language is a contradiction the check reports.",
+  "categories": [
+    {
+      "id": "location",
+      "label": { "en": "location", "da": "placering", "de": "Standort" },
+      "store": { "apple": ["Location"], "google": ["Location"] },
+      "policy": {
+        "en": ["\\blocation\\b", "\\bgps\\b", "geolocation"],
+        "da": ["\\bplacering\\b", "\\blokation\\b", "\\bgps\\b", "geografisk"],
+        "de": ["\\bstandort", "\\bgps\\b", "geolokation"]
+      }
+    },
+    {
+      "id": "contact-info",
+      "label": { "en": "contact details", "da": "kontaktoplysninger", "de": "Kontaktdaten" },
+      "store": { "apple": ["Contact Info"], "google": ["Personal info"] },
+      "policy": {
+        "en": ["\\bname\\b", "e-?mail", "\\bphone\\b", "\\baddress\\b"],
+        "da": ["\\bnavn\\b", "e-?mail", "\\btelefon", "\\badresse\\b"],
+        "de": ["\\bname\\b", "e-?mail", "\\btelefon", "\\badresse\\b", "\\banschrift\\b"]
+      }
+    },
+    {
+      "id": "contacts",
+      "label": { "en": "the address book", "da": "adressebogen", "de": "das Adressbuch" },
+      "store": { "apple": ["Contacts"], "google": ["Contacts"] },
+      "policy": {
+        "en": ["\\bcontacts\\b", "address book"],
+        "da": ["\\bkontakter\\b", "adressebog"],
+        "de": ["\\bkontakte\\b", "adressbuch"]
+      }
+    },
+    {
+      "id": "health",
+      "label": { "en": "health data", "da": "helbredsoplysninger", "de": "Gesundheitsdaten" },
+      "store": { "apple": ["Health & Fitness"], "google": ["Health and fitness"] },
+      "policy": {
+        "en": ["\\bhealth\\b", "\\bmedical\\b", "\\bfitness\\b"],
+        "da": ["\\bhelbred", "\\bsundhed", "\\bmedicin", "\\bfitness\\b"],
+        "de": ["\\bgesundheit", "\\bmedizin", "\\bfitness\\b"]
+      }
+    },
+    {
+      "id": "financial",
+      "label": { "en": "payment details", "da": "betalingsoplysninger", "de": "Zahlungsdaten" },
+      "store": { "apple": ["Financial Info", "Purchases"], "google": ["Financial info"] },
+      "policy": {
+        "en": ["\\bpayment", "\\bpurchase", "\\bcard\\b", "\\bbank\\b", "\\binvoice"],
+        "da": ["\\bbetaling", "\\bkøb\\b", "\\bkort\\b", "\\bbank\\b", "\\bfaktura"],
+        "de": ["\\bzahlung", "\\bkauf\\b", "\\bkarte\\b", "\\bbank\\b", "\\brechnung"]
+      }
+    },
+    {
+      "id": "identifiers",
+      "label": {
+        "en": "device identifiers",
+        "da": "enhedsidentifikatorer",
+        "de": "Gerätekennungen"
+      },
+      "store": { "apple": ["Identifiers"], "google": ["Device or other IDs"] },
+      "policy": {
+        "en": [
+          "device id",
+          "identifier",
+          "advertising id",
+          "\\bidfa\\b",
+          "\\bgaid\\b",
+          "\\bcookie"
+        ],
+        "da": ["enheds-?id", "identifikator", "annonce-?id", "\\bcookie"],
+        "de": ["geräte-?id", "kennung", "werbe-?id", "\\bcookie"]
+      }
+    },
+    {
+      "id": "usage",
+      "label": { "en": "usage data", "da": "brugsdata", "de": "Nutzungsdaten" },
+      "store": {
+        "apple": ["Usage Data", "Diagnostics"],
+        "google": ["App activity", "App info and performance"]
+      },
+      "policy": {
+        "en": ["\\busage\\b", "analytics", "statistic", "\\bcrash", "diagnostic"],
+        "da": ["\\bbrug\\b", "\\bbrugsdata", "statistik", "\\banalyse", "\\bnedbrud"],
+        "de": ["\\bnutzung", "\\banalyse", "statistik", "\\babsturz"]
+      }
+    },
+    {
+      "id": "content",
+      "label": {
+        "en": "content you upload",
+        "da": "indhold, du uploader",
+        "de": "hochgeladene Inhalte"
+      },
+      "store": {
+        "apple": ["User Content", "Photos or Videos"],
+        "google": ["Photos and videos", "Audio files", "Files and docs", "Messages"]
+      },
+      "policy": {
+        "en": ["\\bphoto", "\\bvideo", "\\bupload", "\\bcontent\\b", "\\bmessage"],
+        "da": ["\\bfoto", "\\bbillede", "\\bvideo", "\\bupload", "\\bindhold\\b", "\\bbesked"],
+        "de": ["\\bfoto", "\\bvideo", "\\bhochladen", "\\binhalt", "\\bnachricht"]
+      }
+    },
+    {
+      "id": "browsing",
+      "label": { "en": "browsing history", "da": "browserhistorik", "de": "Browserverlauf" },
+      "store": {
+        "apple": ["Browsing History", "Search History"],
+        "google": ["Web browsing"]
+      },
+      "policy": {
+        "en": ["browsing", "search history"],
+        "da": ["browser-?historik", "søgehistorik"],
+        "de": ["browserverlauf", "suchverlauf"]
+      }
+    }
+  ]
+}

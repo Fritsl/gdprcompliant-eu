@@ -559,6 +559,23 @@
       ],
       "guideId": "clk-01",
       "version": 1
+    },
+    {
+      "findingTypeId": "APP-01",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 13(1)(c)",
+          "note": "the purposes the data is collected for"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 5(1)(a)",
+          "note": "processing must be transparent"
+        }
+      ],
+      "guideId": "app-01",
+      "version": 1
     }
   ]
 }

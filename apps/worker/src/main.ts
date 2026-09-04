@@ -1,4 +1,4 @@
-import { loadConfig } from '@gc/config';
+import { createRecordedFetch, loadConfig } from '@gc/config';
 import { connect, registerRetentionWorker, scheduleRetention } from '@gc/db';
 import { JobQueue } from '@gc/jobs';
 import { loadCatalogue } from '@gc/remedies';
@@ -21,7 +21,8 @@ const pool = new BrowserPool({
 await pool.start();
 await queue.start();
 const catalogue = loadCatalogue();
-await registerScanWorker(queue, connection, { pool, catalogue });
+const stores = createRecordedFetch(config, { name: 'app-stores' });
+await registerScanWorker(queue, connection, { pool, catalogue, stores });
 await registerRecheckWorker(queue, connection, { pool, catalogue });
 await registerRetentionWorker(queue, connection);
 await scheduleRetention(queue);

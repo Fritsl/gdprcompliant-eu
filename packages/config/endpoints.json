@@ -64,5 +64,17 @@
     "purpose": "registry",
     "jurisdiction": "DE",
     "note": "Handelsregister copy by OKF Deutschland (ODbL), used by the offeneregister adapter"
+  },
+  {
+    "host": "apps.apple.com",
+    "purpose": "store",
+    "jurisdiction": "IE",
+    "note": "App Store listings and their privacy labels; Apple Distribution International Ltd, Cork"
+  },
+  {
+    "host": "play.google.com",
+    "purpose": "store",
+    "jurisdiction": "IE",
+    "note": "Google Play listings and their data safety sections; Google Ireland Ltd, Dublin"
   }
 ]

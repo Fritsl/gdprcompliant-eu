@@ -27,8 +27,11 @@ import {
   runSecurityChecks,
   type BrowserPool,
   type QuietOptions,
+  checkAppListings,
+  policyTextOf,
   recipientChecks,
 } from '@gc/scanner';
+import type { OutboundFetch } from '@gc/config';
 import type { Evidence } from '@gc/contracts';
 
 // The scan worker (U-02). One job per front-door request: reach the site, run the three
@@ -44,6 +47,8 @@ export interface ScanWorkerOptions {
   readonly now?: () => Date;
   // The scheme to try first; the fixture estate serves https.
   readonly scheme?: 'https' | 'http';
+  // The declared-endpoint fetch for app store listings (D-05); absent, no listing is read.
+  readonly stores?: OutboundFetch;
 }
 
 export async function registerScanWorker(
@@ -162,6 +167,28 @@ export async function registerScanWorker(
     await mark('policy', 'on');
     const policies = await discoverPolicies(options.pool, { url }, { identity, now });
     evidence.push(...policies.evidence);
+    // The app, if the site links to one (D-05): what the store says it collects, against
+    // the policy the discovery just read.
+    const policyText = policyTextOf(policies);
+    const apps = options.stores
+      ? await checkAppListings(
+          {
+            links: policies.homeLinks,
+            host: domain,
+            identity,
+            ...(policyText
+              ? {
+                  policyText: policyText.text,
+                  policyUrl: policyText.url,
+                  policyEvidence: policyText.evidence,
+                }
+              : {}),
+            now,
+          },
+          options.stores,
+        )
+      : undefined;
+    if (apps) evidence.push(...apps.evidence);
     await mark(
       'policy',
       policies.discovery.observation.outcome === 'pass' ? 'ok' : 'undet',
@@ -211,6 +238,7 @@ export async function registerScanWorker(
       forms: forms.inventory.observations,
       policies: policies.discovery,
       consent: diffed.drafts,
+      drafts: apps?.drafts ?? [],
     };
     const assembled = assembleFindings(input, {
       tenantId: opened.tenantId,

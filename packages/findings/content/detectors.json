@@ -160,5 +160,11 @@
     "area": "Notice",
     "detector": "db/drift#recipient_not_named",
     "defaultSeverity": "serious"
+  },
+  {
+    "findingTypeId": "APP-01",
+    "area": "Notice",
+    "detector": "scanner/apps#declared_not_in_policy",
+    "defaultSeverity": "serious"
   }
 ]

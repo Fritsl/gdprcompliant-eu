@@ -13,6 +13,8 @@ export const ENDPOINT_PURPOSES = [
   'embedding',
   'registry',
   'corpus',
+  // Public app store listings (D-05): what an app declares it collects.
+  'store',
   'mail',
   'database',
   'webhook',
