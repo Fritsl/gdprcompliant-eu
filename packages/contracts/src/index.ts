@@ -21,6 +21,7 @@ export * from './citation.js';
 export * from './corpus.js';
 export * from './target.js';
 export * from './consent.js';
+export * from './diff.js';
 export * from './evidence.js';
 export * from './claim.js';
 export * from './finding.js';

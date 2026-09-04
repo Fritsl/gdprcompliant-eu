@@ -1,0 +1,41 @@
+{
+  "id": "cns-05-reject-on-the-first-layer",
+  "version": 1,
+  "findingTypeId": "CNS-05",
+  "jurisdictions": "all",
+  "kind": "self_fix",
+  "title": {
+    "en": "Put \"Reject all\" next to \"Accept all\"",
+    "da": "Sæt \"Afvis alle\" ved siden af \"Accepter alle\""
+  },
+  "effort": {
+    "label": {
+      "en": "About 10 minutes",
+      "da": "Cirka 10 minutter"
+    },
+    "minutes": 10
+  },
+  "detail": {
+    "en": "Accepting is one click; refusing means opening the settings and working through them. The first layer needs a refuse button as visible as the accept, and nothing else changes.",
+    "da": "At acceptere er ét klik; at afvise kræver, at man åbner indstillingerne og arbejder sig igennem dem. Første lag skal have en afvis-knap, der er lige så synlig som accept, og intet andet ændres."
+  },
+  "verifyLabel": {
+    "en": "Re-check this finding",
+    "da": "Tjek dette fund igen"
+  },
+  "verification": {
+    "method": "rescan"
+  },
+  "action": {
+    "kind": "agent_prompt",
+    "label": {
+      "en": "Paste into your coding assistant"
+    },
+    "forwardable": {
+      "en": "Or forward it to your developer — it reads the same either way."
+    },
+    "body": {
+      "en": "On {{domain}} the cookie banner's first layer has an accept button but no reject button; refusing only works through the settings.\n\nAdd a \"Reject all\" button to the first layer, with the same size, weight and position as the accept button. Pressing it must do what the settings path does when every optional category is off: store the refusal and close the banner.\n\nWhen you are done: tell me the two buttons' labels and how to verify that one click refuses."
+    }
+  }
+}

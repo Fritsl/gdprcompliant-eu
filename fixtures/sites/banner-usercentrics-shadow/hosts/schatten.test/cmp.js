@@ -1,3 +1,4 @@
+if (localStorage.getItem('uc_settings')) { document.getElementById('usercentrics-root').style.display = 'none'; }
 var root = document.getElementById('usercentrics-root').attachShadow({ mode: 'open' });
 root.innerHTML = '<div id="uc-banner" style="position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:2px solid #333;padding:1rem;z-index:1000" role="dialog">' +
   '<p>Wir verwenden Cookies und ähnliche Technologien.</p>' +

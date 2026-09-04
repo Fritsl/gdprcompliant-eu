@@ -1,0 +1,41 @@
+{
+  "id": "cns-06-untick-the-toggles",
+  "version": 1,
+  "findingTypeId": "CNS-06",
+  "jurisdictions": "all",
+  "kind": "self_fix",
+  "title": {
+    "en": "Start every optional category switched off",
+    "da": "Start hver valgfri kategori slået fra"
+  },
+  "effort": {
+    "label": {
+      "en": "About 5 minutes",
+      "da": "Cirka 5 minutter"
+    },
+    "minutes": 5
+  },
+  "detail": {
+    "en": "The settings open with the optional categories already on, so saving without touching anything agrees to all of them. A choice the visitor did not make is not consent. Only the necessary category may start on, and it is the one that cannot be changed.",
+    "da": "Indstillingerne åbner med de valgfrie kategorier allerede slået til, så at gemme uden at røre noget siger ja til dem alle. Et valg, den besøgende ikke har truffet, er ikke samtykke. Kun den nødvendige kategori må starte slået til, og den er den, der ikke kan ændres."
+  },
+  "verifyLabel": {
+    "en": "Re-check this finding",
+    "da": "Tjek dette fund igen"
+  },
+  "verification": {
+    "method": "rescan"
+  },
+  "action": {
+    "kind": "agent_prompt",
+    "label": {
+      "en": "Paste into your coding assistant"
+    },
+    "forwardable": {
+      "en": "Or forward it to your developer — it reads the same either way."
+    },
+    "body": {
+      "en": "On {{domain}} the cookie settings open with the optional categories (statistics, marketing, preferences) switched on by default.\n\nChange the defaults so every optional category starts switched off, and only the strictly necessary category is on and locked. Saving without changes must then store a refusal of every optional category.\n\nWhen you are done: tell me the default state of each toggle and how to verify that saving untouched settings sets no optional cookie."
+    }
+  }
+}

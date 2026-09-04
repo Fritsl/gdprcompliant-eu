@@ -106,5 +106,35 @@
     "area": "Consent",
     "detector": "scanner/passes/pass-bc#choice_not_remembered",
     "defaultSeverity": "serious"
+  },
+  {
+    "findingTypeId": "CNS-01",
+    "area": "Consent",
+    "detector": "scanner/passes/differ#before_interaction",
+    "defaultSeverity": "serious"
+  },
+  {
+    "findingTypeId": "CNS-02",
+    "area": "Consent",
+    "detector": "scanner/passes/differ#refusal_ignored",
+    "defaultSeverity": "blocking"
+  },
+  {
+    "findingTypeId": "CNS-05",
+    "area": "Consent",
+    "detector": "scanner/passes/differ#no_reject_on_first_layer",
+    "defaultSeverity": "serious"
+  },
+  {
+    "findingTypeId": "CNS-06",
+    "area": "Consent",
+    "detector": "scanner/passes/differ#pre_ticked_toggles",
+    "defaultSeverity": "serious"
+  },
+  {
+    "findingTypeId": "CNS-07",
+    "area": "Consent",
+    "detector": "scanner/passes/differ#refusal_buried",
+    "defaultSeverity": "advisory"
   }
 ]

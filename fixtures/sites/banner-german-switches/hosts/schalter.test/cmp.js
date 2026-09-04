@@ -1,3 +1,4 @@
+if (localStorage.getItem('schalter')) { document.getElementById('dsgvo').hidden = true; }
 document.getElementById('accept').addEventListener('click', function () { localStorage.setItem('schalter', 'accept'); document.cookie = 'schalter=accept; path=/; max-age=31536000'; document.getElementById('dsgvo').hidden = true; });
 document.getElementById('settings').addEventListener('click', function () { document.getElementById('first').hidden = true; document.getElementById('second').hidden = false; });
 Array.prototype.forEach.call(document.querySelectorAll('.opt'), function (b) {

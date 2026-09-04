@@ -24,6 +24,18 @@
       "version": 1,
       "hash": "7fea2eeb10309e7097ef26bd27c61bf251f929208ca473f76ce1adf2866aa3cd"
     },
+    "cns-05-reject-on-the-first-layer": {
+      "version": 1,
+      "hash": "86c711a3115d442c3ae8001a68a7d4d4ba252cacac39ca7fc43d2c0cb0e3376d"
+    },
+    "cns-06-untick-the-toggles": {
+      "version": 1,
+      "hash": "e3245c6b65af014e94d99dbef433b2e6d89b7ed01241096a35ab42ba4bfe6a15"
+    },
+    "cns-07-shorten-the-refusal": {
+      "version": 1,
+      "hash": "453b626cce396e7dc02e77d960f3296add76603d6aad2fa0c56a36fb93fec149"
+    },
     "cns-09-new-tracker": {
       "version": 1,
       "hash": "8646b2fa43ed2d61000a5b76988bc2cb8c982228eb1cd54fc0576385dce26127"

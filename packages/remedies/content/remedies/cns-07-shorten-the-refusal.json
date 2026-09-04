@@ -1,0 +1,41 @@
+{
+  "id": "cns-07-shorten-the-refusal",
+  "version": 1,
+  "findingTypeId": "CNS-07",
+  "jurisdictions": "all",
+  "kind": "self_fix",
+  "title": {
+    "en": "Make refusing as short as accepting",
+    "da": "Gør det lige så kort at afvise som at acceptere"
+  },
+  "effort": {
+    "label": {
+      "en": "About 15 minutes",
+      "da": "Cirka 15 minutter"
+    },
+    "minutes": 15
+  },
+  "detail": {
+    "en": "Refusing takes several steps across more than one layer of the banner; accepting takes one. A single refuse control that turns every optional category off and saves closes the gap.",
+    "da": "At afvise kræver flere trin på tværs af mere end ét lag i banneret; at acceptere kræver ét. Én afvis-knap, der slår alle valgfrie kategorier fra og gemmer, lukker forskellen."
+  },
+  "verifyLabel": {
+    "en": "Re-check this finding",
+    "da": "Tjek dette fund igen"
+  },
+  "verification": {
+    "method": "rescan"
+  },
+  "action": {
+    "kind": "agent_prompt",
+    "label": {
+      "en": "Paste into your coding assistant"
+    },
+    "forwardable": {
+      "en": "Or forward it to your developer — it reads the same either way."
+    },
+    "body": {
+      "en": "On {{domain}} refusing cookies takes several interactions through the banner's settings, while accepting takes one.\n\nAdd a single \"Reject all\" control on the first layer that switches every optional category off, stores the refusal and closes the banner, so that refusing is one interaction too. Keep the settings for visitors who want to choose category by category.\n\nWhen you are done: tell me where the control sits and how to verify that one interaction refuses everything optional."
+    }
+  }
+}

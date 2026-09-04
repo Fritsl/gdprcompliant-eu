@@ -103,6 +103,67 @@
       "version": 1
     },
     {
+      "findingTypeId": "CNS-05",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 7(3)",
+          "note": "refusing must be as easy as agreeing"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 4(11)",
+          "note": "consent is a freely given choice"
+        },
+        {
+          "instrument": "ePrivacy",
+          "ref": "Art. 5(3)",
+          "note": "storage or access only with consent"
+        }
+      ],
+      "guideId": "cns-05",
+      "version": 1
+    },
+    {
+      "findingTypeId": "CNS-06",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 4(11)",
+          "note": "consent is an affirmative act, not a box already ticked"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 7(2)",
+          "note": "a consent request is clearly distinguishable"
+        },
+        {
+          "instrument": "ePrivacy",
+          "ref": "Art. 5(3)",
+          "note": "storage or access only with consent"
+        }
+      ],
+      "guideId": "cns-06",
+      "version": 1
+    },
+    {
+      "findingTypeId": "CNS-07",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 7(3)",
+          "note": "refusing must be as easy as agreeing"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 12(1)",
+          "note": "in an easily accessible form"
+        }
+      ],
+      "guideId": "cns-07",
+      "version": 1
+    },
+    {
       "findingTypeId": "CNS-09",
       "citations": [
         {
