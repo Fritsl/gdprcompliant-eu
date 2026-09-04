@@ -5,5 +5,5 @@ root.innerHTML = '<div id="uc-banner" style="position:fixed;left:0;right:0;botto
   '<button data-testid="uc-more-button" type="button">Einstellungen</button>' +
   '<button data-testid="uc-deny-all-button" type="button">Ablehnen</button></div>';
 root.querySelector('[data-testid="uc-deny-all-button"]').addEventListener('click', function () { localStorage.setItem('uc_settings', 'reject'); document.cookie = 'uc_settings=reject; path=/; max-age=31536000'; document.getElementById('usercentrics-root').style.display = 'none'; });
-root.querySelector('[data-testid="uc-accept-all-button"]').addEventListener('click', function () { document.getElementById('usercentrics-root').style.display = 'none'; });
+root.querySelector('[data-testid="uc-accept-all-button"]').addEventListener('click', function () { localStorage.setItem('uc_settings', 'accept'); document.cookie = 'uc_settings=accept; path=/; max-age=31536000'; document.getElementById('usercentrics-root').style.display = 'none'; });
   

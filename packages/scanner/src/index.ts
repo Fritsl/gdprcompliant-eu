@@ -14,6 +14,8 @@ export * from './fixtures/index.js';
 export * from './pool.js';
 export * from './passes/network-quiet.js';
 export * from './passes/pass-a.js';
+export * from './passes/pass-bc.js';
+export { hostOf as hostOfUrl } from './passes/instrument.js';
 export * from './evidence.js';
 export * from './checks/index.js';
 export * from './discovery/index.js';

@@ -17,6 +17,7 @@ Not yet reviewed by a lawyer.
 | CNS-01 |  | ePrivacy Art. 5(3) — consent before storage or access `ePrivacy:5:3`<br>GDPR Art. 4(11) — what consent is `GDPR:4:11`<br>GDPR Art. 7(1) — the controller must be able to show consent was given `GDPR:7:1` | cns-01 v1 |
 | CNS-02 |  | ePrivacy Art. 5(3) — consent before storage or access `ePrivacy:5:3`<br>GDPR Art. 7(3) — withdrawal as easy as consent `GDPR:7:3` | cns-02 v1 |
 | CNS-03 | Consent | ePrivacy Art. 5(3) — storage or access only with consent, which must be refusable `ePrivacy:5:3`<br>GDPR Art. 4(11) — consent is a freely given choice `GDPR:4:11`<br>GDPR Art. 7(3) — refusing must be as easy as agreeing `GDPR:7:3` | cns-03 v1 |
+| CNS-04 | Consent | ePrivacy Art. 5(3) — storage or access only with a consent that holds `ePrivacy:5:3`<br>GDPR Art. 7(1) — the controller must be able to show the choice that was made `GDPR:7:1` | cns-04 v1 |
 | CNS-09 |  | ePrivacy Art. 5(3) — consent before storage or access `ePrivacy:5:3`<br>GDPR Art. 13(1)(e) — recipients must be named `GDPR:13:1:e` | cns-09 v1 |
 | DPA-01 |  | GDPR Art. 28(3) — required content of a processor agreement `GDPR:28:3` | dpa-01 v1 |
 | EXP-01 | Security | GDPR Art. 32(1) — appropriate technical measures `GDPR:32:1`<br>GDPR Art. 5(1)(f) — integrity and confidentiality `GDPR:5:1:f` | exp-01 v1 |
@@ -53,6 +54,7 @@ Not yet reviewed by a lawyer.
 | CNS-01 |  | ePrivacy Art. 5(3) — consent before storage or access `ePrivacy:5:3`<br>GDPR Art. 4(11) — what consent is `GDPR:4:11`<br>GDPR Art. 7(1) — the controller must be able to show consent was given `GDPR:7:1` | cns-01 v1 |
 | CNS-02 |  | ePrivacy Art. 5(3) — consent before storage or access `ePrivacy:5:3`<br>GDPR Art. 7(3) — withdrawal as easy as consent `GDPR:7:3` | cns-02 v1 |
 | CNS-03 | Consent | ePrivacy Art. 5(3) — storage or access only with consent, which must be refusable `ePrivacy:5:3`<br>GDPR Art. 4(11) — consent is a freely given choice `GDPR:4:11`<br>GDPR Art. 7(3) — refusing must be as easy as agreeing `GDPR:7:3` | cns-03 v1 |
+| CNS-04 | Consent | ePrivacy Art. 5(3) — storage or access only with a consent that holds `ePrivacy:5:3`<br>GDPR Art. 7(1) — the controller must be able to show the choice that was made `GDPR:7:1` | cns-04 v1 |
 | CNS-09 |  | ePrivacy Art. 5(3) — consent before storage or access `ePrivacy:5:3`<br>GDPR Art. 13(1)(e) — recipients must be named `GDPR:13:1:e` | cns-09 v1 |
 | DPA-01 |  | GDPR Art. 28(3) — required content of a processor agreement `GDPR:28:3` | dpa-01 v1 |
 | EXP-01 | Security | GDPR Art. 32(1) — appropriate technical measures `GDPR:32:1`<br>GDPR Art. 5(1)(f) — integrity and confidentiality `GDPR:5:1:f` | exp-01 v1 |

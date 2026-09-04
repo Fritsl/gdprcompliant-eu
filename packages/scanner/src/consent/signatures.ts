@@ -10,6 +10,7 @@ export interface PlatformSignature {
   readonly platform: Exclude<ConsentPlatform, 'generic'>;
   readonly root: readonly string[];
   readonly reject?: readonly string[];
+  readonly accept?: readonly string[];
   readonly settings?: readonly string[];
   readonly save?: readonly string[];
 }
@@ -18,6 +19,10 @@ export const PLATFORM_SIGNATURES: readonly PlatformSignature[] = [
   {
     platform: 'cookiebot',
     root: ['#CybotCookiebotDialog', '#CookiebotWidget'],
+    accept: [
+      '#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll',
+      '#CybotCookiebotDialogBodyButtonAccept',
+    ],
     reject: [
       '#CybotCookiebotDialogBodyButtonDecline',
       '#CybotCookiebotDialogBodyLevelButtonLevelOptinDeclineAll',
@@ -28,6 +33,7 @@ export const PLATFORM_SIGNATURES: readonly PlatformSignature[] = [
   {
     platform: 'onetrust',
     root: ['#onetrust-banner-sdk', '#onetrust-consent-sdk'],
+    accept: ['#onetrust-accept-btn-handler'],
     reject: ['#onetrust-reject-all-handler'],
     settings: ['#onetrust-pc-btn-handler'],
     save: ['.save-preference-btn-handler', '.onetrust-close-btn-handler'],
@@ -35,6 +41,7 @@ export const PLATFORM_SIGNATURES: readonly PlatformSignature[] = [
   {
     platform: 'usercentrics',
     root: ['#usercentrics-root', '#usercentrics-cmp-ui'],
+    accept: ['[data-testid="uc-accept-all-button"]'],
     reject: ['[data-testid="uc-deny-all-button"]'],
     settings: ['[data-testid="uc-more-button"]', '[data-testid="uc-customize-button"]'],
     save: ['[data-testid="uc-save-button"]'],
@@ -95,6 +102,12 @@ export const REJECT_TEXT = [
   /^(afvis|afvis alle|afvis alt|nej tak|kun nødvendige|kun nødvendige cookies|tillad kun nødvendige|accepter kun nødvendige)$/,
   /^(reject|reject all|decline|decline all|refuse|refuse all|deny|deny all|no thanks|only necessary|necessary only|essential only|only essential|use necessary cookies only|accept only necessary)$/,
   /^(ablehnen|alle ablehnen|nur notwendige|nur erforderliche|nur notwendige cookies|nur essenzielle|nein danke)$/,
+];
+
+export const ACCEPT_TEXT = [
+  /^(accepter|accepter alle|accepter alt|tillad alle|tillad alt|ok|okay|jeg accepterer|ja tak|godkend|godkend alle)$/,
+  /^(accept|accept all|accept all cookies|allow all|allow all cookies|agree|i agree|got it|ok|okay|yes|accept cookies)$/,
+  /^(akzeptieren|alle akzeptieren|allen zustimmen|zustimmen|ich stimme zu|einverstanden|alle cookies akzeptieren|ok)$/,
 ];
 
 export const SETTINGS_TEXT = [

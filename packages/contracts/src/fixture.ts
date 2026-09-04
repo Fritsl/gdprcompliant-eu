@@ -77,6 +77,7 @@ export const FixtureExpectationSchema = z
         minSteps: z.number().int().min(1).optional(),
         maxSteps: z.number().int().min(1).optional(),
         findingTypeId: FindingTypeIdSchema.optional(),
+        rememberedAfterReload: z.boolean().optional(),
       })
       .optional(),
   })

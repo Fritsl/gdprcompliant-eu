@@ -1,0 +1,21 @@
+{
+  "site": "glemsom.test",
+  "description": "A banner with a real reject button that stores nothing: it closes, and on the next page it asks again. Refusing it is clicked, never registered.",
+  "tags": [],
+  "findings": {
+    "must": ["CNS-04"],
+    "mustNot": ["CNS-03"]
+  },
+  "network": {
+    "firstLoad": {
+      "mustContact": [],
+      "mustNotContact": []
+    }
+  },
+  "consent": {
+    "platform": "generic",
+    "outcome": "refused",
+    "maxSteps": 3,
+    "rememberedAfterReload": false
+  }
+}

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <title>banner-forgets</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; }
+    .overlay { position: fixed; left: 0; right: 0; bottom: 0; background: #fff; border-top: 2px solid #333; padding: 1rem; z-index: 1000; }
+    .overlay button { margin-right: .5rem; }
+  </style>
+</head>
+<body>
+  <h1>banner-forgets</h1>
+  <p>Velkommen. Willkommen. Welcome.</p>
+  <div id="cookie-banner" class="overlay" role="dialog" aria-label="Cookies">
+    <p>Vi bruger cookies til statistik og markedsføring.</p>
+    <button id="accept" type="button">Accepter alle</button>
+    <button id="reject" type="button">Afvis alle</button>
+  </div>
+  <script src="/cmp.js"></script>
+</body>
+</html>

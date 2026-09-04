@@ -26,6 +26,7 @@ describe('the fixture estate (F-07)', () => {
       'banner-accept-only',
       'banner-cookiebot-like',
       'banner-direct-reject',
+      'banner-forgets',
       'banner-german-switches',
       'banner-in-iframe',
       'banner-onetrust-like',

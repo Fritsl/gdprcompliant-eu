@@ -1,3 +1,3 @@
 document.getElementById('CybotCookiebotDialogBodyButtonDecline').addEventListener('click', function () { localStorage.setItem('CookieConsent', 'reject'); document.cookie = 'CookieConsent=reject; path=/; max-age=31536000'; document.getElementById('CybotCookiebotDialog').style.display = 'none'; });
-document.getElementById('CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll').addEventListener('click', function () { document.getElementById('CybotCookiebotDialog').style.display = 'none'; });
+document.getElementById('CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll').addEventListener('click', function () { localStorage.setItem('CookieConsent', 'accept'); document.cookie = 'CookieConsent=accept; path=/; max-age=31536000'; document.getElementById('CybotCookiebotDialog').style.display = 'none'; });
   

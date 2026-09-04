@@ -86,6 +86,23 @@
       "version": 1
     },
     {
+      "findingTypeId": "CNS-04",
+      "citations": [
+        {
+          "instrument": "ePrivacy",
+          "ref": "Art. 5(3)",
+          "note": "storage or access only with a consent that holds"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 7(1)",
+          "note": "the controller must be able to show the choice that was made"
+        }
+      ],
+      "guideId": "cns-04",
+      "version": 1
+    },
+    {
       "findingTypeId": "CNS-09",
       "citations": [
         {

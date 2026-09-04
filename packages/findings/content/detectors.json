@@ -100,5 +100,11 @@
     "area": "Consent",
     "detector": "scanner/consent/banner#no_refusal_path",
     "defaultSeverity": "serious"
+  },
+  {
+    "findingTypeId": "CNS-04",
+    "area": "Consent",
+    "detector": "scanner/passes/pass-bc#choice_not_remembered",
+    "defaultSeverity": "serious"
   }
 ]

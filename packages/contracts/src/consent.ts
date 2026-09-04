@@ -48,6 +48,10 @@ export type ConsentOutcome = z.infer<typeof ConsentOutcomeSchema>;
 // is this finding. It is raised only on "undetermined", never on a guess.
 export const NO_REFUSAL_PATH_FINDING = 'CNS-03' as const;
 
+// A banner that comes back after a choice was made and the page reloaded: the choice
+// was clicked, not registered (S-04).
+export const CHOICE_NOT_REMEMBERED_FINDING = 'CNS-04' as const;
+
 export const ConsentRefusalSchema = z
   .object({
     url: z.string().min(1),

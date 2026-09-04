@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { ConsentPlatformSchema } from './consent.js';
 import { IsoDateTimeSchema, ScanPassSchema, Sha256Schema } from './primitives.js';
 
 // What one browser pass observed (S-02, S-04): every request with where it came from,
@@ -120,6 +121,19 @@ export const PassCaptureSchema = z
     storage: z.array(StorageWriteSchema),
     screenshotHash: Sha256Schema.optional(),
     quiet: NetworkQuietSchema,
+    // Pass B and C (S-04): the choice made before this capture, what was written to
+    // remember it, and whether the banner stayed away on the reload this capture is of.
+    consent: z
+      .object({
+        action: z.enum(['refuse', 'accept']),
+        outcome: z.enum(['refused', 'accepted', 'no_banner', 'undetermined']),
+        platform: ConsentPlatformSchema.optional(),
+        steps: z.number().int().min(0),
+        recordedIn: z.object({ cookies: z.array(z.string()), storage: z.array(z.string()) }),
+        rememberedAfterReload: z.boolean(),
+        finding: z.object({ findingTypeId: z.literal('CNS-04') }).optional(),
+      })
+      .optional(),
   })
   .describe('Everything one pass observed');
 export type PassCapture = z.infer<typeof PassCaptureSchema>;
