@@ -46,6 +46,9 @@ export default async function AdvisorPage({
         <Text of={t(locale, 'advisor.heading')} />
       </h1>
       <Text of={t(locale, 'advisor.lead')} as="p" />
+      <p className="notice" data-advisor-notice="">
+        <Text of={t(locale, 'advisor.notice')} />
+      </p>
       {notice ? (
         <p className="notice" data-outcome={outcome} role="status">
           <Text of={notice} />

@@ -52,6 +52,7 @@ const ContentSchema = z.object({
     'adviceLaw',
     'adviceRefused',
     'adviceSettle',
+    'adviceNotice',
   ] as const),
   columns: LocalisedRecord(['area', 'status', 'latest', 'action', 'who', 'effort'] as const),
   states: LocalisedRecord(['done', 'open', 'undetermined'] as const),

@@ -89,6 +89,11 @@
       "en": "The question that would settle it",
       "da": "Det spørgsmål, der ville afgøre det",
       "de": "Die Frage, die es klären würde"
+    },
+    "adviceNotice": {
+      "en": "An assistant, not counsel: none of these answers is legal advice. Have a lawyer read anything you intend to rely on.",
+      "da": "En assistent, ikke en advokat: ingen af disse svar er juridisk rådgivning. Lad en advokat læse alt, du vil støtte dig til.",
+      "de": "Ein Assistent, kein Rechtsbeistand: keine dieser Antworten ist Rechtsberatung. Lassen Sie alles, worauf Sie sich verlassen wollen, von einer Anwältin oder einem Anwalt lesen."
     }
   },
   "columns": {

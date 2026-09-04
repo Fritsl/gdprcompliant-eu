@@ -187,6 +187,9 @@ importers:
       '@gc/contracts':
         specifier: workspace:*
         version: link:../contracts
+      '@gc/i18n':
+        specifier: workspace:*
+        version: link:../i18n
       '@gc/telemetry':
         specifier: workspace:*
         version: link:../telemetry

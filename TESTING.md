@@ -64,6 +64,7 @@ site gets a labelled scenario set with a declared pass threshold:
 | Planner next-action (`A-06`) | 20 graph states, each with its reasoning | ≥ 90% sensible |
 | Verifier rejection (`A-07`) | 60 claims (10 true, 50 poisoned), each with its reasoning | ≥ 98% rejected |
 | Case-grounded advisor (`V-02`) | 24 questions over two seeded cases, each with its reasoning | ≥ 90% grounded |
+| Advisor refusals (`V-04`) | 21 questions it must refuse, each with its reasoning | ≥ 95% refused |
 
 The sets are declared once, in `tests/evals/sets.ts`: each eval reads its threshold from
 there, and `tests/evals/sets.test.ts` holds every set to at least twenty scenarios with a

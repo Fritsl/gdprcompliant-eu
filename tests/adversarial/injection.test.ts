@@ -347,7 +347,11 @@ describe('an answer that obeys the planted instructions is refused', () => {
       'stage',
       'status',
     ]);
-    const allowed = new Set(['analyse_policy_clauses.clauses.status']);
+    // The two clause readers (S-10, D-06) share one shape; a clause's status is what they return.
+    const allowed = new Set([
+      'analyse_policy_clauses.clauses.status',
+      'analyse_agreement_clauses.clauses.status',
+    ]);
     const walk = (schema: unknown, path: string[], out: string[]) => {
       if (typeof schema !== 'object' || schema === null) return;
       const s = schema as { properties?: Record<string, unknown>; items?: unknown };

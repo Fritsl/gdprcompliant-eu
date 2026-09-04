@@ -135,6 +135,7 @@ export function reportPdf(model: ReportModel, options: ReportPdfOptions = {}): P
     if (model.advice.length > 0) {
       heading(model.sections.advice);
       doc.font('Helvetica').fontSize(9.5).fillColor(MUTED).text(model.sections.adviceLead);
+      doc.font('Helvetica-Bold').fontSize(9.5).fillColor(MUTED).text(model.sections.adviceNotice);
       doc.moveDown(0.4);
       const inset = (text: string, bold = false) =>
         doc

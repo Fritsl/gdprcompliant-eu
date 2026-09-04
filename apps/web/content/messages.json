@@ -1493,5 +1493,10 @@
     "en": "Source",
     "da": "Kilde",
     "de": "Quelle"
+  },
+  "advisor.notice": {
+    "en": "An assistant, not counsel: nothing here is legal advice. Have a lawyer read anything you intend to rely on.",
+    "da": "En assistent, ikke en advokat: intet her er juridisk rådgivning. Lad en advokat læse alt, du vil støtte dig til.",
+    "de": "Ein Assistent, kein Rechtsbeistand: nichts hier ist Rechtsberatung. Lassen Sie alles, worauf Sie sich verlassen wollen, von einer Anwältin oder einem Anwalt lesen."
   }
 }

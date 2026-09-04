@@ -12,6 +12,7 @@
     "@gc/config": "workspace:*",
     "@gc/contracts": "workspace:*",
     "zod": "^4.5.4",
-    "@gc/telemetry": "workspace:*"
+    "@gc/telemetry": "workspace:*",
+    "@gc/i18n": "workspace:*"
   }
 }

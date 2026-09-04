@@ -149,6 +149,8 @@ export const MODEL_CALLS = {
       jurisdiction: JurisdictionSchema,
       facts: z.array(GroundedRowSchema).default([]),
       passages: z.array(PassageSchema).default([]),
+      // The facts' values, as captured: scraped, typed by people, attacker-controlled.
+      untrusted: z.array(UntrustedContentSchema).default([]),
     }),
     output: z.strictObject({
       answer: Prose,
