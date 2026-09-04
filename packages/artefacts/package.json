@@ -13,7 +13,8 @@
     "@gc/i18n": "workspace:*",
     "fflate": "0.8.3",
     "pdfkit": "^0.20.2",
-    "zod": "^4.5.4"
+    "zod": "^4.5.4",
+    "@gc/findings": "workspace:*"
   },
   "devDependencies": {
     "@types/pdfkit": "^0.17.6"

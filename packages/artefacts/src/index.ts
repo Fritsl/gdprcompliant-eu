@@ -15,3 +15,4 @@ export * from './evidence-pack.js';
 export * from './report.js';
 export * from './report-pdf.js';
 export * from './ourselves.js';
+export * from './agreement.js';

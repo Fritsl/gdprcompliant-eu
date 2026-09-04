@@ -1,15 +1,27 @@
 import { and, eq } from 'drizzle-orm';
 import {
+  agreementGaps,
   cookieDeclarationDocument,
   policyGaps,
   cookieGaps,
   privacyPolicyDocument,
+  processingAgreementDocument,
+  subProcessorGaps,
+  subProcessorListDocument,
   type ContactAnswers,
   type DocumentGap,
   type GeneratedDocument,
   type ObservedCookie,
+  type ProcessorInput,
+  type SubProcessorRow,
 } from '@gc/artefacts';
-import { CompanySchema, type Actor, type ArtefactKind, type Locale } from '@gc/contracts';
+import {
+  CompanySchema,
+  type Actor,
+  type ArtefactKind,
+  type Locale,
+  type RegisterRow,
+} from '@gc/contracts';
 import {
   classifyCookie,
   loadBindingTables,
@@ -18,16 +30,22 @@ import {
 } from '@gc/findings';
 import { generateArtefact, type GeneratedArtefact } from './artefacts.js';
 import type { Connection, Db } from './client.js';
-import { registerProjection } from './graph.js';
+import { graphOf, registerProjection, type CaseGraph } from './graph.js';
 import { answers, cases, evidence } from './schema.js';
 import { withTenant } from './tenant.js';
 
-// Generated documents (G-02): the privacy policy and the cookie declaration, written
-// from the case graph, the answers and the cookies read from the site. The gaps are
+// Generated documents (G-02, G-03): the privacy policy, the cookie declaration, the
+// processing agreement and the sub-processor page, written from the case graph, the
+// answers, the cookies read from the site and the supply chain the walk read. The gaps are
 // computed the same way the document is, so a page can say what is missing before
 // anyone presses the button, and a refusal names the same gaps.
 
-export const GENERATED_KINDS = ['privacy_policy', 'cookie_declaration'] as const;
+export const GENERATED_KINDS = [
+  'privacy_policy',
+  'cookie_declaration',
+  'processing_agreement',
+  'sub_processor_list',
+] as const;
 export type GeneratedKind = (typeof GENERATED_KINDS)[number];
 export const isGeneratedKind = (k: string): k is GeneratedKind =>
   (GENERATED_KINDS as readonly string[]).includes(k);
@@ -112,6 +130,67 @@ async function cookiesOf(
   return [...seen.values()].sort((a, b) => a.name.localeCompare(b.name));
 }
 
+// The suppliers the confirmed register names as recipients (G-03), each with the
+// activities that share data with it. The graph key is carried so the supply chain the
+// walk wrote (D-07) can be matched to the same supplier.
+function processorsOf(rows: readonly RegisterRow[], graph: CaseGraph): ProcessorInput[] {
+  const keys = new Map(graph.nodes.map((n) => [n.id, n.key]));
+  const byKey = new Map<
+    string,
+    { nodeId: string; key: string; name: string; country?: string; activities: RegisterRow[] }
+  >();
+  for (const r of rows) {
+    if (r.draft) continue;
+    for (const x of r.recipients) {
+      const key = keys.get(x.nodeId) ?? x.nodeId;
+      const p = byKey.get(key) ?? {
+        nodeId: x.nodeId,
+        key,
+        name: x.name,
+        ...(x.country ? { country: x.country } : {}),
+        activities: [],
+      };
+      if (!p.activities.some((a) => a.activityId === r.activityId)) p.activities.push(r);
+      byKey.set(key, p);
+    }
+  }
+  return [...byKey.values()];
+}
+
+// The supply chain as the graph holds it (D-07): every engages edge that is not a
+// cycle, with the company it names, who engaged it, and the list it was read from.
+function subProcessorsOf(graph: CaseGraph): SubProcessorRow[] {
+  const nodes = new Map(graph.nodes.map((n) => [n.id, n]));
+  const text = (v: unknown) => (typeof v === 'string' ? v : undefined);
+  return graph.edges
+    .filter((e) => e.kind === 'engages' && e.attributes['cycle'] !== true)
+    .flatMap((e) => {
+      const from = nodes.get(e.from);
+      const to = nodes.get(e.to);
+      if (!from || !to || from.supersededBy || to.supersededBy) return [];
+      const a = to.attributes;
+      const country = text(a['country']);
+      const purpose = text(e.attributes['purpose']);
+      return [
+        {
+          nodeId: to.id,
+          name: text(a['name']) ?? to.key,
+          ...(country ? { country } : {}),
+          engagedBy: {
+            nodeId: from.id,
+            name: text(from.attributes['name']) ?? from.key,
+            key: from.key,
+          },
+          ...(purpose ? { purpose } : {}),
+          source: text(e.attributes['document']) ?? '',
+          readOn: text(e.attributes['fetchedAt']) ?? e.at,
+          evidenceId: e.evidence[0]?.evidenceId ?? e.id,
+          level: typeof a['level'] === 'number' ? a['level'] : 2,
+        },
+      ];
+    });
+}
+
 interface CaseFrame {
   readonly locale: Locale;
   readonly jurisdiction: string;
@@ -184,6 +263,24 @@ export async function draftDocument(
       });
       return { kind, locale: frame.locale, document };
     }
+    if (kind === 'processing_agreement' || kind === 'sub_processor_list') {
+      const rows = await registerProjection(db, caseId);
+      const graph = await graphOf(db, caseId);
+      const processors = processorsOf(rows, graph);
+      const subProcessors = subProcessorsOf(graph);
+      const shared = {
+        processors,
+        subProcessors,
+        company: frame.company,
+        locale: frame.locale,
+        generatedAt: options.now,
+      };
+      const document =
+        kind === 'processing_agreement'
+          ? processingAgreementDocument({ ...shared, contact: await contactOf(db, caseId) })
+          : subProcessorListDocument(shared);
+      return { kind, locale: frame.locale, document };
+    }
     const observed = await cookiesOf(db, caseId, options.cookieDatabase ?? cookies());
     const document = cookieDeclarationDocument({
       cookies: observed,
@@ -216,6 +313,20 @@ export async function documentGaps(
         authority: authorityOf(frame.jurisdiction),
         generatedAt: now,
       });
+    }
+    if (kind === 'processing_agreement' || kind === 'sub_processor_list') {
+      const rows = await registerProjection(db, caseId);
+      const graph = await graphOf(db, caseId);
+      const shared = {
+        processors: processorsOf(rows, graph),
+        subProcessors: subProcessorsOf(graph),
+        company: frame.company,
+        locale: frame.locale,
+        generatedAt: now,
+      };
+      return kind === 'processing_agreement'
+        ? agreementGaps({ ...shared, contact: await contactOf(db, caseId) })
+        : subProcessorGaps(shared);
     }
     const observed = await cookiesOf(db, caseId, options.cookieDatabase ?? cookies());
     return cookieGaps({

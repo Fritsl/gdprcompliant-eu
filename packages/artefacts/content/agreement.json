@@ -1,0 +1,378 @@
+{
+  "_comment": "The processing agreement and the sub-processor page generators (G-03). Every clause is a template filled from confirmed register rows, answers, the vendor nodes and the supply chain the walk (D-07) read; each clause of the agreement is one element of the Article 28 table (packages/findings/content/agreement-elements.json) and carries that element's id and provision in its trace, so a generated agreement can be read back against the same table a supplier's is. A template that has nothing to fill is a gap, named instead. The numbers a clause needs are content here, not code.",
+  "notice": {
+    "en": "Draft for a lawyer to review before it is signed or published. It is written from the company's record of processing activities and from the suppliers' own published lists on the dates shown. Nothing in it has been reviewed by a lawyer.",
+    "da": "Udkast, som en advokat skal gennemgå, før det underskrives eller offentliggøres. Det er skrevet ud fra virksomhedens fortegnelse over behandlingsaktiviteter og leverandørernes egne offentliggjorte lister på de viste datoer. Intet i det er gennemgået af en advokat.",
+    "de": "Entwurf, den ein Anwalt prüfen muss, bevor er unterschrieben oder veröffentlicht wird. Er ist aus dem Verzeichnis der Verarbeitungstätigkeiten des Unternehmens und aus den von den Anbietern selbst veröffentlichten Listen an den angegebenen Tagen geschrieben. Nichts darin wurde von einem Anwalt geprüft."
+  },
+  "defaults": {
+    "noticeDays": 30,
+    "breachHours": 48,
+    "deletionDays": 30
+  },
+  "agreement": {
+    "title": {
+      "en": "Data processing agreement",
+      "da": "Databehandleraftale",
+      "de": "Auftragsverarbeitungsvertrag"
+    },
+    "intro": {
+      "en": "This agreement is between {{company}}, {{address}} (the controller) and each supplier named in Annex 1 (each a processor). It governs the personal data the processor handles on the controller's behalf, as recorded in the controller's record of processing activities.",
+      "da": "Denne aftale er indgået mellem {{company}}, {{address}} (den dataansvarlige) og hver leverandør, der er nævnt i bilag 1 (hver en databehandler). Den regulerer de personoplysninger, databehandleren håndterer på den dataansvarliges vegne, som anført i den dataansvarliges fortegnelse over behandlingsaktiviteter.",
+      "de": "Dieser Vertrag wird zwischen {{company}}, {{address}} (der Verantwortliche) und jedem in Anlage 1 genannten Anbieter (jeweils ein Auftragsverarbeiter) geschlossen. Er regelt die personenbezogenen Daten, die der Auftragsverarbeiter im Auftrag des Verantwortlichen verarbeitet, wie im Verzeichnis der Verarbeitungstätigkeiten des Verantwortlichen festgehalten."
+    },
+    "sections": {
+      "parties": {
+        "heading": { "en": "The parties", "da": "Parterne", "de": "Die Parteien" },
+        "body": {
+          "en": "{{company}} is the controller. Each processor named in Annex 1 processes the personal data described there on the controller's behalf and under this agreement, and is bound by it with regard to the controller.",
+          "da": "{{company}} er dataansvarlig. Hver databehandler, der er nævnt i bilag 1, behandler de personoplysninger, der er beskrevet dér, på den dataansvarliges vegne og efter denne aftale, og er bundet af den over for den dataansvarlige.",
+          "de": "{{company}} ist der Verantwortliche. Jeder in Anlage 1 genannte Auftragsverarbeiter verarbeitet die dort beschriebenen personenbezogenen Daten im Auftrag des Verantwortlichen und nach diesem Vertrag und ist dadurch gegenüber dem Verantwortlichen gebunden."
+        }
+      },
+      "subject_and_duration": {
+        "heading": {
+          "en": "Subject-matter and duration",
+          "da": "Genstand og varighed",
+          "de": "Gegenstand und Dauer"
+        },
+        "body": {
+          "en": "The subject-matter of the processing is the activities listed in Annex 1: {{activities}}. The processing lasts for the term of the service the processor provides and until the data has been deleted or returned under the section on deletion and return.",
+          "da": "Behandlingens genstand er de aktiviteter, der er anført i bilag 1: {{activities}}. Behandlingen varer, så længe den ydelse, databehandleren leverer, løber, og indtil oplysningerne er slettet eller tilbageleveret efter afsnittet om sletning og tilbagelevering.",
+          "de": "Gegenstand der Verarbeitung sind die in Anlage 1 aufgeführten Tätigkeiten: {{activities}}. Die Verarbeitung dauert für die Laufzeit der Leistung des Auftragsverarbeiters an und bis die Daten nach dem Abschnitt über Löschung und Rückgabe gelöscht oder zurückgegeben sind."
+        }
+      },
+      "nature_and_purpose": {
+        "heading": {
+          "en": "Nature and purpose",
+          "da": "Karakter og formål",
+          "de": "Art und Zweck"
+        },
+        "body": {
+          "en": "The processor stores, transmits and otherwise handles the personal data as the service requires, for these purposes and no others: {{purposes}}.",
+          "da": "Databehandleren opbevarer, overfører og håndterer i øvrigt personoplysningerne, som ydelsen kræver, til disse formål og ingen andre: {{purposes}}.",
+          "de": "Der Auftragsverarbeiter speichert, übermittelt und verarbeitet die personenbezogenen Daten im Übrigen, wie die Leistung es erfordert, zu diesen Zwecken und keinen anderen: {{purposes}}."
+        }
+      },
+      "data_and_subjects": {
+        "heading": {
+          "en": "Personal data and data subjects",
+          "da": "Personoplysninger og registrerede",
+          "de": "Personenbezogene Daten und betroffene Personen"
+        },
+        "body": {
+          "en": "The personal data are: {{categories}}. The data subjects are: {{subjects}}.",
+          "da": "Personoplysningerne er: {{categories}}. De registrerede er: {{subjects}}.",
+          "de": "Die personenbezogenen Daten sind: {{categories}}. Die betroffenen Personen sind: {{subjects}}."
+        }
+      },
+      "controller_rights": {
+        "heading": {
+          "en": "Obligations and rights of the controller",
+          "da": "Den dataansvarliges forpligtelser og rettigheder",
+          "de": "Pflichten und Rechte des Verantwortlichen"
+        },
+        "body": {
+          "en": "The controller decides the purposes and means of the processing, gives its instructions in writing, may audit the processor, may object to a new sub-processor and may require the deletion or return of the data at any time. The controller is responsible for the lawfulness of the processing it instructs.",
+          "da": "Den dataansvarlige bestemmer formålene med og hjælpemidlerne til behandlingen, giver sine instrukser skriftligt, kan føre tilsyn med databehandleren, kan gøre indsigelse mod en ny underdatabehandler og kan til enhver tid kræve oplysningerne slettet eller tilbageleveret. Den dataansvarlige er ansvarlig for, at den behandling, den instruerer, er lovlig.",
+          "de": "Der Verantwortliche entscheidet über die Zwecke und Mittel der Verarbeitung, erteilt seine Weisungen schriftlich, darf den Auftragsverarbeiter überprüfen, darf einem neuen Unterauftragsverarbeiter widersprechen und darf jederzeit die Löschung oder Rückgabe der Daten verlangen. Der Verantwortliche ist für die Rechtmäßigkeit der von ihm angewiesenen Verarbeitung verantwortlich."
+        }
+      },
+      "documented_instructions": {
+        "heading": {
+          "en": "Instructions",
+          "da": "Instruks",
+          "de": "Weisungen"
+        },
+        "body": {
+          "en": "The processor processes the personal data only on documented instructions from the controller, including with regard to transfers of personal data to a third country or an international organisation, unless required to do so by Union or Member State law to which the processor is subject; in that case the processor informs the controller of that legal requirement before processing, unless the law prohibits it. The processor informs the controller without delay if, in its opinion, an instruction infringes data protection law.",
+          "da": "Databehandleren behandler kun personoplysningerne efter dokumenteret instruks fra den dataansvarlige, herunder for så vidt angår overførsel af personoplysninger til et tredjeland eller en international organisation, medmindre det kræves i henhold til EU-retten eller medlemsstaternes ret, som databehandleren er underlagt; i så fald underretter databehandleren den dataansvarlige om dette retlige krav inden behandlingen, medmindre loven forbyder det. Databehandleren underretter straks den dataansvarlige, hvis en instruks efter databehandlerens opfattelse ikke kan forenes med databeskyttelsesretten.",
+          "de": "Der Auftragsverarbeiter verarbeitet die personenbezogenen Daten nur auf dokumentierte Weisung des Verantwortlichen, auch in Bezug auf die Übermittlung personenbezogener Daten an ein Drittland oder eine internationale Organisation, sofern er nicht durch das Recht der Union oder der Mitgliedstaaten, dem er unterliegt, hierzu verpflichtet ist; in diesem Fall teilt der Auftragsverarbeiter dem Verantwortlichen diese rechtliche Anforderung vor der Verarbeitung mit, sofern das Recht dies nicht verbietet. Der Auftragsverarbeiter informiert den Verantwortlichen unverzüglich, wenn eine Weisung seiner Ansicht nach mit dem Datenschutzrecht nicht vereinbar ist."
+        }
+      },
+      "confidentiality": {
+        "heading": {
+          "en": "Confidentiality",
+          "da": "Fortrolighed",
+          "de": "Vertraulichkeit"
+        },
+        "body": {
+          "en": "The processor ensures that every person it authorises to process the personal data has committed themselves to confidentiality or is under an appropriate statutory obligation of confidentiality, and that only the persons who need access for the service have it.",
+          "da": "Databehandleren sikrer, at enhver person, den autoriserer til at behandle personoplysningerne, har forpligtet sig til fortrolighed eller er underlagt en passende lovbestemt tavshedspligt, og at kun de personer, der har brug for adgang til ydelsen, har den.",
+          "de": "Der Auftragsverarbeiter gewährleistet, dass sich jede von ihm zur Verarbeitung der personenbezogenen Daten befugte Person zur Vertraulichkeit verpflichtet hat oder einer angemessenen gesetzlichen Verschwiegenheitspflicht unterliegt, und dass nur die Personen Zugriff haben, die ihn für die Leistung benötigen."
+        }
+      },
+      "security_measures": {
+        "heading": {
+          "en": "Security of processing",
+          "da": "Behandlingssikkerhed",
+          "de": "Sicherheit der Verarbeitung"
+        },
+        "body": {
+          "en": "The processor implements appropriate technical and organisational measures to ensure a level of security appropriate to the risk, at least those described in Annex 2, and keeps them under review.",
+          "da": "Databehandleren gennemfører passende tekniske og organisatoriske foranstaltninger for at sikre et sikkerhedsniveau, der passer til risikoen, mindst dem, der er beskrevet i bilag 2, og holder dem under opsyn.",
+          "de": "Der Auftragsverarbeiter trifft geeignete technische und organisatorische Maßnahmen, um ein dem Risiko angemessenes Schutzniveau zu gewährleisten, mindestens die in Anlage 2 beschriebenen, und überprüft sie regelmäßig."
+        }
+      },
+      "subprocessor_authorisation": {
+        "heading": {
+          "en": "Sub-processors",
+          "da": "Underdatabehandlere",
+          "de": "Unterauftragsverarbeiter"
+        },
+        "body": {
+          "en": "The processor engages another processor only with the controller's prior written authorisation. The controller gives its general authorisation for the sub-processors listed in Annex 3. The processor imposes the same data protection obligations as set out in this agreement on every sub-processor by way of a written contract and remains fully liable to the controller for the sub-processor's performance.",
+          "da": "Databehandleren gør kun brug af en anden databehandler med den dataansvarliges forudgående skriftlige godkendelse. Den dataansvarlige giver sin generelle godkendelse til de underdatabehandlere, der er anført i bilag 3. Databehandleren pålægger ved en skriftlig aftale hver underdatabehandler de samme databeskyttelsesforpligtelser som i denne aftale og forbliver fuldt ansvarlig over for den dataansvarlige for underdatabehandlerens opfyldelse af dem.",
+          "de": "Der Auftragsverarbeiter nimmt einen weiteren Auftragsverarbeiter nur mit vorheriger schriftlicher Genehmigung des Verantwortlichen in Anspruch. Der Verantwortliche erteilt seine allgemeine Genehmigung für die in Anlage 3 aufgeführten Unterauftragsverarbeiter. Der Auftragsverarbeiter legt jedem Unterauftragsverarbeiter durch schriftlichen Vertrag dieselben Datenschutzpflichten auf, die in diesem Vertrag festgelegt sind, und bleibt dem Verantwortlichen gegenüber für die Erfüllung durch den Unterauftragsverarbeiter voll verantwortlich."
+        }
+      },
+      "subprocessor_objection": {
+        "heading": {
+          "en": "Notice of new sub-processors and objection",
+          "da": "Varsel om nye underdatabehandlere og indsigelse",
+          "de": "Ankündigung neuer Unterauftragsverarbeiter und Widerspruch"
+        },
+        "body": {
+          "en": "The processor informs the controller in writing at least {{noticeDays}} days before it adds or replaces a sub-processor. The controller may object to the change within that period; if the objection is not resolved, the controller may terminate the affected service without penalty.",
+          "da": "Databehandleren underretter skriftligt den dataansvarlige mindst {{noticeDays}} dage før, den tilføjer eller udskifter en underdatabehandler. Den dataansvarlige kan gøre indsigelse mod ændringen inden for fristen; løses indsigelsen ikke, kan den dataansvarlige opsige den berørte ydelse uden omkostninger.",
+          "de": "Der Auftragsverarbeiter informiert den Verantwortlichen schriftlich mindestens {{noticeDays}} Tage, bevor er einen Unterauftragsverarbeiter hinzuzieht oder ersetzt. Der Verantwortliche kann der Änderung innerhalb dieser Frist widersprechen; wird der Widerspruch nicht ausgeräumt, kann der Verantwortliche die betroffene Leistung ohne Nachteil kündigen."
+        }
+      },
+      "assist_data_subject_rights": {
+        "heading": {
+          "en": "Requests from data subjects",
+          "da": "Anmodninger fra registrerede",
+          "de": "Anfragen betroffener Personen"
+        },
+        "body": {
+          "en": "Taking into account the nature of the processing, the processor assists the controller by appropriate technical and organisational measures in fulfilling its obligation to respond to requests from data subjects exercising their rights, and forwards any such request it receives to the controller without delay.",
+          "da": "Under hensyntagen til behandlingens karakter bistår databehandleren ved hjælp af passende tekniske og organisatoriske foranstaltninger den dataansvarlige med at opfylde dennes forpligtelse til at besvare anmodninger fra registrerede om udøvelse af deres rettigheder, og videresender straks enhver sådan anmodning, den selv modtager, til den dataansvarlige.",
+          "de": "Unter Berücksichtigung der Art der Verarbeitung unterstützt der Auftragsverarbeiter den Verantwortlichen mit geeigneten technischen und organisatorischen Maßnahmen dabei, seiner Pflicht zur Beantwortung von Anträgen betroffener Personen auf Wahrnehmung ihrer Rechte nachzukommen, und leitet jeden bei ihm eingehenden Antrag unverzüglich an den Verantwortlichen weiter."
+        }
+      },
+      "assist_obligations": {
+        "heading": {
+          "en": "Security, breaches and impact assessments",
+          "da": "Sikkerhed, brud og konsekvensanalyser",
+          "de": "Sicherheit, Verletzungen und Folgenabschätzungen"
+        },
+        "body": {
+          "en": "The processor assists the controller in ensuring compliance with its obligations on security of processing, notification of personal data breaches and data protection impact assessments, taking into account the nature of the processing and the information available to the processor.",
+          "da": "Databehandleren bistår den dataansvarlige med at sikre overholdelse af forpligtelserne vedrørende behandlingssikkerhed, anmeldelse af brud på persondatasikkerheden og konsekvensanalyser vedrørende databeskyttelse, under hensyntagen til behandlingens karakter og de oplysninger, databehandleren har til rådighed.",
+          "de": "Der Auftragsverarbeiter unterstützt den Verantwortlichen bei der Einhaltung seiner Pflichten zur Sicherheit der Verarbeitung, zur Meldung von Verletzungen des Schutzes personenbezogener Daten und zur Datenschutz-Folgenabschätzung unter Berücksichtigung der Art der Verarbeitung und der ihm zur Verfügung stehenden Informationen."
+        }
+      },
+      "breach_notification": {
+        "heading": {
+          "en": "Personal data breaches",
+          "da": "Brud på persondatasikkerheden",
+          "de": "Verletzungen des Schutzes personenbezogener Daten"
+        },
+        "body": {
+          "en": "The processor notifies the controller without undue delay and at the latest {{breachHours}} hours after becoming aware of a personal data breach, and provides the information the controller needs for its own notification as it becomes available.",
+          "da": "Databehandleren underretter den dataansvarlige uden ugrundet ophold og senest {{breachHours}} timer efter at være blevet bekendt med et brud på persondatasikkerheden, og leverer de oplysninger, den dataansvarlige har brug for til sin egen anmeldelse, efterhånden som de foreligger.",
+          "de": "Der Auftragsverarbeiter meldet dem Verantwortlichen eine Verletzung des Schutzes personenbezogener Daten unverzüglich, spätestens jedoch {{breachHours}} Stunden, nachdem sie ihm bekannt geworden ist, und stellt die Informationen, die der Verantwortliche für seine eigene Meldung benötigt, bereit, sobald sie vorliegen."
+        }
+      },
+      "deletion_or_return": {
+        "heading": {
+          "en": "Deletion and return",
+          "da": "Sletning og tilbagelevering",
+          "de": "Löschung und Rückgabe"
+        },
+        "body": {
+          "en": "At the end of the service the processor, at the controller's choice, deletes or returns all the personal data and deletes existing copies within {{deletionDays}} days, unless Union or Member State law requires storage of the personal data.",
+          "da": "Ved ydelsens ophør sletter eller tilbageleverer databehandleren efter den dataansvarliges valg alle personoplysningerne og sletter eksisterende kopier inden for {{deletionDays}} dage, medmindre EU-retten eller medlemsstaternes ret kræver, at personoplysningerne opbevares.",
+          "de": "Nach Abschluss der Leistung löscht der Auftragsverarbeiter nach Wahl des Verantwortlichen alle personenbezogenen Daten oder gibt sie zurück und löscht vorhandene Kopien innerhalb von {{deletionDays}} Tagen, sofern nicht nach dem Recht der Union oder der Mitgliedstaaten eine Pflicht zur Speicherung besteht."
+        }
+      },
+      "audits": {
+        "heading": {
+          "en": "Information and audits",
+          "da": "Oplysninger og tilsyn",
+          "de": "Nachweise und Überprüfungen"
+        },
+        "body": {
+          "en": "The processor makes available to the controller all information necessary to demonstrate that the obligations in this agreement are met, and allows for and contributes to audits, including inspections, conducted by the controller or another auditor mandated by the controller.",
+          "da": "Databehandleren stiller alle oplysninger, der er nødvendige for at påvise, at forpligtelserne i denne aftale er opfyldt, til rådighed for den dataansvarlige og giver mulighed for og bidrager til revisioner, herunder inspektioner, der foretages af den dataansvarlige eller en anden revisor, som den dataansvarlige har bemyndiget.",
+          "de": "Der Auftragsverarbeiter stellt dem Verantwortlichen alle Informationen zur Verfügung, die zum Nachweis der Einhaltung der in diesem Vertrag niedergelegten Pflichten erforderlich sind, und ermöglicht und trägt zu Überprüfungen einschließlich Inspektionen bei, die vom Verantwortlichen oder einem anderen von ihm beauftragten Prüfer durchgeführt werden."
+        }
+      },
+      "transfer_annex": {
+        "heading": {
+          "en": "Transfers outside the EEA",
+          "da": "Overførsler uden for EØS",
+          "de": "Übermittlungen außerhalb des EWR"
+        },
+        "body": {
+          "en": "The processor transfers personal data to a country outside the European Economic Area only on the controller's documented instruction and only under an appropriate safeguard: the standard contractual clauses annexed as Annex 4, an adequacy decision of the European Commission, or binding corporate rules. {{transfers}}",
+          "da": "Databehandleren overfører kun personoplysninger til et land uden for Det Europæiske Økonomiske Samarbejdsområde efter dokumenteret instruks fra den dataansvarlige og kun på et passende grundlag: de standardkontraktbestemmelser, der er vedhæftet som bilag 4, en tilstrækkelighedsafgørelse fra Europa-Kommissionen eller bindende virksomhedsregler. {{transfers}}",
+          "de": "Der Auftragsverarbeiter übermittelt personenbezogene Daten nur auf dokumentierte Weisung des Verantwortlichen und nur unter einer geeigneten Garantie in ein Land außerhalb des Europäischen Wirtschaftsraums: die als Anlage 4 beigefügten Standardvertragsklauseln, ein Angemessenheitsbeschluss der Europäischen Kommission oder verbindliche interne Datenschutzvorschriften. {{transfers}}"
+        },
+        "known": {
+          "en": "The record knows these transfers: {{list}}.",
+          "da": "Fortegnelsen kender disse overførsler: {{list}}.",
+          "de": "Das Verzeichnis kennt diese Übermittlungen: {{list}}."
+        },
+        "none": {
+          "en": "The record knows no transfer outside the EEA.",
+          "da": "Fortegnelsen kender ingen overførsel uden for EØS.",
+          "de": "Das Verzeichnis kennt keine Übermittlung außerhalb des EWR."
+        }
+      }
+    },
+    "annexes": {
+      "processors": {
+        "heading": {
+          "en": "Annex 1: Processors and the processing",
+          "da": "Bilag 1: Databehandlere og behandlingen",
+          "de": "Anlage 1: Auftragsverarbeiter und die Verarbeitung"
+        },
+        "columns": {
+          "processor": { "en": "Processor", "da": "Databehandler", "de": "Auftragsverarbeiter" },
+          "location": { "en": "Location", "da": "Placering", "de": "Sitz" },
+          "activities": { "en": "Activities", "da": "Aktiviteter", "de": "Tätigkeiten" },
+          "purposes": { "en": "Purposes", "da": "Formål", "de": "Zwecke" },
+          "categories": {
+            "en": "Personal data",
+            "da": "Personoplysninger",
+            "de": "Personenbezogene Daten"
+          },
+          "subjects": { "en": "Data subjects", "da": "Registrerede", "de": "Betroffene Personen" }
+        }
+      },
+      "security": {
+        "heading": {
+          "en": "Annex 2: Technical and organisational measures",
+          "da": "Bilag 2: Tekniske og organisatoriske foranstaltninger",
+          "de": "Anlage 2: Technische und organisatorische Maßnahmen"
+        },
+        "answered": {
+          "en": "{{activity}}: {{security}}",
+          "da": "{{activity}}: {{security}}",
+          "de": "{{activity}}: {{security}}"
+        },
+        "none": {
+          "en": "The measures the processor describes in its own security documentation, made available to the controller on request and read against the controller's record.",
+          "da": "De foranstaltninger, databehandleren beskriver i sin egen sikkerhedsdokumentation, som stilles til rådighed for den dataansvarlige på anmodning og læses op mod den dataansvarliges fortegnelse.",
+          "de": "Die Maßnahmen, die der Auftragsverarbeiter in seiner eigenen Sicherheitsdokumentation beschreibt, dem Verantwortlichen auf Anfrage zur Verfügung gestellt und gegen das Verzeichnis des Verantwortlichen gelesen."
+        }
+      },
+      "subprocessors": {
+        "heading": {
+          "en": "Annex 3: Authorised sub-processors",
+          "da": "Bilag 3: Godkendte underdatabehandlere",
+          "de": "Anlage 3: Genehmigte Unterauftragsverarbeiter"
+        },
+        "row": {
+          "en": "{{processor}} engages {{name}} ({{location}}), read from {{source}} on {{date}}.",
+          "da": "{{processor}} anvender {{name}} ({{location}}), læst fra {{source}} den {{date}}.",
+          "de": "{{processor}} setzt {{name}} ({{location}}) ein, gelesen von {{source}} am {{date}}."
+        },
+        "none": {
+          "en": "None known from the suppliers' published lists on the date of this draft. A sub-processor the processor names later is announced under the section on notice and objection.",
+          "da": "Ingen kendt fra leverandørernes offentliggjorte lister på datoen for dette udkast. En underdatabehandler, databehandleren senere nævner, varsles efter afsnittet om varsel og indsigelse.",
+          "de": "Keine bekannt aus den von den Anbietern veröffentlichten Listen am Datum dieses Entwurfs. Ein später vom Auftragsverarbeiter benannter Unterauftragsverarbeiter wird nach dem Abschnitt über Ankündigung und Widerspruch angekündigt."
+        }
+      },
+      "clauses": {
+        "heading": {
+          "en": "Annex 4: Standard contractual clauses",
+          "da": "Bilag 4: Standardkontraktbestemmelser",
+          "de": "Anlage 4: Standardvertragsklauseln"
+        },
+        "body": {
+          "en": "Where a transfer in the section on transfers rests on standard contractual clauses, the clauses adopted by the European Commission for the module that applies are attached here, completed for the parties.",
+          "da": "Hvor en overførsel efter afsnittet om overførsler hviler på standardkontraktbestemmelser, vedhæftes her de bestemmelser, Europa-Kommissionen har vedtaget for det modul, der gælder, udfyldt for parterne.",
+          "de": "Soweit eine Übermittlung nach dem Abschnitt über Übermittlungen auf Standardvertragsklauseln beruht, werden hier die von der Europäischen Kommission für das anwendbare Modul erlassenen Klauseln, für die Parteien ausgefüllt, beigefügt."
+        }
+      }
+    },
+    "signatures": {
+      "heading": { "en": "Signatures", "da": "Underskrifter", "de": "Unterschriften" },
+      "body": {
+        "en": "For the controller, {{company}}: name, title, date. For each processor named in Annex 1: name, title, date.",
+        "da": "For den dataansvarlige, {{company}}: navn, titel, dato. For hver databehandler nævnt i bilag 1: navn, titel, dato.",
+        "de": "Für den Verantwortlichen, {{company}}: Name, Funktion, Datum. Für jeden in Anlage 1 genannten Auftragsverarbeiter: Name, Funktion, Datum."
+      }
+    },
+    "unknownLocation": {
+      "en": "location not yet known",
+      "da": "placering endnu ukendt",
+      "de": "Sitz noch unbekannt"
+    }
+  },
+  "subprocessors": {
+    "title": {
+      "en": "Sub-processors",
+      "da": "Underdatabehandlere",
+      "de": "Unterauftragsverarbeiter"
+    },
+    "intro": {
+      "en": "The companies that process personal data on behalf of {{company}} ({{domain}}), and the companies they in turn use, as read from the company's record of processing activities and from the suppliers' own published lists. Generated {{date}}.",
+      "da": "De virksomheder, der behandler personoplysninger på vegne af {{company}} ({{domain}}), og de virksomheder, de selv bruger, som læst fra virksomhedens fortegnelse over behandlingsaktiviteter og fra leverandørernes egne offentliggjorte lister. Udarbejdet {{date}}.",
+      "de": "Die Unternehmen, die personenbezogene Daten im Auftrag von {{company}} ({{domain}}) verarbeiten, und die Unternehmen, die diese ihrerseits einsetzen, gelesen aus dem Verzeichnis der Verarbeitungstätigkeiten des Unternehmens und aus den von den Anbietern selbst veröffentlichten Listen. Erzeugt am {{date}}."
+    },
+    "direct": {
+      "en": "Processors",
+      "da": "Databehandlere",
+      "de": "Auftragsverarbeiter"
+    },
+    "indirect": {
+      "en": "Their sub-processors",
+      "da": "Deres underdatabehandlere",
+      "de": "Deren Unterauftragsverarbeiter"
+    },
+    "columns": {
+      "name": { "en": "Company", "da": "Virksomhed", "de": "Unternehmen" },
+      "location": { "en": "Location", "da": "Placering", "de": "Sitz" },
+      "activities": { "en": "Used for", "da": "Bruges til", "de": "Eingesetzt für" },
+      "engagedBy": { "en": "Engaged by", "da": "Anvendes af", "de": "Eingesetzt von" },
+      "purpose": { "en": "Purpose", "da": "Formål", "de": "Zweck" },
+      "readOn": { "en": "Read on", "da": "Læst den", "de": "Gelesen am" },
+      "source": { "en": "Source", "da": "Kilde", "de": "Quelle" }
+    },
+    "noIndirect": {
+      "en": "No supplier's own list has been read yet.",
+      "da": "Ingen leverandørs egen liste er læst endnu.",
+      "de": "Noch keine eigene Liste eines Anbieters wurde gelesen."
+    },
+    "updates": {
+      "en": "This page is regenerated from the record. Every row names the list it was read from and the day; a row that changes on the supplier's side changes here on the next reading.",
+      "da": "Denne side udarbejdes igen ud fra fortegnelsen. Hver række nævner den liste, den er læst fra, og dagen; en række, der ændrer sig hos leverandøren, ændrer sig her ved næste læsning.",
+      "de": "Diese Seite wird aus dem Verzeichnis neu erzeugt. Jede Zeile nennt die Liste, aus der sie gelesen wurde, und den Tag; eine Zeile, die sich beim Anbieter ändert, ändert sich hier bei der nächsten Lesung."
+    },
+    "unknownLocation": {
+      "en": "not yet known",
+      "da": "endnu ukendt",
+      "de": "noch unbekannt"
+    }
+  },
+  "gaps": {
+    "no_confirmed_activity": {
+      "en": "No processing activity has been confirmed yet. Confirm the register's rows first.",
+      "da": "Ingen behandlingsaktivitet er bekræftet endnu. Bekræft først fortegnelsens rækker.",
+      "de": "Noch keine Verarbeitungstätigkeit ist bestätigt. Bestätigen Sie zuerst die Zeilen des Verzeichnisses."
+    },
+    "no_processor": {
+      "en": "No confirmed activity names a supplier that processes data for the company.",
+      "da": "Ingen bekræftet aktivitet nævner en leverandør, der behandler oplysninger for virksomheden.",
+      "de": "Keine bestätigte Tätigkeit nennt einen Anbieter, der Daten für das Unternehmen verarbeitet."
+    },
+    "no_subjects": {
+      "en": "{{activity}}: whose data it concerns has not been answered.",
+      "da": "{{activity}}: hvis oplysninger det drejer sig om, er ikke besvaret.",
+      "de": "{{activity}}: wessen Daten es betrifft, ist nicht beantwortet."
+    },
+    "no_contact": {
+      "en": "The company's address and email for privacy questions have not been answered.",
+      "da": "Virksomhedens adresse og e-mail til spørgsmål om privatliv er ikke besvaret.",
+      "de": "Anschrift und E-Mail des Unternehmens für Datenschutzfragen sind nicht beantwortet."
+    },
+    "no_vendors": {
+      "en": "The record names no supplier yet: nothing was read from the site, and no activity has been confirmed with a recipient.",
+      "da": "Fortegnelsen nævner endnu ingen leverandør: intet blev læst fra sitet, og ingen aktivitet er bekræftet med en modtager.",
+      "de": "Das Verzeichnis nennt noch keinen Anbieter: Nichts wurde von der Website gelesen, und keine Tätigkeit ist mit einem Empfänger bestätigt."
+    }
+  }
+}
