@@ -1,0 +1,72 @@
+{
+  "name": "da-webbureau-mangler-indsigelse",
+  "locale": "da",
+  "jurisdiction": "DK",
+  "vendor": { "host": "pixelvaerk.test", "name": "Pixelværk" },
+  "modelledOn": "A small web agency's agreement written from its own terms: sub-processors can be swapped at will, and three elements are simply not there.",
+  "text": "Databehandleraftale for Pixelværk\n\n1. Parter. Aftalen er indgået mellem Pixelværk ApS, Nørregade 5, 7100 Vejle (\"Pixelværk\") som databehandler og kunden (\"Kunden\") som dataansvarlig, og gælder for al behandling af personoplysninger, som Pixelværk foretager på Kundens vegne som led i drift og vedligeholdelse af Kundens hjemmeside og webshop.\n\n2. Genstand og varighed. Behandlingens genstand er drift, hosting, vedligeholdelse og support af Kundens hjemmeside og webshop, og behandlingen varer, så længe driftsaftalen mellem parterne er i kraft.\n\n3. Karakter og formål. Pixelværk opbevarer, sikkerhedskopierer og administrerer de personoplysninger, der indtastes på Kundens hjemmeside og i webshoppens ordresystem, og tilgår dem ved fejlretning og support, med det formål at holde Kundens hjemmeside og webshop i drift.\n\n4. Oplysninger og registrerede. Personoplysningerne omfatter navn, adresse, e-mail, telefonnummer, ordrehistorik, betalingsreferencer og kundeservicehenvendelser, og de registrerede er Kundens kunder og de af Kundens medarbejdere, der har adgang til systemet.\n\n5. Instruks. Pixelværk behandler alene personoplysningerne efter dokumenteret instruks fra Kunden, som udgøres af denne aftale og driftsaftalen, medmindre behandling kræves efter EU-retten eller dansk ret, hvor Pixelværk i så fald orienterer Kunden om kravet inden behandlingen.\n\n6. Fortrolighed. Pixelværks medarbejdere og konsulenter, der har adgang til personoplysningerne, er underlagt tavshedspligt i deres ansættelses- eller konsulentaftale.\n\n7. Sikkerhed. Pixelværk træffer de tekniske og organisatoriske sikkerhedsforanstaltninger, der fremgår af bilag A, herunder krypteret forbindelse til alle sider, adskilte kundemiljøer, personlige logins med tofaktorgodkendelse for administratorer og daglig backup med 30 dages opbevaring.\n\n8. Underleverandører. Kunden giver Pixelværk generel godkendelse til at anvende underleverandører til hosting, e-mailudsendelse og betalingsformidling, og Pixelværk sikrer ved skriftlig aftale, at underleverandøren er underlagt de samme forpligtelser som Pixelværk efter denne aftale. Pixelværk kan til enhver tid antage nye underleverandører og orienterer Kunden herom ved at opdatere listen på pixelvaerk.test/underleverandoerer.\n\n9. Bistand. Pixelværk bistår Kunden med at besvare henvendelser fra registrerede, der udøver deres rettigheder, ved at fremsøge, rette, udlevere eller slette oplysninger om den registrerede efter Kundens anvisning inden for 10 arbejdsdage.\n\n10. Sikkerhedsbrud. Pixelværk underretter Kunden hurtigst muligt og senest 72 timer efter at være blevet opmærksom på et brud på persondatasikkerheden, der vedrører Kundens oplysninger, med en beskrivelse af bruddet og de foranstaltninger, der er truffet.\n\n11. Ophør. Ved driftsaftalens ophør udleverer Pixelværk en kopi af Kundens data i et almindeligt format og sletter derefter alle personoplysninger og sikkerhedskopier inden for 30 dage, medmindre lovgivningen kræver fortsat opbevaring.\n\n12. Overførsel til tredjelande. Hosting sker hos en underleverandør i EU, og for e-mailudsendelse anvendes en underleverandør i USA, hvor overførslen sker på grundlag af EU-Kommissionens standardkontraktbestemmelser, der er vedhæftet denne aftale som bilag B.\n\n13. Ændringer. Pixelværk kan ændre denne aftale med 30 dages varsel ved meddelelse til Kundens kontaktperson.\n\nBilag A: Sikkerhedsforanstaltninger. Bilag B: Standardkontraktbestemmelser.",
+  "expected": {
+    "parties": {
+      "status": "present",
+      "quote": "Aftalen er indgået mellem Pixelværk ApS, Nørregade 5, 7100 Vejle (\"Pixelværk\") som databehandler og kunden (\"Kunden\") som dataansvarlig"
+    },
+    "subject_and_duration": {
+      "status": "present",
+      "quote": "Behandlingens genstand er drift, hosting, vedligeholdelse og support af Kundens hjemmeside og webshop, og behandlingen varer, så længe driftsaftalen mellem parterne er i kraft."
+    },
+    "nature_and_purpose": {
+      "status": "present",
+      "quote": "Pixelværk opbevarer, sikkerhedskopierer og administrerer de personoplysninger, der indtastes på Kundens hjemmeside og i webshoppens ordresystem, og tilgår dem ved fejlretning og support, med det formål at holde Kundens hjemmeside og webshop i drift."
+    },
+    "data_and_subjects": {
+      "status": "present",
+      "quote": "Personoplysningerne omfatter navn, adresse, e-mail, telefonnummer, ordrehistorik, betalingsreferencer og kundeservicehenvendelser, og de registrerede er Kundens kunder og de af Kundens medarbejdere, der har adgang til systemet."
+    },
+    "controller_rights": { "status": "absent" },
+    "documented_instructions": {
+      "status": "present",
+      "quote": "Pixelværk behandler alene personoplysningerne efter dokumenteret instruks fra Kunden, som udgøres af denne aftale og driftsaftalen, medmindre behandling kræves efter EU-retten eller dansk ret"
+    },
+    "confidentiality": {
+      "status": "present",
+      "quote": "Pixelværks medarbejdere og konsulenter, der har adgang til personoplysningerne, er underlagt tavshedspligt i deres ansættelses- eller konsulentaftale."
+    },
+    "security_measures": {
+      "status": "present",
+      "quote": "Pixelværk træffer de tekniske og organisatoriske sikkerhedsforanstaltninger, der fremgår af bilag A, herunder krypteret forbindelse til alle sider, adskilte kundemiljøer, personlige logins med tofaktorgodkendelse for administratorer og daglig backup med 30 dages opbevaring."
+    },
+    "subprocessor_authorisation": {
+      "status": "present",
+      "quote": "Kunden giver Pixelværk generel godkendelse til at anvende underleverandører til hosting, e-mailudsendelse og betalingsformidling, og Pixelværk sikrer ved skriftlig aftale, at underleverandøren er underlagt de samme forpligtelser som Pixelværk efter denne aftale."
+    },
+    "subprocessor_objection": {
+      "status": "present",
+      "quote": "Pixelværk kan til enhver tid antage nye underleverandører og orienterer Kunden herom ved at opdatere listen på pixelvaerk.test/underleverandoerer."
+    },
+    "assist_data_subject_rights": {
+      "status": "present",
+      "quote": "Pixelværk bistår Kunden med at besvare henvendelser fra registrerede, der udøver deres rettigheder, ved at fremsøge, rette, udlevere eller slette oplysninger om den registrerede efter Kundens anvisning inden for 10 arbejdsdage."
+    },
+    "assist_obligations": { "status": "absent" },
+    "breach_notification": {
+      "status": "present",
+      "quote": "Pixelværk underretter Kunden hurtigst muligt og senest 72 timer efter at være blevet opmærksom på et brud på persondatasikkerheden, der vedrører Kundens oplysninger"
+    },
+    "deletion_or_return": {
+      "status": "present",
+      "quote": "Ved driftsaftalens ophør udleverer Pixelværk en kopi af Kundens data i et almindeligt format og sletter derefter alle personoplysninger og sikkerhedskopier inden for 30 dage"
+    },
+    "audits": { "status": "absent" },
+    "transfer_annex": {
+      "status": "present",
+      "quote": "for e-mailudsendelse anvendes en underleverandør i USA, hvor overførslen sker på grundlag af EU-Kommissionens standardkontraktbestemmelser, der er vedhæftet denne aftale som bilag B"
+    }
+  },
+  "expectedSpecifics": {
+    "breach_window": { "status": "met", "hours": 72 },
+    "subprocessor_objection": { "status": "not_met" },
+    "transfer_annex": { "status": "met" }
+  },
+  "expectedVerdict": "inadequate",
+  "reasoning": "Three elements are nowhere in the text: the controller's own obligations and rights, assistance with security, breaches and impact assessments, and any right to information or audits. The sub-processor clause lets the agency add suppliers at any time and merely updates a web page, so there is notice of a sort but no way to object. The breach notice at 72 hours is at the edge of the limit and passes; the transfer to the US rests on the standard clauses in bilag B."
+}

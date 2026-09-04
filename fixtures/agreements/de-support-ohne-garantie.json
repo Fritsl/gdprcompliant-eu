@@ -1,0 +1,78 @@
+{
+  "name": "de-support-ohne-garantie",
+  "locale": "de",
+  "jurisdiction": "DE",
+  "vendor": { "host": "helpdesk24.test", "name": "Helpdesk24" },
+  "modelledOn": "A support-ticket vendor's agreement that admits data may go to third countries and annexes nothing for it.",
+  "text": "Auftragsverarbeitungsvertrag Helpdesk24\n\nDieser Vertrag wird geschlossen zwischen der Helpdesk24 GmbH, Hafenstraße 3, 20359 Hamburg, als Auftragsverarbeiter, und dem Kunden, der den Helpdesk24-Dienst bestellt hat, als Verantwortlichem. Der Kunde bleibt Verantwortlicher für die Daten seiner Endkunden; Helpdesk24 verarbeitet sie ausschließlich im Auftrag des Kunden.\n\n1. Gegenstand und Dauer. Gegenstand ist der Betrieb eines Ticketsystems für den Kundensupport des Kunden; die Verarbeitung dauert für die Laufzeit des Bestellvertrags an.\n\n2. Art und Zweck. Helpdesk24 nimmt Supportanfragen per E-Mail, Chat und Formular entgegen, speichert sie als Tickets, ordnet sie Bearbeitern zu und wertet Bearbeitungszeiten aus, damit der Kunde Anfragen seiner Endkunden beantworten kann.\n\n3. Daten und betroffene Personen. Verarbeitet werden Name, E-Mail-Adresse, Telefonnummer, Kundennummer, Inhalt der Anfragen einschließlich Anhänge und die Kommunikationshistorie; betroffen sind Endkunden und Interessenten des Kunden sowie dessen Supportmitarbeiter.\n\n4. Rechte und Pflichten des Kunden. Der Kunde ist für die Zulässigkeit der Verarbeitung verantwortlich, erteilt Weisungen über das Administrationsmenü oder in Textform, kann jederzeit Auskunft über die Verarbeitung verlangen und die Kontrollrechte nach Ziffer 12 ausüben.\n\n5. Weisungen. Helpdesk24 verarbeitet die personenbezogenen Daten nur auf dokumentierte Weisung des Kunden, es sei denn, Helpdesk24 ist nach dem Recht der Union oder eines Mitgliedstaats zur Verarbeitung verpflichtet; dann informiert Helpdesk24 den Kunden vor der Verarbeitung über diese Anforderung.\n\n6. Vertraulichkeit. Alle Mitarbeiter von Helpdesk24, die Zugang zu Kundendaten haben, sind schriftlich auf die Vertraulichkeit verpflichtet und werden jährlich geschult.\n\n7. Sicherheit. Helpdesk24 setzt die in Anhang 1 beschriebenen technischen und organisatorischen Maßnahmen um, darunter TLS-Verschlüsselung, verschlüsselte Datenbanken, Zwei-Faktor-Anmeldung, getrennte Mandanten und tägliche Sicherungen.\n\n8. Unterauftragsverarbeiter. Der Kunde genehmigt die in Anhang 2 aufgeführten Unterauftragsverarbeiter allgemein; Helpdesk24 verpflichtet jeden Unterauftragsverarbeiter vertraglich auf dieselben Datenschutzpflichten wie in diesem Vertrag. Helpdesk24 kündigt jede Änderung der Unterauftragsverarbeiter mindestens 30 Tage im Voraus per E-Mail an, und der Kunde kann der Änderung innerhalb von 14 Tagen nach der Ankündigung widersprechen.\n\n9. Unterstützung bei Betroffenenrechten. Helpdesk24 unterstützt den Kunden mit geeigneten Maßnahmen bei der Beantwortung von Anträgen betroffener Personen auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit und Widerspruch und stellt hierfür Export- und Löschfunktionen bereit.\n\n10. Weitere Unterstützung. Helpdesk24 unterstützt den Kunden nach Möglichkeit bei Anfragen von Aufsichtsbehörden.\n\n11. Datenschutzverletzungen. Helpdesk24 meldet dem Kunden eine Verletzung des Schutzes personenbezogener Daten innerhalb von 36 Stunden nach Bekanntwerden und liefert die für die Meldung des Kunden erforderlichen Informationen nach.\n\n12. Kontrollen. Helpdesk24 stellt dem Kunden alle zum Nachweis der Einhaltung dieses Vertrags erforderlichen Informationen zur Verfügung und ermöglicht Überprüfungen einschließlich Inspektionen durch den Kunden oder einen von ihm beauftragten Prüfer nach Ankündigung von 14 Tagen.\n\n13. Löschung. Nach Vertragsende gibt Helpdesk24 die Daten nach Wahl des Kunden als Export zurück oder löscht sie und löscht vorhandene Kopien innerhalb von 60 Tagen, soweit keine gesetzliche Aufbewahrungspflicht besteht.\n\n14. Übermittlung in Drittländer. Personenbezogene Daten können zur Erbringung des Supports auch in Drittländer übermittelt werden, insbesondere wenn Unterauftragsverarbeiter dort Rechenzentren betreiben.\n\nAnhang 1: Technische und organisatorische Maßnahmen. Anhang 2: Unterauftragsverarbeiter.",
+  "expected": {
+    "parties": {
+      "status": "present",
+      "quote": "Dieser Vertrag wird geschlossen zwischen der Helpdesk24 GmbH, Hafenstraße 3, 20359 Hamburg, als Auftragsverarbeiter, und dem Kunden, der den Helpdesk24-Dienst bestellt hat, als Verantwortlichem."
+    },
+    "subject_and_duration": {
+      "status": "present",
+      "quote": "Gegenstand ist der Betrieb eines Ticketsystems für den Kundensupport des Kunden; die Verarbeitung dauert für die Laufzeit des Bestellvertrags an."
+    },
+    "nature_and_purpose": {
+      "status": "present",
+      "quote": "Helpdesk24 nimmt Supportanfragen per E-Mail, Chat und Formular entgegen, speichert sie als Tickets, ordnet sie Bearbeitern zu und wertet Bearbeitungszeiten aus, damit der Kunde Anfragen seiner Endkunden beantworten kann."
+    },
+    "data_and_subjects": {
+      "status": "present",
+      "quote": "Verarbeitet werden Name, E-Mail-Adresse, Telefonnummer, Kundennummer, Inhalt der Anfragen einschließlich Anhänge und die Kommunikationshistorie; betroffen sind Endkunden und Interessenten des Kunden sowie dessen Supportmitarbeiter."
+    },
+    "controller_rights": {
+      "status": "present",
+      "quote": "Der Kunde ist für die Zulässigkeit der Verarbeitung verantwortlich, erteilt Weisungen über das Administrationsmenü oder in Textform, kann jederzeit Auskunft über die Verarbeitung verlangen und die Kontrollrechte nach Ziffer 12 ausüben."
+    },
+    "documented_instructions": {
+      "status": "present",
+      "quote": "Helpdesk24 verarbeitet die personenbezogenen Daten nur auf dokumentierte Weisung des Kunden, es sei denn, Helpdesk24 ist nach dem Recht der Union oder eines Mitgliedstaats zur Verarbeitung verpflichtet"
+    },
+    "confidentiality": {
+      "status": "present",
+      "quote": "Alle Mitarbeiter von Helpdesk24, die Zugang zu Kundendaten haben, sind schriftlich auf die Vertraulichkeit verpflichtet und werden jährlich geschult."
+    },
+    "security_measures": {
+      "status": "present",
+      "quote": "Helpdesk24 setzt die in Anhang 1 beschriebenen technischen und organisatorischen Maßnahmen um, darunter TLS-Verschlüsselung, verschlüsselte Datenbanken, Zwei-Faktor-Anmeldung, getrennte Mandanten und tägliche Sicherungen."
+    },
+    "subprocessor_authorisation": {
+      "status": "present",
+      "quote": "Der Kunde genehmigt die in Anhang 2 aufgeführten Unterauftragsverarbeiter allgemein; Helpdesk24 verpflichtet jeden Unterauftragsverarbeiter vertraglich auf dieselben Datenschutzpflichten wie in diesem Vertrag."
+    },
+    "subprocessor_objection": {
+      "status": "present",
+      "quote": "Helpdesk24 kündigt jede Änderung der Unterauftragsverarbeiter mindestens 30 Tage im Voraus per E-Mail an, und der Kunde kann der Änderung innerhalb von 14 Tagen nach der Ankündigung widersprechen."
+    },
+    "assist_data_subject_rights": {
+      "status": "present",
+      "quote": "Helpdesk24 unterstützt den Kunden mit geeigneten Maßnahmen bei der Beantwortung von Anträgen betroffener Personen auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit und Widerspruch"
+    },
+    "assist_obligations": { "status": "undetermined" },
+    "breach_notification": {
+      "status": "present",
+      "quote": "Helpdesk24 meldet dem Kunden eine Verletzung des Schutzes personenbezogener Daten innerhalb von 36 Stunden nach Bekanntwerden"
+    },
+    "deletion_or_return": {
+      "status": "present",
+      "quote": "Nach Vertragsende gibt Helpdesk24 die Daten nach Wahl des Kunden als Export zurück oder löscht sie und löscht vorhandene Kopien innerhalb von 60 Tagen"
+    },
+    "audits": {
+      "status": "present",
+      "quote": "Helpdesk24 stellt dem Kunden alle zum Nachweis der Einhaltung dieses Vertrags erforderlichen Informationen zur Verfügung und ermöglicht Überprüfungen einschließlich Inspektionen durch den Kunden oder einen von ihm beauftragten Prüfer"
+    },
+    "transfer_annex": {
+      "status": "present",
+      "quote": "Personenbezogene Daten können zur Erbringung des Supports auch in Drittländer übermittelt werden, insbesondere wenn Unterauftragsverarbeiter dort Rechenzentren betreiben."
+    }
+  },
+  "expectedSpecifics": {
+    "breach_window": { "status": "met", "hours": 36 },
+    "subprocessor_objection": { "status": "met" },
+    "transfer_annex": { "status": "not_met" }
+  },
+  "expectedVerdict": "inadequate",
+  "reasoning": "The transfer clause says data may go to third countries and names no safeguard: no standard clauses annexed, no adequacy decision, nothing; the check fails and the agreement is inadequate on that. Support with the controller's other obligations is a single sentence about authority requests, too thin to count as present and too close to count as absent, so undetermined. The breach notice at 36 hours and the 30-day sub-processor notice with a 14-day objection both pass."
+}

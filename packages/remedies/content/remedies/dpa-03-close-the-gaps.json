@@ -1,0 +1,57 @@
+{
+  "id": "dpa-03-close-the-gaps",
+  "version": 1,
+  "findingTypeId": "DPA-03",
+  "jurisdictions": "all",
+  "kind": "self_fix",
+  "title": {
+    "en": "Ask the supplier for an addendum covering what the agreement leaves out",
+    "da": "Bed leverandøren om et tillæg, der dækker det, aftalen udelader",
+    "de": "Den Anbieter um einen Nachtrag bitten, der die Lücken des Vertrags schließt"
+  },
+  "effort": {
+    "label": {
+      "en": "One email, then a signature",
+      "da": "Én e-mail, derefter en underskrift",
+      "de": "Eine E-Mail, dann eine Unterschrift"
+    },
+    "minutes": 20
+  },
+  "detail": {
+    "en": "The finding names each missing element with the clause it read. A supplier that serves many companies has usually been asked before and has an addendum ready.",
+    "da": "Fundet nævner hvert manglende element med den klausul, det læste. En leverandør, der betjener mange virksomheder, er som regel blevet spurgt før og har et tillæg klar.",
+    "de": "Der Befund nennt jedes fehlende Element mit der gelesenen Klausel. Ein Anbieter mit vielen Kunden wurde meist schon gefragt und hat einen Nachtrag bereit."
+  },
+  "action": {
+    "kind": "message",
+    "label": {
+      "en": "Ask the supplier for the addendum",
+      "da": "Bed leverandøren om tillægget",
+      "de": "Den Anbieter um den Nachtrag bitten"
+    },
+    "to": {
+      "en": "The supplier at {{hosts}}",
+      "da": "Leverandøren på {{hosts}}",
+      "de": "Der Anbieter unter {{hosts}}"
+    },
+    "subject": {
+      "en": "Addendum to our data processing agreement",
+      "da": "Tillæg til vores databehandleraftale",
+      "de": "Nachtrag zu unserem Auftragsverarbeitungsvertrag"
+    },
+    "body": {
+      "en": "Hello,\n\nYou process personal data on behalf of {{domain}}. We have read the data processing agreement that applies to our account against what such a contract has to set out, and some of it is missing. The list of what we found missing is attached from our case. Please send an addendum that covers those points, or point us to the version of the agreement that already does.\n\nThank you,\n{{owner}}",
+      "da": "Hej,\n\nI behandler personoplysninger på vegne af {{domain}}. Vi har læst den databehandleraftale, der gælder for vores konto, op mod det, en sådan aftale skal fastlægge, og noget af det mangler. Listen over det, vi fandt manglende, er vedhæftet fra vores sag. Send os venligst et tillæg, der dækker de punkter, eller henvis os til den version af aftalen, der allerede gør det.\n\nVenlig hilsen\n{{owner}}",
+      "de": "Guten Tag,\n\nSie verarbeiten personenbezogene Daten im Auftrag von {{domain}}. Wir haben den für unser Konto geltenden Auftragsverarbeitungsvertrag mit dem verglichen, was ein solcher Vertrag regeln muss, und einiges fehlt. Die Liste der fehlenden Punkte aus unserem Fall ist beigefügt. Bitte senden Sie uns einen Nachtrag, der diese Punkte abdeckt, oder verweisen Sie uns auf die Fassung des Vertrags, die das bereits tut.\n\nMit freundlichen Grüßen\n{{owner}}"
+    }
+  },
+  "verifyLabel": {
+    "en": "The addendum is signed",
+    "da": "Tillægget er underskrevet",
+    "de": "Der Nachtrag ist unterschrieben"
+  },
+  "verification": {
+    "method": "attestation",
+    "statement": "A signed addendum or a new agreement covering every element the finding names is on file"
+  }
+}

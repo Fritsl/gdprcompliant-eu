@@ -1,0 +1,58 @@
+{
+  "id": "dpa-02",
+  "findingTypeId": "DPA-02",
+  "title": {
+    "en": "The supplier's processing agreement cannot be found or read",
+    "da": "Leverandørens databehandleraftale kan ikke findes eller læses",
+    "de": "Der Auftragsverarbeitungsvertrag des Anbieters ist nicht auffindbar oder lesbar"
+  },
+  "wrong": {
+    "en": "The supplier's site says a processing agreement exists, and the trail from that promise ends at a login, a dead page, a stub or a file this reader does not open. An agreement nobody can produce is, for every practical purpose, an agreement the company does not have.",
+    "da": "Leverandørens side siger, at der findes en databehandleraftale, og sporet fra det løfte ender ved et login, en død side, en stump eller en fil, denne læser ikke åbner. En aftale, ingen kan fremvise, er i praksis en aftale, virksomheden ikke har.",
+    "de": "Die Website des Anbieters sagt, ein Auftragsverarbeitungsvertrag existiere, und die Spur von diesem Versprechen endet an einem Login, einer toten Seite, einem Platzhalter oder einer Datei, die dieser Leser nicht öffnet. Ein Vertrag, den niemand vorlegen kann, ist praktisch ein Vertrag, den das Unternehmen nicht hat."
+  },
+  "why": {
+    "en": "The company has to be able to show the contract, in writing, when a customer or a supervisory authority asks. A reference to terms somewhere behind an account is not that. It also means nobody in the company has read what the supplier actually commits to, which is the point of having one.",
+    "da": "Virksomheden skal kunne fremvise aftalen, skriftligt, når en kunde eller en tilsynsmyndighed spørger. En henvisning til vilkår et sted bag en konto er ikke det. Det betyder også, at ingen i virksomheden har læst, hvad leverandøren faktisk forpligter sig til, hvilket er hele pointen med at have en.",
+    "de": "Das Unternehmen muss den Vertrag schriftlich vorlegen können, wenn ein Kunde oder eine Aufsichtsbehörde fragt. Ein Verweis auf Bedingungen irgendwo hinter einem Konto ist das nicht. Es heißt auch, dass niemand im Unternehmen gelesen hat, wozu sich der Anbieter tatsächlich verpflichtet, und genau darum geht es."
+  },
+  "steps": [
+    {
+      "en": "Read the trail in the finding: it names the link that promised the agreement and where it ended.",
+      "da": "Læs sporet i fundet: det nævner det link, der lovede aftalen, og hvor det endte.",
+      "de": "Lesen Sie die Spur im Befund: Sie nennt den Link, der den Vertrag versprach, und wo er endete."
+    },
+    {
+      "en": "Log in to your account with the supplier and look for the agreement there; many keep it under billing or legal settings.",
+      "da": "Log ind på jeres konto hos leverandøren, og led efter aftalen der; mange har den under fakturering eller juridiske indstillinger.",
+      "de": "Melden Sie sich bei Ihrem Konto beim Anbieter an und suchen Sie den Vertrag dort; viele führen ihn unter Abrechnung oder rechtlichen Einstellungen."
+    },
+    {
+      "en": "If it is not there, send the supplier the message from the case and ask for a copy you can keep.",
+      "da": "Hvis den ikke er der, så send leverandøren beskeden fra sagen, og bed om en kopi, I kan gemme.",
+      "de": "Ist er dort nicht, senden Sie dem Anbieter die Nachricht aus dem Fall und bitten Sie um ein Exemplar, das Sie behalten können."
+    },
+    {
+      "en": "File the copy on the case, then have it read against what such an agreement must contain.",
+      "da": "Læg kopien på sagen, og få den derefter læst op mod det, en sådan aftale skal indeholde.",
+      "de": "Legen Sie das Exemplar im Fall ab und lassen Sie es dann gegen das prüfen, was ein solcher Vertrag enthalten muss."
+    }
+  ],
+  "confirm": {
+    "en": "The case holds the agreement as a document with the date it took effect, and you can open it without logging in anywhere.",
+    "da": "Sagen indeholder aftalen som et dokument med den dato, den trådte i kraft, og I kan åbne den uden at logge ind nogen steder.",
+    "de": "Der Fall enthält den Vertrag als Dokument mit dem Datum des Inkrafttretens, und Sie können ihn öffnen, ohne sich irgendwo anzumelden."
+  },
+  "keywords": [
+    {
+      "en": "cannot find data processing agreement",
+      "da": "kan ikke finde databehandleraftale",
+      "de": "auftragsverarbeitungsvertrag nicht auffindbar"
+    },
+    {
+      "en": "DPA behind login",
+      "da": "databehandleraftale bag login",
+      "de": "AVV hinter login"
+    }
+  ]
+}

@@ -35,6 +35,42 @@ const PassageSchema = z.object({
   text: z.string(),
 });
 
+// Clause analysis, one shape for a policy (S-10) and for a processing agreement (D-06):
+// for each required element, present, absent or undetermined. "Present" must quote the
+// clause verbatim so it can be checked by substring match.
+const ClauseAnalysisCall = {
+  input: z.object({
+    document: UntrustedContentSchema,
+    elements: z.array(NonEmptyStringSchema).min(1),
+    jurisdiction: JurisdictionSchema,
+    locale: LocaleSchema,
+  }),
+  output: z
+    .strictObject({
+      clauses: z
+        .array(
+          z.strictObject({
+            element: NonEmptyStringSchema,
+            status: z.enum(['present', 'absent', 'undetermined']),
+            quote: z.string().optional(),
+            note: z.string().optional(),
+          }),
+        )
+        .min(1),
+    })
+    .superRefine((o, ctx) => {
+      o.clauses.forEach((c, i) => {
+        if (c.status === 'present' && (c.quote === undefined || c.quote.trim() === '')) {
+          ctx.addIssue({
+            code: 'custom',
+            path: ['clauses', i, 'quote'],
+            message: 'a clause reported present must be quoted verbatim',
+          });
+        }
+      });
+    }),
+};
+
 export const MODEL_CALLS = {
   // Turn a finding and its evidence into the plain-language "why".
   explain_finding: {
@@ -103,40 +139,11 @@ export const MODEL_CALLS = {
     }),
   },
 
-  // Read a policy (S-10): for each required element, present, absent or undetermined.
-  // "Present" must quote the clause verbatim so it can be checked by substring match.
-  analyse_policy_clauses: {
-    input: z.object({
-      document: UntrustedContentSchema,
-      elements: z.array(NonEmptyStringSchema).min(1),
-      jurisdiction: JurisdictionSchema,
-      locale: LocaleSchema,
-    }),
-    output: z
-      .strictObject({
-        clauses: z
-          .array(
-            z.strictObject({
-              element: NonEmptyStringSchema,
-              status: z.enum(['present', 'absent', 'undetermined']),
-              quote: z.string().optional(),
-              note: z.string().optional(),
-            }),
-          )
-          .min(1),
-      })
-      .superRefine((o, ctx) => {
-        o.clauses.forEach((c, i) => {
-          if (c.status === 'present' && (c.quote === undefined || c.quote.trim() === '')) {
-            ctx.addIssue({
-              code: 'custom',
-              path: ['clauses', i, 'quote'],
-              message: 'a clause reported present must be quoted verbatim',
-            });
-          }
-        });
-      }),
-  },
+  // Read a policy (S-10) against the disclosure table.
+  analyse_policy_clauses: ClauseAnalysisCall,
+
+  // Read a processing agreement (D-06) against the Article 28 table.
+  analyse_agreement_clauses: ClauseAnalysisCall,
 
   // The verifier's second pass (A-07): does the evidence actually support the claim?
   review_claim: {

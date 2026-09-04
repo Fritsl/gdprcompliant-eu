@@ -52,6 +52,14 @@
       "version": 2,
       "hash": "01e028145890821bdbb3947b5aff5981e333f8c9573262453ce508851c164b35"
     },
+    "dpa-02-obtain-the-agreement": {
+      "version": 1,
+      "hash": "e0ddaa962798b13e458a7c77114b1630ac3d69c7c62bed1d65f45a4bacd981d8"
+    },
+    "dpa-03-close-the-gaps": {
+      "version": 1,
+      "hash": "e8334d1cc3768710ce81ced31b40845efe234ef90511e94d92d1dfa20b5fa564"
+    },
     "exp-01-review-named-hosts": {
       "version": 2,
       "hash": "f7eda38ae2b497f0a056ac78c8fbfe9002eb2c9bdb799602bf6d71c99eab3cda"

@@ -1,0 +1,81 @@
+{
+  "name": "da-loenbureau-komplet",
+  "locale": "da",
+  "jurisdiction": "DK",
+  "vendor": { "host": "loenpartner.test", "name": "LønPartner" },
+  "modelledOn": "A Danish payroll bureau's agreement, written along the lines of the supervisory authority's standard clauses, with no transfers at all.",
+  "text": "Databehandleraftale\n\nDenne databehandleraftale (\"Aftalen\") er indgået mellem LønPartner ApS, Åboulevarden 22, 8000 Aarhus C, CVR 33445566 (\"Databehandleren\") og den kunde, der har tegnet abonnement på LønPartners lønsystem (\"Den Dataansvarlige\"). Den Dataansvarlige er dataansvarlig for de personoplysninger, der er beskrevet i bilag 1, og Databehandleren behandler oplysningerne på Den Dataansvarliges vegne og efter dennes instruks.\n\n1. Genstand og varighed. Behandlingens genstand er lønadministration for Den Dataansvarliges medarbejdere, herunder beregning, udbetaling og indberetning af løn, og behandlingen varer, så længe abonnementet løber, og indtil oplysningerne er slettet eller tilbageleveret efter punkt 12.\n\n2. Karakter og formål. Behandlingen består i at modtage, opbevare, beregne og videregive lønoplysninger til bank, SKAT og pensionsselskab, med det formål at Den Dataansvarlige kan udbetale korrekt løn og opfylde sine indberetningspligter.\n\n3. Personoplysninger og registrerede. De personoplysninger, der behandles, er navn, adresse, CPR-nummer, kontonummer, løn, skatteoplysninger, fravær, pension og fagforeningsmedlemskab, og de registrerede er Den Dataansvarliges nuværende og tidligere medarbejdere.\n\n4. Den Dataansvarliges forpligtelser og rettigheder. Den Dataansvarlige har ret til at instruere Databehandleren, til at føre tilsyn efter punkt 13, til at gøre indsigelse mod underdatabehandlere efter punkt 8 og til at kræve oplysningerne slettet eller tilbageleveret, og Den Dataansvarlige er ansvarlig for, at der er lovligt grundlag for behandlingen, og for at oplysningerne er korrekte.\n\n5. Instruks. Databehandleren behandler kun personoplysningerne efter dokumenteret instruks fra Den Dataansvarlige, herunder ved overførsel til tredjelande, medmindre det kræves i henhold til EU-retten eller dansk ret, og i så fald underretter Databehandleren Den Dataansvarlige om kravet, inden behandlingen påbegyndes, medmindre loven forbyder det.\n\n6. Fortrolighed. Databehandleren sikrer, at de medarbejdere, der er autoriseret til at behandle personoplysningerne, har forpligtet sig til fortrolighed i deres ansættelseskontrakt, og at kun de medarbejdere, der har brug for adgang, får det.\n\n7. Sikkerhed. Databehandleren gennemfører de tekniske og organisatoriske sikkerhedsforanstaltninger, der er beskrevet i bilag 2, herunder kryptering af oplysninger under overførsel og ved opbevaring, tofaktorlogin, logning af adgang, daglig backup og årlig ekstern sikkerhedstest.\n\n8. Underdatabehandlere. Databehandleren må kun gøre brug af de underdatabehandlere, der er anført i bilag 3, som Den Dataansvarlige hermed giver generel skriftlig godkendelse til, og Databehandleren pålægger hver underdatabehandler de samme databeskyttelsesforpligtelser som i denne Aftale ved en skriftlig aftale. Databehandleren underretter Den Dataansvarlige skriftligt mindst 30 dage før, en ny underdatabehandler tages i brug eller en eksisterende udskiftes, og Den Dataansvarlige kan gøre indsigelse mod ændringen inden for fristen, hvorefter parterne drøfter en løsning, og Den Dataansvarlige kan opsige den berørte ydelse uden varsel, hvis en løsning ikke findes.\n\n9. Bistand til de registrerede. Databehandleren bistår, under hensyntagen til behandlingens karakter, Den Dataansvarlige med passende tekniske og organisatoriske foranstaltninger med at opfylde Den Dataansvarliges forpligtelse til at besvare anmodninger fra de registrerede om udøvelse af deres rettigheder, og videresender anmodninger, den selv modtager, inden for 5 arbejdsdage.\n\n10. Bistand med sikkerhed og brud. Databehandleren bistår Den Dataansvarlige med at sikre overholdelse af forpligtelserne vedrørende behandlingssikkerhed, anmeldelse af brud på persondatasikkerheden og konsekvensanalyser, under hensyntagen til behandlingens karakter og de oplysninger, Databehandleren har til rådighed.\n\n11. Brud på persondatasikkerheden. Databehandleren underretter Den Dataansvarlige uden ugrundet ophold og senest 48 timer efter at være blevet bekendt med et brud på persondatasikkerheden, og leverer de oplysninger, Den Dataansvarlige har brug for til sin anmeldelse til Datatilsynet, efterhånden som de foreligger.\n\n12. Sletning og tilbagelevering. Ved ophør af ydelsen sletter eller tilbageleverer Databehandleren efter Den Dataansvarliges valg alle personoplysninger og sletter eksisterende kopier inden for 60 dage, medmindre EU-retten eller dansk ret kræver, at oplysningerne opbevares, hvilket for bogføringsmateriale er fem år.\n\n13. Tilsyn. Databehandleren stiller alle oplysninger, der er nødvendige for at påvise, at forpligtelserne i denne Aftale er overholdt, til rådighed for Den Dataansvarlige og giver mulighed for og bidrager til revisioner, herunder inspektioner, der foretages af Den Dataansvarlige eller en revisor, som Den Dataansvarlige har bemyndiget, med 14 dages varsel.\n\n14. Overførsel til tredjelande. Personoplysningerne behandles udelukkende i datacentre inden for EU/EØS og overføres ikke til tredjelande, og Databehandleren må ikke lade en underdatabehandler behandle oplysningerne uden for EU/EØS uden Den Dataansvarliges forudgående skriftlige instruks.\n\nBilag 1: Beskrivelse af behandlingen. Bilag 2: Sikkerhedsforanstaltninger. Bilag 3: Underdatabehandlere.",
+  "expected": {
+    "parties": {
+      "status": "present",
+      "quote": "Den Dataansvarlige er dataansvarlig for de personoplysninger, der er beskrevet i bilag 1, og Databehandleren behandler oplysningerne på Den Dataansvarliges vegne og efter dennes instruks."
+    },
+    "subject_and_duration": {
+      "status": "present",
+      "quote": "Behandlingens genstand er lønadministration for Den Dataansvarliges medarbejdere, herunder beregning, udbetaling og indberetning af løn, og behandlingen varer, så længe abonnementet løber, og indtil oplysningerne er slettet eller tilbageleveret efter punkt 12."
+    },
+    "nature_and_purpose": {
+      "status": "present",
+      "quote": "Behandlingen består i at modtage, opbevare, beregne og videregive lønoplysninger til bank, SKAT og pensionsselskab, med det formål at Den Dataansvarlige kan udbetale korrekt løn og opfylde sine indberetningspligter."
+    },
+    "data_and_subjects": {
+      "status": "present",
+      "quote": "De personoplysninger, der behandles, er navn, adresse, CPR-nummer, kontonummer, løn, skatteoplysninger, fravær, pension og fagforeningsmedlemskab, og de registrerede er Den Dataansvarliges nuværende og tidligere medarbejdere."
+    },
+    "controller_rights": {
+      "status": "present",
+      "quote": "Den Dataansvarlige har ret til at instruere Databehandleren, til at føre tilsyn efter punkt 13, til at gøre indsigelse mod underdatabehandlere efter punkt 8 og til at kræve oplysningerne slettet eller tilbageleveret, og Den Dataansvarlige er ansvarlig for, at der er lovligt grundlag for behandlingen, og for at oplysningerne er korrekte."
+    },
+    "documented_instructions": {
+      "status": "present",
+      "quote": "Databehandleren behandler kun personoplysningerne efter dokumenteret instruks fra Den Dataansvarlige, herunder ved overførsel til tredjelande, medmindre det kræves i henhold til EU-retten eller dansk ret"
+    },
+    "confidentiality": {
+      "status": "present",
+      "quote": "Databehandleren sikrer, at de medarbejdere, der er autoriseret til at behandle personoplysningerne, har forpligtet sig til fortrolighed i deres ansættelseskontrakt"
+    },
+    "security_measures": {
+      "status": "present",
+      "quote": "Databehandleren gennemfører de tekniske og organisatoriske sikkerhedsforanstaltninger, der er beskrevet i bilag 2, herunder kryptering af oplysninger under overførsel og ved opbevaring, tofaktorlogin, logning af adgang, daglig backup og årlig ekstern sikkerhedstest."
+    },
+    "subprocessor_authorisation": {
+      "status": "present",
+      "quote": "Databehandleren må kun gøre brug af de underdatabehandlere, der er anført i bilag 3, som Den Dataansvarlige hermed giver generel skriftlig godkendelse til, og Databehandleren pålægger hver underdatabehandler de samme databeskyttelsesforpligtelser som i denne Aftale ved en skriftlig aftale."
+    },
+    "subprocessor_objection": {
+      "status": "present",
+      "quote": "Databehandleren underretter Den Dataansvarlige skriftligt mindst 30 dage før, en ny underdatabehandler tages i brug eller en eksisterende udskiftes, og Den Dataansvarlige kan gøre indsigelse mod ændringen inden for fristen"
+    },
+    "assist_data_subject_rights": {
+      "status": "present",
+      "quote": "Databehandleren bistår, under hensyntagen til behandlingens karakter, Den Dataansvarlige med passende tekniske og organisatoriske foranstaltninger med at opfylde Den Dataansvarliges forpligtelse til at besvare anmodninger fra de registrerede om udøvelse af deres rettigheder"
+    },
+    "assist_obligations": {
+      "status": "present",
+      "quote": "Databehandleren bistår Den Dataansvarlige med at sikre overholdelse af forpligtelserne vedrørende behandlingssikkerhed, anmeldelse af brud på persondatasikkerheden og konsekvensanalyser"
+    },
+    "breach_notification": {
+      "status": "present",
+      "quote": "Databehandleren underretter Den Dataansvarlige uden ugrundet ophold og senest 48 timer efter at være blevet bekendt med et brud på persondatasikkerheden"
+    },
+    "deletion_or_return": {
+      "status": "present",
+      "quote": "Ved ophør af ydelsen sletter eller tilbageleverer Databehandleren efter Den Dataansvarliges valg alle personoplysninger og sletter eksisterende kopier inden for 60 dage"
+    },
+    "audits": {
+      "status": "present",
+      "quote": "Databehandleren stiller alle oplysninger, der er nødvendige for at påvise, at forpligtelserne i denne Aftale er overholdt, til rådighed for Den Dataansvarlige og giver mulighed for og bidrager til revisioner, herunder inspektioner, der foretages af Den Dataansvarlige eller en revisor, som Den Dataansvarlige har bemyndiget"
+    },
+    "transfer_annex": {
+      "status": "present",
+      "quote": "Personoplysningerne behandles udelukkende i datacentre inden for EU/EØS og overføres ikke til tredjelande"
+    }
+  },
+  "expectedSpecifics": {
+    "breach_window": { "status": "met", "hours": 48 },
+    "subprocessor_objection": { "status": "met" },
+    "transfer_annex": { "status": "met" }
+  },
+  "expectedVerdict": "adequate",
+  "reasoning": "Every element is stipulated. The breach clause commits to 48 hours at the latest; a new sub-processor is announced in writing 30 days ahead with a right to object; and the data never leaves the EEA, which the transfer clause says in as many words."
+}

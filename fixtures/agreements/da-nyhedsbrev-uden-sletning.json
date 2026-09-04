@@ -1,0 +1,72 @@
+{
+  "name": "da-nyhedsbrev-uden-sletning",
+  "locale": "da",
+  "jurisdiction": "DK",
+  "vendor": { "host": "brevkassen.test", "name": "Brevkassen" },
+  "modelledOn": "A newsletter tool's agreement that handles breaches and sub-processors well but never says what happens to the data at the end, nor binds its staff to confidentiality.",
+  "text": "Brevkassen databehandleraftale\n\nDenne aftale gælder mellem Brevkassen A/S, Kongensgade 14, 6700 Esbjerg, som databehandler, og den virksomhed, der har oprettet en konto hos Brevkassen, som dataansvarlig (\"Kunden\"). Brevkassen behandler personoplysninger på Kundens vegne og alene til de formål, Kunden bestemmer.\n\n1. Genstand og varighed. Behandlingens genstand er udsendelse af nyhedsbreve og automatiske e-mails til Kundens modtagere via Brevkassens platform, og behandlingen varer, så længe Kunden har en aktiv konto.\n\n2. Karakter og formål. Behandlingen består i at opbevare Kundens modtagerlister, udsende e-mails, registrere åbninger, klik, afmeldinger og afviste adresser samt vise statistik, med det formål at Kunden kan sende nyhedsbreve til sine egne modtagere og måle effekten.\n\n3. Oplysninger og registrerede. Der behandles navn, e-mailadresse, tilmeldingsdato, tilmeldingskilde, IP-adresse ved tilmelding, sprog, interesser og engagementsdata om Kundens kunder, tilmeldte og medlemmer.\n\n4. Kundens rettigheder og pligter. Kunden kan til enhver tid instruere Brevkassen, eksportere sine data, gøre indsigelse mod nye underdatabehandlere og kræve dokumentation efter punkt 12, og Kunden indestår for, at der er gyldigt samtykke eller andet lovligt grundlag for at sende til modtagerne.\n\n5. Instruks. Brevkassen behandler kun personoplysningerne efter dokumenteret instruks fra Kunden, herunder for overførsel til tredjelande, medmindre det kræves efter EU-ret eller dansk ret, og underretter i så fald Kunden om kravet inden behandlingen, medmindre loven forbyder det.\n\n6. Sikkerhed. Brevkassen gennemfører de tekniske og organisatoriske sikkerhedsforanstaltninger, der er beskrevet i bilag 2, herunder kryptering under transport og ved opbevaring, rollebaseret adgang, logning og daglig backup.\n\n7. Underdatabehandlere. Kunden giver Brevkassen generel skriftlig godkendelse til at anvende de underdatabehandlere, der er anført i bilag 3, og Brevkassen pålægger dem ved skriftlig aftale de samme forpligtelser som i denne aftale. Brevkassen underretter Kunden pr. e-mail mindst 30 dage før, en underdatabehandler tilføjes eller udskiftes, og Kunden kan gøre indsigelse inden for de 30 dage, hvorefter Kunden kan opsige aftalen uden binding, hvis Brevkassen fastholder ændringen.\n\n8. Bistand til registrerede. Brevkassen bistår Kunden med passende tekniske og organisatoriske foranstaltninger med at besvare anmodninger fra registrerede om indsigt, berigtigelse, sletning, begrænsning, dataportabilitet og indsigelse, og videresender henvendelser, Brevkassen selv modtager, til Kunden.\n\n9. Bistand med sikkerhed og brud. Brevkassen bistår Kunden med at overholde forpligtelserne om behandlingssikkerhed, anmeldelse af brud på persondatasikkerheden og konsekvensanalyser, i det omfang det er muligt under hensyntagen til behandlingens karakter og de oplysninger, Brevkassen har.\n\n10. Brud på persondatasikkerheden. Brevkassen underretter Kunden uden unødig forsinkelse efter at være blevet bekendt med et brud på persondatasikkerheden, med de oplysninger Kunden skal bruge til sin anmeldelse, og supplerer, efterhånden som flere oplysninger foreligger.\n\n11. Overførsel til tredjelande. Brevkassens platform drives hos en underdatabehandler i Irland; ved overførsel til underdatabehandleren i USA, der leverer leveringsovervågning, anvendes EU-Kommissionens standardkontraktbestemmelser, som er vedhæftet som bilag 4.\n\n12. Dokumentation. Kunden kan anmode om dokumentation for Brevkassens sikkerhed, og Brevkassen besvarer sådanne anmodninger inden for rimelig tid.\n\nBilag 2: Sikkerhedsforanstaltninger. Bilag 3: Underdatabehandlere. Bilag 4: Standardkontraktbestemmelser.",
+  "expected": {
+    "parties": {
+      "status": "present",
+      "quote": "Denne aftale gælder mellem Brevkassen A/S, Kongensgade 14, 6700 Esbjerg, som databehandler, og den virksomhed, der har oprettet en konto hos Brevkassen, som dataansvarlig (\"Kunden\")."
+    },
+    "subject_and_duration": {
+      "status": "present",
+      "quote": "Behandlingens genstand er udsendelse af nyhedsbreve og automatiske e-mails til Kundens modtagere via Brevkassens platform, og behandlingen varer, så længe Kunden har en aktiv konto."
+    },
+    "nature_and_purpose": {
+      "status": "present",
+      "quote": "Behandlingen består i at opbevare Kundens modtagerlister, udsende e-mails, registrere åbninger, klik, afmeldinger og afviste adresser samt vise statistik, med det formål at Kunden kan sende nyhedsbreve til sine egne modtagere og måle effekten."
+    },
+    "data_and_subjects": {
+      "status": "present",
+      "quote": "Der behandles navn, e-mailadresse, tilmeldingsdato, tilmeldingskilde, IP-adresse ved tilmelding, sprog, interesser og engagementsdata om Kundens kunder, tilmeldte og medlemmer."
+    },
+    "controller_rights": {
+      "status": "present",
+      "quote": "Kunden kan til enhver tid instruere Brevkassen, eksportere sine data, gøre indsigelse mod nye underdatabehandlere og kræve dokumentation efter punkt 12, og Kunden indestår for, at der er gyldigt samtykke eller andet lovligt grundlag for at sende til modtagerne."
+    },
+    "documented_instructions": {
+      "status": "present",
+      "quote": "Brevkassen behandler kun personoplysningerne efter dokumenteret instruks fra Kunden, herunder for overførsel til tredjelande, medmindre det kræves efter EU-ret eller dansk ret"
+    },
+    "confidentiality": { "status": "absent" },
+    "security_measures": {
+      "status": "present",
+      "quote": "Brevkassen gennemfører de tekniske og organisatoriske sikkerhedsforanstaltninger, der er beskrevet i bilag 2, herunder kryptering under transport og ved opbevaring, rollebaseret adgang, logning og daglig backup."
+    },
+    "subprocessor_authorisation": {
+      "status": "present",
+      "quote": "Kunden giver Brevkassen generel skriftlig godkendelse til at anvende de underdatabehandlere, der er anført i bilag 3, og Brevkassen pålægger dem ved skriftlig aftale de samme forpligtelser som i denne aftale."
+    },
+    "subprocessor_objection": {
+      "status": "present",
+      "quote": "Brevkassen underretter Kunden pr. e-mail mindst 30 dage før, en underdatabehandler tilføjes eller udskiftes, og Kunden kan gøre indsigelse inden for de 30 dage"
+    },
+    "assist_data_subject_rights": {
+      "status": "present",
+      "quote": "Brevkassen bistår Kunden med passende tekniske og organisatoriske foranstaltninger med at besvare anmodninger fra registrerede om indsigt, berigtigelse, sletning, begrænsning, dataportabilitet og indsigelse"
+    },
+    "assist_obligations": {
+      "status": "present",
+      "quote": "Brevkassen bistår Kunden med at overholde forpligtelserne om behandlingssikkerhed, anmeldelse af brud på persondatasikkerheden og konsekvensanalyser"
+    },
+    "breach_notification": {
+      "status": "present",
+      "quote": "Brevkassen underretter Kunden uden unødig forsinkelse efter at være blevet bekendt med et brud på persondatasikkerheden"
+    },
+    "deletion_or_return": { "status": "absent" },
+    "audits": { "status": "undetermined" },
+    "transfer_annex": {
+      "status": "present",
+      "quote": "ved overførsel til underdatabehandleren i USA, der leverer leveringsovervågning, anvendes EU-Kommissionens standardkontraktbestemmelser, som er vedhæftet som bilag 4"
+    }
+  },
+  "expectedSpecifics": {
+    "breach_window": { "status": "met" },
+    "subprocessor_objection": { "status": "met" },
+    "transfer_annex": { "status": "met" }
+  },
+  "expectedVerdict": "inadequate",
+  "reasoning": "Nothing binds the tool's staff to confidentiality, and nothing says the data is deleted or returned when the account closes; both are absent, so the agreement is inadequate. The documentation clause answers requests within a reasonable time without committing to audits, which is undetermined. The breach notice commits to no undue delay with no fixed time, which passes; sub-processor changes carry 30 days and an objection; the US transfer rests on the standard clauses in bilag 4."
+}

@@ -193,6 +193,35 @@
       "version": 1
     },
     {
+      "findingTypeId": "DPA-02",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 28(3)",
+          "note": "processing governed by a contract"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 28(9)",
+          "note": "the contract is in writing, including electronic form"
+        }
+      ],
+      "guideId": "dpa-02",
+      "version": 1
+    },
+    {
+      "findingTypeId": "DPA-03",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 28(3)",
+          "note": "what the contract must stipulate"
+        }
+      ],
+      "guideId": "dpa-03",
+      "version": 1
+    },
+    {
       "findingTypeId": "EXP-01",
       "citations": [
         {

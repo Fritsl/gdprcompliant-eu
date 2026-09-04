@@ -1,0 +1,63 @@
+{
+  "id": "dpa-03",
+  "findingTypeId": "DPA-03",
+  "title": {
+    "en": "The processing agreement leaves out things it has to set out",
+    "da": "Databehandleraftalen udelader ting, den skal fastlægge",
+    "de": "Der Auftragsverarbeitungsvertrag lässt Regelungen aus, die er treffen muss"
+  },
+  "wrong": {
+    "en": "The agreement was read element by element against what a contract with a processor has to stipulate, and some elements are not there, or a clause that is there does not do what it must: the breach notice names no time or one too slow to act on, new sub-processors can be added without a way to object, or data leaves the EEA with no safeguard annexed. The finding lists each element and quotes the clause it read.",
+    "da": "Aftalen er læst element for element op mod det, en aftale med en databehandler skal fastlægge, og nogle elementer er der ikke, eller en klausul, der er der, gør ikke, hvad den skal: underretningen om brud nævner ingen frist eller en, der er for langsom til at handle på, nye underdatabehandlere kan tilføjes uden mulighed for indsigelse, eller oplysninger forlader EØS uden et vedhæftet grundlag. Fundet nævner hvert element og citerer den klausul, det læste.",
+    "de": "Der Vertrag wurde Element für Element mit dem verglichen, was ein Vertrag mit einem Auftragsverarbeiter regeln muss, und einige Elemente fehlen, oder eine vorhandene Klausel leistet nicht, was sie muss: Die Meldung einer Verletzung nennt keine Frist oder eine zu langsame, neue Unterauftragsverarbeiter können ohne Widerspruchsmöglichkeit hinzukommen, oder Daten verlassen den EWR ohne beigefügte Garantie. Der Befund nennt jedes Element und zitiert die gelesene Klausel."
+  },
+  "why": {
+    "en": "Each missing element is a decision the company has silently left to the supplier. A breach the supplier reports after a week leaves the company unable to meet its own reporting duty. A sub-processor it cannot object to may sit anywhere in the world. These are the clauses a customer's lawyer reads first.",
+    "da": "Hvert manglende element er en beslutning, virksomheden stiltiende har overladt til leverandøren. Et brud, leverandøren melder efter en uge, gør, at virksomheden ikke kan opfylde sin egen anmeldelsespligt. En underdatabehandler, den ikke kan gøre indsigelse mod, kan sidde hvor som helst i verden. Det er de klausuler, en kundes advokat læser først.",
+    "de": "Jedes fehlende Element ist eine Entscheidung, die das Unternehmen stillschweigend dem Anbieter überlassen hat. Eine Verletzung, die der Anbieter nach einer Woche meldet, lässt das Unternehmen seine eigene Meldepflicht verfehlen. Ein Unterauftragsverarbeiter, dem es nicht widersprechen kann, kann irgendwo auf der Welt sitzen. Das sind die Klauseln, die der Anwalt eines Kunden zuerst liest."
+  },
+  "steps": [
+    {
+      "en": "Read the elements the finding lists and the clause quoted for each; if a clause was misread, say so on the case and it is read again.",
+      "da": "Læs de elementer, fundet nævner, og den klausul, der citeres for hvert; hvis en klausul er læst forkert, så sig det på sagen, og den læses igen.",
+      "de": "Lesen Sie die im Befund genannten Elemente und die jeweils zitierte Klausel; wurde eine Klausel falsch gelesen, vermerken Sie es im Fall, und sie wird erneut gelesen."
+    },
+    {
+      "en": "Send the supplier the message from the case, with the list of missing elements attached.",
+      "da": "Send leverandøren beskeden fra sagen med listen over manglende elementer vedhæftet.",
+      "de": "Senden Sie dem Anbieter die Nachricht aus dem Fall mit der Liste der fehlenden Elemente."
+    },
+    {
+      "en": "Sign the addendum or the new agreement the supplier sends, and file it on the case.",
+      "da": "Underskriv det tillæg eller den nye aftale, leverandøren sender, og læg den på sagen.",
+      "de": "Unterschreiben Sie den Nachtrag oder den neuen Vertrag des Anbieters und legen Sie ihn im Fall ab."
+    },
+    {
+      "en": "If the supplier will not cover an element, decide whether the data can stay with them; the register is where that decision is recorded.",
+      "da": "Hvis leverandøren ikke vil dække et element, så afgør, om oplysningerne kan blive hos dem; fortegnelsen er der, hvor den beslutning noteres.",
+      "de": "Deckt der Anbieter ein Element nicht ab, entscheiden Sie, ob die Daten bei ihm bleiben können; im Verzeichnis wird diese Entscheidung festgehalten."
+    }
+  ],
+  "confirm": {
+    "en": "Have the filed agreement read again from the case: every element reads as present, and the breach notice, the sub-processor notice and the transfer safeguard each pass.",
+    "da": "Få den arkiverede aftale læst igen fra sagen: hvert element læses som til stede, og underretningen om brud, varslet om underdatabehandlere og overførselsgrundlaget består hver især.",
+    "de": "Lassen Sie den abgelegten Vertrag aus dem Fall erneut lesen: Jedes Element wird als vorhanden gelesen, und die Meldung einer Verletzung, die Ankündigung von Unterauftragsverarbeitern und die Übermittlungsgarantie bestehen jeweils."
+  },
+  "keywords": [
+    {
+      "en": "data processing agreement missing clauses",
+      "da": "databehandleraftale mangler klausuler",
+      "de": "auftragsverarbeitungsvertrag fehlende klauseln"
+    },
+    {
+      "en": "breach notification deadline in DPA",
+      "da": "frist for underretning om brud i databehandleraftale",
+      "de": "meldefrist datenpanne im AVV"
+    },
+    {
+      "en": "sub-processor objection right",
+      "da": "indsigelsesret underdatabehandlere",
+      "de": "widerspruchsrecht unterauftragsverarbeiter"
+    }
+  ]
+}

@@ -1,0 +1,233 @@
+{
+  "version": 1,
+  "elements": [
+    {
+      "id": "parties",
+      "label": {
+        "en": "Who the controller is and who the processor is",
+        "da": "Hvem der er dataansvarlig, og hvem der er databehandler",
+        "de": "Wer Verantwortlicher und wer Auftragsverarbeiter ist"
+      },
+      "asks": "which party is the controller and which is the processor, named so the contract binds the processor with regard to the controller",
+      "citation": {
+        "instrument": "GDPR",
+        "ref": "Art. 28(3)",
+        "note": "a contract binding on the processor with regard to the controller"
+      }
+    },
+    {
+      "id": "subject_and_duration",
+      "label": {
+        "en": "The subject-matter and duration of the processing",
+        "da": "Behandlingens genstand og varighed",
+        "de": "Gegenstand und Dauer der Verarbeitung"
+      },
+      "asks": "the subject-matter of the processing and how long it lasts",
+      "citation": {
+        "instrument": "GDPR",
+        "ref": "Art. 28(3)",
+        "note": "sets out the subject-matter and duration of the processing"
+      }
+    },
+    {
+      "id": "nature_and_purpose",
+      "label": {
+        "en": "The nature and purpose of the processing",
+        "da": "Behandlingens karakter og formål",
+        "de": "Art und Zweck der Verarbeitung"
+      },
+      "asks": "the nature and purpose of the processing",
+      "citation": {
+        "instrument": "GDPR",
+        "ref": "Art. 28(3)",
+        "note": "sets out the nature and purpose of the processing"
+      }
+    },
+    {
+      "id": "data_and_subjects",
+      "label": {
+        "en": "The types of personal data and the categories of data subjects",
+        "da": "Typen af personoplysninger og kategorierne af registrerede",
+        "de": "Die Art der personenbezogenen Daten und die Kategorien betroffener Personen"
+      },
+      "asks": "the types of personal data processed and the categories of data subjects they concern",
+      "citation": {
+        "instrument": "GDPR",
+        "ref": "Art. 28(3)",
+        "note": "sets out the type of personal data and categories of data subjects"
+      }
+    },
+    {
+      "id": "controller_rights",
+      "label": {
+        "en": "The obligations and rights of the controller",
+        "da": "Den dataansvarliges forpligtelser og rettigheder",
+        "de": "Die Pflichten und Rechte des Verantwortlichen"
+      },
+      "asks": "the obligations and rights of the controller under the contract",
+      "citation": {
+        "instrument": "GDPR",
+        "ref": "Art. 28(3)",
+        "note": "sets out the obligations and rights of the controller"
+      }
+    },
+    {
+      "id": "documented_instructions",
+      "label": {
+        "en": "Processing only on the controller's documented instructions",
+        "da": "Behandling kun efter dokumenteret instruks fra den dataansvarlige",
+        "de": "Verarbeitung nur auf dokumentierte Weisung des Verantwortlichen"
+      },
+      "asks": "that the processor processes the personal data only on documented instructions from the controller, including for any transfer to a third country",
+      "citation": {
+        "instrument": "GDPR",
+        "ref": "Art. 28(3)(a)",
+        "note": "processes only on documented instructions"
+      }
+    },
+    {
+      "id": "confidentiality",
+      "label": {
+        "en": "Confidentiality of the people who process the data",
+        "da": "Fortrolighed for de personer, der behandler oplysningerne",
+        "de": "Vertraulichkeit der zur Verarbeitung befugten Personen"
+      },
+      "asks": "that the persons authorised to process the data have committed themselves to confidentiality or are under a statutory duty of confidentiality",
+      "citation": {
+        "instrument": "GDPR",
+        "ref": "Art. 28(3)(b)",
+        "note": "persons authorised have committed to confidentiality"
+      }
+    },
+    {
+      "id": "security_measures",
+      "label": {
+        "en": "The security measures the processor takes",
+        "da": "De sikkerhedsforanstaltninger, databehandleren træffer",
+        "de": "Die Sicherheitsmaßnahmen des Auftragsverarbeiters"
+      },
+      "asks": "that the processor takes the technical and organisational security measures required, and what they are",
+      "citation": {
+        "instrument": "GDPR",
+        "ref": "Art. 28(3)(c)",
+        "note": "takes all measures required pursuant to Article 32"
+      }
+    },
+    {
+      "id": "subprocessor_authorisation",
+      "label": {
+        "en": "Sub-processors only with the controller's prior written authorisation",
+        "da": "Underdatabehandlere kun med den dataansvarliges forudgående skriftlige godkendelse",
+        "de": "Unterauftragsverarbeiter nur mit vorheriger schriftlicher Genehmigung des Verantwortlichen"
+      },
+      "asks": "that the processor engages another processor only with the controller's prior specific or general written authorisation, and that the same obligations are imposed on that other processor",
+      "citation": {
+        "instrument": "GDPR",
+        "ref": "Art. 28(2)",
+        "note": "no other processor without prior written authorisation"
+      }
+    },
+    {
+      "id": "subprocessor_objection",
+      "label": {
+        "en": "Notice of new sub-processors and a way to object",
+        "da": "Varsel om nye underdatabehandlere og en mulighed for at gøre indsigelse",
+        "de": "Ankündigung neuer Unterauftragsverarbeiter und eine Möglichkeit zum Widerspruch"
+      },
+      "asks": "that the processor informs the controller of any intended addition or replacement of a sub-processor in advance and gives the controller the opportunity to object, with how much notice and how",
+      "citation": {
+        "instrument": "GDPR",
+        "ref": "Art. 28(2)",
+        "note": "inform of intended changes, giving the opportunity to object"
+      },
+      "specific": "subprocessor_objection"
+    },
+    {
+      "id": "assist_data_subject_rights",
+      "label": {
+        "en": "Help with requests from the people whose data it is",
+        "da": "Hjælp til anmodninger fra de registrerede",
+        "de": "Unterstützung bei Anfragen betroffener Personen"
+      },
+      "asks": "that the processor assists the controller in responding to requests from data subjects exercising their rights",
+      "citation": {
+        "instrument": "GDPR",
+        "ref": "Art. 28(3)(e)",
+        "note": "assists with data subject requests"
+      }
+    },
+    {
+      "id": "assist_obligations",
+      "label": {
+        "en": "Help with security, breach handling and impact assessments",
+        "da": "Hjælp med sikkerhed, håndtering af brud og konsekvensanalyser",
+        "de": "Unterstützung bei Sicherheit, Verletzungen und Folgenabschätzungen"
+      },
+      "asks": "that the processor assists the controller with its obligations on security, notification of breaches and data protection impact assessments",
+      "citation": {
+        "instrument": "GDPR",
+        "ref": "Art. 28(3)(f)",
+        "note": "assists with the obligations in Articles 32 to 36"
+      }
+    },
+    {
+      "id": "breach_notification",
+      "label": {
+        "en": "Notice of a personal data breach, and how fast",
+        "da": "Underretning om brud på persondatasikkerheden, og hvor hurtigt",
+        "de": "Meldung einer Verletzung des Schutzes personenbezogener Daten, und wie schnell"
+      },
+      "asks": "that the processor notifies the controller of a personal data breach after becoming aware of it, and the time within which it commits to do so",
+      "citation": {
+        "instrument": "GDPR",
+        "ref": "Art. 33(2)",
+        "note": "the processor notifies the controller without undue delay"
+      },
+      "specific": "breach_window",
+      "limitHours": 72
+    },
+    {
+      "id": "deletion_or_return",
+      "label": {
+        "en": "Deletion or return of the data when the service ends",
+        "da": "Sletning eller tilbagelevering af oplysningerne, når ydelsen ophører",
+        "de": "Löschung oder Rückgabe der Daten nach Ende der Leistung"
+      },
+      "asks": "that at the end of the service the processor deletes or returns all the personal data, at the controller's choice, and deletes existing copies",
+      "citation": {
+        "instrument": "GDPR",
+        "ref": "Art. 28(3)(g)",
+        "note": "deletes or returns all the personal data at the end"
+      }
+    },
+    {
+      "id": "audits",
+      "label": {
+        "en": "Information and audits to show the contract is kept",
+        "da": "Oplysninger og revisioner, der viser, at aftalen overholdes",
+        "de": "Informationen und Überprüfungen zum Nachweis der Vertragserfüllung"
+      },
+      "asks": "that the processor makes available the information needed to demonstrate its obligations are met and allows for and contributes to audits and inspections by the controller or an auditor it mandates",
+      "citation": {
+        "instrument": "GDPR",
+        "ref": "Art. 28(3)(h)",
+        "note": "makes information available and allows audits"
+      }
+    },
+    {
+      "id": "transfer_annex",
+      "label": {
+        "en": "Transfers outside the EEA, and the safeguard they rest on",
+        "da": "Overførsler uden for EØS, og det grundlag de hviler på",
+        "de": "Übermittlungen außerhalb des EWR und die Garantie, auf der sie beruhen"
+      },
+      "asks": "whether personal data is transferred to a country outside the EEA and, if so, the safeguard the transfer rests on (standard contractual clauses annexed to the agreement, an adequacy decision or binding corporate rules), or a statement that no such transfer takes place",
+      "citation": {
+        "instrument": "GDPR",
+        "ref": "Art. 46(1)",
+        "note": "a transfer only with appropriate safeguards"
+      },
+      "specific": "transfer_annex"
+    }
+  ]
+}

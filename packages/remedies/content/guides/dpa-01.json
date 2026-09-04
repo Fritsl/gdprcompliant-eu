@@ -1,0 +1,58 @@
+{
+  "id": "dpa-01",
+  "findingTypeId": "DPA-01",
+  "title": {
+    "en": "A supplier processes personal data for the company without an agreement",
+    "da": "En leverandør behandler personoplysninger for virksomheden uden en aftale",
+    "de": "Ein Anbieter verarbeitet personenbezogene Daten für das Unternehmen ohne Vertrag"
+  },
+  "wrong": {
+    "en": "The site sends personal data to a supplier that processes it on the company's behalf, and nothing on the supplier's side offers a processing agreement. A mail provider, a hosting company, a payroll service or an analytics tool that handles customer data is a processor, and a processor works under a written contract or not at all.",
+    "da": "Sitet sender personoplysninger til en leverandør, der behandler dem på virksomhedens vegne, og intet hos leverandøren tilbyder en databehandleraftale. En mailudbyder, et hostingfirma, et lønbureau eller et analyseværktøj, der håndterer kundedata, er en databehandler, og en databehandler arbejder under en skriftlig aftale eller slet ikke.",
+    "de": "Die Website sendet personenbezogene Daten an einen Anbieter, der sie im Auftrag des Unternehmens verarbeitet, und nichts beim Anbieter bietet einen Auftragsverarbeitungsvertrag an. Ein Mailanbieter, ein Hoster, ein Lohnbüro oder ein Analysewerkzeug, das Kundendaten verarbeitet, ist ein Auftragsverarbeiter, und ein Auftragsverarbeiter arbeitet unter einem schriftlichen Vertrag oder gar nicht."
+  },
+  "why": {
+    "en": "The contract is what makes the supplier answerable to the company: what it may do with the data, who it may pass it to, how fast it reports a breach, and what happens when the service ends. Without one the company carries the whole risk of whatever the supplier does, and cannot show a supervisory authority or a customer that the data is under its control.",
+    "da": "Aftalen er det, der gør leverandøren ansvarlig over for virksomheden: hvad den må gøre med oplysningerne, hvem den må give dem videre til, hvor hurtigt den melder et brud, og hvad der sker, når ydelsen ophører. Uden en bærer virksomheden hele risikoen for, hvad leverandøren gør, og kan ikke vise en tilsynsmyndighed eller en kunde, at oplysningerne er under dens kontrol.",
+    "de": "Der Vertrag macht den Anbieter dem Unternehmen gegenüber verantwortlich: was er mit den Daten tun darf, an wen er sie weitergeben darf, wie schnell er eine Verletzung meldet und was beim Ende der Leistung geschieht. Ohne ihn trägt das Unternehmen das ganze Risiko dessen, was der Anbieter tut, und kann weder einer Aufsichtsbehörde noch einem Kunden zeigen, dass die Daten unter seiner Kontrolle stehen."
+  },
+  "steps": [
+    {
+      "en": "Confirm in the register that the supplier the finding names really handles personal data for you, and what data.",
+      "da": "Bekræft i fortegnelsen, at den leverandør, fundet nævner, virkelig håndterer personoplysninger for jer, og hvilke.",
+      "de": "Bestätigen Sie im Verzeichnis, dass der im Befund genannte Anbieter wirklich personenbezogene Daten für Sie verarbeitet, und welche."
+    },
+    {
+      "en": "Generate the processing agreement from the case, read it through, and send it to the supplier for signature.",
+      "da": "Generér databehandleraftalen fra sagen, læs den igennem, og send den til leverandøren til underskrift.",
+      "de": "Erzeugen Sie den Auftragsverarbeitungsvertrag aus dem Fall, lesen Sie ihn durch und senden Sie ihn dem Anbieter zur Unterschrift."
+    },
+    {
+      "en": "If the supplier will not sign, choose one that will, and move the data.",
+      "da": "Hvis leverandøren ikke vil underskrive, så vælg en, der vil, og flyt oplysningerne.",
+      "de": "Unterschreibt der Anbieter nicht, wählen Sie einen, der es tut, und verlagern Sie die Daten."
+    },
+    {
+      "en": "File the signed copy on the case and publish your sub-processor list from it.",
+      "da": "Læg den underskrevne kopi på sagen, og offentliggør jeres liste over underdatabehandlere ud fra den.",
+      "de": "Legen Sie das unterschriebene Exemplar im Fall ab und veröffentlichen Sie daraus Ihre Liste der Unterauftragsverarbeiter."
+    }
+  ],
+  "confirm": {
+    "en": "Open the case: the agreement is listed as published, and the supplier's name appears on your sub-processor page with the date the agreement took effect.",
+    "da": "Åbn sagen: aftalen er anført som offentliggjort, og leverandørens navn står på jeres side over underdatabehandlere med den dato, aftalen trådte i kraft.",
+    "de": "Öffnen Sie den Fall: Der Vertrag ist als veröffentlicht aufgeführt, und der Name des Anbieters steht mit dem Datum des Inkrafttretens auf Ihrer Seite der Unterauftragsverarbeiter."
+  },
+  "keywords": [
+    {
+      "en": "no data processing agreement with supplier",
+      "da": "ingen databehandleraftale med leverandør",
+      "de": "kein auftragsverarbeitungsvertrag mit anbieter"
+    },
+    {
+      "en": "processor without contract",
+      "da": "databehandler uden aftale",
+      "de": "auftragsverarbeiter ohne vertrag"
+    }
+  ]
+}

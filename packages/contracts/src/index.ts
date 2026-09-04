@@ -47,3 +47,4 @@ export * from './transfers.js';
 export * from './graph.js';
 export * from './guide.js';
 export * from './benchmark.js';
+export * from './agreement.js';

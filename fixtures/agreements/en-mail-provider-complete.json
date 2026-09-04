@@ -1,0 +1,81 @@
+{
+  "name": "en-mail-provider-complete",
+  "locale": "en",
+  "jurisdiction": "DK",
+  "vendor": { "host": "sendmore.test", "name": "Sendmore" },
+  "modelledOn": "The standard data processing agreement of a European email marketing platform, accepted with its terms of service.",
+  "text": "Data Processing Agreement\n\nThis Data Processing Agreement (the \"Agreement\") forms part of the Sendmore Terms of Service between Sendmore ApS, Vesterbrogade 40, 1620 Copenhagen V, Denmark (the \"Processor\") and the customer that has accepted the Terms (the \"Controller\"). The Controller is the controller of the personal data described in Annex 1 and the Processor processes that personal data on the Controller's behalf.\n\n1. Subject-matter and duration. The subject-matter of the processing is the sending of email campaigns and transactional email through the Sendmore platform on the Controller's behalf. The processing lasts for the term of the Controller's subscription and ends when the account is closed and the data has been deleted or returned under clause 11.\n\n2. Nature and purpose. The processing consists of storing contact lists, composing and dispatching email, and recording opens, clicks, bounces and unsubscribes, for the purpose of enabling the Controller to send email to its own contacts and measure delivery.\n\n3. Personal data and data subjects. The personal data processed are names, email addresses, list memberships, tags, language, time zone, engagement events and IP addresses at the time of interaction. The data subjects are the Controller's customers, prospects, subscribers and employees who receive email through the platform.\n\n4. Obligations and rights of the Controller. The Controller has the right to instruct the Processor, to audit the processing under clause 12, to object to sub-processors under clause 8 and to require the deletion or return of the data at any time; the Controller is responsible for the lawfulness of the data it uploads and for its instructions.\n\n5. Instructions. The Processor processes the personal data only on documented instructions from the Controller, including with regard to transfers of personal data to a third country, unless required to do so by Union or Member State law; in that case the Processor informs the Controller of the legal requirement before processing, unless the law prohibits it. The Processor immediately informs the Controller if, in its opinion, an instruction infringes data protection law.\n\n6. Confidentiality and personnel. The Processor ensures that every person it authorises to process the personal data has committed themselves in writing to confidentiality or is under an appropriate statutory obligation of confidentiality, and that access is limited to the persons who need it for the service.\n\n7. Security. The Processor implements the technical and organisational measures set out in Annex 2, including encryption of data in transit and at rest, role-based access control with two-factor authentication, logging of administrative access, daily encrypted backups and an annual penetration test, and keeps them under review.\n\n8. Sub-processors. The Processor engages another processor only with the Controller's prior general written authorisation, which the Controller gives by accepting this Agreement for the sub-processors listed in Annex 3. The Processor imposes the same data protection obligations as set out in this Agreement on every sub-processor by way of a written contract and remains fully liable to the Controller for the sub-processor's performance. The Processor gives the Controller at least 30 days' written notice before adding or replacing a sub-processor, and the Controller may object to the change within that period by email to privacy@sendmore.test; if the objection cannot be resolved the Controller may terminate the affected service without penalty.\n\n9. Assistance with requests. Taking into account the nature of the processing, the Processor assists the Controller by appropriate technical and organisational measures in fulfilling its obligation to respond to requests from data subjects exercising their rights, including access, rectification, erasure, restriction, portability and objection, and forwards any such request it receives to the Controller within 3 business days.\n\n10. Assistance with obligations. The Processor assists the Controller in ensuring compliance with its obligations on security of processing, notification of personal data breaches and data protection impact assessments, taking into account the nature of the processing and the information available to the Processor.\n\n11. Personal data breaches. The Processor notifies the Controller without undue delay and in any event within 24 hours after becoming aware of a personal data breach affecting the Controller's personal data, and provides the information the Controller needs for its own notification as it becomes available.\n\n12. Deletion and return. At the end of the provision of the service the Processor, at the choice of the Controller, deletes or returns all the personal data to the Controller and deletes existing copies within 30 days, unless Union or Member State law requires storage of the personal data; backups are overwritten within a further 30 days.\n\n13. Audits. The Processor makes available to the Controller all information necessary to demonstrate compliance with the obligations in this Agreement and allows for and contributes to audits, including inspections, conducted by the Controller or another auditor mandated by the Controller, on 14 days' notice and no more than once a year unless a supervisory authority requires otherwise.\n\n14. Transfers. The personal data is stored in data centres in Denmark and Ireland. Where a sub-processor listed in Annex 3 processes personal data outside the European Economic Area, the transfer takes place under the standard contractual clauses adopted by the European Commission, which are annexed to this Agreement as Annex 4, together with the transfer impact assessment the Processor has carried out.\n\nAnnex 1: Description of the processing. Annex 2: Technical and organisational measures. Annex 3: Sub-processors. Annex 4: Standard contractual clauses.",
+  "expected": {
+    "parties": {
+      "status": "present",
+      "quote": "The Controller is the controller of the personal data described in Annex 1 and the Processor processes that personal data on the Controller's behalf."
+    },
+    "subject_and_duration": {
+      "status": "present",
+      "quote": "The subject-matter of the processing is the sending of email campaigns and transactional email through the Sendmore platform on the Controller's behalf. The processing lasts for the term of the Controller's subscription and ends when the account is closed and the data has been deleted or returned under clause 11."
+    },
+    "nature_and_purpose": {
+      "status": "present",
+      "quote": "The processing consists of storing contact lists, composing and dispatching email, and recording opens, clicks, bounces and unsubscribes, for the purpose of enabling the Controller to send email to its own contacts and measure delivery."
+    },
+    "data_and_subjects": {
+      "status": "present",
+      "quote": "The personal data processed are names, email addresses, list memberships, tags, language, time zone, engagement events and IP addresses at the time of interaction. The data subjects are the Controller's customers, prospects, subscribers and employees who receive email through the platform."
+    },
+    "controller_rights": {
+      "status": "present",
+      "quote": "The Controller has the right to instruct the Processor, to audit the processing under clause 12, to object to sub-processors under clause 8 and to require the deletion or return of the data at any time"
+    },
+    "documented_instructions": {
+      "status": "present",
+      "quote": "The Processor processes the personal data only on documented instructions from the Controller, including with regard to transfers of personal data to a third country, unless required to do so by Union or Member State law"
+    },
+    "confidentiality": {
+      "status": "present",
+      "quote": "The Processor ensures that every person it authorises to process the personal data has committed themselves in writing to confidentiality or is under an appropriate statutory obligation of confidentiality"
+    },
+    "security_measures": {
+      "status": "present",
+      "quote": "The Processor implements the technical and organisational measures set out in Annex 2, including encryption of data in transit and at rest, role-based access control with two-factor authentication, logging of administrative access, daily encrypted backups and an annual penetration test, and keeps them under review."
+    },
+    "subprocessor_authorisation": {
+      "status": "present",
+      "quote": "The Processor engages another processor only with the Controller's prior general written authorisation, which the Controller gives by accepting this Agreement for the sub-processors listed in Annex 3. The Processor imposes the same data protection obligations as set out in this Agreement on every sub-processor by way of a written contract and remains fully liable to the Controller for the sub-processor's performance."
+    },
+    "subprocessor_objection": {
+      "status": "present",
+      "quote": "The Processor gives the Controller at least 30 days' written notice before adding or replacing a sub-processor, and the Controller may object to the change within that period by email to privacy@sendmore.test"
+    },
+    "assist_data_subject_rights": {
+      "status": "present",
+      "quote": "the Processor assists the Controller by appropriate technical and organisational measures in fulfilling its obligation to respond to requests from data subjects exercising their rights"
+    },
+    "assist_obligations": {
+      "status": "present",
+      "quote": "The Processor assists the Controller in ensuring compliance with its obligations on security of processing, notification of personal data breaches and data protection impact assessments"
+    },
+    "breach_notification": {
+      "status": "present",
+      "quote": "The Processor notifies the Controller without undue delay and in any event within 24 hours after becoming aware of a personal data breach affecting the Controller's personal data"
+    },
+    "deletion_or_return": {
+      "status": "present",
+      "quote": "At the end of the provision of the service the Processor, at the choice of the Controller, deletes or returns all the personal data to the Controller and deletes existing copies within 30 days"
+    },
+    "audits": {
+      "status": "present",
+      "quote": "The Processor makes available to the Controller all information necessary to demonstrate compliance with the obligations in this Agreement and allows for and contributes to audits, including inspections, conducted by the Controller or another auditor mandated by the Controller"
+    },
+    "transfer_annex": {
+      "status": "present",
+      "quote": "Where a sub-processor listed in Annex 3 processes personal data outside the European Economic Area, the transfer takes place under the standard contractual clauses adopted by the European Commission, which are annexed to this Agreement as Annex 4"
+    }
+  },
+  "expectedSpecifics": {
+    "breach_window": { "status": "met", "hours": 24 },
+    "subprocessor_objection": { "status": "met" },
+    "transfer_annex": { "status": "met" }
+  },
+  "expectedVerdict": "adequate",
+  "reasoning": "Every element is stipulated in its own clause. The breach notice commits to 24 hours, well inside the controller's own 72; a new sub-processor comes with 30 days' notice and an objection by email; the only transfers rest on the Commission's standard contractual clauses annexed as Annex 4."
+}

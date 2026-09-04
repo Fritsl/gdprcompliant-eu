@@ -1,0 +1,81 @@
+{
+  "name": "de-crm-vollstaendig",
+  "locale": "de",
+  "jurisdiction": "DE",
+  "vendor": { "host": "kontaktwerk.test", "name": "KontaktWerk" },
+  "modelledOn": "A German CRM vendor's Auftragsverarbeitungsvertrag in the customary form, complete, with transfers on the Commission's clauses.",
+  "text": "Vereinbarung zur Auftragsverarbeitung\n\nzwischen der KontaktWerk GmbH, Prinzregentenstraße 18, 80538 München (\"Auftragsverarbeiter\") und dem Kunden, der die KontaktWerk-Plattform nutzt (\"Verantwortlicher\"). Der Verantwortliche ist für die in Anlage 1 beschriebenen personenbezogenen Daten verantwortlich; der Auftragsverarbeiter verarbeitet diese Daten ausschließlich im Auftrag und nach Weisung des Verantwortlichen.\n\n§ 1 Gegenstand und Dauer. Gegenstand der Verarbeitung ist die Bereitstellung der KontaktWerk-Plattform zur Verwaltung von Kunden- und Interessentenkontakten; die Dauer der Verarbeitung entspricht der Laufzeit des Nutzungsvertrags und endet mit der Löschung oder Rückgabe der Daten nach § 11.\n\n§ 2 Art und Zweck. Die Verarbeitung umfasst das Speichern, Ordnen, Anzeigen, Auswerten und Sichern von Kontaktdaten, Notizen, Aufgaben und E-Mail-Verläufen zu dem Zweck, dem Verantwortlichen die Pflege seiner Kundenbeziehungen zu ermöglichen.\n\n§ 3 Art der Daten und Kategorien betroffener Personen. Verarbeitet werden Namen, Anschriften, E-Mail-Adressen, Telefonnummern, Funktion und Unternehmen, Gesprächsnotizen, Angebote und Kommunikationsverläufe; betroffene Personen sind Kunden, Interessenten, Lieferanten und Ansprechpartner des Verantwortlichen sowie dessen Mitarbeiter als Nutzer.\n\n§ 4 Pflichten und Rechte des Verantwortlichen. Der Verantwortliche ist für die Rechtmäßigkeit der Verarbeitung und die Wahrung der Rechte der betroffenen Personen verantwortlich; er hat das Recht, Weisungen zu erteilen, Kontrollen nach § 12 durchzuführen, neuen Unterauftragsverarbeitern zu widersprechen und jederzeit die Löschung oder Herausgabe der Daten zu verlangen.\n\n§ 5 Weisungsgebundenheit. Der Auftragsverarbeiter verarbeitet die personenbezogenen Daten nur auf dokumentierte Weisung des Verantwortlichen, auch in Bezug auf die Übermittlung in ein Drittland, sofern er nicht durch das Recht der Union oder eines Mitgliedstaats hierzu verpflichtet ist; in diesem Fall teilt er dem Verantwortlichen die rechtliche Anforderung vor der Verarbeitung mit, soweit das Recht dies nicht verbietet.\n\n§ 6 Vertraulichkeit. Der Auftragsverarbeiter gewährleistet, dass sich die zur Verarbeitung befugten Personen zur Vertraulichkeit verpflichtet haben oder einer angemessenen gesetzlichen Verschwiegenheitspflicht unterliegen, und beschränkt den Zugriff auf die Personen, die ihn für die Leistung benötigen.\n\n§ 7 Sicherheit. Der Auftragsverarbeiter trifft die in Anlage 2 beschriebenen technischen und organisatorischen Maßnahmen, darunter Verschlüsselung bei Übertragung und Speicherung, rollenbasierte Zugriffskontrolle mit Zwei-Faktor-Authentifizierung, Protokollierung administrativer Zugriffe, tägliche verschlüsselte Sicherungen und jährliche Penetrationstests, und überprüft sie regelmäßig.\n\n§ 8 Unterauftragsverarbeiter. Der Auftragsverarbeiter nimmt weitere Auftragsverarbeiter nur mit vorheriger allgemeiner schriftlicher Genehmigung des Verantwortlichen in Anspruch, die für die in Anlage 3 genannten Unterauftragsverarbeiter mit Abschluss dieser Vereinbarung erteilt wird, und legt jedem Unterauftragsverarbeiter durch Vertrag dieselben Datenschutzpflichten auf, die in dieser Vereinbarung festgelegt sind. Der Auftragsverarbeiter informiert den Verantwortlichen mindestens 30 Tage vorab schriftlich über jede beabsichtigte Hinzuziehung oder Ersetzung eines Unterauftragsverarbeiters, und der Verantwortliche kann der Änderung innerhalb dieser Frist aus wichtigem Grund widersprechen; kommt keine Einigung zustande, kann der Verantwortliche die betroffene Leistung kündigen.\n\n§ 9 Unterstützung bei Betroffenenrechten. Der Auftragsverarbeiter unterstützt den Verantwortlichen unter Berücksichtigung der Art der Verarbeitung mit geeigneten technischen und organisatorischen Maßnahmen dabei, seiner Pflicht zur Beantwortung von Anträgen betroffener Personen auf Wahrnehmung ihrer Rechte nachzukommen, und leitet bei ihm eingehende Anträge unverzüglich weiter.\n\n§ 10 Unterstützung bei weiteren Pflichten. Der Auftragsverarbeiter unterstützt den Verantwortlichen bei der Einhaltung seiner Pflichten zur Sicherheit der Verarbeitung, zur Meldung von Verletzungen des Schutzes personenbezogener Daten und zur Datenschutz-Folgenabschätzung unter Berücksichtigung der Art der Verarbeitung und der ihm zur Verfügung stehenden Informationen.\n\n§ 11 Meldung von Datenschutzverletzungen. Der Auftragsverarbeiter meldet dem Verantwortlichen jede Verletzung des Schutzes personenbezogener Daten unverzüglich, spätestens jedoch innerhalb von 24 Stunden, nachdem sie ihm bekannt geworden ist, und stellt die für die Meldung des Verantwortlichen erforderlichen Informationen bereit, sobald sie vorliegen.\n\n§ 12 Löschung und Rückgabe. Nach Abschluss der Erbringung der Leistungen löscht der Auftragsverarbeiter nach Wahl des Verantwortlichen alle personenbezogenen Daten oder gibt sie zurück und löscht vorhandene Kopien innerhalb von 30 Tagen, sofern nicht nach dem Recht der Union oder eines Mitgliedstaats eine Pflicht zur Speicherung besteht.\n\n§ 13 Nachweise und Kontrollen. Der Auftragsverarbeiter stellt dem Verantwortlichen alle erforderlichen Informationen zum Nachweis der Einhaltung der in dieser Vereinbarung niedergelegten Pflichten zur Verfügung und ermöglicht und trägt zu Überprüfungen einschließlich Inspektionen bei, die vom Verantwortlichen oder einem von ihm beauftragten Prüfer durchgeführt werden, mit einer Ankündigungsfrist von 14 Tagen.\n\n§ 14 Drittlandübermittlung. Die Daten werden in Rechenzentren in Deutschland und den Niederlanden verarbeitet. Soweit ein in Anlage 3 genannter Unterauftragsverarbeiter personenbezogene Daten außerhalb des Europäischen Wirtschaftsraums verarbeitet, erfolgt die Übermittlung auf Grundlage der Standardvertragsklauseln der Europäischen Kommission, die dieser Vereinbarung als Anlage 4 beigefügt sind, ergänzt um die vom Auftragsverarbeiter durchgeführte Transfer-Folgenabschätzung.\n\nAnlage 1: Beschreibung der Verarbeitung. Anlage 2: Technische und organisatorische Maßnahmen. Anlage 3: Unterauftragsverarbeiter. Anlage 4: Standardvertragsklauseln.",
+  "expected": {
+    "parties": {
+      "status": "present",
+      "quote": "Der Verantwortliche ist für die in Anlage 1 beschriebenen personenbezogenen Daten verantwortlich; der Auftragsverarbeiter verarbeitet diese Daten ausschließlich im Auftrag und nach Weisung des Verantwortlichen."
+    },
+    "subject_and_duration": {
+      "status": "present",
+      "quote": "Gegenstand der Verarbeitung ist die Bereitstellung der KontaktWerk-Plattform zur Verwaltung von Kunden- und Interessentenkontakten; die Dauer der Verarbeitung entspricht der Laufzeit des Nutzungsvertrags und endet mit der Löschung oder Rückgabe der Daten nach § 11."
+    },
+    "nature_and_purpose": {
+      "status": "present",
+      "quote": "Die Verarbeitung umfasst das Speichern, Ordnen, Anzeigen, Auswerten und Sichern von Kontaktdaten, Notizen, Aufgaben und E-Mail-Verläufen zu dem Zweck, dem Verantwortlichen die Pflege seiner Kundenbeziehungen zu ermöglichen."
+    },
+    "data_and_subjects": {
+      "status": "present",
+      "quote": "Verarbeitet werden Namen, Anschriften, E-Mail-Adressen, Telefonnummern, Funktion und Unternehmen, Gesprächsnotizen, Angebote und Kommunikationsverläufe; betroffene Personen sind Kunden, Interessenten, Lieferanten und Ansprechpartner des Verantwortlichen sowie dessen Mitarbeiter als Nutzer."
+    },
+    "controller_rights": {
+      "status": "present",
+      "quote": "er hat das Recht, Weisungen zu erteilen, Kontrollen nach § 12 durchzuführen, neuen Unterauftragsverarbeitern zu widersprechen und jederzeit die Löschung oder Herausgabe der Daten zu verlangen"
+    },
+    "documented_instructions": {
+      "status": "present",
+      "quote": "Der Auftragsverarbeiter verarbeitet die personenbezogenen Daten nur auf dokumentierte Weisung des Verantwortlichen, auch in Bezug auf die Übermittlung in ein Drittland, sofern er nicht durch das Recht der Union oder eines Mitgliedstaats hierzu verpflichtet ist"
+    },
+    "confidentiality": {
+      "status": "present",
+      "quote": "Der Auftragsverarbeiter gewährleistet, dass sich die zur Verarbeitung befugten Personen zur Vertraulichkeit verpflichtet haben oder einer angemessenen gesetzlichen Verschwiegenheitspflicht unterliegen"
+    },
+    "security_measures": {
+      "status": "present",
+      "quote": "Der Auftragsverarbeiter trifft die in Anlage 2 beschriebenen technischen und organisatorischen Maßnahmen, darunter Verschlüsselung bei Übertragung und Speicherung, rollenbasierte Zugriffskontrolle mit Zwei-Faktor-Authentifizierung, Protokollierung administrativer Zugriffe, tägliche verschlüsselte Sicherungen und jährliche Penetrationstests, und überprüft sie regelmäßig."
+    },
+    "subprocessor_authorisation": {
+      "status": "present",
+      "quote": "Der Auftragsverarbeiter nimmt weitere Auftragsverarbeiter nur mit vorheriger allgemeiner schriftlicher Genehmigung des Verantwortlichen in Anspruch, die für die in Anlage 3 genannten Unterauftragsverarbeiter mit Abschluss dieser Vereinbarung erteilt wird, und legt jedem Unterauftragsverarbeiter durch Vertrag dieselben Datenschutzpflichten auf, die in dieser Vereinbarung festgelegt sind."
+    },
+    "subprocessor_objection": {
+      "status": "present",
+      "quote": "Der Auftragsverarbeiter informiert den Verantwortlichen mindestens 30 Tage vorab schriftlich über jede beabsichtigte Hinzuziehung oder Ersetzung eines Unterauftragsverarbeiters, und der Verantwortliche kann der Änderung innerhalb dieser Frist aus wichtigem Grund widersprechen"
+    },
+    "assist_data_subject_rights": {
+      "status": "present",
+      "quote": "Der Auftragsverarbeiter unterstützt den Verantwortlichen unter Berücksichtigung der Art der Verarbeitung mit geeigneten technischen und organisatorischen Maßnahmen dabei, seiner Pflicht zur Beantwortung von Anträgen betroffener Personen auf Wahrnehmung ihrer Rechte nachzukommen"
+    },
+    "assist_obligations": {
+      "status": "present",
+      "quote": "Der Auftragsverarbeiter unterstützt den Verantwortlichen bei der Einhaltung seiner Pflichten zur Sicherheit der Verarbeitung, zur Meldung von Verletzungen des Schutzes personenbezogener Daten und zur Datenschutz-Folgenabschätzung"
+    },
+    "breach_notification": {
+      "status": "present",
+      "quote": "Der Auftragsverarbeiter meldet dem Verantwortlichen jede Verletzung des Schutzes personenbezogener Daten unverzüglich, spätestens jedoch innerhalb von 24 Stunden, nachdem sie ihm bekannt geworden ist"
+    },
+    "deletion_or_return": {
+      "status": "present",
+      "quote": "Nach Abschluss der Erbringung der Leistungen löscht der Auftragsverarbeiter nach Wahl des Verantwortlichen alle personenbezogenen Daten oder gibt sie zurück und löscht vorhandene Kopien innerhalb von 30 Tagen"
+    },
+    "audits": {
+      "status": "present",
+      "quote": "Der Auftragsverarbeiter stellt dem Verantwortlichen alle erforderlichen Informationen zum Nachweis der Einhaltung der in dieser Vereinbarung niedergelegten Pflichten zur Verfügung und ermöglicht und trägt zu Überprüfungen einschließlich Inspektionen bei, die vom Verantwortlichen oder einem von ihm beauftragten Prüfer durchgeführt werden"
+    },
+    "transfer_annex": {
+      "status": "present",
+      "quote": "Soweit ein in Anlage 3 genannter Unterauftragsverarbeiter personenbezogene Daten außerhalb des Europäischen Wirtschaftsraums verarbeitet, erfolgt die Übermittlung auf Grundlage der Standardvertragsklauseln der Europäischen Kommission, die dieser Vereinbarung als Anlage 4 beigefügt sind"
+    }
+  },
+  "expectedSpecifics": {
+    "breach_window": { "status": "met", "hours": 24 },
+    "subprocessor_objection": { "status": "met" },
+    "transfer_annex": { "status": "met" }
+  },
+  "expectedVerdict": "adequate",
+  "reasoning": "Every element has its own paragraph. A breach is reported within 24 hours; a new sub-processor is announced 30 days ahead in writing with a right to object; transfers by sub-processors rest on the standard clauses in Anlage 4."
+}

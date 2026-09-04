@@ -1,0 +1,78 @@
+{
+  "name": "en-hosting-no-breach-window",
+  "locale": "en",
+  "jurisdiction": "DK",
+  "vendor": { "host": "cloudhus.test", "name": "Cloudhus" },
+  "modelledOn": "A hosting provider's addendum that covers everything except how fast a breach is reported, and is vague about audits.",
+  "text": "Cloudhus Data Processing Addendum\n\nThis Data Processing Addendum (\"DPA\") supplements the Cloudhus Hosting Agreement between Cloudhus A/S, Havnegade 8, 5000 Odense C (the \"Provider\") and the customer named in the order form (the \"Customer\"). For the purposes of this DPA the Customer is the controller and the Provider is the processor of the Customer Data.\n\n1. Scope. The subject-matter of the processing is the hosting of the Customer's websites, databases and files on the Provider's infrastructure, for the duration of the Hosting Agreement and until the Customer Data has been deleted in accordance with section 11.\n\n2. Nature and purpose. The Provider stores, backs up and serves the Customer Data and makes it available to the Customer's staff and to visitors of the Customer's websites, for the sole purpose of providing the hosting service.\n\n3. Categories. The Customer Data may contain any personal data the Customer chooses to host, typically names, contact details, account credentials, order histories and support correspondence, relating to the Customer's own customers, users, employees and suppliers.\n\n4. Customer's rights and obligations. The Customer determines the purposes and means of the processing, issues instructions through the control panel and support channels, may request the information and audits described in section 12, and remains responsible for the lawfulness of the Customer Data and for keeping its own access credentials secure.\n\n5. Instructions. The Provider processes Customer Data only on the Customer's documented instructions, which are the Hosting Agreement, this DPA and the settings the Customer applies in the control panel, unless processing is required by Union or Member State law to which the Provider is subject.\n\n6. Confidentiality. All Provider staff with access to Customer Data are bound by written confidentiality undertakings that survive the end of their employment.\n\n7. Security. The Provider maintains the technical and organisational measures described in Annex A, including data centres audited to ISO 27001, encrypted storage, network segmentation, multi-factor authentication for administrative access and nightly backups retained for 30 days.\n\n8. Sub-processors. The Customer authorises the Provider to engage the sub-processors listed at cloudhus.test/sub-processors and the Provider ensures each of them is bound by data protection obligations no less protective than those in this DPA. The Provider will inform the Customer at least 14 days before a new sub-processor is engaged and the Customer may object in writing within that period.\n\n9. Assistance. The Provider assists the Customer, insofar as this is possible and taking into account the nature of the processing, in responding to requests from data subjects exercising their rights, by providing the tools to export, correct and delete Customer Data. The Provider further assists the Customer with its obligations regarding security, breach notification and data protection impact assessments by providing the information available to it.\n\n10. Security incidents. The Provider will notify the Customer of any Security Incident affecting Customer Data and cooperate with the Customer in investigating the incident and in the Customer's communication with authorities and affected persons.\n\n11. Deletion. Upon termination of the Hosting Agreement the Provider deletes all Customer Data, or returns it to the Customer in a machine-readable format if the Customer so requests before the termination date, and deletes remaining copies from backups within 30 days.\n\n12. Information and audits. The Provider may, on request, provide a summary of its security attestations and audit reports to the Customer.\n\n13. Location of data. Customer Data is hosted exclusively in data centres in the European Union and is not transferred outside the European Economic Area.\n\nAnnex A: Security measures.",
+  "expected": {
+    "parties": {
+      "status": "present",
+      "quote": "For the purposes of this DPA the Customer is the controller and the Provider is the processor of the Customer Data."
+    },
+    "subject_and_duration": {
+      "status": "present",
+      "quote": "The subject-matter of the processing is the hosting of the Customer's websites, databases and files on the Provider's infrastructure, for the duration of the Hosting Agreement and until the Customer Data has been deleted in accordance with section 11."
+    },
+    "nature_and_purpose": {
+      "status": "present",
+      "quote": "The Provider stores, backs up and serves the Customer Data and makes it available to the Customer's staff and to visitors of the Customer's websites, for the sole purpose of providing the hosting service."
+    },
+    "data_and_subjects": {
+      "status": "present",
+      "quote": "The Customer Data may contain any personal data the Customer chooses to host, typically names, contact details, account credentials, order histories and support correspondence, relating to the Customer's own customers, users, employees and suppliers."
+    },
+    "controller_rights": {
+      "status": "present",
+      "quote": "The Customer determines the purposes and means of the processing, issues instructions through the control panel and support channels, may request the information and audits described in section 12, and remains responsible for the lawfulness of the Customer Data and for keeping its own access credentials secure."
+    },
+    "documented_instructions": {
+      "status": "present",
+      "quote": "The Provider processes Customer Data only on the Customer's documented instructions, which are the Hosting Agreement, this DPA and the settings the Customer applies in the control panel, unless processing is required by Union or Member State law to which the Provider is subject."
+    },
+    "confidentiality": {
+      "status": "present",
+      "quote": "All Provider staff with access to Customer Data are bound by written confidentiality undertakings that survive the end of their employment."
+    },
+    "security_measures": {
+      "status": "present",
+      "quote": "The Provider maintains the technical and organisational measures described in Annex A, including data centres audited to ISO 27001, encrypted storage, network segmentation, multi-factor authentication for administrative access and nightly backups retained for 30 days."
+    },
+    "subprocessor_authorisation": {
+      "status": "present",
+      "quote": "The Customer authorises the Provider to engage the sub-processors listed at cloudhus.test/sub-processors and the Provider ensures each of them is bound by data protection obligations no less protective than those in this DPA."
+    },
+    "subprocessor_objection": {
+      "status": "present",
+      "quote": "The Provider will inform the Customer at least 14 days before a new sub-processor is engaged and the Customer may object in writing within that period."
+    },
+    "assist_data_subject_rights": {
+      "status": "present",
+      "quote": "The Provider assists the Customer, insofar as this is possible and taking into account the nature of the processing, in responding to requests from data subjects exercising their rights, by providing the tools to export, correct and delete Customer Data."
+    },
+    "assist_obligations": {
+      "status": "present",
+      "quote": "The Provider further assists the Customer with its obligations regarding security, breach notification and data protection impact assessments by providing the information available to it."
+    },
+    "breach_notification": {
+      "status": "present",
+      "quote": "The Provider will notify the Customer of any Security Incident affecting Customer Data and cooperate with the Customer in investigating the incident and in the Customer's communication with authorities and affected persons."
+    },
+    "deletion_or_return": {
+      "status": "present",
+      "quote": "Upon termination of the Hosting Agreement the Provider deletes all Customer Data, or returns it to the Customer in a machine-readable format if the Customer so requests before the termination date, and deletes remaining copies from backups within 30 days."
+    },
+    "audits": { "status": "undetermined" },
+    "transfer_annex": {
+      "status": "present",
+      "quote": "Customer Data is hosted exclusively in data centres in the European Union and is not transferred outside the European Economic Area."
+    }
+  },
+  "expectedSpecifics": {
+    "breach_window": { "status": "not_met" },
+    "subprocessor_objection": { "status": "met" },
+    "transfer_annex": { "status": "met" }
+  },
+  "expectedVerdict": "inadequate",
+  "reasoning": "The breach clause promises notice and cooperation but names no time at all, which leaves the controller unable to plan its own 72-hour notification; that alone makes the agreement inadequate. The audit clause offers a summary of attestations on request, which touches the element without committing to information and audits, so it is undetermined rather than absent. Transfers are ruled out expressly, and sub-processor changes come with 14 days' notice and an objection in writing."
+}

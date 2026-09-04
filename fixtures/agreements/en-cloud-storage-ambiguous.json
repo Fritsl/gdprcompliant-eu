@@ -1,0 +1,75 @@
+{
+  "name": "en-cloud-storage-ambiguous",
+  "locale": "en",
+  "jurisdiction": "DK",
+  "vendor": { "host": "skyboks.test", "name": "Skyboks" },
+  "modelledOn": "A file-storage provider's agreement that covers every element but hedges on two of them, so the reading stays open rather than passing.",
+  "text": "Skyboks Data Processing Agreement\n\nThis Data Processing Agreement is part of the Skyboks Business Subscription between Skyboks ApS, Lyngbyvej 2, 2100 Copenhagen Ø (\"Skyboks\", the processor) and the business customer holding the subscription (\"Customer\", the controller). Skyboks processes Customer Data on behalf of Customer and under its instructions.\n\n1. Subject-matter and duration. The subject-matter of the processing is the storage, synchronisation and sharing of files uploaded by Customer's users, for the duration of the subscription and the deletion period in clause 11.\n\n2. Nature and purpose. Skyboks stores the files, keeps version histories, synchronises them between Customer's devices and makes them available to the people Customer shares them with, for the purpose of providing file storage and collaboration to Customer.\n\n3. Personal data and data subjects. Customer Data may contain any personal data Customer's users choose to store, and in any event contains user names, email addresses, device identifiers, IP addresses and activity logs; the data subjects are Customer's employees and the people whose data appears in stored files or who receive shared links.\n\n4. Customer's rights and obligations. Customer instructs Skyboks through the subscription, the admin console and written notice, may audit under clause 12, may object to sub-processors under clause 8, may require deletion or return of Customer Data, and is responsible for the content its users upload and for the instructions it gives.\n\n5. Instructions. Skyboks processes Customer Data only on documented instructions from Customer, including with regard to transfers to a third country, unless required to do so by Union or Member State law, in which case Skyboks informs Customer of the requirement before processing unless the law prohibits it.\n\n6. Confidentiality. Skyboks ensures that the persons it authorises to process Customer Data have committed themselves to confidentiality in writing and that support access to file contents is granted only on Customer's request.\n\n7. Security. Skyboks implements the technical and organisational measures in Annex 2, including encryption of files at rest with per-customer keys, encryption in transit, two-factor authentication, audit logging of administrative access and geographically separate backups.\n\n8. Sub-processors. Customer gives Skyboks general written authorisation for the sub-processors in Annex 3, on each of which Skyboks imposes the same data protection obligations by written contract. Skyboks informs Customer by email at least 30 days before adding or replacing a sub-processor and Customer may object within that period; if the objection is not resolved Customer may terminate the subscription with a pro-rata refund.\n\n9. Requests from data subjects. Skyboks assists Customer with appropriate technical and organisational measures in fulfilling its obligation to respond to requests from data subjects exercising their rights, and forwards to Customer any request it receives directly.\n\n10. Other assistance. Skyboks assists Customer in ensuring compliance with its obligations on security of processing, notification of personal data breaches and data protection impact assessments, taking into account the nature of the processing and the information available to Skyboks.\n\n11. Personal data breach. Skyboks notifies Customer promptly after becoming aware of a personal data breach affecting Customer Data and provides the details Customer needs for its own notification as they become known.\n\n12. End of service. After the end of the service, Customer Data is removed from the active systems; copies may persist in backups for a period.\n\n13. Audits. Skyboks makes available to Customer all information necessary to demonstrate compliance with this Agreement and allows for and contributes to audits, including inspections, by Customer or an auditor mandated by Customer, on 30 days' notice.\n\n14. Data location. Customer Data is stored in the EU. Our support engineers may access Customer Data from outside the EU under appropriate safeguards.\n\nAnnex 2: Security measures. Annex 3: Sub-processors.",
+  "expected": {
+    "parties": {
+      "status": "present",
+      "quote": "Skyboks ApS, Lyngbyvej 2, 2100 Copenhagen Ø (\"Skyboks\", the processor) and the business customer holding the subscription (\"Customer\", the controller)"
+    },
+    "subject_and_duration": {
+      "status": "present",
+      "quote": "The subject-matter of the processing is the storage, synchronisation and sharing of files uploaded by Customer's users, for the duration of the subscription and the deletion period in clause 11."
+    },
+    "nature_and_purpose": {
+      "status": "present",
+      "quote": "Skyboks stores the files, keeps version histories, synchronises them between Customer's devices and makes them available to the people Customer shares them with, for the purpose of providing file storage and collaboration to Customer."
+    },
+    "data_and_subjects": {
+      "status": "present",
+      "quote": "Customer Data may contain any personal data Customer's users choose to store, and in any event contains user names, email addresses, device identifiers, IP addresses and activity logs; the data subjects are Customer's employees and the people whose data appears in stored files or who receive shared links."
+    },
+    "controller_rights": {
+      "status": "present",
+      "quote": "Customer instructs Skyboks through the subscription, the admin console and written notice, may audit under clause 12, may object to sub-processors under clause 8, may require deletion or return of Customer Data, and is responsible for the content its users upload and for the instructions it gives."
+    },
+    "documented_instructions": {
+      "status": "present",
+      "quote": "Skyboks processes Customer Data only on documented instructions from Customer, including with regard to transfers to a third country, unless required to do so by Union or Member State law"
+    },
+    "confidentiality": {
+      "status": "present",
+      "quote": "Skyboks ensures that the persons it authorises to process Customer Data have committed themselves to confidentiality in writing"
+    },
+    "security_measures": {
+      "status": "present",
+      "quote": "Skyboks implements the technical and organisational measures in Annex 2, including encryption of files at rest with per-customer keys, encryption in transit, two-factor authentication, audit logging of administrative access and geographically separate backups."
+    },
+    "subprocessor_authorisation": {
+      "status": "present",
+      "quote": "Customer gives Skyboks general written authorisation for the sub-processors in Annex 3, on each of which Skyboks imposes the same data protection obligations by written contract."
+    },
+    "subprocessor_objection": {
+      "status": "present",
+      "quote": "Skyboks informs Customer by email at least 30 days before adding or replacing a sub-processor and Customer may object within that period"
+    },
+    "assist_data_subject_rights": {
+      "status": "present",
+      "quote": "Skyboks assists Customer with appropriate technical and organisational measures in fulfilling its obligation to respond to requests from data subjects exercising their rights"
+    },
+    "assist_obligations": {
+      "status": "present",
+      "quote": "Skyboks assists Customer in ensuring compliance with its obligations on security of processing, notification of personal data breaches and data protection impact assessments"
+    },
+    "breach_notification": {
+      "status": "present",
+      "quote": "Skyboks notifies Customer promptly after becoming aware of a personal data breach affecting Customer Data"
+    },
+    "deletion_or_return": { "status": "undetermined" },
+    "audits": {
+      "status": "present",
+      "quote": "Skyboks makes available to Customer all information necessary to demonstrate compliance with this Agreement and allows for and contributes to audits, including inspections, by Customer or an auditor mandated by Customer"
+    },
+    "transfer_annex": { "status": "undetermined" }
+  },
+  "expectedSpecifics": {
+    "breach_window": { "status": "met" },
+    "subprocessor_objection": { "status": "met" },
+    "transfer_annex": { "status": "undetermined" }
+  },
+  "expectedVerdict": "undetermined",
+  "reasoning": "Nothing is missing, but two clauses hedge. The end-of-service clause removes data from active systems and lets copies persist, without the controller's choice of deletion or return; the data-location clause admits access from outside the EU under safeguards it does not name. Both are undetermined, so the verdict stays open: not inadequate, and not adequate either. A breach is notified promptly, which commits to no undue delay; sub-processor changes carry 30 days and an objection."
+}

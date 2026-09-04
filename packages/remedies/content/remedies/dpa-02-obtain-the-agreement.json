@@ -1,0 +1,57 @@
+{
+  "id": "dpa-02-obtain-the-agreement",
+  "version": 1,
+  "findingTypeId": "DPA-02",
+  "jurisdictions": "all",
+  "kind": "self_fix",
+  "title": {
+    "en": "Get the signed agreement from the supplier and file it",
+    "da": "Få den underskrevne aftale fra leverandøren, og læg den på sagen",
+    "de": "Den unterschriebenen Vertrag vom Anbieter einholen und ablegen"
+  },
+  "effort": {
+    "label": {
+      "en": "One email, then filing",
+      "da": "Én e-mail, derefter arkivering",
+      "de": "Eine E-Mail, dann Ablage"
+    },
+    "minutes": 15
+  },
+  "detail": {
+    "en": "The supplier says it has one, but the link leads nowhere a reader can follow. Ask for the copy that binds you, and keep it where the case can see it.",
+    "da": "Leverandøren siger, den findes, men linket fører ingen steder hen, en læser kan følge. Bed om den kopi, der binder jer, og opbevar den, hvor sagen kan se den.",
+    "de": "Der Anbieter sagt, es gebe einen, aber der Link führt nirgendwohin, wohin ein Leser folgen kann. Bitten Sie um das Exemplar, das Sie bindet, und bewahren Sie es dort auf, wo der Fall es sieht."
+  },
+  "action": {
+    "kind": "message",
+    "label": {
+      "en": "Ask the supplier for the agreement",
+      "da": "Bed leverandøren om aftalen",
+      "de": "Den Anbieter um den Vertrag bitten"
+    },
+    "to": {
+      "en": "The supplier at {{hosts}}",
+      "da": "Leverandøren på {{hosts}}",
+      "de": "Der Anbieter unter {{hosts}}"
+    },
+    "subject": {
+      "en": "Our data processing agreement with you",
+      "da": "Vores databehandleraftale med jer",
+      "de": "Unser Auftragsverarbeitungsvertrag mit Ihnen"
+    },
+    "body": {
+      "en": "Hello,\n\nYou process personal data on behalf of {{domain}}. Your site refers to a data processing agreement, but we cannot open it. Please send us the agreement that applies to our account, as a document we can keep, together with the current list of sub-processors and the date it took effect.\n\nThank you,\n{{owner}}",
+      "da": "Hej,\n\nI behandler personoplysninger på vegne af {{domain}}. Jeres side henviser til en databehandleraftale, men vi kan ikke åbne den. Send os venligst den aftale, der gælder for vores konto, som et dokument vi kan gemme, sammen med den aktuelle liste over underdatabehandlere og datoen, den trådte i kraft.\n\nVenlig hilsen\n{{owner}}",
+      "de": "Guten Tag,\n\nSie verarbeiten personenbezogene Daten im Auftrag von {{domain}}. Ihre Website verweist auf einen Auftragsverarbeitungsvertrag, den wir nicht öffnen können. Bitte senden Sie uns den für unser Konto geltenden Vertrag als Dokument, das wir aufbewahren können, zusammen mit der aktuellen Liste der Unterauftragsverarbeiter und dem Datum, an dem er in Kraft trat.\n\nMit freundlichen Grüßen\n{{owner}}"
+    }
+  },
+  "verifyLabel": {
+    "en": "The agreement is filed",
+    "da": "Aftalen er arkiveret",
+    "de": "Der Vertrag ist abgelegt"
+  },
+  "verification": {
+    "method": "attestation",
+    "statement": "The signed processing agreement with this supplier is on file and can be produced"
+  }
+}

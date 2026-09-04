@@ -22,7 +22,9 @@ Not yet reviewed by a lawyer.
 | CNS-06 | Consent | GDPR Art. 4(11) — consent is an affirmative act, not a box already ticked `GDPR:4:11`<br>GDPR Art. 7(2) — a consent request is clearly distinguishable `GDPR:7:2`<br>ePrivacy Art. 5(3) — storage or access only with consent `ePrivacy:5:3` | cns-06 v1 |
 | CNS-07 | Consent | GDPR Art. 7(3) — refusing must be as easy as agreeing `GDPR:7:3`<br>GDPR Art. 12(1) — in an easily accessible form `GDPR:12:1` | cns-07 v1 |
 | CNS-09 |  | ePrivacy Art. 5(3) — consent before storage or access `ePrivacy:5:3`<br>GDPR Art. 13(1)(e) — recipients must be named `GDPR:13:1:e` | cns-09 v1 |
-| DPA-01 |  | GDPR Art. 28(3) — required content of a processor agreement `GDPR:28:3` | dpa-01 v1 |
+| DPA-01 | Contracts | GDPR Art. 28(3) — required content of a processor agreement `GDPR:28:3` | dpa-01 v1 |
+| DPA-02 | Contracts | GDPR Art. 28(3) — processing governed by a contract `GDPR:28:3`<br>GDPR Art. 28(9) — the contract is in writing, including electronic form `GDPR:28:9` | dpa-02 v1 |
+| DPA-03 | Contracts | GDPR Art. 28(3) — what the contract must stipulate `GDPR:28:3` | dpa-03 v1 |
 | EXP-01 | Security | GDPR Art. 32(1) — appropriate technical measures `GDPR:32:1`<br>GDPR Art. 5(1)(f) — integrity and confidentiality `GDPR:5:1:f` | exp-01 v1 |
 | FPR-01 | Observation | ePrivacy Art. 5(3) — access to the terminal equipment needs consent `ePrivacy:5:3`<br>GDPR Art. 6(1) — a lawful basis for the processing `GDPR:6:1` | fpr-01 v1 |
 | FPR-02 | Observation | ePrivacy Art. 5(3) — access to the terminal equipment needs consent `ePrivacy:5:3`<br>GDPR Art. 6(1) — a lawful basis for the processing `GDPR:6:1` | fpr-02 v1 |
@@ -65,7 +67,9 @@ Not yet reviewed by a lawyer.
 | CNS-06 | Consent | GDPR Art. 4(11) — consent is an affirmative act, not a box already ticked `GDPR:4:11`<br>GDPR Art. 7(2) — a consent request is clearly distinguishable `GDPR:7:2`<br>ePrivacy Art. 5(3) — storage or access only with consent `ePrivacy:5:3` | cns-06 v1 |
 | CNS-07 | Consent | GDPR Art. 7(3) — refusing must be as easy as agreeing `GDPR:7:3`<br>GDPR Art. 12(1) — in an easily accessible form `GDPR:12:1` | cns-07 v1 |
 | CNS-09 |  | ePrivacy Art. 5(3) — consent before storage or access `ePrivacy:5:3`<br>GDPR Art. 13(1)(e) — recipients must be named `GDPR:13:1:e` | cns-09 v1 |
-| DPA-01 |  | GDPR Art. 28(3) — required content of a processor agreement `GDPR:28:3` | dpa-01 v1 |
+| DPA-01 | Contracts | GDPR Art. 28(3) — required content of a processor agreement `GDPR:28:3` | dpa-01 v1 |
+| DPA-02 | Contracts | GDPR Art. 28(3) — processing governed by a contract `GDPR:28:3`<br>GDPR Art. 28(9) — the contract is in writing, including electronic form `GDPR:28:9` | dpa-02 v1 |
+| DPA-03 | Contracts | GDPR Art. 28(3) — what the contract must stipulate `GDPR:28:3` | dpa-03 v1 |
 | EXP-01 | Security | GDPR Art. 32(1) — appropriate technical measures `GDPR:32:1`<br>GDPR Art. 5(1)(f) — integrity and confidentiality `GDPR:5:1:f` | exp-01 v1 |
 | FPR-01 | Observation | ePrivacy Art. 5(3) — access to the terminal equipment needs consent `ePrivacy:5:3`<br>GDPR Art. 6(1) — a lawful basis for the processing `GDPR:6:1` | fpr-01 v1 |
 | FPR-02 | Observation | ePrivacy Art. 5(3) — access to the terminal equipment needs consent `ePrivacy:5:3`<br>GDPR Art. 6(1) — a lawful basis for the processing `GDPR:6:1` | fpr-02 v1 |

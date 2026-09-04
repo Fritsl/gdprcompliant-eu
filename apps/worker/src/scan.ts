@@ -31,6 +31,10 @@ import {
   checkAppListings,
   policyTextOf,
   recipientChecks,
+  agreementDraft,
+  discoverAgreement,
+  resolveHosts,
+  type AgreementDiscoveryResult,
 } from '@gc/scanner';
 import type { OutboundFetch } from '@gc/config';
 import type { Evidence } from '@gc/contracts';
@@ -50,6 +54,9 @@ export interface ScanWorkerOptions {
   readonly scheme?: 'https' | 'http';
   // The declared-endpoint fetch for app store listings (D-05); absent, no listing is read.
   readonly stores?: OutboundFetch;
+  // Read the processing agreements the site's processors publish (D-06): at most this
+  // many suppliers, through the same browser pool. Off unless asked for.
+  readonly agreements?: number;
 }
 
 export async function registerScanWorker(
@@ -196,6 +203,26 @@ export async function registerScanWorker(
         )
       : undefined;
     if (apps) evidence.push(...apps.evidence);
+    // The suppliers' agreements (D-06): every resolved processor the site talks to, read
+    // at the site its own terms are published on.
+    const agreements: AgreementDiscoveryResult[] = [];
+    if (options.agreements) {
+      const seen = new Set<string>();
+      for (const r of resolveHosts(c.vendorHosts)) {
+        if (r.resolution !== 'resolved' || r.entry.role !== 'processor' || seen.has(r.entry.id))
+          continue;
+        seen.add(r.entry.id);
+        if (seen.size > options.agreements) break;
+        agreements.push(
+          await discoverAgreement(
+            options.pool,
+            { url: `${new URL(r.entry.provenance.url).origin}/` },
+            { identity, vendorName: r.entry.label, now },
+          ),
+        );
+      }
+      for (const a of agreements) evidence.push(...a.evidence);
+    }
     await mark(
       'policy',
       policies.discovery.observation.outcome === 'pass' ? 'ok' : 'undet',
@@ -246,7 +273,13 @@ export async function registerScanWorker(
       forms: forms.inventory.observations,
       policies: policies.discovery,
       consent: diffed.drafts,
-      drafts: apps?.drafts ?? [],
+      drafts: [
+        ...(apps?.drafts ?? []),
+        ...agreements.flatMap((a) => {
+          const d = agreementDraft(a, domain);
+          return d ? [d] : [];
+        }),
+      ],
     };
     const assembled = assembleFindings(input, {
       tenantId: opened.tenantId,

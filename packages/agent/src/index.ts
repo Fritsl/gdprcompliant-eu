@@ -13,5 +13,6 @@ export * from './verifier.js';
 export * from './untrusted.js';
 export * from './guards.js';
 export * from './policy-clauses.js';
+export * from './agreement-analysis.js';
 export * from './workers/index.js';
 export * from './planner.js';

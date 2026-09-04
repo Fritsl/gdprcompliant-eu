@@ -166,5 +166,23 @@
     "area": "Notice",
     "detector": "scanner/apps#declared_not_in_policy",
     "defaultSeverity": "serious"
+  },
+  {
+    "findingTypeId": "DPA-01",
+    "area": "Contracts",
+    "detector": "scanner/agreements#none",
+    "defaultSeverity": "serious"
+  },
+  {
+    "findingTypeId": "DPA-02",
+    "area": "Contracts",
+    "detector": "scanner/agreements#unfindable",
+    "defaultSeverity": "serious"
+  },
+  {
+    "findingTypeId": "DPA-03",
+    "area": "Contracts",
+    "detector": "agent/agreement-analysis#inadequate",
+    "defaultSeverity": "serious"
   }
 ]

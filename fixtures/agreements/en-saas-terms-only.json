@@ -1,0 +1,51 @@
+{
+  "name": "en-saas-terms-only",
+  "locale": "en",
+  "jurisdiction": "DE",
+  "vendor": { "host": "boardly.test", "name": "Boardly" },
+  "modelledOn": "A project-management tool's terms of service, offered under the heading of a data processing agreement, that reads like terms and stipulates almost nothing.",
+  "text": "Boardly Terms of Service and Data Processing\n\nThese Terms govern your use of Boardly, the project board provided by Boardly Inc., 500 Market Street, San Francisco, CA. By creating a workspace you agree to these Terms. You are responsible for the data you and your team upload to Boardly and for making sure you are allowed to upload it.\n\nYour data. We will only process Customer Data in accordance with your instructions as documented in these Terms and in the settings you choose in the product, and to provide, maintain and improve the service.\n\nSecurity. We take security seriously. We use industry-standard technical and organisational measures to protect Customer Data, including encryption in transit, encrypted backups, access controls and regular vulnerability scanning, as described on our security page.\n\nSub-processors. You authorise us to use the sub-processors listed on our website to help us deliver the service. We may update the list of sub-processors from time to time.\n\nIncidents. We will let you know if we become aware of unauthorised access to your data.\n\nData export and deletion. You may export your data at any time from the workspace settings. After termination we may delete your data at our discretion.\n\nSecurity information. We may provide a summary of our security practices on request.\n\nHosting. Our servers are located in the United States.\n\nChanges. We may change these Terms at any time by posting the new version on our website. Continued use of Boardly after a change means you accept the new Terms.\n\nContact. Questions about these Terms can be sent to legal@boardly.test.",
+  "expected": {
+    "parties": { "status": "absent" },
+    "subject_and_duration": { "status": "absent" },
+    "nature_and_purpose": { "status": "absent" },
+    "data_and_subjects": { "status": "absent" },
+    "controller_rights": { "status": "absent" },
+    "documented_instructions": {
+      "status": "present",
+      "quote": "We will only process Customer Data in accordance with your instructions as documented in these Terms and in the settings you choose in the product"
+    },
+    "confidentiality": { "status": "absent" },
+    "security_measures": {
+      "status": "present",
+      "quote": "We use industry-standard technical and organisational measures to protect Customer Data, including encryption in transit, encrypted backups, access controls and regular vulnerability scanning, as described on our security page."
+    },
+    "subprocessor_authorisation": {
+      "status": "present",
+      "quote": "You authorise us to use the sub-processors listed on our website to help us deliver the service."
+    },
+    "subprocessor_objection": {
+      "status": "present",
+      "quote": "We may update the list of sub-processors from time to time."
+    },
+    "assist_data_subject_rights": { "status": "absent" },
+    "assist_obligations": { "status": "absent" },
+    "breach_notification": {
+      "status": "present",
+      "quote": "We will let you know if we become aware of unauthorised access to your data."
+    },
+    "deletion_or_return": { "status": "undetermined" },
+    "audits": { "status": "undetermined" },
+    "transfer_annex": {
+      "status": "present",
+      "quote": "Our servers are located in the United States."
+    }
+  },
+  "expectedSpecifics": {
+    "breach_window": { "status": "not_met" },
+    "subprocessor_objection": { "status": "not_met" },
+    "transfer_annex": { "status": "not_met" }
+  },
+  "expectedVerdict": "inadequate",
+  "reasoning": "This is a terms page, not an agreement: it never names a controller or a processor, never describes the processing, the data or the people it concerns, and says nothing about confidentiality or assistance, so eight elements are absent. What it does say fails every specific check: the incident clause names no time, the sub-processor list changes without notice or objection, and the data sits in the United States with no safeguard mentioned. Deletion at the vendor's discretion and a security summary on request are undetermined rather than absent."
+}
