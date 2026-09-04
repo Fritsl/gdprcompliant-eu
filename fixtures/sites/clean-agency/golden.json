@@ -1,0 +1,11 @@
+{
+  "site": "bureau.test",
+  "families": [
+    "consent",
+    "forms",
+    "policies",
+    "replay",
+    "security"
+  ],
+  "findings": []
+}

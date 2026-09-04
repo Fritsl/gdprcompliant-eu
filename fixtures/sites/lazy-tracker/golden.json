@@ -1,0 +1,61 @@
+{
+  "site": "lazyshop.test",
+  "families": [
+    "consent",
+    "forms",
+    "policies",
+    "replay",
+    "security"
+  ],
+  "findings": [
+    {
+      "typeId": "CLK-01",
+      "severity": "serious",
+      "subject": {
+        "host": "lazyshop.test"
+      }
+    },
+    {
+      "typeId": "CNS-01",
+      "severity": "serious",
+      "subject": {
+        "host": "lazyshop.test"
+      }
+    },
+    {
+      "typeId": "POL-01",
+      "severity": "serious",
+      "subject": {
+        "host": "lazyshop.test"
+      }
+    },
+    {
+      "typeId": "SEC-01",
+      "severity": "blocking",
+      "subject": {
+        "host": "lazyshop.test"
+      }
+    },
+    {
+      "typeId": "SEC-03",
+      "severity": "serious",
+      "subject": {
+        "host": "lazyshop.test"
+      }
+    },
+    {
+      "typeId": "SEC-05",
+      "severity": "advisory",
+      "subject": {
+        "host": "lazyshop.test"
+      }
+    },
+    {
+      "typeId": "SEC-06",
+      "severity": "advisory",
+      "subject": {
+        "host": "lazyshop.test"
+      }
+    }
+  ]
+}

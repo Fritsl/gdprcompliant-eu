@@ -20,6 +20,7 @@
     "test:perf": "vitest run --project perf",
     "test:coverage:check": "vitest run --project unit --coverage",
     "proto": "node apps/prototype/smoke.mjs && node apps/prototype/build.mjs",
+    "goldens:update": "node scripts/update-goldens.mjs",
     "check:i18n-coverage": "node scripts/i18n-coverage.mjs",
     "web:dev": "pnpm -F web dev",
     "web:build": "pnpm -F web build",

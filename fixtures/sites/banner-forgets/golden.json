@@ -1,0 +1,26 @@
+{
+  "site": "glemsom.test",
+  "families": [
+    "consent",
+    "forms",
+    "policies",
+    "replay",
+    "security"
+  ],
+  "findings": [
+    {
+      "typeId": "CNS-04",
+      "severity": "serious",
+      "subject": {
+        "host": "glemsom.test"
+      }
+    },
+    {
+      "typeId": "POL-01",
+      "severity": "serious",
+      "subject": {
+        "host": "glemsom.test"
+      }
+    }
+  ]
+}

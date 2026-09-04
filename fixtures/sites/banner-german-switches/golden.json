@@ -1,0 +1,40 @@
+{
+  "site": "schalter.test",
+  "families": [
+    "consent",
+    "forms",
+    "policies",
+    "replay",
+    "security"
+  ],
+  "findings": [
+    {
+      "typeId": "CNS-05",
+      "severity": "serious",
+      "subject": {
+        "host": "schalter.test"
+      }
+    },
+    {
+      "typeId": "CNS-06",
+      "severity": "serious",
+      "subject": {
+        "host": "schalter.test"
+      }
+    },
+    {
+      "typeId": "CNS-07",
+      "severity": "advisory",
+      "subject": {
+        "host": "schalter.test"
+      }
+    },
+    {
+      "typeId": "POL-01",
+      "severity": "serious",
+      "subject": {
+        "host": "schalter.test"
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "site": "app.spa.test",
+  "families": [
+    "consent",
+    "forms",
+    "policies",
+    "replay",
+    "security"
+  ],
+  "findings": []
+}

@@ -8,6 +8,7 @@ fixtures/sites/<name>/
   expected.json               what must and must not come out
   hosts/<host>/index.html     the site itself, and every third party it loads
   hosts/<host>/_routes.json   optional per-path overrides: redirects, headers, statuses
+  golden.json                 everything the scanner raised here when last accepted (T-02)
 ```
 
 Every host a fixture loads — the site, its consent platform, its trackers, its font
@@ -77,3 +78,12 @@ pnpm test:integration -- fixtures        # served through a real Chromium, expec
 ```
 
 Adding a fixture is a new directory. No code changes.
+
+## golden.json
+
+Where `expected.json` says what must and must not come out, `golden.json` records everything
+that did come out, finding by finding, when someone last accepted it. `pnpm test:integration --
+goldens` scans every fixture and names exactly what is missing, extra or changed against it.
+A golden changes only on purpose: `pnpm goldens:update` rewrites them and prints what changed,
+and because the files are committed, the change is a diff a reviewer reads next to the code
+that caused it. A silently drifting scanner cannot pass.

@@ -1,0 +1,11 @@
+{
+  "site": "injected.shop.test",
+  "families": [
+    "consent",
+    "forms",
+    "policies",
+    "replay",
+    "security"
+  ],
+  "findings": []
+}

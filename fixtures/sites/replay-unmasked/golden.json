@@ -1,0 +1,82 @@
+{
+  "site": "klinik.test",
+  "families": [
+    "consent",
+    "forms",
+    "policies",
+    "replay",
+    "security"
+  ],
+  "findings": [
+    {
+      "typeId": "CNS-01",
+      "severity": "serious",
+      "subject": {
+        "host": "klinik.test"
+      }
+    },
+    {
+      "typeId": "FPR-01",
+      "severity": "serious",
+      "subject": {
+        "host": "klinik.test"
+      }
+    },
+    {
+      "typeId": "FPR-02",
+      "severity": "serious",
+      "subject": {
+        "host": "klinik.test"
+      }
+    },
+    {
+      "typeId": "FPR-03",
+      "severity": "serious",
+      "subject": {
+        "host": "klinik.test"
+      }
+    },
+    {
+      "typeId": "FRM-03",
+      "severity": "blocking",
+      "subject": {
+        "host": "klinik.test"
+      }
+    },
+    {
+      "typeId": "REC-01",
+      "severity": "blocking",
+      "subject": {
+        "host": "klinik.test"
+      }
+    },
+    {
+      "typeId": "SEC-01",
+      "severity": "blocking",
+      "subject": {
+        "host": "klinik.test"
+      }
+    },
+    {
+      "typeId": "SEC-03",
+      "severity": "serious",
+      "subject": {
+        "host": "klinik.test"
+      }
+    },
+    {
+      "typeId": "SEC-05",
+      "severity": "advisory",
+      "subject": {
+        "host": "klinik.test"
+      }
+    },
+    {
+      "typeId": "SEC-06",
+      "severity": "advisory",
+      "subject": {
+        "host": "klinik.test"
+      }
+    }
+  ]
+}

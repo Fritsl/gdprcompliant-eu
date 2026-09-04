@@ -1,0 +1,26 @@
+{
+  "site": "kunja.test",
+  "families": [
+    "consent",
+    "forms",
+    "policies",
+    "replay",
+    "security"
+  ],
+  "findings": [
+    {
+      "typeId": "CNS-03",
+      "severity": "serious",
+      "subject": {
+        "host": "kunja.test"
+      }
+    },
+    {
+      "typeId": "POL-01",
+      "severity": "serious",
+      "subject": {
+        "host": "kunja.test"
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "site": "ren.butik.test",
+  "families": [
+    "consent",
+    "forms",
+    "policies",
+    "replay",
+    "security"
+  ],
+  "findings": []
+}

@@ -1,0 +1,54 @@
+{
+  "site": "tilmeld.test",
+  "families": [
+    "consent",
+    "forms",
+    "policies",
+    "replay",
+    "security"
+  ],
+  "findings": [
+    {
+      "typeId": "FRM-01",
+      "severity": "blocking",
+      "subject": {
+        "host": "tilmeld.test"
+      }
+    },
+    {
+      "typeId": "FRM-02",
+      "severity": "advisory",
+      "subject": {
+        "host": "tilmeld.test"
+      }
+    },
+    {
+      "typeId": "FRM-03",
+      "severity": "blocking",
+      "subject": {
+        "host": "tilmeld.test"
+      }
+    },
+    {
+      "typeId": "SEC-01",
+      "severity": "blocking",
+      "subject": {
+        "host": "tilmeld.test"
+      }
+    },
+    {
+      "typeId": "SEC-03",
+      "severity": "serious",
+      "subject": {
+        "host": "tilmeld.test"
+      }
+    },
+    {
+      "typeId": "SEC-06",
+      "severity": "advisory",
+      "subject": {
+        "host": "tilmeld.test"
+      }
+    }
+  ]
+}

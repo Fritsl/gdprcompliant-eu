@@ -1,0 +1,19 @@
+{
+  "site": "onetrust-shop.test",
+  "families": [
+    "consent",
+    "forms",
+    "policies",
+    "replay",
+    "security"
+  ],
+  "findings": [
+    {
+      "typeId": "POL-01",
+      "severity": "serious",
+      "subject": {
+        "host": "onetrust-shop.test"
+      }
+    }
+  ]
+}
