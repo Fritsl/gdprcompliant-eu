@@ -1,0 +1,247 @@
+{
+  "version": "2026-09-04",
+  "copy": {
+    "because": {
+      "en": "Asked because {n} duties turn on the answer: {duties}.",
+      "da": "Spurgt, fordi {n} pligter afhænger af svaret: {duties}.",
+      "de": "Gefragt, weil {n} Pflichten von der Antwort abhängen: {duties}."
+    },
+    "becauseOne": {
+      "en": "Asked because one duty turns on the answer: {duties}.",
+      "da": "Spurgt, fordi én pligt afhænger af svaret: {duties}.",
+      "de": "Gefragt, weil eine Pflicht von der Antwort abhängt: {duties}."
+    },
+    "sector": {
+      "en": "Asked early because the company works in {sector}.",
+      "da": "Spurgt tidligt, fordi virksomheden arbejder inden for {sector}.",
+      "de": "Früh gefragt, weil das Unternehmen im Bereich {sector} tätig ist."
+    }
+  },
+  "questions": [
+    {
+      "id": "q-headcount",
+      "asks": {
+        "en": "How many people work at the company?",
+        "da": "Hvor mange arbejder i virksomheden?",
+        "de": "Wie viele Menschen arbeiten im Unternehmen?"
+      },
+      "why": {
+        "en": "Some duties depend on size, and the business register does not always say.",
+        "da": "Nogle pligter afhænger af størrelsen, og virksomhedsregistret siger det ikke altid.",
+        "de": "Einige Pflichten hängen von der Größe ab, und das Handelsregister sagt es nicht immer."
+      },
+      "options": [
+        {
+          "id": "1-9",
+          "label": { "en": "1 to 9", "da": "1 til 9", "de": "1 bis 9" },
+          "sets": { "company.headcountMin": 1, "company.headcountMax": 9 }
+        },
+        {
+          "id": "10-49",
+          "label": { "en": "10 to 49", "da": "10 til 49", "de": "10 bis 49" },
+          "sets": { "company.headcountMin": 10, "company.headcountMax": 49 }
+        },
+        {
+          "id": "50-249",
+          "label": { "en": "50 to 249", "da": "50 til 249", "de": "50 bis 249" },
+          "sets": { "company.headcountMin": 50, "company.headcountMax": 249 }
+        },
+        {
+          "id": "250+",
+          "label": { "en": "250 or more", "da": "250 eller flere", "de": "250 oder mehr" },
+          "sets": { "company.headcountMin": 250, "company.headcountMax": 100000 }
+        }
+      ],
+      "resolves": ["record-of-processing"]
+    },
+    {
+      "id": "q-ai-assistants",
+      "asks": {
+        "en": "Do staff use AI assistants with customer data?",
+        "da": "Bruger medarbejdere AI-assistenter med kundedata?",
+        "de": "Nutzen Mitarbeitende KI-Assistenten mit Kundendaten?"
+      },
+      "why": {
+        "en": "An AI assistant that sees customer data is a processor, usually one without an agreement and outside the EEA.",
+        "da": "En AI-assistent, der ser kundedata, er en databehandler, som regel uden aftale og uden for EØS.",
+        "de": "Ein KI-Assistent, der Kundendaten sieht, ist ein Auftragsverarbeiter, meist ohne Vertrag und außerhalb des EWR."
+      },
+      "options": [
+        {
+          "id": "yes",
+          "label": { "en": "Yes", "da": "Ja", "de": "Ja" },
+          "sets": { "company.staffUseAiWithCustomerData": true }
+        },
+        {
+          "id": "no",
+          "label": { "en": "No", "da": "Nej", "de": "Nein" },
+          "sets": { "company.staffUseAiWithCustomerData": false }
+        },
+        {
+          "id": "unsure",
+          "label": { "en": "Not sure", "da": "Ved ikke", "de": "Weiß nicht" },
+          "sets": {}
+        }
+      ],
+      "resolves": ["ai-assistant-processor"]
+    },
+    {
+      "id": "q-customer-files",
+      "asks": {
+        "en": "Are customer files kept with your mail and calendar provider?",
+        "da": "Ligger kundefiler hos jeres mail- og kalenderudbyder?",
+        "de": "Liegen Kundendateien beim Anbieter von E-Mail und Kalender?"
+      },
+      "why": {
+        "en": "Files with the same provider raise the same questions about access from outside the EEA as the mail does.",
+        "da": "Filer hos samme udbyder rejser de samme spørgsmål om adgang uden for EØS som mailen gør.",
+        "de": "Dateien beim selben Anbieter werfen dieselben Fragen zum Zugriff von außerhalb des EWR auf wie die E-Mails."
+      },
+      "askWhen": {
+        "fact": "register.activities",
+        "op": "contains",
+        "value": "email_and_documents"
+      },
+      "options": [
+        {
+          "id": "yes",
+          "label": { "en": "Yes", "da": "Ja", "de": "Ja" },
+          "sets": { "company.customerFilesWithMailProvider": true }
+        },
+        {
+          "id": "no",
+          "label": { "en": "No", "da": "Nej", "de": "Nein" },
+          "sets": { "company.customerFilesWithMailProvider": false }
+        },
+        {
+          "id": "check",
+          "label": {
+            "en": "Check it for me",
+            "da": "Tjek det for mig",
+            "de": "Prüft das für mich"
+          },
+          "sets": {}
+        }
+      ],
+      "resolves": ["office-suite-processor"]
+    },
+    {
+      "id": "q-health-data",
+      "asks": {
+        "en": "Do you handle health information about customers or patients?",
+        "da": "Håndterer I helbredsoplysninger om kunder eller patienter?",
+        "de": "Verarbeiten Sie Gesundheitsdaten von Kundinnen, Kunden oder Patienten?"
+      },
+      "why": {
+        "en": "Health information needs its own legal basis and tighter safeguards than the rest.",
+        "da": "Helbredsoplysninger kræver deres eget retsgrundlag og strammere sikring end resten.",
+        "de": "Gesundheitsdaten brauchen eine eigene Rechtsgrundlage und strengere Schutzmaßnahmen als der Rest."
+      },
+      "sectors": ["healthcare", "personal-services", "professional-services", "education"],
+      "options": [
+        {
+          "id": "yes",
+          "label": { "en": "Yes", "da": "Ja", "de": "Ja" },
+          "sets": { "company.processesHealthData": true }
+        },
+        {
+          "id": "no",
+          "label": { "en": "No", "da": "Nej", "de": "Nein" },
+          "sets": { "company.processesHealthData": false }
+        }
+      ],
+      "resolves": ["health-data-basis"]
+    },
+    {
+      "id": "q-children",
+      "asks": {
+        "en": "Do you offer services directly to children?",
+        "da": "Tilbyder I tjenester direkte til børn?",
+        "de": "Bieten Sie Dienste direkt für Kinder an?"
+      },
+      "why": {
+        "en": "Under an age that differs by country, a parent has to consent, and the site has to be able to tell.",
+        "da": "Under en alder, der varierer fra land til land, skal en forælder samtykke, og sitet skal kunne se det.",
+        "de": "Unter einem Alter, das je nach Land verschieden ist, müssen Eltern einwilligen, und die Website muss das erkennen können."
+      },
+      "sectors": ["education", "software", "online-retail", "retail"],
+      "options": [
+        {
+          "id": "yes",
+          "label": { "en": "Yes", "da": "Ja", "de": "Ja" },
+          "sets": { "company.offersServicesToChildren": true }
+        },
+        {
+          "id": "no",
+          "label": { "en": "No", "da": "Nej", "de": "Nein" },
+          "sets": { "company.offersServicesToChildren": false }
+        }
+      ],
+      "resolves": ["child-consent"]
+    },
+    {
+      "id": "q-cctv",
+      "asks": {
+        "en": "Do cameras record customers or staff?",
+        "da": "Optager kameraer kunder eller medarbejdere?",
+        "de": "Zeichnen Kameras Kundschaft oder Mitarbeitende auf?"
+      },
+      "why": {
+        "en": "People on camera have to be told who records them and why, before they walk in.",
+        "da": "Folk på kamera skal have at vide, hvem der optager dem og hvorfor, før de træder ind.",
+        "de": "Wer gefilmt wird, muss vorher erfahren, wer aufzeichnet und warum."
+      },
+      "sectors": [
+        "retail",
+        "hospitality",
+        "personal-services",
+        "healthcare",
+        "construction-and-property"
+      ],
+      "options": [
+        {
+          "id": "yes",
+          "label": { "en": "Yes", "da": "Ja", "de": "Ja" },
+          "sets": { "company.usesCctv": true }
+        },
+        {
+          "id": "no",
+          "label": { "en": "No", "da": "Nej", "de": "Nein" },
+          "sets": { "company.usesCctv": false }
+        }
+      ],
+      "resolves": ["cctv-information"]
+    },
+    {
+      "id": "q-cookies",
+      "asks": {
+        "en": "Does the site set cookies before the visitor has chosen?",
+        "da": "Sætter sitet cookies, før den besøgende har valgt?",
+        "de": "Setzt die Website Cookies, bevor die Besucherin oder der Besucher gewählt hat?"
+      },
+      "why": {
+        "en": "Cookies the page does not need wait for consent. A scan settles this without asking.",
+        "da": "Cookies, siden ikke har brug for, venter på samtykke. En scanning afgør det uden at spørge.",
+        "de": "Cookies, die die Seite nicht braucht, warten auf die Einwilligung. Ein Scan klärt das ohne Nachfrage."
+      },
+      "options": [
+        {
+          "id": "yes",
+          "label": { "en": "Yes", "da": "Ja", "de": "Ja" },
+          "sets": { "site.setsCookies": true, "site.setsNonNecessaryCookies": true }
+        },
+        {
+          "id": "no",
+          "label": { "en": "No", "da": "Nej", "de": "Nein" },
+          "sets": { "site.setsNonNecessaryCookies": false }
+        },
+        {
+          "id": "unsure",
+          "label": { "en": "Not sure", "da": "Ved ikke", "de": "Weiß nicht" },
+          "sets": {}
+        }
+      ],
+      "resolves": ["cookie-consent"]
+    }
+  ]
+}

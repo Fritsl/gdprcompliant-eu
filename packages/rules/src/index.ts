@@ -6,6 +6,8 @@
 //   facts      the fact sheet derived from the register and the company
 //   engine     evaluate a jurisdiction's sets over a sheet; run every example
 //   content    content/<JURISDICTION>.json, validated on load
+//   sector     content/sectors.json; a sector from the register's code or the site's signals
+//   questions  content/questions.json; the questions whose answers settle an undetermined duty
 
 export const PACKAGE = '@gc/rules';
 
@@ -13,3 +15,5 @@ export * from './language.js';
 export * from './facts.js';
 export * from './engine.js';
 export * from './content.js';
+export * from './sector.js';
+export * from './questions.js';

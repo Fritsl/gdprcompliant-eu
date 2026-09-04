@@ -1,0 +1,74 @@
+{
+  "version": "2026-09-04",
+  "sectors": [
+    {
+      "id": "online-retail",
+      "title": { "en": "online retail", "da": "nethandel", "de": "Onlinehandel" },
+      "nace": ["47.91"],
+      "signals": { "activities": ["orders"] }
+    },
+    {
+      "id": "retail",
+      "title": { "en": "retail", "da": "detailhandel", "de": "Einzelhandel" },
+      "nace": ["47"]
+    },
+    {
+      "id": "professional-services",
+      "title": {
+        "en": "professional services",
+        "da": "rådgivning og liberale erhverv",
+        "de": "freiberufliche Dienstleistungen"
+      },
+      "nace": ["69", "70", "71", "73", "74"],
+      "signals": { "activities": ["enquiries", "email_and_documents"] }
+    },
+    {
+      "id": "software",
+      "title": {
+        "en": "software and IT services",
+        "da": "software og it",
+        "de": "Software und IT-Dienste"
+      },
+      "nace": ["58.2", "62", "63"],
+      "signals": { "activities": ["accounts"] }
+    },
+    {
+      "id": "healthcare",
+      "title": {
+        "en": "health and care",
+        "da": "sundhed og omsorg",
+        "de": "Gesundheit und Pflege"
+      },
+      "nace": ["86", "87", "88"],
+      "signals": { "activities": ["sensitive_enquiries"], "categories": ["health"] }
+    },
+    {
+      "id": "hospitality",
+      "title": { "en": "hospitality", "da": "hotel og restauration", "de": "Gastgewerbe" },
+      "nace": ["55", "56"]
+    },
+    {
+      "id": "education",
+      "title": { "en": "education", "da": "undervisning", "de": "Bildung" },
+      "nace": ["85"]
+    },
+    {
+      "id": "personal-services",
+      "title": {
+        "en": "personal services",
+        "da": "personlige serviceydelser",
+        "de": "persönliche Dienstleistungen"
+      },
+      "nace": ["96"]
+    },
+    {
+      "id": "construction-and-property",
+      "title": {
+        "en": "construction and property",
+        "da": "byggeri og ejendom",
+        "de": "Bau und Immobilien"
+      },
+      "nace": ["41", "42", "43", "68"]
+    }
+  ]
+}

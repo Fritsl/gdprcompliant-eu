@@ -14,13 +14,29 @@
       },
       "when": {
         "any": [
-          { "fact": "company.headcountMax", "op": "gte", "value": 250 },
-          { "fact": "register.rows", "op": "gte", "value": 1 },
-          { "fact": "register.specialCategories", "op": "eq", "value": true }
+          {
+            "fact": "company.headcountMax",
+            "op": "gte",
+            "value": 250
+          },
+          {
+            "fact": "register.rows",
+            "op": "gte",
+            "value": 1
+          },
+          {
+            "fact": "register.specialCategories",
+            "op": "eq",
+            "value": true
+          }
         ]
       },
       "citations": [
-        { "instrument": "GDPR", "ref": "Art. 30(1)", "note": "the record and what it contains" },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 30(1)",
+          "note": "the record and what it contains"
+        },
         {
           "instrument": "GDPR",
           "ref": "Art. 30(5)",
@@ -49,7 +65,10 @@
         },
         {
           "name": "nothing read from the site yet and no headcount known",
-          "facts": { "register.rows": 0, "register.specialCategories": false },
+          "facts": {
+            "register.rows": 0,
+            "register.specialCategories": false
+          },
           "expect": "undetermined"
         },
         {
@@ -73,20 +92,44 @@
         "en": "Wherever the site collects personal data from a person, it says who is collecting it, why, on what basis, who receives it, how long it is kept and what the person can ask for.",
         "da": "Hvor sitet indsamler personoplysninger fra en person, siger det, hvem der indsamler, hvorfor, på hvilket grundlag, hvem der modtager dem, hvor længe de opbevares, og hvad personen kan bede om."
       },
-      "when": { "fact": "register.rows", "op": "gte", "value": 1 },
+      "when": {
+        "fact": "register.rows",
+        "op": "gte",
+        "value": 1
+      },
       "citations": [
         {
           "instrument": "GDPR",
           "ref": "Art. 13(1)",
           "note": "the information at the time data are obtained"
         },
-        { "instrument": "GDPR", "ref": "Art. 12(1)", "note": "in a concise, transparent form" }
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 12(1)",
+          "note": "in a concise, transparent form"
+        }
       ],
       "findingTypeIds": ["POL-01", "FRM-03"],
       "examples": [
-        { "name": "a contact form", "facts": { "register.rows": 1 }, "expect": "applies" },
-        { "name": "no activity read", "facts": { "register.rows": 0 }, "expect": "not_applicable" },
-        { "name": "no register at all", "facts": {}, "expect": "undetermined" }
+        {
+          "name": "a contact form",
+          "facts": {
+            "register.rows": 1
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "no activity read",
+          "facts": {
+            "register.rows": 0
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "no register at all",
+          "facts": {},
+          "expect": "undetermined"
+        }
       ]
     },
     {
@@ -99,24 +142,44 @@
         "en": "Where an activity rests on consent, the person is told they can withdraw it, and withdrawing is as easy as consenting was.",
         "da": "Hvor en aktivitet hviler på samtykke, får personen at vide, at det kan trækkes tilbage, og det er lige så let som at give det."
       },
-      "when": { "fact": "register.usesConsent", "op": "eq", "value": true },
+      "when": {
+        "fact": "register.usesConsent",
+        "op": "eq",
+        "value": true
+      },
       "citations": [
-        { "instrument": "GDPR", "ref": "Art. 7(3)", "note": "withdrawal as easy as consent" },
-        { "instrument": "GDPR", "ref": "Art. 13(2)(c)", "note": "told of the right to withdraw" }
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 7(3)",
+          "note": "withdrawal as easy as consent"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 13(2)(c)",
+          "note": "told of the right to withdraw"
+        }
       ],
       "findingTypeIds": ["CNS-03", "CNS-07"],
       "examples": [
         {
           "name": "a newsletter on consent",
-          "facts": { "register.usesConsent": true },
+          "facts": {
+            "register.usesConsent": true
+          },
           "expect": "applies"
         },
         {
           "name": "only contracts",
-          "facts": { "register.usesConsent": false },
+          "facts": {
+            "register.usesConsent": false
+          },
           "expect": "not_applicable"
         },
-        { "name": "bases not yet known", "facts": {}, "expect": "undetermined" }
+        {
+          "name": "bases not yet known",
+          "facts": {},
+          "expect": "undetermined"
+        }
       ]
     },
     {
@@ -129,23 +192,39 @@
         "en": "Every company that processes personal data on the company's behalf does so under a written contract that sets out what it may do.",
         "da": "Enhver virksomhed, der behandler personoplysninger på virksomhedens vegne, gør det under en skriftlig aftale, der fastlægger, hvad den må."
       },
-      "when": { "fact": "register.recipients", "op": "gte", "value": 1 },
+      "when": {
+        "fact": "register.recipients",
+        "op": "gte",
+        "value": 1
+      },
       "citations": [
-        { "instrument": "GDPR", "ref": "Art. 28(3)", "note": "processing governed by a contract" }
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 28(3)",
+          "note": "processing governed by a contract"
+        }
       ],
       "findingTypeIds": ["DPA-01"],
       "examples": [
         {
           "name": "a mail provider and a tag manager",
-          "facts": { "register.recipients": 2 },
+          "facts": {
+            "register.recipients": 2
+          },
           "expect": "applies"
         },
         {
           "name": "no recipient",
-          "facts": { "register.recipients": 0 },
+          "facts": {
+            "register.recipients": 0
+          },
           "expect": "not_applicable"
         },
-        { "name": "recipients not yet read", "facts": {}, "expect": "undetermined" }
+        {
+          "name": "recipients not yet read",
+          "facts": {},
+          "expect": "undetermined"
+        }
       ]
     },
     {
@@ -158,10 +237,22 @@
         "en": "Where a recipient sits outside the EEA, the transfer rests on an adequacy decision or on appropriate safeguards, and the policy says which.",
         "da": "Hvor en modtager sidder uden for EØS, hviler overførslen på en tilstrækkelighedsafgørelse eller på fornødne garantier, og politikken siger hvilken."
       },
-      "when": { "fact": "register.recipientsOutsideEea", "op": "eq", "value": true },
+      "when": {
+        "fact": "register.recipientsOutsideEea",
+        "op": "eq",
+        "value": true
+      },
       "citations": [
-        { "instrument": "GDPR", "ref": "Art. 44", "note": "the general principle for transfers" },
-        { "instrument": "GDPR", "ref": "Art. 46(1)", "note": "appropriate safeguards" },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 44",
+          "note": "the general principle for transfers"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 46(1)",
+          "note": "appropriate safeguards"
+        },
         {
           "instrument": "GDPR",
           "ref": "Art. 13(1)(f)",
@@ -172,15 +263,23 @@
       "examples": [
         {
           "name": "a recipient in the United States",
-          "facts": { "register.recipientsOutsideEea": true },
+          "facts": {
+            "register.recipientsOutsideEea": true
+          },
           "expect": "applies"
         },
         {
           "name": "everyone inside the EEA",
-          "facts": { "register.recipientsOutsideEea": false },
+          "facts": {
+            "register.recipientsOutsideEea": false
+          },
           "expect": "not_applicable"
         },
-        { "name": "recipients not yet resolved", "facts": {}, "expect": "undetermined" }
+        {
+          "name": "recipients not yet resolved",
+          "facts": {},
+          "expect": "undetermined"
+        }
       ]
     },
     {
@@ -193,28 +292,44 @@
         "en": "Cookies and similar storage that are not strictly necessary for the service the visitor asked for are set only after the visitor has agreed, having been told what they are for.",
         "da": "Cookies og lignende lagring, som ikke er strengt nødvendige for den tjeneste, den besøgende bad om, sættes først, når den besøgende har sagt ja efter at have fået at vide, hvad de bruges til."
       },
-      "when": { "fact": "site.setsNonNecessaryCookies", "op": "eq", "value": true },
+      "when": {
+        "fact": "site.setsNonNecessaryCookies",
+        "op": "eq",
+        "value": true
+      },
       "citations": [
         {
           "instrument": "ePrivacy",
           "ref": "Art. 5(3)",
           "note": "consent before storage or access"
         },
-        { "instrument": "GDPR", "ref": "Art. 4(11)", "note": "what consent is" }
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 4(11)",
+          "note": "what consent is"
+        }
       ],
       "findingTypeIds": ["CNS-01", "CNS-02", "CNS-03"],
       "examples": [
         {
           "name": "an analytics cookie on the first load",
-          "facts": { "site.setsNonNecessaryCookies": true },
+          "facts": {
+            "site.setsNonNecessaryCookies": true
+          },
           "expect": "applies"
         },
         {
           "name": "only a session cookie",
-          "facts": { "site.setsNonNecessaryCookies": false },
+          "facts": {
+            "site.setsNonNecessaryCookies": false
+          },
           "expect": "not_applicable"
         },
-        { "name": "cookies not yet read", "facts": {}, "expect": "undetermined" }
+        {
+          "name": "cookies not yet read",
+          "facts": {},
+          "expect": "undetermined"
+        }
       ]
     },
     {
@@ -234,10 +349,20 @@
           "ref": "Art. 32(1)",
           "note": "appropriate technical and organisational measures"
         },
-        { "instrument": "GDPR", "ref": "Art. 5(1)(f)", "note": "integrity and confidentiality" }
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 5(1)(f)",
+          "note": "integrity and confidentiality"
+        }
       ],
       "findingTypeIds": ["SEC-01", "SEC-02", "SEC-03", "SEC-04", "SEC-06", "SEC-07"],
-      "examples": [{ "name": "any company", "facts": {}, "expect": "applies" }]
+      "examples": [
+        {
+          "name": "any company",
+          "facts": {},
+          "expect": "applies"
+        }
+      ]
     },
     {
       "id": "breach-notification",
@@ -251,11 +376,25 @@
       },
       "when": "always",
       "citations": [
-        { "instrument": "GDPR", "ref": "Art. 33(1)", "note": "notification within 72 hours" },
-        { "instrument": "GDPR", "ref": "Art. 33(5)", "note": "the record of breaches" }
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 33(1)",
+          "note": "notification within 72 hours"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 33(5)",
+          "note": "the record of breaches"
+        }
       ],
       "findingTypeIds": [],
-      "examples": [{ "name": "any company", "facts": {}, "expect": "applies" }]
+      "examples": [
+        {
+          "name": "any company",
+          "facts": {},
+          "expect": "applies"
+        }
+      ]
     },
     {
       "id": "explicit-consent-special-categories",
@@ -267,9 +406,17 @@
         "en": "Where the company processes health data or other special categories, it rests on one of the specific bases the law allows, such as the person's explicit consent, and says so.",
         "da": "Hvor virksomheden behandler helbredsoplysninger eller andre følsomme oplysninger, hviler det på et af de særlige grundlag, loven tillader, såsom personens udtrykkelige samtykke, og det fremgår."
       },
-      "when": { "fact": "register.specialCategories", "op": "eq", "value": true },
+      "when": {
+        "fact": "register.specialCategories",
+        "op": "eq",
+        "value": true
+      },
       "citations": [
-        { "instrument": "GDPR", "ref": "Art. 9(1)", "note": "the prohibition" },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 9(1)",
+          "note": "the prohibition"
+        },
         {
           "instrument": "GDPR",
           "ref": "Art. 9(2)(a)",
@@ -280,15 +427,23 @@
       "examples": [
         {
           "name": "a form that asks about symptoms",
-          "facts": { "register.specialCategories": true },
+          "facts": {
+            "register.specialCategories": true
+          },
           "expect": "applies"
         },
         {
           "name": "contact details only",
-          "facts": { "register.specialCategories": false },
+          "facts": {
+            "register.specialCategories": false
+          },
           "expect": "not_applicable"
         },
-        { "name": "categories not yet read", "facts": {}, "expect": "undetermined" }
+        {
+          "name": "categories not yet read",
+          "facts": {},
+          "expect": "undetermined"
+        }
       ]
     },
     {
@@ -301,25 +456,309 @@
         "en": "Where an activity rests on legitimate interest, the company has weighed its interest against the person's, can show the weighing, tells the person what the interest is and lets them object.",
         "da": "Hvor en aktivitet hviler på legitim interesse, har virksomheden afvejet sin interesse mod personens, kan vise afvejningen, fortæller personen, hvad interessen er, og lader dem gøre indsigelse."
       },
-      "when": { "fact": "register.usesLegitimateInterest", "op": "eq", "value": true },
+      "when": {
+        "fact": "register.usesLegitimateInterest",
+        "op": "eq",
+        "value": true
+      },
       "citations": [
-        { "instrument": "GDPR", "ref": "Art. 6(1)(f)", "note": "legitimate interest as a basis" },
-        { "instrument": "GDPR", "ref": "Art. 13(1)(d)", "note": "told of the interest" },
-        { "instrument": "GDPR", "ref": "Art. 21(1)", "note": "the right to object" }
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 6(1)(f)",
+          "note": "legitimate interest as a basis"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 13(1)(d)",
+          "note": "told of the interest"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 21(1)",
+          "note": "the right to object"
+        }
       ],
       "findingTypeIds": [],
       "examples": [
         {
           "name": "enquiries answered on legitimate interest",
-          "facts": { "register.usesLegitimateInterest": true },
+          "facts": {
+            "register.usesLegitimateInterest": true
+          },
           "expect": "applies"
         },
         {
           "name": "consent and contract only",
-          "facts": { "register.usesLegitimateInterest": false },
+          "facts": {
+            "register.usesLegitimateInterest": false
+          },
           "expect": "not_applicable"
         },
-        { "name": "bases not yet known", "facts": {}, "expect": "undetermined" }
+        {
+          "name": "bases not yet known",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ]
+    },
+    {
+      "id": "ai-assistant-processor",
+      "title": {
+        "en": "Have an agreement with the AI assistant provider",
+        "da": "Hav en databehandleraftale med udbyderen af AI-assistenten",
+        "de": "Einen Vertrag mit dem Anbieter des KI-Assistenten haben"
+      },
+      "summary": {
+        "en": "An AI assistant that reads customer data processes it on the company’s behalf. The provider is a processor and needs a written agreement, and the provider’s own use of the data has to be ruled out or covered.",
+        "da": "En AI-assistent, der læser kundedata, behandler dem på virksomhedens vegne. Udbyderen er databehandler og kræver en skriftlig aftale, og udbyderens egen brug af data skal udelukkes eller dækkes.",
+        "de": "Ein KI-Assistent, der Kundendaten liest, verarbeitet sie im Auftrag des Unternehmens. Der Anbieter ist Auftragsverarbeiter und braucht einen schriftlichen Vertrag; die eigene Nutzung der Daten durch den Anbieter muss ausgeschlossen oder geregelt sein."
+      },
+      "when": {
+        "fact": "company.staffUseAiWithCustomerData",
+        "op": "eq",
+        "value": true
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 28(1)",
+          "note": "only processors giving sufficient guarantees"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 28(3)",
+          "note": "the contract and what it sets out"
+        }
+      ],
+      "findingTypeIds": [],
+      "examples": [
+        {
+          "name": "answered yes",
+          "facts": {
+            "company.staffUseAiWithCustomerData": true
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "answered no",
+          "facts": {
+            "company.staffUseAiWithCustomerData": false
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "not asked yet",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ]
+    },
+    {
+      "id": "office-suite-processor",
+      "title": {
+        "en": "Cover customer files held with the mail provider",
+        "da": "Dæk kundefiler, der ligger hos mailudbyderen",
+        "de": "Kundendateien beim E-Mail-Anbieter absichern"
+      },
+      "summary": {
+        "en": "Customer files kept with the mail and calendar provider are processed by that provider. The agreement has to cover the files, not only the mail, and any access from outside the EEA has to rest on a transfer basis.",
+        "da": "Kundefiler hos mail- og kalenderudbyderen behandles af den udbyder. Aftalen skal dække filerne, ikke kun mailen, og enhver adgang uden for EØS skal hvile på et overførselsgrundlag.",
+        "de": "Kundendateien beim Anbieter von E-Mail und Kalender werden von diesem Anbieter verarbeitet. Der Vertrag muss die Dateien abdecken, nicht nur die E-Mails, und jeder Zugriff von außerhalb des EWR braucht eine Übermittlungsgrundlage."
+      },
+      "when": {
+        "fact": "company.customerFilesWithMailProvider",
+        "op": "eq",
+        "value": true
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 28(3)",
+          "note": "the contract and what it sets out"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 44",
+          "note": "the general principle for transfers"
+        }
+      ],
+      "findingTypeIds": [],
+      "examples": [
+        {
+          "name": "answered yes",
+          "facts": {
+            "company.customerFilesWithMailProvider": true
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "answered no",
+          "facts": {
+            "company.customerFilesWithMailProvider": false
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "not asked yet",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ]
+    },
+    {
+      "id": "health-data-basis",
+      "title": {
+        "en": "Have a basis for processing health information",
+        "da": "Hav et grundlag for at behandle helbredsoplysninger",
+        "de": "Eine Grundlage für die Verarbeitung von Gesundheitsdaten haben"
+      },
+      "summary": {
+        "en": "Health information is a special category. Processing it is prohibited unless one of the listed conditions holds, such as explicit consent or the provision of health care under professional secrecy.",
+        "da": "Helbredsoplysninger er en særlig kategori. Behandling er forbudt, medmindre en af de opregnede betingelser er opfyldt, f.eks. udtrykkeligt samtykke eller sundhedspleje under tavshedspligt.",
+        "de": "Gesundheitsdaten sind eine besondere Kategorie. Ihre Verarbeitung ist untersagt, sofern nicht eine der aufgezählten Bedingungen greift, etwa eine ausdrückliche Einwilligung oder die Gesundheitsversorgung unter Berufsgeheimnis."
+      },
+      "when": {
+        "fact": "company.processesHealthData",
+        "op": "eq",
+        "value": true
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 9(1)",
+          "note": "the prohibition"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 9(2)",
+          "note": "the conditions under which it does not apply"
+        }
+      ],
+      "findingTypeIds": [],
+      "examples": [
+        {
+          "name": "answered yes",
+          "facts": {
+            "company.processesHealthData": true
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "answered no",
+          "facts": {
+            "company.processesHealthData": false
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "not asked yet",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ]
+    },
+    {
+      "id": "child-consent",
+      "title": {
+        "en": "Check for a parent’s consent where a child signs up",
+        "da": "Tjek for forældres samtykke, når et barn tilmelder sig",
+        "de": "Bei Anmeldung eines Kindes die Einwilligung der Eltern prüfen"
+      },
+      "summary": {
+        "en": "Where a service is offered directly to a child and rests on consent, the consent of a parent is needed under an age the country sets, and the company has to make reasonable efforts to check it.",
+        "da": "Når en tjeneste tilbydes direkte til et barn og hviler på samtykke, kræves en forælders samtykke under en alder, landet fastsætter, og virksomheden skal gøre en rimelig indsats for at kontrollere det.",
+        "de": "Wird ein Dienst einem Kind direkt angeboten und beruht er auf Einwilligung, ist unterhalb eines vom Land festgelegten Alters die Einwilligung der Eltern nötig, und das Unternehmen muss sie in angemessener Weise überprüfen."
+      },
+      "when": {
+        "fact": "company.offersServicesToChildren",
+        "op": "eq",
+        "value": true
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 8(1)",
+          "note": "the age and the parent’s consent"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 8(2)",
+          "note": "reasonable efforts to verify"
+        }
+      ],
+      "findingTypeIds": [],
+      "examples": [
+        {
+          "name": "answered yes",
+          "facts": {
+            "company.offersServicesToChildren": true
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "answered no",
+          "facts": {
+            "company.offersServicesToChildren": false
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "not asked yet",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ]
+    },
+    {
+      "id": "cctv-information",
+      "title": {
+        "en": "Tell people on camera who records them and why",
+        "da": "Fortæl folk på kamera, hvem der optager dem og hvorfor",
+        "de": "Gefilmten Personen sagen, wer aufzeichnet und warum"
+      },
+      "summary": {
+        "en": "Camera recording collects personal data from the people in view. They have to be told who the controller is, why the recording happens and how long it is kept, at the point they are recorded.",
+        "da": "Kameraoptagelse indsamler personoplysninger om dem, der er i billedet. De skal have at vide, hvem den dataansvarlige er, hvorfor der optages, og hvor længe optagelsen gemmes, der hvor de optages.",
+        "de": "Kameraaufzeichnung erhebt personenbezogene Daten der Personen im Bild. Sie müssen dort, wo sie aufgezeichnet werden, erfahren, wer verantwortlich ist, warum aufgezeichnet wird und wie lange gespeichert wird."
+      },
+      "when": {
+        "fact": "company.usesCctv",
+        "op": "eq",
+        "value": true
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 13(1)",
+          "note": "what to tell at collection"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 13(2)",
+          "note": "the retention period and the rights"
+        }
+      ],
+      "findingTypeIds": [],
+      "examples": [
+        {
+          "name": "answered yes",
+          "facts": {
+            "company.usesCctv": true
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "answered no",
+          "facts": {
+            "company.usesCctv": false
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "not asked yet",
+          "facts": {},
+          "expect": "undetermined"
+        }
       ]
     }
   ]

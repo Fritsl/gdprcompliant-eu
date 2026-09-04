@@ -7,7 +7,16 @@
 // resolves and a test case that passes.
 
 import { documentChunks, loadCorpusDocuments, resolveInChunks } from '@gc/corpus';
-import { citationsOf, factsUsed, loadRuleSets, runExamples, FACT_NAMES } from '@gc/rules';
+import {
+  checkQuestions,
+  citationsOf,
+  factsUsed,
+  loadQuestions,
+  loadRuleSets,
+  loadSectors,
+  runExamples,
+  FACT_NAMES,
+} from '@gc/rules';
 
 const sets = loadRuleSets();
 const chunks = loadCorpusDocuments().flatMap(documentChunks);
@@ -47,6 +56,11 @@ for (const fact of factsUsed(sets)) {
   if (!known.has(fact)) problems.push(`a rule reads the fact ${fact}, which the fact sheet never produces`);
 }
 
+// The question catalogue (D-09): every question sets facts the sheet holds, and
+// declares exactly the rules that read them.
+const questions = loadQuestions();
+problems.push(...checkQuestions(questions, sets, loadSectors()));
+
 if (problems.length > 0) {
   console.error(`rule citations: ${problems.length} problem(s)`);
   for (const p of problems) console.error(`  ✗ ${p}`);
@@ -55,5 +69,5 @@ if (problems.length > 0) {
 const rules = sets.reduce((n, s) => n + s.rules.length, 0);
 const examples = sets.reduce((n, s) => n + s.rules.reduce((m, r) => m + r.examples.length, 0), 0);
 console.log(
-  `rule citations: ${sets.length} rule set(s), ${rules} rule(s), ${citations} citation(s) resolve, ${examples} example(s) pass, ${factsUsed(sets).length} fact(s) read`,
+  `rule citations: ${sets.length} rule set(s), ${rules} rule(s), ${citations} citation(s) resolve, ${examples} example(s) pass, ${factsUsed(sets).length} fact(s) read, ${questions.questions.length} question(s) each settle a rule`,
 );

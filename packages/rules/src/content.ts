@@ -42,8 +42,11 @@ export function loadRuleSet(file: string): RuleSet {
 }
 
 export function loadRuleSets(dir: string = RULES_DIR): RuleSet[] {
-  return readdirSync(dir)
-    .filter((f) => f.endsWith('.json'))
-    .sort()
-    .map((f) => loadRuleSet(join(dir, f)));
+  return (
+    readdirSync(dir)
+      // Only the jurisdiction files; sectors.json and questions.json live alongside.
+      .filter((f) => /^[A-Z]{2}.json$/.test(f))
+      .sort()
+      .map((f) => loadRuleSet(join(dir, f)))
+  );
 }

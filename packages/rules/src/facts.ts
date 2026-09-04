@@ -1,4 +1,5 @@
 import { inEea, type Company, type EvidenceRef, type RegisterRow } from '@gc/contracts';
+import { inferSector, loadSectors, type Sector, type SectorInference } from './sector.js';
 
 // The fact sheet (A-02): what the rules read, as a flat map of named facts. Every fact
 // is derived here from the case graph's register and the company, never asserted by a
@@ -29,6 +30,14 @@ export const FACT_NAMES = {
   'site.findingTypes': 'The finding types the latest scan raised',
   'site.setsCookies': 'Whether the site sets cookies on the first load',
   'site.setsNonNecessaryCookies': 'Whether any of them is not necessary',
+  'company.sector': 'The sector the company works in, read from the register or the site',
+  'company.sectorCode': 'The industry code the business register gives',
+  'company.staffUseAiWithCustomerData': 'Whether staff use AI assistants with customer data',
+  'company.customerFilesWithMailProvider':
+    'Whether customer files sit with the mail and calendar provider',
+  'company.processesHealthData': 'Whether the company handles health information about people',
+  'company.offersServicesToChildren': 'Whether the company offers services directly to children',
+  'company.usesCctv': 'Whether cameras record customers or staff',
 } as const;
 export type FactName = keyof typeof FACT_NAMES;
 
@@ -48,12 +57,17 @@ export interface FactSources {
   readonly rows: readonly RegisterRow[];
   readonly findingTypeIds?: readonly string[];
   readonly cookies?: { readonly total: number; readonly nonNecessary: number };
+  // Facts the company answered (D-09); they fill what nothing observed, never overwrite it.
+  readonly answers?: Facts;
+  readonly sectors?: readonly Sector[];
 }
 
 export interface FactSheet {
   readonly facts: Facts;
   // The evidence the register rows rest on: what a duty's `because` names.
   readonly evidence: readonly EvidenceRef[];
+  // Where the sector came from, in words.
+  readonly sector: SectorInference;
 }
 
 export function factsFrom(src: FactSources): FactSheet {
@@ -90,8 +104,21 @@ export function factsFrom(src: FactSources): FactSheet {
     f['site.setsCookies'] = src.cookies.total > 0;
     f['site.setsNonNecessaryCookies'] = src.cookies.nonNecessary > 0;
   }
+  // Health data in the register settles the health question without asking it.
+  if (categories.includes('health')) f['company.processesHealthData'] = true;
+  if (src.company.sectorCode) f['company.sectorCode'] = src.company.sectorCode;
+  const sector = inferSector(
+    {
+      sectorCode: src.company.sectorCode,
+      activities: f['register.activities'] as string[],
+      categories,
+    },
+    src.sectors ?? loadSectors(),
+  );
+  if (sector.sector !== 'unknown') f['company.sector'] = sector.sector;
+  for (const [k, v] of Object.entries(src.answers ?? {})) if (f[k] === undefined) f[k] = v;
   const evidence = [
     ...new Map(rows.flatMap((r) => r.evidence).map((e) => [e.evidenceId, e])).values(),
   ];
-  return { facts: f, evidence };
+  return { facts: f, evidence, sector };
 }
