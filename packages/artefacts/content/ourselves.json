@@ -1,0 +1,298 @@
+{
+  "version": "2026-09-04",
+  "_comment": "Our own compliance record (O-01), published at /ourselves and generated from what is actually configured. The public sources are the hosts in packages/config/endpoints.json: a test fails when this list and that file drift apart. The processors that depend on the deployment (hosting, the database, the model endpoint, mail) are named here the moment they are contracted; until then their status is pending, and the test refuses a pending processor in production.",
+  "controller": {
+    "name": "Frits AI ApS (GDPRcompliant.eu)",
+    "contact": "fly@frits.ai",
+    "country": "DK"
+  },
+  "headings": {
+    "title": {
+      "en": "Our own record",
+      "da": "Vores egen fortegnelse",
+      "de": "Unser eigenes Verzeichnis"
+    },
+    "lead": {
+      "en": "What this service processes, who receives it, how long it is kept and how it is deleted. Generated from the configuration the service runs with, so it cannot fall behind it.",
+      "da": "Hvad denne tjeneste behandler, hvem der modtager det, hvor længe det gemmes, og hvordan det slettes. Genereret ud fra den konfiguration, tjenesten kører med, så den ikke kan komme bagud.",
+      "de": "Was dieser Dienst verarbeitet, wer es erhält, wie lange es aufbewahrt wird und wie es gelöscht wird. Erzeugt aus der Konfiguration, mit der der Dienst läuft, damit es ihr nicht hinterherhinken kann."
+    },
+    "processing": {
+      "en": "What we process",
+      "da": "Hvad vi behandler",
+      "de": "Was wir verarbeiten"
+    },
+    "processors": {
+      "en": "Who processes it for us",
+      "da": "Hvem der behandler det for os",
+      "de": "Wer es für uns verarbeitet"
+    },
+    "sources": {
+      "en": "Public sources we read",
+      "da": "Offentlige kilder, vi læser",
+      "de": "Öffentliche Quellen, die wir lesen"
+    },
+    "retention": {
+      "en": "How long we keep it",
+      "da": "Hvor længe vi gemmer det",
+      "de": "Wie lange wir es aufbewahren"
+    },
+    "deletion": {
+      "en": "How it is deleted",
+      "da": "Hvordan det slettes",
+      "de": "Wie es gelöscht wird"
+    },
+    "ownCase": {
+      "en": "Our own case",
+      "da": "Vores egen sag",
+      "de": "Unser eigener Fall"
+    },
+    "pending": {
+      "en": "not yet contracted",
+      "da": "endnu ikke aftalt",
+      "de": "noch nicht beauftragt"
+    },
+    "receives": {
+      "en": "Receives",
+      "da": "Modtager",
+      "de": "Erhält"
+    },
+    "basis": {
+      "en": "Basis",
+      "da": "Grundlag",
+      "de": "Grundlage"
+    },
+    "table": {
+      "en": "Table",
+      "da": "Tabel",
+      "de": "Tabelle"
+    },
+    "rule": {
+      "en": "Kept",
+      "da": "Gemmes",
+      "de": "Aufbewahrt"
+    }
+  },
+  "processing": [
+    {
+      "id": "scan",
+      "what": {
+        "en": "What a scanned website shows a visitor: requests, cookies, headers, forms, policy text. Held as evidence in the case it belongs to.",
+        "da": "Hvad et scannet website viser en besøgende: forespørgsler, cookies, headere, formularer, politiktekst. Gemt som beviser i den sag, det hører til.",
+        "de": "Was eine gescannte Website einem Besucher zeigt: Anfragen, Cookies, Header, Formulare, Erklärungstext. Als Belege im zugehörigen Fall aufbewahrt."
+      },
+      "basis": {
+        "en": "Legitimate interest of the company that asked for the scan",
+        "da": "Legitim interesse hos den virksomhed, der bad om scanningen",
+        "de": "Berechtigtes Interesse des Unternehmens, das den Scan angefordert hat"
+      }
+    },
+    {
+      "id": "answers",
+      "what": {
+        "en": "Answers the case holder gives, and the names and addresses of colleagues they invite.",
+        "da": "Svar, sagens indehaver giver, og navne og adresser på kolleger, de inviterer.",
+        "de": "Antworten des Fallinhabers und die Namen und Adressen der Kolleginnen und Kollegen, die er einlädt."
+      },
+      "basis": {
+        "en": "Contract: the case they opened",
+        "da": "Kontrakt: den sag, de åbnede",
+        "de": "Vertrag: der Fall, den sie eröffnet haben"
+      }
+    },
+    {
+      "id": "claims",
+      "what": {
+        "en": "The address that claims a case, hashed proof codes, and the time of every action on the case.",
+        "da": "Den adresse, der overtager en sag, hashede bekræftelseskoder og tidspunktet for hver handling på sagen.",
+        "de": "Die Adresse, die einen Fall übernimmt, gehashte Bestätigungscodes und der Zeitpunkt jeder Handlung im Fall."
+      },
+      "basis": {
+        "en": "Contract, and our duty to show who did what",
+        "da": "Kontrakt, og vores pligt til at vise, hvem der gjorde hvad",
+        "de": "Vertrag, und unsere Pflicht zu zeigen, wer was getan hat"
+      }
+    }
+  ],
+  "processors": [
+    {
+      "purpose": "hosting",
+      "label": {
+        "en": "Hosting of the service",
+        "da": "Hosting af tjenesten",
+        "de": "Hosting des Dienstes"
+      },
+      "receives": {
+        "en": "Everything the service holds, encrypted at rest",
+        "da": "Alt, tjenesten gemmer, krypteret i hvile",
+        "de": "Alles, was der Dienst hält, verschlüsselt gespeichert"
+      },
+      "status": "pending",
+      "entity": null,
+      "country": "EU",
+      "basis": "processing agreement"
+    },
+    {
+      "purpose": "database",
+      "label": {
+        "en": "The database",
+        "da": "Databasen",
+        "de": "Die Datenbank"
+      },
+      "receives": {
+        "en": "Every case, under row-level security per tenant",
+        "da": "Hver sag, under rækkeniveausikkerhed pr. lejer",
+        "de": "Jeder Fall, unter zeilenweiser Zugriffskontrolle je Mandant"
+      },
+      "status": "pending",
+      "entity": null,
+      "country": "EU",
+      "basis": "processing agreement"
+    },
+    {
+      "purpose": "model",
+      "label": {
+        "en": "The language model",
+        "da": "Sprogmodellen",
+        "de": "Das Sprachmodell"
+      },
+      "receives": {
+        "en": "Scanned page text and evidence, labelled as untrusted, to explain and draft; never to decide",
+        "da": "Scannet sidetekst og beviser, mærket som utroværdige, til at forklare og udkaste; aldrig til at afgøre",
+        "de": "Gescannter Seitentext und Belege, als nicht vertrauenswürdig markiert, zum Erklären und Entwerfen; nie zum Entscheiden"
+      },
+      "status": "pending",
+      "entity": null,
+      "country": "EU",
+      "basis": "processing agreement, no training on our content"
+    },
+    {
+      "purpose": "mail",
+      "label": {
+        "en": "Outgoing mail",
+        "da": "Udgående post",
+        "de": "Ausgehende E-Mail"
+      },
+      "receives": {
+        "en": "The addresses invitations and claim codes are sent to",
+        "da": "De adresser, invitationer og bekræftelseskoder sendes til",
+        "de": "Die Adressen, an die Einladungen und Bestätigungscodes gehen"
+      },
+      "status": "pending",
+      "entity": null,
+      "country": "EU",
+      "basis": "processing agreement"
+    }
+  ],
+  "sources": {
+    "note": {
+      "en": "These hosts receive a company name, a registration number or a legal reference, never a person's data. They are the only hosts the service is allowed to call; anything else is refused before a byte leaves.",
+      "da": "Disse værter modtager et virksomhedsnavn, et registreringsnummer eller en lovhenvisning, aldrig en persons oplysninger. De er de eneste værter, tjenesten må kalde; alt andet afvises, før en byte forlader os.",
+      "de": "Diese Hosts erhalten einen Firmennamen, eine Registernummer oder einen Rechtsverweis, nie Daten einer Person. Sie sind die einzigen Hosts, die der Dienst aufrufen darf; alles andere wird abgewiesen, bevor ein Byte hinausgeht."
+    },
+    "hosts": [
+      {
+        "host": "eur-lex.europa.eu",
+        "purpose": "corpus",
+        "entity": "Publications Office of the European Union",
+        "country": "EU"
+      },
+      {
+        "host": "publications.europa.eu",
+        "purpose": "corpus",
+        "entity": "Publications Office of the European Union",
+        "country": "EU"
+      },
+      {
+        "host": "www.retsinformation.dk",
+        "purpose": "corpus",
+        "entity": "Civilstyrelsen",
+        "country": "DK"
+      },
+      {
+        "host": "www.datatilsynet.dk",
+        "purpose": "corpus",
+        "entity": "Datatilsynet",
+        "country": "DK"
+      },
+      {
+        "host": "www.gesetze-im-internet.de",
+        "purpose": "corpus",
+        "entity": "Bundesministerium der Justiz",
+        "country": "DE"
+      },
+      {
+        "host": "datacvr.virk.dk",
+        "purpose": "registry",
+        "entity": "Erhvervsstyrelsen",
+        "country": "DK"
+      },
+      {
+        "host": "www.handelsregister.de",
+        "purpose": "registry",
+        "entity": "Land Nordrhein-Westfalen, Justizministerium (Registerportal)",
+        "country": "DE"
+      },
+      {
+        "host": "data.gdprcompliant.eu",
+        "purpose": "corpus",
+        "entity": "GDPRcompliant.eu (own mirror)",
+        "country": "DK"
+      },
+      {
+        "host": "ct.gdprcompliant.eu",
+        "purpose": "registry",
+        "entity": "GDPRcompliant.eu (own mirror)",
+        "country": "DK"
+      },
+      {
+        "host": "distribution.virk.dk",
+        "purpose": "registry",
+        "entity": "Erhvervsstyrelsen",
+        "country": "DK"
+      },
+      {
+        "host": "db.offeneregister.de",
+        "purpose": "registry",
+        "entity": "Open Knowledge Foundation Deutschland e.V.",
+        "country": "DE"
+      },
+      {
+        "host": "apps.apple.com",
+        "purpose": "store",
+        "entity": "Apple Distribution International Ltd",
+        "country": "IE"
+      },
+      {
+        "host": "play.google.com",
+        "purpose": "store",
+        "entity": "Google Ireland Ltd",
+        "country": "IE"
+      }
+    ]
+  },
+  "deletion": {
+    "steps": [
+      {
+        "en": "The case holder types the case number on the case page; nothing else is asked.",
+        "da": "Sagens indehaver skriver sagsnummeret på sagssiden; intet andet spørges om.",
+        "de": "Der Fallinhaber gibt die Fallnummer auf der Fallseite ein; mehr wird nicht verlangt."
+      },
+      {
+        "en": "One database function removes the case and every row that belongs to it, in one transaction: evidence, findings, answers, vendors, documents, members, shares, mail, the timeline.",
+        "da": "Én databasefunktion fjerner sagen og hver række, der hører til den, i én transaktion: beviser, konstateringer, svar, leverandører, dokumenter, medlemmer, delinger, post, tidslinjen.",
+        "de": "Eine Datenbankfunktion entfernt den Fall und jede zugehörige Zeile in einer Transaktion: Belege, Befunde, Antworten, Anbieter, Dokumente, Mitglieder, Freigaben, E-Mails, den Verlauf."
+      },
+      {
+        "en": "What remains is one anonymous line: a case from this country and year was deleted, and how many rows went. Not its number, not the company.",
+        "da": "Det, der bliver tilbage, er én anonym linje: en sag fra dette land og år blev slettet, og hvor mange rækker der forsvandt. Ikke dens nummer, ikke virksomheden.",
+        "de": "Was bleibt, ist eine anonyme Zeile: Ein Fall aus diesem Land und Jahr wurde gelöscht, und wie viele Zeilen es waren. Nicht seine Nummer, nicht das Unternehmen."
+      },
+      {
+        "en": "A case nobody claims expires thirty days after it was opened, and is purged seven days later by the retention job.",
+        "da": "En sag, ingen overtager, udløber tredive dage efter, den blev åbnet, og slettes syv dage senere af oprydningsjobbet.",
+        "de": "Ein Fall, den niemand übernimmt, läuft dreißig Tage nach der Eröffnung ab und wird sieben Tage später vom Aufbewahrungsjob gelöscht."
+      }
+    ]
+  }
+}

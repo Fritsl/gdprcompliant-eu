@@ -157,3 +157,9 @@ export function redact(config: Config): Record<string, unknown> {
     secretKeys: [...SECRET_KEYS],
   };
 }
+
+// The endpoints declared in endpoints.json, as data (O-01): what the published record
+// of our own sub-processors and sources is checked against.
+export function declaredEndpoints() {
+  return z.array(EndpointSchema).parse(readEndpointsFile());
+}

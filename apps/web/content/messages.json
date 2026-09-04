@@ -1313,5 +1313,25 @@
     "en": "questions waiting for you",
     "da": "spørgsmål, der venter på dig",
     "de": "Fragen, die auf Sie warten"
+  },
+  "shell.footer.ourselves": {
+    "en": "Our own record",
+    "da": "Vores egen fortegnelse",
+    "de": "Unser eigenes Verzeichnis"
+  },
+  "ourselves.generated": {
+    "en": "Generated from the running configuration on",
+    "da": "Genereret ud fra den kørende konfiguration den",
+    "de": "Erzeugt aus der laufenden Konfiguration am"
+  },
+  "ourselves.ownCase.none": {
+    "en": "Our own website is scanned like any other. The public progress page of that case is linked here the moment it is published.",
+    "da": "Vores eget website scannes som ethvert andet. Den offentlige fremskridtsside for den sag linkes her, så snart den er offentliggjort.",
+    "de": "Unsere eigene Website wird wie jede andere gescannt. Die öffentliche Fortschrittsseite dieses Falls wird hier verlinkt, sobald sie veröffentlicht ist."
+  },
+  "ourselves.download": {
+    "en": "Download as Markdown",
+    "da": "Download som Markdown",
+    "de": "Als Markdown herunterladen"
   }
 }

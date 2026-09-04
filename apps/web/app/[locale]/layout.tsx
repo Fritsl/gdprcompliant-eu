@@ -87,6 +87,11 @@ export default async function LocaleLayout({
         <footer className="shell-footer">
           <Text of={t(locale, 'shell.footer.operator')} as="p" />
           <Text of={t(locale, 'shell.footer.notCertification')} as="p" />
+          <p>
+            <a href={`/${locale}/ourselves`} data-ourselves="">
+              <Text of={t(locale, 'shell.footer.ourselves')} />
+            </a>
+          </p>
         </footer>
       </body>
     </html>

@@ -21,6 +21,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: { languages: fronts },
     });
   }
+  // Our own record (O-01): one page per language, generated from the configuration.
+  const ourselves: Record<string, string> = {};
+  for (const l of locales) ourselves[l] = `${base}/${l}/ourselves`;
+  ourselves['x-default'] = `${base}/en/ourselves`;
+  for (const l of locales) {
+    rows.push({
+      url: `${base}/${l}/ourselves`,
+      changeFrequency: 'monthly',
+      priority: 0.5,
+      alternates: { languages: ourselves },
+    });
+  }
   const index = languagesOf(locales);
   for (const l of locales) {
     rows.push({
