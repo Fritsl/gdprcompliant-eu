@@ -77,8 +77,8 @@ describe('the question catalogue', () => {
           ...catalogue.questions[0]!,
           id: 'q-idle',
           options: [
-            { id: 'a', label: { en: 'A' }, sets: { 'company.sellsService': true } },
-            { id: 'b', label: { en: 'B' }, sets: { 'company.sellsService': false } },
+            { id: 'a', label: { en: 'A' }, sets: { 'company.sectorCode': '47.91' } },
+            { id: 'b', label: { en: 'B' }, sets: { 'company.sectorCode': '86.21' } },
           ],
           resolves: ['record-of-processing'],
         },

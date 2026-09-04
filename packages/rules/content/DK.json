@@ -14,8 +14,16 @@
       },
       "when": {
         "all": [
-          { "fact": "company.country", "op": "eq", "value": "DK" },
-          { "fact": "register.rows", "op": "gte", "value": 1 }
+          {
+            "fact": "company.country",
+            "op": "eq",
+            "value": "DK"
+          },
+          {
+            "fact": "register.rows",
+            "op": "gte",
+            "value": 1
+          }
         ]
       },
       "citations": [
@@ -34,20 +42,174 @@
       "examples": [
         {
           "name": "a Danish shop with a sign-up form",
-          "facts": { "company.country": "DK", "register.rows": 2 },
+          "facts": {
+            "company.country": "DK",
+            "register.rows": 2
+          },
           "expect": "applies"
         },
         {
           "name": "a Danish company that collects nothing",
-          "facts": { "company.country": "DK", "register.rows": 0 },
+          "facts": {
+            "company.country": "DK",
+            "register.rows": 0
+          },
           "expect": "not_applicable"
         },
         {
           "name": "the register not yet read",
-          "facts": { "company.country": "DK" },
+          "facts": {
+            "company.country": "DK"
+          },
           "expect": "undetermined"
         }
       ]
+    },
+    {
+      "id": "cpr-number-handling",
+      "title": {
+        "en": "Handle CPR numbers only where the law allows",
+        "da": "Behandl kun CPR-numre, hvor loven tillader det",
+        "de": "CPR-Nummern nur verarbeiten, wo das Gesetz es erlaubt"
+      },
+      "summary": {
+        "en": "A Danish personal identification number is processed only on the conditions Danish law sets for it, and never published; the identity fields the site collects are checked against that.",
+        "da": "Et dansk personnummer behandles kun på de betingelser, dansk lov fastsætter, og offentliggøres aldrig; de identitetsfelter, sitet indsamler, kontrolleres mod det.",
+        "de": "Eine dänische Personenkennziffer wird nur unter den Bedingungen verarbeitet, die das dänische Recht dafür vorsieht, und nie veröffentlicht; die Identitätsfelder der Website werden daran geprüft."
+      },
+      "when": {
+        "fact": "register.categories",
+        "op": "contains",
+        "value": "identity"
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 87",
+          "note": "national identification numbers under Member State conditions"
+        }
+      ],
+      "examples": [
+        {
+          "name": "a form asking for a CPR number",
+          "facts": {
+            "register.categories": ["contact", "identity"]
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "contact details only",
+          "facts": {
+            "register.categories": ["contact"]
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "nothing read",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ],
+      "findingTypeIds": []
+    },
+    {
+      "id": "parental-consent-under-13",
+      "title": {
+        "en": "Get a parent’s consent for children under 13",
+        "da": "Indhent forældres samtykke for børn under 13",
+        "de": "Elterliche Einwilligung für Kinder unter 13 einholen"
+      },
+      "summary": {
+        "en": "In Denmark a child can consent to an online service from 13; below that, a parent has to, and the company makes reasonable efforts to check.",
+        "da": "I Danmark kan et barn samtykke til en onlinetjeneste fra 13 år; derunder skal en forælder, og virksomheden gør en rimelig indsats for at kontrollere det.",
+        "de": "In Dänemark kann ein Kind ab 13 Jahren in einen Online-Dienst einwilligen; darunter müssen die Eltern, und das Unternehmen prüft das in angemessener Weise."
+      },
+      "when": {
+        "fact": "company.youngestUsersAge",
+        "op": "lt",
+        "value": 13
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 8(1)",
+          "note": "the age, and the Member State’s lower age of 13"
+        }
+      ],
+      "examples": [
+        {
+          "name": "serving ten-year-olds",
+          "facts": {
+            "company.youngestUsersAge": 6
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "youngest users fourteen",
+          "facts": {
+            "company.youngestUsersAge": 14
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "not asked",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ],
+      "findingTypeIds": []
+    },
+    {
+      "id": "dk-cctv-signage",
+      "title": {
+        "en": "Sign the cameras before the door",
+        "da": "Skilt med kameraerne før døren",
+        "de": "Kameras vor der Tür kenntlich machen"
+      },
+      "summary": {
+        "en": "Camera surveillance of a shop or premises open to the public is signed so people know before they enter, and the recording rests on a legitimate interest that is stated.",
+        "da": "Kameraovervågning af en butik eller lokaler med offentlig adgang skiltes, så folk ved det, før de træder ind, og optagelsen hviler på en legitim interesse, der oplyses.",
+        "de": "Kameraüberwachung eines Geschäfts oder öffentlich zugänglicher Räume wird so beschildert, dass Personen es vor dem Betreten wissen, und die Aufzeichnung beruht auf einem genannten berechtigten Interesse."
+      },
+      "when": {
+        "fact": "company.usesCctv",
+        "op": "eq",
+        "value": true
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 13(1)",
+          "note": "information at the point of recording"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 6(1)(f)",
+          "note": "a legitimate interest"
+        }
+      ],
+      "examples": [
+        {
+          "name": "answered yes",
+          "facts": {
+            "company.usesCctv": true
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "answered no",
+          "facts": {
+            "company.usesCctv": false
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "not asked yet",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ],
+      "findingTypeIds": []
     }
   ]
 }

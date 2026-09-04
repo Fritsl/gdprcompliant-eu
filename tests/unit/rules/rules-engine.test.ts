@@ -163,8 +163,11 @@ describe('evaluation', () => {
     expect(de.some((d) => d.ruleId === 'dk-authority-named')).toBe(false);
     // A jurisdiction's own rules come after the Union's, by id within each set.
     const ids = de.map((d) => d.ruleId);
-    expect(ids.indexOf('de-authority-named')).toBe(ids.length - 1);
-    expect(ids.slice(0, -1)).toEqual([...ids.slice(0, -1)].sort());
+    const deSet = sets.find((s) => s.jurisdiction === 'DE')!;
+    const own = ids.slice(ids.length - deSet.rules.length);
+    expect(own).toEqual(deSet.rules.map((r) => r.id).sort((a, b) => a.localeCompare(b)));
+    const union = ids.slice(0, ids.length - deSet.rules.length);
+    expect(union).toEqual([...union].sort((a, b) => a.localeCompare(b)));
   });
 });
 

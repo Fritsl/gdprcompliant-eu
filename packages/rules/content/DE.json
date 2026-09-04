@@ -16,8 +16,16 @@
       },
       "when": {
         "all": [
-          { "fact": "company.country", "op": "eq", "value": "DE" },
-          { "fact": "register.rows", "op": "gte", "value": 1 }
+          {
+            "fact": "company.country",
+            "op": "eq",
+            "value": "DE"
+          },
+          {
+            "fact": "register.rows",
+            "op": "gte",
+            "value": 1
+          }
         ]
       },
       "citations": [
@@ -36,20 +44,297 @@
       "examples": [
         {
           "name": "a German shop with a sign-up form",
-          "facts": { "company.country": "DE", "register.rows": 1 },
+          "facts": {
+            "company.country": "DE",
+            "register.rows": 1
+          },
           "expect": "applies"
         },
         {
           "name": "a German company that collects nothing",
-          "facts": { "company.country": "DE", "register.rows": 0 },
+          "facts": {
+            "company.country": "DE",
+            "register.rows": 0
+          },
           "expect": "not_applicable"
         },
         {
           "name": "the register not yet read",
-          "facts": { "company.country": "DE" },
+          "facts": {
+            "company.country": "DE"
+          },
           "expect": "undetermined"
         }
       ]
+    },
+    {
+      "id": "dpo-twenty-persons",
+      "title": {
+        "en": "Appoint a data protection officer from twenty persons",
+        "da": "Udpeg en databeskyttelsesrådgiver fra tyve personer",
+        "de": "Ab zwanzig Personen einen Datenschutzbeauftragten benennen"
+      },
+      "summary": {
+        "en": "In Germany a company where at least twenty persons regularly process personal data by automated means appoints a data protection officer, whatever its sector.",
+        "da": "I Tyskland udpeger en virksomhed, hvor mindst tyve personer løbende behandler personoplysninger automatisk, en databeskyttelsesrådgiver, uanset branche.",
+        "de": "In Deutschland benennt ein Unternehmen, in dem mindestens zwanzig Personen ständig automatisiert personenbezogene Daten verarbeiten, einen Datenschutzbeauftragten, unabhängig von der Branche."
+      },
+      "when": {
+        "fact": "company.headcountMin",
+        "op": "gte",
+        "value": 20
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 37(4)",
+          "note": "designation where Member State law requires it"
+        }
+      ],
+      "examples": [
+        {
+          "name": "fifty staff",
+          "facts": {
+            "company.headcountMin": 50
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "ten staff",
+          "facts": {
+            "company.headcountMin": 10
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "no headcount",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ],
+      "findingTypeIds": []
+    },
+    {
+      "id": "employee-data-regime",
+      "title": {
+        "en": "Process employee data under the employment rules",
+        "da": "Behandl medarbejderoplysninger efter reglerne for ansættelsesforhold",
+        "de": "Beschäftigtendaten nach den Regeln des Beschäftigungskontexts verarbeiten"
+      },
+      "summary": {
+        "en": "In Germany data about employees is processed under the specific national rules for the employment context, with their own conditions for consent and collective agreements.",
+        "da": "I Tyskland behandles oplysninger om ansatte efter de særlige nationale regler for ansættelsesforhold med egne betingelser for samtykke og kollektive aftaler.",
+        "de": "In Deutschland werden Beschäftigtendaten nach den besonderen nationalen Regeln für den Beschäftigungskontext verarbeitet, mit eigenen Bedingungen für Einwilligung und Kollektivvereinbarungen."
+      },
+      "when": {
+        "fact": "company.headcountMin",
+        "op": "gte",
+        "value": 2
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 88(1)",
+          "note": "more specific rules for employment"
+        }
+      ],
+      "examples": [
+        {
+          "name": "a company with staff",
+          "facts": {
+            "company.headcountMin": 10
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "a sole trader",
+          "facts": {
+            "company.headcountMin": 1
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "no headcount",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ],
+      "findingTypeIds": []
+    },
+    {
+      "id": "works-council-consultation",
+      "title": {
+        "en": "Involve the works council before monitoring staff",
+        "da": "Inddrag samarbejdsudvalget, før medarbejdere overvåges",
+        "de": "Den Betriebsrat vor der Überwachung von Beschäftigten beteiligen"
+      },
+      "summary": {
+        "en": "In Germany, technical measures that can monitor staff, such as cameras or automated assessment, are agreed with the works council where one exists, before they run.",
+        "da": "I Tyskland aftales tekniske foranstaltninger, der kan overvåge ansatte, som kameraer eller automatisk vurdering, med samarbejdsudvalget, hvor der findes et, før de tages i brug.",
+        "de": "In Deutschland werden technische Maßnahmen, die Beschäftigte überwachen können, etwa Kameras oder automatisierte Bewertung, vor dem Einsatz mit dem Betriebsrat vereinbart, wo es einen gibt."
+      },
+      "when": {
+        "all": [
+          {
+            "fact": "company.headcountMin",
+            "op": "gte",
+            "value": 5
+          },
+          {
+            "any": [
+              {
+                "fact": "company.usesCctv",
+                "op": "eq",
+                "value": true
+              },
+              {
+                "fact": "company.usesAutomatedDecisions",
+                "op": "eq",
+                "value": true
+              }
+            ]
+          }
+        ]
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 88(1)",
+          "note": "collective agreements in employment"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 88(2)",
+          "note": "monitoring systems at the workplace"
+        }
+      ],
+      "examples": [
+        {
+          "name": "cameras and ten staff",
+          "facts": {
+            "company.headcountMin": 10,
+            "company.usesCctv": true,
+            "company.usesAutomatedDecisions": false
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "no cameras, no automation",
+          "facts": {
+            "company.headcountMin": 10,
+            "company.usesCctv": false,
+            "company.usesAutomatedDecisions": false
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "cameras, headcount unknown",
+          "facts": {
+            "company.usesCctv": true
+          },
+          "expect": "undetermined"
+        }
+      ],
+      "findingTypeIds": []
+    },
+    {
+      "id": "parental-consent-under-16",
+      "title": {
+        "en": "Get a parent’s consent for children under 16",
+        "da": "Indhent forældres samtykke for børn under 16",
+        "de": "Elterliche Einwilligung für Kinder unter 16 einholen"
+      },
+      "summary": {
+        "en": "In Germany a child can consent to an online service from 16; below that, a parent has to, and the company makes reasonable efforts to check.",
+        "da": "I Tyskland kan et barn samtykke til en onlinetjeneste fra 16 år; derunder skal en forælder, og virksomheden gør en rimelig indsats for at kontrollere det.",
+        "de": "In Deutschland kann ein Kind ab 16 Jahren in einen Online-Dienst einwilligen; darunter müssen die Eltern, und das Unternehmen prüft das in angemessener Weise."
+      },
+      "when": {
+        "fact": "company.youngestUsersAge",
+        "op": "lt",
+        "value": 16
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 8(1)",
+          "note": "the age of sixteen, unchanged by German law"
+        }
+      ],
+      "examples": [
+        {
+          "name": "youngest users fourteen",
+          "facts": {
+            "company.youngestUsersAge": 14
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "adults only",
+          "facts": {
+            "company.youngestUsersAge": 18
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "not asked",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ],
+      "findingTypeIds": []
+    },
+    {
+      "id": "de-cctv-signage",
+      "title": {
+        "en": "Sign the cameras and state the interest",
+        "da": "Skilt med kameraerne og oplys interessen",
+        "de": "Kameras kenntlich machen und das Interesse nennen"
+      },
+      "summary": {
+        "en": "Camera surveillance of premises open to the public is signed at the point of entry with who records and why, and rests on a stated legitimate interest.",
+        "da": "Kameraovervågning af lokaler med offentlig adgang skiltes ved indgangen med, hvem der optager og hvorfor, og hviler på en oplyst legitim interesse.",
+        "de": "Kameraüberwachung öffentlich zugänglicher Räume wird am Zugang mit Verantwortlichem und Zweck beschildert und beruht auf einem genannten berechtigten Interesse."
+      },
+      "when": {
+        "fact": "company.usesCctv",
+        "op": "eq",
+        "value": true
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 13(1)",
+          "note": "information at the point of recording"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 6(1)(f)",
+          "note": "a legitimate interest"
+        }
+      ],
+      "examples": [
+        {
+          "name": "answered yes",
+          "facts": {
+            "company.usesCctv": true
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "answered no",
+          "facts": {
+            "company.usesCctv": false
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "not asked yet",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ],
+      "findingTypeIds": []
     }
   ]
 }

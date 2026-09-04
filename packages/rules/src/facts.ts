@@ -38,6 +38,11 @@ export const FACT_NAMES = {
   'company.processesHealthData': 'Whether the company handles health information about people',
   'company.offersServicesToChildren': 'Whether the company offers services directly to children',
   'company.usesCctv': 'Whether cameras record customers or staff',
+  'company.entities': 'How many legal entities the company is made of',
+  'company.youngestUsersAge': 'The youngest age the company knowingly serves',
+  'company.usesAutomatedDecisions':
+    'Whether decisions with a legal or similar effect on people are made automatically',
+  'company.hasDpo': 'Whether a data protection officer has been appointed',
 } as const;
 export type FactName = keyof typeof FACT_NAMES;
 
@@ -107,6 +112,7 @@ export function factsFrom(src: FactSources): FactSheet {
   // Health data in the register settles the health question without asking it.
   if (categories.includes('health')) f['company.processesHealthData'] = true;
   if (src.company.sectorCode) f['company.sectorCode'] = src.company.sectorCode;
+  if (src.company.entities !== undefined) f['company.entities'] = src.company.entities;
   const sector = inferSector(
     {
       sectorCode: src.company.sectorCode,

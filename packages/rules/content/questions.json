@@ -80,7 +80,12 @@
           }
         }
       ],
-      "resolves": ["record-of-processing"]
+      "resolves": [
+        "dpo-twenty-persons",
+        "employee-data-regime",
+        "record-of-processing",
+        "works-council-consultation"
+      ]
     },
     {
       "id": "q-ai-assistants",
@@ -257,7 +262,7 @@
           }
         }
       ],
-      "resolves": ["child-consent"]
+      "resolves": ["child-consent", "children-transparency"]
     },
     {
       "id": "q-cctv",
@@ -302,7 +307,13 @@
           }
         }
       ],
-      "resolves": ["cctv-information"]
+      "resolves": [
+        "cctv-information",
+        "de-cctv-signage",
+        "dk-cctv-signage",
+        "impact-assessment",
+        "works-council-consultation"
+      ]
     },
     {
       "id": "q-cookies",
@@ -351,6 +362,166 @@
         }
       ],
       "resolves": ["cookie-consent"]
+    },
+    {
+      "id": "q-youngest-users",
+      "asks": {
+        "en": "How young are the youngest people you knowingly serve?",
+        "da": "Hvor unge er de yngste, I bevidst betjener?",
+        "de": "Wie jung sind die Jüngsten, die Sie wissentlich bedienen?"
+      },
+      "why": {
+        "en": "The age from which a young person can agree for themselves is 13 in Denmark and 16 in Germany.",
+        "da": "Alderen, fra hvilken en ung selv kan samtykke, er 13 i Danmark og 16 i Tyskland.",
+        "de": "Das Alter, ab dem junge Menschen selbst einwilligen können, ist 13 in Dänemark und 16 in Deutschland."
+      },
+      "askWhen": {
+        "fact": "register.usesConsent",
+        "op": "eq",
+        "value": true
+      },
+      "options": [
+        {
+          "id": "adults",
+          "label": {
+            "en": "Adults only",
+            "da": "Kun voksne",
+            "de": "Nur Erwachsene"
+          },
+          "sets": {
+            "company.youngestUsersAge": 18
+          }
+        },
+        {
+          "id": "16-17",
+          "label": {
+            "en": "16 or 17",
+            "da": "16 eller 17",
+            "de": "16 oder 17"
+          },
+          "sets": {
+            "company.youngestUsersAge": 16
+          }
+        },
+        {
+          "id": "13-15",
+          "label": {
+            "en": "13 to 15",
+            "da": "13 til 15",
+            "de": "13 bis 15"
+          },
+          "sets": {
+            "company.youngestUsersAge": 13
+          }
+        },
+        {
+          "id": "under-13",
+          "label": {
+            "en": "Under 13",
+            "da": "Under 13",
+            "de": "Unter 13"
+          },
+          "sets": {
+            "company.youngestUsersAge": 6
+          }
+        }
+      ],
+      "resolves": ["parental-consent-under-13", "parental-consent-under-16"]
+    },
+    {
+      "id": "q-automated-decisions",
+      "asks": {
+        "en": "Do you make decisions about people automatically, such as refusing an order or setting a price?",
+        "da": "Træffer I afgørelser om personer automatisk, som at afvise en ordre eller fastsætte en pris?",
+        "de": "Treffen Sie Entscheidungen über Personen automatisch, etwa eine Bestellung ablehnen oder einen Preis festlegen?"
+      },
+      "why": {
+        "en": "A decision a machine makes alone, with real effect on a person, needs a basis and a human route out.",
+        "da": "En afgørelse, en maskine træffer alene, med reel virkning for en person, kræver et grundlag og en menneskelig vej ud.",
+        "de": "Eine Entscheidung, die eine Maschine allein trifft und die eine Person wirklich betrifft, braucht eine Grundlage und einen menschlichen Ausweg."
+      },
+      "askWhen": {
+        "any": [
+          {
+            "fact": "register.activities",
+            "op": "contains",
+            "value": "accounts"
+          },
+          {
+            "fact": "register.activities",
+            "op": "contains",
+            "value": "orders"
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "yes",
+          "label": {
+            "en": "Yes",
+            "da": "Ja",
+            "de": "Ja"
+          },
+          "sets": {
+            "company.usesAutomatedDecisions": true
+          }
+        },
+        {
+          "id": "no",
+          "label": {
+            "en": "No",
+            "da": "Nej",
+            "de": "Nein"
+          },
+          "sets": {
+            "company.usesAutomatedDecisions": false
+          }
+        }
+      ],
+      "resolves": ["automated-decisions", "impact-assessment", "works-council-consultation"]
+    },
+    {
+      "id": "q-dpo",
+      "asks": {
+        "en": "Have you appointed a data protection officer?",
+        "da": "Har I udpeget en databeskyttelsesrådgiver?",
+        "de": "Haben Sie einen Datenschutzbeauftragten benannt?"
+      },
+      "why": {
+        "en": "An appointed officer has to be reachable by the public and known to the authority.",
+        "da": "En udpeget rådgiver skal kunne kontaktes af offentligheden og være kendt af myndigheden.",
+        "de": "Ein benannter Beauftragter muss für die Öffentlichkeit erreichbar und der Behörde bekannt sein."
+      },
+      "askWhen": {
+        "fact": "register.rows",
+        "op": "gte",
+        "value": 1
+      },
+      "options": [
+        {
+          "id": "yes",
+          "label": {
+            "en": "Yes",
+            "da": "Ja",
+            "de": "Ja"
+          },
+          "sets": {
+            "company.hasDpo": true
+          }
+        },
+        {
+          "id": "no",
+          "label": {
+            "en": "No",
+            "da": "Nej",
+            "de": "Nein"
+          },
+          "sets": {
+            "company.hasDpo": false
+          }
+        }
+      ],
+      "resolves": ["dpo-published"]
     }
   ]
 }

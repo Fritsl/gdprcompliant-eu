@@ -760,6 +760,1039 @@
           "expect": "undetermined"
         }
       ]
+    },
+    {
+      "id": "lawful-basis-per-activity",
+      "title": {
+        "en": "Rest every activity on a lawful basis",
+        "da": "Byg hver aktivitet på et lovligt grundlag",
+        "de": "Jede Verarbeitung auf eine Rechtsgrundlage stützen"
+      },
+      "summary": {
+        "en": "Each processing activity in the register names one of the six bases before it starts, and the basis fits what is done.",
+        "da": "Hver behandlingsaktivitet i fortegnelsen nævner ét af de seks grundlag, før den begynder, og grundlaget passer til det, der gøres.",
+        "de": "Jede Verarbeitungstätigkeit im Verzeichnis nennt eine der sechs Grundlagen, bevor sie beginnt, und die Grundlage passt zu dem, was getan wird."
+      },
+      "when": {
+        "fact": "register.rows",
+        "op": "gte",
+        "value": 1
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 6(1)",
+          "note": "the six lawful bases"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 5(1)(a)",
+          "note": "lawfulness"
+        }
+      ],
+      "examples": [
+        {
+          "name": "a register with rows",
+          "facts": {
+            "register.rows": 2
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "nothing collected",
+          "facts": {
+            "register.rows": 0
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "the register not yet read",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ],
+      "findingTypeIds": []
+    },
+    {
+      "id": "consent-demonstrable",
+      "title": {
+        "en": "Be able to show that consent was given",
+        "da": "Kunne vise, at samtykke blev givet",
+        "de": "Nachweisen können, dass eingewilligt wurde"
+      },
+      "summary": {
+        "en": "Where an activity rests on consent, the company can show who agreed to what and when, and the request was separate and in plain words.",
+        "da": "Hvor en aktivitet hviler på samtykke, kan virksomheden vise, hvem der sagde ja til hvad og hvornår, og anmodningen var adskilt og i klare ord.",
+        "de": "Wo eine Verarbeitung auf Einwilligung beruht, kann das Unternehmen zeigen, wer wann wozu zugestimmt hat, und die Anfrage war getrennt und klar formuliert."
+      },
+      "when": {
+        "fact": "register.usesConsent",
+        "op": "eq",
+        "value": true
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 7(1)",
+          "note": "demonstrating consent"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 7(2)",
+          "note": "a clear, separate request"
+        }
+      ],
+      "examples": [
+        {
+          "name": "answered yes",
+          "facts": {
+            "register.usesConsent": true
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "answered no",
+          "facts": {
+            "register.usesConsent": false
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "not asked yet",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ],
+      "findingTypeIds": []
+    },
+    {
+      "id": "access-request-route",
+      "title": {
+        "en": "Answer a request for access within a month",
+        "da": "Besvar en anmodning om indsigt inden en måned",
+        "de": "Ein Auskunftsersuchen innerhalb eines Monats beantworten"
+      },
+      "summary": {
+        "en": "A person can ask what the company holds about them and get a copy, with the purposes, recipients and retention, within a month of asking.",
+        "da": "En person kan spørge, hvad virksomheden har om dem, og få en kopi med formål, modtagere og opbevaring inden en måned.",
+        "de": "Eine Person kann fragen, was das Unternehmen über sie hat, und binnen eines Monats eine Kopie mit Zwecken, Empfängern und Speicherdauer erhalten."
+      },
+      "when": {
+        "fact": "register.rows",
+        "op": "gte",
+        "value": 1
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 15(1)",
+          "note": "what the person is entitled to know"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 15(3)",
+          "note": "a copy"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 12(3)",
+          "note": "within a month"
+        }
+      ],
+      "examples": [
+        {
+          "name": "a register with rows",
+          "facts": {
+            "register.rows": 2
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "nothing collected",
+          "facts": {
+            "register.rows": 0
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "the register not yet read",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ],
+      "findingTypeIds": []
+    },
+    {
+      "id": "rectification-and-erasure",
+      "title": {
+        "en": "Correct and delete on request",
+        "da": "Ret og slet på anmodning",
+        "de": "Auf Anfrage berichtigen und löschen"
+      },
+      "summary": {
+        "en": "A person can have wrong data corrected and, where the data is no longer needed or consent is withdrawn, deleted without undue delay.",
+        "da": "En person kan få forkerte oplysninger rettet og, hvor oplysningerne ikke længere er nødvendige eller samtykket trækkes tilbage, slettet uden unødig forsinkelse.",
+        "de": "Eine Person kann falsche Daten berichtigen und, wenn die Daten nicht mehr nötig sind oder die Einwilligung widerrufen wird, unverzüglich löschen lassen."
+      },
+      "when": {
+        "fact": "register.rows",
+        "op": "gte",
+        "value": 1
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 16",
+          "note": "rectification"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 17(1)",
+          "note": "erasure"
+        }
+      ],
+      "examples": [
+        {
+          "name": "a register with rows",
+          "facts": {
+            "register.rows": 2
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "nothing collected",
+          "facts": {
+            "register.rows": 0
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "the register not yet read",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ],
+      "findingTypeIds": []
+    },
+    {
+      "id": "objection-to-marketing",
+      "title": {
+        "en": "Stop marketing when a person objects",
+        "da": "Stop markedsføring, når en person gør indsigelse",
+        "de": "Werbung einstellen, wenn eine Person widerspricht"
+      },
+      "summary": {
+        "en": "Anyone can object to direct marketing at any time, free of charge, and the objection is honoured at once; the right is pointed out plainly.",
+        "da": "Enhver kan til enhver tid gøre indsigelse mod direkte markedsføring, gratis, og indsigelsen efterkommes straks; retten gøres tydeligt opmærksom på.",
+        "de": "Jede Person kann jederzeit und kostenlos der Direktwerbung widersprechen, und der Widerspruch wird sofort umgesetzt; auf das Recht wird deutlich hingewiesen."
+      },
+      "when": {
+        "any": [
+          {
+            "fact": "register.activities",
+            "op": "contains",
+            "value": "newsletter"
+          },
+          {
+            "fact": "register.usesLegitimateInterest",
+            "op": "eq",
+            "value": true
+          }
+        ]
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 21(2)",
+          "note": "objection to direct marketing"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 21(3)",
+          "note": "no further marketing"
+        }
+      ],
+      "examples": [
+        {
+          "name": "a newsletter",
+          "facts": {
+            "register.activities": ["newsletter"],
+            "register.usesLegitimateInterest": false
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "orders only, on contract",
+          "facts": {
+            "register.activities": ["orders"],
+            "register.usesLegitimateInterest": false
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "nothing read",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ],
+      "findingTypeIds": []
+    },
+    {
+      "id": "data-portability",
+      "title": {
+        "en": "Hand over account data in a usable format",
+        "da": "Udlevér kontodata i et brugbart format",
+        "de": "Kontodaten in einem gängigen Format herausgeben"
+      },
+      "summary": {
+        "en": "Data a person gave for an account they hold, processed by automated means on consent or contract, can be handed to them in a common, machine-readable format.",
+        "da": "Oplysninger, en person gav til en konto, de har, behandlet automatisk på samtykke eller kontrakt, kan udleveres til dem i et gængs, maskinlæsbart format.",
+        "de": "Daten, die eine Person für ihr Konto gegeben hat und die automatisiert auf Einwilligung oder Vertrag verarbeitet werden, können ihr in einem gängigen, maschinenlesbaren Format übergeben werden."
+      },
+      "when": {
+        "all": [
+          {
+            "fact": "register.activities",
+            "op": "contains",
+            "value": "accounts"
+          },
+          {
+            "any": [
+              {
+                "fact": "register.usesContract",
+                "op": "eq",
+                "value": true
+              },
+              {
+                "fact": "register.usesConsent",
+                "op": "eq",
+                "value": true
+              }
+            ]
+          }
+        ]
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 20(1)",
+          "note": "the right to portability"
+        }
+      ],
+      "examples": [
+        {
+          "name": "accounts on contract",
+          "facts": {
+            "register.activities": ["accounts", "orders"],
+            "register.usesContract": true,
+            "register.usesConsent": false
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "no accounts",
+          "facts": {
+            "register.activities": ["orders"],
+            "register.usesContract": true,
+            "register.usesConsent": false
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "nothing read",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ],
+      "findingTypeIds": []
+    },
+    {
+      "id": "automated-decisions",
+      "title": {
+        "en": "Give a human route out of automated decisions",
+        "da": "Giv en menneskelig vej ud af automatiske afgørelser",
+        "de": "Einen menschlichen Weg aus automatisierten Entscheidungen bieten"
+      },
+      "summary": {
+        "en": "A decision about a person made only by a machine, with legal or similarly serious effect, needs a basis, and the person can ask for a human to look at it.",
+        "da": "En afgørelse om en person truffet alene af en maskine med retlig eller lignende alvorlig virkning kræver et grundlag, og personen kan bede om, at et menneske ser på den.",
+        "de": "Eine allein maschinell getroffene Entscheidung über eine Person mit rechtlicher oder ähnlich erheblicher Wirkung braucht eine Grundlage, und die Person kann verlangen, dass ein Mensch sie prüft."
+      },
+      "when": {
+        "fact": "company.usesAutomatedDecisions",
+        "op": "eq",
+        "value": true
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 22(1)",
+          "note": "the right not to be subject to it"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 22(3)",
+          "note": "human intervention"
+        }
+      ],
+      "examples": [
+        {
+          "name": "answered yes",
+          "facts": {
+            "company.usesAutomatedDecisions": true
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "answered no",
+          "facts": {
+            "company.usesAutomatedDecisions": false
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "not asked yet",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ],
+      "findingTypeIds": []
+    },
+    {
+      "id": "joint-controllers",
+      "title": {
+        "en": "Agree who does what between the entities",
+        "da": "Aftal, hvem der gør hvad mellem enhederne",
+        "de": "Zwischen den Gesellschaften vereinbaren, wer was tut"
+      },
+      "summary": {
+        "en": "Where more than one legal entity decides the purposes together, an arrangement between them says who answers to the people whose data it is, and its essence is available to them.",
+        "da": "Hvor mere end én juridisk enhed bestemmer formålene sammen, siger en aftale mellem dem, hvem der svarer over for de personer, oplysningerne handler om, og dens væsentlige indhold er tilgængeligt for dem.",
+        "de": "Wo mehr als eine juristische Person die Zwecke gemeinsam festlegt, regelt eine Vereinbarung, wer den Betroffenen gegenüber verantwortlich ist, und ihr Wesentliches ist für sie verfügbar."
+      },
+      "when": {
+        "fact": "company.entities",
+        "op": "gt",
+        "value": 1
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 26(1)",
+          "note": "joint controllers"
+        }
+      ],
+      "examples": [
+        {
+          "name": "three entities",
+          "facts": {
+            "company.entities": 3
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "one entity",
+          "facts": {
+            "company.entities": 1
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "unknown",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ],
+      "findingTypeIds": []
+    },
+    {
+      "id": "sub-processor-authorisation",
+      "title": {
+        "en": "Know and authorise every sub-processor",
+        "da": "Kend og godkend hver underdatabehandler",
+        "de": "Jeden Unterauftragsverarbeiter kennen und genehmigen"
+      },
+      "summary": {
+        "en": "A processor engages another processor only with the company’s authorisation, and the company is told of changes in time to object.",
+        "da": "En databehandler bruger kun en anden databehandler med virksomhedens godkendelse, og virksomheden får besked om ændringer i tide til at gøre indsigelse.",
+        "de": "Ein Auftragsverarbeiter zieht einen weiteren nur mit Genehmigung des Unternehmens hinzu, und das Unternehmen wird über Änderungen so informiert, dass es widersprechen kann."
+      },
+      "when": {
+        "fact": "register.recipients",
+        "op": "gte",
+        "value": 1
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 28(2)",
+          "note": "authorisation of further processors"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 28(4)",
+          "note": "the same obligations flow down"
+        }
+      ],
+      "examples": [
+        {
+          "name": "recipients named",
+          "facts": {
+            "register.recipients": 2
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "none",
+          "facts": {
+            "register.recipients": 0
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "not read",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ],
+      "findingTypeIds": []
+    },
+    {
+      "id": "processor-records",
+      "title": {
+        "en": "Keep a processor’s record for the customers you process for",
+        "da": "Før en databehandlers fortegnelse for de kunder, I behandler for",
+        "de": "Als Auftragsverarbeiter ein Verzeichnis für die Kunden führen"
+      },
+      "summary": {
+        "en": "A company that processes personal data on behalf of its business customers keeps a record of each customer, the processing done for them and the transfers.",
+        "da": "En virksomhed, der behandler personoplysninger på vegne af sine erhvervskunder, fører en fortegnelse over hver kunde, den behandling, der udføres for dem, og overførslerne.",
+        "de": "Ein Unternehmen, das personenbezogene Daten im Auftrag seiner Geschäftskunden verarbeitet, führt ein Verzeichnis je Kunde mit der Verarbeitung und den Übermittlungen."
+      },
+      "when": {
+        "fact": "company.sellsService",
+        "op": "eq",
+        "value": true
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 30(2)",
+          "note": "the processor’s record"
+        }
+      ],
+      "examples": [
+        {
+          "name": "answered yes",
+          "facts": {
+            "company.sellsService": true
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "answered no",
+          "facts": {
+            "company.sellsService": false
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "not asked yet",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ],
+      "findingTypeIds": []
+    },
+    {
+      "id": "cooperate-with-authority",
+      "title": {
+        "en": "Cooperate with the supervisory authority",
+        "da": "Samarbejd med tilsynsmyndigheden",
+        "de": "Mit der Aufsichtsbehörde zusammenarbeiten"
+      },
+      "summary": {
+        "en": "On request, the company cooperates with the supervisory authority in the performance of its tasks.",
+        "da": "På anmodning samarbejder virksomheden med tilsynsmyndigheden i udførelsen af dens opgaver.",
+        "de": "Auf Anfrage arbeitet das Unternehmen mit der Aufsichtsbehörde bei der Erfüllung ihrer Aufgaben zusammen."
+      },
+      "when": "always",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 31",
+          "note": "cooperation"
+        }
+      ],
+      "examples": [
+        {
+          "name": "any company",
+          "facts": {},
+          "expect": "applies"
+        }
+      ],
+      "findingTypeIds": []
+    },
+    {
+      "id": "breach-register",
+      "title": {
+        "en": "Document every personal data breach",
+        "da": "Dokumentér ethvert brud på persondatasikkerheden",
+        "de": "Jede Verletzung des Schutzes personenbezogener Daten dokumentieren"
+      },
+      "summary": {
+        "en": "Every breach is written down: what happened, its effects and what was done, whether or not it was reported.",
+        "da": "Ethvert brud skrives ned: hvad der skete, virkningerne og hvad der blev gjort, uanset om det blev anmeldt.",
+        "de": "Jede Verletzung wird festgehalten: was geschah, die Folgen und was unternommen wurde, ob gemeldet oder nicht."
+      },
+      "when": "always",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 33(5)",
+          "note": "documenting breaches"
+        }
+      ],
+      "examples": [
+        {
+          "name": "any company",
+          "facts": {},
+          "expect": "applies"
+        }
+      ],
+      "findingTypeIds": []
+    },
+    {
+      "id": "breach-to-people",
+      "title": {
+        "en": "Tell the people affected by a high-risk breach",
+        "da": "Underret de berørte ved et brud med høj risiko",
+        "de": "Betroffene bei einer Verletzung mit hohem Risiko benachrichtigen"
+      },
+      "summary": {
+        "en": "Where a breach is likely to put people at high risk, as one touching health or payment data is, they are told without undue delay, in plain words.",
+        "da": "Hvor et brud sandsynligvis udsætter personer for høj risiko, som et brud på helbreds- eller betalingsoplysninger gør, får de besked uden unødig forsinkelse, i klare ord.",
+        "de": "Wo eine Verletzung Personen wahrscheinlich einem hohen Risiko aussetzt, wie bei Gesundheits- oder Zahlungsdaten, werden sie unverzüglich und in klaren Worten benachrichtigt."
+      },
+      "when": {
+        "any": [
+          {
+            "fact": "register.specialCategories",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "fact": "register.categories",
+            "op": "contains",
+            "value": "financial"
+          }
+        ]
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 34(1)",
+          "note": "communication to the data subject"
+        }
+      ],
+      "examples": [
+        {
+          "name": "payment data",
+          "facts": {
+            "register.specialCategories": false,
+            "register.categories": ["contact", "financial"]
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "contact details only",
+          "facts": {
+            "register.specialCategories": false,
+            "register.categories": ["contact"]
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "nothing read",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ],
+      "findingTypeIds": []
+    },
+    {
+      "id": "impact-assessment",
+      "title": {
+        "en": "Assess the impact before high-risk processing",
+        "da": "Vurdér konsekvenserne før behandling med høj risiko",
+        "de": "Vor risikoreicher Verarbeitung die Folgen abschätzen"
+      },
+      "summary": {
+        "en": "Processing likely to put people at high risk, such as health data at scale, systematic monitoring by camera or automated decisions, is assessed in writing before it starts.",
+        "da": "Behandling, der sandsynligvis udsætter personer for høj risiko, som helbredsoplysninger i stort omfang, systematisk overvågning med kamera eller automatiske afgørelser, vurderes skriftligt, før den begynder.",
+        "de": "Eine Verarbeitung mit wahrscheinlich hohem Risiko, etwa Gesundheitsdaten in großem Umfang, systematische Kameraüberwachung oder automatisierte Entscheidungen, wird vor Beginn schriftlich bewertet."
+      },
+      "when": {
+        "any": [
+          {
+            "fact": "register.specialCategories",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "fact": "company.usesCctv",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "fact": "company.usesAutomatedDecisions",
+            "op": "eq",
+            "value": true
+          }
+        ]
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 35(1)",
+          "note": "when an assessment is required"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 35(3)",
+          "note": "the cases listed"
+        }
+      ],
+      "examples": [
+        {
+          "name": "a clinic",
+          "facts": {
+            "register.specialCategories": true,
+            "company.usesCctv": false,
+            "company.usesAutomatedDecisions": false
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "a plain shop",
+          "facts": {
+            "register.specialCategories": false,
+            "company.usesCctv": false,
+            "company.usesAutomatedDecisions": false
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "cameras unknown",
+          "facts": {
+            "register.specialCategories": false
+          },
+          "expect": "undetermined"
+        }
+      ],
+      "findingTypeIds": []
+    },
+    {
+      "id": "dpo-published",
+      "title": {
+        "en": "Publish the data protection officer’s contact details",
+        "da": "Offentliggør databeskyttelsesrådgiverens kontaktoplysninger",
+        "de": "Die Kontaktdaten des Datenschutzbeauftragten veröffentlichen"
+      },
+      "summary": {
+        "en": "Where a data protection officer has been appointed, their contact details are published and given to the supervisory authority.",
+        "da": "Hvor en databeskyttelsesrådgiver er udpeget, offentliggøres kontaktoplysningerne og meddeles tilsynsmyndigheden.",
+        "de": "Wo ein Datenschutzbeauftragter benannt ist, werden die Kontaktdaten veröffentlicht und der Aufsichtsbehörde mitgeteilt."
+      },
+      "when": {
+        "fact": "company.hasDpo",
+        "op": "eq",
+        "value": true
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 37(7)",
+          "note": "publication and notification"
+        }
+      ],
+      "examples": [
+        {
+          "name": "answered yes",
+          "facts": {
+            "company.hasDpo": true
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "answered no",
+          "facts": {
+            "company.hasDpo": false
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "not asked yet",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ],
+      "findingTypeIds": []
+    },
+    {
+      "id": "retention-periods",
+      "title": {
+        "en": "Set and state how long each kind of data is kept",
+        "da": "Fastsæt og oplys, hvor længe hver slags oplysning gemmes",
+        "de": "Speicherfristen festlegen und angeben"
+      },
+      "summary": {
+        "en": "Data is kept no longer than its purpose needs; each activity in the register has a period or the criteria for one, and the policy states it.",
+        "da": "Oplysninger gemmes ikke længere, end formålet kræver; hver aktivitet i fortegnelsen har en periode eller kriterierne for en, og politikken oplyser den.",
+        "de": "Daten werden nicht länger aufbewahrt, als der Zweck es verlangt; jede Tätigkeit im Verzeichnis hat eine Frist oder die Kriterien dafür, und die Datenschutzerklärung nennt sie."
+      },
+      "when": {
+        "fact": "register.rows",
+        "op": "gte",
+        "value": 1
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 5(1)(e)",
+          "note": "storage limitation"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 13(2)(a)",
+          "note": "the period stated at collection"
+        }
+      ],
+      "examples": [
+        {
+          "name": "a register with rows",
+          "facts": {
+            "register.rows": 2
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "nothing collected",
+          "facts": {
+            "register.rows": 0
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "the register not yet read",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ],
+      "findingTypeIds": []
+    },
+    {
+      "id": "data-minimisation",
+      "title": {
+        "en": "Collect only what the purpose needs",
+        "da": "Indsaml kun det, formålet kræver",
+        "de": "Nur erheben, was der Zweck erfordert"
+      },
+      "summary": {
+        "en": "Every form and every activity asks only for what its purpose needs; a field that serves no stated purpose goes.",
+        "da": "Hver formular og hver aktivitet beder kun om det, formålet kræver; et felt uden et oplyst formål fjernes.",
+        "de": "Jedes Formular und jede Tätigkeit fragt nur ab, was der Zweck erfordert; ein Feld ohne genannten Zweck entfällt."
+      },
+      "when": {
+        "fact": "register.rows",
+        "op": "gte",
+        "value": 1
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 5(1)(c)",
+          "note": "data minimisation"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 25(2)",
+          "note": "by default, only what is necessary"
+        }
+      ],
+      "examples": [
+        {
+          "name": "a register with rows",
+          "facts": {
+            "register.rows": 2
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "nothing collected",
+          "facts": {
+            "register.rows": 0
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "the register not yet read",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ],
+      "findingTypeIds": []
+    },
+    {
+      "id": "privacy-by-design",
+      "title": {
+        "en": "Build accounts with protection by design and by default",
+        "da": "Byg konti med beskyttelse gennem design og standardindstillinger",
+        "de": "Konten mit Datenschutz durch Technik und Voreinstellungen bauen"
+      },
+      "summary": {
+        "en": "Where people hold accounts, the defaults protect them: the least data, the shortest retention, and no sharing unless they choose it.",
+        "da": "Hvor personer har konti, beskytter standardindstillingerne dem: færrest oplysninger, kortest opbevaring, og ingen deling, medmindre de vælger det.",
+        "de": "Wo Personen Konten haben, schützen die Voreinstellungen sie: so wenig Daten wie möglich, so kurz wie möglich, keine Weitergabe ohne ihre Wahl."
+      },
+      "when": {
+        "fact": "register.activities",
+        "op": "contains",
+        "value": "accounts"
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 25(1)",
+          "note": "by design"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 25(2)",
+          "note": "by default"
+        }
+      ],
+      "examples": [
+        {
+          "name": "a shop with accounts",
+          "facts": {
+            "register.activities": ["accounts", "orders"]
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "no accounts",
+          "facts": {
+            "register.activities": ["enquiries"]
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "nothing read",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ],
+      "findingTypeIds": []
+    },
+    {
+      "id": "marketing-email-consent",
+      "title": {
+        "en": "Send marketing e-mail only with prior consent",
+        "da": "Send kun markedsføring på e-mail med forudgående samtykke",
+        "de": "Werbe-E-Mails nur mit vorheriger Einwilligung senden"
+      },
+      "summary": {
+        "en": "A newsletter or other marketing by e-mail goes only to people who agreed first, or to existing customers about similar products with an easy way out in every message.",
+        "da": "Et nyhedsbrev eller anden markedsføring på e-mail sendes kun til personer, der sagde ja først, eller til eksisterende kunder om lignende produkter med en nem vej ud i hver besked.",
+        "de": "Ein Newsletter oder andere Werbung per E-Mail geht nur an Personen, die vorher zugestimmt haben, oder an Bestandskunden für ähnliche Produkte mit einem einfachen Ausweg in jeder Nachricht."
+      },
+      "when": {
+        "fact": "register.activities",
+        "op": "contains",
+        "value": "newsletter"
+      },
+      "citations": [
+        {
+          "instrument": "ePrivacy",
+          "ref": "Art. 13(1)",
+          "note": "prior consent for e-mail marketing"
+        },
+        {
+          "instrument": "ePrivacy",
+          "ref": "Art. 13(2)",
+          "note": "the existing-customer exception"
+        }
+      ],
+      "examples": [
+        {
+          "name": "a newsletter",
+          "facts": {
+            "register.activities": ["newsletter"]
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "no newsletter",
+          "facts": {
+            "register.activities": ["orders"]
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "nothing read",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ],
+      "findingTypeIds": []
+    },
+    {
+      "id": "children-transparency",
+      "title": {
+        "en": "Write the notice so a child understands it",
+        "da": "Skriv oplysningen, så et barn forstår den",
+        "de": "Die Information so schreiben, dass ein Kind sie versteht"
+      },
+      "summary": {
+        "en": "Where services are offered to children, what they are told about their data is in language a child can follow.",
+        "da": "Hvor tjenester tilbydes børn, er det, de får at vide om deres oplysninger, i et sprog, et barn kan følge.",
+        "de": "Wo Dienste Kindern angeboten werden, ist das, was sie über ihre Daten erfahren, in einer Sprache, der ein Kind folgen kann."
+      },
+      "when": {
+        "fact": "company.offersServicesToChildren",
+        "op": "eq",
+        "value": true
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 12(1)",
+          "note": "clear and plain language, especially for a child"
+        }
+      ],
+      "examples": [
+        {
+          "name": "answered yes",
+          "facts": {
+            "company.offersServicesToChildren": true
+          },
+          "expect": "applies"
+        },
+        {
+          "name": "answered no",
+          "facts": {
+            "company.offersServicesToChildren": false
+          },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "not asked yet",
+          "facts": {},
+          "expect": "undetermined"
+        }
+      ],
+      "findingTypeIds": []
     }
   ]
 }
