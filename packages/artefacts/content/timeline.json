@@ -361,6 +361,18 @@
         "da": "{{questionId}}",
         "de": "{{questionId}}"
       }
+    },
+    "internal_access": {
+      "text": {
+        "en": "Opened by a consultant",
+        "da": "Åbnet af en konsulent",
+        "de": "Von einer Beraterin oder einem Berater geöffnet"
+      },
+      "detail": {
+        "en": "{{name}}",
+        "da": "{{name}}",
+        "de": "{{name}}"
+      }
     }
   }
 }

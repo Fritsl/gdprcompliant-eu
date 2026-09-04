@@ -136,6 +136,8 @@ export const CaseEventSchema = z
     }),
     // "Check it for me": the question went to the agent as a job.
     event('check_requested', { questionId: IdSchema, jobId: NonEmptyStringSchema }),
+    // One of us opened the case (L-02): on the record, where the customer sees it.
+    event('internal_access', { name: NonEmptyStringSchema }),
     event('artefact_generated', { artefactId: IdSchema, kind: ArtefactKindSchema }),
     // A named person signed a specific version of a document (A-09): who, which version,
     // which bytes. Nothing is published or exported without one.

@@ -35,4 +35,5 @@ export * from './documents.js';
 export * from './questions.js';
 export * from './lane.js';
 export * from './queue.js';
+export * from './consultant.js';
 export * from './drift.js';

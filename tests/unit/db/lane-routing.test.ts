@@ -240,7 +240,8 @@ describe('the lane is ours, not the customer’s', () => {
       ...files(join(ROOT, 'packages', 'agent', 'src')),
       ...files(join(ROOT, 'packages', 'artefacts', 'src')),
     ]
-      .filter((f) => !/[\\/]lane\.ts$/.test(f))
+      // The scorer, the queue and the consultant brief are the internal readers.
+      .filter((f) => !/[\\/](lane|queue|consultant)\.ts$/.test(f))
       .filter((f) => {
         const src = readFileSync(f, 'utf8');
         // A read: `.lane`, `lane ===`, `lane:` in a condition. Writing the default on
