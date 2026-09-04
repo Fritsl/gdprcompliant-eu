@@ -111,6 +111,11 @@ export class Catalogue {
 
   // The current entry for an id. With a version, only if the catalogue still holds that
   // version: a finding pinned to an older version gets undefined, never a silent upgrade.
+  // Every entry, newest version of each id first.
+  get entries(): CatalogueEntry[] {
+    return [...this.byId.values()].flat();
+  }
+
   get(id: string, version?: number): CatalogueEntry | undefined {
     const entry = this.byId.get(id);
     if (!entry) return undefined;

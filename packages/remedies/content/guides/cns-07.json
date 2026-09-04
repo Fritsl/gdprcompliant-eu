@@ -24,7 +24,7 @@
     },
     {
       "en": "Remove any confirmation step after refusing; the refusal is the confirmation.",
-      "da": "Fjern ethvert bekræftelsestrin efter afvisning; afvisningen er bekræftelsen."
+      "da": "Fjern ethvert bekræftelsestrin efter afvisningen, for et nej, der skal bekræftes, er ikke ét klik: afvisningen er selv bekræftelsen."
     }
   ],
   "confirm": {

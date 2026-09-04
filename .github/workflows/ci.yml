@@ -31,6 +31,8 @@ jobs:
       - run: pnpm check:retention
       # Every citation in the content set resolves to a paragraph as published (T-03).
       - run: pnpm check:citations
+      # Every remedy snippet has a fixture proof (R-03); the guides suite runs them.
+      - run: pnpm check:guide-snippets
       - run: pnpm format:check
       - run: pnpm test:unit
       # Planted instructions in scanned content must gain nothing (A-10); poisoned claims

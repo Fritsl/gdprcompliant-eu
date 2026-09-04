@@ -20,7 +20,7 @@
     },
     {
       "en": "Remove the tool or turn off its fingerprinting feature.",
-      "da": "Fjern værktøjet, eller slå dets fingeraftryksfunktion fra."
+      "da": "Fjern værktøjet fra siden, eller slå dets fingeraftryksfunktion fra i værktøjets egne indstillinger."
     },
     {
       "en": "If audio processing is a genuine feature of the page, start it only on a user action, never on load.",

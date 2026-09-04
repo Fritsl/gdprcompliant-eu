@@ -16,3 +16,4 @@ export * from './placeholders.js';
 export * from './resolver.js';
 export * from './ledger.js';
 export * from './guides.js';
+export * from './snippet-proofs.js';

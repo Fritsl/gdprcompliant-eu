@@ -1,0 +1,337 @@
+{
+  "version": "2026-09-04",
+  "_comment": "One proof per self-fix snippet (R-03): the fixture that shows the finding, and the change the snippet describes, applied on top. The guides suite runs each: broken first, then fixed, and the finding must be gone. Headers for server snippets are read from the snippet's add_header lines.",
+  "proofs": [
+    {
+      "remedyId": "sec-01-redirect-to-https",
+      "findingTypeId": "SEC-01",
+      "fixture": "insecure-forms",
+      "host": "usikker.test",
+      "family": "security",
+      "routes": [
+        {
+          "path": "/",
+          "scheme": "http",
+          "status": 301,
+          "headers": {
+            "location": "https://usikker.test/"
+          }
+        }
+      ]
+    },
+    {
+      "remedyId": "sec-02-https-form-hsts",
+      "findingTypeId": "SEC-02",
+      "fixture": "insecure-forms",
+      "host": "usikker.test",
+      "family": "security",
+      "replace": {
+        "/index.html": [
+          [
+            "action=\"http://usikker.test/kontakt/send\"",
+            "action=\"https://usikker.test/kontakt/send\""
+          ]
+        ]
+      }
+    },
+    {
+      "remedyId": "sec-03-hsts",
+      "findingTypeId": "SEC-03",
+      "fixture": "insecure-forms",
+      "host": "usikker.test",
+      "family": "security"
+    },
+    {
+      "remedyId": "sec-04-mixed-content",
+      "findingTypeId": "SEC-04",
+      "fixture": "insecure-forms",
+      "host": "usikker.test",
+      "family": "security",
+      "replace": {
+        "/index.html": [
+          ["src=\"http://cdn.usikker.test/t.js\"", "src=\"https://cdn.usikker.test/t.js\""],
+          ["src=\"http://usikker.test/logo.svg\"", "src=\"https://usikker.test/logo.svg\""]
+        ]
+      }
+    },
+    {
+      "remedyId": "sec-05-referrer-policy",
+      "findingTypeId": "SEC-05",
+      "fixture": "insecure-forms",
+      "host": "usikker.test",
+      "family": "security"
+    },
+    {
+      "remedyId": "sec-06-security-headers",
+      "findingTypeId": "SEC-06",
+      "fixture": "insecure-forms",
+      "host": "usikker.test",
+      "family": "security"
+    },
+    {
+      "remedyId": "sec-07-exposed-paths",
+      "findingTypeId": "SEC-07",
+      "fixture": "insecure-forms",
+      "host": "usikker.test",
+      "family": "security",
+      "routes": [
+        {
+          "path": "/.env",
+          "status": 404,
+          "body": ""
+        },
+        {
+          "path": "/.env.local",
+          "status": 404,
+          "body": ""
+        },
+        {
+          "path": "/.git/config",
+          "status": 404,
+          "body": ""
+        },
+        {
+          "path": "/.git/HEAD",
+          "status": 404,
+          "body": ""
+        }
+      ]
+    },
+    {
+      "remedyId": "cns-01-gate-before-interaction",
+      "findingTypeId": "CNS-01",
+      "fixture": "lazy-tracker",
+      "host": "lazyshop.test",
+      "family": "consent",
+      "replace": {
+        "/index.html": [
+          [
+            "      setTimeout(function () {\n        var s = document.createElement('script');\n        s.src = 'http://lazy.tracker.test/tag.js';\n        document.head.appendChild(s);\n      }, 4000);",
+            "      window.addEventListener('CookieConsentDecision', function (e) {\n        if (!e.detail.categories.includes('statistics')) return;\n        var s = document.createElement('script');\n        s.src = 'http://lazy.tracker.test/tag.js';\n        document.head.appendChild(s);\n      });"
+          ]
+        ]
+      }
+    },
+    {
+      "remedyId": "cns-02-gate-tags",
+      "findingTypeId": "CNS-02",
+      "fixture": "reject-not-honoured",
+      "host": "eksempelbutik.test",
+      "family": "consent",
+      "replace": {
+        "/index.html": [
+          [
+            "    <script src=\"http://analytics.tracker.test/tag.js\"></script>",
+            "    <script>\n      window.addEventListener('CookieConsentDecision', function (e) {\n        if (e.detail.categories.includes('statistics')) {\n          var s = document.createElement('script');\n          s.src = 'http://analytics.tracker.test/tag.js';\n          document.head.appendChild(s);\n        }\n        if (e.detail.categories.includes('marketing')) {\n          var px = new Image(1, 1);\n          px.src = 'http://pixel.social.test/px.svg';\n        }\n      });\n    </script>"
+          ],
+          [
+            "    <img src=\"http://pixel.social.test/px.svg\" alt=\"\" width=\"1\" height=\"1\" />",
+            "    <!-- the social pixel is loaded by the same gate, on a marketing choice -->"
+          ]
+        ]
+      }
+    },
+    {
+      "remedyId": "cns-03-offer-a-refusal",
+      "findingTypeId": "CNS-03",
+      "fixture": "banner-accept-only",
+      "host": "kunja.test",
+      "family": "consent",
+      "replace": {
+        "/index.html": [
+          [
+            "    <button id=\"ok\" type=\"button\">OK</button>",
+            "    <button id=\"ok\" type=\"button\">OK</button>\n    <button id=\"consent-reject\" type=\"button\">Afvis alle</button>"
+          ]
+        ],
+        "/cmp.js": [
+          [
+            "document.getElementById('ok').addEventListener('click', function () { localStorage.setItem('kunja', 'accept'); document.cookie = 'kunja=accept; path=/; max-age=31536000'; document.getElementById('notice').hidden = true; });",
+            "document.getElementById('ok').addEventListener('click', function () { localStorage.setItem('kunja', 'accept'); document.cookie = 'kunja=accept; path=/; max-age=31536000'; document.getElementById('notice').hidden = true; });\ndocument.getElementById('consent-reject').addEventListener('click', function () { localStorage.setItem('kunja', 'reject'); document.cookie = 'kunja=reject; path=/; max-age=31536000'; document.getElementById('notice').hidden = true; window.dispatchEvent(new CustomEvent('CookieConsentDecision', { detail: { categories: [] } })); });"
+          ]
+        ]
+      }
+    },
+    {
+      "remedyId": "cns-04-remember-the-choice",
+      "findingTypeId": "CNS-04",
+      "fixture": "banner-forgets",
+      "host": "glemsom.test",
+      "family": "consent",
+      "replace": {
+        "/cmp.js": [
+          [
+            "document.getElementById('accept').addEventListener('click', function () {\n  document.getElementById('cookie-banner').hidden = true;\n});",
+            "if (localStorage.getItem('consent')) { document.getElementById('cookie-banner').hidden = true; }\ndocument.getElementById('accept').addEventListener('click', function () {\n  localStorage.setItem('consent', 'accept');\n  document.cookie = 'consent=accept; path=/; max-age=15552000';\n  document.getElementById('cookie-banner').hidden = true;\n});"
+          ],
+          [
+            "document.getElementById('reject').addEventListener('click', function () {\n  document.getElementById('cookie-banner').hidden = true;\n});",
+            "document.getElementById('reject').addEventListener('click', function () {\n  localStorage.setItem('consent', 'reject');\n  document.cookie = 'consent=reject; path=/; max-age=15552000';\n  document.getElementById('cookie-banner').hidden = true;\n});"
+          ]
+        ]
+      }
+    },
+    {
+      "remedyId": "rec-01-mask-and-exclude-checkout",
+      "findingTypeId": "REC-01",
+      "fixture": "replay-unmasked",
+      "host": "klinik.test",
+      "family": "replay",
+      "replace": {
+        "/intake.html": [
+          [
+            "    <script src=\"https://static.hotjar.com/c/hotjar-123.js?sv=6\"></script>",
+            "    <!-- the replay tool is not loaded on the intake page -->"
+          ]
+        ]
+      }
+    },
+    {
+      "remedyId": "fpr-01-canvas-fingerprint",
+      "findingTypeId": "FPR-01",
+      "fixture": "replay-unmasked",
+      "host": "klinik.test",
+      "family": "replay",
+      "replace": {
+        "/index.html": [
+          [
+            "    <script src=\"https://fp.metrics.test/fp.js\"></script>",
+            "    <!-- metrics script removed -->"
+          ]
+        ],
+        "/intake.html": [
+          [
+            "    <script src=\"https://fp.metrics.test/fp.js\"></script>",
+            "    <!-- metrics script removed -->"
+          ]
+        ]
+      }
+    },
+    {
+      "remedyId": "fpr-02-font-fingerprint",
+      "findingTypeId": "FPR-02",
+      "fixture": "replay-unmasked",
+      "host": "klinik.test",
+      "family": "replay",
+      "replace": {
+        "/index.html": [
+          [
+            "    <script src=\"https://fp.metrics.test/fp.js\"></script>",
+            "    <!-- metrics script removed -->"
+          ]
+        ],
+        "/intake.html": [
+          [
+            "    <script src=\"https://fp.metrics.test/fp.js\"></script>",
+            "    <!-- metrics script removed -->"
+          ]
+        ]
+      }
+    },
+    {
+      "remedyId": "fpr-03-audio-fingerprint",
+      "findingTypeId": "FPR-03",
+      "fixture": "replay-unmasked",
+      "host": "klinik.test",
+      "family": "replay",
+      "replace": {
+        "/index.html": [
+          [
+            "    <script src=\"https://fp.metrics.test/fp.js\"></script>",
+            "    <!-- metrics script removed -->"
+          ]
+        ],
+        "/intake.html": [
+          [
+            "    <script src=\"https://fp.metrics.test/fp.js\"></script>",
+            "    <!-- metrics script removed -->"
+          ]
+        ]
+      }
+    },
+    {
+      "remedyId": "frm-01-untick-the-box",
+      "findingTypeId": "FRM-01",
+      "fixture": "preticked-forms",
+      "host": "tilmeld.test",
+      "family": "forms",
+      "replace": {
+        "/tilmeld.html": [
+          ["name=\"nyhedsbrev\" checked />", "name=\"nyhedsbrev\" />"],
+          ["name=\"profilering\" checked />", "name=\"profilering\" />"]
+        ],
+        "/kassen.html": [
+          [
+            "        document.getElementById('sms').checked = true;",
+            "        // nothing ticks a box on the visitor's behalf"
+          ]
+        ]
+      }
+    },
+    {
+      "remedyId": "frm-02-split-checkboxes",
+      "findingTypeId": "FRM-02",
+      "fixture": "preticked-forms",
+      "host": "tilmeld.test",
+      "family": "forms",
+      "replace": {
+        "/kassen.html": [
+          [
+            "<label><input type=\"checkbox\" id=\"accept\" name=\"accept\" required /> Jeg accepterer handelsbetingelserne og vil gerne modtage nyhedsbrevet</label>",
+            "<label><input type=\"checkbox\" id=\"accept\" name=\"accept\" required /> Jeg accepterer handelsbetingelserne</label>\n      <label><input type=\"checkbox\" id=\"nyhedsbrev\" name=\"nyhedsbrev\" /> Ja tak til nyhedsbrevet</label>"
+          ]
+        ]
+      }
+    },
+    {
+      "remedyId": "frm-03-notice-at-collection",
+      "findingTypeId": "FRM-03",
+      "fixture": "preticked-forms",
+      "host": "tilmeld.test",
+      "family": "forms",
+      "replace": {
+        "/kassen.html": [
+          [
+            "      <label><input type=\"checkbox\" id=\"sms\" name=\"sms\" /> Send mig tilbud på SMS</label>",
+            "      <label><input type=\"checkbox\" id=\"sms\" name=\"sms\" /> Send mig tilbud på SMS</label>\n      <p class=\"notice\">Vi bruger dine oplysninger til at levere din ordre og gemmer dem i fem år. <a href=\"/privatlivspolitik.html\">Sådan behandler vi dine oplysninger</a>.</p>"
+          ]
+        ],
+        "/kontakt.html": [
+          [
+            "      <label for=\"symptomer\">Beskriv dine symptomer</label>",
+            "      <p class=\"notice\">Vi bruger dine oplysninger til at svare dig og sletter dem efter tre måneder. <a href=\"/privatlivspolitik.html\">Sådan behandler vi dine oplysninger</a>.</p>\n      <label for=\"symptomer\">Beskriv dine symptomer</label>"
+          ]
+        ]
+      }
+    },
+    {
+      "remedyId": "vnd-06-self-host-fonts",
+      "findingTypeId": "VND-06",
+      "fixture": "hosted-fonts",
+      "host": "skrift.blog.test",
+      "family": "recipients",
+      "replace": {
+        "/style.css": [
+          [
+            "url('https://fonts.gstatic.com/s/blogskrift/v1/regular.woff2')",
+            "url('/fonts/regular.woff2')"
+          ]
+        ]
+      }
+    },
+    {
+      "remedyId": "clk-01-same-site-for-everyone",
+      "findingTypeId": "CLK-01",
+      "fixture": "cloaked-shop",
+      "host": "cloaked.shop.test",
+      "family": "security",
+      "routes": [],
+      "replaceRoutes": true
+    },
+    {
+      "remedyId": "exp-01-review-named-hosts",
+      "findingTypeId": "EXP-01",
+      "exempt": "The finding is read from public certificate logs, which the estate cannot serve; the snippet restricts an internal host on the network, which no fixture site can show. The certificate-log suite proves the detector against recorded log answers."
+    }
+  ]
+}
