@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "levels": ["advisory", "serious", "blocking"],
+  "rules": [
+    {
+      "id": "observed",
+      "description": "A detector that grades what it saw (a form's sensitivity, a replay tool on a payment page) reports a severity; the finding takes the higher of the type's base and what was observed.",
+      "when": { "observed": true },
+      "effect": "max-observed"
+    },
+    {
+      "id": "many-hosts",
+      "description": "A consent finding naming three or more hosts is one level more serious: the problem is the site's setup, not one tag.",
+      "when": { "areas": ["Consent"], "minHosts": 3 },
+      "effect": "raise",
+      "by": 1
+    },
+    {
+      "id": "sensitive-sector",
+      "description": "Collection, consent and observation findings on a site in health or education (NACE 86, 85) are one level more serious.",
+      "when": { "areas": ["Consent", "Collection", "Observation"], "sectorPrefixes": ["85", "86"] },
+      "effect": "raise",
+      "by": 1
+    },
+    {
+      "id": "regressed",
+      "description": "A finding that was closed and is back is one level more serious: the fix did not hold.",
+      "when": { "previousStatus": ["closed"] },
+      "effect": "raise",
+      "by": 1
+    }
+  ]
+}
