@@ -1,0 +1,24 @@
+{
+  "site": "schatten.test",
+  "description": "A Usercentrics-style root whose banner lives in an open shadow root. Recognised by signature; the deny button is found through the shadow boundary.",
+  "tags": [
+    "shadow-dom"
+  ],
+  "findings": {
+    "must": [],
+    "mustNot": [
+      "CNS-03"
+    ]
+  },
+  "network": {
+    "firstLoad": {
+      "mustContact": [],
+      "mustNotContact": []
+    }
+  },
+  "consent": {
+    "platform": "usercentrics",
+    "outcome": "refused",
+    "maxSteps": 3
+  }
+}

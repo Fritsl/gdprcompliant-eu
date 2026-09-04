@@ -23,6 +23,14 @@ const expected = (over: Record<string, unknown> = {}) =>
 describe('the fixture estate (F-07)', () => {
   it('every fixture loads, validates, and names a site among its hosts', () => {
     expect(sites.map((s) => s.name)).toEqual([
+      'banner-accept-only',
+      'banner-cookiebot-like',
+      'banner-direct-reject',
+      'banner-german-switches',
+      'banner-in-iframe',
+      'banner-onetrust-like',
+      'banner-two-layer',
+      'banner-usercentrics-shadow',
       'clean-brochure',
       'injection-attempts',
       'insecure-forms',

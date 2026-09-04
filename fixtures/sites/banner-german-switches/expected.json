@@ -1,0 +1,22 @@
+{
+  "site": "schalter.test",
+  "description": "\"Alle akzeptieren\" or \"Einstellungen\"; the settings layer uses aria switches, and \"Auswahl speichern\" keeps the choice.",
+  "tags": [],
+  "findings": {
+    "must": [],
+    "mustNot": [
+      "CNS-03"
+    ]
+  },
+  "network": {
+    "firstLoad": {
+      "mustContact": [],
+      "mustNotContact": []
+    }
+  },
+  "consent": {
+    "platform": "generic",
+    "outcome": "refused",
+    "minSteps": 5
+  }
+}

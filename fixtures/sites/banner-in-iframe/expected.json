@@ -1,0 +1,24 @@
+{
+  "site": "ramme.test",
+  "description": "The banner is rendered inside a same-site iframe. The heuristic looks in every frame; the reject inside the frame closes the whole thing.",
+  "tags": [
+    "iframe"
+  ],
+  "findings": {
+    "must": [],
+    "mustNot": [
+      "CNS-03"
+    ]
+  },
+  "network": {
+    "firstLoad": {
+      "mustContact": [],
+      "mustNotContact": []
+    }
+  },
+  "consent": {
+    "platform": "generic",
+    "outcome": "refused",
+    "maxSteps": 3
+  }
+}

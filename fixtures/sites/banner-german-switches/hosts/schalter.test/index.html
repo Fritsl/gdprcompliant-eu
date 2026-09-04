@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>banner-german-switches</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; }
+    .overlay { position: fixed; left: 0; right: 0; bottom: 0; background: #fff; border-top: 2px solid #333; padding: 1rem; z-index: 1000; }
+    .overlay button { margin-right: .5rem; }
+    .layer { margin-top: .75rem; }
+  </style>
+  
+</head>
+<body>
+  <h1>banner-german-switches</h1>
+  <p>Velkommen. Willkommen. Welcome.</p>
+  
+  <div id="dsgvo" class="overlay" role="dialog" aria-label="Datenschutz">
+    <div id="first">
+      <p>Wir nutzen Cookies für Statistik und Marketing.</p>
+      <button id="accept" type="button">Alle akzeptieren</button>
+      <button id="settings" type="button">Einstellungen</button>
+    </div>
+    <div id="second" class="layer" hidden>
+      <div><span>Notwendig</span> <button type="button" role="switch" aria-checked="true" aria-disabled="true" disabled>an</button></div>
+      <div><span>Statistik</span> <button type="button" role="switch" aria-checked="true" aria-label="Statistik" class="opt">an</button></div>
+      <div><span>Marketing</span> <button type="button" role="switch" aria-checked="true" aria-label="Marketing" class="opt">an</button></div>
+      <div><button id="save" type="button">Auswahl speichern</button></div>
+    </div>
+  </div>
+  <script src="/cmp.js"></script>
+</body>
+</html>

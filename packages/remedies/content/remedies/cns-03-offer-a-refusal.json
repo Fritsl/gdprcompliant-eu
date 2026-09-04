@@ -1,0 +1,42 @@
+{
+  "id": "cns-03-offer-a-refusal",
+  "version": 1,
+  "findingTypeId": "CNS-03",
+  "jurisdictions": "all",
+  "kind": "self_fix",
+  "title": {
+    "en": "Give the banner a real \"no\"",
+    "da": "Giv banneret et rigtigt \"nej\""
+  },
+  "effort": {
+    "label": {
+      "en": "About 15 minutes",
+      "da": "Cirka 15 minutter"
+    },
+    "minutes": 15
+  },
+  "detail": {
+    "en": "The banner can be accepted or closed, but nothing on it lets a visitor refuse. A refusal needs one control on the first layer, as visible as the accept, that keeps every optional cookie off.",
+    "da": "Banneret kan accepteres eller lukkes, men intet på det lader en besøgende sige nej. Et afslag kræver én knap på første lag, lige så synlig som accept, som holder alle valgfrie cookies fra."
+  },
+  "snippet": "<button type=\"button\" id=\"consent-reject\">Reject all</button>\n<script>\n  document.getElementById('consent-reject').addEventListener('click', () => {\n    window.dispatchEvent(new CustomEvent('CookieConsentDecision', { detail: { categories: [] } }));\n    banner.hidden = true;\n  });\n</script>",
+  "verifyLabel": {
+    "en": "Re-check this finding",
+    "da": "Tjek dette fund igen"
+  },
+  "verification": {
+    "method": "rescan"
+  },
+  "action": {
+    "kind": "agent_prompt",
+    "label": {
+      "en": "Paste into your coding assistant"
+    },
+    "forwardable": {
+      "en": "Or forward it to your developer — it reads the same either way."
+    },
+    "body": {
+      "en": "On {{domain}} the cookie banner offers no way to refuse: the controls are accept and close only.\n\nAdd a \"Reject all\" button to the first layer of the banner, styled and placed the same as the accept button. When it is pressed, fire the consent event with no optional categories, store the refusal, and close the banner. Leave strictly necessary cookies as they are.\n\nWhen you are done: tell me the text and position of the new button, and how to verify that pressing it leaves no optional cookie set."
+    }
+  }
+}

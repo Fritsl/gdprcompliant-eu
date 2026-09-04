@@ -1,0 +1,22 @@
+{
+  "site": "tolag.test",
+  "description": "Accept or settings on the first layer; three optional categories ticked on the second, with a disabled necessary one, and a save button.",
+  "tags": [],
+  "findings": {
+    "must": [],
+    "mustNot": [
+      "CNS-03"
+    ]
+  },
+  "network": {
+    "firstLoad": {
+      "mustContact": [],
+      "mustNotContact": []
+    }
+  },
+  "consent": {
+    "platform": "generic",
+    "outcome": "refused",
+    "minSteps": 6
+  }
+}

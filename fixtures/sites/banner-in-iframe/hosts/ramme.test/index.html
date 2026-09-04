@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>banner-in-iframe</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; }
+    .overlay { position: fixed; left: 0; right: 0; bottom: 0; background: #fff; border-top: 2px solid #333; padding: 1rem; z-index: 1000; }
+    .overlay button { margin-right: .5rem; }
+    .layer { margin-top: .75rem; }
+  </style>
+  
+</head>
+<body>
+  <h1>banner-in-iframe</h1>
+  <p>Velkommen. Willkommen. Welcome.</p>
+  
+  <iframe id="consent-frame" name="consent" src="/consent-frame.html" title="Cookie consent" style="position:fixed;left:0;right:0;bottom:0;width:100%;height:160px;border:0;z-index:1000"></iframe>
+  <script src="/cmp.js"></script>
+</body>
+</html>

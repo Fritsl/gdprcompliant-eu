@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>banner-onetrust-like</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; }
+    .overlay { position: fixed; left: 0; right: 0; bottom: 0; background: #fff; border-top: 2px solid #333; padding: 1rem; z-index: 1000; }
+    .overlay button { margin-right: .5rem; }
+    .layer { margin-top: .75rem; }
+  </style>
+  
+</head>
+<body>
+  <h1>banner-onetrust-like</h1>
+  <p>Velkommen. Willkommen. Welcome.</p>
+  
+  <div id="onetrust-consent-sdk">
+    <div id="onetrust-banner-sdk" class="overlay" role="alertdialog">
+      <p id="onetrust-policy-text">We use cookies to improve your experience.</p>
+      <button id="onetrust-accept-btn-handler" type="button">Accept All Cookies</button>
+      <button id="onetrust-pc-btn-handler" type="button">Cookies Settings</button>
+      <button id="onetrust-reject-all-handler" type="button">Reject All</button>
+    </div>
+  </div>
+  <script src="/cmp.js"></script>
+</body>
+</html>

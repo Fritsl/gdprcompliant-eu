@@ -64,6 +64,28 @@
       "version": 1
     },
     {
+      "findingTypeId": "CNS-03",
+      "citations": [
+        {
+          "instrument": "ePrivacy",
+          "ref": "Art. 5(3)",
+          "note": "storage or access only with consent, which must be refusable"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 4(11)",
+          "note": "consent is a freely given choice"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 7(3)",
+          "note": "refusing must be as easy as agreeing"
+        }
+      ],
+      "guideId": "cns-03",
+      "version": 1
+    },
+    {
       "findingTypeId": "CNS-09",
       "citations": [
         {

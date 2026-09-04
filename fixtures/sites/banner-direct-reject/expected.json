@@ -1,0 +1,22 @@
+{
+  "site": "afvis.test",
+  "description": "A plain banner with \"Afvis alle\" on the first layer. The heuristic finds it and one click refuses.",
+  "tags": [],
+  "findings": {
+    "must": [],
+    "mustNot": [
+      "CNS-03"
+    ]
+  },
+  "network": {
+    "firstLoad": {
+      "mustContact": [],
+      "mustNotContact": []
+    }
+  },
+  "consent": {
+    "platform": "generic",
+    "outcome": "refused",
+    "maxSteps": 3
+  }
+}

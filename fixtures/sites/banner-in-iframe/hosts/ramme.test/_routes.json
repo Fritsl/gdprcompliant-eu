@@ -1,0 +1,19 @@
+[
+  {
+    "path": "/",
+    "scheme": "http",
+    "status": 301,
+    "headers": {
+      "location": "https://ramme.test/"
+    }
+  },
+  {
+    "path": "/consent-frame.html",
+    "status": 200,
+    "headers": {
+      "content-type": "text/html; charset=utf-8",
+      "content-security-policy": "default-src 'self'; frame-ancestors 'self'"
+    },
+    "body": "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"><title>Consent</title></head>\n<body style=\"margin:0;padding:1rem;font-family:system-ui,sans-serif;background:#fff;border-top:2px solid #333\">\n  <div role=\"dialog\" aria-label=\"Cookies\">\n    <p>This site uses cookies for analytics and advertising.</p>\n    <button id=\"accept\" type=\"button\">Accept</button>\n    <button id=\"reject\" type=\"button\">Reject</button>\n  </div>\n  <script src=\"/frame.js\"></script>\n</body></html>\n"
+  }
+]

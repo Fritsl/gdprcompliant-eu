@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <title>banner-two-layer</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; }
+    .overlay { position: fixed; left: 0; right: 0; bottom: 0; background: #fff; border-top: 2px solid #333; padding: 1rem; z-index: 1000; }
+    .overlay button { margin-right: .5rem; }
+    .layer { margin-top: .75rem; }
+  </style>
+  
+</head>
+<body>
+  <h1>banner-two-layer</h1>
+  <p>Velkommen. Willkommen. Welcome.</p>
+  
+  <div id="cmp" class="overlay" role="dialog" aria-label="Samtykke">
+    <div id="layer1">
+      <p>Vi bruger cookies for at give dig den bedste oplevelse.</p>
+      <button id="ok" type="button">Accepter alle</button>
+      <button id="settings" type="button">Indstillinger</button>
+    </div>
+    <div id="layer2" class="layer" hidden>
+      <label><input type="checkbox" checked disabled> Nødvendige</label>
+      <label><input type="checkbox" id="stat" checked> Statistik</label>
+      <label><input type="checkbox" id="mkt" checked> Markedsføring</label>
+      <label><input type="checkbox" id="pref" checked> Præferencer</label>
+      <div><button id="save" type="button">Gem indstillinger</button></div>
+    </div>
+  </div>
+  <script src="/cmp.js"></script>
+</body>
+</html>

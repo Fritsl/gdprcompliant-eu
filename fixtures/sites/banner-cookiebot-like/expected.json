@@ -1,0 +1,22 @@
+{
+  "site": "cybot.test",
+  "description": "Markup with the Cookiebot dialog ids. Recognised by signature; the decline button refuses.",
+  "tags": [],
+  "findings": {
+    "must": [],
+    "mustNot": [
+      "CNS-03"
+    ]
+  },
+  "network": {
+    "firstLoad": {
+      "mustContact": [],
+      "mustNotContact": []
+    }
+  },
+  "consent": {
+    "platform": "cookiebot",
+    "outcome": "refused",
+    "maxSteps": 3
+  }
+}

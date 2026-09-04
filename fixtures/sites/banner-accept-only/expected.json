@@ -1,0 +1,22 @@
+{
+  "site": "kunja.test",
+  "description": "A banner with \"OK\" and a link to the policy, and no way to say no. The scanner must say it found no refusal, not pretend one.",
+  "tags": [],
+  "findings": {
+    "must": [
+      "CNS-03"
+    ],
+    "mustNot": []
+  },
+  "network": {
+    "firstLoad": {
+      "mustContact": [],
+      "mustNotContact": []
+    }
+  },
+  "consent": {
+    "platform": "generic",
+    "outcome": "undetermined",
+    "findingTypeId": "CNS-03"
+  }
+}

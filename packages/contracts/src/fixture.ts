@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { ConsentOutcomeSchema, ConsentPlatformSchema } from './consent.js';
 import { FindingTypeIdSchema, HostnameSchema, NonEmptyStringSchema } from './primitives.js';
 
 // A fixture site is a deliberately broken website under fixtures/sites/<name>/, served
@@ -68,6 +69,16 @@ export const FixtureExpectationSchema = z
         afterAccept: FixtureNetworkExpectationSchema.optional(),
       })
       .prefault({}),
+    // What refusing consent on the site must look like (S-03).
+    consent: z
+      .object({
+        platform: ConsentPlatformSchema,
+        outcome: ConsentOutcomeSchema,
+        minSteps: z.number().int().min(1).optional(),
+        maxSteps: z.number().int().min(1).optional(),
+        findingTypeId: FindingTypeIdSchema.optional(),
+      })
+      .optional(),
   })
   .describe('What a fixture site must and must not produce');
 export type FixtureExpectation = z.infer<typeof FixtureExpectationSchema>;

@@ -1,0 +1,22 @@
+{
+  "site": "onetrust-shop.test",
+  "description": "Markup with the OneTrust banner ids. Recognised by signature; \"Reject All\" refuses.",
+  "tags": [],
+  "findings": {
+    "must": [],
+    "mustNot": [
+      "CNS-03"
+    ]
+  },
+  "network": {
+    "firstLoad": {
+      "mustContact": [],
+      "mustNotContact": []
+    }
+  },
+  "consent": {
+    "platform": "onetrust",
+    "outcome": "refused",
+    "maxSteps": 3
+  }
+}
