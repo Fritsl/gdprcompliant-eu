@@ -1,6 +1,6 @@
 # Schema
 
-Generated from `packages/db/migrations/meta/0012_snapshot.json` by `scripts/schema-doc.mjs`.
+Generated from `packages/db/migrations/meta/0013_snapshot.json` by `scripts/schema-doc.mjs`.
 Do not edit; change `packages/db/src/schema.ts`, run `pnpm db:generate`, then `pnpm db:doc`.
 
 Every table carries `tenant_id`, `created_at` and `source_ref`. `case_events` and
@@ -107,6 +107,8 @@ erDiagram
     timestamp expires_at "nullable"
     timestamp claimed_at "nullable"
     text claimed_by "nullable"
+    text trust_slug "nullable"
+    timestamp trust_published_at "nullable"
   }
   claim_verdicts {
     text id "PK"
@@ -407,7 +409,7 @@ erDiagram
 - unique index case_events_case_seq (case_id, seq)
 - index case_events_tenant_idx (tenant_id)
 - check case_events_seq: `"case_events"."seq" >= 1`
-- check case_events_type: `"type" in ('case_opened', 'scan_started', 'scan_completed', 'scan_failed', 'finding_raised', 'finding_closed', 'finding_regressed', 'fix_verification_failed', 'check_undetermined', 'question_asked', 'question_answered', 'artefact_generated', 'artefact_signed', 'artefact_published', 'colleague_invited', 'colleague_joined', 'reminder_sent', 'invitation_revoked', 'watch_run', 'meeting_requested', 'note_added', 'locale_overridden', 'claim_rejected', 'claim_requested', 'case_claimed', 'case_expired', 'export_produced', 'deletion_requested', 'vendor_resolved')`
+- check case_events_type: `"type" in ('case_opened', 'scan_started', 'scan_completed', 'scan_failed', 'finding_raised', 'finding_closed', 'finding_regressed', 'fix_verification_failed', 'check_undetermined', 'question_asked', 'question_answered', 'artefact_generated', 'artefact_signed', 'artefact_published', 'colleague_invited', 'colleague_joined', 'reminder_sent', 'invitation_revoked', 'watch_run', 'meeting_requested', 'note_added', 'locale_overridden', 'claim_rejected', 'claim_requested', 'case_claimed', 'case_expired', 'export_produced', 'deletion_requested', 'vendor_resolved', 'trust_published', 'trust_unpublished')`
 - check case_events_actor: `coalesce("case_events"."actor"->>'kind', '') in ('person', 'agent', 'scanner', 'watcher', 'system')`
 
 ## case_members
@@ -459,10 +461,13 @@ erDiagram
 | expires_at | timestamp with time zone |  |
 | claimed_at | timestamp with time zone |  |
 | claimed_by | text |  |
+| trust_slug | text |  |
+| trust_published_at | timestamp with time zone |  |
 
 - jurisdiction → jurisdictions(code)
 - tenant_id → tenants(id)
 - unique index cases_access_token (access_token)
+- unique index cases_trust_slug (trust_slug)
 - index cases_tenant_idx (tenant_id)
 - index cases_domain_idx (tenant_id, ("company"->>'domain'))
 - check cases_id: `"cases"."id" ~ '^[A-Z]{2}-[0-9]{2}-[A-Z0-9]{4}$'`
@@ -470,6 +475,7 @@ erDiagram
 - check cases_stage: `"stage" in ('opened', 'assessed', 'working', 'documented', 'watched')`
 - check cases_lane_score: `"cases"."lane_score" between 0 and 100`
 - check cases_token_length: `length("cases"."access_token") >= 32`
+- check cases_trust_slug: `"cases"."trust_slug" is null or "cases"."trust_slug" ~ '^[a-f0-9]{16}$'`
 
 ## claim_verdicts
 

@@ -106,6 +106,10 @@ export const cases = pgTable(
     expiresAt: timestamp('expires_at', { withTimezone: true }),
     claimedAt: timestamp('claimed_at', { withTimezone: true }),
     claimedBy: text('claimed_by'),
+    // The public progress page (U-05): off until published; the slug survives taking
+    // it down so a company's link works again when it goes back up.
+    trustSlug: text('trust_slug'),
+    trustPublishedAt: timestamp('trust_published_at', { withTimezone: true }),
   },
   (t) => [
     foreignKey({ columns: [t.tenantId], foreignColumns: [tenants.id], name: 'cases_tenant_fk' }),
@@ -115,6 +119,8 @@ export const cases = pgTable(
     check('cases_lane_score', sql`${t.laneScore} between 0 and 100`),
     check('cases_token_length', sql`length(${t.accessToken}) >= 32`),
     uniqueIndex('cases_access_token').on(t.accessToken),
+    uniqueIndex('cases_trust_slug').on(t.trustSlug),
+    check('cases_trust_slug', sql`${t.trustSlug} is null or ${t.trustSlug} ~ '^[a-f0-9]{16}$'`),
     index('cases_tenant_idx').on(t.tenantId),
     index('cases_domain_idx').on(t.tenantId, sql`(${t.company}->>'domain')`),
   ],

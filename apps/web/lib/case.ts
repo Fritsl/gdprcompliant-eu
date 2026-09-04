@@ -28,7 +28,11 @@ import {
   remindMember,
   requestCheck,
   revokeInvitation,
+  publishTrustPage,
   signArtefact,
+  trustPage,
+  trustStatus,
+  unpublishTrustPage,
   withTenant,
   type CaseProgress,
   type CaseSummary,
@@ -38,6 +42,7 @@ import {
   type MemberSummary,
   type MemberView,
   type RecheckProgress,
+  type TrustStatus,
 } from '@gc/db';
 import type { Role } from '@gc/findings';
 import { localise } from '@gc/i18n';
@@ -347,6 +352,7 @@ export interface CasePageView extends CaseSummary {
   readonly progress: CaseProgress;
   readonly domain: string;
   readonly findings: CaseFindingView[];
+  readonly trust: TrustStatus;
 }
 
 const DEFAULT_MINUTES = 15;
@@ -489,7 +495,8 @@ export function loadCasePage(token: string, locale: Locale): Promise<CasePageVie
         })),
       };
     });
-    return { ...summary, members, progress, domain, findings };
+    const trust = await trustStatus(connection, found.tenantId, found.caseId);
+    return { ...summary, members, progress, domain, findings, trust };
   });
 }
 
@@ -740,5 +747,76 @@ export async function exportArtefactForOwner(
       if (e instanceof SignatureRequired) return undefined;
       throw e;
     }
+  });
+}
+
+// ---- the public progress page (U-05) --------------------------------------------------
+
+export type TrustToggle = 'published' | 'already' | 'unpublished' | 'not_published';
+
+export async function publishTrustForOwner(token: string): Promise<TrustToggle | undefined> {
+  return withConnection(async (connection) => {
+    const found = await caseByToken(connection, token);
+    if (!found) return undefined;
+    const result = await publishTrustPage(connection, found.tenantId, found.caseId, {
+      by: holder(found.caseId),
+    });
+    return result.already ? 'already' : 'published';
+  });
+}
+
+export async function unpublishTrustForOwner(token: string): Promise<TrustToggle | undefined> {
+  return withConnection(async (connection) => {
+    const found = await caseByToken(connection, token);
+    if (!found) return undefined;
+    const done = await unpublishTrustPage(connection, found.tenantId, found.caseId, {
+      by: holder(found.caseId),
+    });
+    return done ? 'unpublished' : 'not_published';
+  });
+}
+
+export interface TrustFixedView {
+  readonly findingId: string;
+  readonly title: string;
+  readonly closedAt: string;
+}
+
+export interface TrustPageViewLocalised {
+  readonly caseId: string;
+  readonly domain: string;
+  readonly name: string;
+  readonly publishedAt: string;
+  readonly lastCheckedAt?: string;
+  readonly openCount: number;
+  readonly fixed: TrustFixedView[];
+}
+
+// What anyone may see: fixed items by their remedy's title, dated; a count of what is
+// open; when we last looked. The finding ids are the case's own and stay inside.
+export async function loadTrustPage(
+  slug: string,
+  locale: Locale,
+): Promise<TrustPageViewLocalised | undefined> {
+  return withConnection(async (connection) => {
+    const view = await trustPage(connection, slug);
+    if (!view) return undefined;
+    const domain = view.company.domain;
+    return {
+      caseId: view.caseId,
+      domain,
+      name: view.company.legalName ?? domain,
+      publishedAt: view.publishedAt.toISOString(),
+      ...(view.lastCheckedAt ? { lastCheckedAt: view.lastCheckedAt.toISOString() } : {}),
+      openCount: view.openCount,
+      fixed: view.fixed.map((f) => {
+        const entry = catalogue.get(f.remedyId, f.remedyVersion);
+        return {
+          findingId: f.findingId,
+          title: fill(pick(entry?.remedy.title, locale) ?? f.remedyId, domain),
+          closedAt: f.closedAt.toISOString(),
+        };
+      }),
+    };
   });
 }

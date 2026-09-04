@@ -760,5 +760,89 @@
   "artefact.kind.statusReport": {
     "en": "Status report",
     "da": "Statusrapport"
+  },
+  "case.trust": {
+    "en": "Public progress page",
+    "da": "Offentlig fremdriftsside"
+  },
+  "case.trust.off": {
+    "en": "Not published",
+    "da": "Ikke offentliggjort"
+  },
+  "case.trust.on": {
+    "en": "Published",
+    "da": "Offentliggjort"
+  },
+  "case.trust.shows": {
+    "en": "It shows what has been fixed and when, and how many things are open. Never which.",
+    "da": "Den viser, hvad der er rettet og hvornår, og hvor meget der er åbent. Aldrig hvad."
+  },
+  "case.trust.publish": {
+    "en": "Publish a public progress page",
+    "da": "Offentliggør en fremdriftsside"
+  },
+  "case.trust.unpublish": {
+    "en": "Take the page down",
+    "da": "Tag siden ned"
+  },
+  "case.trust.published": {
+    "en": "Published; the link works now",
+    "da": "Offentliggjort; linket virker nu"
+  },
+  "case.trust.unpublished": {
+    "en": "Taken down; the link answers nothing now",
+    "da": "Taget ned; linket svarer intet nu"
+  },
+  "trust.headline": {
+    "en": "privacy work in progress",
+    "da": "privatlivsarbejde i gang"
+  },
+  "trust.lastChecked": {
+    "en": "Last checked",
+    "da": "Senest tjekket"
+  },
+  "trust.notCheckedYet": {
+    "en": "Not checked yet",
+    "da": "Ikke tjekket endnu"
+  },
+  "trust.case": {
+    "en": "Case",
+    "da": "Sag"
+  },
+  "trust.checkedBy": {
+    "en": "Checked by GDPRcompliant.eu",
+    "da": "Tjekket af GDPRcompliant.eu"
+  },
+  "trust.published": {
+    "en": "Page published",
+    "da": "Side offentliggjort"
+  },
+  "trust.statement": {
+    "en": "We look at this website every week. This page is dated work in progress. It is not a seal, and nobody has approved anything.",
+    "da": "Vi kigger på denne hjemmeside hver uge. Siden er dateret arbejde i gang. Den er ikke et mærke, og ingen har godkendt noget."
+  },
+  "trust.fixed": {
+    "en": "Fixed so far",
+    "da": "Rettet indtil nu"
+  },
+  "trust.nothingYet": {
+    "en": "Nothing fixed yet.",
+    "da": "Intet rettet endnu."
+  },
+  "trust.open.one": {
+    "en": "item is open. Ask the company and they will tell you what it is.",
+    "da": "punkt er åbent. Spørg virksomheden, og de fortæller dig hvad."
+  },
+  "trust.open.many": {
+    "en": "items are open. Ask the company and they will tell you what they are.",
+    "da": "punkter er åbne. Spørg virksomheden, og de fortæller dig hvilke."
+  },
+  "trust.open.none": {
+    "en": "Nothing is open right now.",
+    "da": "Intet er åbent lige nu."
+  },
+  "trust.cta": {
+    "en": "Check your own website",
+    "da": "Tjek din egen hjemmeside"
   }
 }

@@ -307,6 +307,26 @@
         "en": "{{role}}",
         "da": "{{role}}"
       }
+    },
+    "trust_published": {
+      "text": {
+        "en": "Public progress page published",
+        "da": "Offentlig fremdriftsside offentliggjort"
+      },
+      "detail": {
+        "en": "{{slug}}",
+        "da": "{{slug}}"
+      }
+    },
+    "trust_unpublished": {
+      "text": {
+        "en": "Public progress page taken down",
+        "da": "Offentlig fremdriftsside taget ned"
+      },
+      "detail": {
+        "en": "{{slug}}",
+        "da": "{{slug}}"
+      }
     }
   }
 }

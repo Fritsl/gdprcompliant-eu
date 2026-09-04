@@ -303,14 +303,20 @@ export default async function CasePage({
   searchParams,
 }: {
   params: Promise<{ locale: string; token: string }>;
-  searchParams: Promise<{ outcome?: string; recheck?: string; attested?: string; asked?: string }>;
+  searchParams: Promise<{
+    outcome?: string;
+    recheck?: string;
+    attested?: string;
+    asked?: string;
+    trust?: string;
+  }>;
 }) {
   const { locale: localeParam, token } = await params;
   const locale = asLocale(localeParam);
   if (!locale) notFound();
   const view = await loadCasePage(token, locale);
   if (!view) notFound();
-  const { counts, members, progress, findings } = view;
+  const { counts, members, progress, findings, trust } = view;
   const base = `/${locale}/c/${token}`;
   const who = view.claimed ? t(locale, 'case.who.claimed') : t(locale, 'case.who.unclaimed');
   const query = await searchParams;
@@ -358,7 +364,13 @@ export default async function CasePage({
       ? t(locale, 'case.attested')
       : query.asked === '1'
         ? t(locale, 'case.asked')
-        : undefined;
+        : query.trust === 'published' || query.trust === 'already'
+          ? t(locale, 'case.trust.published')
+          : query.trust === 'unpublished'
+            ? t(locale, 'case.trust.unpublished')
+            : undefined;
+  const trustOn = trust.slug !== null && trust.publishedAt !== null;
+  const trustHref = trust.slug ? `/${locale}/t/${trust.slug}` : undefined;
 
   return (
     <article className="case screen narrow">
@@ -577,6 +589,36 @@ export default async function CasePage({
           </button>
           <Text of={t(locale, 'colleagues.invite.expires')} as="p" />
         </form>
+      </section>
+
+      <section className="no-print trust-toggle" data-trust-status={trustOn ? 'on' : 'off'}>
+        <Text of={t(locale, 'case.trust')} as="h2" />
+        <p>
+          <Text of={trustOn ? t(locale, 'case.trust.on') : t(locale, 'case.trust.off')} />
+          {trustOn && trustHref ? (
+            <>
+              {' '}
+              ·{' '}
+              <a href={trustHref} data-trust-link="">
+                {trustHref}
+              </a>
+            </>
+          ) : null}
+        </p>
+        <Text of={t(locale, 'case.trust.shows')} as="p" />
+        {trustOn ? (
+          <form method="post" action={`${base}/trust/unpublish`} className="inline">
+            <button type="submit" className="btn btn-2">
+              <Text of={t(locale, 'case.trust.unpublish')} />
+            </button>
+          </form>
+        ) : (
+          <form method="post" action={`${base}/trust/publish`} className="inline">
+            <button type="submit" className="btn btn-2">
+              <Text of={t(locale, 'case.trust.publish')} />
+            </button>
+          </form>
+        )}
       </section>
 
       <section className="no-print">

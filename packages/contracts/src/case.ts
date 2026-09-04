@@ -175,6 +175,9 @@ export const CaseEventSchema = z
       vendorId: IdSchema,
       resolution: z.enum(['resolved', 'unresolved', 'ambiguous']),
     }),
+    // The public progress page (U-05): on and off are explicit acts, both on the record.
+    event('trust_published', { slug: NonEmptyStringSchema }),
+    event('trust_unpublished', { slug: NonEmptyStringSchema }),
   ])
   .describe('An immutable timeline event');
 export type CaseEvent = z.infer<typeof CaseEventSchema>;

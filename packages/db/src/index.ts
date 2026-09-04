@@ -27,3 +27,4 @@ export * from './artefacts.js';
 export * from './reverify.js';
 export * from './scan-job.js';
 export * from './recheck-job.js';
+export * from './trust.js';
