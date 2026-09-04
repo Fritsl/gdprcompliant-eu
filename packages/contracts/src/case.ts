@@ -126,7 +126,16 @@ export const CaseEventSchema = z
     event('fix_verification_failed', { findingId: IdSchema, detail: z.string().optional() }),
     event('check_undetermined', { typeId: FindingTypeIdSchema, reason: NonEmptyStringSchema }),
     event('question_asked', { questionId: IdSchema }),
-    event('question_answered', { questionId: IdSchema, answer: NonEmptyStringSchema }),
+    // An answer (D-10): the option as the person read it, the question in English for
+    // the record, and how many duties the answer settled. Every version is an event.
+    event('question_answered', {
+      questionId: IdSchema,
+      answer: NonEmptyStringSchema,
+      question: NonEmptyStringSchema.optional(),
+      settled: z.number().int().min(0).optional(),
+    }),
+    // "Check it for me": the question went to the agent as a job.
+    event('check_requested', { questionId: IdSchema, jobId: NonEmptyStringSchema }),
     event('artefact_generated', { artefactId: IdSchema, kind: ArtefactKindSchema }),
     // A named person signed a specific version of a document (A-09): who, which version,
     // which bytes. Nothing is published or exported without one.

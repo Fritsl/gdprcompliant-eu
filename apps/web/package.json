@@ -10,18 +10,19 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@gc/artefacts": "workspace:*",
     "@gc/contracts": "workspace:*",
+    "@gc/corpus": "workspace:*",
+    "@gc/db": "workspace:*",
+    "@gc/findings": "workspace:*",
     "@gc/i18n": "workspace:*",
+    "@gc/jobs": "workspace:*",
+    "@gc/remedies": "workspace:*",
+    "@gc/rules": "workspace:*",
     "next": "16.3.4",
     "react": "19",
     "react-dom": "19",
-    "server-only": "^0.0.1",
-    "@gc/db": "workspace:*",
-    "@gc/artefacts": "workspace:*",
-    "@gc/remedies": "workspace:*",
-    "@gc/findings": "workspace:*",
-    "@gc/corpus": "workspace:*",
-    "@gc/jobs": "workspace:*"
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@types/react": "19",

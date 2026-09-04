@@ -121,11 +121,13 @@
     "question_answered": {
       "text": {
         "en": "Question answered",
-        "da": "Spørgsmål besvaret"
+        "da": "Spørgsmål besvaret",
+        "de": "Frage beantwortet"
       },
       "detail": {
-        "en": "{{questionId}}: {{answer}}",
-        "da": "{{questionId}}: {{answer}}"
+        "en": "{{question}} {{answer}}",
+        "da": "{{question}} {{answer}}",
+        "de": "{{question}} {{answer}}"
       }
     },
     "artefact_generated": {
@@ -346,6 +348,18 @@
       "detail": {
         "en": "{{shareId}}",
         "da": "{{shareId}}"
+      }
+    },
+    "check_requested": {
+      "text": {
+        "en": "Check requested",
+        "da": "Tjek bestilt",
+        "de": "Prüfung angefordert"
+      },
+      "detail": {
+        "en": "{{questionId}}",
+        "da": "{{questionId}}",
+        "de": "{{questionId}}"
       }
     }
   }

@@ -12,6 +12,7 @@ import {
   type RecheckView,
 } from '@/lib/case';
 import { asLocale, t } from '@/lib/i18n';
+import { questionCounts } from '@/lib/questions';
 import { registerCounts } from '@/lib/register';
 import type { Locale } from '@gc/contracts';
 
@@ -320,6 +321,7 @@ export default async function CasePage({
   if (!view) notFound();
   const { counts, members, progress, findings, trust, shares } = view;
   const register = (await registerCounts(token)) ?? { confirmed: 0, total: 0 };
+  const questions = (await questionCounts(token)) ?? { open: 0, answered: 0 };
   const base = `/${locale}/c/${token}`;
   const who = view.claimed ? t(locale, 'case.who.claimed') : t(locale, 'case.who.unclaimed');
   const query = await searchParams;
@@ -528,6 +530,12 @@ export default async function CasePage({
           </li>
           <li>
             {counts.events} <Text of={t(locale, 'case.holds.events')} />
+          </li>
+          <li data-questions-open={questions.open} data-questions-answered={questions.answered}>
+            {questions.open} <Text of={t(locale, 'case.holds.questions')} /> ·{' '}
+            <a href={`${base}/questions`} data-questions-link="">
+              <Text of={t(locale, 'case.questions')} />
+            </a>
           </li>
           <li data-register-confirmed={register.confirmed} data-register-total={register.total}>
             {register.confirmed}/{register.total} <Text of={t(locale, 'case.holds.register')} /> ·{' '}

@@ -1023,5 +1023,65 @@
     "en": "register rows confirmed",
     "da": "rækker i fortegnelsen bekræftet",
     "de": "Zeilen des Verzeichnisses bestätigt"
+  },
+  "questions.question": {
+    "en": "Question",
+    "da": "Spørgsmål",
+    "de": "Frage"
+  },
+  "questions.of": {
+    "en": "of",
+    "da": "af",
+    "de": "von"
+  },
+  "questions.settles": {
+    "en": "Answering this settles:",
+    "da": "Svaret afgør:",
+    "de": "Die Antwort klärt:"
+  },
+  "questions.weLook": {
+    "en": "we go and look",
+    "da": "vi kigger efter",
+    "de": "wir sehen nach"
+  },
+  "questions.settledNow": {
+    "en": "That settled:",
+    "da": "Det afgjorde:",
+    "de": "Das hat geklärt:"
+  },
+  "questions.checkQueued": {
+    "en": "Queued for a check.",
+    "da": "Sat i kø til et tjek.",
+    "de": "Zur Prüfung eingereiht."
+  },
+  "questions.done": {
+    "en": "That is everything we need for now.",
+    "da": "Det er alt, vi har brug for lige nu.",
+    "de": "Das ist alles, was wir im Moment brauchen."
+  },
+  "questions.dutiesSettled": {
+    "en": "duties settled by your answers",
+    "da": "pligter afgjort af dine svar",
+    "de": "Pflichten durch Ihre Antworten geklärt"
+  },
+  "questions.answered": {
+    "en": "Answered",
+    "da": "Besvaret",
+    "de": "Beantwortet"
+  },
+  "questions.change": {
+    "en": "Change",
+    "da": "Ret",
+    "de": "Ändern"
+  },
+  "case.questions": {
+    "en": "Answer them",
+    "da": "Besvar dem",
+    "de": "Beantworten"
+  },
+  "case.holds.questions": {
+    "en": "questions waiting for you",
+    "da": "spørgsmål, der venter på dig",
+    "de": "Fragen, die auf Sie warten"
   }
 }

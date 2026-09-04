@@ -141,6 +141,20 @@ function authorityOf(jurisdiction: string): { name: string; url?: string } {
   };
 }
 
+// What the first load set, counted for the fact sheet (D-10): every cookie, and those
+// the database does not class as necessary.
+export async function cookieCounts(
+  connection: Connection,
+  tenantId: string,
+  caseId: string,
+): Promise<{ total: number; nonNecessary: number }> {
+  const observed = await withTenant(connection, tenantId, (db) => cookiesOf(db, caseId, cookies()));
+  return {
+    total: observed.length,
+    nonNecessary: observed.filter((c) => c.classification.category !== 'necessary').length,
+  };
+}
+
 export interface DocumentDraft {
   readonly kind: GeneratedKind;
   readonly locale: Locale;

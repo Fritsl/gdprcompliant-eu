@@ -32,4 +32,5 @@ export * from './shares.js';
 export * from './graph.js';
 export * from './register.js';
 export * from './documents.js';
+export * from './questions.js';
 export * from './drift.js';
