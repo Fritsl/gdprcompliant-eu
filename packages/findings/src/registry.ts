@@ -6,6 +6,7 @@ import {
   FindingAreaSchema,
   FindingTypeIdSchema,
   SUPPORTED_JURISDICTIONS,
+  SeveritySchema,
   type FindingTypeId,
   type Jurisdiction,
 } from '@gc/contracts';
@@ -22,6 +23,8 @@ export const DetectorSchema = z.object({
   area: FindingAreaSchema,
   // Where it lives, e.g. "scanner/checks/security#hsts".
   detector: z.string().min(1),
+  // The severity a finding of this type opens with: the documented rule table (I-02).
+  defaultSeverity: SeveritySchema,
 });
 export type Detector = z.infer<typeof DetectorSchema>;
 
