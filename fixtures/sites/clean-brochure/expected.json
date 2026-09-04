@@ -8,15 +8,28 @@
     "must": [],
     "mustNot": [
       "CNS-02",
-      "CNS-09",
-      "VND-06",
       "REC-01",
       "FRM-02",
       "FRM-01",
       "FRM-03",
       "FPR-01",
       "FPR-02",
-      "FPR-03"
+      "FPR-03",
+      "POL-01",
+      "SEC-01",
+      "SEC-02",
+      "SEC-03",
+      "SEC-04",
+      "SEC-05",
+      "SEC-06",
+      "SEC-07",
+      "CNS-01",
+      "CNS-03",
+      "CNS-04",
+      "CNS-05",
+      "CNS-06",
+      "CNS-07",
+      "CLK-01"
     ]
   },
   "network": {

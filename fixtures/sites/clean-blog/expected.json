@@ -1,0 +1,41 @@
+{
+  "site": "blog.test",
+  "description": "A static blog with a stylesheet and a policy page, no scripts, no third parties, nothing stored on the visitor. A correct scan raises nothing and never suggests a banner.",
+  "tags": [
+    "clean"
+  ],
+  "findings": {
+    "must": [],
+    "mustNot": [
+      "CNS-01",
+      "CNS-02",
+      "CNS-03",
+      "CNS-04",
+      "CNS-05",
+      "CNS-06",
+      "CNS-07",
+      "SEC-01",
+      "SEC-02",
+      "SEC-03",
+      "SEC-04",
+      "SEC-05",
+      "SEC-06",
+      "SEC-07",
+      "POL-01",
+      "FRM-01",
+      "FRM-02",
+      "FRM-03",
+      "REC-01",
+      "FPR-01",
+      "FPR-02",
+      "FPR-03",
+      "CLK-01"
+    ]
+  },
+  "network": {
+    "firstLoad": {
+      "mustContact": [],
+      "mustNotContact": []
+    }
+  }
+}

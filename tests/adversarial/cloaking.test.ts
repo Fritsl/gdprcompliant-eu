@@ -45,13 +45,13 @@ describe('a site that cloaks', () => {
   it('is caught: the browser gets a tracker the declared scanner never sees, and that is the finding', async () => {
     const target = { url: 'https://cloaked.shop.test/' };
     const { capture } = await collectPassA(pool, target, { quiet });
-    expect(capture.requests.map((r) => r.host)).toContain('analytics.tracker.test');
+    expect(capture.requests.map((r) => r.host)).toContain('sporing.tracker.test');
     const surface = await runSecurityChecks(pool, target, { capture, identity });
     const cloak = surface.observations.find((o) => o.check === 'cloaking')!;
     expect(cloak).toBeDefined();
     expect(cloak.outcome).toBe('fail');
     expect(cloak.findingTypeId).toBe('CLK-01');
-    expect(cloak.detail['onlyForBrowsers']).toEqual(['analytics.tracker.test']);
+    expect(cloak.detail['onlyForBrowsers']).toEqual(['sporing.tracker.test']);
     expect(cloak.detail['declaredHosts']).toEqual([]);
     expect(cloak.summary).toMatch(/withholds from a request declared as GDPRcompliant-scanner/);
     // The evidence is the two host lists, kept as a diff, and the observation points at it.
@@ -59,7 +59,7 @@ describe('a site that cloaks', () => {
     expect(ev.kind).toBe('pass_diff');
     expect(JSON.parse(ev.body)).toMatchObject({
       declaredUserAgent: 'GDPRcompliant-scanner',
-      onlyForBrowsers: ['analytics.tracker.test'],
+      onlyForBrowsers: ['sporing.tracker.test'],
     });
     // And it becomes a finding a person can act on, with a remedy in every jurisdiction.
     const catalogue = loadCatalogue();

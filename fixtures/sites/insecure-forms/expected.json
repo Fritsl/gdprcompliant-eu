@@ -11,7 +11,8 @@
       "SEC-05",
       "SEC-06",
       "SEC-07",
-      "FRM-03"
+      "FRM-03",
+      "POL-01"
     ],
     "mustNot": [
       "CNS-02",

@@ -289,7 +289,7 @@ export interface FormInventoryOptions {
 }
 
 export const FORM_PAGE_HINT =
-  /kontakt|contact|tilmeld|signup|sign-up|register|registr|login|log-ind|checkout|kasse|kassen|nyhedsbrev|newsletter|konto|account|book|support|anmod|apply|ansøg|bestil|order|quote|tilbud/i;
+  /kontakt|contact|tilmeld|signup|sign-up|register|registr|login|log-ind|checkout|kasse|kassen|nyhedsbrev|newsletter|konto|account|book|support|anmod|apply|ansøg|bestil|order|quote|tilbud|intake|patient|indskriv|opret|subscribe|abonner|reserv|booking|appointment/i;
 
 interface RawForm {
   action: string;

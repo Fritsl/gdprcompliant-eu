@@ -1,0 +1,18 @@
+[
+  {
+    "path": "/",
+    "scheme": "http",
+    "status": 301,
+    "headers": {
+      "location": "https://bureau.test/"
+    }
+  },
+  {
+    "path": "/kontakt/send",
+    "scheme": "https",
+    "status": 303,
+    "headers": {
+      "location": "https://bureau.test/tak.html"
+    }
+  }
+]

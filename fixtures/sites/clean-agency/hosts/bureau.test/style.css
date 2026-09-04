@@ -1,0 +1,4 @@
+body{font-family:system-ui,sans-serif;margin:2rem;max-width:60ch}
+nav a{margin-right:1rem}
+.overlay{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:2px solid #333;padding:1rem}
+.overlay button{margin-right:.5rem}

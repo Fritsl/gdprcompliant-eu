@@ -217,7 +217,7 @@ describe('policy discovery (S-09)', () => {
     expect(known.fetched).toBeLessThanOrEqual(12);
   });
 
-  it('the committed fixtures: the shop has a policy, the brochure has none', async () => {
+  it('the committed fixtures: the shop and the brochure have a policy, the insecure shop has none', async () => {
     const shop = (await discoverPolicies(pool, { url: 'http://eksempelbutik.test/' }, { identity }))
       .discovery;
     expect(shop.documents.find((d) => d.kind === 'privacy')!.pages[0]!.finalUrl).toBe(
@@ -225,6 +225,9 @@ describe('policy discovery (S-09)', () => {
     );
     const brochure = (await discoverPolicies(pool, { url: 'https://brochure.test/' }, { identity }))
       .discovery;
-    expect(brochure.observation.outcome).toBe('fail');
+    expect(brochure.observation.outcome).toBe('pass');
+    const insecure = (await discoverPolicies(pool, { url: 'https://usikker.test/' }, { identity }))
+      .discovery;
+    expect(insecure.observation.outcome).toBe('fail');
   });
 });

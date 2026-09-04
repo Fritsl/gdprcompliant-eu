@@ -21,31 +21,12 @@ const expected = (over: Record<string, unknown> = {}) =>
   JSON.stringify({ site: 'shop.test', description: 'x', findings: { must: ['CNS-02'] }, ...over });
 
 describe('the fixture estate (F-07)', () => {
-  it('every fixture loads, validates, and names a site among its hosts', () => {
-    expect(sites.map((s) => s.name)).toEqual([
-      'banner-accept-only',
-      'banner-cookiebot-like',
-      'banner-direct-reject',
-      'banner-forgets',
-      'banner-german-switches',
-      'banner-in-iframe',
-      'banner-onetrust-like',
-      'banner-two-layer',
-      'banner-usercentrics-shadow',
-      'clean-brochure',
-      'cloaked-shop',
-      'huge-document',
-      'injection-attempts',
-      'insecure-forms',
-      'lazy-tracker',
-      'preticked-forms',
-      'redirect-loop',
-      'reject-not-honoured',
-      'replay-unmasked',
-      'slow-loris',
-      'ssrf-attempts',
-      'zip-bomb',
-    ]);
+  it('every fixture loads, validates, and names a site among its hosts; a fixture is a directory, not a registration', () => {
+    // Twenty-five or more, in name order, no two answering to the same host (T-01).
+    expect(sites.length).toBeGreaterThanOrEqual(25);
+    expect(sites.map((s) => s.name)).toEqual([...sites.map((s) => s.name)].sort());
+    const hosts = sites.flatMap((s) => s.hosts.map((h) => h.host));
+    expect(new Set(hosts).size).toBe(hosts.length);
     for (const s of sites) {
       expect(s.hosts.map((h) => h.host)).toContain(s.expected.site);
       expect(externalReferences(s)).toEqual([]);

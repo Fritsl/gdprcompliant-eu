@@ -66,7 +66,9 @@ async function read(page: Page, url: string): Promise<PageRead | undefined> {
   let status = 0;
   try {
     const response = await page.goto(url, { waitUntil: 'load' });
-    status = response?.status() ?? 0;
+    // No response means a same-document navigation: the page was already here, and a
+    // hash route rendered in place.
+    status = response ? response.status() : 200;
     if (status >= 400 || status === 0) return undefined;
   } catch {
     return undefined;
@@ -140,7 +142,9 @@ export async function discoverPolicies(
     };
 
     const fetchPage = async (url: string): Promise<PageRead | undefined> => {
-      const key = url.replace(/#.*$/, '').replace(/\/$/, '');
+      // A fragment is dropped, unless it is a route (#/…): a single-page app's policy
+      // lives at one, and it is a different page to a visitor.
+      const key = url.replace(/#(?!\/).*$/, '').replace(/\/$/, '');
       if (visited.has(key) || fetched >= maxPages || !sameSite(site, url)) return undefined;
       visited.add(key);
       fetched++;

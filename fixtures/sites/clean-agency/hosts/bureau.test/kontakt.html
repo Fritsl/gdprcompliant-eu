@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <title>Kontakt · Bureau Nord</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header><h1>Kontakt</h1><nav><a href="/">Forside</a></nav></header>
+  <main>
+    <form action="/kontakt/send" method="post">
+      <p><label>Navn <input name="navn" autocomplete="name" required></label></p>
+      <p><label>E-mail <input name="email" type="email" autocomplete="email" required></label></p>
+      <p><label>Besked <textarea name="besked" rows="4"></textarea></label></p>
+      <p>Vi behandler dine oplysninger for at svare dig, og sletter dem, når sagen er lukket.
+      Læs vores <a href="/privatlivspolitik.html">privatlivspolitik</a>.</p>
+      <p><button type="submit">Send</button></p>
+    </form>
+  </main>
+</body>
+</html>

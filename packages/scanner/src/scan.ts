@@ -79,6 +79,9 @@ export async function runChecks(
   const wants = (f: CheckFamily) => families.includes(f);
   const quiet = options.quiet ? { quiet: options.quiet } : {};
 
+  const formsRun = wants('forms')
+    ? inventoryForms(pool, target, { identity: options.identity })
+    : undefined;
   await Promise.all([
     (async () => {
       if (!wants('security')) return;
@@ -94,14 +97,24 @@ export async function runChecks(
     })(),
     (async () => {
       if (!wants('forms')) return;
-      const forms = await inventoryForms(pool, target, { identity: options.identity });
+      const forms = await formsRun!;
       out.forms = [...forms.inventory.observations];
       evidence.push(...forms.evidence);
       count(forms.inventory.observations);
     })(),
     (async () => {
       if (!wants('replay')) return;
-      const replay = await detectReplay(pool, target, { identity: options.identity, ...quiet });
+      // Replay is judged where personal data is typed: the pages the form inventory
+      // looked at, beyond the landing page.
+      const looked = formsRun ? (await formsRun).inventory.pages : [];
+      const paths = [...new Set(looked.map((p) => new URL(p, target.url).pathname))].filter(
+        (p) => p !== '/',
+      );
+      const replay = await detectReplay(pool, target, {
+        identity: options.identity,
+        ...quiet,
+        paths,
+      });
       out.replay = [...replay.report.observations];
       evidence.push(...replay.evidence);
       count(replay.report.observations);

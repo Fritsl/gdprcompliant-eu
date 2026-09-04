@@ -1,0 +1,50 @@
+{
+  "site": "app.spa.test",
+  "description": "A single-page app that renders every view from one script, keeps its consent choice in localStorage rather than a cookie, and loads its tracker only after an accept. The policy is a route, not a file. A correct scan raises nothing.",
+  "tags": [
+    "clean",
+    "spa",
+    "local-storage-consent"
+  ],
+  "findings": {
+    "must": [],
+    "mustNot": [
+      "CNS-01",
+      "CNS-02",
+      "CNS-03",
+      "CNS-04",
+      "CNS-05",
+      "CNS-06",
+      "CNS-07",
+      "SEC-01",
+      "SEC-02",
+      "SEC-03",
+      "SEC-04",
+      "SEC-05",
+      "SEC-06",
+      "SEC-07",
+      "POL-01",
+      "FRM-01",
+      "FRM-02",
+      "FRM-03",
+      "REC-01",
+      "FPR-01",
+      "FPR-02",
+      "FPR-03",
+      "CLK-01"
+    ]
+  },
+  "network": {
+    "firstLoad": {
+      "mustContact": [],
+      "mustNotContact": [
+        "spor.tracker.test"
+      ]
+    }
+  },
+  "consent": {
+    "platform": "generic",
+    "outcome": "refused",
+    "maxSteps": 3
+  }
+}

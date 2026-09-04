@@ -1,0 +1,48 @@
+{
+  "site": "ren.butik.test",
+  "description": "A shop with a banner that gates its only tracker: nothing loads before a choice, one click refuses, the choice is remembered, and every header and page is in order. A correct scan raises nothing.",
+  "tags": [
+    "clean"
+  ],
+  "findings": {
+    "must": [],
+    "mustNot": [
+      "CNS-01",
+      "CNS-02",
+      "CNS-03",
+      "CNS-04",
+      "CNS-05",
+      "CNS-06",
+      "CNS-07",
+      "SEC-01",
+      "SEC-02",
+      "SEC-03",
+      "SEC-04",
+      "SEC-05",
+      "SEC-06",
+      "SEC-07",
+      "POL-01",
+      "FRM-01",
+      "FRM-02",
+      "FRM-03",
+      "REC-01",
+      "FPR-01",
+      "FPR-02",
+      "FPR-03",
+      "CLK-01"
+    ]
+  },
+  "network": {
+    "firstLoad": {
+      "mustContact": [],
+      "mustNotContact": [
+        "maal.tracker.test"
+      ]
+    }
+  },
+  "consent": {
+    "platform": "generic",
+    "outcome": "refused",
+    "maxSteps": 3
+  }
+}

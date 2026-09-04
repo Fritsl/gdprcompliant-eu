@@ -3,7 +3,11 @@
   "description": "Accept or settings on the first layer; three optional categories ticked on the second, with a disabled necessary one, and a save button.",
   "tags": [],
   "findings": {
-    "must": [],
+    "must": [
+      "CNS-05",
+      "CNS-06",
+      "CNS-07"
+    ],
     "mustNot": [
       "CNS-03"
     ]

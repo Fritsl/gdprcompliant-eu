@@ -1,0 +1,10 @@
+[
+  {
+    "path": "/",
+    "scheme": "http",
+    "status": 301,
+    "headers": {
+      "location": "https://app.spa.test/"
+    }
+  }
+]

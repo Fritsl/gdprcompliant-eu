@@ -14,7 +14,7 @@
   "network": {
     "firstLoad": {
       "mustContact": [
-        "analytics.tracker.test"
+        "sporing.tracker.test"
       ],
       "mustNotContact": []
     }
