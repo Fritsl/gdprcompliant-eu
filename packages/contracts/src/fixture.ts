@@ -16,6 +16,17 @@ export const FixtureRouteSchema = z.object({
   status: z.number().int().min(200).max(599).default(200),
   headers: z.record(z.string(), z.string()).default({}),
   body: z.string().optional(),
+  // Adversarial fixtures (T-06). userAgent: answer this route only when the request's
+  // User-Agent contains the string, so a site can cloak. delayMs: hold the answer, so a
+  // site can stall. bytes: repeat the body to this size, so a site can bloat.
+  userAgent: z.string().min(1).optional(),
+  delayMs: z.number().int().min(0).max(120_000).optional(),
+  bytes: z
+    .number()
+    .int()
+    .min(1)
+    .max(512 * 1024 * 1024)
+    .optional(),
 });
 export type FixtureRoute = z.infer<typeof FixtureRouteSchema>;
 
@@ -41,6 +52,8 @@ export const FIXTURE_TAGS = [
   'spa',
   'local-storage-consent',
   'cloaking',
+  // Hostile by design (T-06): estate-wide suites skip these; the adversarial suite runs them.
+  'adversarial',
   // Instructions planted in the content, on every surface a model might read (A-10).
   'injection',
 ] as const;

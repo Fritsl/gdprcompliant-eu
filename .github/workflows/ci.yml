@@ -35,6 +35,8 @@ jobs:
       - run: pnpm test:unit
       # Planted instructions in scanned content must gain nothing (A-10); poisoned claims
       # must not pass the verifier (A-07). A successful attack fails the build.
+      # The adversarial suite drives a browser against hostile fixtures (T-06).
+      - run: pnpm exec playwright install chromium
       - run: pnpm test:adversarial
       # The prototype is the design specification; its 430 assertions encode product
       # rules, so a change that breaks one must fail here too.

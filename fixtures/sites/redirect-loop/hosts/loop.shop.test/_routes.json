@@ -1,0 +1,23 @@
+[
+  {
+    "path": "/",
+    "status": 302,
+    "headers": {
+      "location": "https://loop.shop.test/a"
+    }
+  },
+  {
+    "path": "/a",
+    "status": 302,
+    "headers": {
+      "location": "https://loop.shop.test/b"
+    }
+  },
+  {
+    "path": "/b",
+    "status": 302,
+    "headers": {
+      "location": "https://loop.shop.test/"
+    }
+  }
+]

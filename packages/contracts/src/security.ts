@@ -16,6 +16,8 @@ export const SECURITY_CHECKS = {
   referrer_policy: 'SEC-05',
   security_headers: 'SEC-06',
   exposed_paths: 'SEC-07',
+  // Different trackers for a browser than for a declared scanner (T-06).
+  cloaking: 'CLK-01',
 } as const;
 export type SecurityCheckId = keyof typeof SECURITY_CHECKS;
 export const SecurityCheckIdSchema = z.enum(

@@ -520,6 +520,23 @@
       ],
       "guideId": "vnd-11",
       "version": 1
+    },
+    {
+      "findingTypeId": "CLK-01",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 5(1)(a)",
+          "note": "processing must be transparent"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 5(2)",
+          "note": "the controller must be able to show it"
+        }
+      ],
+      "guideId": "clk-01",
+      "version": 1
     }
   ]
 }

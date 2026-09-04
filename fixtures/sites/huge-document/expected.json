@@ -1,0 +1,17 @@
+{
+  "site": "huge.shop.test",
+  "description": "A home page of forty megabytes. The scan must finish inside its budget and keep only a bounded part of it.",
+  "tags": [
+    "adversarial"
+  ],
+  "findings": {
+    "must": [],
+    "mustNot": []
+  },
+  "network": {
+    "firstLoad": {
+      "mustContact": [],
+      "mustNotContact": []
+    }
+  }
+}

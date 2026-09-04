@@ -41,7 +41,7 @@ interface PageRead {
 
 const READ_PAGE = `(() => {
   const inFooter = (el) => !!el.closest('footer, [role="contentinfo"], .footer, #footer');
-  const links = Array.from(document.querySelectorAll('a[href]')).map((a) => ({
+  const links = Array.from(document.querySelectorAll('a[href]')).slice(0, 2000).map((a) => ({
     href: a.href,
     text: (a.textContent || '').trim().slice(0, 200) || (a.getAttribute('aria-label') || '').trim() || (a.getAttribute('title') || '').trim(),
     rel: a.getAttribute('rel') || undefined,
@@ -55,7 +55,8 @@ const READ_PAGE = `(() => {
   return {
     lang: document.documentElement.getAttribute('lang') || undefined,
     title: document.title || undefined,
-    text: (document.body && document.body.innerText) || '',
+    // Bounded (T-06): a page can be as big as it likes; what is kept is not.
+    text: ((document.body && document.body.innerText) || '').slice(0, 400000),
     links,
     alternates,
   };

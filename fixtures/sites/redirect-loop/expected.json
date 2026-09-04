@@ -1,0 +1,17 @@
+{
+  "site": "loop.shop.test",
+  "description": "A home page that redirects to itself in a cycle of three. The scan must give up cleanly and say the site could not be reached.",
+  "tags": [
+    "adversarial"
+  ],
+  "findings": {
+    "must": [],
+    "mustNot": []
+  },
+  "network": {
+    "firstLoad": {
+      "mustContact": [],
+      "mustNotContact": []
+    }
+  }
+}

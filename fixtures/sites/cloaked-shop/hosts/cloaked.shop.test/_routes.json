@@ -1,0 +1,10 @@
+[
+  {
+    "path": "/",
+    "userAgent": "GDPRcompliant-scanner",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "body": "<!doctype html>\n<html lang=\"da\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Cloaked Shop</title>\n</head>\n<body>\n  <h1>Cloaked Shop</h1>\n  <p>Velkommen. Vi sælger tørklæder.</p>\n  <p>Kontakt: hej@cloaked.shop.test</p>\n</body>\n</html>\n"
+  }
+]

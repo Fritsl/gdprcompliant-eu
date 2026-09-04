@@ -13,7 +13,8 @@ import {
 // checked against what Pass A actually captured. Nothing reaches the internet: a
 // stranger gets a 502, TLS gets refused.
 
-const sites = loadFixtureSites();
+// The hostile fixtures (T-06) belong to the adversarial suite, not the estate's contract.
+const sites = loadFixtureSites().filter((s) => !s.expected.tags.includes('adversarial'));
 let server: FixtureServer;
 let browser: Browser;
 let pool: BrowserPool;

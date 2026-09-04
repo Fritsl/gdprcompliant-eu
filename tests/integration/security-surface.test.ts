@@ -54,7 +54,10 @@ describe('the insecure fixture fails every check, with evidence (S-12)', () => {
 
     expect(Object.keys(o).sort()).toEqual(Object.keys(SECURITY_CHECKS).sort());
     for (const check of Object.keys(SECURITY_CHECKS) as (keyof typeof SECURITY_CHECKS)[]) {
-      expect(o[check].outcome, `${check}: ${o[check].summary}`).toBe('fail');
+      // It fails every check but one: it does not cloak, it is bad to everyone alike.
+      expect(o[check].outcome, `${check}: ${o[check].summary}`).toBe(
+        check === 'cloaking' ? 'pass' : 'fail',
+      );
       expect(o[check].findingTypeId).toBe(SECURITY_CHECKS[check]);
       expect(o[check].evidence.length, check).toBeGreaterThan(0);
     }

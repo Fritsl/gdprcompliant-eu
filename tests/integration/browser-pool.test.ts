@@ -81,6 +81,7 @@ beforeAll(async () => {
     },
   ]).start();
   pool = await new BrowserPool({
+    allowPrivateTargets: true,
     concurrency: 2,
     passTimeoutMs: 20_000,
     navigationTimeoutMs: 10_000,
@@ -148,6 +149,7 @@ describe('limits and deadlines (S-01)', () => {
 
   it('a pass that hangs is cut off at the deadline and its context is gone', async () => {
     const short = await new BrowserPool({
+      allowPrivateTargets: true,
       concurrency: 1,
       passTimeoutMs: 800,
       navigationTimeoutMs: 500,
@@ -183,6 +185,7 @@ describe('limits and deadlines (S-01)', () => {
 
   it('a browser that will not close a context is killed, and the next pass gets a fresh one', async () => {
     const twitchy = await new BrowserPool({
+      allowPrivateTargets: true,
       concurrency: 1,
       passTimeoutMs: 5_000,
       navigationTimeoutMs: 2_000,

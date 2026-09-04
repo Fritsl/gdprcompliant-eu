@@ -7,6 +7,7 @@ import {
   type LaunchOptions,
   type Page,
 } from 'playwright';
+import { guardContext, type Blocked, type EgressGuard } from './egress.js';
 
 // A pool of browser passes. Every pass gets a brand-new browser context — its own
 // cookies, storage, IndexedDB, cache and service workers, none of it shared with the
@@ -45,6 +46,11 @@ export interface PoolOptions {
   readonly browserType?: BrowserType;
   // For the fixture estate, whose TLS certificate is self-signed. Never in production.
   readonly ignoreHTTPSErrors?: boolean;
+  // Refuse names that resolve to private addresses (T-06). On by default; the fixture
+  // estate turns it off because its names resolve nowhere and its proxy answers them.
+  readonly resolveEgress?: boolean;
+  // For the pool's own tests, whose pages are served on this machine. Never in production.
+  readonly allowPrivateTargets?: boolean;
 }
 
 export class PassTimeoutError extends Error {
@@ -75,6 +81,11 @@ interface Running {
 }
 
 const sleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
+
+// What the egress guard refused on a context, for a pass to record.
+const guardByContext = new WeakMap<BrowserContext, EgressGuard>();
+export const blockedRequests = (context: BrowserContext): readonly Blocked[] =>
+  guardByContext.get(context)?.blocked ?? [];
 
 export class BrowserPool {
   private running: Running | undefined;
@@ -139,10 +150,18 @@ export class BrowserPool {
         viewport: target.viewport ?? DEFAULT_VISITOR.viewport,
         ...(target.userAgent !== undefined ? { userAgent: target.userAgent } : {}),
         ...(this.options.ignoreHTTPSErrors ? { ignoreHTTPSErrors: true } : {}),
+        // A page that hands the browser a file gets nothing saved anywhere.
+        acceptDownloads: false,
       });
       context.setDefaultTimeout(this.options.navigationTimeoutMs);
       context.setDefaultNavigationTimeout(this.options.navigationTimeoutMs);
       const page = await context.newPage();
+      if (!this.options.allowPrivateTargets) {
+        guardByContext.set(
+          context,
+          await guardContext(context, page, { resolve: this.options.resolveEgress ?? true }),
+        );
+      }
       const deadline = new Promise<never>((_, reject) => {
         timer = setTimeout(
           () => reject(new PassTimeoutError(target.url, this.options.passTimeoutMs)),

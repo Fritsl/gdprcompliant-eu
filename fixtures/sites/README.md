@@ -50,7 +50,7 @@ Validated by `FixtureExpectationSchema` in `@gc/contracts`.
 | --- | --- |
 | `site` | The customer's host: the one the scan is pointed at. Must be one of the `hosts/`. |
 | `description` | One sentence on what the fixture isolates. |
-| `tags` | The awkward cases it covers: `clean`, `lazy-load`, `shadow-dom`, `iframe`, `spa`, `local-storage-consent`, `cloaking`. |
+| `tags` | The awkward cases it covers: `clean`, `lazy-load`, `shadow-dom`, `iframe`, `spa`, `local-storage-consent`, `cloaking`, `injection`, `adversarial`. A fixture tagged `adversarial` is hostile by design (T-06): the estate-wide suites skip it and the adversarial suite runs it. |
 | `findings.must` | Finding types that must be raised. Stable ids, e.g. `CNS-02`; never an article. |
 | `findings.mustNot` | Finding types that must not be raised. This is what keeps false positives honest. |
 | `network.firstLoad` | Hosts the browser must, and must not, contact on the untouched first load (pass A). |

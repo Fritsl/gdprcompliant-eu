@@ -1,0 +1,17 @@
+{
+  "site": "slow.shop.test",
+  "description": "A home page that takes half a minute to answer. The scan must time out on its own clock, not wait.",
+  "tags": [
+    "adversarial"
+  ],
+  "findings": {
+    "must": [],
+    "mustNot": []
+  },
+  "network": {
+    "firstLoad": {
+      "mustContact": [],
+      "mustNotContact": []
+    }
+  }
+}

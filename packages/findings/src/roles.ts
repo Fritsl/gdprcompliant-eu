@@ -65,6 +65,7 @@ export const ROLE_BY_PREFIX: Readonly<Record<string, Role>> = {
   FPR: 'it',
   REC: 'it',
   VND: 'it',
+  CLK: 'it',
   SEC: 'it',
   EXP: 'it',
 };

@@ -1,0 +1,22 @@
+{
+  "site": "cloaked.shop.test",
+  "description": "A shop that loads a tracker for ordinary browsers and serves a clean page to any request whose User-Agent names the scanner. The cloaking itself is the finding.",
+  "tags": [
+    "cloaking",
+    "adversarial"
+  ],
+  "findings": {
+    "must": [
+      "CLK-01"
+    ],
+    "mustNot": []
+  },
+  "network": {
+    "firstLoad": {
+      "mustContact": [
+        "analytics.tracker.test"
+      ],
+      "mustNotContact": []
+    }
+  }
+}

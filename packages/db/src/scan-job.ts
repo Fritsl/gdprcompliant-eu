@@ -84,6 +84,9 @@ export function normaliseDomain(input: string): string | undefined {
     return undefined;
   }
   if (host === 'localhost' || /^\d+\.\d+\.\d+\.\d+$/.test(host)) return undefined;
+  // Names that are not the web (T-06): this machine, a private network, cloud metadata.
+  if (/\.(localhost|internal|local|corp|intranet|home\.arpa)$/.test(host)) return undefined;
+  if (host === 'metadata.google.internal') return undefined;
   return host;
 }
 

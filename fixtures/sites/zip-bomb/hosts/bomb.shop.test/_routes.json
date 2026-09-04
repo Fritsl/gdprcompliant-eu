@@ -1,0 +1,11 @@
+[
+  {
+    "path": "/privatlivspolitik.zip",
+    "headers": {
+      "content-type": "application/zip",
+      "content-disposition": "attachment; filename=\"privatlivspolitik.zip\""
+    },
+    "bytes": 60000000,
+    "body": "PK\u0003\u0004 not really an archive, just sixty megabytes of it "
+  }
+]

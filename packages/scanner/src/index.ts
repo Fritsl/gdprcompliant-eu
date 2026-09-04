@@ -12,6 +12,7 @@ export const PACKAGE = '@gc/scanner';
 
 export * from './fixtures/index.js';
 export * from './pool.js';
+export * from './egress.js';
 export * from './passes/network-quiet.js';
 export * from './passes/pass-a.js';
 export * from './passes/pass-bc.js';

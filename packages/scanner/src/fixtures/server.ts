@@ -187,12 +187,43 @@ export class FixtureServer {
     }
 
     const extra = fixture.headers ?? {};
+    const userAgent = String(req.headers['user-agent'] ?? '');
     const route = fixture.routes.find(
-      (r) => r.path === url.pathname && (r.scheme === undefined || r.scheme === scheme),
+      (r) =>
+        r.path === url.pathname &&
+        (r.scheme === undefined || r.scheme === scheme) &&
+        (r.userAgent === undefined || userAgent.includes(r.userAgent)),
     );
     if (route) {
-      const body = route.body ?? '';
       this.served.push({ method, scheme, host, path: url.pathname, status: route.status });
+      if (route.delayMs) await new Promise((r) => setTimeout(r, route.delayMs));
+      if (req.destroyed) return;
+      if (route.bytes) {
+        // A bloated answer: the body repeated to the size asked for, streamed in pieces.
+        const unit = Buffer.from(route.body && route.body.length > 0 ? route.body : 'x');
+        res.writeHead(route.status, {
+          'content-length': String(route.bytes),
+          ...extra,
+          ...route.headers,
+        });
+        let left = route.bytes;
+        const piece = Buffer.alloc(Math.min(64 * 1024, unit.length * Math.ceil((64 * 1024) / unit.length)));
+        for (let i = 0; i < piece.length; i += unit.length) unit.copy(piece, i, 0, Math.min(unit.length, piece.length - i));
+        const pump = () => {
+          while (left > 0) {
+            const n = Math.min(left, piece.length);
+            left -= n;
+            if (!res.write(n === piece.length ? piece : piece.subarray(0, n))) {
+              res.once('drain', pump);
+              return;
+            }
+          }
+          res.end();
+        };
+        pump();
+        return;
+      }
+      const body = route.body ?? '';
       res.writeHead(route.status, {
         'content-length': String(Buffer.byteLength(body)),
         ...extra,

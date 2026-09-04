@@ -1,0 +1,17 @@
+{
+  "site": "ssrf.shop.test",
+  "description": "A page that points the browser at this machine, the private network, cloud metadata, a file and a private name, and a redirect into the network. None of it may be fetched.",
+  "tags": [
+    "adversarial"
+  ],
+  "findings": {
+    "must": [],
+    "mustNot": []
+  },
+  "network": {
+    "firstLoad": {
+      "mustContact": [],
+      "mustNotContact": []
+    }
+  }
+}

@@ -16,7 +16,7 @@ companies a list of problems; this hands them a plan and the things that close i
 
 ## Where you are
 
-**73 of 112 done.** Phase 0 and phase 1 are complete; phase 2 is 25 of 34, phase 3 has
+**74 of 112 done.** Phase 0 and phase 1 are complete; phase 2 is 25 of 34, phase 3 has
 begun, DNS collection opens phase 4 and the task catalogue opens phase 5. Contracts,
 config with the EU-only allowlist, the test harness, record and replay, i18n, the remedy
 catalogue and resolver, the model client, the web shell, the fixture estate (with TLS),
@@ -52,8 +52,11 @@ provision quoted in full from the corpus) are in. The journeys suite
 fix applied by changing the fixture's responses, a colleague's re-check, a sign-off, an
 export and a deletion, and CI runs every e2e suite on push, files one at a time because
 the pg-boss queue is shared across test schemas; T-09 stays blocked on G-01, G-02 and A-05
-for its two remaining journeys. The database is up (`pnpm db:up`); nothing in phase 1 is
-open.
+for its two remaining journeys. The adversarial suite now covers seven injection surfaces,
+cloaking (a browser against the declared scanner, CLK-01), exhaustion (loops, stalls, huge
+pages, an archive bomb) and server-side request forgery (an egress guard in the browser
+pool that judges every hop), against six hostile fixtures tagged `adversarial`. The
+database is up (`pnpm db:up`); nothing in phase 1 is open.
 
 Do not trust that list — ask:
 

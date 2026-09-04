@@ -1,0 +1,17 @@
+{
+  "site": "bomb.shop.test",
+  "description": "A privacy-policy link that leads to a sixty-megabyte archive. The scanner must not download it, and must not mistake it for a policy.",
+  "tags": [
+    "adversarial"
+  ],
+  "findings": {
+    "must": [],
+    "mustNot": []
+  },
+  "network": {
+    "firstLoad": {
+      "mustContact": [],
+      "mustNotContact": []
+    }
+  }
+}

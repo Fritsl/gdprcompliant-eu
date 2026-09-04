@@ -33,12 +33,18 @@ describe('the fixture estate (F-07)', () => {
       'banner-two-layer',
       'banner-usercentrics-shadow',
       'clean-brochure',
+      'cloaked-shop',
+      'huge-document',
       'injection-attempts',
       'insecure-forms',
       'lazy-tracker',
       'preticked-forms',
+      'redirect-loop',
       'reject-not-honoured',
       'replay-unmasked',
+      'slow-loris',
+      'ssrf-attempts',
+      'zip-bomb',
     ]);
     for (const s of sites) {
       expect(s.hosts.map((h) => h.host)).toContain(s.expected.site);

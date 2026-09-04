@@ -14,6 +14,7 @@ import { sha256 } from '@gc/contracts';
 import type { BrowserPool, ScanTarget } from '../pool.js';
 import { EXPOSED_PATHS, SCANNER_USER_AGENT, robotsDisallows } from './exposed-paths.js';
 import { evaluateHsts, evaluateReferrerPolicy, evaluateSecurityHeaders, lower } from './headers.js';
+import { probeCloaking } from './cloaking.js';
 
 // The security surface a stranger can see. Every check is a deterministic reading of
 // responses the site gave to ordinary requests: GET only, no body, no credentials, one
@@ -105,7 +106,7 @@ export async function runSecurityChecks(
   const httpRoot = `http://${host}/`;
   const { identity } = options;
 
-  return pool.run(target, async (page, context) => {
+  const surface = await pool.run(target, async (page, context) => {
     const request = context.request;
     const evidence: Evidence[] = [];
     const observations: SecurityObservation[] = [];
@@ -378,6 +379,20 @@ export async function runSecurityChecks(
 
     return { observations, evidence };
   });
+
+  // 8. Cloaking: the same page as a browser and as a declared scanner (T-06). Its own
+  // passes, so it runs after the request-level checks have released the context.
+  const cloak = await probeCloaking(pool, target, {
+    identity,
+    ...(options.capture ? { capture: options.capture } : {}),
+  });
+  return {
+    observations: [...surface.observations, cloak.observation],
+    evidence: [
+      ...surface.evidence,
+      ...cloak.evidence.filter((e) => !surface.evidence.some((x) => x.hash === e.hash)),
+    ],
+  };
 }
 
 const FORMS_SCRIPT = `Array.from(document.forms).map((f) => ({

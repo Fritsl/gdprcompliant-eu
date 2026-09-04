@@ -1,0 +1,9 @@
+[
+  {
+    "path": "/go",
+    "status": 302,
+    "headers": {
+      "location": "http://172.16.0.1/admin"
+    }
+  }
+]

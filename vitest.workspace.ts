@@ -45,6 +45,9 @@ export default defineWorkspace(
       testTimeout: suite.testTimeoutMs,
       hookTimeout: suite.testTimeoutMs,
       passWithNoTests: true,
+      // The e2e suites each register workers on pg-boss, whose schema is shared across the
+      // per-file test schemas; run in parallel they steal each other's jobs. One fork, in turn.
+      ...(suite.name === 'e2e' ? { poolOptions: { forks: { singleFork: true } } } : {}),
       ...(suite.name === 'unit'
         ? { setupFiles: ['./tests/setup/no-network.ts'] }
         : { env: readTestEnv() }),

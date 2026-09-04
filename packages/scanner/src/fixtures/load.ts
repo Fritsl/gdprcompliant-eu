@@ -1,3 +1,4 @@
+import { forbiddenTarget } from '../egress.js';
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -40,7 +41,10 @@ export class FixtureError extends Error {
 
 const TEXT = new Set(['.html', '.htm', '.js', '.mjs', '.css', '.json', '.svg', '.txt', '.xml']);
 const URL_PATTERN = /(?:https?:)?\/\/([a-z0-9-]+(?:\.[a-z0-9-]+)+)(?=[/:"'\s)]|$)/gi;
-const LOCAL = new Set(['localhost', '127.0.0.1', 'www.w3.org']);
+// Vocabularies a page names but a browser never fetches: XML namespaces, JSON-LD contexts.
+const LOCAL = new Set(['localhost', '127.0.0.1', 'www.w3.org', 'schema.org']);
+// A private address or name (T-06) is never fetched, so a fixture may point at one.
+const unreachable = (host: string) => LOCAL.has(host) || forbiddenTarget(`http://${host}/`) !== undefined;
 
 function walk(dir: string, out: string[] = []): string[] {
   for (const entry of readdirSync(dir)) {
@@ -61,7 +65,7 @@ export function externalReferences(site: Pick<FixtureSite, 'dir' | 'hosts'>): { 
       if (!TEXT.has(ext)) continue;
       for (const m of readFileSync(file, 'utf8').matchAll(URL_PATTERN)) {
         const host = m[1]!.toLowerCase();
-        if (!own.has(host) && !LOCAL.has(host)) {
+        if (!own.has(host) && !unreachable(host)) {
           out.push({ file: relative(site.dir, file).split(sep).join('/'), host });
         }
       }

@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <title>SSRF Shop</title>
+</head>
+<body>
+  <h1>SSRF Shop</h1>
+  <p>Velkommen. Vi sælger lamper.</p>
+  <img src="http://127.0.0.1:1/logo.png" alt="logo">
+  <img src="http://[::1]:1/logo2.png" alt="logo">
+  <script src="http://169.254.169.254/latest/meta-data/"></script>
+  <iframe src="http://10.0.0.1/" title="inside"></iframe>
+  <link rel="stylesheet" href="http://localhost:9/style.css">
+  <link rel="privacy-policy" href="http://intranet.corp/policy">
+  <object data="file:///etc/passwd" type="text/plain"></object>
+  <footer><a href="http://192.168.1.1/privatlivspolitik">Privatlivspolitik</a> <a href="/go">Videre</a></footer>
+</body>
+</html>

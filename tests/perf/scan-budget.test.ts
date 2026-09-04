@@ -18,7 +18,7 @@ const budgets = JSON.parse(readFileSync(join(ROOT, 'tests', 'perf', 'budgets.jso
   reCheck: { fractionOfScan: number };
 };
 
-const sites = loadFixtureSites();
+const sites = loadFixtureSites().filter((s) => !s.expected.tags.includes('adversarial'));
 const identity = {
   tenantId: 't-perf',
   caseId: 'DK-26-PERF',
