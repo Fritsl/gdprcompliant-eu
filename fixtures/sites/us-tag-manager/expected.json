@@ -1,0 +1,24 @@
+{
+  "site": "tags.shop.test",
+  "description": "A shop that loads a tag manager operated from outside the EEA on the first load, before any banner. The recipient is a transfer; the tag before consent is its own finding.",
+  "tags": [],
+  "findings": {
+    "must": [
+      "TRF-01",
+      "CNS-01"
+    ],
+    "mustNot": [
+      "VND-06",
+      "SEC-03",
+      "POL-01"
+    ]
+  },
+  "network": {
+    "firstLoad": {
+      "mustContact": [
+        "www.googletagmanager.com"
+      ],
+      "mustNotContact": []
+    }
+  }
+}

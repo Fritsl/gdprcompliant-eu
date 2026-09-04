@@ -1,0 +1,24 @@
+{
+  "site": "skrift.blog.test",
+  "description": "A blog whose stylesheet fetches its web font from a font service outside the EEA. Every visitor’s address reaches the service; the fix is to host the file.",
+  "tags": [],
+  "findings": {
+    "must": [
+      "VND-06",
+      "TRF-01"
+    ],
+    "mustNot": [
+      "CNS-01",
+      "SEC-03",
+      "POL-01"
+    ]
+  },
+  "network": {
+    "firstLoad": {
+      "mustContact": [
+        "fonts.gstatic.com"
+      ],
+      "mustNotContact": []
+    }
+  }
+}

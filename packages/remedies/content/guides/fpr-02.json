@@ -1,0 +1,49 @@
+{
+  "id": "fpr-02",
+  "findingTypeId": "FPR-02",
+  "title": {
+    "en": "A script measures dozens of fonts to fingerprint the visitor",
+    "da": "Et script måler snesevis af skrifttyper for at tage fingeraftryk af den besøgende"
+  },
+  "wrong": {
+    "en": "A script measures the width of text in thirty or more font families, one after another. Which fonts a machine has is nearly unique, and the list identifies the visitor without a cookie.",
+    "da": "Et script måler bredden af tekst i tredive eller flere skriftfamilier, den ene efter den anden. Hvilke skrifttyper en maskine har, er næsten unikt, og listen identificerer den besøgende uden en cookie."
+  },
+  "why": {
+    "en": "Font enumeration has no purpose on a normal page except recognising people who did not want to be recognised. It is the kind of thing a visitor cannot see and would not agree to.",
+    "da": "Optælling af skrifttyper har intet formål på en almindelig side ud over at genkende folk, der ikke ville genkendes. Det er den slags, en besøgende ikke kan se og ikke ville sige ja til."
+  },
+  "steps": [
+    {
+      "en": "Find the script the finding names and the tool it belongs to.",
+      "da": "Find det script, fundet nævner, og det værktøj, det hører til."
+    },
+    {
+      "en": "Remove the tool, or turn off its fingerprinting feature; vendors that offer it can usually be configured without it.",
+      "da": "Fjern værktøjet, eller slå dets fingeraftryksfunktion fra; leverandører, der tilbyder den, kan som regel sættes op uden."
+    },
+    {
+      "en": "If the site only needs to know whether one font is available, check that one font, not a list.",
+      "da": "Hvis sitet kun har brug for at vide, om én skrifttype er tilgængelig, så tjek den ene, ikke en liste."
+    }
+  ],
+  "confirm": {
+    "en": "Load the page without consent and watch the console for a burst of text measurements across many font families: there must be none. Then run the check again from your case page.",
+    "da": "Indlæs siden uden samtykke og hold øje i konsollen med en byge af tekstmålinger på tværs af mange skriftfamilier: der må ikke være nogen. Kør derefter tjekket igen fra din sagsside."
+  },
+  "keywords": [
+    {
+      "en": "font fingerprinting",
+      "da": "skrifttype fingeraftryk"
+    },
+    {
+      "en": "font enumeration script",
+      "da": "optælling af skrifttyper"
+    },
+    {
+      "en": "device fingerprint",
+      "da": "enhedsfingeraftryk"
+    }
+  ],
+  "remedyId": "fpr-02-font-fingerprint"
+}

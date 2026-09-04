@@ -14,7 +14,7 @@ import { BrowserPool, FixtureServer, loadFixtureSites, runChecks } from '@gc/sca
 const all = loadFixtureSites();
 // The hostile fixtures belong to the adversarial suite (T-06).
 const estate = all.filter((s) => !s.expected.tags.includes('adversarial'));
-const FAMILIES = ['security', 'forms', 'replay', 'policies', 'consent'] as const;
+const FAMILIES = ['security', 'forms', 'replay', 'policies', 'consent', 'recipients'] as const;
 const catalogue = loadCatalogue();
 const T0 = new Date('2026-09-04T09:14:00Z');
 let server: FixtureServer;
@@ -35,6 +35,7 @@ async function scan(site: (typeof all)[number]): Promise<Set<string>> {
   const out = await runChecks(pool, { url: urlOf(site) }, { identity, families: [...FAMILIES] });
   const input: AssemblyInput = {
     ...(out.security ? { security: out.security } : {}),
+    ...(out.recipients ? { recipients: out.recipients } : {}),
     ...(out.forms ? { forms: out.forms } : {}),
     ...(out.replay ? { replay: out.replay } : {}),
     ...(out.policies ? { policies: out.policies } : {}),

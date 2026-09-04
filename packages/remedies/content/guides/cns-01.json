@@ -1,0 +1,49 @@
+{
+  "id": "cns-01",
+  "findingTypeId": "CNS-01",
+  "title": {
+    "en": "A tracker loads before the visitor has been asked",
+    "da": "En tracker indlæses, før den besøgende er blevet spurgt"
+  },
+  "wrong": {
+    "en": "On the first load, before any banner has been answered, the page already contacts a tracking host. The visitor’s address and the page they opened are sent whatever they later choose.",
+    "da": "Ved første indlæsning, før noget banner er besvaret, kontakter siden allerede en sporingsvært. Den besøgendes adresse og den side, de åbnede, sendes uanset, hvad de senere vælger."
+  },
+  "why": {
+    "en": "Asking after the fact is not asking. A banner that appears while the tracker is already running is the most common way a site fails, and the easiest to see in a browser’s network panel.",
+    "da": "At spørge bagefter er ikke at spørge. Et banner, der dukker op, mens trackeren allerede kører, er den mest almindelige måde, et site fejler på, og den letteste at se i en browsers netværkspanel."
+  },
+  "steps": [
+    {
+      "en": "Find how the tracker is loaded: a script tag in the page, a tag manager, or a plugin.",
+      "da": "Find ud af, hvordan trackeren indlæses: et script-tag på siden, en tag manager eller et plugin."
+    },
+    {
+      "en": "Move it behind the consent state: load it only when the consent tool reports that the visitor accepted. Tag managers and consent tools have a setting for exactly this; the remedy shows the pattern.",
+      "da": "Flyt den om bag samtykketilstanden: indlæs den kun, når samtykkeværktøjet melder, at den besøgende sagde ja. Tag managers og samtykkeværktøjer har en indstilling præcis til det; løsningen viser mønstret."
+    },
+    {
+      "en": "Check the page again with a late-loading tracker in mind: some fire a few seconds after the page settles.",
+      "da": "Tjek siden igen med en sent indlæst tracker i tankerne: nogle fyrer et par sekunder efter, at siden er faldet til ro."
+    }
+  ],
+  "confirm": {
+    "en": "Open the page in a private window with the network panel open and answer nothing: no request may go to the tracking host. Then run the check again from your case page.",
+    "da": "Åbn siden i et privat vindue med netværkspanelet åbent og svar ingenting: ingen forespørgsel må gå til sporingsværten. Kør derefter tjekket igen fra din sagsside."
+  },
+  "keywords": [
+    {
+      "en": "tracker before consent",
+      "da": "tracker før samtykke"
+    },
+    {
+      "en": "cookie banner too late",
+      "da": "cookiebanner for sent"
+    },
+    {
+      "en": "analytics loads before accept",
+      "da": "statistik indlæses før accept"
+    }
+  ],
+  "remedyId": "cns-01-gate-before-interaction"
+}

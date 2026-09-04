@@ -6,7 +6,15 @@ import { DETECTORS } from './registry.js';
 // run on its own. A finding whose detector is not a scanner module (a registry lookup,
 // a model worker) has no family to re-run and is verified another way.
 
-export const CHECK_FAMILIES = ['security', 'forms', 'replay', 'policies', 'consent', 'ct'] as const;
+export const CHECK_FAMILIES = [
+  'security',
+  'forms',
+  'replay',
+  'policies',
+  'consent',
+  'recipients',
+  'ct',
+] as const;
 export type CheckFamily = (typeof CHECK_FAMILIES)[number];
 
 const FAMILY_OF_MODULE: Readonly<Record<string, CheckFamily>> = {
@@ -14,6 +22,7 @@ const FAMILY_OF_MODULE: Readonly<Record<string, CheckFamily>> = {
   'scanner/checks/forms': 'forms',
   'scanner/checks/replay': 'replay',
   'scanner/discovery/policies': 'policies',
+  'scanner/checks/recipients': 'recipients',
   'scanner/consent/banner': 'consent',
   'scanner/passes/pass-bc': 'consent',
   'scanner/passes/differ': 'consent',

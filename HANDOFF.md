@@ -16,7 +16,7 @@ companies a list of problems; this hands them a plan and the things that close i
 
 ## Where you are
 
-**76 of 112 done.** Phase 0 and phase 1 are complete; phase 2 is 25 of 34, phase 3 has
+**77 of 112 done.** Phase 0 and phase 1 are complete; phase 2 is 25 of 34, phase 3 has
 begun, DNS collection opens phase 4 and the task catalogue opens phase 5. Contracts,
 config with the EU-only allowlist, the test harness, record and replay, i18n, the remedy
 catalogue and resolver, the model client, the web shell, the fixture estate (with TLS),
@@ -60,8 +60,11 @@ fixture suite (tests/integration/fixture-suite.test.ts) scans all twenty-six fix
 cases and holds each to its expected.json, with four clean controls that must raise
 nothing and a coverage check that every page-raised finding type has a positive and a
 negative; each fixture also carries a committed golden.json, and the goldens suite names
-what is missing, extra or changed and only rewrites under pnpm goldens:update. The
-database is up (`pnpm db:up`); nothing in phase 1 is open.
+what is missing, extra or changed and only rewrites under pnpm goldens:update. Twenty-six
+finding types are complete end to end (detector, fixtures, bindings, remedy, guide in
+English and Danish, a line in the generated docs/findings.md), with a recipients family
+that raises transfers outside the EEA and third-party fonts, and public guide pages at
+/[locale]/guides. The database is up (`pnpm db:up`); nothing in phase 1 is open.
 
 Do not trust that list — ask:
 

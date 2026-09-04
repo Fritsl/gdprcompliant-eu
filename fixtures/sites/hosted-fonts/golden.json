@@ -1,0 +1,27 @@
+{
+  "site": "skrift.blog.test",
+  "families": [
+    "consent",
+    "forms",
+    "policies",
+    "recipients",
+    "replay",
+    "security"
+  ],
+  "findings": [
+    {
+      "typeId": "TRF-01",
+      "severity": "serious",
+      "subject": {
+        "host": "skrift.blog.test"
+      }
+    },
+    {
+      "typeId": "VND-06",
+      "severity": "advisory",
+      "subject": {
+        "host": "skrift.blog.test"
+      }
+    }
+  ]
+}

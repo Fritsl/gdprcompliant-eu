@@ -1,0 +1,148 @@
+{
+  "version": "2026-09-04",
+  "_comment": "Request hosts and the operator established behind them, read from the operator's own pages. Jurisdiction is where the contracting entity for European customers sits, as far as the page says; nothing here is a verdict about anyone. A host not listed is unknown.",
+  "hosts": [
+    {
+      "id": "google",
+      "name": "Google (tag manager, analytics, fonts, ads)",
+      "jurisdiction": "US",
+      "hostSuffixes": [
+        "googletagmanager.com",
+        "google-analytics.com",
+        "analytics.google.com",
+        "googleadservices.com",
+        "googlesyndication.com",
+        "doubleclick.net",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "gstatic.com",
+        "youtube.com",
+        "ytimg.com"
+      ],
+      "provenance": {
+        "url": "https://policies.google.com/privacy",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      }
+    },
+    {
+      "id": "meta",
+      "name": "Meta (pixel, social plugins)",
+      "jurisdiction": "US",
+      "hostSuffixes": ["facebook.net", "facebook.com", "fbcdn.net", "instagram.com"],
+      "provenance": {
+        "url": "https://www.facebook.com/privacy/policy",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      }
+    },
+    {
+      "id": "microsoft",
+      "name": "Microsoft (Clarity, Bing ads, LinkedIn)",
+      "jurisdiction": "US",
+      "hostSuffixes": ["clarity.ms", "bing.com", "linkedin.com", "licdn.com", "bat.bing.com"],
+      "provenance": {
+        "url": "https://privacy.microsoft.com/privacystatement",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      }
+    },
+    {
+      "id": "hotjar",
+      "name": "Hotjar",
+      "jurisdiction": "MT",
+      "hostSuffixes": ["hotjar.com", "hotjar.io"],
+      "provenance": {
+        "url": "https://www.hotjar.com/legal/policies/privacy/",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      }
+    },
+    {
+      "id": "tiktok",
+      "name": "TikTok (pixel)",
+      "jurisdiction": "US",
+      "hostSuffixes": ["tiktok.com", "analytics.tiktok.com"],
+      "provenance": {
+        "url": "https://www.tiktok.com/legal/page/eea/privacy-policy/en",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      }
+    },
+    {
+      "id": "cloudflare",
+      "name": "Cloudflare (CDN, insights)",
+      "jurisdiction": "US",
+      "hostSuffixes": ["cloudflareinsights.com", "cdnjs.cloudflare.com"],
+      "provenance": {
+        "url": "https://www.cloudflare.com/privacypolicy/",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      }
+    },
+    {
+      "id": "jsdelivr",
+      "name": "jsDelivr (CDN)",
+      "jurisdiction": "PL",
+      "hostSuffixes": ["jsdelivr.net"],
+      "provenance": {
+        "url": "https://www.jsdelivr.com/terms/privacy-policy-jsdelivr-net",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      }
+    },
+    {
+      "id": "stripe",
+      "name": "Stripe (payments)",
+      "jurisdiction": "US",
+      "hostSuffixes": ["stripe.com", "stripe.network"],
+      "provenance": {
+        "url": "https://stripe.com/privacy",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      }
+    },
+    {
+      "id": "klaviyo",
+      "name": "Klaviyo (email marketing)",
+      "jurisdiction": "US",
+      "hostSuffixes": ["klaviyo.com"],
+      "provenance": {
+        "url": "https://www.klaviyo.com/legal/privacy/privacy-notice",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      }
+    },
+    {
+      "id": "mailchimp",
+      "name": "Mailchimp (email marketing)",
+      "jurisdiction": "US",
+      "hostSuffixes": ["mailchimp.com", "list-manage.com", "chimpstatic.com"],
+      "provenance": {
+        "url": "https://www.intuit.com/privacy/statement/",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      }
+    },
+    {
+      "id": "cookiebot",
+      "name": "Usercentrics Cookiebot (consent)",
+      "jurisdiction": "DK",
+      "hostSuffixes": ["cookiebot.com", "consentcdn.cookiebot.com"],
+      "provenance": {
+        "url": "https://www.cookiebot.com/en/privacy-policy/",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      }
+    },
+    {
+      "id": "usercentrics",
+      "name": "Usercentrics (consent)",
+      "jurisdiction": "DE",
+      "hostSuffixes": ["usercentrics.eu", "usercentrics.com"],
+      "provenance": {
+        "url": "https://usercentrics.com/privacy-policy/",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      }
+    },
+    {
+      "id": "onetrust",
+      "name": "OneTrust (consent)",
+      "jurisdiction": "US",
+      "hostSuffixes": ["onetrust.com", "cookielaw.org"],
+      "provenance": {
+        "url": "https://www.onetrust.com/privacy-notice/",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      }
+    }
+  ]
+}

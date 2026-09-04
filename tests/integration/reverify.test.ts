@@ -90,7 +90,7 @@ const runner =
     const out = await runChecks(pool, target, {
       identity: { tenantId, caseId, scanId: 'scan', capturedAt: T0.toISOString() },
       families: families.filter((f) => f !== 'ct') as (
-        'security' | 'forms' | 'replay' | 'policies' | 'consent'
+        'security' | 'forms' | 'replay' | 'policies' | 'consent' | 'recipients'
       )[],
       quiet,
       now: () => T0,
@@ -100,6 +100,7 @@ const runner =
       families,
       input: {
         ...(security ? { security } : {}),
+        ...(out.recipients ? { recipients: out.recipients } : {}),
         ...(out.forms ? { forms: out.forms } : {}),
         ...(out.replay ? { replay: out.replay } : {}),
         ...(out.policies ? { policies: out.policies } : {}),

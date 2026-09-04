@@ -462,6 +462,11 @@ export default async function CasePage({
                     </span>
                   ))}
                   {f.authority ? <em className="muted">{f.authority}</em> : null}
+                  {f.guideId ? (
+                    <a href={`/${locale}/guides/${f.guideId}`} className="cite" data-guide="">
+                      <Text of={t(locale, 'case.guide')} />
+                    </a>
+                  ) : null}
                 </p>
               ) : null}
               <details className="drawer evidence" open data-evidence-for={f.id}>

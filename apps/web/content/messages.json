@@ -920,5 +920,53 @@
   "case.report.note": {
     "en": "Generated from the case as it stands the moment you ask, with every provision quoted in full.",
     "da": "Genereret ud fra sagen, som den står i det øjeblik, du beder om den, med hver bestemmelse citeret i sin helhed."
+  },
+  "case.guide": {
+    "en": "Guide",
+    "da": "Vejledning"
+  },
+  "guides.heading": {
+    "en": "Guides",
+    "da": "Vejledninger"
+  },
+  "guides.lead": {
+    "en": "One page per thing a scan can find on a website: what it is, why it matters, what to change, and how to see that it worked.",
+    "da": "Én side for hver ting, en scanning kan finde på en hjemmeside: hvad det er, hvorfor det betyder noget, hvad der skal ændres, og hvordan man ser, at det virkede."
+  },
+  "guide.wrong": {
+    "en": "What is wrong",
+    "da": "Hvad der er galt"
+  },
+  "guide.why": {
+    "en": "Why it matters",
+    "da": "Hvorfor det betyder noget"
+  },
+  "guide.steps": {
+    "en": "What to change",
+    "da": "Hvad der skal ændres"
+  },
+  "guide.confirm": {
+    "en": "How to see that it worked",
+    "da": "Sådan ser du, at det virkede"
+  },
+  "guide.law": {
+    "en": "The rule it rests on",
+    "da": "Reglen, det bygger på"
+  },
+  "guide.snippet": {
+    "en": "The change, as code",
+    "da": "Ændringen som kode"
+  },
+  "guide.check": {
+    "en": "Check your own website",
+    "da": "Tjek din egen hjemmeside"
+  },
+  "guide.finding": {
+    "en": "Finding",
+    "da": "Fund"
+  },
+  "guide.all": {
+    "en": "All guides",
+    "da": "Alle vejledninger"
   }
 }

@@ -4,12 +4,14 @@ import type {
   FormObservation,
   PassDiff,
   PolicyDiscovery,
+  RecipientObservation,
   ReplayObservation,
   SecurityObservation,
 } from '@gc/contracts';
 import { runSecurityChecks } from './checks/security.js';
 import { inventoryForms } from './checks/forms.js';
 import { detectReplay } from './checks/replay.js';
+import { recipientChecks } from './checks/recipients.js';
 import { discoverPolicies } from './discovery/policies.js';
 import { captureToEvidence, refTo, type EvidenceIdentity } from './evidence.js';
 import { collectPassA } from './passes/pass-a.js';
@@ -24,7 +26,14 @@ import type { BrowserPool, ScanTarget } from './pool.js';
 // three consent passes with their diff. The output is what assembly (S-14) reads, plus
 // every evidence row the checks produced.
 
-export const CHECK_FAMILIES = ['security', 'forms', 'replay', 'policies', 'consent'] as const;
+export const CHECK_FAMILIES = [
+  'security',
+  'forms',
+  'replay',
+  'policies',
+  'consent',
+  'recipients',
+] as const;
 export type CheckFamily = (typeof CHECK_FAMILIES)[number];
 
 export interface RunChecksOptions {
@@ -37,6 +46,7 @@ export interface RunChecksOptions {
 export interface CheckOutput {
   readonly families: readonly CheckFamily[];
   readonly security?: readonly SecurityObservation[];
+  readonly recipients?: readonly RecipientObservation[];
   readonly forms?: readonly FormObservation[];
   readonly replay?: readonly ReplayObservation[];
   readonly policies?: PolicyDiscovery;
@@ -62,6 +72,7 @@ export async function runChecks(
   let undetermined = 0;
   const out: {
     security?: SecurityObservation[];
+    recipients?: RecipientObservation[];
     forms?: FormObservation[];
     replay?: ReplayObservation[];
     policies?: PolicyDiscovery;
@@ -79,13 +90,16 @@ export async function runChecks(
   const wants = (f: CheckFamily) => families.includes(f);
   const quiet = options.quiet ? { quiet: options.quiet } : {};
 
+  // The first load, shared by the security surface and the recipients read.
+  const passA =
+    wants('security') || wants('recipients') ? collectPassA(pool, target, quiet) : undefined;
   const formsRun = wants('forms')
     ? inventoryForms(pool, target, { identity: options.identity })
     : undefined;
   await Promise.all([
     (async () => {
       if (!wants('security')) return;
-      const a = await collectPassA(pool, target, quiet);
+      const a = await passA!;
       evidence.push(...captureToEvidence(a.capture, a.screenshot, options.identity));
       const surface = await runSecurityChecks(pool, target, {
         capture: a.capture,
@@ -94,6 +108,16 @@ export async function runChecks(
       out.security = [...surface.observations];
       evidence.push(...surface.evidence);
       count(surface.observations);
+    })(),
+    (async () => {
+      if (!wants('recipients')) return;
+      const a = await passA!;
+      if (!wants('security'))
+        evidence.push(...captureToEvidence(a.capture, a.screenshot, options.identity));
+      const r = recipientChecks(a.capture, options.identity);
+      out.recipients = [...r.observations];
+      evidence.push(...r.evidence);
+      count(r.observations);
     })(),
     (async () => {
       if (!wants('forms')) return;

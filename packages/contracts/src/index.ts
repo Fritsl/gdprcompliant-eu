@@ -42,3 +42,5 @@ export * from './forms.js';
 export * from './replay.js';
 export * from './dns.js';
 export * from './ct.js';
+export * from './recipients.js';
+export * from './guide.js';

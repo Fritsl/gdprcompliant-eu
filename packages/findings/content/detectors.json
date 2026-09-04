@@ -142,5 +142,17 @@
     "area": "Recipients",
     "detector": "scanner/checks/security#cloaking",
     "defaultSeverity": "serious"
+  },
+  {
+    "findingTypeId": "TRF-01",
+    "area": "Transfers",
+    "detector": "scanner/checks/recipients#transfers",
+    "defaultSeverity": "serious"
+  },
+  {
+    "findingTypeId": "VND-06",
+    "area": "Recipients",
+    "detector": "scanner/checks/recipients#third_party_fonts",
+    "defaultSeverity": "advisory"
   }
 ]

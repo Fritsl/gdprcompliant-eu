@@ -28,6 +28,8 @@ beforeAll(async () => {
     navigationTimeoutMs: 10_000,
     launch: { proxy: { server: server.proxy } },
     ignoreHTTPSErrors: true,
+    // The estate answers to names that resolve nowhere, and to a few that resolve elsewhere.
+    resolveEgress: false,
   }).start();
 });
 

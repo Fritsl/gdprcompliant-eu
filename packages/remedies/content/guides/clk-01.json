@@ -1,0 +1,49 @@
+{
+  "id": "clk-01",
+  "findingTypeId": "CLK-01",
+  "title": {
+    "en": "The site shows a different page to scanners than to visitors",
+    "da": "Sitet viser en anden side til scannere end til besøgende"
+  },
+  "wrong": {
+    "en": "Loaded by an ordinary browser, the page contacts tracking hosts. Loaded by a request that identifies itself as a scanner, it does not. The site has been set up to look clean when it is being checked.",
+    "da": "Indlæst af en almindelig browser kontakter siden sporingsværter. Indlæst af en forespørgsel, der kalder sig en scanner, gør den det ikke. Sitet er sat op til at se rent ud, når det bliver tjekket."
+  },
+  "why": {
+    "en": "A site that behaves differently when watched cannot be checked, by us or by anyone the company hires, and the version visitors get is the one the rules are about. Found by an authority, it turns a technical finding into a question of good faith.",
+    "da": "Et site, der opfører sig anderledes, når det bliver overvåget, kan ikke tjekkes, hverken af os eller af nogen, virksomheden hyrer, og den version, de besøgende får, er den, reglerne handler om. Fundet af et tilsyn forvandler det et teknisk fund til et spørgsmål om god tro."
+  },
+  "steps": [
+    {
+      "en": "Find where the server, the tag manager or the page’s scripts branch on the User-Agent or on a bot list, and remove the branch so every visitor is served the same tags under the same consent rules.",
+      "da": "Find, hvor serveren, tag manageren eller sidens scripts forgrener på User-Agent eller på en botliste, og fjern forgreningen, så hver besøgende får de samme tags under de samme samtykkeregler."
+    },
+    {
+      "en": "If a bot list exists to keep crawlers out of analytics, keep it in the analytics tool’s own settings, not in what the page loads.",
+      "da": "Hvis der findes en botliste for at holde crawlere ude af statistikken, så hold den i statistikværktøjets egne indstillinger, ikke i det, siden indlæser."
+    },
+    {
+      "en": "Fix whatever the trackers were doing wrong for real visitors; the cloaking hid it, it did not remove it.",
+      "da": "Ret det, trackerne gjorde galt for rigtige besøgende; sløringen skjulte det, den fjernede det ikke."
+    }
+  ],
+  "confirm": {
+    "en": "Load the page twice with the network panel open, once normally and once with the browser’s User-Agent set to “GDPRcompliant-scanner”: the same hosts must be contacted both times. Then run the check again from your case page.",
+    "da": "Indlæs siden to gange med netværkspanelet åbent, én gang normalt og én gang med browserens User-Agent sat til “GDPRcompliant-scanner”: de samme værter skal kontaktes begge gange. Kør derefter tjekket igen fra din sagsside."
+  },
+  "keywords": [
+    {
+      "en": "cloaking trackers",
+      "da": "sløring af trackere"
+    },
+    {
+      "en": "different page for bots",
+      "da": "anden side til bots"
+    },
+    {
+      "en": "user agent detection tracking",
+      "da": "user agent-genkendelse sporing"
+    }
+  ],
+  "remedyId": "clk-01-same-site-for-everyone"
+}

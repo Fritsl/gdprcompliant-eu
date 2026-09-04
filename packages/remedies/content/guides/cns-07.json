@@ -1,0 +1,49 @@
+{
+  "id": "cns-07",
+  "findingTypeId": "CNS-07",
+  "title": {
+    "en": "Refusing takes a long way through the banner",
+    "da": "At afvise er en lang vej gennem banneret"
+  },
+  "wrong": {
+    "en": "Saying no means opening settings, switching off several categories one by one and finding a save button, six or more steps. Most people give up and accept.",
+    "da": "At sige nej betyder at åbne indstillinger, slå flere kategorier fra én ad gangen og finde en gem-knap, seks skridt eller flere. De fleste giver op og accepterer."
+  },
+  "why": {
+    "en": "A refusal path built to be tiring is a design choice, and it is one authorities have named in decisions. The difference between one click and six is the difference between a choice and a nudge.",
+    "da": "En afvisningsvej bygget til at trætte er et designvalg, og det er et, tilsyn har nævnt i afgørelser. Forskellen mellem ét klik og seks er forskellen mellem et valg og et puf."
+  },
+  "steps": [
+    {
+      "en": "Add a single “reject all” control on the first layer, so nobody needs the settings layer to refuse.",
+      "da": "Tilføj én “afvis alle”-kontrol på første lag, så ingen behøver indstillingslaget for at afvise."
+    },
+    {
+      "en": "On the settings layer, add one “reject all” or “save with none selected” button, so the categories never have to be switched off one at a time.",
+      "da": "På indstillingslaget, tilføj én “afvis alle”- eller “gem uden valg”-knap, så kategorierne aldrig skal slås fra én ad gangen."
+    },
+    {
+      "en": "Remove any confirmation step after refusing; the refusal is the confirmation.",
+      "da": "Fjern ethvert bekræftelsestrin efter afvisning; afvisningen er bekræftelsen."
+    }
+  ],
+  "confirm": {
+    "en": "Count the clicks to refuse everything, from the page loading to the banner gone: it must be one on the first layer, and no more than two through settings. Then run the check again from your case page.",
+    "da": "Tæl klikkene for at afvise alt, fra siden indlæses, til banneret er væk: det skal være ét på første lag og højst to gennem indstillinger. Kør derefter tjekket igen fra din sagsside."
+  },
+  "keywords": [
+    {
+      "en": "too many clicks to reject cookies",
+      "da": "for mange klik for at afvise cookies"
+    },
+    {
+      "en": "cookie banner consent fatigue",
+      "da": "cookiebanner samtykketræthed"
+    },
+    {
+      "en": "refusal path length",
+      "da": "længde på afvisningsvej"
+    }
+  ],
+  "remedyId": "cns-07-shorten-the-refusal"
+}

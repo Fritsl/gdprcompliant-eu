@@ -1,0 +1,49 @@
+{
+  "id": "sec-07",
+  "findingTypeId": "SEC-07",
+  "title": {
+    "en": "Files that should never be public are reachable",
+    "da": "Filer, der aldrig burde være offentlige, kan nås"
+  },
+  "wrong": {
+    "en": "Addresses such as /.git/config, /.env or a database backup answer with content. They are left behind by deployment tools and editors, and they can contain passwords, keys and source code.",
+    "da": "Adresser som /.git/config, /.env eller en databasebackup svarer med indhold. De er efterladt af udrulningsværktøjer og editorer, og de kan indeholde adgangskoder, nøgler og kildekode."
+  },
+  "why": {
+    "en": "An exposed configuration file is the fastest way from a website to its database. It is found by automated scans within days of going live, and once a key is copied, changing it later does not help.",
+    "da": "En blottet opsætningsfil er den hurtigste vej fra en hjemmeside til dens database. Den bliver fundet af automatiske scanninger inden for få dage efter lancering, og når en nøgle først er kopieret, hjælper det ikke at skifte den senere."
+  },
+  "steps": [
+    {
+      "en": "Block the paths at the web server: deny everything starting with a dot, and every backup, dump and archive extension. The remedy shows the rule.",
+      "da": "Bloker stierne på webserveren: afvis alt, der begynder med et punktum, og enhver backup-, dump- og arkivendelse. Løsningen viser reglen."
+    },
+    {
+      "en": "Remove the files from the web root altogether; the block is a safety net, not the fix.",
+      "da": "Fjern filerne helt fra webroden; blokeringen er et sikkerhedsnet, ikke rettelsen."
+    },
+    {
+      "en": "Rotate any password or key that was in a file that answered, on the assumption it has been read.",
+      "da": "Skift enhver adgangskode eller nøgle, der lå i en fil, der svarede, ud fra den antagelse, at den er blevet læst."
+    }
+  ],
+  "confirm": {
+    "en": "Request each address the finding names in a private browser window: every one must answer with 403 or 404, never with content. Then run the check again from your case page.",
+    "da": "Bed om hver adresse, fundet nævner, i et privat browservindue: hver eneste skal svare 403 eller 404, aldrig med indhold. Kør derefter tjekket igen fra din sagsside."
+  },
+  "keywords": [
+    {
+      "en": "exposed .git",
+      "da": "blottet .git"
+    },
+    {
+      "en": ".env file public",
+      "da": ".env-fil offentlig"
+    },
+    {
+      "en": "backup file reachable",
+      "da": "backupfil kan nås"
+    }
+  ],
+  "remedyId": "sec-07-exposed-paths"
+}

@@ -1,0 +1,49 @@
+{
+  "id": "vnd-06",
+  "findingTypeId": "VND-06",
+  "title": {
+    "en": "Web fonts are fetched from someone else’s server",
+    "da": "Webskrifttyper hentes fra en andens server"
+  },
+  "wrong": {
+    "en": "The stylesheet loads its fonts from a font service, so every visitor’s browser contacts that service on every page, sending their address and the page they are on. The service sees the site’s whole audience.",
+    "da": "Stylesheetet indlæser sine skrifttyper fra en skrifttjeneste, så hver besøgendes browser kontakter den tjeneste på hver side og sender deres adresse og den side, de er på. Tjenesten ser hele sitets publikum."
+  },
+  "why": {
+    "en": "A font file is a static asset with no reason to leave the site’s own server. Courts have treated a font service receiving visitors’ addresses as a transfer of personal data, and the fix takes an afternoon.",
+    "da": "En skriftfil er en statisk ressource, der ingen grund har til at forlade sitets egen server. Domstole har behandlet en skrifttjeneste, der modtager besøgendes adresser, som en overførsel af personoplysninger, og rettelsen tager en eftermiddag."
+  },
+  "steps": [
+    {
+      "en": "Download the font files the site uses in the formats it needs, usually woff2, with a licence that allows self-hosting; most open fonts do.",
+      "da": "Hent de skriftfiler, sitet bruger, i de formater det har brug for, som regel woff2, med en licens, der tillader selvhosting; det gør de fleste åbne skrifttyper."
+    },
+    {
+      "en": "Put the files on the site’s own server and change the @font-face rules in the stylesheet to point at them. The remedy shows the rule.",
+      "da": "Læg filerne på sitets egen server, og ændr @font-face-reglerne i stylesheetet, så de peger på dem. Løsningen viser reglen."
+    },
+    {
+      "en": "Remove every link and preconnect to the font service from the page head.",
+      "da": "Fjern hvert link og preconnect til skrifttjenesten fra sidens head."
+    }
+  ],
+  "confirm": {
+    "en": "Load the page with the network panel open and filter by font: every font request must go to your own host. Then run the check again from your case page.",
+    "da": "Indlæs siden med netværkspanelet åbent og filtrér på skrifttyper: hver skriftforespørgsel skal gå til din egen vært. Kør derefter tjekket igen fra din sagsside."
+  },
+  "keywords": [
+    {
+      "en": "self-host google fonts",
+      "da": "selvhost google fonts"
+    },
+    {
+      "en": "font service privacy",
+      "da": "skrifttjeneste privatliv"
+    },
+    {
+      "en": "fonts from third party",
+      "da": "skrifttyper fra tredjepart"
+    }
+  ],
+  "remedyId": "vnd-06-self-host-fonts"
+}

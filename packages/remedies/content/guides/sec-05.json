@@ -1,0 +1,45 @@
+{
+  "id": "sec-05",
+  "findingTypeId": "SEC-05",
+  "title": {
+    "en": "The site hands the full page address to other services",
+    "da": "Sitet giver den fulde sideadresse videre til andre tjenester"
+  },
+  "wrong": {
+    "en": "The site sets no protective Referrer-Policy, so every request to another host, a tracker, a font, an image, carries the full address of the page the visitor is on, including any search terms or order numbers in it.",
+    "da": "Sitet sætter ingen beskyttende Referrer-Policy, så hver forespørgsel til en anden vært, en tracker, en skrifttype, et billede, bærer den fulde adresse på den side, den besøgende er på, inklusive søgeord eller ordrenumre i den."
+  },
+  "why": {
+    "en": "Page addresses often say more than they should: what someone searched for, which product they looked at, which account page they were on. Sending that to third parties is a leak the site did not intend and cannot see.",
+    "da": "Sideadresser siger tit mere, end de burde: hvad nogen søgte efter, hvilket produkt de så på, hvilken kontoside de var på. At sende det til tredjeparter er en lækage, sitet ikke ville, og ikke kan se."
+  },
+  "steps": [
+    {
+      "en": "Add the header Referrer-Policy: strict-origin-when-cross-origin to every response. Other hosts then learn only the site’s name, not the page.",
+      "da": "Tilføj headeren Referrer-Policy: strict-origin-when-cross-origin til hvert svar. Andre værter får så kun sitets navn at vide, ikke siden."
+    },
+    {
+      "en": "If any integration truly needs the full address, set the policy for that one link or request instead of relaxing it for the whole site.",
+      "da": "Hvis en integration virkelig har brug for den fulde adresse, så sæt politikken for det ene link eller den ene forespørgsel i stedet for at lempe den for hele sitet."
+    }
+  ],
+  "confirm": {
+    "en": "Look at the response headers in the browser’s network panel: Referrer-Policy must be present with a value that is not no-referrer-when-downgrade or unsafe-url. Then run the check again from your case page.",
+    "da": "Se på svar-headerne i browserens netværkspanel: Referrer-Policy skal være der med en værdi, der ikke er no-referrer-when-downgrade eller unsafe-url. Kør derefter tjekket igen fra din sagsside."
+  },
+  "keywords": [
+    {
+      "en": "referrer policy header",
+      "da": "referrer policy header"
+    },
+    {
+      "en": "referer leak",
+      "da": "referer lækage"
+    },
+    {
+      "en": "page url sent to third parties",
+      "da": "sideadresse sendt til tredjeparter"
+    }
+  ],
+  "remedyId": "sec-05-referrer-policy"
+}

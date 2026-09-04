@@ -1,0 +1,27 @@
+{
+  "site": "tags.shop.test",
+  "families": [
+    "consent",
+    "forms",
+    "policies",
+    "recipients",
+    "replay",
+    "security"
+  ],
+  "findings": [
+    {
+      "typeId": "CNS-01",
+      "severity": "serious",
+      "subject": {
+        "host": "tags.shop.test"
+      }
+    },
+    {
+      "typeId": "TRF-01",
+      "severity": "serious",
+      "subject": {
+        "host": "tags.shop.test"
+      }
+    }
+  ]
+}

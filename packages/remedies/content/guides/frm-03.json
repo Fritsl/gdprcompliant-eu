@@ -1,0 +1,49 @@
+{
+  "id": "frm-03",
+  "findingTypeId": "FRM-03",
+  "title": {
+    "en": "A form collects personal details without saying what happens to them",
+    "da": "En formular indsamler personoplysninger uden at sige, hvad der sker med dem"
+  },
+  "wrong": {
+    "en": "A form asks for a name, an address or an email, and nothing next to it says why, or links to the privacy policy. The visitor gives details without being told what they are for.",
+    "da": "En formular beder om navn, adresse eller e-mail, og intet ved siden af den siger hvorfor, eller linker til privatlivspolitikken. Den besøgende afgiver oplysninger uden at få at vide, hvad de er til."
+  },
+  "why": {
+    "en": "People must be told at the moment they hand something over, not somewhere else on the site. A sentence beside the form is enough, and its absence is one of the most common findings in any audit of a small business site.",
+    "da": "Folk skal have besked i det øjeblik, de afleverer noget, ikke et andet sted på sitet. En sætning ved siden af formularen er nok, og dens fravær er et af de mest almindelige fund i enhver gennemgang af en lille virksomheds site."
+  },
+  "steps": [
+    {
+      "en": "Put one sentence directly beside the submit button: what the details are used for, and how long they are kept.",
+      "da": "Sæt én sætning lige ved siden af send-knappen: hvad oplysningerne bruges til, og hvor længe de gemmes."
+    },
+    {
+      "en": "Link the sentence to the privacy policy, so the full text is one click away from where the details are typed.",
+      "da": "Link sætningen til privatlivspolitikken, så den fulde tekst er ét klik væk fra dér, hvor oplysningerne skrives."
+    },
+    {
+      "en": "Do the same for every form that asks for details: contact, order, newsletter, application.",
+      "da": "Gør det samme for hver formular, der beder om oplysninger: kontakt, ordre, nyhedsbrev, ansøgning."
+    }
+  ],
+  "confirm": {
+    "en": "Open the page with the form and read what is next to it without scrolling: the sentence and the link must be there. Then run the check again from your case page.",
+    "da": "Åbn siden med formularen og læs, hvad der står ved siden af den, uden at scrolle: sætningen og linket skal være der. Kør derefter tjekket igen fra din sagsside."
+  },
+  "keywords": [
+    {
+      "en": "privacy notice on form",
+      "da": "oplysningstekst ved formular"
+    },
+    {
+      "en": "information at collection",
+      "da": "information ved indsamling"
+    },
+    {
+      "en": "contact form privacy text",
+      "da": "kontaktformular privatlivstekst"
+    }
+  ],
+  "remedyId": "frm-03-notice-at-collection"
+}

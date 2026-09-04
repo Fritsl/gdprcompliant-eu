@@ -24,7 +24,7 @@ export interface RecheckWorkerOptions {
   readonly scheme?: 'https' | 'http';
 }
 
-type ScanFamily = 'security' | 'forms' | 'replay' | 'policies' | 'consent';
+type ScanFamily = 'security' | 'forms' | 'replay' | 'policies' | 'consent' | 'recipients';
 
 export async function registerRecheckWorker(
   queue: JobQueue,
@@ -56,6 +56,7 @@ export async function registerRecheckWorker(
         families,
         input: {
           ...(out.security ? { security: out.security } : {}),
+          ...(out.recipients ? { recipients: out.recipients } : {}),
           ...(out.forms ? { forms: out.forms } : {}),
           ...(out.replay ? { replay: out.replay } : {}),
           ...(out.policies ? { policies: out.policies } : {}),

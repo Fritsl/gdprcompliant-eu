@@ -1,0 +1,49 @@
+{
+  "id": "trf-01",
+  "findingTypeId": "TRF-01",
+  "title": {
+    "en": "Visitors’ requests go to a service established outside the EEA",
+    "da": "Besøgendes forespørgsler går til en tjeneste etableret uden for EØS"
+  },
+  "wrong": {
+    "en": "On the first load, the page sends requests to a host whose operator is established outside the European Economic Area. Each request carries the visitor’s address and the page they are on, before anyone has been asked.",
+    "da": "Ved første indlæsning sender siden forespørgsler til en vært, hvis operatør er etableret uden for Det Europæiske Økonomiske Samarbejdsområde. Hver forespørgsel bærer den besøgendes adresse og den side, de er på, før nogen er blevet spurgt."
+  },
+  "why": {
+    "en": "Moving personal data out of the EEA needs a legal basis and a safeguard, and it has to be explained in the privacy policy. A service that receives every visitor’s address is a transfer whether or not the company thinks of it as one.",
+    "da": "At flytte personoplysninger ud af EØS kræver et retsgrundlag og en sikkerhedsforanstaltning, og det skal forklares i privatlivspolitikken. En tjeneste, der modtager hver besøgendes adresse, er en overførsel, uanset om virksomheden tænker på den som en."
+  },
+  "steps": [
+    {
+      "en": "List the services the finding names and what each is for: analytics, fonts, a tag manager, a chat widget.",
+      "da": "Lav en liste over de tjenester, fundet nævner, og hvad hver er til: statistik, skrifttyper, en tag manager, en chat-widget."
+    },
+    {
+      "en": "For each, pick one: switch to a provider established in the EEA (the remedy lists options), self-host the file, or keep the service and document the transfer with its safeguard in the policy.",
+      "da": "Vælg for hver af dem én ting: skift til en leverandør etableret i EØS (løsningen nævner muligheder), host filen selv, eller behold tjenesten og dokumentér overførslen med dens sikkerhedsforanstaltning i politikken."
+    },
+    {
+      "en": "Load whatever remains only after consent, so a visitor who says no sends nothing.",
+      "da": "Indlæs det, der bliver tilbage, først efter samtykke, så en besøgende, der siger nej, sender ingenting."
+    }
+  ],
+  "confirm": {
+    "en": "Open the page in a private window with the network panel open and no consent given: none of the named hosts may be contacted. Then run the check again from your case page.",
+    "da": "Åbn siden i et privat vindue med netværkspanelet åbent og uden givet samtykke: ingen af de nævnte værter må kontaktes. Kør derefter tjekket igen fra din sagsside."
+  },
+  "keywords": [
+    {
+      "en": "third country transfer website",
+      "da": "overførsel til tredjeland hjemmeside"
+    },
+    {
+      "en": "google fonts gdpr",
+      "da": "google fonts gdpr"
+    },
+    {
+      "en": "us services on website",
+      "da": "amerikanske tjenester på hjemmeside"
+    }
+  ],
+  "remedyId": "trf-01-european-alternatives"
+}

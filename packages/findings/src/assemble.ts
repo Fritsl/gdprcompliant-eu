@@ -13,6 +13,7 @@ import {
   type FormObservation,
   type PolicyDiscovery,
   type ReplayObservation,
+  type RecipientObservation,
   type SecurityObservation,
   type Severity,
 } from '@gc/contracts';
@@ -39,6 +40,7 @@ export interface AssemblyDraft {
 
 export interface AssemblyInput {
   readonly security?: readonly SecurityObservation[];
+  readonly recipients?: readonly RecipientObservation[];
   readonly forms?: readonly FormObservation[];
   readonly replay?: readonly ReplayObservation[];
   readonly policies?: PolicyDiscovery;
@@ -87,6 +89,16 @@ export function draftsFromChecks(input: AssemblyInput, host: string): AssemblyDr
         typeId: o.findingTypeId,
         subject: { host },
         evidence: o.evidence,
+        summary: o.summary,
+      });
+  }
+  for (const o of input.recipients ?? []) {
+    if (failed(o))
+      out.push({
+        typeId: o.findingTypeId,
+        subject: { host },
+        evidence: o.evidence,
+        hosts: o.hosts,
         summary: o.summary,
       });
   }

@@ -1,0 +1,49 @@
+{
+  "id": "frm-02",
+  "findingTypeId": "FRM-02",
+  "title": {
+    "en": "One box bundles marketing consent with something the visitor must accept",
+    "da": "Ét felt bundter markedsføringssamtykke med noget, den besøgende skal acceptere"
+  },
+  "wrong": {
+    "en": "A single checkbox covers both accepting the terms and agreeing to marketing, or the marketing box is required to submit the form. The visitor cannot get what they came for without also saying yes to being contacted.",
+    "da": "Ét afkrydsningsfelt dækker både accept af vilkårene og ja til markedsføring, eller markedsføringsfeltet er påkrævet for at sende formularen. Den besøgende kan ikke få det, de kom efter, uden også at sige ja til at blive kontaktet."
+  },
+  "why": {
+    "en": "A yes that cannot be a no is not a choice. Bundled boxes are struck down whenever they are examined, and the marketing list built on them cannot be used.",
+    "da": "Et ja, der ikke kan være et nej, er ikke et valg. Bundtede felter bliver underkendt, hver gang de bliver undersøgt, og den markedsføringsliste, der er bygget på dem, kan ikke bruges."
+  },
+  "steps": [
+    {
+      "en": "Give marketing its own checkbox, unticked, with a label that says what will be sent and how often.",
+      "da": "Giv markedsføring sit eget afkrydsningsfelt, ikke krydset af, med en tekst, der siger, hvad der sendes og hvor tit."
+    },
+    {
+      "en": "Make the terms box separate and required, and the marketing box optional; the form must submit with marketing unticked.",
+      "da": "Gør vilkårsfeltet særskilt og påkrævet, og markedsføringsfeltet valgfrit; formularen skal kunne sendes med markedsføring fravalgt."
+    },
+    {
+      "en": "Store the two answers separately, so the marketing list holds only the people who ticked that box.",
+      "da": "Gem de to svar hver for sig, så markedsføringslisten kun rummer dem, der krydsede det felt af."
+    }
+  ],
+  "confirm": {
+    "en": "Submit the form with only the terms box ticked: it must go through. Then run the check again from your case page.",
+    "da": "Send formularen med kun vilkårsfeltet krydset af: den skal gå igennem. Kør derefter tjekket igen fra din sagsside."
+  },
+  "keywords": [
+    {
+      "en": "bundled consent checkbox",
+      "da": "bundtet samtykkefelt"
+    },
+    {
+      "en": "marketing consent required",
+      "da": "markedsføringssamtykke påkrævet"
+    },
+    {
+      "en": "separate consent for newsletter",
+      "da": "særskilt samtykke til nyhedsbrev"
+    }
+  ],
+  "remedyId": "frm-02-split-checkboxes"
+}

@@ -28,7 +28,7 @@ const ROOT = fileURLToPath(new URL('../../', import.meta.url));
 const ARTIFACTS = join(ROOT, 'artifacts');
 const all = loadFixtureSites();
 const estate = all.filter((s) => !s.expected.tags.includes('adversarial'));
-const FAMILIES = ['security', 'forms', 'replay', 'policies', 'consent'] as const;
+const FAMILIES = ['security', 'forms', 'replay', 'policies', 'consent', 'recipients'] as const;
 const catalogue = loadCatalogue();
 const T0 = new Date('2026-09-04T09:14:00Z');
 const updating = process.env[UPDATE_GOLDENS_ENV] === '1';
@@ -49,6 +49,7 @@ async function produce(site: (typeof all)[number]): Promise<Golden> {
   const out = await runChecks(pool, { url: urlOf(site) }, { identity, families: [...FAMILIES] });
   const input: AssemblyInput = {
     ...(out.security ? { security: out.security } : {}),
+    ...(out.recipients ? { recipients: out.recipients } : {}),
     ...(out.forms ? { forms: out.forms } : {}),
     ...(out.replay ? { replay: out.replay } : {}),
     ...(out.policies ? { policies: out.policies } : {}),

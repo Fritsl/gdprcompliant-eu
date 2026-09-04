@@ -1,0 +1,49 @@
+{
+  "id": "frm-01",
+  "findingTypeId": "FRM-01",
+  "title": {
+    "en": "A consent box is ticked before the visitor touches it",
+    "da": "Et samtykkefelt er sat i kryds, før den besøgende rører det"
+  },
+  "wrong": {
+    "en": "A form has a checkbox for marketing or for sharing details that is already ticked when the page loads, or is ticked by a script before the visitor does anything. Whoever submits the form agrees without having chosen to.",
+    "da": "En formular har et afkrydsningsfelt til markedsføring eller til deling af oplysninger, som allerede er krydset af, når siden indlæses, eller som et script krydser af, før den besøgende gør noget. Den, der sender formularen, siger ja uden at have valgt det."
+  },
+  "why": {
+    "en": "Consent given by not unticking a box is not consent, and every authority in Europe has said so. It is also the easiest finding for anyone to reproduce: load the page, look at the box.",
+    "da": "Samtykke givet ved ikke at fjerne et kryds er ikke samtykke, og det har alle tilsyn i Europa sagt. Det er også det letteste fund for enhver at gentage: indlæs siden, se på feltet."
+  },
+  "steps": [
+    {
+      "en": "Remove the checked attribute from the box in the form’s HTML, and remove any script that ticks it on load.",
+      "da": "Fjern attributten checked fra feltet i formularens HTML, og fjern ethvert script, der krydser det af ved indlæsning."
+    },
+    {
+      "en": "Leave the box unticked by default on every form: newsletter signup, checkout, account creation.",
+      "da": "Lad feltet stå tomt som standard på hver formular: tilmelding til nyhedsbrev, kasse, oprettelse af konto."
+    },
+    {
+      "en": "If the box was ticked for existing subscribers, do not treat their old submissions as consent; ask again.",
+      "da": "Hvis feltet var krydset af for eksisterende abonnenter, så behandl ikke deres gamle indsendelser som samtykke; spørg igen."
+    }
+  ],
+  "confirm": {
+    "en": "Load the page in a private window and look at the box before touching anything: it must be empty. Then run the check again from your case page.",
+    "da": "Indlæs siden i et privat vindue og se på feltet, før du rører noget: det skal være tomt. Kør derefter tjekket igen fra din sagsside."
+  },
+  "keywords": [
+    {
+      "en": "pre-ticked checkbox",
+      "da": "forudafkrydset felt"
+    },
+    {
+      "en": "newsletter box checked by default",
+      "da": "nyhedsbrev valgt som standard"
+    },
+    {
+      "en": "opt-out consent",
+      "da": "fravalg samtykke"
+    }
+  ],
+  "remedyId": "frm-01-untick-the-box"
+}

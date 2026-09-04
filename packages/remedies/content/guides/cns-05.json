@@ -1,0 +1,49 @@
+{
+  "id": "cns-05",
+  "findingTypeId": "CNS-05",
+  "title": {
+    "en": "Refusing takes more clicks than accepting",
+    "da": "Det tager flere klik at afvise end at acceptere"
+  },
+  "wrong": {
+    "en": "The first layer of the banner offers “accept all” and “settings”, and the way to refuse is on a second layer, behind the settings button. Saying yes is one click; saying no is a journey.",
+    "da": "Bannerets første lag tilbyder “accepter alle” og “indstillinger”, og vejen til at afvise ligger på et andet lag, bag indstillingsknappen. At sige ja er ét klik; at sige nej er en rejse."
+  },
+  "why": {
+    "en": "When no is harder than yes, the yes is not freely given. Authorities have said so in decisions against the largest sites in Europe, and the fix is a button.",
+    "da": "Når nej er sværere end ja, er ja ikke frivilligt. Tilsyn har sagt det i afgørelser mod de største sites i Europa, og rettelsen er en knap."
+  },
+  "steps": [
+    {
+      "en": "Put a “reject all” button on the first layer, next to “accept all”, with the same size and prominence.",
+      "da": "Sæt en “afvis alle”-knap på første lag ved siden af “accepter alle”, med samme størrelse og fremtrædenhed."
+    },
+    {
+      "en": "Keep the settings layer for people who want to choose category by category; it is not a substitute for the button.",
+      "da": "Behold indstillingslaget til dem, der vil vælge kategori for kategori; det er ikke en erstatning for knappen."
+    },
+    {
+      "en": "Check the mobile layout too: the reject button must be visible without scrolling on a phone.",
+      "da": "Tjek også mobillayoutet: afvis-knappen skal kunne ses uden at scrolle på en telefon."
+    }
+  ],
+  "confirm": {
+    "en": "Load the page in a private window and count: refusing everything must take exactly one click, the same as accepting. Then run the check again from your case page.",
+    "da": "Indlæs siden i et privat vindue og tæl: at afvise alt skal tage præcis ét klik, det samme som at acceptere. Kør derefter tjekket igen fra din sagsside."
+  },
+  "keywords": [
+    {
+      "en": "reject button hidden in settings",
+      "da": "afvis-knap gemt i indstillinger"
+    },
+    {
+      "en": "cookie banner dark pattern",
+      "da": "cookiebanner dark pattern"
+    },
+    {
+      "en": "reject all first layer",
+      "da": "afvis alle første lag"
+    }
+  ],
+  "remedyId": "cns-05-reject-on-the-first-layer"
+}

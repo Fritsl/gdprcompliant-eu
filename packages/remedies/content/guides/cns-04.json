@@ -1,0 +1,49 @@
+{
+  "id": "cns-04",
+  "findingTypeId": "CNS-04",
+  "title": {
+    "en": "The site forgets what the visitor chose",
+    "da": "Sitet glemmer, hvad den besøgende valgte"
+  },
+  "wrong": {
+    "en": "The visitor refuses, and on the next page or the next visit the banner is back, or the trackers are. Nothing recorded the choice, or what recorded it is not read.",
+    "da": "Den besøgende afviser, og på næste side eller ved næste besøg er banneret tilbage, eller trackerne er. Intet gemte valget, eller det, der gemte det, bliver ikke læst."
+  },
+  "why": {
+    "en": "A choice that has to be made again every page is a choice the site is trying to wear down. It is also a sign the reject path was never wired up, only drawn.",
+    "da": "Et valg, der skal træffes igen på hver side, er et valg, sitet prøver at slide ned. Det er også et tegn på, at afvisningsvejen aldrig blev koblet til, kun tegnet."
+  },
+  "steps": [
+    {
+      "en": "Store the answer where the consent tool can read it on every page: a first-party cookie or localStorage entry, with a lifetime of months.",
+      "da": "Gem svaret et sted, samtykkeværktøjet kan læse det på hver side: en førstepartscookie eller en localStorage-post med en levetid på måneder."
+    },
+    {
+      "en": "Read it before any tag loads, on every page, and honour a stored refusal without showing the banner again.",
+      "da": "Læs det, før noget tag indlæses, på hver side, og respekter et gemt afslag uden at vise banneret igen."
+    },
+    {
+      "en": "Check that the stored value survives a reload and a new tab in the same browser.",
+      "da": "Tjek, at den gemte værdi overlever en genindlæsning og en ny fane i samme browser."
+    }
+  ],
+  "confirm": {
+    "en": "Reject in a private window, then reload and open another page on the site: the banner must not return, and the network panel must show no tracker. Then run the check again from your case page.",
+    "da": "Afvis i et privat vindue, genindlæs så og åbn en anden side på sitet: banneret må ikke komme tilbage, og netværkspanelet må ikke vise nogen tracker. Kør derefter tjekket igen fra din sagsside."
+  },
+  "keywords": [
+    {
+      "en": "cookie banner keeps coming back",
+      "da": "cookiebanner kommer tilbage"
+    },
+    {
+      "en": "consent not remembered",
+      "da": "samtykke ikke husket"
+    },
+    {
+      "en": "reject choice forgotten",
+      "da": "afvisning glemt"
+    }
+  ],
+  "remedyId": "cns-04-remember-the-choice"
+}

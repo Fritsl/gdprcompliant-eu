@@ -4,3 +4,4 @@ export * from './security.js';
 export * from './forms.js';
 export * from './replay.js';
 export * from './cloaking.js';
+export * from './recipients.js';

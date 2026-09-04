@@ -1,0 +1,49 @@
+{
+  "id": "cns-03",
+  "findingTypeId": "CNS-03",
+  "title": {
+    "en": "The banner offers no way to refuse",
+    "da": "Banneret giver ingen mulighed for at afvise"
+  },
+  "wrong": {
+    "en": "The banner has an accept button and nothing else: no reject, no settings, or a settings path that leads nowhere. A visitor can say yes or close the tab.",
+    "da": "Banneret har en acceptknap og intet andet: intet afvis, ingen indstillinger, eller en indstillingsvej, der fører ingen steder hen. En besøgende kan sige ja eller lukke fanen."
+  },
+  "why": {
+    "en": "Consent means a real choice, and a banner that only accepts is the textbook example of one that does not offer it. Every visitor sees it, and so does every authority.",
+    "da": "Samtykke betyder et reelt valg, og et banner, der kun accepterer, er lærebogseksemplet på et, der ikke giver det. Hver besøgende ser det, og det gør hvert tilsyn også."
+  },
+  "steps": [
+    {
+      "en": "Add a “reject all” button to the first layer of the banner, with the same weight as “accept all”.",
+      "da": "Tilføj en “afvis alle”-knap på bannerets første lag, med samme vægt som “accepter alle”."
+    },
+    {
+      "en": "Make reject actually stop every non-essential tag, and remember the answer so the banner does not return on the next page.",
+      "da": "Få afvis til faktisk at standse hvert ikke-nødvendigt tag, og husk svaret, så banneret ikke kommer igen på næste side."
+    },
+    {
+      "en": "If the consent tool cannot do this, change the tool; it is the tool’s one job.",
+      "da": "Hvis samtykkeværktøjet ikke kan det, så skift værktøj; det er værktøjets ene opgave."
+    }
+  ],
+  "confirm": {
+    "en": "Load the page in a private window: the first thing you see must contain a way to say no, one click, no scrolling. Then run the check again from your case page.",
+    "da": "Indlæs siden i et privat vindue: det første, du ser, skal rumme en måde at sige nej på, ét klik, ingen scrolling. Kør derefter tjekket igen fra din sagsside."
+  },
+  "keywords": [
+    {
+      "en": "cookie banner accept only",
+      "da": "cookiebanner kun accept"
+    },
+    {
+      "en": "no reject button",
+      "da": "ingen afvis-knap"
+    },
+    {
+      "en": "consent banner without refusal",
+      "da": "samtykkebanner uden afslag"
+    }
+  ],
+  "remedyId": "cns-03-offer-a-refusal"
+}

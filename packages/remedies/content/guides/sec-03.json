@@ -1,0 +1,49 @@
+{
+  "id": "sec-03",
+  "findingTypeId": "SEC-03",
+  "title": {
+    "en": "The site does not tell browsers to stay on HTTPS",
+    "da": "Sitet fortæller ikke browsere, at de skal blive på HTTPS"
+  },
+  "wrong": {
+    "en": "The site answers over HTTPS but sends no Strict-Transport-Security header, or one that lapses within a year. A browser that has visited before will still try plain HTTP next time, and that first request can be intercepted.",
+    "da": "Sitet svarer over HTTPS, men sender ingen Strict-Transport-Security-header, eller en, der udløber inden for et år. En browser, der har besøgt sitet før, prøver stadig almindelig HTTP næste gang, og den første forespørgsel kan opsnappes."
+  },
+  "why": {
+    "en": "Encrypting the site is half the job; the other half is making sure nobody ever reaches the unencrypted version. The header is one line of configuration, and its absence is on the first page of every security review.",
+    "da": "At kryptere sitet er det halve arbejde; den anden halvdel er at sikre, at ingen nogensinde når den ukrypterede version. Headeren er én linje i opsætningen, og dens fravær står på første side i enhver sikkerhedsgennemgang."
+  },
+  "steps": [
+    {
+      "en": "Add the header Strict-Transport-Security: max-age=63072000; includeSubDomains to every HTTPS response. The remedy shows the exact line for your server.",
+      "da": "Tilføj headeren Strict-Transport-Security: max-age=63072000; includeSubDomains til hvert HTTPS-svar. Løsningen viser den præcise linje til din server."
+    },
+    {
+      "en": "Make sure the header is sent on error pages and redirects too, not only on pages that render.",
+      "da": "Sørg for, at headeren også sendes på fejlsider og omdirigeringer, ikke kun på sider, der vises."
+    },
+    {
+      "en": "If some subdomain still needs plain HTTP, fix that first; the header applies to all of them.",
+      "da": "Hvis et subdomæne stadig har brug for almindelig HTTP, så ret det først; headeren gælder for dem alle."
+    }
+  ],
+  "confirm": {
+    "en": "Open the site over https and look at the response headers in the browser’s network panel: Strict-Transport-Security must be there with a max-age of at least 31536000. Then run the check again from your case page.",
+    "da": "Åbn sitet over https og se på svar-headerne i browserens netværkspanel: Strict-Transport-Security skal være der med en max-age på mindst 31536000. Kør derefter tjekket igen fra din sagsside."
+  },
+  "keywords": [
+    {
+      "en": "hsts header",
+      "da": "hsts header"
+    },
+    {
+      "en": "strict transport security",
+      "da": "strict transport security"
+    },
+    {
+      "en": "browser keeps using http",
+      "da": "browser bliver ved med http"
+    }
+  ],
+  "remedyId": "sec-03-hsts"
+}

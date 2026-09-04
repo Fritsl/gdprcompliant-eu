@@ -1,0 +1,2 @@
+@font-face { font-family: 'Blogskrift'; src: url('https://fonts.gstatic.com/s/blogskrift/v1/regular.woff2') format('woff2'); }
+body { font-family: 'Blogskrift', system-ui, sans-serif; margin: 2rem; }

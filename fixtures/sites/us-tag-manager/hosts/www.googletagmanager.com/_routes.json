@@ -1,0 +1,9 @@
+[
+  {
+    "path": "/collect",
+    "status": 204,
+    "headers": {
+      "cache-control": "no-store"
+    }
+  }
+]

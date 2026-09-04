@@ -1,0 +1,49 @@
+{
+  "id": "cns-06",
+  "findingTypeId": "CNS-06",
+  "title": {
+    "en": "The optional categories are switched on before the visitor chooses",
+    "da": "De valgfrie kategorier er slået til, før den besøgende vælger"
+  },
+  "wrong": {
+    "en": "On the banner’s settings layer, statistics, marketing or personalisation are already toggled on. A visitor who opens settings and presses save has agreed to everything without touching a switch.",
+    "da": "På bannerets indstillingslag er statistik, markedsføring eller personalisering allerede slået til. En besøgende, der åbner indstillinger og trykker gem, har sagt ja til alt uden at røre en kontakt."
+  },
+  "why": {
+    "en": "A pre-selected yes is the same failure as a pre-ticked box on a form, and it is judged the same way. It also makes every consent the site has collected through that layer questionable.",
+    "da": "Et forudvalgt ja er den samme fejl som et forudafkrydset felt i en formular, og det bedømmes på samme måde. Det gør også hvert samtykke, sitet har indsamlet gennem det lag, tvivlsomt."
+  },
+  "steps": [
+    {
+      "en": "Set every optional category to off by default in the consent tool’s configuration; only the necessary category may be on, and it should be shown as locked.",
+      "da": "Sæt hver valgfri kategori til fra som standard i samtykkeværktøjets opsætning; kun den nødvendige kategori må være til, og den bør vises som låst."
+    },
+    {
+      "en": "Make “save” with nothing switched on behave exactly like “reject all”.",
+      "da": "Få “gem” med intet slået til til at opføre sig præcis som “afvis alle”."
+    },
+    {
+      "en": "Ask again the visitors whose consent was collected with the switches pre-set; those answers cannot be relied on.",
+      "da": "Spørg igen de besøgende, hvis samtykke blev indsamlet med kontakterne forudindstillet; de svar kan man ikke stole på."
+    }
+  ],
+  "confirm": {
+    "en": "Open the banner’s settings in a private window without touching anything: every optional switch must be off. Then run the check again from your case page.",
+    "da": "Åbn bannerets indstillinger i et privat vindue uden at røre noget: hver valgfri kontakt skal være slået fra. Kør derefter tjekket igen fra din sagsside."
+  },
+  "keywords": [
+    {
+      "en": "pre-selected cookie categories",
+      "da": "forudvalgte cookiekategorier"
+    },
+    {
+      "en": "consent toggles on by default",
+      "da": "samtykkekontakter til som standard"
+    },
+    {
+      "en": "cookie settings pre-checked",
+      "da": "cookieindstillinger forudafkrydset"
+    }
+  ],
+  "remedyId": "cns-06-untick-the-toggles"
+}

@@ -359,6 +359,7 @@ export interface CaseFindingView {
   readonly closedAt?: string;
   readonly citations: string[];
   readonly authority?: string;
+  readonly guideId?: string;
   readonly remedy: CaseRemedyView;
   readonly evidence: CaseEvidenceView[];
 }
@@ -469,10 +470,22 @@ function renderRemedy(
   }
 }
 
-function bindingOf(value: unknown): { citations: string[]; authority?: string } {
-  const b = value as { citations?: Citation[]; authority?: { name?: string } } | null;
+function bindingOf(value: unknown): {
+  citations: string[];
+  authority?: string;
+  guideId?: string;
+} {
+  const b = value as {
+    citations?: Citation[];
+    authority?: { name?: string };
+    guideId?: string;
+  } | null;
   const citations = Array.isArray(b?.citations) ? b.citations.map(citationText) : [];
-  return b?.authority?.name ? { citations, authority: b.authority.name } : { citations };
+  return {
+    citations,
+    ...(b?.authority?.name ? { authority: b.authority.name } : {}),
+    ...(b?.guideId ? { guideId: b.guideId } : {}),
+  };
 }
 
 export function loadCasePage(token: string, locale: Locale): Promise<CasePageView | undefined> {

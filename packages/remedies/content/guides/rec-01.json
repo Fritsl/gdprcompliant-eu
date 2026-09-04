@@ -1,0 +1,49 @@
+{
+  "id": "rec-01",
+  "findingTypeId": "REC-01",
+  "title": {
+    "en": "A session-recording tool watches pages where people type sensitive details",
+    "da": "Et optageværktøj følger sider, hvor folk skriver følsomme oplysninger"
+  },
+  "wrong": {
+    "en": "A tool that records how visitors move and type is loaded on a page that asks for a national identity number, a health detail, a card number or a password, and the fields are not marked to be masked. The recording holds what was typed.",
+    "da": "Et værktøj, der optager, hvordan besøgende bevæger sig og skriver, indlæses på en side, der beder om CPR-nummer, en helbredsoplysning, et kortnummer eller en adgangskode, og felterne er ikke markeret til at blive maskeret. Optagelsen rummer det, der blev skrevet."
+  },
+  "why": {
+    "en": "A recording of someone typing their card number or a symptom is a copy of that detail, kept by a third party, for as long as the recordings are kept. Nobody agreed to that, and the tool’s own terms usually forbid it.",
+    "da": "En optagelse af nogen, der skriver sit kortnummer eller et symptom, er en kopi af den oplysning, opbevaret af en tredjepart, så længe optagelserne gemmes. Ingen sagde ja til det, og værktøjets egne vilkår forbyder det som regel."
+  },
+  "steps": [
+    {
+      "en": "Turn the recording tool off on every page that collects sensitive details: checkout, patient intake, account settings, login.",
+      "da": "Slå optageværktøjet fra på hver side, der indsamler følsomme oplysninger: kasse, patientindskrivning, kontoindstillinger, login."
+    },
+    {
+      "en": "Where the tool stays on, mark each sensitive field with the tool’s masking attribute so keystrokes are never recorded. The remedy shows the attribute for your tool.",
+      "da": "Hvor værktøjet bliver ved, så markér hvert følsomt felt med værktøjets maskeringsattribut, så tastetryk aldrig optages. Løsningen viser attributten for dit værktøj."
+    },
+    {
+      "en": "Delete the recordings already made of those pages, and check the tool’s retention setting.",
+      "da": "Slet de optagelser, der allerede er lavet af de sider, og tjek værktøjets indstilling for opbevaring."
+    }
+  ],
+  "confirm": {
+    "en": "Open the sensitive page and check in the browser’s network panel that the recording tool does not load; where it does, check the field carries the masking attribute. Then run the check again from your case page.",
+    "da": "Åbn den følsomme side og tjek i browserens netværkspanel, at optageværktøjet ikke indlæses; hvor det gør, så tjek, at feltet bærer maskeringsattributten. Kør derefter tjekket igen fra din sagsside."
+  },
+  "keywords": [
+    {
+      "en": "session replay privacy",
+      "da": "session replay privatliv"
+    },
+    {
+      "en": "hotjar masking",
+      "da": "hotjar maskering"
+    },
+    {
+      "en": "recording tool on checkout",
+      "da": "optageværktøj på kassesiden"
+    }
+  ],
+  "remedyId": "rec-01-mask-and-exclude-checkout"
+}

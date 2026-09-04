@@ -1,0 +1,49 @@
+{
+  "id": "fpr-01",
+  "findingTypeId": "FPR-01",
+  "title": {
+    "en": "A script reads the canvas back to fingerprint the visitor",
+    "da": "Et script læser lærredet tilbage for at tage fingeraftryk af den besøgende"
+  },
+  "wrong": {
+    "en": "A script draws hidden text and shapes and reads the pixels back. The tiny differences between machines make a fingerprint that identifies the visitor without a cookie, and without asking.",
+    "da": "Et script tegner skjult tekst og figurer og læser pixlerne tilbage. De små forskelle mellem maskiner giver et fingeraftryk, der identificerer den besøgende uden en cookie, og uden at spørge."
+  },
+  "why": {
+    "en": "Fingerprinting exists to recognise people who refused cookies. It reaches into the device in a way nobody consented to, and it is named specifically in guidance from every authority.",
+    "da": "Fingeraftryk findes for at genkende folk, der sagde nej til cookies. Det rækker ind i enheden på en måde, ingen har givet samtykke til, og det nævnes udtrykkeligt i vejledning fra alle tilsyn."
+  },
+  "steps": [
+    {
+      "en": "Find the script the finding names and what it is there for; it is usually part of an analytics, fraud or advertising tool.",
+      "da": "Find det script, fundet nævner, og hvad det er der for; det er som regel en del af et analyse-, svindel- eller reklameværktøj."
+    },
+    {
+      "en": "Remove the tool, or replace it with a version or a setting that does not fingerprint. The vendor’s documentation will say which.",
+      "da": "Fjern værktøjet, eller udskift det med en version eller en indstilling, der ikke tager fingeraftryk. Leverandørens dokumentation siger hvilken."
+    },
+    {
+      "en": "If the tool is kept for fraud prevention on a payment page, load it only there and only after the visitor has been told.",
+      "da": "Hvis værktøjet beholdes til svindelforebyggelse på en betalingsside, så indlæs det kun dér og kun efter, at den besøgende har fået besked."
+    }
+  ],
+  "confirm": {
+    "en": "Load the page with the browser’s console open and no consent given: no script may call getImageData or toDataURL on a canvas the visitor cannot see. Then run the check again from your case page.",
+    "da": "Indlæs siden med browserens konsol åben og uden givet samtykke: intet script må kalde getImageData eller toDataURL på et lærred, den besøgende ikke kan se. Kør derefter tjekket igen fra din sagsside."
+  },
+  "keywords": [
+    {
+      "en": "canvas fingerprinting",
+      "da": "canvas fingeraftryk"
+    },
+    {
+      "en": "browser fingerprint script",
+      "da": "browser fingeraftryk script"
+    },
+    {
+      "en": "tracking without cookies",
+      "da": "sporing uden cookies"
+    }
+  ],
+  "remedyId": "fpr-01-canvas-fingerprint"
+}

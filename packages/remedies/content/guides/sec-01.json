@@ -1,0 +1,49 @@
+{
+  "id": "sec-01",
+  "findingTypeId": "SEC-01",
+  "title": {
+    "en": "The site answers over plain HTTP without sending visitors to HTTPS",
+    "da": "Sitet svarer over almindelig HTTP uden at sende besøgende videre til HTTPS"
+  },
+  "wrong": {
+    "en": "Someone who types the address without https, or follows an old link, gets the page over an unencrypted connection and stays there. Everything they read and type on that connection can be read by anyone on the path between them and the server.",
+    "da": "Den, der skriver adressen uden https, eller følger et gammelt link, får siden over en ukrypteret forbindelse og bliver der. Alt, hvad de læser og skriver på den forbindelse, kan læses af enhver på vejen mellem dem og serveren."
+  },
+  "why": {
+    "en": "A website that handles names, addresses or a login must protect them in transit, and a plain-HTTP page is the most common way that protection is missing. It is also the first thing a visitor, an auditor or a competitor checks, because it takes one keystroke.",
+    "da": "En hjemmeside, der håndterer navne, adresser eller et login, skal beskytte dem undervejs, og en side over almindelig HTTP er den mest almindelige måde, den beskyttelse mangler på. Det er også det første, en besøgende, en revisor eller en konkurrent tjekker, for det tager ét tastetryk."
+  },
+  "steps": [
+    {
+      "en": "Make the server answer every plain-HTTP request with a permanent redirect (301) to the same address on https. On most servers this is a two-line rule in the site configuration; the remedy shows it.",
+      "da": "Få serveren til at svare på enhver almindelig HTTP-forespørgsel med en permanent omdirigering (301) til den samme adresse på https. På de fleste servere er det en regel på to linjer i sitets opsætning; løsningen viser den."
+    },
+    {
+      "en": "Keep the redirect for every path, not only the home page, and for every host name the site answers to, including the version without www.",
+      "da": "Behold omdirigeringen for hver sti, ikke kun forsiden, og for hvert værtsnavn sitet svarer på, også versionen uden www."
+    },
+    {
+      "en": "Once the redirect is in place, add the Strict-Transport-Security header so browsers stop trying plain HTTP at all.",
+      "da": "Når omdirigeringen er på plads, så tilføj headeren Strict-Transport-Security, så browsere helt holder op med at prøve almindelig HTTP."
+    }
+  ],
+  "confirm": {
+    "en": "Open http://yourdomain/ in a private browser window. The address bar must change to https on its own, with no warning. Then run the check again from your case page.",
+    "da": "Åbn http://ditdomæne/ i et privat browservindue. Adresselinjen skal af sig selv skifte til https uden advarsel. Kør derefter tjekket igen fra din sagsside."
+  },
+  "keywords": [
+    {
+      "en": "http redirect to https",
+      "da": "http omdirigering til https"
+    },
+    {
+      "en": "site not secure",
+      "da": "sitet er ikke sikkert"
+    },
+    {
+      "en": "force https",
+      "da": "tving https"
+    }
+  ],
+  "remedyId": "sec-01-redirect-to-https"
+}

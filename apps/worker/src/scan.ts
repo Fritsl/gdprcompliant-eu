@@ -25,6 +25,7 @@ import {
   runSecurityChecks,
   type BrowserPool,
   type QuietOptions,
+  recipientChecks,
 } from '@gc/scanner';
 import type { Evidence } from '@gc/contracts';
 
@@ -164,7 +165,13 @@ export async function registerScanWorker(
       policies.discovery.observation.outcome === 'pass' ? 'ok' : 'undet',
       policies.discovery.observation.summary.slice(0, 200),
     );
-    await mark('recipients', 'ok', `${c.vendorHosts.length} third-party host(s)`);
+    const recipients = recipientChecks(a.capture, identity);
+    evidence.push(...recipients.evidence);
+    await mark(
+      'recipients',
+      recipients.observations.some((o) => o.outcome === 'fail') ? 'undet' : 'ok',
+      `${c.vendorHosts.length} third-party host(s)`,
+    );
     await mark('security', 'on');
     const surface = await runSecurityChecks(
       options.pool,
@@ -198,6 +205,7 @@ export async function registerScanWorker(
     }
     const input: AssemblyInput = {
       security: surface.observations,
+      recipients: recipients.observations,
       forms: forms.inventory.observations,
       policies: policies.discovery,
       consent: diffed.drafts,

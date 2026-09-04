@@ -1,0 +1,53 @@
+{
+  "id": "sec-06",
+  "findingTypeId": "SEC-06",
+  "title": {
+    "en": "The basic security headers are missing",
+    "da": "De grundlæggende sikkerhedsheadere mangler"
+  },
+  "wrong": {
+    "en": "The responses carry none, or not all, of the three headers that tell a browser how the page may be used: a Content-Security-Policy, X-Content-Type-Options set to nosniff, and X-Frame-Options or a frame-ancestors rule.",
+    "da": "Svarene bærer ingen af, eller ikke alle, de tre headere, der fortæller en browser, hvordan siden må bruges: en Content-Security-Policy, X-Content-Type-Options sat til nosniff, og X-Frame-Options eller en frame-ancestors-regel."
+  },
+  "why": {
+    "en": "These headers cost nothing and stop whole classes of attack: scripts injected into the page, files interpreted as something they are not, the site framed inside someone else’s page to trick visitors. Their absence is the first line of any external security report.",
+    "da": "Disse headere koster ingenting og standser hele klasser af angreb: scripts sprøjtet ind i siden, filer fortolket som noget, de ikke er, sitet indrammet i en andens side for at narre besøgende. Deres fravær er første linje i enhver ekstern sikkerhedsrapport."
+  },
+  "steps": [
+    {
+      "en": "Add X-Content-Type-Options: nosniff and X-Frame-Options: DENY (or SAMEORIGIN if the site frames itself) to every response.",
+      "da": "Tilføj X-Content-Type-Options: nosniff og X-Frame-Options: DENY (eller SAMEORIGIN, hvis sitet indrammer sig selv) til hvert svar."
+    },
+    {
+      "en": "Add a Content-Security-Policy. Start with a report-only policy that lists the hosts the site actually loads from, watch the reports for a week, then enforce it.",
+      "da": "Tilføj en Content-Security-Policy. Begynd med en report-only-politik, der nævner de værter, sitet faktisk indlæser fra, følg rapporterne en uge, og håndhæv den så."
+    },
+    {
+      "en": "Put the headers in the server configuration, not in individual pages, so error pages and files carry them too.",
+      "da": "Læg headerne i serveropsætningen, ikke i de enkelte sider, så fejlsider og filer også bærer dem."
+    }
+  ],
+  "confirm": {
+    "en": "Open the site and read the response headers in the browser’s network panel: all three must be present on the home page and on a deeper page. Then run the check again from your case page.",
+    "da": "Åbn sitet og læs svar-headerne i browserens netværkspanel: alle tre skal være der på forsiden og på en dybere side. Kør derefter tjekket igen fra din sagsside."
+  },
+  "keywords": [
+    {
+      "en": "security headers",
+      "da": "sikkerhedsheadere"
+    },
+    {
+      "en": "content security policy",
+      "da": "content security policy"
+    },
+    {
+      "en": "x-frame-options",
+      "da": "x-frame-options"
+    },
+    {
+      "en": "nosniff",
+      "da": "nosniff"
+    }
+  ],
+  "remedyId": "sec-06-security-headers"
+}

@@ -1,0 +1,49 @@
+{
+  "id": "fpr-03",
+  "findingTypeId": "FPR-03",
+  "title": {
+    "en": "A script renders silent audio to fingerprint the visitor",
+    "da": "Et script afspiller lydløs lyd for at tage fingeraftryk af den besøgende"
+  },
+  "wrong": {
+    "en": "A script creates an audio context, generates a signal the visitor never hears and reads the result back. The numbers differ by device and driver, and they identify the visitor without a cookie.",
+    "da": "Et script opretter en lydkontekst, laver et signal, den besøgende aldrig hører, og læser resultatet tilbage. Tallene er forskellige fra enhed til enhed og driver til driver, og de identificerer den besøgende uden en cookie."
+  },
+  "why": {
+    "en": "Silent audio processing has one use on a web page, and it is not sound. It is a covert identifier, and it is the kind of technique authorities cite when they explain what consent is for.",
+    "da": "Lydløs lydbehandling har ét formål på en webside, og det er ikke lyd. Det er en skjult identifikator, og det er den slags teknik, tilsyn nævner, når de forklarer, hvad samtykke er til."
+  },
+  "steps": [
+    {
+      "en": "Find the script the finding names and the tool it belongs to.",
+      "da": "Find det script, fundet nævner, og det værktøj, det hører til."
+    },
+    {
+      "en": "Remove the tool or turn off its fingerprinting feature.",
+      "da": "Fjern værktøjet, eller slå dets fingeraftryksfunktion fra."
+    },
+    {
+      "en": "If audio processing is a genuine feature of the page, start it only on a user action, never on load.",
+      "da": "Hvis lydbehandling er en ægte funktion på siden, så start den kun ved en brugerhandling, aldrig ved indlæsning."
+    }
+  ],
+  "confirm": {
+    "en": "Load the page without consent: no OfflineAudioContext or oscillator may be created before the visitor does anything. Then run the check again from your case page.",
+    "da": "Indlæs siden uden samtykke: ingen OfflineAudioContext eller oscillator må oprettes, før den besøgende gør noget. Kør derefter tjekket igen fra din sagsside."
+  },
+  "keywords": [
+    {
+      "en": "audio fingerprinting",
+      "da": "lydfingeraftryk"
+    },
+    {
+      "en": "audiocontext fingerprint",
+      "da": "audiocontext fingeraftryk"
+    },
+    {
+      "en": "covert tracking",
+      "da": "skjult sporing"
+    }
+  ],
+  "remedyId": "fpr-03-audio-fingerprint"
+}

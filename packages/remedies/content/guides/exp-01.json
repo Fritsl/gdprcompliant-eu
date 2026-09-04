@@ -1,0 +1,49 @@
+{
+  "id": "exp-01",
+  "findingTypeId": "EXP-01",
+  "title": {
+    "en": "Public certificate logs name hosts that look internal or unfinished",
+    "da": "Offentlige certifikatlogge nævner værter, der ser interne eller ufærdige ud"
+  },
+  "wrong": {
+    "en": "Every certificate issued for the domain is written to a public log, and the log names hosts such as staging, test, admin or an old project. Anyone can read the list, and the hosts it names may still answer.",
+    "da": "Hvert certifikat udstedt til domænet skrives i en offentlig log, og loggen nævner værter som staging, test, admin eller et gammelt projekt. Enhver kan læse listen, og de værter, den nævner, svarer måske stadig."
+  },
+  "why": {
+    "en": "A forgotten staging site often holds a copy of production data with none of the protection. The names are public, so attackers do not need to guess them; they read them.",
+    "da": "Et glemt staging-site rummer tit en kopi af produktionsdata uden nogen af beskyttelserne. Navnene er offentlige, så angribere behøver ikke gætte dem; de læser dem."
+  },
+  "steps": [
+    {
+      "en": "For each host the finding names, decide whether it should exist at all.",
+      "da": "For hver vært, fundet nævner, så afgør, om den overhovedet bør findes."
+    },
+    {
+      "en": "Remove what is dead. Put what is internal behind a login or the office network. Make sure none of it serves a copy of production data.",
+      "da": "Fjern det, der er dødt. Sæt det, der er internt, bag et login eller kontornetværket. Sørg for, at intet af det leverer en kopi af produktionsdata."
+    },
+    {
+      "en": "Issue certificates only for hosts that are meant to be public, or use a wildcard for the rest so their names stay off the log.",
+      "da": "Udsted kun certifikater til værter, der skal være offentlige, eller brug et wildcard til resten, så deres navne holdes ude af loggen."
+    }
+  ],
+  "confirm": {
+    "en": "Try to open each host from outside the office network: internal ones must not answer, and dead ones must not resolve. Then run the check again from your case page.",
+    "da": "Prøv at åbne hver vært uden for kontornetværket: interne må ikke svare, og døde må ikke slå op. Kør derefter tjekket igen fra din sagsside."
+  },
+  "keywords": [
+    {
+      "en": "certificate transparency hosts",
+      "da": "certificate transparency værter"
+    },
+    {
+      "en": "staging site exposed",
+      "da": "staging-site blottet"
+    },
+    {
+      "en": "subdomain enumeration",
+      "da": "subdomæne-optælling"
+    }
+  ],
+  "remedyId": "exp-01-review-named-hosts"
+}

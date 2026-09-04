@@ -399,10 +399,13 @@ describe.skipIf(!url)('remedy interactions (U-04)', () => {
       expect(l.target).toBe('_blank');
       expect(l.rel).toContain('noopener');
     }
+    // Every internal link is the case, or one of our own guide pages: nothing else.
     for (const l of links.filter(
       (l) => !/^https?:\/\//.test(l.href) && !l.href.startsWith('mailto:'),
     )) {
-      expect(l.href.startsWith(`/en/c/${tokenA}`)).toBe(true);
+      expect(l.href.startsWith(`/en/c/${tokenA}`) || l.href.startsWith('/en/guides/'), l.href).toBe(
+        true,
+      );
     }
     // The partner alternatives and the outside links carry the mark in the text.
     const marked = await page.locator('.case a[data-external]').allInnerTexts();

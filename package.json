@@ -32,6 +32,7 @@
     "db:down": "docker compose down",
     "db:doc": "node scripts/schema-doc.mjs",
     "bindings:doc": "node --import tsx scripts/bindings-doc.ts",
+    "findings:doc": "node --import tsx scripts/findings-doc.ts",
     "check:finding-completeness": "node --import tsx scripts/finding-completeness.ts",
     "check:rls": "node scripts/rls-check.mjs",
     "check:retention": "node --import tsx scripts/retention-check.mjs",
