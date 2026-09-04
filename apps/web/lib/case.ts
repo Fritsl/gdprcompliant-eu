@@ -1,6 +1,11 @@
 import 'server-only';
 import {
+  PostgresDemandLedger,
+  RECHECK_JOB,
   RateLimited,
+  SignatureRequired,
+  StaleSignature,
+  artefactsForCase,
   attestFinding,
   caseByToken,
   caseCompany,
@@ -10,32 +15,38 @@ import {
   connect,
   deleteCase,
   evidencePack,
+  exportArtefact,
   exportCase,
   findingsWithEvidence,
   inviteMember,
   joinByInvite,
   listMembers,
   memberView,
+  publishArtefact,
+  recheckStatus,
   recordPackGenerated,
   remindMember,
   requestCheck,
   revokeInvitation,
+  signArtefact,
   withTenant,
   type CaseProgress,
   type CaseSummary,
   type Connection,
   type DeletionStub,
+  type ExportedArtefact,
   type MemberSummary,
   type MemberView,
+  type RecheckProgress,
 } from '@gc/db';
-import { checkForMeProposal, type Role } from '@gc/findings';
+import type { Role } from '@gc/findings';
 import { localise } from '@gc/i18n';
 import { JobQueue } from '@gc/jobs';
 import { loadCatalogue } from '@gc/remedies';
 import type {
+  ArtefactKind,
   CaseEvent,
   Citation,
-  FindingArea,
   Locale,
   LocalisedText,
   Remedy,
@@ -262,7 +273,7 @@ export async function checkForMember(
   return done ?? false;
 }
 
-// ---- the case page (U-03) --------------------------------------------------------
+// ---- the case page (U-03, U-04) --------------------------------------------------
 
 export interface CaseEvidenceView {
   readonly id: string;
@@ -276,7 +287,12 @@ export interface CaseEvidenceView {
 }
 
 export type CaseActionView =
-  | { readonly kind: 'agent_prompt'; readonly label: string; readonly body: string }
+  | {
+      readonly kind: 'agent_prompt';
+      readonly label: string;
+      readonly body: string;
+      readonly forwardable?: string;
+    }
   | {
       readonly kind: 'message';
       readonly label: string;
@@ -287,26 +303,42 @@ export type CaseActionView =
   | { readonly kind: 'link'; readonly label: string; readonly url: string };
 
 export type VerifyMethod = Remedy['verification']['method'];
+export type RemedyKind = Remedy['kind'];
+
+export interface CaseRemedyView {
+  readonly kind: RemedyKind;
+  readonly title: string;
+  readonly effort: string;
+  readonly minutes: number;
+  readonly detail: string;
+  readonly snippet?: string;
+  readonly verifyLabel?: string;
+  readonly verify: VerifyMethod;
+  readonly action?: CaseActionView;
+  readonly cta?: string;
+  readonly artefact?: ArtefactKind;
+  readonly product?: { readonly id: string; readonly url: string };
+  readonly alternativeNote?: string;
+  readonly options?: readonly {
+    readonly name: string;
+    readonly jurisdiction: string;
+    readonly note?: string;
+    readonly url?: string;
+  }[];
+  readonly askLabel?: string;
+}
 
 export interface CaseFindingView {
   readonly id: string;
   readonly typeId: string;
   readonly area: string;
   readonly severity: string;
+  readonly status: string;
   readonly open: boolean;
+  readonly closedAt?: string;
   readonly citations: string[];
   readonly authority?: string;
-  readonly remedy: {
-    readonly kind: string;
-    readonly title: string;
-    readonly effort: string;
-    readonly minutes: number;
-    readonly detail: string;
-    readonly snippet?: string;
-    readonly verifyLabel?: string;
-    readonly verify: VerifyMethod;
-    readonly action?: CaseActionView;
-  };
+  readonly remedy: CaseRemedyView;
   readonly evidence: CaseEvidenceView[];
 }
 
@@ -340,12 +372,15 @@ function renderAction(
   if (!action) return undefined;
   const label = fill(localise(action.label, locale).value, domain);
   switch (action.kind) {
-    case 'agent_prompt':
+    case 'agent_prompt': {
+      const forwardable = pick(action.forwardable, locale);
       return {
         kind: 'agent_prompt',
         label,
         body: fill(localise(action.body, locale).value, domain),
+        ...(forwardable ? { forwardable: fill(forwardable, domain) } : {}),
       };
+    }
     case 'message':
       return {
         kind: 'message',
@@ -356,6 +391,58 @@ function renderAction(
       };
     case 'link':
       return { kind: 'link', label, url: action.url };
+  }
+}
+
+function renderRemedy(
+  r: Remedy | undefined,
+  fallbackId: string,
+  locale: Locale,
+  domain: string,
+): CaseRemedyView {
+  const action = renderAction(r && 'action' in r ? r.action : undefined, locale, domain);
+  const view: CaseRemedyView = {
+    kind: r?.kind ?? 'no_solution',
+    title: fill(pick(r?.title, locale) ?? fallbackId, domain),
+    effort: pick(r?.effort.label, locale) ?? '',
+    minutes: r?.effort.minutes ?? DEFAULT_MINUTES,
+    detail: fill(pick(r?.detail, locale) ?? '', domain),
+    verify: r?.verification.method ?? 'none',
+    ...(r?.verifyLabel ? { verifyLabel: localise(r.verifyLabel, locale).value } : {}),
+    ...(action ? { action } : {}),
+  };
+  if (!r) return view;
+  switch (r.kind) {
+    case 'self_fix':
+      return { ...view, ...(r.snippet ? { snippet: fill(r.snippet, domain) } : {}) };
+    case 'generated_artefact':
+      return { ...view, cta: localise(r.cta, locale).value, artefact: r.artefact };
+    case 'our_product': {
+      const note = pick(r.alternativeNote, locale);
+      return {
+        ...view,
+        cta: localise(r.cta, locale).value,
+        product: r.product,
+        ...(note ? { alternativeNote: note } : {}),
+      };
+    }
+    case 'partner_alternative':
+      return {
+        ...view,
+        options: r.options.map((o) => {
+          const note = pick(o.note, locale);
+          return {
+            name: o.name,
+            jurisdiction: o.jurisdiction,
+            ...(note ? { note } : {}),
+            ...(o.url ? { url: o.url } : {}),
+          };
+        }),
+      };
+    case 'no_solution': {
+      const ask = pick(r.askLabel, locale);
+      return { ...view, ...(ask ? { askLabel: ask } : {}) };
+    }
   }
 }
 
@@ -380,27 +467,16 @@ export function loadCasePage(token: string, locale: Locale): Promise<CasePageVie
     const rows = await findingsWithEvidence(connection, found.tenantId, found.caseId);
     const findings = rows.map(({ finding, evidence }): CaseFindingView => {
       const entry = catalogue.get(finding.remedyId, finding.remedyVersion);
-      const r = entry?.remedy;
-      const snippet = r?.kind === 'self_fix' ? r.snippet : undefined;
-      const action = renderAction(r && 'action' in r ? r.action : undefined, locale, domain);
       return {
         id: finding.id,
         typeId: finding.typeId,
         area: finding.area,
         severity: finding.severity,
-        open: finding.status === 'open',
+        status: finding.status,
+        open: finding.status === 'open' || finding.status === 'regressed',
+        ...(finding.closedAt ? { closedAt: finding.closedAt.toISOString() } : {}),
         ...bindingOf(finding.binding),
-        remedy: {
-          kind: r?.kind ?? 'no_solution',
-          title: fill(pick(r?.title, locale) ?? finding.remedyId, domain),
-          effort: pick(r?.effort.label, locale) ?? '',
-          minutes: r?.effort.minutes ?? DEFAULT_MINUTES,
-          detail: fill(pick(r?.detail, locale) ?? '', domain),
-          ...(snippet ? { snippet: fill(snippet, domain) } : {}),
-          ...(r?.verifyLabel ? { verifyLabel: localise(r.verifyLabel, locale).value } : {}),
-          verify: r?.verification.method ?? 'none',
-          ...(action ? { action } : {}),
-        },
+        remedy: renderRemedy(entry?.remedy, finding.remedyId, locale, domain),
         evidence: evidence.map((e) => ({
           id: e.id,
           kind: e.kind,
@@ -425,49 +501,244 @@ const observedAt = (observed: unknown): string => {
   return parts.join(' · ');
 };
 
-// "Check it again": the same re-check a colleague can ask for (P-01), from the owner.
-export async function checkForOwner(token: string, findingId: string): Promise<boolean> {
-  const done = await withConnection(async (connection) => {
-    const found = await caseByToken(connection, token);
-    if (!found) return false;
-    const rows = await findingsWithEvidence(connection, found.tenantId, found.caseId);
-    const row = rows.find((r) => r.finding.id === findingId);
-    const company = await caseCompany(connection, found.tenantId, found.caseId);
-    if (!row || !company) return false;
+// The token's holder as an actor: a person, named by the case they hold.
+const holder = (caseId: string, name = 'Case holder') => ({
+  kind: 'person' as const,
+  userId: `token:${caseId}`,
+  name,
+});
+
+async function findingForOwner(connection: Connection, token: string, findingId: string) {
+  const found = await caseByToken(connection, token);
+  if (!found) return undefined;
+  const rows = await findingsWithEvidence(connection, found.tenantId, found.caseId);
+  const row = rows.find((r) => r.finding.id === findingId);
+  if (!row) return undefined;
+  return { found, row, entry: catalogue.get(row.finding.remedyId, row.finding.remedyVersion) };
+}
+
+// "Check it again" (U-04): a re-check job for the worker; the page reads the job back.
+export async function checkForOwner(token: string, findingId: string): Promise<string | undefined> {
+  return withConnection(async (connection) => {
+    const hit = await findingForOwner(connection, token, findingId);
+    if (!hit || hit.row.finding.status === 'closed') return undefined;
     const url = process.env['DATABASE_URL'];
-    if (!url) return false;
-    const proposal = checkForMeProposal(
-      { typeId: row.finding.typeId, area: row.finding.area as FindingArea },
-      company.domain,
-    );
+    if (!url) return undefined;
     const queue = new JobQueue({ connectionString: url });
     await queue.start();
     try {
-      await requestCheck(queue, proposal);
-      return true;
+      return await queue.enqueue(RECHECK_JOB, {
+        tenantId: hit.found.tenantId,
+        caseId: hit.found.caseId,
+        findingId,
+        requestedBy: holder(hit.found.caseId),
+      });
     } finally {
       await queue.stop({ graceful: true });
     }
   });
-  return done ?? false;
+}
+
+export interface RecheckView {
+  readonly id: string;
+  readonly findingId: string;
+  readonly state: string;
+  readonly progress?: RecheckProgress;
+}
+
+// A re-check is read only by the case it belongs to.
+export async function readRecheck(token: string, jobId: string): Promise<RecheckView | undefined> {
+  return withConnection(async (connection) => {
+    const found = await caseByToken(connection, token);
+    if (!found) return undefined;
+    const url = process.env['DATABASE_URL'];
+    if (!url) return undefined;
+    const queue = new JobQueue({ connectionString: url });
+    await queue.start();
+    try {
+      const status = await recheckStatus(queue, jobId);
+      if (!status || status.payload.caseId !== found.caseId) return undefined;
+      return {
+        id: jobId,
+        findingId: status.payload.findingId,
+        state: status.state,
+        ...(status.progress ? { progress: status.progress } : {}),
+      };
+    } finally {
+      await queue.stop({ graceful: true });
+    }
+  });
 }
 
 // "I have done this": only a remedy verified by attestation closes on the holder's word.
 export async function attestForOwner(token: string, findingId: string): Promise<boolean> {
   const done = await withConnection(async (connection) => {
-    const found = await caseByToken(connection, token);
-    if (!found) return false;
-    const rows = await findingsWithEvidence(connection, found.tenantId, found.caseId);
-    const row = rows.find((r) => r.finding.id === findingId);
-    if (!row || row.finding.status !== 'open') return false;
-    const entry = catalogue.get(row.finding.remedyId, row.finding.remedyVersion);
-    const v = entry?.remedy.verification;
+    const hit = await findingForOwner(connection, token, findingId);
+    if (!hit || hit.row.finding.status === 'closed') return false;
+    const v = hit.entry?.remedy.verification;
     if (!v || v.method !== 'attestation') return false;
-    await attestFinding(connection, found.tenantId, findingId, {
-      by: { kind: 'person', userId: `token:${found.caseId}`, name: 'Case holder' },
+    await attestFinding(connection, hit.found.tenantId, findingId, {
+      by: holder(hit.found.caseId),
       statement: v.statement,
     });
     return true;
   });
   return done ?? false;
+}
+
+// "Ask for an answer" on a no_solution remedy (R-05): one row in the demand ledger.
+export async function askForOwner(token: string, findingId: string): Promise<boolean> {
+  const done = await withConnection(async (connection) => {
+    const hit = await findingForOwner(connection, token, findingId);
+    if (!hit) return false;
+    const r = hit.entry?.remedy;
+    if (!r || r.kind !== 'no_solution') return false;
+    const company = await caseCompany(connection, hit.found.tenantId, hit.found.caseId);
+    if (!company) return false;
+    await withTenant(connection, hit.found.tenantId, (db) =>
+      new PostgresDemandLedger(db, hit.found.tenantId, { country: company.country }).record({
+        findingTypeId: hit.row.finding.typeId,
+        jurisdiction: hit.row.finding.jurisdiction,
+        caseId: hit.found.caseId,
+        gap: r.demandGap,
+        cause: 'asked from the case page',
+        answer: 'none',
+      }),
+    );
+    return true;
+  });
+  return done ?? false;
+}
+
+// ---- generated documents: preview, sign, publish, export (U-04, A-09) ----------------
+
+export interface ArtefactView {
+  readonly caseId: string;
+  readonly kind: ArtefactKind;
+  readonly document?: {
+    readonly id: string;
+    readonly version: number;
+    readonly hash: string;
+    readonly status: string;
+    readonly content: string;
+    readonly generatedAt: string;
+    readonly signedBy?: string;
+    readonly signedAt?: string;
+    readonly publishedAt?: string;
+    readonly publishedUrl?: string;
+  };
+}
+
+async function artefactRow(connection: Connection, token: string, kind: ArtefactKind) {
+  const found = await caseByToken(connection, token);
+  if (!found) return undefined;
+  const rows = await artefactsForCase(connection, found.tenantId, found.caseId);
+  return { found, row: rows.find((r) => r.kind === kind) };
+}
+
+export async function loadArtefact(
+  token: string,
+  kind: ArtefactKind,
+): Promise<ArtefactView | undefined> {
+  return withConnection(async (connection) => {
+    const hit = await artefactRow(connection, token, kind);
+    if (!hit) return undefined;
+    const row = hit.row;
+    if (!row) return { caseId: hit.found.caseId, kind };
+    const signer = row.signedBy as { name?: string } | null;
+    return {
+      caseId: hit.found.caseId,
+      kind,
+      document: {
+        id: row.id,
+        version: row.version,
+        hash: row.hash,
+        status: row.status,
+        content: row.content,
+        generatedAt: row.generatedAt.toISOString(),
+        ...(signer?.name ? { signedBy: signer.name } : {}),
+        ...(row.signedAt ? { signedAt: row.signedAt.toISOString() } : {}),
+        ...(row.publishedAt ? { publishedAt: row.publishedAt.toISOString() } : {}),
+        ...(row.publishedUrl ? { publishedUrl: row.publishedUrl } : {}),
+      },
+    };
+  });
+}
+
+export type SignOutcome = 'ok' | 'stale' | 'invalid' | 'not_found';
+
+// A person signs the version and the bytes they read; anything else is stale.
+export async function signForOwner(
+  token: string,
+  kind: ArtefactKind,
+  input: { readonly name: string; readonly version: number; readonly hash: string },
+): Promise<SignOutcome> {
+  const outcome = await withConnection(async (connection): Promise<SignOutcome> => {
+    const hit = await artefactRow(connection, token, kind);
+    if (!hit?.row) return 'not_found';
+    const name = input.name.trim();
+    if (name.length === 0 || name.length > 80) return 'invalid';
+    try {
+      await signArtefact(connection, hit.found.tenantId, hit.row.id, {
+        by: holder(hit.found.caseId, name),
+        version: input.version,
+        hash: input.hash,
+      });
+      return 'ok';
+    } catch (e) {
+      if (e instanceof StaleSignature) return 'stale';
+      throw e;
+    }
+  });
+  return outcome ?? 'not_found';
+}
+
+export type PublishOutcome = 'ok' | 'unsigned' | 'invalid' | 'not_found';
+
+export async function publishForOwner(
+  token: string,
+  kind: ArtefactKind,
+  input: { readonly url?: string },
+): Promise<PublishOutcome> {
+  const outcome = await withConnection(async (connection): Promise<PublishOutcome> => {
+    const hit = await artefactRow(connection, token, kind);
+    if (!hit?.row) return 'not_found';
+    let url: string | undefined;
+    if (input.url && input.url.trim().length > 0) {
+      try {
+        const parsed = new URL(input.url.trim());
+        if (parsed.protocol !== 'https:' && parsed.protocol !== 'http:') return 'invalid';
+        url = parsed.toString();
+      } catch {
+        return 'invalid';
+      }
+    }
+    try {
+      await publishArtefact(connection, hit.found.tenantId, hit.row.id, {
+        by: holder(hit.found.caseId),
+        ...(url ? { url } : {}),
+      });
+      return 'ok';
+    } catch (e) {
+      if (e instanceof SignatureRequired) return 'unsigned';
+      throw e;
+    }
+  });
+  return outcome ?? 'not_found';
+}
+
+export async function exportArtefactForOwner(
+  token: string,
+  kind: ArtefactKind,
+): Promise<ExportedArtefact | undefined> {
+  return withConnection(async (connection) => {
+    const hit = await artefactRow(connection, token, kind);
+    if (!hit?.row) return undefined;
+    try {
+      return await exportArtefact(connection, hit.found.tenantId, hit.row.id);
+    } catch (e) {
+      if (e instanceof SignatureRequired) return undefined;
+      throw e;
+    }
+  });
 }

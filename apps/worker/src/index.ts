@@ -4,3 +4,4 @@
 export const PACKAGE = '@gc/worker';
 
 export * from './scan.js';
+export * from './recheck.js';

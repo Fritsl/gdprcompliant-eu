@@ -311,8 +311,12 @@ describe.skipIf(!url)('the case page (U-03)', () => {
     expect(await text(page.locator('h1.plan-lead'))).toBe('2 rettelser klar');
     expect(await text(page.locator('.pp-txt'))).toMatch(/^1 af 3 færdige/);
     await page.locator('li.step.now form.step-act button').click();
-    await page.waitForURL(/checked=1/);
-    expect(await text(page.locator('[role=status]'))).toBe('Tjekker igen nu');
+    await page.waitForURL(/recheck=/);
+    // No worker runs here, so the honest report is that the check is still running.
+    expect(await text(page.locator('li.step.now [role=status]'))).toBe('Tjekker sitet igen');
+    expect(await page.locator('li.step.now [role=status]').getAttribute('data-recheck')).toBe(
+      'running',
+    );
     expect(await page.locator('li.step.now').getAttribute('data-finding')).toBe(blockingId);
     await page.close();
   });

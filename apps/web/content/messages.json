@@ -533,10 +533,6 @@
     "en": "The rule",
     "da": "Reglen"
   },
-  "case.remedy.snippet": {
-    "en": "The code",
-    "da": "Koden"
-  },
   "case.remedy.check": {
     "en": "Check it again",
     "da": "Tjek igen"
@@ -557,10 +553,6 @@
     "en": "Nothing can verify this from outside",
     "da": "Intet kan bekræfte dette udefra"
   },
-  "case.checked": {
-    "en": "Checking again now",
-    "da": "Tjekker igen nu"
-  },
   "case.attested": {
     "en": "Noted; the finding is closed on your word",
     "da": "Noteret; fundet er lukket på dit ord"
@@ -580,5 +572,193 @@
   "severity.closed": {
     "en": "Fixed",
     "da": "Rettet"
+  },
+  "case.asked": {
+    "en": "Noted; we are looking for an answer",
+    "da": "Noteret; vi leder efter et svar"
+  },
+  "remedy.kind.selfFix": {
+    "en": "Free fix",
+    "da": "Gratis rettelse"
+  },
+  "remedy.kind.generatedArtefact": {
+    "en": "One click",
+    "da": "Ét klik"
+  },
+  "remedy.kind.ourProduct": {
+    "en": "Our product",
+    "da": "Vores produkt"
+  },
+  "remedy.kind.partnerAlternative": {
+    "en": "Alternatives",
+    "da": "Alternativer"
+  },
+  "remedy.kind.noSolution": {
+    "en": "No answer yet",
+    "da": "Intet svar endnu"
+  },
+  "remedy.ours": {
+    "en": "This is our own product. We earn money if you choose it.",
+    "da": "Dette er vores eget produkt. Vi tjener penge, hvis du vælger det."
+  },
+  "remedy.copy": {
+    "en": "Copy",
+    "da": "Kopiér"
+  },
+  "remedy.copied": {
+    "en": "Copied",
+    "da": "Kopieret"
+  },
+  "remedy.copyFailed": {
+    "en": "Select it and copy",
+    "da": "Markér og kopiér"
+  },
+  "remedy.send": {
+    "en": "Send",
+    "da": "Send"
+  },
+  "remedy.to": {
+    "en": "To",
+    "da": "Til"
+  },
+  "remedy.subject": {
+    "en": "Subject",
+    "da": "Emne"
+  },
+  "remedy.showCode": {
+    "en": "Show the code",
+    "da": "Vis koden"
+  },
+  "remedy.fixed": {
+    "en": "Fixed and re-checked",
+    "da": "Rettet og tjekket igen"
+  },
+  "recheck.running": {
+    "en": "Checking the site again",
+    "da": "Tjekker sitet igen"
+  },
+  "recheck.closed": {
+    "en": "Fixed: the check passed",
+    "da": "Rettet: tjekket bestod"
+  },
+  "recheck.open": {
+    "en": "Still open: the check failed again",
+    "da": "Stadig åben: tjekket fejlede igen"
+  },
+  "recheck.regressed": {
+    "en": "Back again: the check failed after passing before",
+    "da": "Tilbage igen: tjekket fejlede efter at have bestået før"
+  },
+  "recheck.unverifiable": {
+    "en": "Cannot be checked from outside",
+    "da": "Kan ikke tjekkes udefra"
+  },
+  "recheck.unreachable": {
+    "en": "Could not reach the site",
+    "da": "Kunne ikke nå sitet"
+  },
+  "artefact.eyebrow": {
+    "en": "Generated document · preview before anything is published",
+    "da": "Genereret dokument · se det, før noget offentliggøres"
+  },
+  "artefact.back": {
+    "en": "Back to case",
+    "da": "Tilbage til sag"
+  },
+  "artefact.none": {
+    "en": "No draft yet.",
+    "da": "Intet udkast endnu."
+  },
+  "artefact.version": {
+    "en": "Version",
+    "da": "Version"
+  },
+  "artefact.generated": {
+    "en": "generated",
+    "da": "genereret"
+  },
+  "artefact.signed": {
+    "en": "Signed by",
+    "da": "Underskrevet af"
+  },
+  "artefact.published": {
+    "en": "Published",
+    "da": "Offentliggjort"
+  },
+  "artefact.signer": {
+    "en": "Your name",
+    "da": "Dit navn"
+  },
+  "artefact.sign": {
+    "en": "Sign this version",
+    "da": "Underskriv denne version"
+  },
+  "artefact.signNote": {
+    "en": "Your name goes on exactly",
+    "da": "Dit navn kommer på præcis"
+  },
+  "artefact.publish": {
+    "en": "Record as published",
+    "da": "Registrér som offentliggjort"
+  },
+  "artefact.publishUrl": {
+    "en": "Where it lives",
+    "da": "Hvor den ligger"
+  },
+  "artefact.export": {
+    "en": "Download the signed document",
+    "da": "Hent det underskrevne dokument"
+  },
+  "artefact.signedNow": {
+    "en": "Signed",
+    "da": "Underskrevet"
+  },
+  "artefact.publishedNow": {
+    "en": "Recorded as published",
+    "da": "Registreret som offentliggjort"
+  },
+  "artefact.stale": {
+    "en": "The document changed since you read it. Read the new version and sign again.",
+    "da": "Dokumentet er ændret, siden du læste det. Læs den nye version, og underskriv igen."
+  },
+  "artefact.unsigned": {
+    "en": "Sign it first.",
+    "da": "Underskriv først."
+  },
+  "artefact.invalid": {
+    "en": "That did not go through.",
+    "da": "Det gik ikke igennem."
+  },
+  "artefact.kind.privacyPolicy": {
+    "en": "Privacy policy",
+    "da": "Privatlivspolitik"
+  },
+  "artefact.kind.cookieDeclaration": {
+    "en": "Cookie declaration",
+    "da": "Cookiedeklaration"
+  },
+  "artefact.kind.processingAgreement": {
+    "en": "Processing agreement",
+    "da": "Databehandleraftale"
+  },
+  "artefact.kind.processingRegister": {
+    "en": "Processing register",
+    "da": "Fortegnelse"
+  },
+  "artefact.kind.subProcessorList": {
+    "en": "Sub-processor list",
+    "da": "Liste over underdatabehandlere"
+  },
+  "artefact.kind.retentionSchedule": {
+    "en": "Retention schedule",
+    "da": "Sletteplan"
+  },
+  "artefact.kind.evidencePack": {
+    "en": "Evidence pack",
+    "da": "Bevispakke"
+  },
+  "artefact.kind.statusReport": {
+    "en": "Status report",
+    "da": "Statusrapport"
   }
 }

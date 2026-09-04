@@ -3,6 +3,7 @@ import { connect, registerRetentionWorker, scheduleRetention } from '@gc/db';
 import { JobQueue } from '@gc/jobs';
 import { loadCatalogue } from '@gc/remedies';
 import { BrowserPool } from '@gc/scanner';
+import { registerRecheckWorker } from './recheck.js';
 import { registerScanWorker } from './scan.js';
 
 // The worker process: one browser pool, one queue, the scan worker and the scheduled
@@ -19,7 +20,9 @@ const pool = new BrowserPool({
 
 await pool.start();
 await queue.start();
-await registerScanWorker(queue, connection, { pool, catalogue: loadCatalogue() });
+const catalogue = loadCatalogue();
+await registerScanWorker(queue, connection, { pool, catalogue });
+await registerRecheckWorker(queue, connection, { pool, catalogue });
 await registerRetentionWorker(queue, connection);
 await scheduleRetention(queue);
 console.log(`worker up: scans on ${config.scanner.concurrency} browser context(s)`);

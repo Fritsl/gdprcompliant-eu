@@ -9,7 +9,7 @@ export function Text({
   as: Tag = 'span',
 }: {
   of: Translation;
-  as?: 'span' | 'p' | 'h1' | 'h2';
+  as?: 'span' | 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'li' | 'strong';
 }) {
   if (!of.fellBack) return <Tag>{of.text}</Tag>;
   return (
