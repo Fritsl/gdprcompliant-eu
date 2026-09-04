@@ -16,6 +16,7 @@ export * from './passes/network-quiet.js';
 export * from './passes/pass-a.js';
 export * from './passes/pass-bc.js';
 export * from './passes/differ.js';
+export * from './scan.js';
 export { hostOf as hostOfUrl } from './passes/instrument.js';
 export * from './evidence.js';
 export * from './checks/index.js';

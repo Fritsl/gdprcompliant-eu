@@ -24,3 +24,4 @@ export * from './progress.js';
 export * from './evidence-pack.js';
 export * from './findings.js';
 export * from './artefacts.js';
+export * from './reverify.js';

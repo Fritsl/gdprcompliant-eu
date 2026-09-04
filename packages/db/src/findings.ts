@@ -128,6 +128,7 @@ export async function reconcileFindings(
   caseId: string,
   observed: readonly Finding[],
   now: Date = new Date(),
+  options: { readonly scope?: (row: typeof findings.$inferSelect) => boolean } = {},
 ): Promise<Reconciliation> {
   return withTenant(connection, tenantId, async (tx) => {
     const existing = await tx.select().from(findings).where(eq(findings.caseId, caseId));
@@ -165,6 +166,8 @@ export async function reconcileFindings(
     const seen = new Set(observed.map((f) => f.fingerprint));
     for (const row of existing) {
       if (seen.has(row.fingerprint) || row.status === 'closed') continue;
+      // A targeted re-check closes only what it looked at.
+      if (options.scope && !options.scope(row)) continue;
       await tx
         .update(findings)
         .set({ status: 'closed', closedAt: now })

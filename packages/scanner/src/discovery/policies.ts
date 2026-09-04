@@ -5,6 +5,7 @@ import {
   PolicyDiscoverySchema,
   sha256,
   type Evidence,
+  type EvidenceRef,
   type PolicyDiscovery,
   type PolicyDocument,
   type PolicyKind,
@@ -210,6 +211,27 @@ export async function discoverPolicies(
 
     const missing = POLICY_KINDS.filter((k) => !found.has(k));
     const privacy = found.get('privacy');
+    // A missing policy is evidenced by what was searched: the home page as read, so the
+    // finding points at something a hash can vouch for.
+    const searched: EvidenceRef[] = [];
+    if (!privacy && home) {
+      const body = home.text;
+      const hash = sha256(body);
+      const row = EvidenceSchema.parse({
+        id: `document:${hash.slice(0, 16)}`,
+        tenantId: identity.tenantId,
+        caseId: identity.caseId,
+        ...(identity.scanId !== undefined ? { scanId: identity.scanId } : {}),
+        kind: 'document',
+        capturedAt: identity.capturedAt,
+        source: { url: home.finalUrl, host: new URL(home.finalUrl).hostname },
+        body,
+        hash,
+        caption: `home page of ${site}, searched for a privacy policy: ${fetched} page(s) fetched, none was one`,
+      });
+      if (!evidence.some((e) => e.hash === row.hash)) evidence.push(row);
+      searched.push(refTo(row));
+    }
     const discovery = PolicyDiscoverySchema.parse({
       site,
       startedAt,
@@ -227,7 +249,7 @@ export async function discoverPolicies(
             findingTypeId: NO_PRIVACY_POLICY_FINDING,
             outcome: 'fail',
             summary: `No privacy policy could be found on ${site}: nothing on the home page links to one, and none of the ${WELL_KNOWN_PATHS.privacy.length} usual addresses answers with one.`,
-            evidence: [],
+            evidence: searched,
           },
     });
     return { discovery, evidence };
