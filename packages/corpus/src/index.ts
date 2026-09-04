@@ -19,3 +19,4 @@ export * from './cellar.js';
 export * from './audit.js';
 export * from './verifier.js';
 export * from './report.js';
+export * from './advisor.js';

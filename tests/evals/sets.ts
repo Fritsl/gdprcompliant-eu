@@ -13,7 +13,7 @@ export const ROOT = fileURLToPath(new URL('../../', import.meta.url));
 
 export const MIN_SCENARIOS = 20;
 
-export type EvalSetId = 'policy-clauses' | 'dpa-analysis' | 'planner' | 'verifier';
+export type EvalSetId = 'policy-clauses' | 'dpa-analysis' | 'planner' | 'verifier' | 'advisor';
 
 export interface EvalScenario {
   readonly label: string;
@@ -93,6 +93,22 @@ export const EVAL_SETS: readonly EvalSet[] = [
         label: s.label,
         reasoning: s.why,
       }));
+    },
+  },
+  {
+    id: 'advisor',
+    name: 'Case-grounded advisor',
+    task: 'V-02',
+    threshold: 0.9,
+    measure: 'grounded',
+    test: 'tests/evals/advisor.test.ts',
+    // Questions over two seeded cases, each labelled with the facts and the law the
+    // answer must rest on, or the catalogue question a refusal must name.
+    scenarios: async () => {
+      const f = JSON.parse(
+        readFileSync(join(ROOT, 'fixtures', 'advisor', 'questions.json'), 'utf8'),
+      ) as { scenarios: { name: string; reasoning?: string }[] };
+      return f.scenarios.map((s) => ({ label: s.name, reasoning: s.reasoning ?? '' }));
     },
   },
 ];

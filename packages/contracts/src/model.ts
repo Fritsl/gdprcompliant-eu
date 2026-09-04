@@ -139,6 +139,28 @@ export const MODEL_CALLS = {
     }),
   },
 
+  // The case-grounded advisor (V-02): the answer, what the case says and what the law
+  // says, kept apart. caseSays may name only rows the case supplied; lawSays may quote
+  // only passages offered, verbatim; a refusal says what the case would need.
+  advise: {
+    input: z.object({
+      question: NonEmptyStringSchema,
+      locale: LocaleSchema,
+      jurisdiction: JurisdictionSchema,
+      facts: z.array(GroundedRowSchema).default([]),
+      passages: z.array(PassageSchema).default([]),
+    }),
+    output: z.strictObject({
+      answer: Prose,
+      caseSays: z.array(GroundedRowSchema).max(12),
+      lawSays: z
+        .array(z.strictObject({ key: NonEmptyStringSchema, quote: NonEmptyStringSchema }))
+        .max(6),
+      refuse: z.boolean(),
+      missing: Prose.optional(),
+    }),
+  },
+
   // Read a policy (S-10) against the disclosure table.
   analyse_policy_clauses: ClauseAnalysisCall,
 

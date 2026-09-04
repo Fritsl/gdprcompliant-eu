@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { AdviceSchema } from './advice.js';
 import { ArtefactKindSchema } from './remedy.js';
 import { SeveritySchema } from './finding.js';
 import {
@@ -143,6 +144,13 @@ export const CaseEventSchema = z
     event('deep_scan_authorised', {
       reason: NonEmptyStringSchema,
       basis: z.literal('public_interest'),
+    }),
+    // The advisor's answer (V-02), kept on the case so the report can carry it with
+    // its facts and its citations.
+    event('advice_recorded', {
+      question: NonEmptyStringSchema,
+      refused: z.boolean(),
+      advice: AdviceSchema,
     }),
     event('artefact_generated', { artefactId: IdSchema, kind: ArtefactKindSchema }),
     // A named person signed a specific version of a document (A-09): who, which version,

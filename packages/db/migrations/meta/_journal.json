@@ -155,6 +155,13 @@
       "when": 1788529643653,
       "tag": "0021_deep_scan_authorised",
       "breakpoints": true
+    },
+    {
+      "idx": 22,
+      "version": "7",
+      "when": 1788533816505,
+      "tag": "0022_advice_recorded",
+      "breakpoints": true
     }
   ]
 }

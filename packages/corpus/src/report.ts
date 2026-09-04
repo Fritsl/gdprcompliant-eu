@@ -1,4 +1,10 @@
-import { citationKey, type Citation, type FindingArea, type Locale } from '@gc/contracts';
+import {
+  AdviceSchema,
+  citationKey,
+  type Citation,
+  type FindingArea,
+  type Locale,
+} from '@gc/contracts';
 import {
   caseCompany,
   caseTimeline,
@@ -10,7 +16,7 @@ import {
 import { DETECTORS, checkFamilyFor, roleFor } from '@gc/findings';
 import { localise } from '@gc/i18n';
 import type { Catalogue } from '@gc/remedies';
-import type { ReportArticle, ReportDecision, ReportInput } from '@gc/artefacts';
+import type { ReportAdvice, ReportArticle, ReportDecision, ReportInput } from '@gc/artefacts';
 import type { CorpusChunk, DecisionsRegistry } from '@gc/contracts';
 import { documentChunks, loadCorpusDocuments, loadDecisions } from './content.js';
 import { resolveDecision, resolveInChunks } from './resolve.js';
@@ -131,6 +137,48 @@ export async function assembleReport(
     };
   });
 
+  // The answers the advisor gave (V-02), from the timeline; every passage one quotes
+  // joins the articles, resolved in the corpus like every other citation.
+  const advice: ReportAdvice[] = events
+    .filter((e) => e.type === 'advice_recorded')
+    .map((e) => {
+      const a = AdviceSchema.parse((e.payload as { advice: unknown }).advice);
+      const jurisdiction = a.jurisdiction as Parameters<typeof resolveInChunks>[2];
+      const lawSays = a.lawSays.map((l) => {
+        const c = l.citation;
+        if (c.kind === 'provision' && !articles.has(l.key)) {
+          const r = resolveInChunks(chunks, c, jurisdiction);
+          if (!r.ok) throw new ReportCitationUnresolved(c, r.detail);
+          if (!('chunk' in r)) throw new ReportCitationUnresolved(c, 'resolved to no paragraph');
+          articles.set(l.key, {
+            key: l.key,
+            reference: `${c.instrument} ${c.ref}`,
+            text: r.chunk.text,
+            sourceUrl: r.chunk.source.url,
+            corpusVersion: r.chunk.corpusVersion,
+          });
+        }
+        return {
+          key: l.key,
+          reference: c.kind === 'provision' ? `${c.instrument} ${c.ref}` : l.key,
+          quote: l.quote,
+        };
+      });
+      return {
+        question: a.question,
+        at: a.at,
+        answer: a.answer,
+        ...(a.refused ? { refused: a.refused.reason } : {}),
+        ...(a.refused?.question ? { settle: a.refused.question.asks } : {}),
+        caseSays: a.caseSays.map((f) => ({
+          label: f.label,
+          value: f.value,
+          pointer: f.pointer.kind === 'evidence' ? f.pointer.evidenceId : f.pointer.answerId,
+        })),
+        lawSays,
+      };
+    });
+
   const undetermined = events
     .filter((e) => e.type === 'check_undetermined')
     .map((e) => {
@@ -158,5 +206,6 @@ export async function assembleReport(
     scanned: events.some((e) => e.type === 'scan_completed'),
     articles: [...articles.values()],
     decisions: [...decisions.values()],
+    advice,
   };
 }

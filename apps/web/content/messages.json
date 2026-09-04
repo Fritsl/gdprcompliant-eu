@@ -1383,5 +1383,100 @@
     "en": "What placed each company",
     "da": "Hvad der placerede hver virksomhed",
     "de": "Was jedes Unternehmen dorthin gesetzt hat"
+  },
+  "case.holds.advisor": {
+    "en": "Ask about the case",
+    "da": "Spørg om sagen",
+    "de": "Zur Akte fragen"
+  },
+  "advisor.back": {
+    "en": "Back to the case",
+    "da": "Tilbage til sagen",
+    "de": "Zurück zur Akte"
+  },
+  "advisor.heading": {
+    "en": "Ask about the case",
+    "da": "Spørg om sagen",
+    "de": "Zur Akte fragen"
+  },
+  "advisor.lead": {
+    "en": "Every answer rests on what the case holds and what the law says, shown apart. Where the case holds nothing on the question, the answer is a refusal and the question that would settle it.",
+    "da": "Hvert svar hviler på, hvad sagen rummer, og hvad loven siger, vist hver for sig. Hvor sagen intet rummer om spørgsmålet, er svaret et afslag og det spørgsmål, der ville afgøre det.",
+    "de": "Jede Antwort stützt sich auf das, was die Akte enthält, und auf das, was das Gesetz sagt, getrennt gezeigt. Enthält die Akte nichts zur Frage, ist die Antwort eine Absage und die Frage, die es klären würde."
+  },
+  "advisor.question": {
+    "en": "Your question",
+    "da": "Dit spørgsmål",
+    "de": "Ihre Frage"
+  },
+  "advisor.placeholder": {
+    "en": "We use Mailchimp for newsletters. Do we need an agreement with them?",
+    "da": "Vi bruger Mailchimp til nyhedsbreve. Skal vi have en aftale med dem?",
+    "de": "Wir nutzen Mailchimp für Newsletter. Brauchen wir einen Vertrag mit ihnen?"
+  },
+  "advisor.ask": {
+    "en": "Ask",
+    "da": "Spørg",
+    "de": "Fragen"
+  },
+  "advisor.answer": {
+    "en": "Answer",
+    "da": "Svar",
+    "de": "Antwort"
+  },
+  "advisor.caseSays": {
+    "en": "What the case says",
+    "da": "Hvad sagen siger",
+    "de": "Was die Akte sagt"
+  },
+  "advisor.lawSays": {
+    "en": "What the law says",
+    "da": "Hvad loven siger",
+    "de": "Was das Gesetz sagt"
+  },
+  "advisor.refused": {
+    "en": "Not answered",
+    "da": "Ikke besvaret",
+    "de": "Nicht beantwortet"
+  },
+  "advisor.settle": {
+    "en": "The question that would settle it",
+    "da": "Det spørgsmål, der ville afgøre det",
+    "de": "Die Frage, die es klären würde"
+  },
+  "advisor.answerIt": {
+    "en": "Answer it",
+    "da": "Besvar det",
+    "de": "Beantworten"
+  },
+  "advisor.none": {
+    "en": "No question has been asked yet.",
+    "da": "Der er endnu ikke stillet noget spørgsmål.",
+    "de": "Es wurde noch keine Frage gestellt."
+  },
+  "advisor.unavailable": {
+    "en": "No model is configured, so questions cannot be answered right now.",
+    "da": "Der er ikke sat nogen model op, så spørgsmål kan ikke besvares lige nu.",
+    "de": "Es ist kein Modell eingerichtet, daher können Fragen gerade nicht beantwortet werden."
+  },
+  "advisor.invalid": {
+    "en": "A question is between five and five hundred characters.",
+    "da": "Et spørgsmål er på mellem fem og fem hundrede tegn.",
+    "de": "Eine Frage hat zwischen fünf und fünfhundert Zeichen."
+  },
+  "advisor.inReport": {
+    "en": "Every answer is carried in the status report with its citations.",
+    "da": "Hvert svar tages med i statusrapporten med sine henvisninger.",
+    "de": "Jede Antwort wird mit ihren Fundstellen in den Statusbericht aufgenommen."
+  },
+  "advisor.evidence": {
+    "en": "Evidence",
+    "da": "Bevis",
+    "de": "Beleg"
+  },
+  "advisor.answered": {
+    "en": "Answer recorded",
+    "da": "Svar registreret",
+    "de": "Antwort aufgezeichnet"
   }
 }

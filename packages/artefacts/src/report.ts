@@ -43,6 +43,12 @@ const ContentSchema = z.object({
     'quoted',
     'noLaw',
     'decisions',
+    'advice',
+    'adviceLead',
+    'adviceCase',
+    'adviceLaw',
+    'adviceRefused',
+    'adviceSettle',
   ] as const),
   columns: LocalisedRecord(['area', 'status', 'latest', 'action', 'who', 'effort'] as const),
   states: LocalisedRecord(['done', 'open', 'undetermined'] as const),
@@ -104,6 +110,26 @@ export interface ReportDecision {
   readonly title: string;
 }
 
+// One answer the advisor gave (V-02): the answer, the facts of the case it rests on
+// (each with the pointer that placed it), and the law it quotes, kept apart.
+export interface ReportAdvice {
+  readonly question: string;
+  readonly at: string;
+  readonly answer: string;
+  readonly refused?: string;
+  readonly settle?: string;
+  readonly caseSays: readonly {
+    readonly label: string;
+    readonly value: string;
+    readonly pointer: string;
+  }[];
+  readonly lawSays: readonly {
+    readonly key: string;
+    readonly reference: string;
+    readonly quote: string;
+  }[];
+}
+
 export interface ReportInput {
   readonly caseId: string;
   readonly domain: string;
@@ -117,6 +143,7 @@ export interface ReportInput {
   readonly scanned: boolean;
   readonly articles: readonly ReportArticle[];
   readonly decisions: readonly ReportDecision[];
+  readonly advice?: readonly ReportAdvice[];
 }
 
 export interface MatrixRow {
@@ -153,6 +180,7 @@ export interface ReportModel {
   readonly actions: readonly ActionRow[];
   readonly articles: readonly (ReportArticle & { readonly sourceLabel: string })[];
   readonly decisions: readonly ReportDecision[];
+  readonly advice: readonly ReportAdvice[];
   readonly disclaimer: string;
   // The page footer template, with {{p}} and {{n}}; the renderer fills it per page.
   readonly page: string;
@@ -260,6 +288,7 @@ export function reportModel(input: ReportInput, options: ReportOptions): ReportM
       .sort((a, b) => a.key.localeCompare(b.key))
       .map((a) => ({ ...a, sourceLabel: L(C.source) })),
     decisions: [...input.decisions].sort((a, b) => a.key.localeCompare(b.key)),
+    advice: [...(input.advice ?? [])].sort((a, b) => a.at.localeCompare(b.at)),
     disclaimer: L(C.disclaimer),
     page: L(C.page),
   };

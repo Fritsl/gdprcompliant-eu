@@ -131,6 +131,37 @@ export function reportPdf(model: ReportModel, options: ReportPdfOptions = {}): P
     doc.moveDown(0.3);
     rule();
 
+    // The questions the advisor answered (V-02), each in its three parts.
+    if (model.advice.length > 0) {
+      heading(model.sections.advice);
+      doc.font('Helvetica').fontSize(9.5).fillColor(MUTED).text(model.sections.adviceLead);
+      doc.moveDown(0.4);
+      const inset = (text: string, bold = false) =>
+        doc
+          .font(bold ? 'Helvetica-Bold' : 'Helvetica')
+          .fontSize(bold ? 9 : 9.5)
+          .fillColor(INK)
+          .text(text, MARGIN + 14, doc.y, { width: width - 14 });
+      for (const a of model.advice) {
+        room(80);
+        doc.font('Helvetica-Bold').fontSize(10.5).fillColor(INK).text(a.question);
+        inset(a.refused ? `${model.sections.adviceRefused} ${a.refused}` : a.answer);
+        if (a.settle) inset(`${model.sections.adviceSettle}: ${a.settle}`);
+        if (a.caseSays.length > 0) {
+          inset(model.sections.adviceCase, true);
+          for (const f of a.caseSays) inset(`• ${f.label}: ${f.value} (${f.pointer})`);
+        }
+        if (a.lawSays.length > 0) {
+          inset(model.sections.adviceLaw, true);
+          for (const l of a.lawSays) inset(`• ${l.reference}: “${l.quote}”`);
+        }
+        doc.x = MARGIN;
+        doc.moveDown(0.6);
+      }
+      doc.moveDown(0.3);
+      rule();
+    }
+
     // The law, in full.
     heading(model.sections.law);
     doc.font('Helvetica').fontSize(9.5).fillColor(MUTED).text(model.sections.quoted);

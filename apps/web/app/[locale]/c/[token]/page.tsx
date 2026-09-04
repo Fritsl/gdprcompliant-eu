@@ -559,6 +559,11 @@ export default async function CasePage({
               <Text of={t(locale, 'case.holds.supplyChain')} />
             </a>
           </li>
+          <li data-advisor="">
+            <a href={`${base}/advisor`} data-advisor-link="">
+              <Text of={t(locale, 'case.holds.advisor')} />
+            </a>
+          </li>
           <li data-questions-open={questions.open} data-questions-answered={questions.answered}>
             {questions.open} <Text of={t(locale, 'case.holds.questions')} /> ·{' '}
             <a href={`${base}/questions`} data-questions-link="">

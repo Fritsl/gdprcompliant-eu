@@ -59,6 +59,36 @@
       "en": "Decisions relied on",
       "da": "Afgørelser, der henvises til",
       "de": "Herangezogene Entscheidungen"
+    },
+    "advice": {
+      "en": "Questions answered from the case",
+      "da": "Spørgsmål besvaret ud fra sagen",
+      "de": "Aus der Akte beantwortete Fragen"
+    },
+    "adviceLead": {
+      "en": "Each answer rests on the facts of the case it names and the passages of law it quotes, and on nothing else. A question the case holds no evidence on was not answered.",
+      "da": "Hvert svar hviler på de fakta i sagen, det nævner, og de lovtekster, det citerer, og på intet andet. Et spørgsmål, sagen ikke rummer bevis for, blev ikke besvaret.",
+      "de": "Jede Antwort stützt sich auf die genannten Fakten der Akte und die zitierten Gesetzesstellen und auf nichts sonst. Eine Frage, zu der die Akte keinen Beleg enthält, wurde nicht beantwortet."
+    },
+    "adviceCase": {
+      "en": "What the case says",
+      "da": "Hvad sagen siger",
+      "de": "Was die Akte sagt"
+    },
+    "adviceLaw": {
+      "en": "What the law says",
+      "da": "Hvad loven siger",
+      "de": "Was das Gesetz sagt"
+    },
+    "adviceRefused": {
+      "en": "Not answered:",
+      "da": "Ikke besvaret:",
+      "de": "Nicht beantwortet:"
+    },
+    "adviceSettle": {
+      "en": "The question that would settle it",
+      "da": "Det spørgsmål, der ville afgøre det",
+      "de": "Die Frage, die es klären würde"
     }
   },
   "columns": {

@@ -1,0 +1,303 @@
+{
+  "version": "2026-09-04",
+  "cases": {
+    "dk-shop": {
+      "locale": "da",
+      "jurisdiction": "DK",
+      "holds": "One open finding (DPA-01: Sendmore sends the newsletters and no agreement was found), the draft register the scan seeded, Sendmore as a processor, and two answers: no data protection officer, one to nine people."
+    },
+    "de-practice": {
+      "locale": "de",
+      "jurisdiction": "DE",
+      "holds": "One open finding (DPA-02: an agreement with Praxis Cloud is referred to but could not be found), Praxis Cloud GmbH as a processor, and two answers: health data is processed, ten to forty-nine people."
+    }
+  },
+  "scenarios": [
+    {
+      "name": "dk-newsletter-agreement",
+      "case": "dk-shop",
+      "question": "Vi bruger Sendmore til nyhedsbreve. Skal vi have en aftale med dem?",
+      "reasoning": "The case holds the finding and the supplier; the duty to have a contract with a processor is Art. 28(3), so the answer rests on both and refuses nothing.",
+      "expect": {
+        "refuses": false,
+        "caseSays": ["finding:DPA-01", "vendor:Sendmore"],
+        "law": ["GDPR Art. 28(3)"],
+        "answer": "Sagen viser, at Sendmore sender jeres nyhedsbreve, og at der ikke blev fundet nogen aftale. Loven kræver en skriftlig aftale med enhver databehandler, og den skal fastlægge emne, varighed, formål og parternes pligter."
+      }
+    },
+    {
+      "name": "dk-dpo-needed",
+      "case": "dk-shop",
+      "question": "Skal vi udpege en databeskyttelsesrådgiver?",
+      "reasoning": "Two answers bear on it, no officer and one to nine people, and Art. 37 lists when one must be designated; the answer names both answers and the article.",
+      "expect": {
+        "refuses": false,
+        "caseSays": ["answer:q-dpo", "answer:q-headcount"],
+        "law": ["GDPR Art. 37"],
+        "answer": "I har svaret, at der ikke er udpeget en databeskyttelsesrådgiver, og at der arbejder én til ni personer. Loven kræver en rådgiver i tre tilfælde: offentlig myndighed, regelmæssig og systematisk overvågning i stort omfang, eller behandling af særlige kategorier i stort omfang."
+      }
+    },
+    {
+      "name": "dk-register-needed",
+      "case": "dk-shop",
+      "question": "Skal vi have en fortegnelse over behandlingsaktiviteter?",
+      "reasoning": "The register rows and the headcount answer are the facts; Art. 30(1) sets the record and 30(5) the exception for fewer than 250 employees, which is why both paragraphs are cited.",
+      "expect": {
+        "refuses": false,
+        "caseSays": ["register:", "answer:q-headcount"],
+        "law": ["GDPR Art. 30(1)", "GDPR Art. 30(5)"],
+        "answer": "Sagen rummer allerede udkastet til jeres fortegnelse, og I har svaret, at der arbejder én til ni personer. Loven kræver en fortegnelse hos hver dataansvarlig; undtagelsen for under 250 ansatte gælder ikke, når behandlingen ikke er lejlighedsvis."
+      }
+    },
+    {
+      "name": "dk-cctv-refusal",
+      "case": "dk-shop",
+      "question": "Må vi sætte kameraer op i butikken?",
+      "reasoning": "Nothing in the case says whether cameras record anyone, so the advisor must refuse rather than guess, and the catalogue question about cameras is the one that settles it.",
+      "expect": {
+        "refuses": true,
+        "missing": "om kameraer optager kunder eller medarbejdere",
+        "settles": "q-cctv",
+        "answer": "Sagen siger ikke, om kameraer optager kunder eller medarbejdere."
+      }
+    },
+    {
+      "name": "dk-ai-refusal",
+      "case": "dk-shop",
+      "question": "Må vores medarbejdere bruge ChatGPT til kundehenvendelser?",
+      "reasoning": "The case holds no fact about assistants and customer data; the refusal must point to the catalogue question on AI assistants, not to the DPO or headcount answers.",
+      "expect": {
+        "refuses": true,
+        "missing": "om medarbejdere bruger AI-assistenter med kundedata",
+        "settles": "q-ai-assistants",
+        "answer": "Sagen siger ikke, om medarbejdere bruger AI-assistenter med kundedata."
+      }
+    },
+    {
+      "name": "dk-children-refusal",
+      "case": "dk-shop",
+      "question": "Skal vi gøre noget særligt, hvis børn handler hos os?",
+      "reasoning": "Whether the shop serves children directly is unknown to the case; the settling question is the children one, and the answer must not lean on the register rows.",
+      "expect": {
+        "refuses": true,
+        "missing": "om I tilbyder tjenester direkte til børn",
+        "settles": "q-children",
+        "answer": "Sagen siger ikke, om I tilbyder tjenester direkte til børn."
+      }
+    },
+    {
+      "name": "dk-cookies-refusal",
+      "case": "dk-shop",
+      "question": "Må webshoppen sætte cookies med det samme?",
+      "reasoning": "No cookie finding exists on this case, so the advisor has no evidence either way; the cookie question in the catalogue is what would settle it.",
+      "expect": {
+        "refuses": true,
+        "missing": "om sitet sætter cookies, før den besøgende har valgt",
+        "settles": "q-cookies",
+        "answer": "Sagen siger ikke, om sitet sætter cookies, før den besøgende har valgt."
+      }
+    },
+    {
+      "name": "dk-processor-instructions",
+      "case": "dk-shop",
+      "question": "Må Sendmore bruge vores kundeliste til deres egne formål?",
+      "reasoning": "The supplier and the missing agreement are the facts; the rule that a processor acts only on documented instructions is point (a) of Art. 28(3), cited to the point.",
+      "expect": {
+        "refuses": false,
+        "caseSays": ["vendor:Sendmore", "finding:DPA-01"],
+        "law": ["GDPR Art. 28(3)(a)"],
+        "answer": "Sendmore står i sagen som databehandler, og der blev ikke fundet nogen aftale. Loven kræver, at en databehandler kun behandler oplysninger efter dokumenteret instruks fra jer, og aftalen skal sige det."
+      }
+    },
+    {
+      "name": "dk-breach-notify",
+      "case": "dk-shop",
+      "question": "Hvis Sendmore mister vores kundeliste, hvem skal vi give besked?",
+      "reasoning": "The supplier is the fact; the seventy-two-hour notification to the authority and the processor's duty to tell the controller are Art. 33(1) and 33(2), both cited.",
+      "expect": {
+        "refuses": false,
+        "caseSays": ["vendor:Sendmore"],
+        "law": ["GDPR Art. 33(1)", "GDPR Art. 33(2)"],
+        "answer": "Sendmore står i sagen som jeres databehandler. Loven kræver, at I anmelder et brud til tilsynsmyndigheden uden unødig forsinkelse og om muligt inden 72 timer, og at databehandleren underretter jer uden unødig forsinkelse."
+      }
+    },
+    {
+      "name": "dk-transfer-none-settles",
+      "case": "dk-shop",
+      "question": "Må vi lade en amerikansk leverandør hoste vores kundeliste?",
+      "reasoning": "The case holds nothing about where any supplier processes data, and no catalogue question asks it; the refusal must name no settling question rather than a wrong one.",
+      "expect": {
+        "refuses": true,
+        "missing": "hvilket land leverandøren behandler oplysningerne i",
+        "answer": "Sagen siger ikke, hvilket land leverandøren behandler oplysningerne i."
+      }
+    },
+    {
+      "name": "dk-retention",
+      "case": "dk-shop",
+      "question": "Hvor længe må vi gemme ordrehistorik?",
+      "reasoning": "The register rows are the fact the answer can rest on; storage limitation is Art. 5(1)(e), and the answer must not invent a number of years.",
+      "expect": {
+        "refuses": false,
+        "caseSays": ["register:"],
+        "law": ["GDPR Art. 5(1)(e)"],
+        "answer": "Jeres fortegnelse beskriver behandlingen, men ikke en slettefrist. Loven kræver, at oplysninger ikke opbevares længere, end formålet kræver; fristen følger af formålet og af bogføringsreglerne, ikke af et fast tal."
+      }
+    },
+    {
+      "name": "dk-erasure-request",
+      "case": "dk-shop",
+      "question": "En kunde beder os slette alt om ham. Skal vi?",
+      "reasoning": "The register describes what is held; the right to erasure is Art. 17(1), and the answer rests on the register row and that paragraph.",
+      "expect": {
+        "refuses": false,
+        "caseSays": ["register:"],
+        "law": ["GDPR Art. 17(1)"],
+        "answer": "Jeres fortegnelse viser, hvilke oplysninger I har om kunder. Loven giver kunden ret til sletning uden unødig forsinkelse, når oplysningerne ikke længere er nødvendige, med de undtagelser artiklen selv nævner."
+      }
+    },
+    {
+      "name": "dk-security",
+      "case": "dk-shop",
+      "question": "Skal vi kryptere kundedata hos Sendmore?",
+      "reasoning": "The supplier is the fact; security of processing, with encryption named as a measure, is Art. 32(1), and the answer must not claim what Sendmore actually does.",
+      "expect": {
+        "refuses": false,
+        "caseSays": ["vendor:Sendmore"],
+        "law": ["GDPR Art. 32(1)"],
+        "answer": "Sendmore står i sagen som databehandler. Loven kræver passende tekniske og organisatoriske foranstaltninger hos både jer og databehandleren, og nævner kryptering som en af dem; sagen siger ikke, hvad Sendmore gør i dag."
+      }
+    },
+    {
+      "name": "de-health-dpia",
+      "case": "de-practice",
+      "question": "Müssen wir eine Datenschutz-Folgenabschätzung machen?",
+      "reasoning": "The answer that health data is processed is the fact; Art. 35(1) sets the assessment and Art. 9(1) makes health data a special category, so both are cited.",
+      "expect": {
+        "refuses": false,
+        "caseSays": ["answer:q-health-data"],
+        "law": ["GDPR Art. 35(1)", "GDPR Art. 9(1)"],
+        "answer": "Sie haben angegeben, dass Sie Gesundheitsdaten verarbeiten. Das Gesetz verlangt eine Folgenabschätzung, wenn eine Verarbeitung voraussichtlich ein hohes Risiko birgt, und zählt Gesundheitsdaten zu den besonderen Kategorien."
+      }
+    },
+    {
+      "name": "de-health-basis",
+      "case": "de-practice",
+      "question": "Dürfen wir Patientendaten überhaupt speichern?",
+      "reasoning": "The health-data answer is the fact; the exception for health care is point (h) of Art. 9(2), cited to the point rather than to the whole article.",
+      "expect": {
+        "refuses": false,
+        "caseSays": ["answer:q-health-data"],
+        "law": ["GDPR Art. 9(2)(h)"],
+        "answer": "Sie haben angegeben, dass Sie Gesundheitsdaten verarbeiten. Das Gesetz sieht für die Gesundheitsversorgung eine eigene Grundlage vor, wenn die Verarbeitung durch Fachpersonal mit Berufsgeheimnis erfolgt."
+      }
+    },
+    {
+      "name": "de-cloud-agreement",
+      "case": "de-practice",
+      "question": "Wir speichern Patientenakten bei Praxis Cloud. Brauchen wir einen Vertrag?",
+      "reasoning": "The finding that the agreement could not be found and the supplier are the facts; the contract requirement is Art. 28(3).",
+      "expect": {
+        "refuses": false,
+        "caseSays": ["finding:DPA-02", "vendor:Praxis"],
+        "law": ["GDPR Art. 28(3)"],
+        "answer": "Die Akte zeigt Praxis Cloud als Auftragsverarbeiter und einen Vertrag, auf den verwiesen wird, der aber nicht gefunden wurde. Das Gesetz verlangt einen Vertrag, der Gegenstand, Dauer, Zweck und die Pflichten beider Seiten festlegt."
+      }
+    },
+    {
+      "name": "de-dpo",
+      "case": "de-practice",
+      "question": "Brauchen wir einen Datenschutzbeauftragten?",
+      "reasoning": "Health data and the headcount are the facts that bear on it; Art. 37 lists the cases in which an officer must be designated.",
+      "expect": {
+        "refuses": false,
+        "caseSays": ["answer:q-health-data", "answer:q-headcount"],
+        "law": ["GDPR Art. 37"],
+        "answer": "Sie haben angegeben, dass Sie Gesundheitsdaten verarbeiten und dass zehn bis neunundvierzig Menschen im Unternehmen arbeiten. Das Gesetz verlangt einen Beauftragten unter anderem, wenn die Kerntätigkeit in umfangreicher Verarbeitung besonderer Kategorien besteht."
+      }
+    },
+    {
+      "name": "de-cctv-refusal",
+      "case": "de-practice",
+      "question": "Dürfen wir eine Kamera im Wartezimmer aufstellen?",
+      "reasoning": "Nothing in the case says whether cameras record anyone; the refusal names the camera question in German, matched on its own words.",
+      "expect": {
+        "refuses": true,
+        "missing": "ob Kameras Kundschaft oder Mitarbeitende aufzeichnen",
+        "settles": "q-cctv",
+        "answer": "Die Akte sagt nicht, ob Kameras Kundschaft oder Mitarbeitende aufzeichnen."
+      }
+    },
+    {
+      "name": "de-automated-refusal",
+      "case": "de-practice",
+      "question": "Dürfen wir Termine automatisch nach Zahlungsverhalten vergeben?",
+      "reasoning": "Automated decisions are not among the facts held; the settling question is the one about automatic decisions, not the health-data answer that merely sounds related.",
+      "expect": {
+        "refuses": true,
+        "missing": "ob Sie Entscheidungen über Personen automatisch treffen",
+        "settles": "q-automated-decisions",
+        "answer": "Die Akte sagt nicht, ob Sie Entscheidungen über Personen automatisch treffen."
+      }
+    },
+    {
+      "name": "de-children-refusal",
+      "case": "de-practice",
+      "question": "Behandeln wir auch Kinder, was müssen wir beachten?",
+      "reasoning": "Whether the practice serves children directly is unknown; the children question settles it, and the answer must not rest on the health-data answer alone.",
+      "expect": {
+        "refuses": true,
+        "missing": "ob Sie Dienste direkt für Kinder anbieten",
+        "settles": "q-children",
+        "answer": "Die Akte sagt nicht, ob Sie Dienste direkt für Kinder anbieten."
+      }
+    },
+    {
+      "name": "de-register",
+      "case": "de-practice",
+      "question": "Brauchen wir ein Verzeichnis der Verarbeitungstätigkeiten?",
+      "reasoning": "Headcount and health data are the facts; Art. 30(1) sets the record and 30(5) makes the small-company exception fall away for special categories.",
+      "expect": {
+        "refuses": false,
+        "caseSays": ["answer:q-headcount", "answer:q-health-data"],
+        "law": ["GDPR Art. 30(1)", "GDPR Art. 30(5)"],
+        "answer": "Sie haben angegeben, dass zehn bis neunundvierzig Menschen im Unternehmen arbeiten und dass Sie Gesundheitsdaten verarbeiten. Das Gesetz verlangt ein Verzeichnis; die Ausnahme für weniger als 250 Beschäftigte gilt nicht bei besonderen Kategorien."
+      }
+    },
+    {
+      "name": "de-breach",
+      "case": "de-practice",
+      "question": "Praxis Cloud hatte einen Vorfall. Müssen wir die Behörde informieren?",
+      "reasoning": "The supplier is the fact; the notification to the authority is Art. 33(1), and the answer must not say whether this particular incident meets the bar.",
+      "expect": {
+        "refuses": false,
+        "caseSays": ["vendor:Praxis"],
+        "law": ["GDPR Art. 33(1)"],
+        "answer": "Praxis Cloud steht in der Akte als Auftragsverarbeiter. Das Gesetz verlangt eine Meldung an die Aufsichtsbehörde ohne unangemessene Verzögerung und möglichst binnen 72 Stunden, es sei denn, der Vorfall führt voraussichtlich nicht zu einem Risiko."
+      }
+    },
+    {
+      "name": "de-transfer-none-settles",
+      "case": "de-practice",
+      "question": "Dürfen wir ein Labor in der Schweiz beauftragen?",
+      "reasoning": "The case holds nothing on where suppliers process data and the catalogue has no question on it; the refusal names no settling question.",
+      "expect": {
+        "refuses": true,
+        "missing": "in welchem Land der Anbieter die Daten verarbeitet",
+        "answer": "Die Akte sagt nicht, in welchem Land der Anbieter die Daten verarbeitet."
+      }
+    },
+    {
+      "name": "de-security",
+      "case": "de-practice",
+      "question": "Müssen die Akten bei Praxis Cloud verschlüsselt sein?",
+      "reasoning": "The supplier and the health-data answer are the facts; Art. 32(1) names encryption among the measures, and the answer must not claim what Praxis Cloud does.",
+      "expect": {
+        "refuses": false,
+        "caseSays": ["vendor:Praxis", "answer:q-health-data"],
+        "law": ["GDPR Art. 32(1)"],
+        "answer": "Praxis Cloud steht in der Akte als Auftragsverarbeiter, und Sie verarbeiten Gesundheitsdaten. Das Gesetz verlangt dem Risiko angemessene Maßnahmen und nennt die Verschlüsselung ausdrücklich; was Praxis Cloud heute tut, sagt die Akte nicht."
+      }
+    }
+  ]
+}

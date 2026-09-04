@@ -453,6 +453,18 @@
         "da": "{{reason}}",
         "de": "{{reason}}"
       }
+    },
+    "advice_recorded": {
+      "text": {
+        "en": "Question answered from the case",
+        "da": "Spørgsmål besvaret ud fra sagen",
+        "de": "Frage aus der Akte beantwortet"
+      },
+      "detail": {
+        "en": "{{question}}",
+        "da": "{{question}}",
+        "de": "{{question}}"
+      }
     }
   }
 }
