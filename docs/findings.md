@@ -6,7 +6,7 @@ can raise has a detector, a remedy of a declared kind in every supported jurisdi
 that resolves in the corpus, a guide a non-specialist can follow, and a fixture that proves it
 fires and one that proves it does not. A type missing any of these fails the build.
 
-26 types. Jurisdictions: DE, DK.
+27 types. Jurisdictions: DE, DK.
 
 ## CLK-01 · The site shows a different page to scanners than to visitors
 
@@ -199,6 +199,18 @@ fires and one that proves it does not. A type missing any of these fails the bui
 - Guide: `pol-01` (da, en).
 - Fixtures that must raise it: insecure-forms.
 - Fixtures that must not: clean-agency, clean-blog, clean-brochure, clean-shop-gated, clean-spa, hosted-fonts, preticked-forms, us-tag-manager.
+
+## POL-05 · The site sends data to a company the privacy policy does not name
+
+- Area: Notice. Default severity: serious.
+- Detector: `db/drift#recipient_not_named` (no scanner family: verified another way).
+- Remedy in DE: `pol-05-name-the-recipient` v1 (generated_artefact, verified by artefact_published).
+- Rests on in DE: GDPR Art. 13(1)(e) `GDPR:13:1:e`; GDPR Art. 5(1)(a) `GDPR:5:1:a`.
+- Remedy in DK: `pol-05-name-the-recipient` v1 (generated_artefact, verified by artefact_published).
+- Rests on in DK: GDPR Art. 13(1)(e) `GDPR:13:1:e`; GDPR Art. 5(1)(a) `GDPR:5:1:a`.
+- Guide: `pol-05` (da, en).
+- Fixtures that must raise it: **none**.
+- Fixtures that must not: **none**.
 
 ## REC-01 · A session-recording tool watches pages where people type sensitive details
 

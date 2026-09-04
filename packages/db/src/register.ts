@@ -19,6 +19,7 @@ import {
   type FactInput,
 } from './graph.js';
 import { withTenant } from './tenant.js';
+import { noResolver, type HostResolver } from './drift.js';
 
 // The processing register seeded from evidence (G-01). What the scan saw becomes draft
 // rows on the case graph: an activity per kind of form and per kind of recipient, with
@@ -105,6 +106,8 @@ export interface SeedInput {
   readonly recipients?: readonly RecipientObservation[];
   readonly consent?: readonly ConsentFindingDraft[];
   readonly vendors?: readonly Vendor[];
+  // Host to registry entry, the scanner's resolver; without one a host is its own name.
+  readonly resolve?: HostResolver;
 }
 
 export interface SeedResult {
@@ -134,6 +137,7 @@ class Seeder {
   nodes = 0;
   edges = 0;
   private readonly sourceRef: string;
+  private readonly resolve: HostResolver;
   constructor(
     private readonly db: Db,
     private readonly tenantId: string,
@@ -141,6 +145,7 @@ class Seeder {
     private readonly input: SeedInput,
   ) {
     this.sourceRef = `scanner:${input.scanId}`;
+    this.resolve = input.resolve ?? noResolver;
   }
 
   private base(confidence: number, evidence: readonly EvidenceRef[]) {
@@ -250,7 +255,7 @@ class Seeder {
   // Recipients the first load contacted outside the EEA, each with its determination.
   async recipients() {
     for (const o of this.input.recipients ?? []) {
-      if (o.check !== 'transfers' || o.outcome !== 'fail') continue;
+      if (o.check !== 'transfers' || o.evidence.length === 0) continue;
       const outside =
         (o.detail['outside'] as {
           host: string;
@@ -266,7 +271,10 @@ class Seeder {
             dpf?: unknown;
           };
         }[]) ?? [];
-      if (outside.length === 0) continue;
+      const thirdParty = ((o.detail['thirdParty'] as string[] | undefined) ?? []).filter(
+        (h) => !outside.some((r) => r.host === h),
+      );
+      if (outside.length === 0 && thirdParty.length === 0) continue;
       const activity = await this.activity('website_measurement', 0.7, o.evidence);
       const category = await this.fact({
         kind: 'data_category',
@@ -310,6 +318,26 @@ class Seeder {
           });
           await this.link('transfers_via', vendor.id, transfer.id, 0.7, o.evidence);
         }
+      }
+      for (const host of thirdParty) {
+        const r = this.resolve(host);
+        const vendor = await this.fact({
+          kind: 'vendor',
+          key: r.resolution === 'resolved' ? `vendor:${r.entry.id}` : `vendor:host:${host}`,
+          attributes:
+            r.resolution === 'resolved'
+              ? {
+                  name: r.entry.contracting.name,
+                  country: r.entry.contracting.country,
+                  parent: r.entry.parent.name,
+                  parentCountry: r.entry.parent.country,
+                  hosts: [host],
+                }
+              : { name: host, hosts: [host], unresolved: true },
+          confidence: r.resolution === 'resolved' ? 0.7 : 0.5,
+          evidence: o.evidence,
+        });
+        await this.link('shared_with', activity.id, vendor.id, 0.7, o.evidence);
       }
     }
   }
@@ -548,11 +576,12 @@ export async function confirmRegisterRow(
     // A vendor's transfer rides along under the confirmed vendor.
     for (const [i, v] of vendors.entries()) {
       for (const t of outOf(v.id, 'transfers_via')) {
+        const nt = await restate(t, t.attributes);
         await addEdge(db, {
           ...answered,
           kind: 'transfers_via',
           from: newVendors[i]!.id,
-          to: t.id,
+          to: nt.id,
         });
       }
     }

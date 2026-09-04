@@ -155,12 +155,14 @@ export function recipientChecks(
     adequacy: tmaps.adequacy.version,
     dpf: tmaps.dpf.version,
   };
+  const thirdPartyHosts = [...new Set(thirdParty.map((r) => r.host.toLowerCase()))].sort();
   if (outside.length > 0) {
     const ev = row(
       canonicalJson({
         page: capture.finalUrl,
         pass: 'A',
         outside: determined,
+        thirdParty: thirdPartyHosts,
         mapVersion: map.version,
         registryVersions,
       }),
@@ -173,20 +175,36 @@ export function recipientChecks(
         `${own} sends visitors' requests to ${outside.length} host(s) whose operator the map places outside the EEA, before anyone is asked: ${outside.map((o) => `${o.host} (${o.recipient}, ${o.jurisdiction})`).join(', ')}.`,
         ...statements,
       ].join(' '),
-      { outside: determined, mapVersion: map.version, registryVersions },
+      {
+        outside: determined,
+        thirdParty: thirdPartyHosts,
+        mapVersion: map.version,
+        registryVersions,
+      },
       outside.map((o) => o.host),
       [ev],
     );
   } else {
+    // The hosts contacted are evidence in their own right: the drift check (G-05) reads
+    // them against the published policy.
+    const ev = row(
+      canonicalJson({
+        page: capture.finalUrl,
+        pass: 'A',
+        thirdParty: thirdPartyHosts,
+        mapVersion: map.version,
+      }),
+      `third-party hosts contacted on the first load of ${own}`,
+    );
     observe(
       'transfers',
       'pass',
       thirdParty.length === 0
         ? `${own} contacts no other host on the first load.`
         : `${own} contacts ${new Set(thirdParty.map((r) => r.host)).size} other host(s) on the first load, none the map places outside the EEA.`,
-      { mapVersion: map.version, thirdParty: [...new Set(thirdParty.map((r) => r.host))].sort() },
+      { mapVersion: map.version, thirdParty: thirdPartyHosts },
       [],
-      [],
+      [ev],
     );
   }
 

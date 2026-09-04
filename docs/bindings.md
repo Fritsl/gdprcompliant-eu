@@ -33,6 +33,7 @@ Not yet reviewed by a lawyer.
 | POL-01 | Notice | GDPR Art. 13(1) — information at the time data are obtained `GDPR:13:1`<br>GDPR Art. 12(1) — in a concise, transparent form `GDPR:12:1` | pol-01 v1 |
 | POL-04 |  | GDPR Art. 13(2)(a) — the retention period, or how it is decided `GDPR:13:2:a` | pol-04 v1 |
 | POL-09 |  | GDPR Art. 13(2)(d) — the right to lodge a complaint with a supervisory authority `GDPR:13:2:d` | pol-09 v1 |
+| POL-05 | Notice | GDPR Art. 13(1)(e) — the recipients or categories of recipients `GDPR:13:1:e`<br>GDPR Art. 5(1)(a) — processing must be transparent `GDPR:5:1:a` | pol-05 v1 |
 | REC-01 | Observation | GDPR Art. 6 — a lawful basis for the processing `GDPR:6`<br>GDPR Art. 35 — an impact assessment for high-risk processing `GDPR:35` | rec-01 v1 |
 | SEC-01 | Security | GDPR Art. 32(1) — appropriate technical measures `GDPR:32:1`<br>GDPR Art. 5(1)(f) — integrity and confidentiality `GDPR:5:1:f` | sec-01 v1 |
 | SEC-02 | Security | GDPR Art. 32(1) — appropriate technical measures `GDPR:32:1` | sec-02 v1 |
@@ -74,6 +75,7 @@ Not yet reviewed by a lawyer.
 | POL-01 | Notice | GDPR Art. 13(1) — information at the time data are obtained `GDPR:13:1`<br>GDPR Art. 12(1) — in a concise, transparent form `GDPR:12:1` | pol-01 v1 |
 | POL-04 |  | GDPR Art. 13(2)(a) — the retention period, or how it is decided `GDPR:13:2:a` | pol-04 v1 |
 | POL-09 |  | GDPR Art. 13(2)(d) — the right to lodge a complaint with a supervisory authority `GDPR:13:2:d` | pol-09 v1 |
+| POL-05 | Notice | GDPR Art. 13(1)(e) — the recipients or categories of recipients `GDPR:13:1:e`<br>GDPR Art. 5(1)(a) — processing must be transparent `GDPR:5:1:a` | pol-05 v1 |
 | REC-01 | Observation | GDPR Art. 6 — a lawful basis for the processing `GDPR:6`<br>GDPR Art. 35 — an impact assessment for high-risk processing `GDPR:35` | rec-01 v1 |
 | SEC-01 | Security | GDPR Art. 32(1) — appropriate technical measures `GDPR:32:1`<br>GDPR Art. 5(1)(f) — integrity and confidentiality `GDPR:5:1:f` | sec-01 v1 |
 | SEC-02 | Security | GDPR Art. 32(1) — appropriate technical measures `GDPR:32:1` | sec-02 v1 |

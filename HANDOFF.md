@@ -16,7 +16,7 @@ companies a list of problems; this hands them a plan and the things that close i
 
 ## Where you are
 
-**80 of 112 done.** Phase 0, phase 1 and phase 2 are complete, phase 3 has begun, DNS
+**81 of 112 done.** Phase 0, phase 1 and phase 2 are complete, phase 3 has begun, DNS
 collection opens phase 4 and the task catalogue opens phase 5. Contracts, config with the
 EU-only allowlist, the test harness, record and replay, i18n, the remedy catalogue and
 resolver, the model client, the web shell, the fixture estate (with TLS), the browser
@@ -68,24 +68,27 @@ evidence, confirmed with corrections by a person, exported as an Article 30 reco
 case's language, 2 edits from the drafts against 20 from nothing on the fixture estate),
 and the privacy policy and cookie declaration generators (written from the graph without a
 model, every paragraph tracing to its rows, refusing while the register has gaps and
-naming them, in the case's language with its authority) are in. The journeys suite
-(tests/e2e/journeys.test.ts) drives a real scan of the estate through the front door, a
-fix applied by changing the fixture's responses, a colleague's re-check, a sign-off, an
-export and a deletion, and CI runs every e2e suite on push, files one at a time because
-the pg-boss queue is shared across test schemas; T-09 stays blocked on G-01, G-02 and A-05
-for its two remaining journeys. The adversarial suite now covers seven injection surfaces,
-cloaking (a browser against the declared scanner, CLK-01), exhaustion (loops, stalls, huge
-pages, an archive bomb) and server-side request forgery (an egress guard in the browser
-pool that judges every hop), against six hostile fixtures tagged `adversarial`. The
-fixture suite (tests/integration/fixture-suite.test.ts) scans all twenty-six fixtures as
-cases and holds each to its expected.json, with four clean controls that must raise
-nothing and a coverage check that every page-raised finding type has a positive and a
-negative; each fixture also carries a committed golden.json, and the goldens suite names
-what is missing, extra or changed and only rewrites under pnpm goldens:update. Twenty-six
-finding types are complete end to end (detector, fixtures, bindings, remedy, guide in
-English and Danish, a line in the generated docs/findings.md), with a recipients family
-that raises transfers outside the EEA and third-party fonts, and public guide pages at
-/[locale]/guides. The database is up (`pnpm db:up`); nothing in phase 1 is open.
+naming them, in the case's language with its authority), and the drift check (the
+published policy's traced recipients against every host the watch sees, a POL-05 finding
+that names both sides within one watch cycle, nothing on a cosmetic change) are in. The
+journeys suite (tests/e2e/journeys.test.ts) drives a real scan of the estate through the
+front door, a fix applied by changing the fixture's responses, a colleague's re-check, a
+sign-off, an export and a deletion, and CI runs every e2e suite on push, files one at a
+time because the pg-boss queue is shared across test schemas; T-09 stays blocked on G-01,
+G-02 and A-05 for its two remaining journeys. The adversarial suite now covers seven
+injection surfaces, cloaking (a browser against the declared scanner, CLK-01), exhaustion
+(loops, stalls, huge pages, an archive bomb) and server-side request forgery (an egress
+guard in the browser pool that judges every hop), against six hostile fixtures tagged
+`adversarial`. The fixture suite (tests/integration/fixture-suite.test.ts) scans all
+twenty-six fixtures as cases and holds each to its expected.json, with four clean controls
+that must raise nothing and a coverage check that every page-raised finding type has a
+positive and a negative; each fixture also carries a committed golden.json, and the
+goldens suite names what is missing, extra or changed and only rewrites under pnpm
+goldens:update. Twenty-six finding types are complete end to end (detector, fixtures,
+bindings, remedy, guide in English and Danish, a line in the generated docs/findings.md),
+with a recipients family that raises transfers outside the EEA and third-party fonts, and
+public guide pages at /[locale]/guides. The database is up (`pnpm db:up`); nothing in
+phase 1 is open.
 
 Do not trust that list — ask:
 

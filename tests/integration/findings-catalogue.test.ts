@@ -47,7 +47,10 @@ describe('the launch finding types', () => {
     // a site cannot show.
     const positive = sites.filter((s) => s.expected.findings.must.includes(id));
     const negative = sites.filter((s) => s.expected.findings.mustNot.includes(id));
-    if (!PROVED_BY_CASSETTE.has(id)) {
+    // A type raised from what the case holds (the drift check, G-05) has no page to
+    // show it; its own suite proves it against the estate.
+    const fromCaseData = d.detector.startsWith('db/');
+    if (!PROVED_BY_CASSETTE.has(id) && !fromCaseData) {
       expect(positive.length, `${id}: no fixture must raise it`).toBeGreaterThan(0);
       expect(negative.length, `${id}: no fixture must not raise it`).toBeGreaterThan(0);
       expect(checkFamilyFor(id), `${id}: no family to re-run`).toBeDefined();

@@ -154,5 +154,11 @@
     "area": "Recipients",
     "detector": "scanner/checks/recipients#third_party_fonts",
     "defaultSeverity": "advisory"
+  },
+  {
+    "findingTypeId": "POL-05",
+    "area": "Notice",
+    "detector": "db/drift#recipient_not_named",
+    "defaultSeverity": "serious"
   }
 ]

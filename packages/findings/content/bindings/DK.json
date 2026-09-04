@@ -353,6 +353,23 @@
       "version": 1
     },
     {
+      "findingTypeId": "POL-05",
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 13(1)(e)",
+          "note": "the recipients or categories of recipients"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 5(1)(a)",
+          "note": "processing must be transparent"
+        }
+      ],
+      "guideId": "pol-05",
+      "version": 1
+    },
+    {
       "findingTypeId": "REC-01",
       "citations": [
         {

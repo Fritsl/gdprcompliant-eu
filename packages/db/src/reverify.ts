@@ -22,6 +22,14 @@ import { reconcileFindings, storeEvidence, type Reconciliation } from './finding
 import { cases, findings } from './schema.js';
 import { withTenant } from './tenant.js';
 import { appendCaseEvent } from './timeline.js';
+import {
+  driftDrafts,
+  driftEvidence,
+  noResolver,
+  policyDrift,
+  type DriftReport,
+  type HostResolver,
+} from './drift.js';
 
 // The re-scan and fix verification loop (C-05). A scan's result is recorded against the
 // case: evidence stored, findings reconciled (opened, seen again, closed, regressed),
@@ -301,12 +309,15 @@ export interface WatchOptions {
   readonly host: string;
   readonly now?: () => Date;
   readonly sectorCode?: string;
+  // Host to registry entry, for the drift check; the worker passes the scanner's.
+  readonly resolve?: HostResolver;
 }
 
 export interface WatchRun {
   readonly scanId: string;
   readonly changes: number;
   readonly record: ScanRecord;
+  readonly drift: DriftReport;
 }
 
 // Everything, again, against what the case holds; only genuine changes are raised, and
@@ -326,23 +337,52 @@ export async function runWatch(
     tx.select({ jurisdiction: cases.jurisdiction }).from(cases).where(eq(cases.id, caseId)),
   );
   if (!caseRow) throw new Error(`no case ${caseId}`);
-  const run = await options.run(['security', 'forms', 'replay', 'policies', 'consent']);
-  const assembled = assembleFindings(run.input, {
+  const run = await options.run([
+    'security',
+    'recipients',
+    'forms',
+    'replay',
+    'policies',
+    'consent',
+  ]);
+  // The published policy against what the site does now (G-05): a finding on the read
+  // and on a row that says both sides.
+  const drift = await policyDrift(
+    connection,
     tenantId,
     caseId,
-    jurisdiction: caseRow.jurisdiction as Finding['jurisdiction'],
-    catalogue: options.catalogue,
-    host: options.host,
+    run.input.recipients ?? [],
+    options.resolve ?? noResolver,
+  );
+  const sides = driftEvidence(drift, {
+    tenantId,
+    caseId,
     scanId,
-    now: () => now,
-    previous: new Map(existing.map((r) => [r.fingerprint, r.status as FindingStatus])),
-    ...(options.sectorCode ? { sectorCode: options.sectorCode } : {}),
+    capturedAt: now.toISOString(),
+    host: options.host,
   });
+  const assembled = assembleFindings(
+    {
+      ...run.input,
+      drafts: [...(run.input.drafts ?? []), ...driftDrafts(drift, sides, options.host)],
+    },
+    {
+      tenantId,
+      caseId,
+      jurisdiction: caseRow.jurisdiction as Finding['jurisdiction'],
+      catalogue: options.catalogue,
+      host: options.host,
+      scanId,
+      now: () => now,
+      previous: new Map(existing.map((r) => [r.fingerprint, r.status as FindingStatus])),
+      ...(options.sectorCode ? { sectorCode: options.sectorCode } : {}),
+    },
+  );
   const record = await recordScan(connection, tenantId, caseId, {
     scanId,
     kind: 'watch',
     findings: assembled.findings,
-    evidence: run.evidence,
+    evidence: [...run.evidence, ...(sides ? [sides] : [])],
     checksRun: run.checksRun,
     checksPassed: run.checksPassed,
     undetermined: run.undetermined,
@@ -359,7 +399,7 @@ export async function runWatch(
       payload: { scanId, changes: record.changes },
     }),
   );
-  return { scanId, changes: record.changes, record };
+  return { scanId, changes: record.changes, record, drift };
 }
 
 export async function registerWatchWorker(

@@ -1,0 +1,34 @@
+{
+  "id": "pol-05-name-the-recipient",
+  "version": 1,
+  "findingTypeId": "POL-05",
+  "jurisdictions": "all",
+  "kind": "generated_artefact",
+  "title": {
+    "en": "Add the recipient to the policy and publish it again",
+    "da": "Tilføj modtageren til politikken, og offentliggør den igen"
+  },
+  "effort": {
+    "label": {
+      "en": "One click, then a review",
+      "da": "Ét klik, så et gennemsyn"
+    }
+  },
+  "detail": {
+    "en": "The site sends visitors' requests to a company the published policy does not name. Confirm the new recipient in the register; the policy is then written again from it, and the case checks the site against the new version.",
+    "da": "Sitet sender besøgendes forespørgsler til en virksomhed, som den offentliggjorte politik ikke nævner. Bekræft den nye modtager i fortegnelsen; politikken skrives så igen ud fra den, og sagen tjekker sitet mod den nye version."
+  },
+  "artefact": "privacy_policy",
+  "cta": {
+    "en": "Preview the new draft",
+    "da": "Se det nye udkast"
+  },
+  "verifyLabel": {
+    "en": "Re-check once published",
+    "da": "Tjek igen, når den er offentliggjort"
+  },
+  "verification": {
+    "method": "artefact_published",
+    "artefact": "privacy_policy"
+  }
+}
