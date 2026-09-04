@@ -1,0 +1,138 @@
+{
+  "title": {
+    "en": "Record of processing activities",
+    "da": "Fortegnelse over behandlingsaktiviteter"
+  },
+  "basis": {
+    "en": "Kept under Article 30(1) of the General Data Protection Regulation.",
+    "da": "Ført efter databeskyttelsesforordningens artikel 30, stk. 1."
+  },
+  "controller": { "en": "Controller", "da": "Dataansvarlig" },
+  "generated": { "en": "Generated", "da": "Udarbejdet" },
+  "draft": {
+    "en": "Draft — read from the website, not yet confirmed by the company",
+    "da": "Udkast — læst fra hjemmesiden, endnu ikke bekræftet af virksomheden"
+  },
+  "confirmed": { "en": "Confirmed", "da": "Bekræftet" },
+  "columns": {
+    "activity": { "en": "Processing activity", "da": "Behandlingsaktivitet" },
+    "purposes": { "en": "Purposes", "da": "Formål" },
+    "dataSubjects": { "en": "Categories of data subjects", "da": "Kategorier af registrerede" },
+    "dataCategories": {
+      "en": "Categories of personal data",
+      "da": "Kategorier af personoplysninger"
+    },
+    "legalBases": { "en": "Legal basis", "da": "Retsgrundlag" },
+    "recipients": { "en": "Categories of recipients", "da": "Kategorier af modtagere" },
+    "transfers": {
+      "en": "Transfers to third countries and safeguards",
+      "da": "Overførsler til tredjelande og fornødne garantier"
+    },
+    "retention": { "en": "Envisaged time limits for erasure", "da": "Forventede slettefrister" },
+    "security": {
+      "en": "Technical and organisational security measures",
+      "da": "Tekniske og organisatoriske sikkerhedsforanstaltninger"
+    },
+    "evidence": { "en": "Read from", "da": "Læst fra" },
+    "status": { "en": "Status", "da": "Status" }
+  },
+  "notYetAnswered": { "en": "Not yet answered", "da": "Endnu ikke besvaret" },
+  "none": { "en": "None observed", "da": "Ingen observeret" },
+  "noTransfer": {
+    "en": "No recipient outside the EEA observed",
+    "da": "Ingen modtager uden for EØS observeret"
+  },
+  "empty": {
+    "en": "No processing activity has been read from the website yet.",
+    "da": "Der er endnu ikke læst nogen behandlingsaktivitet fra hjemmesiden."
+  },
+  "subjects": {
+    "customers": { "en": "Customers", "da": "Kunder" },
+    "subscribers": { "en": "Newsletter subscribers", "da": "Abonnenter på nyhedsbrevet" },
+    "enquirers": { "en": "People who write in", "da": "Personer, der henvender sig" },
+    "visitors": { "en": "Website visitors", "da": "Besøgende på hjemmesiden" },
+    "account_holders": { "en": "Account holders", "da": "Kontohavere" },
+    "staff_and_contacts": {
+      "en": "Staff, customers and business contacts",
+      "da": "Medarbejdere, kunder og forretningskontakter"
+    }
+  },
+  "activities": {
+    "newsletter": { "en": "Newsletter", "da": "Nyhedsbrev" },
+    "orders": { "en": "Orders and payment", "da": "Ordrer og betaling" },
+    "enquiries": {
+      "en": "Enquiries through the contact form",
+      "da": "Henvendelser via kontaktformularen"
+    },
+    "accounts": { "en": "Customer accounts", "da": "Kundekonti" },
+    "sensitive_enquiries": {
+      "en": "Enquiries involving health or other special categories",
+      "da": "Henvendelser med helbredsoplysninger eller andre følsomme oplysninger"
+    },
+    "website_measurement": {
+      "en": "Measuring and marketing the website",
+      "da": "Måling og markedsføring af hjemmesiden"
+    },
+    "email_and_documents": { "en": "Email and documents", "da": "E-mail og dokumenter" }
+  },
+  "purposes": {
+    "newsletter": {
+      "en": "Sending news and offers to people who signed up",
+      "da": "Udsendelse af nyheder og tilbud til tilmeldte"
+    },
+    "orders": {
+      "en": "Taking and fulfilling orders, taking payment",
+      "da": "Modtagelse og ekspedition af ordrer, betaling"
+    },
+    "enquiries": {
+      "en": "Answering the person who wrote in",
+      "da": "Besvarelse af den, der henvendte sig"
+    },
+    "accounts": {
+      "en": "Letting customers log in and see their orders",
+      "da": "Kunders login og adgang til deres ordrer"
+    },
+    "sensitive_enquiries": {
+      "en": "Answering an enquiry that describes a health matter",
+      "da": "Besvarelse af en henvendelse, der beskriver et helbredsforhold"
+    },
+    "website_measurement": {
+      "en": "Measuring visits and showing advertising",
+      "da": "Måling af besøg og visning af annoncer"
+    },
+    "email_and_documents": {
+      "en": "Running the company's email and document storage",
+      "da": "Drift af virksomhedens e-mail og dokumentlager"
+    }
+  },
+  "categories": {
+    "contact": { "en": "Contact details", "da": "Kontaktoplysninger" },
+    "identity": { "en": "Identity details", "da": "Identitetsoplysninger" },
+    "financial": { "en": "Payment details", "da": "Betalingsoplysninger" },
+    "credentials": { "en": "Login credentials", "da": "Loginoplysninger" },
+    "health": { "en": "Health information", "da": "Helbredsoplysninger" },
+    "belief": { "en": "Beliefs or convictions", "da": "Overbevisninger" },
+    "free_text": { "en": "Whatever the person writes", "da": "Det, personen selv skriver" },
+    "other": { "en": "Other details entered", "da": "Øvrige indtastede oplysninger" },
+    "online_identifiers": {
+      "en": "Online identifiers and usage data",
+      "da": "Online-identifikatorer og brugsdata"
+    },
+    "correspondence": { "en": "Correspondence and documents", "da": "Korrespondance og dokumenter" }
+  },
+  "bases": {
+    "consent": { "en": "Consent, Article 6(1)(a)", "da": "Samtykke, artikel 6, stk. 1, litra a" },
+    "contract": {
+      "en": "Performance of a contract, Article 6(1)(b)",
+      "da": "Opfyldelse af en aftale, artikel 6, stk. 1, litra b"
+    },
+    "legitimate_interest": {
+      "en": "Legitimate interest, Article 6(1)(f)",
+      "da": "Legitim interesse, artikel 6, stk. 1, litra f"
+    },
+    "explicit_consent": {
+      "en": "Explicit consent, Article 9(2)(a)",
+      "da": "Udtrykkeligt samtykke, artikel 9, stk. 2, litra a"
+    }
+  }
+}

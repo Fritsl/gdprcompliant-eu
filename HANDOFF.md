@@ -16,7 +16,7 @@ companies a list of problems; this hands them a plan and the things that close i
 
 ## Where you are
 
-**78 of 112 done.** Phase 0, phase 1 and phase 2 are complete, phase 3 has begun, DNS
+**79 of 112 done.** Phase 0, phase 1 and phase 2 are complete, phase 3 has begun, DNS
 collection opens phase 4 and the task catalogue opens phase 5. Contracts, config with the
 EU-only allowlist, the test harness, record and replay, i18n, the remedy catalogue and
 resolver, the model client, the web shell, the fixture estate (with TLS), the browser
@@ -62,19 +62,22 @@ transfer determination (adequacy list and Data Privacy Framework lookups as date
 hosted-in-the-EEA told apart from controlled-from-outside in the finding text, the policy
 read for a Chapter V basis, every statement passing the claim vocabulary), and the case
 graph (typed nodes and edges with origin, confidence and time on every row, contradictions
-kept and surfaced until a person decides, the register as a projection) are in. The
-journeys suite (tests/e2e/journeys.test.ts) drives a real scan of the estate through the
-front door, a fix applied by changing the fixture's responses, a colleague's re-check, a
-sign-off, an export and a deletion, and CI runs every e2e suite on push, files one at a
-time because the pg-boss queue is shared across test schemas; T-09 stays blocked on G-01,
-G-02 and A-05 for its two remaining journeys. The adversarial suite now covers seven
-injection surfaces, cloaking (a browser against the declared scanner, CLK-01), exhaustion
-(loops, stalls, huge pages, an archive bomb) and server-side request forgery (an egress
-guard in the browser pool that judges every hop), against six hostile fixtures tagged
-`adversarial`. The fixture suite (tests/integration/fixture-suite.test.ts) scans all
-twenty-six fixtures as cases and holds each to its expected.json, with four clean controls
-that must raise nothing and a coverage check that every page-raised finding type has a
-positive and a negative; each fixture also carries a committed golden.json, and the
+kept and surfaced until a person decides, the register as a projection), and the register
+seeded from evidence (draft rows from the forms and the recipients, each citing its
+evidence, confirmed with corrections by a person, exported as an Article 30 record in the
+case's language, 2 edits from the drafts against 20 from nothing on the fixture estate)
+are in. The journeys suite (tests/e2e/journeys.test.ts) drives a real scan of the estate
+through the front door, a fix applied by changing the fixture's responses, a colleague's
+re-check, a sign-off, an export and a deletion, and CI runs every e2e suite on push, files
+one at a time because the pg-boss queue is shared across test schemas; T-09 stays blocked
+on G-01, G-02 and A-05 for its two remaining journeys. The adversarial suite now covers
+seven injection surfaces, cloaking (a browser against the declared scanner, CLK-01),
+exhaustion (loops, stalls, huge pages, an archive bomb) and server-side request forgery
+(an egress guard in the browser pool that judges every hop), against six hostile fixtures
+tagged `adversarial`. The fixture suite (tests/integration/fixture-suite.test.ts) scans
+all twenty-six fixtures as cases and holds each to its expected.json, with four clean
+controls that must raise nothing and a coverage check that every page-raised finding type
+has a positive and a negative; each fixture also carries a committed golden.json, and the
 goldens suite names what is missing, extra or changed and only rewrites under pnpm
 goldens:update. Twenty-six finding types are complete end to end (detector, fixtures,
 bindings, remedy, guide in English and Danish, a line in the generated docs/findings.md),

@@ -4,6 +4,7 @@ import {
   UnsupportedTarget,
   openCaseForTarget,
   recordScan,
+  seedRegister,
   type Connection,
   type ScanPayload,
   type ScanProgress,
@@ -233,6 +234,14 @@ export async function registerScanWorker(
       undetermined: refusal.outcome === 'undetermined' ? 1 : 0,
       actor: { kind: 'scanner' },
       now: now(),
+    });
+    // The register's first draft, read from what the scan saw (G-01).
+    await seedRegister(connection, opened.tenantId, opened.caseId, {
+      scanId: job.id,
+      now: now(),
+      forms: forms.inventory,
+      recipients: recipients.observations,
+      consent: diffed.drafts,
     });
     await mark('writing-up', 'ok', `${assembled.findings.length} finding(s)`);
     const outcome: ScanProgress['outcome'] =

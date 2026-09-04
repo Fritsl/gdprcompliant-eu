@@ -1,6 +1,7 @@
 import type {
   ConsentFindingDraft,
   Evidence,
+  FormInventory,
   FormObservation,
   PassDiff,
   PolicyDiscovery,
@@ -48,6 +49,8 @@ export interface CheckOutput {
   readonly security?: readonly SecurityObservation[];
   readonly recipients?: readonly RecipientObservation[];
   readonly forms?: readonly FormObservation[];
+  // The forms themselves, for the register (G-01).
+  readonly formInventory?: FormInventory;
   readonly replay?: readonly ReplayObservation[];
   readonly policies?: PolicyDiscovery;
   readonly consent?: readonly ConsentFindingDraft[];
@@ -74,6 +77,7 @@ export async function runChecks(
     security?: SecurityObservation[];
     recipients?: RecipientObservation[];
     forms?: FormObservation[];
+    formInventory?: FormInventory;
     replay?: ReplayObservation[];
     policies?: PolicyDiscovery;
     consent?: ConsentFindingDraft[];
@@ -134,6 +138,7 @@ export async function runChecks(
       if (!wants('forms')) return;
       const forms = await formsRun!;
       out.forms = [...forms.inventory.observations];
+      out.formInventory = forms.inventory;
       evidence.push(...forms.evidence);
       count(forms.inventory.observations);
     })(),

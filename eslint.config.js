@@ -17,6 +17,7 @@ const node = {
 export default tseslint.config(
   {
     ignores: [
+      '.claude/**',
       '**/dist/**',
       '**/.next/**',
       'apps/web/next-env.d.ts',

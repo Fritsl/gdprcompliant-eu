@@ -1,0 +1,34 @@
+{
+  "_comment": "The confirmed record of processing activities for the fixture company, as its owner would write it after reading what the fixture estate shows: the sign-up, checkout and symptom-describing contact forms on tilmeld.test and the tag manager on tags.shop.test. Vocabulary keys match packages/artefacts/content/register.json. G-01 measures how far the seeded drafts are from this.",
+  "company": "eksempelbutik.dk",
+  "activities": [
+    {
+      "name": "newsletter",
+      "purposes": ["newsletter"],
+      "dataCategories": ["contact"],
+      "legalBases": ["consent"],
+      "recipients": []
+    },
+    {
+      "name": "orders",
+      "purposes": ["orders"],
+      "dataCategories": ["contact", "identity", "financial"],
+      "legalBases": ["contract"],
+      "recipients": []
+    },
+    {
+      "name": "sensitive_enquiries",
+      "purposes": ["sensitive_enquiries"],
+      "dataCategories": ["contact", "health"],
+      "legalBases": ["explicit_consent"],
+      "recipients": []
+    },
+    {
+      "name": "website_measurement",
+      "purposes": ["website_measurement"],
+      "dataCategories": ["online_identifiers"],
+      "legalBases": ["consent"],
+      "recipients": ["Google Ireland Limited"]
+    }
+  ]
+}
