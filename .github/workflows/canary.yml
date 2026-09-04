@@ -1,0 +1,57 @@
+name: Canary
+# The canary (T-10): the corpus scanned nightly on the real internet, compared with the
+# night before. A change in what the scanner makes of an unchanged site is the alarm; it
+# fails the run and opens an issue for the owner named in fixtures/canary/corpus.json.
+on:
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: Scan only the first N sites (0 = all)
+        default: '0'
+jobs:
+  canary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 9.15.4 }
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      # Yesterday's snapshots come from the previous run's artifact, so the comparison
+      # is day over day even though each run starts from a clean checkout.
+      - uses: actions/download-artifact@v4
+        with:
+          name: canary-snapshots
+          path: artifacts/canary
+        continue-on-error: true
+      - run: pnpm canary:run
+        env:
+          CANARY_LIMIT: ${{ github.event.inputs.limit || '0' }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: canary-snapshots
+          path: artifacts/canary
+          retention-days: 14
+      - id: check
+        run: pnpm canary:check | tee artifacts/canary-report.txt
+        continue-on-error: true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: canary-report
+          path: artifacts/canary-report.txt
+      - if: steps.check.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title="Canary alarm $(date -u +%F)"
+          gh issue create --title "$title" --label canary --body-file artifacts/canary-report.txt || true
+          exit 1

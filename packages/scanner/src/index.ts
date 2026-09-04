@@ -30,3 +30,4 @@ export * from './ct/index.js';
 export * from './consent/index.js';
 export * from './apps/index.js';
 export * from './adverts/index.js';
+export * from './canary/index.js';

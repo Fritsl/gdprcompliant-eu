@@ -41,7 +41,9 @@
     "check:rule-citations": "node --import tsx scripts/check-rule-citations.ts",
     "check:claims": "node --import tsx scripts/check-claims.ts",
     "check:citations": "node --import tsx scripts/check-citations.ts",
-    "corpus:ingest": "node --env-file-if-exists=.env --import tsx scripts/corpus-ingest.ts"
+    "corpus:ingest": "node --env-file-if-exists=.env --import tsx scripts/corpus-ingest.ts",
+    "canary:check": "node --import tsx scripts/canary-check.ts",
+    "canary:run": "node --env-file-if-exists=.env --import tsx scripts/canary-run.ts"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
