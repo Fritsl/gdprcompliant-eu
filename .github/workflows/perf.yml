@@ -1,0 +1,31 @@
+name: perf
+
+# The performance budget (T-11), nightly and on demand: the scanner against the whole
+# fixture estate, held to tests/perf/budgets.json. A run over budget fails the workflow,
+# which is the alarm; the numbers land in the artifacts for the trend.
+
+on:
+  schedule:
+    - cron: '20 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  perf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 9.15.4 }
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm test:perf
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: perf-scan
+          path: artifacts/perf-scan.json
+          if-no-files-found: ignore

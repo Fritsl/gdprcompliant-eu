@@ -1,0 +1,15 @@
+{
+  "_comment": "Wall-clock budgets the perf suite holds the scanner to (T-11). Milliseconds. A run over budget fails.",
+  "threePassScan": {
+    "p95Ms": 60000,
+    "_what": "collectPasses (A, B, C) plus the security surface, forms, replay and policy checks, per fixture site, 95th percentile across the estate"
+  },
+  "deepScan": {
+    "totalMs": 600000,
+    "_what": "the whole estate scanned in sequence, every family, with partial results after every site"
+  },
+  "reCheck": {
+    "fractionOfScan": 0.75,
+    "_what": "re-verifying one finding re-runs one family and must cost less than three quarters of a full scan of the same site"
+  }
+}
