@@ -78,8 +78,8 @@ describe('locale-prefixed routes, server-rendered', () => {
 
   it('each locale renders on the server, with its lang attribute and its text in the HTML', async () => {
     for (const [locale, heading] of [
-      ['en', 'Everyone else hands you a list of problems.'],
-      ['da', 'Alle andre giver dig en liste med problemer.'],
+      ['en', 'Is your website GDPR compliant?'],
+      ['da', 'Overholder din hjemmeside GDPR?'],
     ] as const) {
       const r = await fetch(`${BASE}/${locale}`);
       expect(r.status).toBe(200);
@@ -98,9 +98,7 @@ describe('locale-prefixed routes, server-rendered', () => {
 
   it('a string the locale lacks falls back to English visibly', async () => {
     const html = await (await fetch(`${BASE}/de`)).text();
-    expect(html).toMatch(
-      /<h1 lang="en" data-fallback="">Everyone else hands you a list of problems\.<\/h1>/,
-    );
+    expect(html).toMatch(/<h1 lang="en" data-fallback="">Is your website GDPR compliant\?<\/h1>/);
     const english = await (await fetch(`${BASE}/en`)).text();
     expect(english).not.toContain('data-fallback');
   });

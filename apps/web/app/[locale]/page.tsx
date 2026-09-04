@@ -2,19 +2,61 @@ import { notFound } from 'next/navigation';
 import { Text } from '@/components/Text';
 import { asLocale, t } from '@/lib/i18n';
 
-// The shell's home. The front door itself (the domain field and the scan) is U-02; this
-// page proves the plumbing: server-rendered, localised, themed.
+// The front door (U-02): one field, one button, no account. A refused start comes back
+// here with its reason, said once, above the field.
 
-export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
+export const dynamic = 'force-dynamic';
+
+export default async function Home({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ outcome?: string; retry?: string }>;
+}) {
   const locale = asLocale((await params).locale);
   if (!locale) notFound();
+  const { outcome } = await searchParams;
+  const refusal =
+    outcome === 'invalid'
+      ? t(locale, 'front.invalid')
+      : outcome === 'limited'
+        ? t(locale, 'front.limited')
+        : outcome === 'busy'
+          ? t(locale, 'front.busy')
+          : undefined;
   return (
-    <article className="home">
-      <Text of={t(locale, 'home.heading')} as="h1" />
-      <Text of={t(locale, 'home.lead')} as="p" />
-      <p className="home-soon">
-        <Text of={t(locale, 'home.soon')} />
-      </p>
+    <article className="fd">
+      <div>
+        <p className="eyebrow">
+          <Text of={t(locale, 'front.eyebrow')} />
+        </p>
+        <Text of={t(locale, 'front.heading')} as="h1" />
+        <p className="sub">
+          <Text of={t(locale, 'front.sub')} />
+        </p>
+      </div>
+      {refusal ? (
+        <p className="notice" role="alert" data-outcome={outcome}>
+          <Text of={refusal} />
+        </p>
+      ) : null}
+      <form method="post" action={`/${locale}/scan`}>
+        <input
+          type="text"
+          name="domain"
+          inputMode="url"
+          autoComplete="url"
+          autoCapitalize="off"
+          spellCheck={false}
+          required
+          aria-label={t(locale, 'front.field').text}
+          placeholder={t(locale, 'front.placeholder').text}
+        />
+        <button className="btn" type="submit">
+          {t(locale, 'front.cta').text}
+        </button>
+      </form>
     </article>
   );
 }

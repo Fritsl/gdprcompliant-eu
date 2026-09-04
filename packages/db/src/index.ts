@@ -25,3 +25,4 @@ export * from './evidence-pack.js';
 export * from './findings.js';
 export * from './artefacts.js';
 export * from './reverify.js';
+export * from './scan-job.js';

@@ -194,6 +194,12 @@ export class JobQueue {
     };
   }
 
+  // How many jobs of this kind are waiting or running: the front door's queue cap reads it.
+  async depth(job: JobDefinition<unknown, unknown>): Promise<number> {
+    const [stats] = await this.#boss.getQueueStats(job.name);
+    return (stats?.queuedCount ?? 0) + (stats?.activeCount ?? 0);
+  }
+
   // Every job that ran out of retries, with the reason it last failed. The dead-letter
   // copy is a new job in its own queue; `payload` and `reason` are what a person needs.
   async deadLetters<P, S>(job: JobDefinition<P, S>): Promise<DeadLetter<P, S>[]> {

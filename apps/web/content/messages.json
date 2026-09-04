@@ -49,17 +49,6 @@
     "da": "Intet her er en certificering, og ingen har godkendt noget.",
     "de": "Nichts hier ist eine Zertifizierung, und niemand hat etwas genehmigt."
   },
-  "home.heading": {
-    "en": "Everyone else hands you a list of problems.",
-    "da": "Alle andre giver dig en liste med problemer."
-  },
-  "home.lead": {
-    "en": "Enter a domain, get a numbered case: every finding answered with something you can act on, and watched every week afterwards.",
-    "da": "Indtast et domæne og få en nummereret sag: hvert fund besvaret med noget, du kan handle på, og overvåget hver uge bagefter."
-  },
-  "home.soon": {
-    "en": "The scanner opens here."
-  },
   "demand.heading": {
     "en": "Where the catalogue has no answer",
     "da": "Hvor kataloget ikke har et svar"
@@ -347,5 +336,157 @@
   "case.pack.note": {
     "en": "A zip of plain files: the case as JSON, every evidence record, the timeline as PDF, and a manifest of hashes. Dated the moment it is made.",
     "da": "En zip med almindelige filer: sagen som JSON, hver bevispost, tidslinjen som PDF og en liste med hashes. Dateret i det øjeblik den laves."
+  },
+  "front.eyebrow": {
+    "en": "Free · no account · about 40 seconds",
+    "da": "Gratis · ingen konto · cirka 40 sekunder"
+  },
+  "front.heading": {
+    "en": "Is your website GDPR compliant?",
+    "da": "Overholder din hjemmeside GDPR?"
+  },
+  "front.sub": {
+    "en": "Every problem comes with the fix.",
+    "da": "Hvert problem kommer med løsningen."
+  },
+  "front.field": {
+    "en": "Your website address",
+    "da": "Din hjemmesides adresse"
+  },
+  "front.placeholder": {
+    "en": "yourshop.dk",
+    "da": "dinbutik.dk"
+  },
+  "front.cta": {
+    "en": "Run the free test",
+    "da": "Kør den gratis test"
+  },
+  "front.invalid": {
+    "en": "That does not look like a website address. Try something like yourshop.dk.",
+    "da": "Det ligner ikke en hjemmesideadresse. Prøv noget i stil med dinbutik.dk."
+  },
+  "front.limited": {
+    "en": "You have started a few scans in the last hour. Give it a little while and try again.",
+    "da": "Du har startet et par scanninger den seneste time. Vent lidt, og prøv igen."
+  },
+  "front.busy": {
+    "en": "A lot of sites are being checked right now. Try again in a few minutes.",
+    "da": "Mange sider bliver tjekket lige nu. Prøv igen om et par minutter."
+  },
+  "scan.heading": {
+    "en": "Checking your site",
+    "da": "Tjekker din side"
+  },
+  "scan.hint": {
+    "en": "This normally takes about 40 seconds.",
+    "da": "Det tager normalt cirka 40 sekunder."
+  },
+  "scan.stage.opening": {
+    "en": "Opening the page with a clean browser",
+    "da": "Åbner siden med en ren browser"
+  },
+  "scan.stage.banner": {
+    "en": "Finding the consent banner",
+    "da": "Finder samtykkebanneret"
+  },
+  "scan.stage.refusing": {
+    "en": "Clicking through to a real refusal",
+    "da": "Klikker igennem til et rigtigt afslag"
+  },
+  "scan.stage.accepting": {
+    "en": "Accepting everything, for comparison",
+    "da": "Accepterer alt, til sammenligning"
+  },
+  "scan.stage.policy": {
+    "en": "Reading your privacy policy",
+    "da": "Læser din privatlivspolitik"
+  },
+  "scan.stage.recipients": {
+    "en": "Identifying who receives the data",
+    "da": "Identificerer, hvem der modtager data"
+  },
+  "scan.stage.security": {
+    "en": "Checking the security a visitor can see",
+    "da": "Tjekker den sikkerhed, en besøgende kan se"
+  },
+  "scan.mark.ok": {
+    "en": "done",
+    "da": "færdig"
+  },
+  "scan.mark.undet": {
+    "en": "could not tell",
+    "da": "kunne ikke afgøres"
+  },
+  "scan.mark.na": {
+    "en": "not needed",
+    "da": "ikke nødvendigt"
+  },
+  "scan.mark.skip": {
+    "en": "skipped",
+    "da": "sprunget over"
+  },
+  "scan.mark.fail": {
+    "en": "no response",
+    "da": "intet svar"
+  },
+  "scan.outcome.case.heading": {
+    "en": "Your case is ready.",
+    "da": "Din sag er klar."
+  },
+  "scan.outcome.case.body": {
+    "en": "Every finding comes with what to do about it, and the site is checked again every week.",
+    "da": "Hvert fund kommer med, hvad der skal gøres, og siden tjekkes igen hver uge."
+  },
+  "scan.outcome.case.cta": {
+    "en": "Open the case",
+    "da": "Åbn sagen"
+  },
+  "scan.outcome.noBanner.heading": {
+    "en": "You do not need a cookie banner.",
+    "da": "Du har ikke brug for et cookiebanner."
+  },
+  "scan.outcome.noBanner.body": {
+    "en": "Nothing is stored on a visitor’s device beyond what the site needs to work, and nothing loads from a third party before anyone agrees to anything.",
+    "da": "Intet gemmes på den besøgendes enhed ud over det, siden skal bruge for at virke, og intet indlæses fra tredjepart, før nogen har sagt ja til noget."
+  },
+  "scan.outcome.noBanner.cta": {
+    "en": "See the rest of the results",
+    "da": "Se resten af resultaterne"
+  },
+  "scan.outcome.noRefusal.heading": {
+    "en": "We could not find any way to refuse on your site.",
+    "da": "Vi kunne ikke finde nogen måde at afvise på din side."
+  },
+  "scan.outcome.noRefusal.body": {
+    "en": "There is a banner, but nothing we could click refuses. We tried its own controls and every refusal wording we know, in Danish, English and German.",
+    "da": "Der er et banner, men intet, vi kunne klikke på, afviser. Vi prøvede dets egne knapper og hver afvisningsformulering, vi kender, på dansk, engelsk og tysk."
+  },
+  "scan.outcome.noRefusal.cta": {
+    "en": "See what to do about it",
+    "da": "Se, hvad du kan gøre ved det"
+  },
+  "scan.outcome.unreachable.heading": {
+    "en": "We could not reach that address.",
+    "da": "Vi kunne ikke nå den adresse."
+  },
+  "scan.outcome.unreachable.body": {
+    "en": "The address did not respond. Check the spelling, or try again in a moment.",
+    "da": "Adressen svarede ikke. Tjek stavningen, eller prøv igen om lidt."
+  },
+  "scan.outcome.unreachable.cta": {
+    "en": "Try again",
+    "da": "Prøv igen"
+  },
+  "scan.stage.firstLoad": {
+    "en": "Recording what loads before you agree",
+    "da": "Registrerer, hvad der indlæses, før du siger ja"
+  },
+  "scan.stage.afterRefusal": {
+    "en": "Recording what still loads after refusing",
+    "da": "Registrerer, hvad der stadig indlæses efter afslag"
+  },
+  "scan.stage.writingUp": {
+    "en": "Writing up what we found",
+    "da": "Skriver fundene op"
   }
 }

@@ -1,0 +1,242 @@
+import { signalsFromDocument } from '@gc/contracts';
+import {
+  SCAN_JOB,
+  UnsupportedTarget,
+  openCaseForTarget,
+  recordScan,
+  type Connection,
+  type ScanPayload,
+  type ScanProgress,
+  type ScanStage,
+  type StageMark,
+} from '@gc/db';
+import { assembleFindings, type AssemblyInput } from '@gc/findings';
+import type { JobQueue } from '@gc/jobs';
+import type { Catalogue } from '@gc/remedies';
+import {
+  captureToEvidence,
+  collectPassA,
+  collectPassB,
+  collectPassC,
+  diffPasses,
+  discoverPolicies,
+  inventoryForms,
+  refTo,
+  runSecurityChecks,
+  type BrowserPool,
+  type QuietOptions,
+} from '@gc/scanner';
+import type { Evidence } from '@gc/contracts';
+
+// The scan worker (U-02). One job per front-door request: reach the site, run the three
+// passes and the checks, open the case in the target's own jurisdiction, record the
+// scan, and hand back the case token. Every stage is checkpointed the moment it ends,
+// with the mark the visitor will see: ok, could not tell, not needed, skipped, no
+// response. A site that cannot be reached ends the scan at the first stage.
+
+export interface ScanWorkerOptions {
+  readonly pool: BrowserPool;
+  readonly catalogue: Catalogue;
+  readonly quiet?: Partial<QuietOptions>;
+  readonly now?: () => Date;
+  // The scheme to try first; the fixture estate serves https.
+  readonly scheme?: 'https' | 'http';
+}
+
+export async function registerScanWorker(
+  queue: JobQueue,
+  connection: Connection,
+  options: ScanWorkerOptions,
+): Promise<void> {
+  await queue.work(SCAN_JOB, async (job) => {
+    try {
+      await scan(job);
+    } catch (e) {
+      console.error(`scan job ${job.id} failed:`, e);
+      throw e;
+    }
+  });
+
+  async function scan(
+    job: Parameters<Parameters<typeof queue.work<ScanPayload, ScanProgress>>[1]>[0],
+  ): Promise<void> {
+    const now = job.payload.now
+      ? () => new Date(job.payload.now!)
+      : (options.now ?? (() => new Date()));
+    const progress: ScanProgress = { stages: [] };
+    const mark = async (stage: ScanStage, m: StageMark, detail?: string): Promise<void> => {
+      const existing = progress.stages.findIndex((s) => s.stage === stage);
+      const state = { stage, mark: m, at: now().toISOString(), ...(detail ? { detail } : {}) };
+      if (existing >= 0) progress.stages[existing] = state;
+      else progress.stages.push(state);
+      await job.checkpoint({ ...progress, stages: [...progress.stages] });
+    };
+    const finish = async (outcome: ScanProgress['outcome'], extra: Partial<ScanProgress> = {}) => {
+      Object.assign(progress, extra, { outcome });
+      await job.checkpoint({ ...progress, stages: [...progress.stages] });
+    };
+
+    const domain = job.payload.domain;
+    const url = `${options.scheme ?? 'https'}://${domain}/`;
+    // Evidence is captured before the case exists; its rows are re-homed when the scan is
+    // recorded. The placeholder has the shape a case number has.
+    const identity = {
+      tenantId: 'pending',
+      caseId: 'XX-00-XXXX',
+      scanId: job.id,
+      capturedAt: now().toISOString(),
+    };
+    const quiet = options.quiet ? { quiet: options.quiet } : {};
+
+    // 1. Reach the site: Pass A.
+    await mark('opening', 'on');
+    let a: Awaited<ReturnType<typeof collectPassA>>;
+    try {
+      a = await collectPassA(options.pool, { url }, quiet);
+    } catch (e) {
+      await mark('opening', 'fail', (e as Error).message.slice(0, 200));
+      for (const s of [
+        'first-load',
+        'banner',
+        'refusing',
+        'after-refusal',
+        'accepting',
+        'policy',
+        'recipients',
+        'security',
+        'writing-up',
+      ] as const) {
+        await mark(s, 'skip');
+      }
+      await finish('unreachable');
+      return;
+    }
+    if (a.capture.status !== undefined && a.capture.status >= 400) {
+      await mark('opening', 'fail', `HTTP ${a.capture.status}`);
+      await finish('unreachable');
+      return;
+    }
+    await mark('opening', 'ok');
+    await mark('first-load', 'ok', `${new Set(a.capture.requests.map((r) => r.host)).size} hosts`);
+
+    // 2. The banner and the refusal: Pass B, then the acceptance: Pass C.
+    await mark('banner', 'on');
+    const evidence: Evidence[] = captureToEvidence(a.capture, a.screenshot, identity);
+    const b = await collectPassB(options.pool, { url }, { identity, ...quiet, now });
+    evidence.push(...captureToEvidence(b.capture, b.screenshot, identity), ...b.evidence);
+    const refusal = b.refusal;
+    if (refusal.outcome === 'no_banner') {
+      await mark('banner', 'na', 'no banner');
+      await mark('refusing', 'na');
+      await mark('after-refusal', 'na');
+      await mark('accepting', 'na');
+    } else {
+      await mark('banner', 'ok', `${refusal.platform ?? 'banner'} found`);
+      await mark(
+        'refusing',
+        refusal.outcome === 'refused' ? 'ok' : 'undet',
+        refusal.summary.slice(0, 200),
+      );
+      await mark('after-refusal', refusal.outcome === 'refused' ? 'ok' : 'skip');
+      await mark('accepting', 'on');
+    }
+    const c = await collectPassC(options.pool, { url }, { identity, ...quiet, now });
+    evidence.push(...captureToEvidence(c.capture, c.screenshot, identity), ...c.evidence);
+    if (refusal.outcome !== 'no_banner') {
+      await mark('accepting', c.capture.consent?.outcome === 'accepted' ? 'ok' : 'undet');
+    }
+    const diffed = diffPasses({
+      a: a.capture,
+      b: b.capture,
+      c: c.capture,
+      refusal,
+      identity,
+      refusalEvidence: b.evidence.map((e) => refTo(e)),
+    });
+    evidence.push(...diffed.evidence);
+
+    // 3. The policy, the recipients, the security surface.
+    await mark('policy', 'on');
+    const policies = await discoverPolicies(options.pool, { url }, { identity, now });
+    evidence.push(...policies.evidence);
+    await mark(
+      'policy',
+      policies.discovery.observation.outcome === 'pass' ? 'ok' : 'undet',
+      policies.discovery.observation.summary.slice(0, 200),
+    );
+    await mark('recipients', 'ok', `${c.vendorHosts.length} third-party host(s)`);
+    await mark('security', 'on');
+    const surface = await runSecurityChecks(
+      options.pool,
+      { url },
+      { capture: a.capture, identity },
+    );
+    const forms = await inventoryForms(options.pool, { url }, { identity });
+    evidence.push(...surface.evidence, ...forms.evidence);
+    await mark(
+      'security',
+      'ok',
+      `${surface.observations.filter((o) => o.outcome === 'pass').length} of ${surface.observations.length} passed`,
+    );
+
+    // 4. The case, in the target's own jurisdiction, and the record of the scan.
+    await mark('writing-up', 'on');
+    let opened;
+    try {
+      opened = await openCaseForTarget(connection, {
+        signals: signalsFromDocument(domain, a.capture.document),
+        source: 'scanner',
+        now,
+      });
+    } catch (e) {
+      if (e instanceof UnsupportedTarget) {
+        await mark('writing-up', 'fail', e.message.slice(0, 200));
+        await finish('unreachable');
+        return;
+      }
+      throw e;
+    }
+    const input: AssemblyInput = {
+      security: surface.observations,
+      forms: forms.inventory.observations,
+      policies: policies.discovery,
+      consent: diffed.drafts,
+    };
+    const assembled = assembleFindings(input, {
+      tenantId: opened.tenantId,
+      caseId: opened.caseId,
+      jurisdiction: opened.target.jurisdiction as 'DK' | 'DE',
+      catalogue: options.catalogue,
+      host: domain,
+      scanId: job.id,
+      now,
+    });
+    await recordScan(connection, opened.tenantId, opened.caseId, {
+      scanId: job.id,
+      kind: 'initial',
+      findings: assembled.findings,
+      evidence: evidence.map((e) => ({ ...e, tenantId: opened.tenantId, caseId: opened.caseId })),
+      checksRun: surface.observations.length + forms.inventory.observations.length + 2,
+      checksPassed:
+        surface.observations.filter((o) => o.outcome === 'pass').length +
+        forms.inventory.observations.filter((o) => o.outcome === 'pass').length +
+        (policies.discovery.observation.outcome === 'pass' ? 1 : 0) +
+        (diffed.drafts.length === 0 ? 1 : 0),
+      undetermined: refusal.outcome === 'undetermined' ? 1 : 0,
+      actor: { kind: 'scanner' },
+      now: now(),
+    });
+    await mark('writing-up', 'ok', `${assembled.findings.length} finding(s)`);
+    const outcome: ScanProgress['outcome'] =
+      refusal.outcome === 'undetermined'
+        ? 'no_refusal'
+        : refusal.outcome === 'no_banner' && diffed.drafts.length === 0
+          ? 'no_banner_needed'
+          : 'case';
+    await finish(outcome, {
+      caseToken: opened.accessToken,
+      caseId: opened.caseId,
+      findings: assembled.findings.length,
+    });
+  }
+}

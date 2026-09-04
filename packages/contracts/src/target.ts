@@ -116,7 +116,7 @@ export function inferTarget(
 // The signals a Pass A capture carries about the document.
 export function signalsFromDocument(
   domain: string,
-  document: { lang?: string; contentLanguage?: string } | undefined,
+  document: { lang?: string | undefined; contentLanguage?: string | undefined } | undefined,
   registryCountry?: string,
 ): TargetSignals {
   const signals: Record<string, string> = { domain };
