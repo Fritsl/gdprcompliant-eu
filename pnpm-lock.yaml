@@ -327,7 +327,17 @@ importers:
         specifier: workspace:*
         version: link:../i18n
 
-  packages/rules: {}
+  packages/rules:
+    dependencies:
+      '@gc/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      '@gc/findings':
+        specifier: workspace:*
+        version: link:../findings
+      zod:
+        specifier: ^4.5.4
+        version: 4.5.4
 
   packages/scanner:
     dependencies:

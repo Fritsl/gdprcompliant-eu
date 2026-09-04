@@ -23,6 +23,7 @@ const files = [
   join(root, 'packages', 'remedies', 'content'),
   join(root, 'packages', 'findings', 'content'),
   join(root, 'packages', 'artefacts', 'content'),
+  join(root, 'packages', 'rules', 'content'),
   join(root, 'packages', 'i18n', 'content'),
   join(root, 'apps', 'web', 'content'),
   join(root, 'fixtures', 'companies'),

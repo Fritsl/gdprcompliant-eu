@@ -16,7 +16,7 @@ companies a list of problems; this hands them a plan and the things that close i
 
 ## Where you are
 
-**82 of 112 done.** Phase 0, phase 1 and phase 2 are complete, phase 3 has begun, DNS
+**83 of 112 done.** Phase 0, phase 1 and phase 2 are complete, phase 3 has begun, DNS
 collection opens phase 4 and the task catalogue opens phase 5. Contracts, config with the
 EU-only allowlist, the test harness, record and replay, i18n, the remedy catalogue and
 resolver, the model client, the web shell, the fixture estate (with TLS), the browser
@@ -73,7 +73,10 @@ published policy's traced recipients against every host the watch sees, a POL-05
 that names both sides within one watch cycle, nothing on a cosmetic change), and the
 workers (crawler, contract reader, registry adapter, researcher, drafter and claim
 verifier, each built from the narrowest tools handed in, returning claims on evidence and
-never a verdict, proven in isolation and under the dispatcher) are in. The journeys suite
+never a verdict, proven in isolation and under the dispatcher), and the obligations engine
+(rules as JSON with a citation and a worked example each, a fact sheet derived from the
+register, three-valued evaluation that is total and deterministic, twelve rules across EU,
+DK and DE, `pnpm check:rule-citations` on every push) are in. The journeys suite
 (tests/e2e/journeys.test.ts) drives a real scan of the estate through the front door, a
 fix applied by changing the fixture's responses, a colleague's re-check, a sign-off, an
 export and a deletion, and CI runs every e2e suite on push, files one at a time because

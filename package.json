@@ -38,6 +38,7 @@
     "check:retention": "node --import tsx scripts/retention-check.mjs",
     "check:guide-snippets": "node --import tsx scripts/check-guide-snippets.ts",
     "check:registries": "node --import tsx scripts/check-registries.ts",
+    "check:rule-citations": "node --import tsx scripts/check-rule-citations.ts",
     "check:claims": "node --import tsx scripts/check-claims.ts",
     "check:citations": "node --import tsx scripts/check-citations.ts",
     "corpus:ingest": "node --env-file-if-exists=.env --import tsx scripts/corpus-ingest.ts"

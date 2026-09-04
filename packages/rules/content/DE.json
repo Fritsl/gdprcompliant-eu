@@ -1,0 +1,55 @@
+{
+  "version": "2026-09-04",
+  "jurisdiction": "DE",
+  "rules": [
+    {
+      "id": "de-authority-named",
+      "title": {
+        "en": "Name the competent German supervisory authority a person can complain to",
+        "da": "Nævn den kompetente tyske tilsynsmyndighed, en person kan klage til",
+        "de": "Die zuständige deutsche Aufsichtsbehörde nennen, bei der sich eine Person beschweren kann"
+      },
+      "summary": {
+        "en": "A company established in Germany tells the people whose data it collects that they can complain to the supervisory authority competent for it, and how.",
+        "da": "En virksomhed etableret i Tyskland fortæller de personer, hvis oplysninger den indsamler, at de kan klage til den tilsynsmyndighed, der er kompetent for den, og hvordan.",
+        "de": "Ein in Deutschland niedergelassenes Unternehmen teilt den Personen, deren Daten es erhebt, mit, dass sie sich bei der für das Unternehmen zuständigen Aufsichtsbehörde beschweren können, und wie."
+      },
+      "when": {
+        "all": [
+          { "fact": "company.country", "op": "eq", "value": "DE" },
+          { "fact": "register.rows", "op": "gte", "value": 1 }
+        ]
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 13(2)(d)",
+          "note": "told of the right to lodge a complaint"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 77(1)",
+          "note": "the complaint to the supervisory authority"
+        }
+      ],
+      "findingTypeIds": ["POL-09"],
+      "examples": [
+        {
+          "name": "a German shop with a sign-up form",
+          "facts": { "company.country": "DE", "register.rows": 1 },
+          "expect": "applies"
+        },
+        {
+          "name": "a German company that collects nothing",
+          "facts": { "company.country": "DE", "register.rows": 0 },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "the register not yet read",
+          "facts": { "company.country": "DE" },
+          "expect": "undetermined"
+        }
+      ]
+    }
+  ]
+}

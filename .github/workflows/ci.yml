@@ -37,6 +37,8 @@ jobs:
       - run: pnpm check:claims
       # The curated maps parse and agree; a stale entry warns, a broken link fails (S-07).
       - run: pnpm check:registries
+      # Every rule cites a provision that resolves and passes its own examples (A-02).
+      - run: pnpm check:rule-citations
       - run: pnpm format:check
       - run: pnpm test:unit
       # Planted instructions in scanned content must gain nothing (A-10); poisoned claims

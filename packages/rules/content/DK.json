@@ -1,0 +1,53 @@
+{
+  "version": "2026-09-04",
+  "jurisdiction": "DK",
+  "rules": [
+    {
+      "id": "dk-authority-named",
+      "title": {
+        "en": "Name Datatilsynet as the authority a person can complain to",
+        "da": "Nævn Datatilsynet som den myndighed, en person kan klage til"
+      },
+      "summary": {
+        "en": "A company established in Denmark tells the people whose data it collects that they can complain to the Danish supervisory authority, Datatilsynet, and how.",
+        "da": "En virksomhed etableret i Danmark fortæller de personer, hvis oplysninger den indsamler, at de kan klage til den danske tilsynsmyndighed, Datatilsynet, og hvordan."
+      },
+      "when": {
+        "all": [
+          { "fact": "company.country", "op": "eq", "value": "DK" },
+          { "fact": "register.rows", "op": "gte", "value": 1 }
+        ]
+      },
+      "citations": [
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 13(2)(d)",
+          "note": "told of the right to lodge a complaint"
+        },
+        {
+          "instrument": "GDPR",
+          "ref": "Art. 77(1)",
+          "note": "the complaint to the supervisory authority of the habitual residence, work or infringement"
+        }
+      ],
+      "findingTypeIds": ["POL-09"],
+      "examples": [
+        {
+          "name": "a Danish shop with a sign-up form",
+          "facts": { "company.country": "DK", "register.rows": 2 },
+          "expect": "applies"
+        },
+        {
+          "name": "a Danish company that collects nothing",
+          "facts": { "company.country": "DK", "register.rows": 0 },
+          "expect": "not_applicable"
+        },
+        {
+          "name": "the register not yet read",
+          "facts": { "company.country": "DK" },
+          "expect": "undetermined"
+        }
+      ]
+    }
+  ]
+}
