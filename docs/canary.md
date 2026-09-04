@@ -71,3 +71,12 @@ in the same shape (`host`, `country`, `sector`), never removed once excluded.
 
 Anyone who asks to be left out goes on `exclusions` with the reason and the date, and
 stays there. The check refuses a corpus where an excluded host is still active.
+
+## The benchmark
+
+The run also leaves `benchmark.json` beside the snapshots and in `fixtures/canary/`,
+which the workflow commits: the date, how many sites were scanned, and how many open
+findings each had. No host and no order. The case page reads it and says what share of
+the watched sites have more open findings than the case, with the number of sites and
+the date. Below thirty sites it gives no share, only how many sites it is waiting for.
+`CANARY_BENCHMARK_FILE` points the site at another file; tests use it.

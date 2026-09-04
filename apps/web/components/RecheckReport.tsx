@@ -25,10 +25,13 @@ export function RecheckReport({
   url,
   labels,
   initial,
+  referral,
 }: {
   url: string;
   labels: RecheckLabels;
   initial?: Report;
+  // The ask (L-04): shown with the confirmation that the fix closed the finding.
+  referral?: { prompt: string; link: string } | undefined;
 }) {
   const router = useRouter();
   const [report, setReport] = useState<Report | undefined>(initial);
@@ -60,6 +63,12 @@ export function RecheckReport({
   return (
     <p role="status" className="step-meta" data-recheck={key}>
       {labels[key]}
+      {key === 'closed' && referral ? (
+        <span className="referral" data-referral="">
+          {' '}
+          {referral.prompt} <a href={referral.link}>{referral.link}</a>
+        </span>
+      ) : null}
       {report?.progress?.detail && (key === 'unverifiable' || key === 'unreachable') ? (
         <> · {report.progress.detail}</>
       ) : null}

@@ -2,7 +2,13 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { z } from 'zod';
-import { CountryCodeSchema, HostnameSchema, type Evidence } from '@gc/contracts';
+import {
+  BenchmarkSchema,
+  CountryCodeSchema,
+  HostnameSchema,
+  type Benchmark,
+  type Evidence,
+} from '@gc/contracts';
 import {
   GoldenFindingSchema,
   diffGolden,
@@ -388,4 +394,30 @@ export function formatCanaryReport(r: CanaryReport): string {
     lines.push('  triage: docs/canary.md');
   } else lines.push('no alarm');
   return lines.join('\n');
+}
+
+// ---- the benchmark (L-04) --------------------------------------------------------
+
+export const BENCHMARK_FILE = resolve(
+  dirname(fileURLToPath(import.meta.url)),
+  '../../../../fixtures/canary/benchmark.json',
+);
+// Below this the number is withheld: a percentile of a dozen sites is a coin toss.
+export const BENCHMARK_MIN_SITES = 30;
+
+export function loadBenchmark(file: string | undefined = undefined): Benchmark {
+  const path = file ?? BENCHMARK_FILE;
+  if (!existsSync(path)) return { date: null, n: 0, counts: [] };
+  return BenchmarkSchema.parse(JSON.parse(readFileSync(path, 'utf8')));
+}
+
+export function benchmarkFromSnapshots(
+  date: string,
+  snapshots: Iterable<CanarySnapshot>,
+): Benchmark {
+  const counts = [...snapshots]
+    .filter((s) => s.status === 'scanned' && s.derived)
+    .map((s) => s.derived!.findings.length)
+    .sort((a, b) => a - b);
+  return { date, n: counts.length, counts };
 }

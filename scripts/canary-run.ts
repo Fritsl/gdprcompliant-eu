@@ -6,6 +6,7 @@
 //   pnpm canary:run                       today's date, artifacts/canary
 //   CANARY_DIR=... CANARY_DATE=... CANARY_LIMIT=5 pnpm canary:run
 import { execSync } from 'node:child_process';
+import { writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { assembleFindings } from '@gc/findings';
 import { loadCatalogue } from '@gc/remedies';
@@ -14,6 +15,8 @@ import {
   activeSites,
   loadCanaryCorpus,
   runChecks,
+  benchmarkFromSnapshots,
+  readSnapshots,
   snapshotOf,
   writeSnapshot,
   type CanarySnapshot,
@@ -125,4 +128,10 @@ try {
 } finally {
   await pool.stop();
 }
-console.log(`canary ${date}: ${sites.length} site(s) written to ${join(root, date)}`);
+// The benchmark (L-04): the distribution of open findings across the sites scanned tonight,
+// beside the snapshots and where the product reads it from.
+const benchmark = benchmarkFromSnapshots(date, readSnapshots(root, date).values());
+const benchmarkOut = process.env['CANARY_BENCHMARK_OUT'] ?? join(process.cwd(), 'fixtures', 'canary', 'benchmark.json');
+writeFileSync(join(root, date, 'benchmark.json'), JSON.stringify(benchmark, null, 2) + '\n');
+writeFileSync(benchmarkOut, JSON.stringify(benchmark, null, 2) + '\n');
+console.log(`canary ${date}: ${sites.length} site(s) written to ${join(root, date)}; benchmark over ${benchmark.n} site(s)`);

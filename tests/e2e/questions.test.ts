@@ -119,9 +119,10 @@ describe.skipIf(!url)('one question at a time (D-10)', () => {
   it('shows one question, chosen by the rules engine for the sector, with what it settles', async () => {
     const page = await browser.newPage();
     await page.goto(`${BASE}/en/c/${token}/questions`);
-    // An online shop: the sector's own question comes first.
+    // An online shop: the sector's own question comes first. It settles the children's
+    // duty in both the national and the Union rule set, so two.
     expect(await expectOneQuestion(page)).toBe('q-children');
-    expect(await page.locator('.q-unlock').getAttribute('data-settles')).toBe('1');
+    expect(await page.locator('.q-unlock').getAttribute('data-settles')).toBe('2');
     expect(await page.locator('.q-opt').count()).toBe(2);
     expect(await page.locator('article').getAttribute('data-answered')).toBe('0');
     const total = Number(await page.locator('article').getAttribute('data-total'));
@@ -149,7 +150,7 @@ describe.skipIf(!url)('one question at a time (D-10)', () => {
     expect(answered[0]!.payload).toMatchObject({
       questionId: 'q-children',
       answer: 'No',
-      settled: 1,
+      settled: 2,
     });
     const rows = await caseAnswers(t, tenantId, caseId);
     expect(rows.map((r) => [r.questionId, r.answer])).toEqual([['q-children', 'no']]);
@@ -197,7 +198,7 @@ describe.skipIf(!url)('one question at a time (D-10)', () => {
     expect(await page.locator('.q-text').count()).toBe(0);
     expect(
       Number(await page.locator('[data-duties-settled]').getAttribute('data-duties-settled')),
-    ).toBe(2);
+    ).toBe(3);
     expect(await page.locator('[data-answered-question]').count()).toBe(4);
     await page.screenshot({ path: join(ARTIFACTS, 'd10-done.png'), fullPage: true });
     await page.close();

@@ -167,12 +167,15 @@ function Remedy({
   locale,
   primary,
   recheck,
+  referral,
 }: {
   f: CaseFindingView;
   base: string;
   locale: Locale;
   primary: boolean;
   recheck?: RecheckView;
+  // The ask (L-04), shown only with the confirmation that a re-check closed the finding.
+  referral: { prompt: string; link: string };
 }) {
   const r = f.remedy;
   const kindText = {
@@ -290,6 +293,7 @@ function Remedy({
         <RecheckReport
           url={`${base}/recheck/${recheck.id}`}
           labels={recheckLabels}
+          referral={referral}
           initial={{
             state: recheck.state,
             ...(recheck.progress ? { progress: recheck.progress } : {}),
@@ -364,6 +368,14 @@ export default async function CasePage({
   const percent = findings.length === 0 ? 100 : Math.round((done / findings.length) * 100);
   const nowId = open[0]?.id;
   const stepClass = (f: CaseFindingView) => (!f.open ? 'done' : f.id === nowId ? 'now' : 'next');
+  const referral = { prompt: t(locale, 'referral.prompt').text, link: view.referral.link };
+  const benchmark = view.benchmark;
+  const benchmarkLine = benchmark.enough
+    ? t(locale, 'benchmark.better')
+        .text.replace('{share}', String(benchmark.share))
+        .replace('{n}', String(benchmark.n))
+        .replace('{date}', benchmark.date ?? '')
+    : t(locale, 'benchmark.waiting').text.replace('{n}', String(benchmark.n));
   const notice =
     query.attested === '1'
       ? t(locale, 'case.attested')
@@ -429,6 +441,12 @@ export default async function CasePage({
       {notice ? (
         <p role="status" className="muted">
           <Text of={notice} />
+          {query.attested === '1' ? (
+            <span className="referral" data-referral="">
+              {' '}
+              {referral.prompt} <a href={referral.link}>{referral.link}</a>
+            </span>
+          ) : null}
         </p>
       ) : null}
 
@@ -491,6 +509,7 @@ export default async function CasePage({
                 base={base}
                 locale={locale}
                 primary={f.id === nowId}
+                referral={referral}
                 {...(recheck?.findingId === f.id ? { recheck } : {})}
               />
             </div>
@@ -532,6 +551,9 @@ export default async function CasePage({
           <li>
             {counts.events} <Text of={t(locale, 'case.holds.events')} />
           </li>
+          <li data-referrals={view.referral.count}>
+            {view.referral.count} <Text of={t(locale, 'case.holds.referrals')} />
+          </li>
           <li data-questions-open={questions.open} data-questions-answered={questions.answered}>
             {questions.open} <Text of={t(locale, 'case.holds.questions')} /> ·{' '}
             <a href={`${base}/questions`} data-questions-link="">
@@ -548,6 +570,14 @@ export default async function CasePage({
       </section>
 
       <Progress progress={progress} locale={locale} />
+      <p
+        className="muted"
+        data-benchmark=""
+        data-benchmark-n={benchmark.n}
+        {...(benchmark.enough ? { 'data-benchmark-share': benchmark.share } : {})}
+      >
+        {benchmarkLine}
+      </p>
 
       <section className="colleagues no-print" id="colleagues">
         <Text of={t(locale, 'colleagues.heading')} as="h2" />

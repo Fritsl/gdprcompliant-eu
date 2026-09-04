@@ -1,4 +1,4 @@
-import { randomBytes, randomInt } from 'node:crypto';
+import { createHash, randomBytes, randomInt } from 'node:crypto';
 import { and, eq, gt, isNull, lt, or, sql } from 'drizzle-orm';
 import {
   CASE_NUMBER_ALPHABET,
@@ -61,6 +61,8 @@ export interface OpenCaseInput {
   readonly tenantId?: string;
   readonly now?: () => Date;
   readonly random?: Random;
+  // The referral code of the case whose link started this scan (L-04), if any.
+  readonly referredBy?: string;
 }
 
 export interface OpenedCase {
@@ -128,6 +130,8 @@ export async function openCase(connection: Connection, input: OpenCaseInput): Pr
           lane: input.lane ?? 'self-serve',
           accessToken,
           expiresAt,
+          referralCode: referralCodeOf(caseId),
+          ...(input.referredBy ? { referredBy: input.referredBy } : {}),
         })
         .onConflictDoNothing({ target: cases.id })
         .returning({ id: cases.id });
@@ -429,4 +433,47 @@ export async function overrideCaseLocale(
     });
     return { from: row.locale, to: locale, changed: true };
   });
+}
+
+// ---- referral (L-04) --------------------------------------------------------------
+
+// The code a case hands out: derived from its number, twelve hex characters, no secret
+// in it. Anyone holding it can only attribute a new scan to this case.
+export const referralCodeOf = (caseId: string): string =>
+  createHash('sha256').update(`ref:${caseId}`).digest('hex').slice(0, 12);
+
+export interface Referral {
+  readonly code: string;
+  readonly referredBy: string | null;
+  readonly count: number;
+}
+
+// How many cases were opened from this case's link. Counted as the owner across
+// tenants, because the referred cases belong to other companies; a number only.
+export async function countReferrals(connection: Connection, code: string): Promise<number> {
+  const [row] = await connection.db
+    .select({ n: sql<number>`count(*)::int` })
+    .from(cases)
+    .where(eq(cases.referredBy, code));
+  return row?.n ?? 0;
+}
+
+export async function referralOf(
+  connection: Connection,
+  tenantId: string,
+  caseId: string,
+): Promise<Referral> {
+  const [row] = await withTenant(connection, tenantId, (db) =>
+    db
+      .select({ code: cases.referralCode, referredBy: cases.referredBy })
+      .from(cases)
+      .where(eq(cases.id, caseId))
+      .limit(1),
+  );
+  const code = row?.code ?? referralCodeOf(caseId);
+  return {
+    code,
+    referredBy: row?.referredBy ?? null,
+    count: await countReferrals(connection, code),
+  };
 }

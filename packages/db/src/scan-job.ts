@@ -55,6 +55,11 @@ export const SCAN_JOB = defineJob({
     source: z.enum(['front-door', 'internal']),
     // Who asked, for the abuse controls: a hashed source address, never the address.
     requestedBy: z.string().optional(),
+    // The referral code the visitor arrived with (L-04): twelve hex characters, or nothing.
+    referredBy: z
+      .string()
+      .regex(/^[a-f0-9]{12}$/)
+      .optional(),
     now: z.iso.datetime().optional(),
   }),
   progress: ScanProgressSchema,

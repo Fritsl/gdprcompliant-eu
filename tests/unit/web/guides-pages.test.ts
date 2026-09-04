@@ -27,7 +27,9 @@ describe('the guide pages are static', () => {
 
   it('the front door and both guide pages end in the same scan form', () => {
     const front = src('app', '[locale]', 'page.tsx');
-    for (const s of [front, page, index]) expect(s).toContain('<ScanForm locale={locale} />');
+    // The front door may hand the form a referral code (L-04); the guides never do.
+    for (const s of [page, index]) expect(s).toContain('<ScanForm locale={locale} />');
+    expect(front).toContain('<ScanForm locale={locale} {...(referral ? { referral } : {})} />');
     expect(front).not.toContain('<form');
     const form = src('components', 'ScanForm.tsx');
     expect(form).toContain('action={`/${locale}/scan`}');

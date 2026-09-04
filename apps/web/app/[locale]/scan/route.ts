@@ -18,7 +18,15 @@ export async function POST(request: Request, context: { params: Promise<{ locale
   if (!locale) return new Response('Not found', { status: 404 });
   const form = await request.formData();
   const domain = String(form.get('domain') ?? '');
-  const outcome = await startScan({ domain, locale, source: sourceOf(request) });
+  // A referral code (L-04) is twelve hex characters from our own link, or it is nothing.
+  const ref = String(form.get('ref') ?? '');
+  const referredBy = /^[a-f0-9]{12}$/.test(ref) ? ref : undefined;
+  const outcome = await startScan({
+    domain,
+    locale,
+    source: sourceOf(request),
+    ...(referredBy ? { referredBy } : {}),
+  });
   const url = new URL(request.url);
   url.search = '';
   if (outcome.ok) {

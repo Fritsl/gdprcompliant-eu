@@ -40,6 +40,12 @@ jobs:
           name: canary-snapshots
           path: artifacts/canary
           retention-days: 14
+      # The benchmark the product shows (L-04) is committed, so the site reads last night's.
+      - run: |
+          git config user.name 'canary'
+          git config user.email 'canary@gdprcompliant.eu'
+          git add fixtures/canary/benchmark.json
+          git diff --cached --quiet || git commit -m "canary: benchmark $(date -u +%F)" && git push || true
       - id: check
         run: pnpm canary:check | tee artifacts/canary-report.txt
         continue-on-error: true

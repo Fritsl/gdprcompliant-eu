@@ -1333,5 +1333,25 @@
     "en": "Download as Markdown",
     "da": "Download som Markdown",
     "de": "Als Markdown herunterladen"
+  },
+  "referral.prompt": {
+    "en": "Something just went green. Send this link to someone who runs a website:",
+    "da": "Noget blev lige grønt. Send dette link til nogen, der har et website:",
+    "de": "Gerade ist etwas grün geworden. Schicken Sie diesen Link jemandem mit einer Website:"
+  },
+  "case.holds.referrals": {
+    "en": "companies started from your link",
+    "da": "virksomheder startede fra dit link",
+    "de": "Unternehmen sind über Ihren Link gestartet"
+  },
+  "benchmark.better": {
+    "en": "Fewer open items than {share}% of the {n} public sites we watched on {date}.",
+    "da": "Færre åbne punkter end {share}% af de {n} offentlige sites, vi kiggede på den {date}.",
+    "de": "Weniger offene Punkte als {share}% der {n} öffentlichen Websites, die wir am {date} beobachtet haben."
+  },
+  "benchmark.waiting": {
+    "en": "The benchmark needs 30 watched sites; {n} so far.",
+    "da": "Sammenligningen kræver 30 overvågede sites; {n} indtil videre.",
+    "de": "Der Vergleich braucht 30 beobachtete Websites; bisher {n}."
   }
 }

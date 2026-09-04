@@ -102,6 +102,9 @@ export const cases = pgTable(
     laneScore: integer('lane_score').notNull().default(0),
     // The signals behind the score (L-01), for an internal reader; never exported.
     laneSignals: jsonb('lane_signals').notNull().default([]),
+    // Referral (L-04): the code this case hands out, and the code it came from, if any.
+    referralCode: text('referral_code'),
+    referredBy: text('referred_by'),
     stage: text('stage').notNull().default('opened'),
     // Ownership (C-01). An unclaimed case is reachable only by its token, which is 256
     // random bits, and only until expires_at; claiming clears the expiry.
@@ -125,6 +128,7 @@ export const cases = pgTable(
     check('cases_token_length', sql`length(${t.accessToken}) >= 32`),
     uniqueIndex('cases_access_token').on(t.accessToken),
     uniqueIndex('cases_trust_slug').on(t.trustSlug),
+    uniqueIndex('cases_referral_code').on(t.referralCode),
     check('cases_trust_slug', sql`${t.trustSlug} is null or ${t.trustSlug} ~ '^[a-f0-9]{16}$'`),
     index('cases_tenant_idx').on(t.tenantId),
     index('cases_domain_idx').on(t.tenantId, sql`(${t.company}->>'domain')`),

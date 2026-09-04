@@ -5,9 +5,10 @@ import type { Locale } from '@gc/contracts';
 // end of every guide are the same form, so a reader who arrived from a search starts a
 // scan without finding their way to the front page first.
 
-export function ScanForm({ locale }: { locale: Locale }) {
+export function ScanForm({ locale, referral }: { locale: Locale; referral?: string | undefined }) {
   return (
     <form method="post" action={`/${locale}/scan`} data-scan-form="">
+      {referral ? <input type="hidden" name="ref" value={referral} /> : null}
       <input
         type="text"
         name="domain"

@@ -1,6 +1,6 @@
 # Schema
 
-Generated from `packages/db/migrations/meta/0018_snapshot.json` by `scripts/schema-doc.mjs`.
+Generated from `packages/db/migrations/meta/0019_snapshot.json` by `scripts/schema-doc.mjs`.
 Do not edit; change `packages/db/src/schema.ts`, run `pnpm db:generate`, then `pnpm db:doc`.
 
 Every table carries `tenant_id`, `created_at` and `source_ref`. `case_events` and
@@ -116,6 +116,8 @@ erDiagram
     text lane
     integer lane_score
     jsonb lane_signals
+    text referral_code "nullable"
+    text referred_by "nullable"
     text stage
     text access_token
     timestamp expires_at "nullable"
@@ -532,6 +534,8 @@ erDiagram
 | lane | text | not null |
 | lane_score | integer | not null, default 0 |
 | lane_signals | jsonb | not null, default '[]'::jsonb |
+| referral_code | text |  |
+| referred_by | text |  |
 | stage | text | not null, default 'opened' |
 | access_token | text | not null, default replace(gen_random_uuid()::text \|\| gen_random_uuid()::text, '-', '') |
 | expires_at | timestamp with time zone |  |
@@ -544,6 +548,7 @@ erDiagram
 - tenant_id → tenants(id)
 - unique index cases_access_token (access_token)
 - unique index cases_trust_slug (trust_slug)
+- unique index cases_referral_code (referral_code)
 - index cases_tenant_idx (tenant_id)
 - index cases_domain_idx (tenant_id, ("company"->>'domain'))
 - check cases_id: `"cases"."id" ~ '^[A-Z]{2}-[0-9]{2}-[A-Z0-9]{4}$'`

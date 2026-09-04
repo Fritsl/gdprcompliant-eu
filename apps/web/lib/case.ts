@@ -52,10 +52,13 @@ import {
   type RecheckProgress,
   type ShareSummary,
   type TrustStatus,
+  referralOf,
 } from '@gc/db';
 import type { Role } from '@gc/findings';
 import { localise } from '@gc/i18n';
 import { JobQueue } from '@gc/jobs';
+import { benchmarkOf, type BenchmarkView } from '@gc/contracts';
+import { loadBenchmark } from '@/lib/benchmark';
 import { loadCatalogue } from '@gc/remedies';
 import type {
   ArtefactKind,
@@ -375,6 +378,9 @@ export interface CasePageView extends CaseSummary {
   readonly findings: CaseFindingView[];
   readonly trust: TrustStatus;
   readonly shares: ShareSummary[];
+  // The referral (L-04): the code this case hands out, its link, and how many came from it.
+  readonly referral: { readonly code: string; readonly link: string; readonly count: number };
+  readonly benchmark: BenchmarkView;
 }
 
 const DEFAULT_MINUTES = 15;
@@ -534,7 +540,17 @@ export function loadCasePage(token: string, locale: Locale): Promise<CasePageVie
       baseUrl: appBaseUrl(),
       locale,
     });
-    return { ...summary, members, progress, domain, findings, trust, shares };
+    const ref = await referralOf(connection, found.tenantId, found.caseId);
+    const referral = {
+      code: ref.code,
+      link: `${appBaseUrl()}/${locale}?ref=${ref.code}`,
+      count: ref.count,
+    };
+    const benchmark = benchmarkOf(
+      findings.filter((f) => f.open).length,
+      loadBenchmark(process.env['CANARY_BENCHMARK_FILE']),
+    );
+    return { ...summary, members, progress, domain, findings, trust, shares, referral, benchmark };
   });
 }
 

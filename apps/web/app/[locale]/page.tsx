@@ -13,11 +13,13 @@ export default async function Home({
   searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ outcome?: string; retry?: string }>;
+  searchParams: Promise<{ outcome?: string; retry?: string; ref?: string }>;
 }) {
   const locale = asLocale((await params).locale);
   if (!locale) notFound();
-  const { outcome } = await searchParams;
+  const { outcome, ref } = await searchParams;
+  // The referral code (L-04) from our own link, kept only if it looks like one.
+  const referral = ref && /^[a-f0-9]{12}$/.test(ref) ? ref : undefined;
   const refusal =
     outcome === 'invalid'
       ? t(locale, 'front.invalid')
@@ -42,7 +44,7 @@ export default async function Home({
           <Text of={refusal} />
         </p>
       ) : null}
-      <ScanForm locale={locale} />
+      <ScanForm locale={locale} {...(referral ? { referral } : {})} />
     </article>
   );
 }

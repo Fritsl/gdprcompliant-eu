@@ -50,6 +50,7 @@ export async function startScan(input: {
   readonly domain: string;
   readonly locale: Locale;
   readonly source: string;
+  readonly referredBy?: string | undefined;
 }): Promise<StartOutcome> {
   const domain = normaliseDomain(input.domain);
   if (!domain) return { ok: false, reason: 'invalid' };
@@ -64,6 +65,7 @@ export async function startScan(input: {
       locale: input.locale,
       source: 'front-door',
       requestedBy: key,
+      ...(input.referredBy ? { referredBy: input.referredBy } : {}),
     });
     return { ok: true as const, jobId };
   });

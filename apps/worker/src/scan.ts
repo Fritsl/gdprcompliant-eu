@@ -227,6 +227,7 @@ export async function registerScanWorker(
     let opened;
     try {
       opened = await openCaseForTarget(connection, {
+        ...(job.payload.referredBy ? { referredBy: job.payload.referredBy } : {}),
         signals: signalsFromDocument(domain, a.capture.document),
         source: 'scanner',
         now,
