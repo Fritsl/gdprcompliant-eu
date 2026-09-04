@@ -17,3 +17,4 @@ export * from './agreement-analysis.js';
 export * from './workers/index.js';
 export * from './planner.js';
 export * from './advisor.js';
+export * from './dive.js';

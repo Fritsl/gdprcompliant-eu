@@ -465,6 +465,18 @@
         "da": "{{question}}",
         "de": "{{question}}"
       }
+    },
+    "dive_requested": {
+      "text": {
+        "en": "Asked to tell more about a passage",
+        "da": "Bad om mere om et afsnit",
+        "de": "Um mehr zu einer Stelle gebeten"
+      },
+      "detail": {
+        "en": "{{fragment}}",
+        "da": "{{fragment}}",
+        "de": "{{fragment}}"
+      }
     }
   }
 }

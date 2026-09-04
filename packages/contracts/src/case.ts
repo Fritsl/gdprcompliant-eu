@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { AdviceSchema } from './advice.js';
+import { AdviceSchema, DiveOriginSchema } from './advice.js';
 import { ArtefactKindSchema } from './remedy.js';
 import { SeveritySchema } from './finding.js';
 import {
@@ -151,6 +151,13 @@ export const CaseEventSchema = z
       question: NonEmptyStringSchema,
       refused: z.boolean(),
       advice: AdviceSchema,
+    }),
+    // A dive (V-05): what was asked about, from where, and in which conversation.
+    event('dive_requested', {
+      threadId: IdSchema,
+      turn: z.number().int().min(0),
+      origin: DiveOriginSchema,
+      fragment: NonEmptyStringSchema,
     }),
     event('artefact_generated', { artefactId: IdSchema, kind: ArtefactKindSchema }),
     // A named person signed a specific version of a document (A-09): who, which version,

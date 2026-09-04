@@ -1,27 +1,16 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-import {
-  OUTPUT_GUARDS,
-  advise,
-  adviceMarkdown,
-  caseFacts,
-  words,
-  type AdviseInput,
-  type CaseFactsInput,
-  type ModelClient,
-} from '@gc/agent';
+import { OUTPUT_GUARDS, advise, adviceMarkdown, caseFacts, type ModelClient } from '@gc/agent';
 import { REPORT_CONTENT } from '@gc/artefacts';
 import {
   AdviceSchema,
   type Advice,
-  type CorpusChunk,
-  type Jurisdiction,
   type Locale,
   type ModelInput,
   type ModelOutput,
 } from '@gc/contracts';
-import { advisorStack, corpusChunks, speaksIn } from '@gc/corpus';
+import { advisorStack } from '@gc/corpus';
 import {
   adviceOf,
   advisorCatalogue,
@@ -33,6 +22,8 @@ import {
   type TestDatabase,
 } from '@gc/db';
 import { bannedClaims, loadClaimVocabulary } from '@gc/i18n';
+import { CASES } from './advisor-cases.js';
+import { lexical } from './advisor-cases.js';
 import { recordEvalResult } from './record.js';
 import { ROOT, thresholdOf } from './sets.js';
 
@@ -59,124 +50,7 @@ const fixture = JSON.parse(
 ) as { scenarios: Scenario[] };
 const scenarios = fixture.scenarios;
 const vocab = loadClaimVocabulary();
-const chunks = corpusChunks();
 const NOW = () => new Date('2026-09-04T10:00:00Z');
-const HASH = 'a'.repeat(64);
-const EV = { evidenceId: 'document:0123456789abcdef', hash: HASH };
-
-// The two cases the advisor eval seeds, held in memory here: the same facts, the same
-// labels, and no database needed to measure a refusal.
-const CASES: Record<
-  Scenario['case'],
-  { locale: Locale; jurisdiction: Jurisdiction; record: CaseFactsInput }
-> = {
-  'dk-shop': {
-    locale: 'da',
-    jurisdiction: 'DK',
-    record: {
-      findings: [
-        {
-          id: 'f1',
-          typeId: 'DPA-01',
-          status: 'open',
-          summary: 'Vi bruger Sendmore til at sende vores nyhedsbreve.',
-          evidence: [EV],
-        },
-      ],
-      rows: [
-        {
-          activityId: 'a1',
-          key: 'newsletter',
-          name: 'Nyhedsbrev',
-          attributes: {},
-          purposes: ['marketing'],
-          dataCategories: ['email'],
-          legalBases: ['consent'],
-          recipients: [{ nodeId: 'v1', name: 'Sendmore' }],
-          transfers: [],
-          risks: [],
-          controls: [],
-          origin: 'derived',
-          confidence: 0.6,
-          evidence: [EV],
-          draft: true,
-          contradictions: 0,
-        },
-      ],
-      answers: [
-        {
-          id: 'answer:dk:q-dpo',
-          questionId: 'q-dpo',
-          answer: 'no',
-          asks: 'Har I udpeget en databeskyttelsesrådgiver?',
-        },
-        {
-          id: 'answer:dk:q-headcount',
-          questionId: 'q-headcount',
-          answer: '1-9',
-          asks: 'Hvor mange arbejder i virksomheden?',
-        },
-      ],
-      vendors: [{ nodeId: 'v1', name: 'Sendmore', role: 'processor', evidence: [EV] }],
-    },
-  },
-  'de-practice': {
-    locale: 'de',
-    jurisdiction: 'DE',
-    record: {
-      findings: [
-        {
-          id: 'f2',
-          typeId: 'DPA-02',
-          status: 'open',
-          summary:
-            'Unsere Patientenakten liegen bei Praxis Cloud; ein Vertrag zur Auftragsverarbeitung besteht.',
-          evidence: [EV],
-        },
-      ],
-      rows: [],
-      answers: [
-        {
-          id: 'answer:de:q-health-data',
-          questionId: 'q-health-data',
-          answer: 'yes',
-          asks: 'Verarbeiten Sie Gesundheitsdaten von Kundinnen, Kunden oder Patienten?',
-        },
-        {
-          id: 'answer:de:q-headcount',
-          questionId: 'q-headcount',
-          answer: '10-49',
-          asks: 'Wie viele Menschen arbeiten im Unternehmen?',
-        },
-      ],
-      vendors: [
-        {
-          nodeId: 'v2',
-          name: 'Praxis Cloud GmbH',
-          country: 'DE',
-          role: 'processor',
-          evidence: [EV],
-        },
-      ],
-    },
-  },
-};
-
-// Retrieval by word overlap over the content files: enough to offer the model real
-// passages of the right jurisdiction without a store.
-const lexical: AdviseInput['retrieve'] = async (question, jurisdiction, k) => {
-  const wanted = new Set(words(question));
-  const scored = chunks
-    .filter((c) => speaksIn(c.jurisdiction, jurisdiction))
-    .map((chunk) => {
-      let score = 0;
-      for (const w of new Set(words(chunk.text))) if (wanted.has(w)) score += 1;
-      return { chunk, distance: 1 - score / Math.sqrt(chunk.text.length + 1) };
-    })
-    .sort((a, b) => a.distance - b.distance);
-  return scored.slice(0, k);
-};
-
 // A model that refuses as the label says, and nothing else.
 const stubFor = (s: Scenario): Pick<ModelClient, 'call'> => ({
   call: (async (): Promise<ModelOutput<'advise'>> => ({
@@ -425,5 +299,3 @@ describe.skipIf(!url)('conversations are tenant-scoped and go with the case', ()
     expect(await adviceOf(t, a.tenantId, a.caseId)).toEqual([]);
   });
 });
-
-void (0 as unknown as CorpusChunk);

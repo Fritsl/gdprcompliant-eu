@@ -1498,5 +1498,30 @@
     "en": "An assistant, not counsel: nothing here is legal advice. Have a lawyer read anything you intend to rely on.",
     "da": "En assistent, ikke en advokat: intet her er juridisk rådgivning. Lad en advokat læse alt, du vil støtte dig til.",
     "de": "Ein Assistent, kein Rechtsbeistand: nichts hier ist Rechtsberatung. Lassen Sie alles, worauf Sie sich verlassen wollen, von einer Anwältin oder einem Anwalt lesen."
+  },
+  "dive.more": {
+    "en": "Tell me more about this",
+    "da": "Fortæl mig mere om dette",
+    "de": "Erzähl mir mehr darüber"
+  },
+  "advisor.thread": {
+    "en": "This conversation",
+    "da": "Denne samtale",
+    "de": "Dieses Gespräch"
+  },
+  "advisor.allThreads": {
+    "en": "All questions",
+    "da": "Alle spørgsmål",
+    "de": "Alle Fragen"
+  },
+  "advisor.followUp": {
+    "en": "Ask a follow-up",
+    "da": "Stil et opfølgende spørgsmål",
+    "de": "Eine Anschlussfrage stellen"
+  },
+  "advisor.divedFrom": {
+    "en": "Asked about",
+    "da": "Spurgt om",
+    "de": "Gefragt zu"
   }
 }

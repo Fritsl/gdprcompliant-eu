@@ -151,6 +151,11 @@ export const MODEL_CALLS = {
       passages: z.array(PassageSchema).default([]),
       // The facts' values, as captured: scraped, typed by people, attacker-controlled.
       untrusted: z.array(UntrustedContentSchema).default([]),
+      // Earlier turns of the same conversation (V-05), newest last.
+      history: z
+        .array(z.object({ question: NonEmptyStringSchema, answer: NonEmptyStringSchema }))
+        .max(12)
+        .default([]),
     }),
     output: z.strictObject({
       answer: Prose,

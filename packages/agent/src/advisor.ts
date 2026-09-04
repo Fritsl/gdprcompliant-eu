@@ -6,10 +6,12 @@ import {
   type AdviceLaw,
   type Citation,
   type CorpusChunk,
+  type Dive,
   type Jurisdiction,
   type Locale,
   type ModelInput,
   type RegisterRow,
+  type Thread,
   type UntrustedContent,
   sha256,
 } from '@gc/contracts';
@@ -189,7 +191,16 @@ export interface AdviseInput {
   readonly k?: number;
   readonly now?: () => Date;
   readonly model?: string;
+  // A dive (V-05): the material the question points at, fenced as quoted data; the
+  // retrieval runs on it rather than on the whole case.
+  readonly quoted?: { readonly text: string; readonly source: string };
+  // Earlier turns of the same conversation, oldest first.
+  readonly history?: readonly { readonly question: string; readonly answer: string }[];
+  readonly thread?: Thread;
+  readonly dive?: Dive;
 }
+
+export const QUOTED = 'quoted: ';
 
 export const ADVISOR_SYSTEM_PROMPT = [
   'You answer one question from a small company about its own data protection, using',
@@ -223,7 +234,20 @@ export function advisorPrompt(input: ModelInput<'advise'>): { system: string; us
   );
   lines.push('');
   lines.push(`Question: ${input.question}`);
+  const quoted = (input.untrusted ?? []).find((u) => u.source.description.startsWith(QUOTED));
+  if (quoted)
+    lines.push(
+      `The question points at the material in the fenced block labelled "${quoted.source.description}": answer about that material.`,
+    );
   lines.push('');
+  if ((input.history ?? []).length > 0) {
+    lines.push('Earlier turns of this conversation, oldest first:');
+    for (const h of input.history ?? []) {
+      lines.push(`Q: ${h.question}`);
+      lines.push(`A: ${h.answer}`);
+    }
+    lines.push('');
+  }
   lines.push('Facts of the case, by label; each value is in the fenced block with the same label:');
   (input.facts ?? []).forEach((f, i) => lines.push(`- F${i + 1}: ${f.label}`));
   if ((input.facts ?? []).length === 0) lines.push('- (the case holds no facts yet)');
@@ -239,7 +263,12 @@ export async function advise(
   input: AdviseInput,
 ): Promise<Advice> {
   const now = input.now ?? (() => new Date());
-  const found = await input.retrieve(input.question, input.jurisdiction, input.k ?? 6);
+  // A dive retrieves on the fragment it points at, not on the whole case.
+  const found = await input.retrieve(
+    input.quoted?.text ?? input.question,
+    input.jurisdiction,
+    input.k ?? 6,
+  );
   // The retrieval is filtered by jurisdiction already; this is the belt for the braces.
   const usable = found.filter(
     (r) => r.chunk.jurisdiction === 'EU' || r.chunk.jurisdiction === input.jurisdiction,
@@ -259,6 +288,14 @@ export async function advise(
     hash: sha256(f.value),
     text: f.value,
   }));
+  if (input.quoted)
+    untrusted.push({
+      trust: 'untrusted',
+      source: { description: `${QUOTED}${input.quoted.source}`, fetchedAt: now().toISOString() },
+      mediaType: 'text/plain',
+      hash: sha256(input.quoted.text),
+      text: input.quoted.text,
+    });
   const modelInput: ModelInput<'advise'> = {
     question: input.question,
     locale: input.locale,
@@ -266,6 +303,9 @@ export async function advise(
     facts: input.facts.map((f) => ({ label: f.label, value: f.value })),
     passages: passages.map((p) => ({ key: p.key, ref: p.ref, text: p.text })),
     untrusted,
+    history: (input.history ?? [])
+      .slice(-12)
+      .map((h) => ({ question: h.question, answer: h.answer })),
   };
   const out = await client.call({
     name: 'advise',
@@ -293,7 +333,8 @@ export async function advise(
     ? settlingQuestion(input.question, out.missing, input.catalogue ?? [])
     : undefined;
   return AdviceSchema.parse({
-    question: input.question,
+    // The record keeps the fragment in the question, as the page showed it.
+    question: input.quoted ? `${input.question} ${input.quoted.text}` : input.question,
     locale: input.locale,
     jurisdiction: input.jurisdiction,
     at: now().toISOString(),
@@ -309,6 +350,8 @@ export async function advise(
         }
       : {}),
     ...(input.model ? { model: input.model } : {}),
+    ...(input.thread ? { thread: input.thread } : {}),
+    ...(input.dive ? { dive: input.dive } : {}),
   });
 }
 

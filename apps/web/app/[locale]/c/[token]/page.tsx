@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { CopyButton } from '@/components/CopyButton';
 import { Progress } from '@/components/Progress';
 import { RecheckReport, type RecheckLabels } from '@/components/RecheckReport';
+import { Dive } from '@/components/Dive';
 import { Text } from '@/components/Text';
 import {
   loadCasePage,
@@ -476,12 +477,20 @@ export default async function CasePage({
                 <span className="step-meta">{f.area}</span>
               </div>
               <h3>{f.remedy.title}</h3>
+              <Dive
+                base={base}
+                locale={locale}
+                kind="finding"
+                refId={f.id}
+                fragment={`${f.typeId}: ${f.remedy.title}`}
+              />
               {f.citations.length > 0 ? (
                 <p className="cites">
                   <Text of={t(locale, 'case.rule')} />
                   {f.citations.map((c) => (
                     <span className="cite" key={c}>
                       {c}
+                      <Dive base={base} locale={locale} kind="article" refId={c} fragment={c} />
                     </span>
                   ))}
                   {f.authority ? <em className="muted">{f.authority}</em> : null}

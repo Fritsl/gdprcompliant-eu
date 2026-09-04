@@ -20,7 +20,7 @@ const HOSTED_PROVIDERS = [
 ];
 
 describe('the eval sets', () => {
-  it('are the six judgement sites, each with at least twenty labelled scenarios and their reasoning', async () => {
+  it('are the seven judgement sites, each with at least twenty labelled scenarios and their reasoning', async () => {
     expect(EVAL_SETS.map((s) => s.id)).toEqual([
       'policy-clauses',
       'dpa-analysis',
@@ -28,6 +28,7 @@ describe('the eval sets', () => {
       'verifier',
       'advisor',
       'advisor-safety',
+      'dive-points',
     ]);
     for (const set of EVAL_SETS) {
       const scenarios = await set.scenarios();

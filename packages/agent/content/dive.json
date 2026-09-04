@@ -1,0 +1,10 @@
+{
+  "version": "2026-09-04",
+  "_comment": "Dive points (V-05). The prefix a dive puts before the fragment, as GDPRchat does, and the cap that keeps the fragment a pointer rather than an essay.",
+  "maxChars": 300,
+  "tellMeMore": {
+    "en": "Tell me more about this:",
+    "da": "Fortæl mig mere om dette:",
+    "de": "Erzähl mir mehr darüber:"
+  }
+}

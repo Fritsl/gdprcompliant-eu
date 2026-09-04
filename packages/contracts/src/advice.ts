@@ -48,6 +48,27 @@ export const AdviceLawSchema = z.object({
 });
 export type AdviceLaw = z.infer<typeof AdviceLawSchema>;
 
+// Where a dive (V-05) started: a finding, a step, a quoted article, a phrase, a cell
+// of the report, or an earlier answer; and the fragment quoted back, capped so it
+// stays a pointer.
+export const DIVE_ORIGINS = ['finding', 'step', 'article', 'phrase', 'cell', 'answer'] as const;
+export const DiveOriginSchema = z.object({
+  kind: z.enum(DIVE_ORIGINS),
+  ref: NonEmptyStringSchema,
+});
+export type DiveOrigin = z.infer<typeof DiveOriginSchema>;
+
+export const DIVE_FRAGMENT_MAX = 300;
+export const DiveSchema = z.object({
+  origin: DiveOriginSchema,
+  fragment: NonEmptyStringSchema.max(DIVE_FRAGMENT_MAX),
+});
+export type Dive = z.infer<typeof DiveSchema>;
+
+// A conversation: every turn carries the thread it belongs to and its place in it.
+export const ThreadSchema = z.object({ id: IdSchema, turn: z.number().int().min(0) });
+export type Thread = z.infer<typeof ThreadSchema>;
+
 export const AdviceRefusalSchema = z.object({
   reason: NonEmptyStringSchema,
   // The catalogue question whose answer would settle it, when one fits.
@@ -67,6 +88,9 @@ export const AdviceSchema = z
     lawSays: z.array(AdviceLawSchema),
     refused: AdviceRefusalSchema.optional(),
     model: z.string().optional(),
+    // The conversation this turn belongs to, and the dive that opened it when one did.
+    thread: ThreadSchema.optional(),
+    dive: DiveSchema.optional(),
   })
   .superRefine((a, ctx) => {
     if (!a.refused && a.caseSays.length === 0)

@@ -14,7 +14,13 @@ export const ROOT = fileURLToPath(new URL('../../', import.meta.url));
 export const MIN_SCENARIOS = 20;
 
 export type EvalSetId =
-  'policy-clauses' | 'dpa-analysis' | 'planner' | 'verifier' | 'advisor' | 'advisor-safety';
+  | 'policy-clauses'
+  | 'dpa-analysis'
+  | 'planner'
+  | 'verifier'
+  | 'advisor'
+  | 'advisor-safety'
+  | 'dive-points';
 
 export interface EvalScenario {
   readonly label: string;
@@ -123,6 +129,21 @@ export const EVAL_SETS: readonly EvalSet[] = [
     scenarios: async () => {
       const f = JSON.parse(
         readFileSync(join(ROOT, 'fixtures', 'advisor', 'refusals.json'), 'utf8'),
+      ) as { scenarios: { name: string; reasoning?: string }[] };
+      return f.scenarios.map((s) => ({ label: s.name, reasoning: s.reasoning ?? '' }));
+    },
+  },
+  {
+    id: 'dive-points',
+    name: 'Dive points',
+    task: 'V-05',
+    threshold: 0.95,
+    measure: 'seeded',
+    test: 'tests/evals/dive-points.test.ts',
+    // Fragments as elements show them (stripped, capped, gated) and dives that seed turn zero.
+    scenarios: async () => {
+      const f = JSON.parse(
+        readFileSync(join(ROOT, 'fixtures', 'advisor', 'dives.json'), 'utf8'),
       ) as { scenarios: { name: string; reasoning?: string }[] };
       return f.scenarios.map((s) => ({ label: s.name, reasoning: s.reasoning ?? '' }));
     },

@@ -1,8 +1,9 @@
-import { adviseForOwner } from '@/lib/advisor';
+import { diveForOwner } from '@/lib/advisor';
 import { asLocale } from '@/lib/i18n';
 
-// One question to the advisor (V-02): answered from the case and the law, recorded on
-// the timeline, and back to the advisor page where the answer now stands.
+// A dive (V-05): the element posts its kind, its reference and its text; turn zero is
+// seeded from them, or the conversation the element came from gets one more turn; then
+// back to that conversation on the advisor page.
 
 export const dynamic = 'force-dynamic';
 
@@ -14,14 +15,16 @@ export async function POST(
   const locale = asLocale(localeParam);
   if (!locale) return new Response('Not found', { status: 404 });
   const form = await request.formData();
-  const question = form.get('question');
-  if (typeof question !== 'string') return new Response('Bad request', { status: 400 });
+  const kind = form.get('kind');
+  const ref = form.get('ref');
+  const fragment = form.get('fragment');
   const thread = form.get('thread');
-  const result = await adviseForOwner(
+  if (typeof kind !== 'string' || typeof ref !== 'string' || typeof fragment !== 'string')
+    return new Response('Bad request', { status: 400 });
+  const result = await diveForOwner(
     token,
-    question,
+    { kind, ref, fragment, ...(typeof thread === 'string' && thread ? { thread } : {}) },
     locale,
-    typeof thread === 'string' && thread ? thread : undefined,
   );
   if (result.outcome === 'not_found') return new Response('Not found', { status: 404 });
   const url = new URL(request.url);

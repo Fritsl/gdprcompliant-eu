@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { Dive } from '@/components/Dive';
 import { Text } from '@/components/Text';
 import { Verbatim } from '@/components/Verbatim';
 import { QUESTION_MAX, QUESTION_MIN, loadAdvisor } from '@/lib/advisor';
@@ -17,13 +18,13 @@ export default async function AdvisorPage({
   searchParams,
 }: {
   params: Promise<{ locale: string; token: string }>;
-  searchParams: Promise<{ outcome?: string }>;
+  searchParams: Promise<{ outcome?: string; thread?: string }>;
 }) {
   const { locale: localeParam, token } = await params;
-  const { outcome } = await searchParams;
+  const { outcome, thread } = await searchParams;
   const locale = asLocale(localeParam);
   if (!locale) notFound();
-  const view = await loadAdvisor(token);
+  const view = await loadAdvisor(token, thread);
   if (!view) notFound();
   const base = `/${locale}/c/${token}`;
   const notices = {
@@ -34,9 +35,14 @@ export default async function AdvisorPage({
   } as const;
   const notice =
     outcome && outcome in notices ? notices[outcome as keyof typeof notices] : undefined;
-  const latestFirst = [...view.advice].reverse();
+  // A conversation reads oldest first; the list of everything, newest first.
+  const shown = view.thread ? [...view.advice] : [...view.advice].reverse();
   return (
-    <article className="screen advisor" data-advice={view.advice.length}>
+    <article
+      className="screen advisor"
+      data-advice={view.advice.length}
+      {...(view.thread ? { 'data-thread': view.thread } : {})}
+    >
       <p className="eyebrow">
         <a href={base} data-back="">
           <Text of={t(locale, 'advisor.back')} />
@@ -46,6 +52,15 @@ export default async function AdvisorPage({
         <Text of={t(locale, 'advisor.heading')} />
       </h1>
       <Text of={t(locale, 'advisor.lead')} as="p" />
+      {view.thread ? (
+        <p className="eyebrow" data-thread-nav="">
+          <Text of={t(locale, 'advisor.thread')} />
+          {' · '}
+          <a href={`${base}/advisor`} data-all-threads="">
+            <Text of={t(locale, 'advisor.allThreads')} />
+          </a>
+        </p>
+      ) : null}
       <p className="notice" data-advisor-notice="">
         <Text of={t(locale, 'advisor.notice')} />
       </p>
@@ -61,8 +76,13 @@ export default async function AdvisorPage({
           className="advisor-ask"
           data-advisor-form=""
         >
+          {view.thread ? <input type="hidden" name="thread" value={view.thread} /> : null}
           <label htmlFor="advisor-question">
-            <Text of={t(locale, 'advisor.question')} />
+            {view.thread ? (
+              <Text of={t(locale, 'advisor.followUp')} />
+            ) : (
+              <Text of={t(locale, 'advisor.question')} />
+            )}
           </label>
           <textarea
             id="advisor-question"
@@ -82,20 +102,40 @@ export default async function AdvisorPage({
           <Text of={t(locale, 'advisor.unavailable')} />
         </p>
       )}
-      {latestFirst.length === 0 ? (
+      {shown.length === 0 ? (
         <p className="muted" data-advisor-empty="">
           <Text of={t(locale, 'advisor.none')} />
         </p>
       ) : (
         <ol className="advice-list" data-advice-list="">
-          {latestFirst.map((a) => (
+          {shown.map((a) => (
             <li
               key={a.at + a.question}
               className="advice"
               data-advice-item=""
               data-refused={a.refused ? 'true' : 'false'}
+              {...(a.thread ? { 'data-thread-id': a.thread.id, 'data-turn': a.thread.turn } : {})}
+              {...(a.dive
+                ? { 'data-dive-origin': `${a.dive.origin.kind}:${a.dive.origin.ref}` }
+                : {})}
             >
               <h2>{a.question}</h2>
+              {a.dive ? (
+                <p className="muted" data-dived-from="">
+                  <Text of={t(locale, 'advisor.divedFrom')} /> {a.dive.origin.kind}{' '}
+                  {a.dive.origin.ref}
+                </p>
+              ) : null}
+              {a.thread && !view.thread ? (
+                <p className="muted">
+                  <a
+                    href={`${base}/advisor?thread=${encodeURIComponent(a.thread.id)}`}
+                    data-open-thread=""
+                  >
+                    <Text of={t(locale, 'advisor.thread')} />
+                  </a>
+                </p>
+              ) : null}
               {a.refused ? (
                 <section data-advice-refused="">
                   <h3>
@@ -122,6 +162,14 @@ export default async function AdvisorPage({
                     <Text of={t(locale, 'advisor.answer')} />
                   </h3>
                   <p>{a.answer}</p>
+                  <Dive
+                    base={base}
+                    locale={locale}
+                    kind="answer"
+                    refId={a.at}
+                    fragment={a.answer}
+                    {...(a.thread ? { thread: a.thread.id } : {})}
+                  />
                 </section>
               )}
               {a.caseSays.length > 0 ? (
@@ -167,6 +215,14 @@ export default async function AdvisorPage({
                           corpusVersion={l.corpusVersion}
                           mark={l.quote}
                           locale={locale}
+                        />
+                        <Dive
+                          base={base}
+                          locale={locale}
+                          kind="article"
+                          refId={l.key}
+                          fragment={l.quote}
+                          {...(a.thread ? { thread: a.thread.id } : {})}
                         />
                       </li>
                     ))}

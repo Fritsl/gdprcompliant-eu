@@ -1,3 +1,4 @@
+import { randomBytes } from 'node:crypto';
 import { and, asc, eq } from 'drizzle-orm';
 import {
   AdviceSchema,
@@ -5,6 +6,7 @@ import {
   type Actor,
   type Advice,
   type Company,
+  type DiveOrigin,
   type Jurisdiction,
   type Locale,
   type RegisterRow,
@@ -184,4 +186,52 @@ export async function adviceOf(
       .orderBy(asc(caseEvents.seq)),
   );
   return rows.map((r) => AdviceSchema.parse((r.payload as { advice: unknown }).advice));
+}
+
+// A conversation id (V-05): one per dive or first question, carried by every turn.
+export const newThreadId = (caseId: string): string =>
+  `thread:${caseId}:${randomBytes(6).toString('hex')}`;
+
+export interface RecordDiveInput {
+  readonly caseId: string;
+  readonly threadId: string;
+  readonly turn: number;
+  readonly origin: DiveOrigin;
+  readonly fragment: string;
+  readonly by: Actor;
+  readonly now?: Date;
+}
+
+// Every dive is on the timeline, so the case shows what was asked about.
+export async function recordDive(
+  connection: Connection,
+  tenantId: string,
+  input: RecordDiveInput,
+): Promise<void> {
+  await withTenant(connection, tenantId, (db) =>
+    appendCaseEvent(db, {
+      tenantId,
+      caseId: input.caseId,
+      at: input.now ?? new Date(),
+      actor: input.by,
+      type: 'dive_requested',
+      payload: {
+        threadId: input.threadId,
+        turn: input.turn,
+        origin: input.origin,
+        fragment: input.fragment,
+      },
+    }),
+  );
+}
+
+// The turns of one conversation, oldest first.
+export async function threadOf(
+  connection: Connection,
+  tenantId: string,
+  caseId: string,
+  threadId: string,
+): Promise<Advice[]> {
+  const all = await adviceOf(connection, tenantId, caseId);
+  return all.filter((a) => a.thread?.id === threadId);
 }
