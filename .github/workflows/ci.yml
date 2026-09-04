@@ -35,6 +35,8 @@ jobs:
       - run: pnpm check:guide-snippets
       # Never certified, never approved, never a verdict; third parties cite a decision (O-03).
       - run: pnpm check:claims
+      # The curated maps parse and agree; a stale entry warns, a broken link fails (S-07).
+      - run: pnpm check:registries
       - run: pnpm format:check
       - run: pnpm test:unit
       # Planted instructions in scanned content must gain nothing (A-10); poisoned claims

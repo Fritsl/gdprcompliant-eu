@@ -1,0 +1,238 @@
+{
+  "version": "2026-09-04",
+  "_comment": "The vendor registry (S-07): who is behind a host, a DNS service or a request recipient, as a named legal entity. Two entities per entry, because the transfer analysis rests on the difference: the one a customer in the EEA contracts with, and the ultimate corporate parent. Both are read from the vendor's own terms at the URL given, on the date given, and each entry names the day it must be read again. Nothing here says what a vendor does with data or whether using it is lawful. A host, service or recipient not covered here resolves to nothing, with its raw value kept.",
+  "vendors": [
+    {
+      "id": "google",
+      "label": "Google (tag manager, analytics, fonts, ads, Workspace)",
+      "contracting": {
+        "name": "Google Ireland Limited",
+        "country": "IE",
+        "registry": "Companies Registration Office",
+        "registryId": "368047"
+      },
+      "parent": { "name": "Alphabet Inc.", "country": "US" },
+      "role": "processor",
+      "recipientHosts": ["google"],
+      "dnsServices": ["google-workspace"],
+      "provenance": {
+        "url": "https://policies.google.com/terms",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      },
+      "reviewBy": "2027-03-04"
+    },
+    {
+      "id": "meta",
+      "label": "Meta (pixel, social plugins, business tools)",
+      "contracting": { "name": "Meta Platforms Ireland Limited", "country": "IE" },
+      "parent": { "name": "Meta Platforms, Inc.", "country": "US" },
+      "role": "joint_controller",
+      "recipientHosts": ["meta"],
+      "dnsServices": ["meta-business"],
+      "provenance": {
+        "url": "https://www.facebook.com/legal/terms",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      },
+      "reviewBy": "2027-03-04"
+    },
+    {
+      "id": "microsoft",
+      "label": "Microsoft (Clarity, Ads, Microsoft 365)",
+      "contracting": { "name": "Microsoft Ireland Operations Limited", "country": "IE" },
+      "parent": { "name": "Microsoft Corporation", "country": "US" },
+      "role": "processor",
+      "recipientHosts": ["microsoft"],
+      "dnsServices": ["microsoft-365"],
+      "provenance": {
+        "url": "https://www.microsoft.com/licensing/docs/customeragreement",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      },
+      "reviewBy": "2027-03-04"
+    },
+    {
+      "id": "hotjar",
+      "label": "Hotjar (session replay, heatmaps)",
+      "contracting": { "name": "Hotjar Limited", "country": "MT" },
+      "parent": { "name": "Contentsquare SAS", "country": "FR" },
+      "role": "processor",
+      "recipientHosts": ["hotjar"],
+      "provenance": {
+        "url": "https://www.hotjar.com/legal/policies/terms-of-service/",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      },
+      "reviewBy": "2027-03-04"
+    },
+    {
+      "id": "tiktok",
+      "label": "TikTok (pixel, embeds)",
+      "contracting": { "name": "TikTok Technology Limited", "country": "IE" },
+      "parent": { "name": "ByteDance Ltd.", "country": "KY" },
+      "role": "joint_controller",
+      "recipientHosts": ["tiktok"],
+      "provenance": {
+        "url": "https://www.tiktok.com/legal/page/eea/terms-of-service/en",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      },
+      "reviewBy": "2027-03-04"
+    },
+    {
+      "id": "cloudflare",
+      "label": "Cloudflare (CDN, DNS, bot protection)",
+      "contracting": { "name": "Cloudflare, Inc.", "country": "US" },
+      "parent": { "name": "Cloudflare, Inc.", "country": "US" },
+      "role": "processor",
+      "recipientHosts": ["cloudflare"],
+      "provenance": {
+        "url": "https://www.cloudflare.com/website-terms/",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      },
+      "reviewBy": "2027-03-04",
+      "note": "The terms read name no separate contracting entity for customers in the EEA."
+    },
+    {
+      "id": "stripe",
+      "label": "Stripe (payments)",
+      "contracting": { "name": "Stripe Payments Europe, Limited", "country": "IE" },
+      "parent": { "name": "Stripe, Inc.", "country": "US" },
+      "role": "independent_controller",
+      "recipientHosts": ["stripe"],
+      "dnsServices": ["stripe"],
+      "provenance": {
+        "url": "https://stripe.com/legal/ssa",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      },
+      "reviewBy": "2027-03-04"
+    },
+    {
+      "id": "klaviyo",
+      "label": "Klaviyo (email and SMS marketing)",
+      "contracting": { "name": "Klaviyo, Inc.", "country": "US" },
+      "parent": { "name": "Klaviyo, Inc.", "country": "US" },
+      "role": "processor",
+      "recipientHosts": ["klaviyo"],
+      "provenance": {
+        "url": "https://www.klaviyo.com/legal/terms-of-service",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      },
+      "reviewBy": "2027-03-04"
+    },
+    {
+      "id": "mailchimp",
+      "label": "Mailchimp (newsletters)",
+      "contracting": { "name": "The Rocket Science Group LLC", "country": "US" },
+      "parent": { "name": "Intuit Inc.", "country": "US" },
+      "role": "processor",
+      "recipientHosts": ["mailchimp"],
+      "dnsServices": ["mailchimp"],
+      "provenance": {
+        "url": "https://mailchimp.com/legal/terms/",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      },
+      "reviewBy": "2027-03-04"
+    },
+    {
+      "id": "cookiebot",
+      "label": "Cookiebot (consent banner)",
+      "contracting": { "name": "Usercentrics A/S", "country": "DK" },
+      "parent": { "name": "Usercentrics GmbH", "country": "DE" },
+      "role": "processor",
+      "recipientHosts": ["cookiebot"],
+      "provenance": {
+        "url": "https://www.cookiebot.com/en/terms-and-conditions/",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      },
+      "reviewBy": "2027-03-04"
+    },
+    {
+      "id": "usercentrics",
+      "label": "Usercentrics (consent banner)",
+      "contracting": { "name": "Usercentrics GmbH", "country": "DE" },
+      "parent": { "name": "Usercentrics GmbH", "country": "DE" },
+      "role": "processor",
+      "recipientHosts": ["usercentrics"],
+      "provenance": {
+        "url": "https://usercentrics.com/terms-and-conditions/",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      },
+      "reviewBy": "2027-03-04"
+    },
+    {
+      "id": "twilio",
+      "label": "Twilio (SendGrid mail)",
+      "contracting": { "name": "Twilio Ireland Limited", "country": "IE" },
+      "parent": { "name": "Twilio Inc.", "country": "US" },
+      "role": "processor",
+      "dnsServices": ["sendgrid"],
+      "provenance": {
+        "url": "https://www.twilio.com/en-us/legal/tos",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      },
+      "reviewBy": "2027-03-04"
+    },
+    {
+      "id": "hubspot",
+      "label": "HubSpot (CRM, marketing)",
+      "contracting": { "name": "HubSpot Ireland Limited", "country": "IE" },
+      "parent": { "name": "HubSpot, Inc.", "country": "US" },
+      "role": "processor",
+      "dnsServices": ["hubspot"],
+      "provenance": {
+        "url": "https://legal.hubspot.com/terms-of-service",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      },
+      "reviewBy": "2027-03-04"
+    },
+    {
+      "id": "brevo",
+      "label": "Brevo (mail, marketing)",
+      "contracting": { "name": "Sendinblue SAS", "country": "FR" },
+      "parent": { "name": "Sendinblue SAS", "country": "FR" },
+      "role": "processor",
+      "dnsServices": ["brevo"],
+      "provenance": {
+        "url": "https://www.brevo.com/legal/termsofuse/",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      },
+      "reviewBy": "2027-03-04"
+    },
+    {
+      "id": "amazon-web-services",
+      "label": "Amazon Web Services (SES, hosting)",
+      "contracting": { "name": "Amazon Web Services EMEA SARL", "country": "LU" },
+      "parent": { "name": "Amazon.com, Inc.", "country": "US" },
+      "role": "processor",
+      "dnsServices": ["amazon-ses"],
+      "provenance": {
+        "url": "https://aws.amazon.com/agreement/",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      },
+      "reviewBy": "2027-03-04"
+    },
+    {
+      "id": "apple",
+      "label": "Apple (Business Connect, Sign in with Apple)",
+      "contracting": { "name": "Apple Distribution International Limited", "country": "IE" },
+      "parent": { "name": "Apple Inc.", "country": "US" },
+      "role": "independent_controller",
+      "dnsServices": ["apple-business"],
+      "provenance": {
+        "url": "https://www.apple.com/legal/internet-services/terms/site.html",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      },
+      "reviewBy": "2027-03-04"
+    },
+    {
+      "id": "sinch",
+      "label": "Sinch (Mailgun mail)",
+      "contracting": { "name": "Mailgun Technologies, Inc.", "country": "US" },
+      "parent": { "name": "Sinch AB", "country": "SE" },
+      "role": "processor",
+      "dnsServices": ["mailgun"],
+      "provenance": {
+        "url": "https://www.mailgun.com/legal/terms/",
+        "verifiedAt": "2026-09-04T00:00:00Z"
+      },
+      "reviewBy": "2027-03-04"
+    }
+  ]
+}

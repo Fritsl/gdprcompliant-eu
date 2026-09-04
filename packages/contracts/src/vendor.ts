@@ -95,3 +95,53 @@ export const VendorSchema = z
   })
   .describe('A recipient of personal data in the supply chain');
 export type Vendor = z.infer<typeof VendorSchema>;
+
+// The vendor registry (S-07): per vendor, the entity a customer in the EEA contracts with
+// and the ultimate corporate parent, each with where it sits; the maps the scanner keeps
+// link to an entry by id. Curated data: a source read on a date, and a date to read it
+// again. Nothing here says what a vendor does with data or whether using it is lawful.
+export const LegalEntitySchema = z.object({
+  name: NonEmptyStringSchema,
+  country: CountryCodeSchema,
+  registry: NonEmptyStringSchema.optional(),
+  registryId: NonEmptyStringSchema.optional(),
+});
+export type LegalEntity = z.infer<typeof LegalEntitySchema>;
+
+export const VendorRegistryEntrySchema = z
+  .object({
+    id: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/),
+    // What the customer sees.
+    label: NonEmptyStringSchema,
+    contracting: LegalEntitySchema,
+    parent: LegalEntitySchema,
+    role: VendorRoleSchema,
+    hostSuffixes: z.array(HostnameSchema).default([]),
+    // Ids in the DNS service map and the recipient host map this vendor is behind.
+    dnsServices: z.array(z.string().min(1)).default([]),
+    recipientHosts: z.array(z.string().min(1)).default([]),
+    provenance: z.object({ url: z.url(), verifiedAt: IsoDateTimeSchema }),
+    // The day the entry must be read again.
+    reviewBy: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    note: z.string().optional(),
+  })
+  .refine((v) => v.hostSuffixes.length + v.dnsServices.length + v.recipientHosts.length > 0, {
+    message:
+      'a registry entry is behind something: a host suffix, a DNS service or a recipient host',
+  });
+export type VendorRegistryEntry = z.infer<typeof VendorRegistryEntrySchema>;
+
+export const VendorRegistrySchema = z
+  .object({
+    version: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    vendors: z.array(VendorRegistryEntrySchema).min(1),
+  })
+  .superRefine((r, ctx) => {
+    const ids = new Set<string>();
+    r.vendors.forEach((v, i) => {
+      if (ids.has(v.id))
+        ctx.addIssue({ code: 'custom', path: ['vendors', i], message: `duplicate id ${v.id}` });
+      ids.add(v.id);
+    });
+  });
+export type VendorRegistry = z.infer<typeof VendorRegistrySchema>;

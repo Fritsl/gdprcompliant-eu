@@ -125,7 +125,9 @@ describe.skipIf(!url)(
         'Microsoft 365',
         'SendGrid (Twilio)',
       ]);
-      expect(rows.every((r) => r.resolution === 'unresolved' && r.level === 1)).toBe(true);
+      // All four are behind vendor registry entries (S-07): resolved, with the entity stored.
+      expect(rows.every((r) => r.resolution === 'resolved' && r.level === 1)).toBe(true);
+      expect(rows.every((r) => (r.legalEntity as { name?: string } | null)?.name)).toBe(true);
       const stored = await withTenant(t, opened.tenantId, (db) =>
         db.select().from(schema.evidence),
       );

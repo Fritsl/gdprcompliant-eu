@@ -159,19 +159,28 @@ describe('collecting from a recording', () => {
     ]);
     for (const v of vendors) {
       expect(VendorSchema.parse(v)).toEqual(v);
+      // Every service here is behind an entry of the vendor registry (S-07), so each
+      // row names its legal entity and the versions of both maps it was read with.
       expect(v).toMatchObject({
         level: 1,
-        resolution: 'unresolved',
+        resolution: 'resolved',
         provenance: { source: 'observation', evidence: collection.evidence },
       });
-      expect(v.provenance.registryVersion).toMatch(/^dns-services@\d{4}-\d{2}-\d{2}$/);
-      expect(v.legalEntity).toBeUndefined();
+      expect(v.provenance.registryVersion).toMatch(
+        /^dns-services@\d{4}-\d{2}-\d{2}, vendors@\d{4}-\d{2}-\d{2}$/,
+      );
+      expect(v.legalEntity?.name).toBeTruthy();
     }
     const google = vendors.find((v) => v.id.includes('google-workspace'))!;
     expect(google.hosts.sort()).toEqual(['alt1.aspmx.l.google.com', 'aspmx.l.google.com']);
+    // The contracting entity sits in Ireland; the parent in the United States. The
+    // transfer question arises from the second, and the row says so.
     expect(google).toMatchObject({
       label: 'Google Workspace',
-      jurisdiction: 'US',
+      legalEntity: { name: 'Google Ireland Limited' },
+      jurisdiction: 'IE',
+      parentJurisdiction: 'US',
+      transfer: { outsideEea: true, mechanism: 'unknown' },
       role: 'processor',
     });
     expect(vendors.find((v) => v.id.includes('meta-business'))?.role).toBe(

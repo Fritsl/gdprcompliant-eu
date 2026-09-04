@@ -20,6 +20,12 @@ import {
 } from '@gc/contracts';
 import { refTo, type EvidenceIdentity } from '../evidence.js';
 import type { Resolver } from './resolver.js';
+import {
+  entityFields,
+  vendorForDnsService,
+  vendorMaps,
+  type VendorMaps,
+} from '../vendors/resolve.js';
 
 // DNS collection (D-01): the records, what they say, and which named services they
 // point at, through the curated map. Everything the map does not know is reported as
@@ -230,11 +236,13 @@ export async function collectDns(
   return { collection, evidence: [ev] };
 }
 
-// Every mapped service, once, as a level-1 candidate on the case graph. Unresolved: the
-// map names a service, not a legal entity; S-07 does that. The record is the evidence.
+// Every mapped service, once, as a level-1 candidate on the case graph, with its legal
+// entity where the vendor registry has one (S-07) and unresolved where it does not; the
+// record is the evidence either way.
 export function candidateProcessors(
   collection: DnsCollection,
   identity: EvidenceIdentity,
+  maps: VendorMaps = vendorMaps(),
 ): Vendor[] {
   const byService = new Map<string, MappedService[]>();
   for (const s of collection.services)
@@ -250,6 +258,7 @@ export function candidateProcessors(
           .map((m) => m.raw.toLowerCase().replace(/\.$/, '')),
       ),
     ];
+    const entry = vendorForDnsService(serviceId, maps);
     return VendorSchema.parse({
       id: `vendor:dns:${serviceId}:${collection.domain}`,
       tenantId: identity.tenantId,
@@ -260,9 +269,10 @@ export function candidateProcessors(
       level: 1,
       hosts,
       resolution: 'unresolved',
+      ...(entry ? entityFields(entry) : {}),
       provenance: {
         source: 'observation',
-        registryVersion: `dns-services@${collection.mapVersion}`,
+        registryVersion: `dns-services@${collection.mapVersion}${entry ? `, vendors@${maps.registry.version}` : ''}`,
         seenAt: collection.collectedAt,
         evidence: collection.evidence,
       },
