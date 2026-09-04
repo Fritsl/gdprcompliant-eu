@@ -29,6 +29,9 @@ import {
   VENDOR_RESOLUTIONS,
   VENDOR_ROLES,
   VERIFIER_CHECKS,
+  GRAPH_EDGE_KINDS,
+  GRAPH_NODE_KINDS,
+  GRAPH_ORIGINS,
 } from '@gc/contracts';
 
 // The relational spine (F-03). Every table carries the same three columns: tenant_id,
@@ -611,6 +614,81 @@ export const corpusChunks = pgTable(
   ],
 );
 
+// The case graph (A-01): typed nodes and edges, each with where it came from, how sure
+// it is and when. Derived facts point at evidence, asserted facts name a person,
+// answered facts name the answer; the checks make that structural. Two nodes about one
+// subject may disagree: both stay, a 'contradicts' edge joins them, and a person marks
+// the loser superseded. Deleting is for the hard delete alone.
+export const graphNodes = pgTable(
+  'graph_nodes',
+  {
+    id: text('id').primaryKey(),
+    ...stamped,
+    caseId: text('case_id')
+      .notNull()
+      .references(() => cases.id),
+    kind: text('kind').notNull(),
+    key: text('key').notNull(),
+    attributes: jsonb('attributes').notNull().default({}),
+    origin: text('origin').notNull(),
+    confidence: real('confidence').notNull(),
+    evidence: jsonb('evidence').notNull().default([]),
+    assertedBy: text('asserted_by'),
+    answerId: text('answer_id'),
+    at: timestamp('at', { withTimezone: true }).notNull(),
+    supersededBy: text('superseded_by'),
+  },
+  (t) => [
+    check('graph_nodes_kind', oneOf('kind', GRAPH_NODE_KINDS)),
+    check('graph_nodes_origin', oneOf('origin', GRAPH_ORIGINS)),
+    check('graph_nodes_confidence', sql`${t.confidence} between 0 and 1`),
+    check('graph_nodes_evidence', sql`jsonb_typeof(${t.evidence}) = 'array'`),
+    check(
+      'graph_nodes_provenance',
+      sql`(${t.origin} <> 'derived' OR jsonb_array_length(${t.evidence}) >= 1) AND (${t.origin} <> 'asserted' OR coalesce(${t.assertedBy}, '') <> '') AND (${t.origin} <> 'answered' OR coalesce(${t.answerId}, '') <> '')`,
+    ),
+    index('graph_nodes_case_idx').on(t.caseId, t.kind, t.key),
+  ],
+);
+
+export const graphEdges = pgTable(
+  'graph_edges',
+  {
+    id: text('id').primaryKey(),
+    ...stamped,
+    caseId: text('case_id')
+      .notNull()
+      .references(() => cases.id),
+    kind: text('kind').notNull(),
+    fromNode: text('from_node')
+      .notNull()
+      .references(() => graphNodes.id),
+    toNode: text('to_node')
+      .notNull()
+      .references(() => graphNodes.id),
+    attributes: jsonb('attributes').notNull().default({}),
+    origin: text('origin').notNull(),
+    confidence: real('confidence').notNull(),
+    evidence: jsonb('evidence').notNull().default([]),
+    assertedBy: text('asserted_by'),
+    answerId: text('answer_id'),
+    at: timestamp('at', { withTimezone: true }).notNull(),
+  },
+  (t) => [
+    check('graph_edges_kind', oneOf('kind', GRAPH_EDGE_KINDS)),
+    check('graph_edges_origin', oneOf('origin', GRAPH_ORIGINS)),
+    check('graph_edges_confidence', sql`${t.confidence} between 0 and 1`),
+    check('graph_edges_evidence', sql`jsonb_typeof(${t.evidence}) = 'array'`),
+    check(
+      'graph_edges_provenance',
+      sql`(${t.origin} <> 'derived' OR jsonb_array_length(${t.evidence}) >= 1) AND (${t.origin} <> 'asserted' OR coalesce(${t.assertedBy}, '') <> '') AND (${t.origin} <> 'answered' OR coalesce(${t.answerId}, '') <> '')`,
+    ),
+    check('graph_edges_ends', sql`${t.fromNode} <> ${t.toNode}`),
+    uniqueIndex('graph_edges_unique').on(t.fromNode, t.toNode, t.kind),
+    index('graph_edges_case_idx').on(t.caseId, t.kind),
+  ],
+);
+
 export const TABLES = {
   appMeta,
   tenants,
@@ -633,4 +711,6 @@ export const TABLES = {
   corpusChunks,
   claimVerdicts,
   artefacts,
+  graphNodes,
+  graphEdges,
 } as const;

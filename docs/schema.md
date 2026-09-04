@@ -1,6 +1,6 @@
 # Schema
 
-Generated from `packages/db/migrations/meta/0014_snapshot.json` by `scripts/schema-doc.mjs`.
+Generated from `packages/db/migrations/meta/0015_snapshot.json` by `scripts/schema-doc.mjs`.
 Do not edit; change `packages/db/src/schema.ts`, run `pnpm db:generate`, then `pnpm db:doc`.
 
 Every table carries `tenant_id`, `created_at` and `source_ref`. `case_events` and
@@ -231,6 +231,40 @@ erDiagram
     timestamp last_seen_at
     timestamp closed_at "nullable"
   }
+  graph_edges {
+    text id "PK"
+    text tenant_id
+    timestamp created_at
+    text source_ref
+    text case_id
+    text kind
+    text from_node
+    text to_node
+    jsonb attributes
+    text origin
+    real confidence
+    jsonb evidence
+    text asserted_by "nullable"
+    text answer_id "nullable"
+    timestamp at
+  }
+  graph_nodes {
+    text id "PK"
+    text tenant_id
+    timestamp created_at
+    text source_ref
+    text case_id
+    text kind
+    text key
+    jsonb attributes
+    text origin
+    real confidence
+    jsonb evidence
+    text asserted_by "nullable"
+    text answer_id "nullable"
+    timestamp at
+    text superseded_by "nullable"
+  }
   jurisdictions {
     text code "PK"
     text name
@@ -321,6 +355,10 @@ erDiagram
   cases ||--o{ findings : "case_id"
   jurisdictions ||--o{ findings : "jurisdiction"
   remedies ||--o{ findings : "remedy_id, remedy_version"
+  cases ||--o{ graph_edges : "case_id"
+  graph_nodes ||--o{ graph_edges : "from_node"
+  graph_nodes ||--o{ graph_edges : "to_node"
+  cases ||--o{ graph_nodes : "case_id"
   cases ||--o{ mail_outbox : "case_id"
   cases ||--o{ processing_activities : "case_id"
   cases ||--o{ vendors : "case_id"
@@ -687,6 +725,66 @@ erDiagram
 - check findings_status: `"status" in ('open', 'working', 'closed', 'regressed')`
 - check findings_area: `"area" in ('Consent', 'Contracts', 'Security', 'Transfers', 'Observation', 'Notice', 'Recipients', 'Collection')`
 - check findings_closed: `("findings"."status" = 'closed') = ("findings"."closed_at" is not null)`
+
+## graph_edges
+
+| Column | Type | Constraints |
+| --- | --- | --- |
+| id | text | primary key, not null |
+| tenant_id | text | not null |
+| created_at | timestamp with time zone | not null, default now() |
+| source_ref | text | not null |
+| case_id | text | not null |
+| kind | text | not null |
+| from_node | text | not null |
+| to_node | text | not null |
+| attributes | jsonb | not null, default '{}'::jsonb |
+| origin | text | not null |
+| confidence | real | not null |
+| evidence | jsonb | not null, default '[]'::jsonb |
+| asserted_by | text |  |
+| answer_id | text |  |
+| at | timestamp with time zone | not null |
+
+- case_id → cases(id)
+- from_node → graph_nodes(id)
+- to_node → graph_nodes(id)
+- unique index graph_edges_unique (from_node, to_node, kind)
+- index graph_edges_case_idx (case_id, kind)
+- check graph_edges_kind: `"kind" in ('has_purpose', 'processes', 'rests_on', 'shared_with', 'transfers_via', 'carries_risk', 'mitigated_by', 'contradicts', 'supersedes')`
+- check graph_edges_origin: `"origin" in ('derived', 'asserted', 'answered')`
+- check graph_edges_confidence: `"graph_edges"."confidence" between 0 and 1`
+- check graph_edges_evidence: `jsonb_typeof("graph_edges"."evidence") = 'array'`
+- check graph_edges_provenance: `("graph_edges"."origin" <> 'derived' OR jsonb_array_length("graph_edges"."evidence") >= 1) AND ("graph_edges"."origin" <> 'asserted' OR coalesce("graph_edges"."asserted_by", '') <> '') AND ("graph_edges"."origin" <> 'answered' OR coalesce("graph_edges"."answer_id", '') <> '')`
+- check graph_edges_ends: `"graph_edges"."from_node" <> "graph_edges"."to_node"`
+
+## graph_nodes
+
+| Column | Type | Constraints |
+| --- | --- | --- |
+| id | text | primary key, not null |
+| tenant_id | text | not null |
+| created_at | timestamp with time zone | not null, default now() |
+| source_ref | text | not null |
+| case_id | text | not null |
+| kind | text | not null |
+| key | text | not null |
+| attributes | jsonb | not null, default '{}'::jsonb |
+| origin | text | not null |
+| confidence | real | not null |
+| evidence | jsonb | not null, default '[]'::jsonb |
+| asserted_by | text |  |
+| answer_id | text |  |
+| at | timestamp with time zone | not null |
+| superseded_by | text |  |
+
+- case_id → cases(id)
+- index graph_nodes_case_idx (case_id, kind, key)
+- check graph_nodes_kind: `"kind" in ('activity', 'data_category', 'purpose', 'legal_basis', 'vendor', 'transfer', 'risk', 'control')`
+- check graph_nodes_origin: `"origin" in ('derived', 'asserted', 'answered')`
+- check graph_nodes_confidence: `"graph_nodes"."confidence" between 0 and 1`
+- check graph_nodes_evidence: `jsonb_typeof("graph_nodes"."evidence") = 'array'`
+- check graph_nodes_provenance: `("graph_nodes"."origin" <> 'derived' OR jsonb_array_length("graph_nodes"."evidence") >= 1) AND ("graph_nodes"."origin" <> 'asserted' OR coalesce("graph_nodes"."asserted_by", '') <> '') AND ("graph_nodes"."origin" <> 'answered' OR coalesce("graph_nodes"."answer_id", '') <> '')`
 
 ## jurisdictions
 

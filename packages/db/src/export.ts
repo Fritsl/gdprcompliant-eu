@@ -15,6 +15,7 @@ import {
 } from './schema.js';
 import { withTenant } from './tenant.js';
 import { appendCaseEvent, caseTimeline } from './timeline.js';
+import { graphOf } from './graph.js';
 
 // Proving the case is theirs (C-04): everything about a case as one file they can open,
 // and a hard delete after which nothing remains but an anonymous note that a deletion
@@ -53,6 +54,7 @@ export async function loadCaseBundle(db: Db, caseId: string) {
     db.select().from(demandEntries).where(eq(demandEntries.caseId, caseId)),
     caseTimeline(db, caseId),
   ]);
+  const graph = await graphOf(db, caseId);
   const links =
     f.length === 0
       ? []
@@ -65,7 +67,7 @@ export async function loadCaseBundle(db: Db, caseId: string) {
               f.map((x) => x.id),
             ),
           );
-  return { c, f, e, a, v, p, cl, d, events, links };
+  return { c, f, e, a, v, p, cl, d, events, links, graph };
 }
 
 // What the case page says is held. Counts only; no event is written for looking.
@@ -147,6 +149,10 @@ export async function exportCase(
       processingActivities: strip(all.p),
       claims: all.cl.map((r) => omit(r, ['tenantId', 'codeHash'])),
       demandEntries: strip(all.d),
+      graph: {
+        nodes: all.graph.nodes.map((n) => omit(n, ['tenantId'])),
+        edges: all.graph.edges.map((e) => omit(e, ['tenantId'])),
+      },
       timeline: all.events,
       documents: [
         {

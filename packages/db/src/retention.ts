@@ -42,6 +42,8 @@ export const RETENTION: Readonly<Record<string, RetentionRule>> = {
   finding_evidence: { kind: 'with_case' },
   vendors: { kind: 'with_case' },
   processing_activities: { kind: 'with_case' },
+  graph_nodes: { kind: 'with_case' },
+  graph_edges: { kind: 'with_case' },
   answers: { kind: 'with_case' },
   case_claims: { kind: 'claim', tailDays: CLAIM_TAIL_DAYS },
   case_members: { kind: 'with_case' },

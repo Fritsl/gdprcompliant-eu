@@ -44,4 +44,5 @@ export * from './dns.js';
 export * from './ct.js';
 export * from './recipients.js';
 export * from './transfers.js';
+export * from './graph.js';
 export * from './guide.js';

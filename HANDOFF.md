@@ -16,28 +16,28 @@ companies a list of problems; this hands them a plan and the things that close i
 
 ## Where you are
 
-**77 of 112 done.** Phase 0 and phase 1 are complete; phase 2 is 30 of 34, phase 3 has
-begun, DNS collection opens phase 4 and the task catalogue opens phase 5. Contracts,
-config with the EU-only allowlist, the test harness, record and replay, i18n, the remedy
-catalogue and resolver, the model client, the web shell, the fixture estate (with TLS),
-the browser pool, Pass A, cookie classification, the security surface checks, policy
-discovery, the form inventory, replay and fingerprinting detection, the database harness,
-the schema spine, the finding-needs-a-remedy constraint, row-level security with a
-per-transaction tenant context, the durable job queue, the demand ledger, the case object
-with numbering, tokens and claiming, the append-only timeline with its PDF, the case state
-machine, export and hard delete, retention with its nightly sweep, the typed task
-catalogue with its budgeted dispatcher, roles with scoped lists, the tenancy matrix that
-runs on every push, DNS collection with its curated service map, certificate transparency
-enumeration, invitations from a colleague, shared progress, the evidence pack, the corpus
-with exact citation resolution behind a jurisdiction filter, the citation audit over the
-GDPR and ePrivacy texts as published, the verifier gate with its review queue, the
-prompt-injection defences (fenced untrusted content, output guards, the injection
-fixture), the jurisdiction binding tables with their generated lawyer's document, the
-jurisdiction matrix suite with the raise-and-store path it needed, cases that take their
-jurisdiction and language from the target, the human sign-off gate on generated documents,
-the Article 13 clause analysis with its twelve labelled policies, consent banner detection
-with refusal-path automation over eight banner fixtures, the Pass B and Pass C collectors
-that check a choice was registered, the three-pass differ that raises the seven consent
+**78 of 112 done.** Phase 0, phase 1 and phase 2 are complete, phase 3 has begun, DNS
+collection opens phase 4 and the task catalogue opens phase 5. Contracts, config with the
+EU-only allowlist, the test harness, record and replay, i18n, the remedy catalogue and
+resolver, the model client, the web shell, the fixture estate (with TLS), the browser
+pool, Pass A, cookie classification, the security surface checks, policy discovery, the
+form inventory, replay and fingerprinting detection, the database harness, the schema
+spine, the finding-needs-a-remedy constraint, row-level security with a per-transaction
+tenant context, the durable job queue, the demand ledger, the case object with numbering,
+tokens and claiming, the append-only timeline with its PDF, the case state machine, export
+and hard delete, retention with its nightly sweep, the typed task catalogue with its
+budgeted dispatcher, roles with scoped lists, the tenancy matrix that runs on every push,
+DNS collection with its curated service map, certificate transparency enumeration,
+invitations from a colleague, shared progress, the evidence pack, the corpus with exact
+citation resolution behind a jurisdiction filter, the citation audit over the GDPR and
+ePrivacy texts as published, the verifier gate with its review queue, the prompt-injection
+defences (fenced untrusted content, output guards, the injection fixture), the
+jurisdiction binding tables with their generated lawyer's document, the jurisdiction
+matrix suite with the raise-and-store path it needed, cases that take their jurisdiction
+and language from the target, the human sign-off gate on generated documents, the Article
+13 clause analysis with its twelve labelled policies, consent banner detection with
+refusal-path automation over eight banner fixtures, the Pass B and Pass C collectors that
+check a choice was registered, the three-pass differ that raises the seven consent
 findings with the hosts named, finding assembly with the severity table and re-scan
 reconciliation, the re-check and weekly watch loop, the front door with the scan worker
 (apps/worker, `pnpm worker:start`) that runs it, the nightly performance budget, the case
@@ -60,7 +60,9 @@ provenance and a review date on every entry, hosts resolved through the maps or 
 unresolved with the host shown, `pnpm check:registries` warning on staleness), and the
 transfer determination (adequacy list and Data Privacy Framework lookups as dated data,
 hosted-in-the-EEA told apart from controlled-from-outside in the finding text, the policy
-read for a Chapter V basis, every statement passing the claim vocabulary) are in. The
+read for a Chapter V basis, every statement passing the claim vocabulary), and the case
+graph (typed nodes and edges with origin, confidence and time on every row, contradictions
+kept and surfaced until a person decides, the register as a projection) are in. The
 journeys suite (tests/e2e/journeys.test.ts) drives a real scan of the estate through the
 front door, a fix applied by changing the fixture's responses, a colleague's re-check, a
 sign-off, an export and a deletion, and CI runs every e2e suite on push, files one at a

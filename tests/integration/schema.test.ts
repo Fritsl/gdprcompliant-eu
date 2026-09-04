@@ -86,6 +86,8 @@ describe.skipIf(!url)('the core relational schema (F-03)', () => {
       'evidence',
       'finding_evidence',
       'findings',
+      'graph_edges',
+      'graph_nodes',
       'jurisdictions',
       'mail_outbox',
       'processing_activities',

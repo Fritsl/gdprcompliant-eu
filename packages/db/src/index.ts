@@ -29,3 +29,4 @@ export * from './scan-job.js';
 export * from './recheck-job.js';
 export * from './trust.js';
 export * from './shares.js';
+export * from './graph.js';
