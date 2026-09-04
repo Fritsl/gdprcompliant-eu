@@ -1,11 +1,34 @@
 {
   "extends": "../../tsconfig.base.json",
-  "compilerOptions": { "rootDir": "src", "outDir": "dist" },
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist"
+  },
   "include": ["src/**/*.ts"],
   "references": [
-    { "path": "../agent" },
-    { "path": "../config" },
-    { "path": "../contracts" },
-    { "path": "../db" }
+    {
+      "path": "../agent"
+    },
+    {
+      "path": "../config"
+    },
+    {
+      "path": "../contracts"
+    },
+    {
+      "path": "../db"
+    },
+    {
+      "path": "../artefacts"
+    },
+    {
+      "path": "../findings"
+    },
+    {
+      "path": "../remedies"
+    },
+    {
+      "path": "../i18n"
+    }
   ]
 }

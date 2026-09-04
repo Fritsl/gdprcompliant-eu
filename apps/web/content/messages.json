@@ -912,5 +912,13 @@
   "upward.revocable": {
     "en": "The case holder can revoke this link at any time.",
     "da": "Sagens indehaver kan trække linket tilbage når som helst."
+  },
+  "case.report": {
+    "en": "Status report (PDF)",
+    "da": "Statusrapport (PDF)"
+  },
+  "case.report.note": {
+    "en": "Generated from the case as it stands the moment you ask, with every provision quoted in full.",
+    "da": "Genereret ud fra sagen, som den står i det øjeblik, du beder om den, med hver bestemmelse citeret i sin helhed."
   }
 }

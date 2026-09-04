@@ -18,3 +18,4 @@ export * from './store.js';
 export * from './cellar.js';
 export * from './audit.js';
 export * from './verifier.js';
+export * from './report.js';

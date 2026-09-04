@@ -691,6 +691,16 @@ export default async function CasePage({
           </a>
         </p>
         <Text of={t(locale, 'case.pack.note')} as="p" />
+        <p>
+          <a
+            href={`${base}/report.pdf`}
+            download={`${view.caseId}-status-report.pdf`}
+            data-report=""
+          >
+            <Text of={t(locale, 'case.report')} />
+          </a>
+        </p>
+        <Text of={t(locale, 'case.report.note')} as="p" />
       </section>
 
       <section className="no-print">

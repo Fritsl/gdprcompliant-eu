@@ -188,6 +188,14 @@ describe.skipIf(!url)('the case page (U-03)', () => {
       .locator('.pp-bar i')
       .evaluate((el) => (el as HTMLElement).style.width);
     expect(width).toBe('33%');
+    // The status report is one click away, whatever the state of the case (V-01).
+    const report = await page.request.get(`${BASE}/en/c/${token}/report.pdf`);
+    expect(report.status()).toBe(200);
+    expect(report.headers()['content-type']).toContain('application/pdf');
+    expect((await report.body()).subarray(0, 5).toString()).toBe('%PDF-');
+    expect(await page.locator('a[data-report]').getAttribute('href')).toBe(
+      `/en/c/${token}/report.pdf`,
+    );
     // The page body carries no percentage either, outside the shared desk counts.
     const body = await text(page.locator('ol.steps'));
     expect(body).not.toMatch(/\d+\s?%/);

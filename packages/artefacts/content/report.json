@@ -1,0 +1,67 @@
+{
+  "title": { "en": "GDPR status report", "da": "GDPR-statusrapport" },
+  "generated": { "en": "Generated", "da": "Genereret" },
+  "standing": {
+    "en": "A snapshot. Ask for a new one whenever you like; nothing here is final.",
+    "da": "Et øjebliksbillede. Bed om et nyt, når du vil; intet her er endeligt."
+  },
+  "live": { "en": "Live case", "da": "Sagen live" },
+  "summary": {
+    "en": "{{closed}} of {{total}} findings closed. {{openAreas}} areas open, {{undeterminedAreas}} not determined from outside.",
+    "da": "{{closed}} af {{total}} fund lukket. {{openAreas}} områder åbne, {{undeterminedAreas}} ikke afgjort udefra."
+  },
+  "sections": {
+    "standing": { "en": "Where things stand", "da": "Hvor tingene står" },
+    "actions": { "en": "What needs doing", "da": "Hvad der skal gøres" },
+    "nothingToDo": { "en": "Nothing is open right now.", "da": "Intet er åbent lige nu." },
+    "law": { "en": "The law this report refers to", "da": "Den lov, rapporten henviser til" },
+    "quoted": { "en": "Quoted in full, as written.", "da": "Citeret i sin helhed, som skrevet." },
+    "noLaw": {
+      "en": "No provision is relied on yet.",
+      "da": "Der henvises endnu ikke til nogen bestemmelse."
+    },
+    "decisions": { "en": "Decisions relied on", "da": "Afgørelser, der henvises til" }
+  },
+  "columns": {
+    "area": { "en": "Area", "da": "Område" },
+    "status": { "en": "Status", "da": "Status" },
+    "latest": { "en": "Latest", "da": "Seneste" },
+    "action": { "en": "Action", "da": "Handling" },
+    "who": { "en": "Who", "da": "Hvem" },
+    "effort": { "en": "Effort", "da": "Indsats" }
+  },
+  "states": {
+    "done": { "en": "In order", "da": "I orden" },
+    "open": { "en": "Open", "da": "Åben" },
+    "undetermined": { "en": "Not determined", "da": "Ikke afgjort" }
+  },
+  "notes": {
+    "open": { "en": "{{n}} open: {{types}}", "da": "{{n}} åbne: {{types}}" },
+    "fixed": { "en": "{{n}} fixed", "da": "{{n}} rettet" },
+    "nothingFound": { "en": "Checked, nothing found", "da": "Tjekket, intet fundet" },
+    "notChecked": { "en": "Not checked from outside", "da": "Ikke tjekket udefra" }
+  },
+  "unknownEffort": { "en": "Unknown", "da": "Ukendt" },
+  "areas": {
+    "Consent": { "en": "Consent", "da": "Samtykke" },
+    "Contracts": { "en": "Contracts", "da": "Aftaler" },
+    "Security": { "en": "Security", "da": "Sikkerhed" },
+    "Transfers": { "en": "Transfers", "da": "Overførsler" },
+    "Observation": { "en": "Observation", "da": "Observation" },
+    "Notice": { "en": "Notice", "da": "Oplysning" },
+    "Recipients": { "en": "Recipients", "da": "Modtagere" },
+    "Collection": { "en": "Collection", "da": "Indsamling" }
+  },
+  "roles": {
+    "marketing": { "en": "Marketing", "da": "Marketing" },
+    "it": { "en": "IT", "da": "IT" },
+    "hr": { "en": "HR", "da": "HR" },
+    "finance": { "en": "Finance", "da": "Økonomi" }
+  },
+  "source": { "en": "Source", "da": "Kilde" },
+  "disclaimer": {
+    "en": "Prepared automatically from evidence collected on the dates shown. It is not a legal opinion and not a seal of any kind. Have a lawyer read anything you intend to rely on.",
+    "da": "Udarbejdet automatisk ud fra beviser indsamlet på de viste datoer. Det er ikke en juridisk vurdering og ikke et mærke af nogen art. Lad en advokat læse alt, du vil støtte dig til."
+  },
+  "page": { "en": "Page {{p}} of {{n}}", "da": "Side {{p}} af {{n}}" }
+}

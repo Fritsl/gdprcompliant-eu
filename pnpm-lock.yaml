@@ -102,6 +102,9 @@ importers:
       '@gc/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts
+      '@gc/corpus':
+        specifier: workspace:*
+        version: link:../../packages/corpus
       '@gc/db':
         specifier: workspace:*
         version: link:../../packages/db
@@ -218,6 +221,9 @@ importers:
       '@gc/agent':
         specifier: workspace:*
         version: link:../agent
+      '@gc/artefacts':
+        specifier: workspace:*
+        version: link:../artefacts
       '@gc/config':
         specifier: workspace:*
         version: link:../config
@@ -227,6 +233,15 @@ importers:
       '@gc/db':
         specifier: workspace:*
         version: link:../db
+      '@gc/findings':
+        specifier: workspace:*
+        version: link:../findings
+      '@gc/i18n':
+        specifier: workspace:*
+        version: link:../i18n
+      '@gc/remedies':
+        specifier: workspace:*
+        version: link:../remedies
       drizzle-orm:
         specifier: ^0.45.2
         version: 0.45.2(@opentelemetry/api@1.9.1)(pg@8.23.0)(postgres@3.4.9)

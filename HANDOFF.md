@@ -16,7 +16,7 @@ companies a list of problems; this hands them a plan and the things that close i
 
 ## Where you are
 
-**72 of 112 done.** Phase 0 and phase 1 are complete; phase 2 is 25 of 34, phase 3 has
+**73 of 112 done.** Phase 0 and phase 1 are complete; phase 2 is 25 of 34, phase 3 has
 begun, DNS collection opens phase 4 and the task catalogue opens phase 5. Contracts,
 config with the EU-only allowlist, the test harness, record and replay, i18n, the remedy
 catalogue and resolver, the model client, the web shell, the fixture estate (with TLS),
@@ -45,8 +45,10 @@ page with its evidence drawers, and the remedy interactions (copy, a re-check jo
 reports what the scanner saw, artefact preview and sign-off, products labelled as ours),
 and the opt-in public progress page (dated, never a seal, a count of what is open), and
 the share flows (inward in the inviter's name, upward as a revocable one-screen summary
-link, outward as that page) are in. The database is up (`pnpm db:up`); nothing in phase 1
-is open.
+link, outward as that page), and the status report (a greyscale PDF at any moment: the
+matrix with not-determined as its own state, numbered actions with owner and effort, every
+provision quoted in full from the corpus) are in. The database is up (`pnpm db:up`);
+nothing in phase 1 is open.
 
 Do not trust that list — ask:
 
