@@ -12,6 +12,7 @@ import {
   type ColleagueOutcome,
   type RecheckView,
 } from '@/lib/case';
+import { readDeepScan } from '@/lib/deep-scan';
 import { asLocale, t } from '@/lib/i18n';
 import { questionCounts } from '@/lib/questions';
 import { registerCounts } from '@/lib/register';
@@ -313,6 +314,7 @@ export default async function CasePage({
   searchParams: Promise<{
     outcome?: string;
     recheck?: string;
+    deep?: string;
     attested?: string;
     asked?: string;
     trust?: string;
@@ -331,6 +333,16 @@ export default async function CasePage({
   const who = view.claimed ? t(locale, 'case.who.claimed') : t(locale, 'case.who.unclaimed');
   const query = await searchParams;
   const recheck = query.recheck ? await readRecheck(token, query.recheck) : undefined;
+  const deep = query.deep ? await readDeepScan(token, query.deep) : undefined;
+  const deepText = {
+    queued: t(locale, 'case.deepScan.queued'),
+    running: t(locale, 'case.deepScan.running'),
+    done: t(locale, 'case.deepScan.done'),
+    refused: t(locale, 'case.deepScan.refused'),
+    failed: t(locale, 'case.deepScan.failed'),
+  };
+  const deepOutcome = deep?.progress?.outcome;
+  const deepState = deepOutcome ?? (deep?.progress?.stage ? 'running' : 'queued');
   const outcome = query.outcome as ColleagueOutcome | undefined;
   const errorText = {
     rate_limited: t(locale, 'colleagues.error.tooMany'),
@@ -408,6 +420,53 @@ export default async function CasePage({
           <Text of={who} />
         </span>
       </header>
+      {view.claimed ? (
+        <form
+          method="post"
+          action={`${base}/deep-scan`}
+          className="inline no-print"
+          data-deep-scan-form=""
+        >
+          <button type="submit" className="btn" data-deep-scan-button="">
+            <Text of={t(locale, 'case.deepScan')} />
+          </button>
+          <Text of={t(locale, 'case.deepScan.note')} as="span" />
+        </form>
+      ) : null}
+      {query.outcome === 'unclaimed' ? (
+        <p role="status" className="muted" data-deep-scan-unclaimed="">
+          <Text of={t(locale, 'case.deepScan.unclaimed')} />
+        </p>
+      ) : null}
+      {deep ? (
+        <section
+          className="no-print"
+          data-deep-scan={deep.id}
+          data-state={deep.state}
+          data-outcome={deepOutcome ?? ''}
+          data-findings={deep.progress?.findings ?? ''}
+        >
+          <p role="status">
+            <Text of={deepText[deepState]} />
+            {deep.progress?.detail ? <> {deep.progress.detail}</> : null}
+          </p>
+          {deep.progress?.plan && deep.progress.plan.length > 0 ? (
+            <details className="drawer" data-deep-plan="">
+              <summary>
+                <Text of={t(locale, 'case.deepScan.plan')} />
+                {deep.progress.source ? <> · {deep.progress.source}</> : null}
+              </summary>
+              <ul className="body">
+                {deep.progress.plan.map((p, i) => (
+                  <li key={i} data-task={p.type}>
+                    {p.type}: {p.rationale}
+                  </li>
+                ))}
+              </ul>
+            </details>
+          ) : null}
+        </section>
+      ) : null}
       <h1 className="plan-lead">
         {open.length === 0 ? (
           <Text of={t(locale, 'case.ready.none')} />

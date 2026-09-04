@@ -7,10 +7,13 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import {
   RECHECK_JOB,
   caseByToken,
+  CONTACT_QUESTIONS,
   caseTimeline,
+  claimByOverride,
   createTestDatabase,
   findingsForCase,
   generateArtefact,
+  recordAnswer,
   seedRemedies,
   testDatabaseUrl,
   withTenant,
@@ -19,7 +22,7 @@ import {
 import { JobQueue } from '@gc/jobs';
 import { loadCatalogue } from '@gc/remedies';
 import { BrowserPool, FixtureServer, loadFixtureSites, type FixtureHost } from '@gc/scanner';
-import { registerRecheckWorker, registerScanWorker } from '@gc/worker';
+import { registerDeepScanWorker, registerRecheckWorker, registerScanWorker } from '@gc/worker';
 
 // The journeys (T-09): the paths a person actually takes, in a real browser, against the
 // fixture estate, with the workers in this process. A fix is applied the way a fix
@@ -106,6 +109,7 @@ describe.skipIf(!url)('the journeys (T-09)', () => {
     const quiet = { minDwellMs: 800, quietMs: 400, maxWaitMs: 8_000 };
     await registerScanWorker(queue, t, { pool, catalogue, quiet });
     await registerRecheckWorker(queue, t, { pool, catalogue, quiet });
+    await registerDeepScanWorker(queue, t, { pool, catalogue, agreements: 6, subProcessors: {} });
 
     mkdirSync(ARTIFACTS, { recursive: true });
     if (!existsSync(join(WEB, '.next', 'BUILD_ID')) || process.env['GC_E2E_BUILD'] === '1') {
@@ -321,6 +325,111 @@ describe.skipIf(!url)('the journeys (T-09)', () => {
     expect(events.some((e) => e.type === 'artefact_signed')).toBe(true);
     await page.close();
   });
+
+  it('deep scan → answer three questions → new findings appear → generate an artefact → sign it off', async () => {
+    const page = await browser.newPage();
+    // A site that talks to suppliers of its own.
+    await page.goto(`${BASE}/en`);
+    await page.fill('input[name="domain"]', 'eksempelbutik.test');
+    await page.keyboard.press('Enter');
+    await page.waitForURL(/\/en\/scan\/[^/]+$/, { timeout: 20_000 });
+    await page.locator('.scan-steps[data-done]').waitFor({ timeout: 120_000 });
+    await page.locator('.scan-out a.btn').click();
+    await page.waitForURL(/\/en\/c\/[a-f0-9]{64}$/, { timeout: 20_000 });
+    const url3 = page.url();
+    const token3 = url3.split('/').pop()!;
+    const found = (await caseByToken(t, token3))!;
+    const before = await findingsForCase(t, found.tenantId, found.caseId);
+    expect(before.length).toBeGreaterThan(0);
+
+    // Unclaimed, the deeper look is not offered; asked for anyway, it is refused.
+    expect(await page.locator('form[data-deep-scan-form]').count()).toBe(0);
+    const refused = await fetch(`${url3}/deep-scan`, { method: 'POST', redirect: 'manual' });
+    expect(refused.status).toBe(303);
+    expect(refused.headers.get('location')).toContain('outcome=unclaimed');
+
+    // The owner proves control (C-01, the override route), and looks deeper.
+    await claimByOverride(t, {
+      caseId: found.caseId,
+      tenantId: found.tenantId,
+      by: 'Frits',
+      reason: 'the owner proved control by phone, for the journey',
+    });
+    await page.reload();
+    await page.locator('form[data-deep-scan-form] button').click();
+    await page.waitForURL(/deep=/);
+    await untilOnReload(
+      page,
+      async () => (await page.locator('[data-deep-scan]').getAttribute('data-outcome')) === 'done',
+      180_000,
+    );
+    const status = page.locator('[data-deep-scan]');
+    expect(Number(await status.getAttribute('data-findings'))).toBeGreaterThan(0);
+    expect(await page.locator('[data-deep-plan] li').count()).toBeGreaterThan(0);
+    // New findings: the suppliers that publish no processing agreement.
+    expect(await page.locator('li.step[data-type="DPA-01"]').count()).toBeGreaterThan(0);
+    const after = await findingsForCase(t, found.tenantId, found.caseId);
+    expect(after.length).toBeGreaterThan(before.length);
+    expect(after.filter((f) => !f.typeId.startsWith('DPA-')).map((f) => f.status)).toEqual(
+      before.map((f) => f.status),
+    );
+    const events3 = await withTenant(t, found.tenantId, (db) => caseTimeline(db, found.caseId));
+    expect(events3.some((e) => e.type === 'scan_started' && e.payload.kind === 'deep')).toBe(true);
+    expect(
+      events3.some(
+        (e) => e.type === 'note_added' && String(e.payload.text).startsWith('Deep scan planned'),
+      ),
+    ).toBe(true);
+
+    // Three questions, one at a time, each settling what it settles.
+    for (let i = 0; i < 3; i += 1) {
+      await page.goto(`${url3}/questions`);
+      await page.locator('.q-opt').first().waitFor({ timeout: 10_000 });
+      await page.locator('.q-opt').first().click();
+      await page.waitForURL(/questions\?settled=/);
+    }
+    expect(await page.locator('article').getAttribute('data-answered')).toBe('3');
+
+    // The register, confirmed row by row with how long each is kept (G-01), and the
+    // company's contact details, which arrive the way the drafter expects them.
+    await page.goto(`${url3}/register`);
+    for (let i = 0; i < 12; i += 1) {
+      const drafts = page.locator('li[data-key][data-status="draft"]');
+      if ((await drafts.count()) === 0) break;
+      await drafts.first().locator('input[name="retention"]').fill('12 måneder efter henvendelsen');
+      await drafts.first().locator('button[type=submit]').click();
+      await page.waitForURL(/register\?confirmed=1/);
+    }
+    expect(await page.locator('li[data-key][data-status="draft"]').count()).toBe(0);
+    for (const [questionId, answer] of [
+      [CONTACT_QUESTIONS.address, 'Eksempelvej 1, 8000 Aarhus C'],
+      [CONTACT_QUESTIONS.email, 'privatliv@eksempelbutik.test'],
+    ] as const) {
+      await recordAnswer(t, found.tenantId, {
+        caseId: found.caseId,
+        questionId,
+        answer,
+        by: { kind: 'person', userId: 'owner', name: 'Mette' },
+        at: new Date(),
+      });
+    }
+
+    // The privacy policy, generated from the page (G-02) and signed off (A-09).
+    await page.goto(`${url3}/artefacts/privacy_policy`);
+    const gaps = await page.locator('[data-gap]').allInnerTexts();
+    expect(gaps, 'the policy can be written').toEqual([]);
+    await page.locator('form[data-generate] button').click();
+    await page.waitForURL(/outcome=/);
+    const doc = page.locator('article.artefact');
+    expect(await doc.getAttribute('data-status')).toBe('draft');
+    await doc.locator('form[action$="/sign"] input[name=name]').fill('Mette Sørensen');
+    await doc.locator('form[action$="/sign"] button').click();
+    await page.waitForURL(/outcome=signed/);
+    expect(await doc.getAttribute('data-status')).toBe('signed');
+    const signed = await withTenant(t, found.tenantId, (db) => caseTimeline(db, found.caseId));
+    expect(signed.filter((e) => e.type === 'artefact_signed').length).toBeGreaterThan(0);
+    await page.close();
+  }, 600_000);
 
   it('export the case, then delete it, and it is gone', async () => {
     const page = await browser.newPage();

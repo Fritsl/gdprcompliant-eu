@@ -101,7 +101,10 @@ function event<T extends string, P extends z.ZodRawShape>(type: T, payload: P) {
 export const CaseEventSchema = z
   .discriminatedUnion('type', [
     event('case_opened', { source: z.enum(['scanner', 'invite', 'internal']) }),
-    event('scan_started', { scanId: IdSchema, kind: z.enum(['initial', 'recheck', 'watch']) }),
+    event('scan_started', {
+      scanId: IdSchema,
+      kind: z.enum(['initial', 'recheck', 'watch', 'deep']),
+    }),
     event('scan_completed', {
       scanId: IdSchema,
       checksRun: z.number().int().min(0),

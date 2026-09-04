@@ -5,3 +5,4 @@ export const PACKAGE = '@gc/worker';
 
 export * from './scan.js';
 export * from './recheck.js';
+export * from './deep-scan.js';

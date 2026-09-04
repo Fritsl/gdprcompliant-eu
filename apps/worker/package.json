@@ -18,6 +18,8 @@
     "@gc/remedies": "workspace:*",
     "@gc/scanner": "workspace:*",
     "zod": "^4.5.4",
-    "@gc/telemetry": "workspace:*"
+    "@gc/telemetry": "workspace:*",
+    "@gc/agent": "workspace:*",
+    "@gc/rules": "workspace:*"
   }
 }

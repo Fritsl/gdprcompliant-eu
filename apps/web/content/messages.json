@@ -1523,5 +1523,50 @@
     "en": "Asked about",
     "da": "Spurgt om",
     "de": "Gefragt zu"
+  },
+  "case.deepScan": {
+    "en": "Look deeper",
+    "da": "Se dybere",
+    "de": "Tiefer schauen"
+  },
+  "case.deepScan.note": {
+    "en": "Reads each supplier's own site for a processing agreement, and the lists of who they use in turn.",
+    "da": "Læser hver leverandørs eget site efter en databehandleraftale og listerne over, hvem de selv bruger.",
+    "de": "Liest die Website jedes Anbieters nach einem Auftragsverarbeitungsvertrag und die Listen, wen sie ihrerseits einsetzen."
+  },
+  "case.deepScan.queued": {
+    "en": "Looking deeper",
+    "da": "Ser dybere",
+    "de": "Schaut tiefer"
+  },
+  "case.deepScan.running": {
+    "en": "Reading the suppliers now.",
+    "da": "Læser leverandørerne nu.",
+    "de": "Liest die Anbieter jetzt."
+  },
+  "case.deepScan.done": {
+    "en": "Done. New findings, if any, are in the list.",
+    "da": "Færdig. Nye fund, hvis der er nogen, står i listen.",
+    "de": "Fertig. Neue Feststellungen, falls vorhanden, stehen in der Liste."
+  },
+  "case.deepScan.refused": {
+    "en": "Not run: the case is not claimed and no decision allows it.",
+    "da": "Ikke kørt: sagen er ikke gjort krav på, og ingen afgørelse tillader det.",
+    "de": "Nicht ausgeführt: die Akte ist nicht beansprucht, und keine Entscheidung erlaubt es."
+  },
+  "case.deepScan.failed": {
+    "en": "It could not run.",
+    "da": "Det kunne ikke køre.",
+    "de": "Es konnte nicht laufen."
+  },
+  "case.deepScan.unclaimed": {
+    "en": "Claim the case first: a deeper look reads other companies’ sites in your name.",
+    "da": "Gør først krav på sagen: et dybere blik læser andre virksomheders sites i jeres navn.",
+    "de": "Beanspruchen Sie zuerst die Akte: ein tieferer Blick liest die Websites anderer Unternehmen in Ihrem Namen."
+  },
+  "case.deepScan.plan": {
+    "en": "The plan",
+    "da": "Planen",
+    "de": "Der Plan"
   }
 }

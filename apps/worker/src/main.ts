@@ -4,6 +4,7 @@ import { JobQueue } from '@gc/jobs';
 import { loadCatalogue } from '@gc/remedies';
 import { JsonLinesSink, event, setSink } from '@gc/telemetry';
 import { BrowserPool, Etiquette } from '@gc/scanner';
+import { registerDeepScanWorker } from './deep-scan.js';
 import { registerRecheckWorker } from './recheck.js';
 import { registerScanWorker } from './scan.js';
 
@@ -29,6 +30,13 @@ const catalogue = loadCatalogue();
 const stores = createRecordedFetch(config, { name: 'app-stores' });
 await registerScanWorker(queue, connection, { pool, catalogue, stores });
 await registerRecheckWorker(queue, connection, { pool, catalogue });
+// The deep scan (T-09): the planner over a claimed case, the suppliers read, their lists walked.
+await registerDeepScanWorker(queue, connection, {
+  pool,
+  catalogue,
+  agreements: 6,
+  subProcessors: {},
+});
 await registerRetentionWorker(queue, connection);
 await scheduleRetention(queue);
 event('worker.up', { concurrency: config.scanner.concurrency });

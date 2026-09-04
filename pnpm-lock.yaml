@@ -151,6 +151,9 @@ importers:
 
   apps/worker:
     dependencies:
+      '@gc/agent':
+        specifier: workspace:*
+        version: link:../../packages/agent
       '@gc/config':
         specifier: workspace:*
         version: link:../../packages/config
@@ -169,6 +172,9 @@ importers:
       '@gc/remedies':
         specifier: workspace:*
         version: link:../../packages/remedies
+      '@gc/rules':
+        specifier: workspace:*
+        version: link:../../packages/rules
       '@gc/scanner':
         specifier: workspace:*
         version: link:../../packages/scanner

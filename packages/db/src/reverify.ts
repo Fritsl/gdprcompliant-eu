@@ -42,7 +42,7 @@ import {
 
 export interface ScanResultInput {
   readonly scanId: string;
-  readonly kind: 'initial' | 'recheck' | 'watch';
+  readonly kind: 'initial' | 'recheck' | 'watch' | 'deep';
   readonly findings: readonly Finding[];
   readonly evidence: readonly Evidence[];
   readonly checksRun: number;

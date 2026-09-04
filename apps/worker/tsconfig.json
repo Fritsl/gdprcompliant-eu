@@ -29,6 +29,12 @@
     },
     {
       "path": "../../packages/telemetry"
+    },
+    {
+      "path": "../../packages/agent"
+    },
+    {
+      "path": "../../packages/rules"
     }
   ]
 }

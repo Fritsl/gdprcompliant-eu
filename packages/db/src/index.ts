@@ -41,3 +41,4 @@ export * from './supply-chain.js';
 export * from './authorisation.js';
 export * from './supply-chain-map.js';
 export * from './advice.js';
+export * from './deep-scan-job.js';
