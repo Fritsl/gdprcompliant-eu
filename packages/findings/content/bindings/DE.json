@@ -487,6 +487,11 @@
           "instrument": "GDPR",
           "ref": "Art. 44–49",
           "note": "transfers outside the EEA need a basis"
+        },
+        {
+          "instrument": "Case law",
+          "ref": "CJEU, C-311/18",
+          "note": "a transfer needs a level of protection essentially equivalent to the EU’s at the receiving end"
         }
       ],
       "guideId": "trf-01",

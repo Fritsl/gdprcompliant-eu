@@ -1,0 +1,138 @@
+{
+  "version": "2026-09-04",
+  "_comment": "The claim vocabulary (O-03). A banned pattern is a word the product never says about a customer or a named vendor, in the locale it belongs to: no certificate, no approval, no verdict of compliance, no guarantee, no seal, and no third party called unlawful. Every string of customer-facing content is read against the patterns of its locale; a hit fails the build unless the file and path are allowed here, with the reason. The only allowed uses are the disclaimers, which name the claim in order to deny it.",
+  "banned": [
+    {
+      "locale": "en",
+      "pattern": "\\bcertif(ied|ies|ication)\\b",
+      "why": "a certificate is a verdict nobody here gives"
+    },
+    {
+      "locale": "en",
+      "pattern": "\\bapproved\\b",
+      "why": "nobody has approved anything"
+    },
+    {
+      "locale": "en",
+      "pattern": "\\b(non-)?compliant\\b",
+      "why": "compliance is never stated as a verdict about a customer"
+    },
+    {
+      "locale": "en",
+      "pattern": "\\bguarantee[ds]?\\b",
+      "why": "nothing is guaranteed"
+    },
+    {
+      "locale": "en",
+      "pattern": "\\b(seal|badge)\\b",
+      "why": "no seal, no badge"
+    },
+    {
+      "locale": "en",
+      "pattern": "\\b(unlawful|illegal)(ly)?\\b",
+      "why": "behaviour is described and a decision cited; nothing is called unlawful"
+    },
+    {
+      "locale": "en",
+      "pattern": "\\b(in breach|in violation|violat(es|ed|ing)|breaks the law)\\b",
+      "why": "no verdict of a breach"
+    },
+    {
+      "locale": "da",
+      "pattern": "\\bcertificer\\w*",
+      "why": "et certifikat er en dom, ingen her afsiger"
+    },
+    {
+      "locale": "da",
+      "pattern": "\\bgodkendt\\b",
+      "why": "ingen har godkendt noget"
+    },
+    {
+      "locale": "da",
+      "pattern": "\\b(gdpr-?kompatibel|overholder (gdpr|loven|reglerne|forordningen))\\b",
+      "why": "overholdelse udtales aldrig som en dom over en kunde"
+    },
+    {
+      "locale": "da",
+      "pattern": "\\bgaranter\\w*",
+      "why": "intet garanteres"
+    },
+    {
+      "locale": "da",
+      "pattern": "\\bmærke\\b",
+      "why": "intet mærke"
+    },
+    {
+      "locale": "da",
+      "pattern": "\\bulovlig\\w*",
+      "why": "adfærd beskrives og en afgørelse citeres; intet kaldes ulovligt"
+    },
+    {
+      "locale": "da",
+      "pattern": "\\b(i strid med|bryder loven|overtræd\\w*)\\b",
+      "why": "ingen dom om en overtrædelse"
+    },
+    {
+      "locale": "de",
+      "pattern": "\\bzertifiz\\w*",
+      "why": "ein Zertifikat ist ein Urteil, das hier niemand fällt"
+    },
+    {
+      "locale": "de",
+      "pattern": "\\bgenehmigt\\b",
+      "why": "niemand hat etwas genehmigt"
+    },
+    {
+      "locale": "de",
+      "pattern": "\\b(dsgvo-?)?konform\\b",
+      "why": "Konformität wird nie als Urteil über einen Kunden ausgesprochen"
+    },
+    {
+      "locale": "de",
+      "pattern": "\\bgarantier\\w*",
+      "why": "nichts wird garantiert"
+    },
+    {
+      "locale": "de",
+      "pattern": "\\bsiegel\\b",
+      "why": "kein Siegel"
+    },
+    {
+      "locale": "de",
+      "pattern": "\\b(rechtswidrig|gesetzeswidrig|illegal)\\b",
+      "why": "Verhalten wird beschrieben und eine Entscheidung zitiert; nichts wird rechtswidrig genannt"
+    },
+    {
+      "locale": "de",
+      "pattern": "\\b(verstößt|verstoß)\\b",
+      "why": "kein Urteil über einen Verstoß"
+    }
+  ],
+  "allow": [
+    {
+      "file": "apps/web/content/messages.json",
+      "path": "shell.footer.notCertification",
+      "why": "the footer disclaimer names the claim in order to deny it"
+    },
+    {
+      "file": "packages/artefacts/content/report.json",
+      "path": "disclaimer",
+      "why": "the report disclaimer names the claim in order to deny it"
+    },
+    {
+      "file": "packages/artefacts/content/disclaimer.json",
+      "path": "",
+      "why": "the shared disclaimer names the claim in order to deny it"
+    },
+    {
+      "file": "apps/web/content/messages.json",
+      "path": "trust.statement",
+      "why": "the progress page disclaimer names the claim in order to deny it"
+    },
+    {
+      "file": "apps/web/content/messages.json",
+      "path": "front.heading",
+      "why": "the front page asks the question and never answers it; the rest of the product describes what was seen"
+    }
+  ]
+}

@@ -1,7 +1,10 @@
+import { disclaimerText } from '@gc/artefacts';
 import { ARTEFACT_KINDS, type ArtefactKind } from '@gc/contracts';
 import { exportArtefactForOwner } from '@/lib/case';
 
 // The signed document's bytes, with the signature in the headers. Unsigned, nothing leaves.
+// The disclaimer follows the document after a rule; the hash in the headers is of the
+// signed document alone, which ends at that rule.
 
 export const dynamic = 'force-dynamic';
 
@@ -11,11 +14,11 @@ export async function GET(
   _request: Request,
   context: { params: Promise<{ locale: string; token: string; kind: string }> },
 ) {
-  const { token, kind } = await context.params;
+  const { locale, token, kind } = await context.params;
   if (!isKind(kind)) return new Response('Not found', { status: 404 });
   const doc = await exportArtefactForOwner(token, kind);
   if (!doc) return new Response('Not found', { status: 404 });
-  return new Response(doc.content, {
+  return new Response(`${doc.content}\n\n---\n\n${disclaimerText(locale)}\n`, {
     headers: {
       'content-type': 'text/markdown; charset=utf-8',
       'content-disposition': `attachment; filename="${kind}-v${doc.version}.md"`,

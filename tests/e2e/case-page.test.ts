@@ -172,6 +172,8 @@ describe.skipIf(!url)('the case page (U-03)', () => {
   it('no score in the header: the case number, the domain, a fixes-ready count and a progress track', async () => {
     const page = await browser.newPage();
     await page.goto(`${BASE}/en/c/${token}`);
+    // The disclaimer is on the page itself, not in a terms document (O-03).
+    expect(await page.getByText('Nothing here is a certification').count()).toBe(1);
     const head = await text(page.locator('.plan-top'));
     expect(head).toMatch(/[A-Z]{2}-\d{2}-[A-Z0-9]{4}/);
     expect(head).toContain('eksempelbutik.dk');

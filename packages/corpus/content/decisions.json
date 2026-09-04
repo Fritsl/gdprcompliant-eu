@@ -12,6 +12,18 @@
         "url": "https://www.gesetze-bayern.de/Content/Document/Y-300-Z-BECKRS-B-2022-N-612",
         "retrievedAt": "2026-09-04T00:40:00Z"
       }
+    },
+    {
+      "body": "CJEU",
+      "reference": "C-311/18",
+      "jurisdiction": "EU",
+      "scope": "EU",
+      "decidedAt": "2020-07-16",
+      "title": "Judgment of 16 July 2020, Data Protection Commissioner v Facebook Ireland and Schrems, C-311/18, ECLI:EU:C:2020:559 (transfers to a third country need an essentially equivalent level of protection)",
+      "source": {
+        "url": "https://curia.europa.eu/juris/liste.jsf?num=C-311/18",
+        "retrievedAt": "2026-09-04T08:40:00Z"
+      }
     }
   ]
 }

@@ -1,4 +1,5 @@
 import { strToU8, unzipSync, zipSync } from 'fflate';
+import { disclaimerText } from './disclaimer.js';
 import { canonicalJson, sha256 } from '@gc/contracts';
 
 // The evidence pack (G-04): a dated bundle proving the work happened. Plain files in a
@@ -61,6 +62,8 @@ function readme(input: PackInput, files: readonly PackFile[]): string {
     '',
     'Everything in this folder was produced from the case as it stood at that moment. It is',
     'a record of what was observed, what was done and who did it; it is not legal advice.',
+    '',
+    disclaimerText('en'),
     '',
     '## What is here',
     '',

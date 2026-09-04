@@ -1,5 +1,5 @@
 import { eq, inArray } from 'drizzle-orm';
-import { timelineModel, timelinePdf } from '@gc/artefacts';
+import { disclaimerText, timelineModel, timelinePdf } from '@gc/artefacts';
 import { canonicalJson, sha256, type CaseEvent, type Locale } from '@gc/contracts';
 import type { Connection, Db } from './client.js';
 import {
@@ -137,6 +137,7 @@ export async function exportCase(
       format: 'gdprcompliant.eu/case-export',
       version: 1,
       exportedAt: now.toISOString(),
+      disclaimer: disclaimerText(options.locale),
       case: caseRow,
       findings: strip(all.f),
       findingEvidence: strip(all.links),

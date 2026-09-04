@@ -301,9 +301,9 @@ fires and one that proves it does not. A type missing any of these fails the bui
 - Area: Transfers. Default severity: serious.
 - Detector: `scanner/checks/recipients#transfers` (family `recipients`).
 - Remedy in DE: `trf-01-european-alternatives` v1 (partner_alternative, verified by rescan).
-- Rests on in DE: GDPR Art. 44–49 `GDPR:44`.
+- Rests on in DE: GDPR Art. 44–49 `GDPR:44`; Case law CJEU, C-311/18 `CJEU:C-311/18`.
 - Remedy in DK: `trf-01-european-alternatives` v1 (partner_alternative, verified by rescan).
-- Rests on in DK: GDPR Art. 44–49 `GDPR:44`.
+- Rests on in DK: GDPR Art. 44–49 `GDPR:44`; Case law CJEU, C-311/18 `CJEU:C-311/18`.
 - Guide: `trf-01` (da, en).
 - Fixtures that must raise it: hosted-fonts, us-tag-manager.
 - Fixtures that must not: clean-agency, clean-blog, clean-brochure, clean-shop-gated, clean-spa.

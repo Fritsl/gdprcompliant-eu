@@ -163,7 +163,12 @@ describe.skipIf(!url)('the evidence pack (G-04)', () => {
     expect(readme).toContain('registry dns-services: 2026-09-04');
     expect(readme).toMatch(/remedy-catalogue-lock: [a-f0-9]{64}/);
     expect(readme).toContain('- findings: 1');
-    expect(readme).not.toMatch(/certif(ied|ication)|compliant|approved/i);
+    // The disclaimer says what the pack is not (O-03); nothing else in it makes a claim.
+    expect(readme).toContain(
+      'It is not a certification, not a legal opinion and not a seal of any kind.',
+    );
+    const withoutDisclaimer = readme.replace(/^Generated automatically from evidence.*$/m, '');
+    expect(withoutDisclaimer).not.toMatch(/certif(ied|ication)|compliant|approved|seal/i);
 
     const bundle = JSON.parse(dec.decode(files['case.json']!)) as Record<string, unknown[]> & {
       case: Record<string, unknown>;

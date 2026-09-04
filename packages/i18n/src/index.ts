@@ -9,3 +9,4 @@ export const PACKAGE = '@gc/i18n';
 
 export * from './locales.js';
 export * from './localise.js';
+export * from './claims.js';

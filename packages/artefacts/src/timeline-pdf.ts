@@ -49,6 +49,8 @@ export function timelinePdf(model: TimelineModel, options: TimelinePdfOptions): 
       if (e.detail) doc.font('Helvetica').fontSize(10).text(e.detail);
       doc.moveDown(0.8);
     }
+    doc.moveDown(0.4);
+    doc.font('Helvetica').fontSize(8.5).fillColor('#555555').text(model.disclaimer);
 
     const range = doc.bufferedPageRange();
     for (let i = range.start; i < range.start + range.count; i += 1) {

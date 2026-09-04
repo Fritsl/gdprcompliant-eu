@@ -11,6 +11,7 @@ import {
   type Locale,
 } from '@gc/contracts';
 import { localise } from '@gc/i18n';
+import { disclaimerText } from './disclaimer.js';
 
 // The timeline as a record a person reads (C-02): every event dated, attributed and
 // described in the case's language. The wording is content, one entry per event type,
@@ -71,6 +72,7 @@ export interface TimelineModel {
   readonly caseId: string;
   readonly locale: Locale;
   readonly entries: readonly TimelineEntry[];
+  readonly disclaimer: string;
 }
 
 export interface TimelineOptions {
@@ -150,5 +152,5 @@ export function timelineModel(
         fellBack: text.fellBack || detail.fellBack || actor.fellBack,
       };
     });
-  return { caseId, locale, entries };
+  return { caseId, locale, entries, disclaimer: disclaimerText(locale) };
 }
