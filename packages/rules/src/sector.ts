@@ -16,6 +16,8 @@ export const SectorSchema = z.object({
   title: LocalisedTextSchema,
   // NACE Rev. 2 prefixes, "47" or "47.91"; the longest matching prefix wins.
   nace: z.array(z.string().regex(/^\d{2}(\.\d{1,2})?$/)).default([]),
+  // A sector with its own supervisor and duties beyond the GDPR (L-01 reads it).
+  regulated: z.boolean().default(false),
   signals: z
     .object({
       activities: z.array(z.string()).default([]),

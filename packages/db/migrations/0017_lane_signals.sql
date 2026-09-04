@@ -1,0 +1,1 @@
+ALTER TABLE "cases" ADD COLUMN "lane_signals" jsonb DEFAULT '[]'::jsonb NOT NULL;

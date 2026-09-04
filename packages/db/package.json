@@ -17,6 +17,7 @@
     "@gc/jobs": "workspace:*",
     "zod": "^4.5.4",
     "@gc/findings": "workspace:*",
-    "@gc/remedies": "workspace:*"
+    "@gc/remedies": "workspace:*",
+    "@gc/rules": "workspace:*"
   }
 }

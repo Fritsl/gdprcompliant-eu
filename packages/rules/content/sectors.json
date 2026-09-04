@@ -3,13 +3,23 @@
   "sectors": [
     {
       "id": "online-retail",
-      "title": { "en": "online retail", "da": "nethandel", "de": "Onlinehandel" },
+      "title": {
+        "en": "online retail",
+        "da": "nethandel",
+        "de": "Onlinehandel"
+      },
       "nace": ["47.91"],
-      "signals": { "activities": ["orders"] }
+      "signals": {
+        "activities": ["orders"]
+      }
     },
     {
       "id": "retail",
-      "title": { "en": "retail", "da": "detailhandel", "de": "Einzelhandel" },
+      "title": {
+        "en": "retail",
+        "da": "detailhandel",
+        "de": "Einzelhandel"
+      },
       "nace": ["47"]
     },
     {
@@ -20,7 +30,9 @@
         "de": "freiberufliche Dienstleistungen"
       },
       "nace": ["69", "70", "71", "73", "74"],
-      "signals": { "activities": ["enquiries", "email_and_documents"] }
+      "signals": {
+        "activities": ["enquiries", "email_and_documents"]
+      }
     },
     {
       "id": "software",
@@ -30,7 +42,9 @@
         "de": "Software und IT-Dienste"
       },
       "nace": ["58.2", "62", "63"],
-      "signals": { "activities": ["accounts"] }
+      "signals": {
+        "activities": ["accounts"]
+      }
     },
     {
       "id": "healthcare",
@@ -40,16 +54,28 @@
         "de": "Gesundheit und Pflege"
       },
       "nace": ["86", "87", "88"],
-      "signals": { "activities": ["sensitive_enquiries"], "categories": ["health"] }
+      "signals": {
+        "activities": ["sensitive_enquiries"],
+        "categories": ["health"]
+      },
+      "regulated": true
     },
     {
       "id": "hospitality",
-      "title": { "en": "hospitality", "da": "hotel og restauration", "de": "Gastgewerbe" },
+      "title": {
+        "en": "hospitality",
+        "da": "hotel og restauration",
+        "de": "Gastgewerbe"
+      },
       "nace": ["55", "56"]
     },
     {
       "id": "education",
-      "title": { "en": "education", "da": "undervisning", "de": "Bildung" },
+      "title": {
+        "en": "education",
+        "da": "undervisning",
+        "de": "Bildung"
+      },
       "nace": ["85"]
     },
     {
@@ -69,6 +95,16 @@
         "de": "Bau und Immobilien"
       },
       "nace": ["41", "42", "43", "68"]
+    },
+    {
+      "id": "finance",
+      "title": {
+        "en": "finance and insurance",
+        "da": "finans og forsikring",
+        "de": "Finanzen und Versicherungen"
+      },
+      "nace": ["64", "65", "66"],
+      "regulated": true
     }
   ]
 }

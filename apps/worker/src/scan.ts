@@ -3,6 +3,7 @@ import {
   SCAN_JOB,
   UnsupportedTarget,
   openCaseForTarget,
+  assignLane,
   recordScan,
   seedRegister,
   type Connection,
@@ -243,6 +244,8 @@ export async function registerScanWorker(
       recipients: recipients.observations,
       consent: diffed.drafts,
     });
+    // The lane (L-01): scored from what was seen, stored, never shown to the customer.
+    await assignLane(connection, opened.tenantId, opened.caseId);
     await mark('writing-up', 'ok', `${assembled.findings.length} finding(s)`);
     const outcome: ScanProgress['outcome'] =
       refusal.outcome === 'undetermined'

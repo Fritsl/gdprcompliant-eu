@@ -134,7 +134,8 @@ export async function exportCase(
       generatedLabel: 'Generated',
       pageLabel: (p, n) => `Page ${p} of ${n}`,
     });
-    const caseRow = omit(all.c, ['accessToken', 'tenantId']);
+    // The lane, its score and its signals are ours (L-01): not the customer's case.
+    const caseRow = omit(all.c, ['accessToken', 'tenantId', 'lane', 'laneScore', 'laneSignals']);
     const bundle = {
       format: 'gdprcompliant.eu/case-export',
       version: 1,

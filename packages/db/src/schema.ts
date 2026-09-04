@@ -100,6 +100,8 @@ export const cases = pgTable(
     watched: boolean('watched').notNull().default(false),
     lane: text('lane').notNull(),
     laneScore: integer('lane_score').notNull().default(0),
+    // The signals behind the score (L-01), for an internal reader; never exported.
+    laneSignals: jsonb('lane_signals').notNull().default([]),
     stage: text('stage').notNull().default('opened'),
     // Ownership (C-01). An unclaimed case is reachable only by its token, which is 256
     // random bits, and only until expires_at; claiming clears the expiry.

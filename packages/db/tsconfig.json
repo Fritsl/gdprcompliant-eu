@@ -23,6 +23,9 @@
     },
     {
       "path": "../remedies"
+    },
+    {
+      "path": "../rules"
     }
   ]
 }

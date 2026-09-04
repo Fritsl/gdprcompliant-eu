@@ -1,6 +1,6 @@
 # Schema
 
-Generated from `packages/db/migrations/meta/0016_snapshot.json` by `scripts/schema-doc.mjs`.
+Generated from `packages/db/migrations/meta/0017_snapshot.json` by `scripts/schema-doc.mjs`.
 Do not edit; change `packages/db/src/schema.ts`, run `pnpm db:generate`, then `pnpm db:doc`.
 
 Every table carries `tenant_id`, `created_at` and `source_ref`. `case_events` and
@@ -115,6 +115,7 @@ erDiagram
     boolean watched
     text lane
     integer lane_score
+    jsonb lane_signals
     text stage
     text access_token
     timestamp expires_at "nullable"
@@ -530,6 +531,7 @@ erDiagram
 | watched | boolean | not null, default false |
 | lane | text | not null |
 | lane_score | integer | not null, default 0 |
+| lane_signals | jsonb | not null, default '[]'::jsonb |
 | stage | text | not null, default 'opened' |
 | access_token | text | not null, default replace(gen_random_uuid()::text \|\| gen_random_uuid()::text, '-', '') |
 | expires_at | timestamp with time zone |  |
