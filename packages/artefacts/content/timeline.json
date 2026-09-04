@@ -441,6 +441,18 @@
         "da": "{{name}}",
         "de": "{{name}}"
       }
+    },
+    "deep_scan_authorised": {
+      "text": {
+        "en": "Deep scan allowed in the public interest",
+        "da": "Dyb scanning tilladt i offentlighedens interesse",
+        "de": "Tiefer Scan im öffentlichen Interesse erlaubt"
+      },
+      "detail": {
+        "en": "{{reason}}",
+        "da": "{{reason}}",
+        "de": "{{reason}}"
+      }
     }
   }
 }

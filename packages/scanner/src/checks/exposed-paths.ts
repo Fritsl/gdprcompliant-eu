@@ -37,44 +37,11 @@ export const EXPOSED_PATHS: readonly ExposedPath[] = [
   { path: '/db.sql', looksLike: 'a database dump', matches: sqlDump },
 ];
 
-export const SCANNER_USER_AGENT = 'GDPRcompliant-scanner';
+// The name the probes announce, from the published behaviour (D-11).
+export const SCANNER_USER_AGENT = scannerUserAgent();
 
-// The subset of robots.txt that matters here: which paths are disallowed for everyone,
-// or for us by name. Allow rules are honoured when more specific than the disallow.
-export function robotsDisallows(robots: string, path: string, agent = SCANNER_USER_AGENT): boolean {
-  const groups: { agents: string[]; allow: string[]; disallow: string[] }[] = [];
-  let current: (typeof groups)[number] | undefined;
-  let lastWasAgent = false;
-  for (const raw of robots.split(/\r?\n/)) {
-    const line = raw.replace(/#.*$/, '').trim();
-    if (!line) continue;
-    const [key, ...rest] = line.split(':');
-    const value = rest.join(':').trim();
-    const k = (key ?? '').trim().toLowerCase();
-    if (k === 'user-agent') {
-      if (!current || !lastWasAgent) {
-        current = { agents: [], allow: [], disallow: [] };
-        groups.push(current);
-      }
-      current.agents.push(value.toLowerCase());
-      lastWasAgent = true;
-      continue;
-    }
-    lastWasAgent = false;
-    if (!current) continue;
-    if (k === 'disallow' && value) current.disallow.push(value);
-    if (k === 'allow' && value) current.allow.push(value);
-  }
-  const mine = groups.filter((g) => g.agents.some((a) => a === agent.toLowerCase()));
-  const applicable = mine.length > 0 ? mine : groups.filter((g) => g.agents.includes('*'));
-  const longest = (rules: string[]) =>
-    rules
-      .filter((r) => path.startsWith(r.replace(/\$$/, '')))
-      .sort((a, b) => b.length - a.length)[0];
-  for (const g of applicable) {
-    const dis = longest(g.disallow);
-    const allow = longest(g.allow);
-    if (dis && (!allow || allow.length < dis.length)) return true;
-  }
-  return false;
+// Whether robots.txt keeps the probe off a path, read the one way the scanner reads it.
+export function robotsDisallows(robots: string, path: string, agent?: string): boolean {
+  return !robotsAllows(robots, path, agent ?? scannerUserAgent());
 }
+import { robotsAllows, scannerUserAgent } from '../etiquette.js';

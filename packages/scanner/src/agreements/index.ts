@@ -14,6 +14,7 @@ import { readPage, type PageRead } from '../discovery/policies.js';
 import type { LinkCandidate } from '../discovery/patterns.js';
 import { refTo, type EvidenceIdentity } from '../evidence.js';
 import type { BrowserPool } from '../pool.js';
+import { consentGate, scannerUserAgent } from '../etiquette.js';
 
 // Agreement discovery (D-06): does a supplier publish the processing agreement it does
 // business under? The supplier's site is read the way a policy is found (S-09): links
@@ -56,6 +57,7 @@ export function scoreAgreementLink(link: LinkCandidate): number {
     path = link.href;
   }
   const text = link.text.replace(/\s+/g, ' ').trim();
+  if (consentGate(text)) return 0;
   let score = 0;
   if (AGREEMENT_TEXT.test(text)) score += 10;
   if (AGREEMENT_PATH.test(path)) score += 5;
@@ -129,7 +131,7 @@ export async function discoverAgreement(
   const vendor = { host: site, ...(options.vendorName ? { name: options.vendorName } : {}) };
   const name = options.vendorName ?? site;
 
-  return pool.run(target, async (page) => {
+  return pool.run({ userAgent: scannerUserAgent(), ...target }, async (page) => {
     const evidence: Evidence[] = [];
     const trail: AgreementTrail[] = [];
     let fetched = 0;

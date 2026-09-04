@@ -1319,6 +1319,11 @@
     "da": "Vores egen fortegnelse",
     "de": "Unser eigenes Verzeichnis"
   },
+  "shell.footer.scanner": {
+    "en": "How the scanner behaves",
+    "da": "Sådan opfører scanneren sig",
+    "de": "So verhält sich der Scanner"
+  },
   "ourselves.generated": {
     "en": "Generated from the running configuration on",
     "da": "Genereret ud fra den kørende konfiguration den",
@@ -1353,5 +1358,10 @@
     "en": "The benchmark needs 30 watched sites; {n} so far.",
     "da": "Sammenligningen kræver 30 overvågede sites; {n} indtil videre.",
     "de": "Der Vergleich braucht 30 beobachtete Websites; bisher {n}."
+  },
+  "scanner.version": {
+    "en": "Behaviour version",
+    "da": "Adfærdsversion",
+    "de": "Verhaltensversion"
   }
 }

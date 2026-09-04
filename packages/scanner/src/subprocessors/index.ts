@@ -18,6 +18,9 @@ import { readPage, type PageRead } from '../discovery/policies.js';
 import type { LinkCandidate } from '../discovery/patterns.js';
 import { refTo, type EvidenceIdentity } from '../evidence.js';
 import type { BrowserPool } from '../pool.js';
+import { consentGate, loadBehaviour, robotsAllows, scannerUserAgent } from '../etiquette.js';
+
+export { robotsAllows };
 
 // Sub-processor lists and the walk along them (D-07). A supplier's list is found the way
 // a policy is (a link that looks like one, then the paths such a page lives at), read
@@ -49,8 +52,8 @@ export const DEFAULT_LIMITS: SupplyChainLimits = {
   respectRobots: true,
 };
 
-// The agent named in the requests, and the one a robots.txt group may address.
-export const CRAWLER_AGENT = 'gdprcompliant';
+// The group a robots.txt may address us by, from the published behaviour (D-11).
+export const CRAWLER_AGENT = loadBehaviour().identity.robotsGroup;
 
 // ---- reading one list ------------------------------------------------------------------
 
@@ -161,6 +164,7 @@ export function scoreListLink(link: LinkCandidate): number {
     path = link.href;
   }
   const text = collapse(link.text);
+  if (consentGate(text)) return 0;
   let score = 0;
   if (LIST_TEXT.test(text)) score += 10;
   if (LIST_PATH.test(path)) score += 5;
@@ -171,47 +175,6 @@ export function scoreListLink(link: LinkCandidate): number {
 }
 
 // ---- politeness ---------------------------------------------------------------------------
-
-// robots.txt, read for the group that addresses us or everyone: the longest matching
-// rule wins, Allow over Disallow at equal length, and no rule means allowed.
-export function robotsAllows(robots: string, path: string, agent = CRAWLER_AGENT): boolean {
-  const groups: { agents: string[]; rules: { allow: boolean; prefix: string }[] }[] = [];
-  let current: (typeof groups)[number] | undefined;
-  let lastWasAgent = false;
-  for (const raw of robots.split(/\r?\n/)) {
-    const line = raw.replace(/#.*$/, '').trim();
-    if (!line) continue;
-    const m = /^([a-z-]+)\s*:\s*(.*)$/i.exec(line);
-    if (!m) continue;
-    const field = m[1]!.toLowerCase();
-    const value = m[2]!.trim();
-    if (field === 'user-agent') {
-      if (!current || !lastWasAgent) {
-        current = { agents: [], rules: [] };
-        groups.push(current);
-      }
-      current.agents.push(value.toLowerCase());
-      lastWasAgent = true;
-      continue;
-    }
-    lastWasAgent = false;
-    if (!current || (field !== 'allow' && field !== 'disallow')) continue;
-    if (value === '' && field === 'disallow') continue; // "Disallow:" allows everything
-    current.rules.push({ allow: field === 'allow', prefix: value });
-  }
-  const mine = groups.filter((g) => g.agents.some((a) => a !== '*' && agent.includes(a)));
-  const applicable = mine.length > 0 ? mine : groups.filter((g) => g.agents.includes('*'));
-  let best: { allow: boolean; length: number } | undefined;
-  for (const g of applicable) {
-    for (const r of g.rules) {
-      const prefix = r.prefix.replace(/\*$/, '');
-      if (!path.startsWith(prefix)) continue;
-      if (!best || prefix.length > best.length || (prefix.length === best.length && r.allow))
-        best = { allow: r.allow, length: prefix.length };
-    }
-  }
-  return best ? best.allow : true;
-}
 
 export interface PolitenessOptions {
   readonly minIntervalMs: number;
@@ -475,7 +438,7 @@ export async function traverseSupplyChain(
       continue;
     }
     const origin = `${scheme}//${node.host}`;
-    const read = await pool.run({ url: `${origin}/` }, (page) =>
+    const read = await pool.run({ url: `${origin}/`, userAgent: scannerUserAgent() }, (page) =>
       readSubProcessorList(page, origin, {
         identity: options.identity,
         polite,

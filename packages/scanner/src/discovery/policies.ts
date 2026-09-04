@@ -13,6 +13,7 @@ import {
 } from '@gc/contracts';
 import type { Page } from 'playwright';
 import { refTo, type EvidenceIdentity } from '../evidence.js';
+import { scannerUserAgent } from '../etiquette.js';
 import type { BrowserPool, ScanTarget } from '../pool.js';
 import { KIND_PATTERNS, WELL_KNOWN_PATHS, scoreLink, type LinkCandidate } from './patterns.js';
 
@@ -101,7 +102,8 @@ export async function discoverPolicies(
   const site = new URL(target.url).hostname.toLowerCase();
   const startedAt = now().toISOString();
 
-  return pool.run(target, async (page) => {
+  // Read as the named crawler (D-11): a policy is public, and the site may know who asks.
+  return pool.run({ userAgent: scannerUserAgent(), ...target }, async (page) => {
     const evidence: Evidence[] = [];
     let fetched = 0;
     const visited = new Set<string>();

@@ -8,6 +8,7 @@ import {
   type Page,
 } from 'playwright';
 import { guardContext, type Blocked, type EgressGuard } from './egress.js';
+import type { Etiquette } from './etiquette.js';
 
 // A pool of browser passes. Every pass gets a brand-new browser context — its own
 // cookies, storage, IndexedDB, cache and service workers, none of it shared with the
@@ -51,6 +52,9 @@ export interface PoolOptions {
   readonly resolveEgress?: boolean;
   // For the pool's own tests, whose pages are served on this machine. Never in production.
   readonly allowPrivateTargets?: boolean;
+  // Crawl etiquette (D-11): one limiter for every context this pool opens. Absent, the
+  // pool identifies itself with nothing and waits for nobody; tests of other things.
+  readonly etiquette?: Etiquette;
 }
 
 export class PassTimeoutError extends Error {
@@ -124,6 +128,11 @@ export class BrowserPool {
     if (!closed) await this.kill(running);
   }
 
+  // The etiquette this pool runs under, for the collectors that read as a crawler.
+  get etiquette(): Etiquette | undefined {
+    return this.options.etiquette;
+  }
+
   stats(): PoolStats {
     return {
       inFlight: this.inFlight,
@@ -152,6 +161,7 @@ export class BrowserPool {
         ...(this.options.ignoreHTTPSErrors ? { ignoreHTTPSErrors: true } : {}),
         // A page that hands the browser a file gets nothing saved anywhere.
         acceptDownloads: false,
+        ...(this.options.etiquette ? { extraHTTPHeaders: this.options.etiquette.headers() } : {}),
       });
       context.setDefaultTimeout(this.options.navigationTimeoutMs);
       context.setDefaultNavigationTimeout(this.options.navigationTimeoutMs);
@@ -159,7 +169,11 @@ export class BrowserPool {
       if (!this.options.allowPrivateTargets) {
         guardByContext.set(
           context,
-          await guardContext(context, page, { resolve: this.options.resolveEgress ?? true }),
+          await guardContext(context, page, {
+            resolve: this.options.resolveEgress ?? true,
+            ...(this.options.etiquette ? { etiquette: this.options.etiquette } : {}),
+            targetUrl: target.url,
+          }),
         );
       }
       const deadline = new Promise<never>((_, reject) => {

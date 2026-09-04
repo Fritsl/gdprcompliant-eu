@@ -10,3 +10,4 @@ export * from './schema.js';
 export * from './load.js';
 export * from './egress.js';
 export * from './cassette.js';
+export * from './behaviour.js';

@@ -1,3 +1,4 @@
+import { loadBehaviour, scannerUserAgent } from '@gc/config';
 import { spawn, spawnSync, type ChildProcess } from 'node:child_process';
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -94,6 +95,25 @@ describe('locale-prefixed routes, server-rendered', () => {
 
   it('an unknown locale is a 404, not a fallback', async () => {
     expect((await fetch(`${BASE}/xx`)).status).toBe(404);
+  });
+
+  it('publishes how the scanner behaves, in every language, from the content the scanner reads (D-11)', async () => {
+    const spec = loadBehaviour();
+    for (const locale of ['en', 'da', 'de']) {
+      const r = await fetch(`${BASE}/${locale}/scanner`);
+      expect(r.status).toBe(200);
+      const html = await r.text();
+      expect(html).toContain(`data-user-agent="${scannerUserAgent()}"`);
+      expect(html).toContain(`data-identity-header="${spec.identity.header}"`);
+      expect(html).toContain(`data-behaviour-version="${spec.version}"`);
+      for (const section of spec.page.sections)
+        expect(html).toContain(`data-section="${section.id}"`);
+      expect(html).toContain(`${spec.limits.minIntervalMs} ms`);
+      expect(html).toContain('data-scanner-behaviour=""');
+      expect(html).not.toContain('{{');
+    }
+    const sitemap = await (await fetch(`${BASE}/sitemap.xml`)).text();
+    expect(sitemap).toContain('/en/scanner');
   });
 
   it('every language renders its own heading, and nothing falls back now that German is complete', async () => {

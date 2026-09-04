@@ -138,6 +138,12 @@ export const CaseEventSchema = z
     event('check_requested', { questionId: IdSchema, jobId: NonEmptyStringSchema }),
     // One of us opened the case (L-02): on the record, where the customer sees it.
     event('internal_access', { name: NonEmptyStringSchema }),
+    // A deep scan of a site the requester does not control, allowed in the public
+    // interest (D-11): the reason stands with the decision.
+    event('deep_scan_authorised', {
+      reason: NonEmptyStringSchema,
+      basis: z.literal('public_interest'),
+    }),
     event('artefact_generated', { artefactId: IdSchema, kind: ArtefactKindSchema }),
     // A named person signed a specific version of a document (A-09): who, which version,
     // which bytes. Nothing is published or exported without one.

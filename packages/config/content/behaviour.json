@@ -1,0 +1,89 @@
+{
+  "version": "2026-09-05",
+  "_comment": "How the scanner behaves on the internet (D-11), as content: the name it gives, the header it sends, the limits it keeps, what it never does, and who may ask for a deep scan of whom. The code reads its constants from this file and the page at /scanner is rendered from it, so the two cannot drift; a test holds the code to every number and name here.",
+  "agent": {
+    "name": "GDPRcompliant-scanner",
+    "version": "1",
+    "url": "https://gdprcompliant.eu/en/scanner",
+    "contact": "fly@frits.ai"
+  },
+  "identity": {
+    "header": "X-GDPRcompliant-Scanner",
+    "robotsGroup": "gdprcompliant"
+  },
+  "limits": {
+    "minIntervalMs": 1000,
+    "perHostPerMinute": 30,
+    "perDomainPerMinute": 60,
+    "pagesPerScan": 40,
+    "passesPerScan": 3
+  },
+  "never": ["authenticate", "submit", "consent_gate", "download", "private_address"],
+  "page": {
+    "title": {
+      "en": "How the scanner behaves",
+      "da": "Sådan opfører scanneren sig",
+      "de": "So verhält sich der Scanner"
+    },
+    "lead": {
+      "en": "What reaches your site when someone scans it here, how it identifies itself, how fast it goes, and what it never does. Rendered from the same file the scanner reads its limits from.",
+      "da": "Hvad der rammer dit site, når nogen scanner det her, hvordan det identificerer sig, hvor hurtigt det går, og hvad det aldrig gør. Vist fra den samme fil, scanneren læser sine grænser fra.",
+      "de": "Was Ihre Website erreicht, wenn jemand sie hier scannt, wie es sich identifiziert, wie schnell es vorgeht und was es nie tut. Aus derselben Datei erzeugt, aus der der Scanner seine Grenzen liest."
+    },
+    "sections": [
+      {
+        "id": "identity",
+        "heading": { "en": "Who is asking", "da": "Hvem der spørger", "de": "Wer anfragt" },
+        "body": {
+          "en": "Every request carries the header {{header}} with the address of this page. Pages read as a crawler, such as a privacy policy, a processing agreement or a sub-processor list, are requested with the user agent {{userAgent}}. The three visits that stand in for a visitor use an ordinary browser's user agent, so that a site cannot show the scanner something else than it shows people; the header still names us. Questions and requests to be left out go to {{contact}}.",
+          "da": "Hver forespørgsel bærer headeren {{header}} med adressen på denne side. Sider, der læses som crawler, såsom en privatlivspolitik, en databehandleraftale eller en liste over underdatabehandlere, hentes med user agent {{userAgent}}. De tre besøg, der står i stedet for en besøgende, bruger en almindelig browsers user agent, så et site ikke kan vise scanneren noget andet, end det viser mennesker; headeren nævner os stadig. Spørgsmål og ønsker om at blive holdt ude sendes til {{contact}}.",
+          "de": "Jede Anfrage trägt den Header {{header}} mit der Adresse dieser Seite. Seiten, die als Crawler gelesen werden, etwa eine Datenschutzerklärung, ein Auftragsverarbeitungsvertrag oder eine Liste der Unterauftragsverarbeiter, werden mit dem User-Agent {{userAgent}} angefordert. Die drei Besuche, die für eine Besucherin oder einen Besucher stehen, verwenden den User-Agent eines gewöhnlichen Browsers, damit eine Website dem Scanner nichts anderes zeigen kann als den Menschen; der Header nennt uns trotzdem. Fragen und Bitten, ausgenommen zu werden, gehen an {{contact}}."
+        }
+      },
+      {
+        "id": "reads",
+        "heading": { "en": "What it reads", "da": "Hvad den læser", "de": "Was er liest" },
+        "body": {
+          "en": "The page that was asked for, {{passesPerScan}} times: once untouched, once after refusing cookies, once after accepting them. Then the pages a visitor would find from it: the privacy policy, the cookie policy, the terms, the forms, and a handful of well-known paths. A supplier's processing agreement and sub-processor list are read only from the supplier's own site. At most {{pagesPerScan}} pages per scan. robots.txt is honoured for every page beyond the one asked for, for the group {{robotsGroup}} or for everyone.",
+          "da": "Den side, der blev bedt om, {{passesPerScan}} gange: én gang urørt, én gang efter at have afvist cookies, én gang efter at have accepteret dem. Derefter de sider, en besøgende ville finde derfra: privatlivspolitikken, cookiepolitikken, vilkårene, formularerne og en håndfuld kendte stier. En leverandørs databehandleraftale og liste over underdatabehandlere læses kun fra leverandørens eget site. Højst {{pagesPerScan}} sider pr. scanning. robots.txt respekteres for hver side ud over den, der blev bedt om, for gruppen {{robotsGroup}} eller for alle.",
+          "de": "Die angefragte Seite, {{passesPerScan}} Mal: einmal unberührt, einmal nach Ablehnung der Cookies, einmal nach Annahme. Dann die Seiten, die eine Besucherin von dort fände: die Datenschutzerklärung, die Cookie-Richtlinie, die Bedingungen, die Formulare und eine Handvoll bekannter Pfade. Der Auftragsverarbeitungsvertrag und die Unterauftragsverarbeiter-Liste eines Anbieters werden nur von dessen eigener Website gelesen. Höchstens {{pagesPerScan}} Seiten je Scan. robots.txt wird für jede Seite über die angefragte hinaus beachtet, für die Gruppe {{robotsGroup}} oder für alle."
+        }
+      },
+      {
+        "id": "pace",
+        "heading": { "en": "How fast", "da": "Hvor hurtigt", "de": "Wie schnell" },
+        "body": {
+          "en": "Pages are fetched one at a time per host, at least {{minIntervalMs}} ms apart, no more than {{perHostPerMinute}} a minute from one host and {{perDomainPerMinute}} a minute from one domain. The limits are kept in one place for every part of the scanner, not by each check on its own.",
+          "da": "Sider hentes én ad gangen pr. host, med mindst {{minIntervalMs}} ms imellem, højst {{perHostPerMinute}} i minuttet fra én host og {{perDomainPerMinute}} i minuttet fra ét domæne. Grænserne holdes ét sted for hele scanneren, ikke af hvert tjek for sig.",
+          "de": "Seiten werden je Host einzeln geholt, mit mindestens {{minIntervalMs}} ms Abstand, höchstens {{perHostPerMinute}} pro Minute von einem Host und {{perDomainPerMinute}} pro Minute von einer Domain. Die Grenzen werden an einer Stelle für den ganzen Scanner gehalten, nicht von jeder Prüfung für sich."
+        }
+      },
+      {
+        "id": "never",
+        "heading": {
+          "en": "What it never does",
+          "da": "Hvad den aldrig gør",
+          "de": "Was er nie tut"
+        },
+        "body": {
+          "en": "It never logs in or sends a password, a key or any credential. It never submits a form; forms are read, not filled. It never follows a link that asks for agreement to terms first. It never downloads a file a page hands it. It never reaches a private address, however a name resolves. The only things it clicks are the buttons of a cookie banner, to record what refusing and accepting do.",
+          "da": "Den logger aldrig ind og sender aldrig en adgangskode, en nøgle eller andre legitimationsoplysninger. Den indsender aldrig en formular; formularer læses, ikke udfyldes. Den følger aldrig et link, der først beder om accept af vilkår. Den downloader aldrig en fil, en side rækker den. Den når aldrig en privat adresse, uanset hvordan et navn slås op. Det eneste, den klikker på, er knapperne i et cookiebanner, for at registrere, hvad afvisning og accept gør.",
+          "de": "Er meldet sich nie an und sendet nie ein Passwort, einen Schlüssel oder andere Zugangsdaten. Er sendet nie ein Formular ab; Formulare werden gelesen, nicht ausgefüllt. Er folgt nie einem Link, der zuerst die Zustimmung zu Bedingungen verlangt. Er lädt nie eine Datei herunter, die eine Seite ihm reicht. Er erreicht nie eine private Adresse, wie auch immer ein Name aufgelöst wird. Das Einzige, was er anklickt, sind die Schaltflächen eines Cookie-Banners, um festzuhalten, was Ablehnen und Annehmen bewirken."
+        }
+      },
+      {
+        "id": "authorisation",
+        "heading": {
+          "en": "Who may scan whom",
+          "da": "Hvem der må scanne hvem",
+          "de": "Wer wen scannen darf"
+        },
+        "body": {
+          "en": "Anyone may ask for the ordinary scan of a public site: what a visitor gets. The deep scan, which reads a site's suppliers and their suppliers, runs only for a case whose owner has proved control of the domain by answering an email at it, or where a decision in the public interest has been recorded on the case with its reason and the name of the person who made it. Neither happens quietly: both are on the case's timeline.",
+          "da": "Enhver kan bede om den almindelige scanning af et offentligt site: det, en besøgende får. Den dybe scanning, der læser et sites leverandører og deres leverandører, kører kun for en sag, hvis ejer har bevist kontrol over domænet ved at svare på en e-mail sendt dertil, eller hvor en beslutning i offentlighedens interesse er noteret på sagen med begrundelse og navnet på den, der traf den. Ingen af delene sker i det stille: begge står på sagens tidslinje.",
+          "de": "Jeder darf den gewöhnlichen Scan einer öffentlichen Website anfordern: das, was eine Besucherin bekommt. Der tiefe Scan, der die Anbieter einer Website und deren Anbieter liest, läuft nur für einen Fall, dessen Eigentümer die Kontrolle über die Domain durch die Antwort auf eine dorthin gesandte E-Mail nachgewiesen hat, oder für den eine Entscheidung im öffentlichen Interesse mit Begründung und dem Namen der entscheidenden Person im Fall festgehalten wurde. Beides geschieht nicht im Stillen: Beides steht in der Zeitleiste des Falls."
+        }
+      }
+    ]
+  }
+}

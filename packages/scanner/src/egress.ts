@@ -1,6 +1,7 @@
 import { lookup } from 'node:dns/promises';
 import { isIP } from 'node:net';
 import type { BrowserContext, CDPSession, Page } from 'playwright';
+import type { Etiquette } from './etiquette.js';
 
 // Where the browser may not go (T-06). A scanned page is attacker-controlled and can
 // point the browser anywhere: at the machine it runs on, at the private network behind
@@ -83,6 +84,11 @@ export interface EgressGuardOptions {
   // Resolve names and refuse ones that point at private addresses. On by default; off
   // for estates whose names do not resolve at all (the fixture proxy answers them).
   readonly resolve?: boolean;
+  // Crawl etiquette (D-11): the pool's one limiter, robots reader and form-submission
+  // refusal, applied to every navigation this context makes.
+  readonly etiquette?: Etiquette;
+  // The page the pass was asked for; robots.txt is not consulted for it.
+  readonly targetUrl?: string;
 }
 
 // One guard per context: the verdicts it reached and what it refused.
@@ -108,12 +114,36 @@ export class EgressGuard {
     return p;
   }
 
-  async judge(url: string): Promise<string | undefined> {
+  async judge(
+    url: string,
+    request: { method: string; resourceType: string } = { method: 'GET', resourceType: 'Other' },
+  ): Promise<string | undefined> {
     const reason = forbiddenTarget(url);
     if (reason) return reason;
-    if (this.options.resolve === false) return undefined;
-    const host = new URL(url).hostname.toLowerCase();
-    return isIP(host) ? undefined : this.resolvesPrivately(host);
+    if (this.options.resolve !== false) {
+      const host = new URL(url).hostname.toLowerCase();
+      const privately = isIP(host) ? undefined : await this.resolvesPrivately(host);
+      if (privately) return privately;
+    }
+    if (!this.options.etiquette) return undefined;
+    return this.options.etiquette.judge({
+      url,
+      method: request.method,
+      resourceType: request.resourceType,
+      ...(this.options.targetUrl !== undefined ? { targetUrl: this.options.targetUrl } : {}),
+      ...(this.readRobots ? { readRobots: this.readRobots } : {}),
+    });
+  }
+
+  // robots.txt through the context's own request channel, so the proxy and the
+  // headers are the same ones the pages see.
+  private readRobots: ((url: string) => Promise<string | undefined>) | undefined;
+  private useContext(context: BrowserContext): void {
+    this.readRobots = async (url) => {
+      const r = await context.request.get(url, { maxRedirects: 2, timeout: 10_000 });
+      if (r.status() >= 400) return undefined;
+      return r.text();
+    };
   }
 
   // Chromium: every request, redirect hops included, is paused at the request stage
@@ -125,24 +155,35 @@ export class EgressGuard {
     } catch {
       return false;
     }
-    session.on('Fetch.requestPaused', (event: { requestId: string; request: { url: string } }) => {
-      void (async () => {
-        const reason = await this.judge(event.request.url);
-        if (reason) {
-          this.blocked.push({ url: event.request.url, reason });
-          await session
-            .send('Fetch.failRequest', {
-              requestId: event.requestId,
-              errorReason: 'BlockedByClient',
-            })
-            .catch(() => undefined);
-        } else {
-          await session
-            .send('Fetch.continueRequest', { requestId: event.requestId })
-            .catch(() => undefined);
-        }
-      })();
-    });
+    this.useContext(context);
+    session.on(
+      'Fetch.requestPaused',
+      (event: {
+        requestId: string;
+        request: { url: string; method: string };
+        resourceType: string;
+      }) => {
+        void (async () => {
+          const reason = await this.judge(event.request.url, {
+            method: event.request.method,
+            resourceType: event.resourceType,
+          });
+          if (reason) {
+            this.blocked.push({ url: event.request.url, reason });
+            await session
+              .send('Fetch.failRequest', {
+                requestId: event.requestId,
+                errorReason: 'BlockedByClient',
+              })
+              .catch(() => undefined);
+          } else {
+            await session
+              .send('Fetch.continueRequest', { requestId: event.requestId })
+              .catch(() => undefined);
+          }
+        })();
+      },
+    );
     try {
       await session.send('Fetch.enable', {
         patterns: [{ urlPattern: '*', requestStage: 'Request' }],
@@ -156,9 +197,13 @@ export class EgressGuard {
   // Any browser: the same judgement through the page router, which does not see
   // redirect hops. Used where the request stage cannot be reached.
   async fallback(context: BrowserContext): Promise<void> {
+    this.useContext(context);
     await context.route('**/*', async (route, request) => {
       const url = request.url();
-      const reason = await this.judge(url);
+      const reason = await this.judge(url, {
+        method: request.method(),
+        resourceType: request.resourceType() === 'document' ? 'Document' : request.resourceType(),
+      });
       if (reason) {
         this.blocked.push({ url, reason });
         await route.abort('blockedbyclient').catch(() => undefined);

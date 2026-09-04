@@ -33,6 +33,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: { languages: ourselves },
     });
   }
+  // How the scanner behaves (D-11): the page its user agent points at.
+  const scanner: Record<string, string> = {};
+  for (const l of locales) scanner[l] = `${base}/${l}/scanner`;
+  scanner['x-default'] = `${base}/en/scanner`;
+  for (const l of locales) {
+    rows.push({
+      url: `${base}/${l}/scanner`,
+      changeFrequency: 'monthly',
+      priority: 0.5,
+      alternates: { languages: scanner },
+    });
+  }
   const index = languagesOf(locales);
   for (const l of locales) {
     rows.push({

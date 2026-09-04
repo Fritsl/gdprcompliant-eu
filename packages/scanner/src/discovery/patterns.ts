@@ -1,4 +1,5 @@
 import type { PolicyKind } from '@gc/contracts';
+import { consentGate } from '../etiquette.js';
 
 // How a policy link looks, in the languages the product meets. A link is scored on its
 // text and its path; the highest score per kind wins. Patterns are data: extend them
@@ -79,6 +80,8 @@ export function scoreLink(link: LinkCandidate): Scored[] {
     path = link.href;
   }
   const text = link.text.replace(/\s+/g, ' ').trim();
+  // A link that asks for agreement first is a gate the crawler does not pass (D-11).
+  if (consentGate(text)) return out;
   for (const kind of ['cookie', 'privacy', 'terms'] as const) {
     const p = KIND_PATTERNS[kind];
     let score = 0;

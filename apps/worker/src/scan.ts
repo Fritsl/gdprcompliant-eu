@@ -5,6 +5,7 @@ import {
   openCaseForTarget,
   assignLane,
   recordScan,
+  deepScanAuthorisation,
   seedRegister,
   seedSupplyChain,
   type Connection,
@@ -210,46 +211,6 @@ export async function registerScanWorker(
         )
       : undefined;
     if (apps) evidence.push(...apps.evidence);
-    // The suppliers' agreements (D-06): every resolved processor the site talks to, read
-    // at the site its own terms are published on.
-    const agreements: AgreementDiscoveryResult[] = [];
-    if (options.agreements) {
-      const seen = new Set<string>();
-      for (const r of resolveHosts(c.vendorHosts)) {
-        if (r.resolution !== 'resolved' || r.entry.role !== 'processor' || seen.has(r.entry.id))
-          continue;
-        seen.add(r.entry.id);
-        if (seen.size > options.agreements) break;
-        agreements.push(
-          await discoverAgreement(
-            options.pool,
-            { url: `${new URL(r.entry.provenance.url).origin}/` },
-            { identity, vendorName: r.entry.label, now },
-          ),
-        );
-      }
-      for (const a of agreements) evidence.push(...a.evidence);
-    }
-    // Their sub-processors, and theirs (D-07): one walk per supplier that published an
-    // agreement, at the walk's own pace, written to the graph once the case is open.
-    const chains: SupplyChainResult[] = [];
-    if (options.subProcessors) {
-      for (const a of agreements) {
-        if (a.discovery.outcome !== 'found') continue;
-        const chain = await traverseSupplyChain(
-          options.pool,
-          { url: `https://${a.discovery.vendor.host}/` },
-          {
-            identity,
-            ...(a.discovery.vendor.name ? { vendorName: a.discovery.vendor.name } : {}),
-            limits: options.subProcessors,
-            now,
-          },
-        );
-        chains.push(chain);
-        evidence.push(...chain.evidence);
-      }
-    }
     await mark(
       'policy',
       policies.discovery.observation.outcome === 'pass' ? 'ok' : 'undet',
@@ -277,6 +238,8 @@ export async function registerScanWorker(
     );
 
     // 4. The case, in the target's own jurisdiction, and the record of the scan.
+    const agreements: AgreementDiscoveryResult[] = [];
+    const chains: SupplyChainResult[] = [];
     await mark('writing-up', 'on');
     let opened;
     try {
@@ -293,6 +256,53 @@ export async function registerScanWorker(
         return;
       }
       throw e;
+    }
+    // The deep scan (D-11): the suppliers' agreements and their sub-processors, only
+    // for a case whose owner has proved control of the domain or where a public-interest
+    // decision is recorded. A fresh case is neither; the stage says so and moves on.
+    const deep =
+      options.agreements || options.subProcessors
+        ? await deepScanAuthorisation(connection, opened.tenantId, opened.caseId)
+        : { allowed: false as const, reason: 'not asked for' };
+    if ((options.agreements || options.subProcessors) && !deep.allowed)
+      await mark('recipients', 'ok', `deep scan not run: ${deep.reason}`.slice(0, 200));
+    // The suppliers' agreements (D-06): every resolved processor the site talks to, read
+    // at the site its own terms are published on.
+    if (options.agreements && deep.allowed) {
+      const seen = new Set<string>();
+      for (const r of resolveHosts(c.vendorHosts)) {
+        if (r.resolution !== 'resolved' || r.entry.role !== 'processor' || seen.has(r.entry.id))
+          continue;
+        seen.add(r.entry.id);
+        if (seen.size > options.agreements) break;
+        agreements.push(
+          await discoverAgreement(
+            options.pool,
+            { url: `${new URL(r.entry.provenance.url).origin}/` },
+            { identity, vendorName: r.entry.label, now },
+          ),
+        );
+      }
+      for (const a of agreements) evidence.push(...a.evidence);
+    }
+    // Their sub-processors, and theirs (D-07): one walk per supplier that published an
+    // agreement, at the walk's own pace, written to the graph once the case is open.
+    if (options.subProcessors && deep.allowed) {
+      for (const a of agreements) {
+        if (a.discovery.outcome !== 'found') continue;
+        const chain = await traverseSupplyChain(
+          options.pool,
+          { url: `https://${a.discovery.vendor.host}/` },
+          {
+            identity,
+            ...(a.discovery.vendor.name ? { vendorName: a.discovery.vendor.name } : {}),
+            limits: options.subProcessors,
+            now,
+          },
+        );
+        chains.push(chain);
+        evidence.push(...chain.evidence);
+      }
     }
     const input: AssemblyInput = {
       security: surface.observations,

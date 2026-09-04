@@ -91,6 +91,10 @@ export default async function LocaleLayout({
             <a href={`/${locale}/ourselves`} data-ourselves="">
               <Text of={t(locale, 'shell.footer.ourselves')} />
             </a>
+            {' · '}
+            <a href={`/${locale}/scanner`} data-scanner-behaviour="">
+              <Text of={t(locale, 'shell.footer.scanner')} />
+            </a>
           </p>
         </footer>
       </body>

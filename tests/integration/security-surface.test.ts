@@ -111,7 +111,7 @@ describe('the insecure fixture fails every check, with evidence (S-12)', () => {
     expect(made.map((r) => r.path)).not.toContain('/.env.local');
     expect(made.filter((r) => r.path.startsWith('/private/'))).toEqual([]);
     // The form action was requested once, with GET, and never submitted.
-    expect(made.filter((r) => r.path === '/kontakt/send')).toEqual([
+    expect(made.filter((r) => r.path === '/kontakt/send')).toMatchObject([
       { method: 'GET', scheme: 'http', host: 'usikker.test', path: '/kontakt/send', status: 301 },
     ]);
   }, 120_000);

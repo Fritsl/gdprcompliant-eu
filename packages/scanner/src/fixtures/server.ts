@@ -42,6 +42,10 @@ export interface ServedRequest {
   readonly host: string;
   readonly path: string;
   readonly status: number;
+  // Who asked, and when: the user agent, the scanner's own header, the moment.
+  readonly userAgent: string;
+  readonly scanner?: string;
+  readonly at: number;
 }
 
 const MIME: Record<string, string> = {
@@ -61,6 +65,15 @@ const MIME: Record<string, string> = {
   '.xml': 'application/xml; charset=utf-8',
   '.sql': 'application/sql',
   '.zip': 'application/zip',
+};
+
+const asked = (req: IncomingMessage) => {
+  const scanner = req.headers['x-gdprcompliant-scanner'];
+  return {
+    userAgent: String(req.headers['user-agent'] ?? ''),
+    ...(typeof scanner === 'string' ? { scanner } : {}),
+    at: Date.now(),
+  };
 };
 
 export class FixtureServer {
@@ -195,7 +208,7 @@ export class FixtureServer {
         (r.userAgent === undefined || userAgent.includes(r.userAgent)),
     );
     if (route) {
-      this.served.push({ method, scheme, host, path: url.pathname, status: route.status });
+      this.served.push({ method, scheme, host, path: url.pathname, status: route.status, ...asked(req) });
       if (route.delayMs) await new Promise((r) => setTimeout(r, route.delayMs));
       if (req.destroyed) return;
       if (route.bytes) {
@@ -235,14 +248,14 @@ export class FixtureServer {
 
     const file = await this.resolveFile(fixture.dir, url.pathname);
     if (!file) {
-      this.served.push({ method, scheme, host, path: url.pathname, status: 404 });
+      this.served.push({ method, scheme, host, path: url.pathname, status: 404, ...asked(req) });
       res
         .writeHead(404, { 'content-type': 'text/plain; charset=utf-8', ...extra })
         .end('not in fixture');
       return;
     }
     const body = await readFile(file);
-    this.served.push({ method, scheme, host, path: url.pathname, status: 200 });
+    this.served.push({ method, scheme, host, path: url.pathname, status: 200, ...asked(req) });
     res
       .writeHead(200, {
         'content-type': MIME[extname(file).toLowerCase()] ?? 'application/octet-stream',

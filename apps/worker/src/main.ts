@@ -3,7 +3,7 @@ import { connect, registerRetentionWorker, scheduleRetention } from '@gc/db';
 import { JobQueue } from '@gc/jobs';
 import { loadCatalogue } from '@gc/remedies';
 import { JsonLinesSink, event, setSink } from '@gc/telemetry';
-import { BrowserPool } from '@gc/scanner';
+import { BrowserPool, Etiquette } from '@gc/scanner';
 import { registerRecheckWorker } from './recheck.js';
 import { registerScanWorker } from './scan.js';
 
@@ -15,10 +15,12 @@ setSink(new JsonLinesSink());
 const config = loadConfig();
 const connection = connect(config.database.url);
 const queue = new JobQueue({ connectionString: config.database.url });
+// Crawl etiquette (D-11): one limiter and one identity for every context the pool opens.
 const pool = new BrowserPool({
   concurrency: config.scanner.concurrency,
   passTimeoutMs: 60_000,
   navigationTimeoutMs: 15_000,
+  etiquette: new Etiquette(),
 });
 
 await pool.start();
