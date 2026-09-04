@@ -10,3 +10,4 @@ export * from './registry.js';
 export * from './roles.js';
 export * from './bindings.js';
 export * from './raise.js';
+export * from './disclosures.js';

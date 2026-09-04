@@ -1,0 +1,44 @@
+{
+  "name": "en-marketing-vague",
+  "locale": "en",
+  "jurisdiction": "DK",
+  "text": "Privacy\n\nWe respect your privacy. Your data is safe with us and our trusted partners.\n\nWe may use your information to improve your experience and to show you offers you might like.\n\nWe keep your data as long as we need it for business purposes.\n\nYou can contact us at any time to ask about your data.\n\nBy using this site you agree to this policy.",
+  "expected": {
+    "controller": {
+      "status": "absent"
+    },
+    "dpo": {
+      "status": "absent"
+    },
+    "purposes_basis": {
+      "status": "undetermined"
+    },
+    "legitimate_interests": {
+      "status": "absent"
+    },
+    "recipients": {
+      "status": "undetermined"
+    },
+    "transfers": {
+      "status": "absent"
+    },
+    "retention": {
+      "status": "undetermined"
+    },
+    "rights": {
+      "status": "undetermined"
+    },
+    "withdrawal": {
+      "status": "absent"
+    },
+    "complaint": {
+      "status": "absent"
+    },
+    "obligation": {
+      "status": "absent"
+    },
+    "automated": {
+      "status": "undetermined"
+    }
+  }
+}

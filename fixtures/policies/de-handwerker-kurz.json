@@ -1,0 +1,47 @@
+{
+  "name": "de-handwerker-kurz",
+  "locale": "de",
+  "jurisdiction": "DE",
+  "text": "Datenschutz\n\nVerantwortlich: Malerbetrieb Krause, Inhaber Jens Krause, Gartenweg 9, 04109 Leipzig, info@maler-krause.de.\n\nWenn Sie uns über das Kontaktformular schreiben, verarbeiten wir Ihre Angaben zur Bearbeitung Ihrer Anfrage.\n\nIhre Daten werden nicht an Dritte weitergegeben.\n\nSie können jederzeit Auskunft über Ihre gespeicherten Daten verlangen und deren Löschung fordern.\n\nBeschwerden richten Sie bitte an die zuständige Aufsichtsbehörde.",
+  "expected": {
+    "controller": {
+      "status": "present",
+      "quote": "Verantwortlich: Malerbetrieb Krause, Inhaber Jens Krause, Gartenweg 9, 04109 Leipzig, info@maler-krause.de."
+    },
+    "dpo": {
+      "status": "absent"
+    },
+    "purposes_basis": {
+      "status": "undetermined"
+    },
+    "legitimate_interests": {
+      "status": "absent"
+    },
+    "recipients": {
+      "status": "present",
+      "quote": "Ihre Daten werden nicht an Dritte weitergegeben."
+    },
+    "transfers": {
+      "status": "absent"
+    },
+    "retention": {
+      "status": "absent"
+    },
+    "rights": {
+      "status": "undetermined"
+    },
+    "withdrawal": {
+      "status": "absent"
+    },
+    "complaint": {
+      "status": "present",
+      "quote": "Beschwerden richten Sie bitte an die zuständige Aufsichtsbehörde."
+    },
+    "obligation": {
+      "status": "absent"
+    },
+    "automated": {
+      "status": "absent"
+    }
+  }
+}

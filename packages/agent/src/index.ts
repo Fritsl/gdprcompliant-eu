@@ -12,3 +12,4 @@ export * from './dispatcher.js';
 export * from './verifier.js';
 export * from './untrusted.js';
 export * from './guards.js';
+export * from './policy-clauses.js';

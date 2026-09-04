@@ -1,0 +1,56 @@
+{
+  "name": "dk-complete-webshop",
+  "locale": "da",
+  "jurisdiction": "DK",
+  "text": "Privatlivspolitik for Eksempelbutik ApS\n\nDataansvarlig er Eksempelbutik ApS, CVR-nr. 12345678, Havnegade 12, 8000 Aarhus C, e-mail privatliv@eksempelbutik.dk.\n\nVi har udpeget en databeskyttelsesrådgiver, som kan kontaktes på dpo@eksempelbutik.dk.\n\nVi behandler dit navn, din adresse og din ordrehistorik for at levere dine ordrer. Retsgrundlaget er databeskyttelsesforordningens artikel 6, stk. 1, litra b (opfyldelse af en aftale). Nyhedsbreve sendes på grundlag af dit samtykke.\n\nVi bruger også dine købsoplysninger til at forebygge svindel. Det sker på grundlag af vores legitime interesse i at beskytte butikken mod misbrug.\n\nDine oplysninger videregives til vores fragtleverandør GLS Danmark, vores betalingsformidler Nets og vores regnskabsfører.\n\nVores e-mailsystem drives af en leverandør i USA. Overførslen sker på grundlag af EU-Kommissionens standardkontraktbestemmelser.\n\nOrdreoplysninger opbevares i fem år efter regnskabsårets udløb af hensyn til bogføringsloven. Nyhedsbrevstilmeldinger slettes senest tre måneder efter, at du har afmeldt dig.\n\nDu har ret til indsigt i, berigtigelse af og sletning af dine oplysninger, ret til begrænsning af behandlingen, ret til at gøre indsigelse og ret til dataportabilitet.\n\nHar du givet samtykke, kan du til enhver tid trække det tilbage ved at skrive til os eller bruge linket i nyhedsbrevet.\n\nDu kan klage til Datatilsynet, Carl Jacobsens Vej 35, 2500 Valby, www.datatilsynet.dk.\n\nDet er en forudsætning for at handle hos os, at du oplyser navn og leveringsadresse; uden dem kan vi ikke levere din ordre.\n\nVi træffer ingen automatiske afgørelser og foretager ingen profilering.",
+  "expected": {
+    "controller": {
+      "status": "present",
+      "quote": "Dataansvarlig er Eksempelbutik ApS, CVR-nr. 12345678, Havnegade 12, 8000 Aarhus C, e-mail privatliv@eksempelbutik.dk."
+    },
+    "dpo": {
+      "status": "present",
+      "quote": "Vi har udpeget en databeskyttelsesrådgiver, som kan kontaktes på dpo@eksempelbutik.dk."
+    },
+    "purposes_basis": {
+      "status": "present",
+      "quote": "Vi behandler dit navn, din adresse og din ordrehistorik for at levere dine ordrer. Retsgrundlaget er databeskyttelsesforordningens artikel 6, stk. 1, litra b (opfyldelse af en aftale)."
+    },
+    "legitimate_interests": {
+      "status": "present",
+      "quote": "Det sker på grundlag af vores legitime interesse i at beskytte butikken mod misbrug."
+    },
+    "recipients": {
+      "status": "present",
+      "quote": "Dine oplysninger videregives til vores fragtleverandør GLS Danmark, vores betalingsformidler Nets og vores regnskabsfører."
+    },
+    "transfers": {
+      "status": "present",
+      "quote": "Vores e-mailsystem drives af en leverandør i USA. Overførslen sker på grundlag af EU-Kommissionens standardkontraktbestemmelser."
+    },
+    "retention": {
+      "status": "present",
+      "quote": "Ordreoplysninger opbevares i fem år efter regnskabsårets udløb af hensyn til bogføringsloven."
+    },
+    "rights": {
+      "status": "present",
+      "quote": "Du har ret til indsigt i, berigtigelse af og sletning af dine oplysninger, ret til begrænsning af behandlingen, ret til at gøre indsigelse og ret til dataportabilitet."
+    },
+    "withdrawal": {
+      "status": "present",
+      "quote": "Har du givet samtykke, kan du til enhver tid trække det tilbage ved at skrive til os eller bruge linket i nyhedsbrevet."
+    },
+    "complaint": {
+      "status": "present",
+      "quote": "Du kan klage til Datatilsynet, Carl Jacobsens Vej 35, 2500 Valby, www.datatilsynet.dk."
+    },
+    "obligation": {
+      "status": "present",
+      "quote": "Det er en forudsætning for at handle hos os, at du oplyser navn og leveringsadresse; uden dem kan vi ikke levere din ordre."
+    },
+    "automated": {
+      "status": "present",
+      "quote": "Vi træffer ingen automatiske afgørelser og foretager ingen profilering."
+    }
+  }
+}

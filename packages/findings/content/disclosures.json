@@ -1,0 +1,185 @@
+{
+  "version": 1,
+  "elements": [
+    {
+      "id": "controller",
+      "label": {
+        "en": "Who the controller is and how to reach them",
+        "da": "Hvem den dataansvarlige er, og hvordan man kontakter dem",
+        "de": "Wer der Verantwortliche ist und wie er zu erreichen ist"
+      },
+      "asks": "the identity and contact details of the controller",
+      "citation": {
+        "instrument": "GDPR",
+        "ref": "Art. 13(1)(a)",
+        "note": "identity and contact details of the controller"
+      },
+      "findingTypeId": null
+    },
+    {
+      "id": "dpo",
+      "label": {
+        "en": "Contact details of the data protection officer, where there is one",
+        "da": "Kontaktoplysninger på databeskyttelsesrådgiveren, hvis der er en",
+        "de": "Kontaktdaten des Datenschutzbeauftragten, sofern vorhanden"
+      },
+      "asks": "the contact details of the data protection officer, where applicable",
+      "citation": {
+        "instrument": "GDPR",
+        "ref": "Art. 13(1)(b)",
+        "note": "contact details of the data protection officer"
+      },
+      "findingTypeId": null
+    },
+    {
+      "id": "purposes_basis",
+      "label": {
+        "en": "What the data is used for, and the legal basis",
+        "da": "Hvad oplysningerne bruges til, og retsgrundlaget",
+        "de": "Wofür die Daten verwendet werden und die Rechtsgrundlage"
+      },
+      "asks": "the purposes of the processing and its legal basis",
+      "citation": {
+        "instrument": "GDPR",
+        "ref": "Art. 13(1)(c)",
+        "note": "purposes and legal basis"
+      },
+      "findingTypeId": null
+    },
+    {
+      "id": "legitimate_interests",
+      "label": {
+        "en": "The legitimate interests relied on, where that is the basis",
+        "da": "De legitime interesser, der forfølges, hvor det er grundlaget",
+        "de": "Die berechtigten Interessen, wo diese die Grundlage sind"
+      },
+      "asks": "the legitimate interests pursued, where processing rests on them",
+      "citation": {
+        "instrument": "GDPR",
+        "ref": "Art. 13(1)(d)",
+        "note": "the legitimate interests pursued"
+      },
+      "findingTypeId": null
+    },
+    {
+      "id": "recipients",
+      "label": {
+        "en": "Who receives the data",
+        "da": "Hvem der modtager oplysningerne",
+        "de": "Wer die Daten erhält"
+      },
+      "asks": "the recipients or categories of recipients of the personal data",
+      "citation": {
+        "instrument": "GDPR",
+        "ref": "Art. 13(1)(e)",
+        "note": "recipients or categories of recipients"
+      },
+      "findingTypeId": "VND-11"
+    },
+    {
+      "id": "transfers",
+      "label": {
+        "en": "Whether data leaves the EEA, and on what basis",
+        "da": "Om oplysninger forlader EØS, og på hvilket grundlag",
+        "de": "Ob Daten den EWR verlassen und auf welcher Grundlage"
+      },
+      "asks": "whether personal data is transferred outside the EEA and the safeguards relied on",
+      "citation": {
+        "instrument": "GDPR",
+        "ref": "Art. 13(1)(f)",
+        "note": "transfers to a third country and the safeguards"
+      },
+      "findingTypeId": null
+    },
+    {
+      "id": "retention",
+      "label": {
+        "en": "How long the data is kept",
+        "da": "Hvor længe oplysningerne opbevares",
+        "de": "Wie lange die Daten gespeichert werden"
+      },
+      "asks": "the period for which the personal data will be stored, or the criteria used to determine it",
+      "citation": {
+        "instrument": "GDPR",
+        "ref": "Art. 13(2)(a)",
+        "note": "the retention period, or how it is decided"
+      },
+      "findingTypeId": "POL-04"
+    },
+    {
+      "id": "rights",
+      "label": {
+        "en": "The rights of access, rectification, erasure, restriction, objection and portability",
+        "da": "Retten til indsigt, berigtigelse, sletning, begrænsning, indsigelse og dataportabilitet",
+        "de": "Die Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung, Widerspruch und Datenübertragbarkeit"
+      },
+      "asks": "the existence of the rights to access, rectification, erasure, restriction, objection and data portability",
+      "citation": {
+        "instrument": "GDPR",
+        "ref": "Art. 13(2)(b)",
+        "note": "the data subject's rights"
+      },
+      "findingTypeId": "POL-09"
+    },
+    {
+      "id": "withdrawal",
+      "label": {
+        "en": "That consent can be withdrawn at any time",
+        "da": "At samtykke kan trækkes tilbage når som helst",
+        "de": "Dass die Einwilligung jederzeit widerrufen werden kann"
+      },
+      "asks": "the right to withdraw consent at any time, where processing rests on consent",
+      "citation": {
+        "instrument": "GDPR",
+        "ref": "Art. 13(2)(c)",
+        "note": "the right to withdraw consent"
+      },
+      "findingTypeId": "POL-09"
+    },
+    {
+      "id": "complaint",
+      "label": {
+        "en": "The right to complain to a supervisory authority",
+        "da": "Retten til at klage til en tilsynsmyndighed",
+        "de": "Das Recht auf Beschwerde bei einer Aufsichtsbehörde"
+      },
+      "asks": "the right to lodge a complaint with a supervisory authority",
+      "citation": {
+        "instrument": "GDPR",
+        "ref": "Art. 13(2)(d)",
+        "note": "the right to lodge a complaint"
+      },
+      "findingTypeId": "POL-09"
+    },
+    {
+      "id": "obligation",
+      "label": {
+        "en": "Whether providing the data is required, and what happens if it is not",
+        "da": "Om det er et krav at afgive oplysningerne, og hvad der sker, hvis man ikke gør",
+        "de": "Ob die Angabe der Daten erforderlich ist und was geschieht, wenn nicht"
+      },
+      "asks": "whether providing the data is a statutory or contractual requirement, and the consequences of not providing it",
+      "citation": {
+        "instrument": "GDPR",
+        "ref": "Art. 13(2)(e)",
+        "note": "whether providing the data is required"
+      },
+      "findingTypeId": null
+    },
+    {
+      "id": "automated",
+      "label": {
+        "en": "Whether decisions are made automatically, including profiling",
+        "da": "Om der træffes automatiske afgørelser, herunder profilering",
+        "de": "Ob automatisierte Entscheidungen einschließlich Profiling getroffen werden"
+      },
+      "asks": "the existence of automated decision-making, including profiling, and its logic and consequences",
+      "citation": {
+        "instrument": "GDPR",
+        "ref": "Art. 13(2)(f)",
+        "note": "automated decision-making, including profiling"
+      },
+      "findingTypeId": null
+    }
+  ]
+}

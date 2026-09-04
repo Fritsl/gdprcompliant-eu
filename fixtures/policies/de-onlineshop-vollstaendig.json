@@ -1,0 +1,56 @@
+{
+  "name": "de-onlineshop-vollstaendig",
+  "locale": "de",
+  "jurisdiction": "DE",
+  "text": "Datenschutzerklärung\n\nVerantwortlicher im Sinne der DSGVO ist die Beispielladen GmbH, Hauptstraße 5, 80331 München, E-Mail datenschutz@beispielladen.de.\n\nUnseren Datenschutzbeauftragten erreichen Sie unter dsb@beispielladen.de.\n\nWir verarbeiten Ihre Bestell- und Adressdaten zur Abwicklung Ihrer Bestellung auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO. Den Newsletter versenden wir auf Grundlage Ihrer Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO.\n\nZur Betrugsprävention verarbeiten wir Bestelldaten auf Grundlage unseres berechtigten Interesses am Schutz vor Zahlungsausfällen.\n\nEmpfänger Ihrer Daten sind unser Versanddienstleister DHL, unser Zahlungsdienstleister PayPal und unser Steuerberater.\n\nEine Übermittlung in Drittländer findet nur im Rahmen der Zahlungsabwicklung über PayPal statt, gestützt auf Standardvertragsklauseln der EU-Kommission.\n\nBestelldaten speichern wir zehn Jahre nach Ablauf des Geschäftsjahres gemäß den handels- und steuerrechtlichen Aufbewahrungsfristen. Newsletterdaten löschen wir nach Ihrer Abmeldung.\n\nSie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Widerspruch und Datenübertragbarkeit.\n\nEine erteilte Einwilligung können Sie jederzeit mit Wirkung für die Zukunft widerrufen.\n\nSie haben das Recht, sich bei einer Datenschutzaufsichtsbehörde zu beschweren, etwa beim Bayerischen Landesamt für Datenschutzaufsicht.\n\nDie Angabe von Name und Lieferadresse ist für den Vertragsschluss erforderlich; ohne sie können wir nicht liefern.\n\nEine automatisierte Entscheidungsfindung einschließlich Profiling findet nicht statt.",
+  "expected": {
+    "controller": {
+      "status": "present",
+      "quote": "Verantwortlicher im Sinne der DSGVO ist die Beispielladen GmbH, Hauptstraße 5, 80331 München, E-Mail datenschutz@beispielladen.de."
+    },
+    "dpo": {
+      "status": "present",
+      "quote": "Unseren Datenschutzbeauftragten erreichen Sie unter dsb@beispielladen.de."
+    },
+    "purposes_basis": {
+      "status": "present",
+      "quote": "Wir verarbeiten Ihre Bestell- und Adressdaten zur Abwicklung Ihrer Bestellung auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO."
+    },
+    "legitimate_interests": {
+      "status": "present",
+      "quote": "Zur Betrugsprävention verarbeiten wir Bestelldaten auf Grundlage unseres berechtigten Interesses am Schutz vor Zahlungsausfällen."
+    },
+    "recipients": {
+      "status": "present",
+      "quote": "Empfänger Ihrer Daten sind unser Versanddienstleister DHL, unser Zahlungsdienstleister PayPal und unser Steuerberater."
+    },
+    "transfers": {
+      "status": "present",
+      "quote": "Eine Übermittlung in Drittländer findet nur im Rahmen der Zahlungsabwicklung über PayPal statt, gestützt auf Standardvertragsklauseln der EU-Kommission."
+    },
+    "retention": {
+      "status": "present",
+      "quote": "Bestelldaten speichern wir zehn Jahre nach Ablauf des Geschäftsjahres gemäß den handels- und steuerrechtlichen Aufbewahrungsfristen."
+    },
+    "rights": {
+      "status": "present",
+      "quote": "Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Widerspruch und Datenübertragbarkeit."
+    },
+    "withdrawal": {
+      "status": "present",
+      "quote": "Eine erteilte Einwilligung können Sie jederzeit mit Wirkung für die Zukunft widerrufen."
+    },
+    "complaint": {
+      "status": "present",
+      "quote": "Sie haben das Recht, sich bei einer Datenschutzaufsichtsbehörde zu beschweren, etwa beim Bayerischen Landesamt für Datenschutzaufsicht."
+    },
+    "obligation": {
+      "status": "present",
+      "quote": "Die Angabe von Name und Lieferadresse ist für den Vertragsschluss erforderlich; ohne sie können wir nicht liefern."
+    },
+    "automated": {
+      "status": "present",
+      "quote": "Eine automatisierte Entscheidungsfindung einschließlich Profiling findet nicht statt."
+    }
+  }
+}

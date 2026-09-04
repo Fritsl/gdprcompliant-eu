@@ -1,0 +1,44 @@
+{
+  "name": "dk-bare-minimum",
+  "locale": "da",
+  "jurisdiction": "DK",
+  "text": "Persondata\n\nVi passer godt på dine oplysninger. Vi bruger dem kun til at behandle din ordre og sender dig ikke reklamer, medmindre du har sagt ja.\n\nSkriv til kontakt@lillebutik.dk, hvis du har spørgsmål.",
+  "expected": {
+    "controller": {
+      "status": "undetermined"
+    },
+    "dpo": {
+      "status": "absent"
+    },
+    "purposes_basis": {
+      "status": "undetermined"
+    },
+    "legitimate_interests": {
+      "status": "absent"
+    },
+    "recipients": {
+      "status": "absent"
+    },
+    "transfers": {
+      "status": "absent"
+    },
+    "retention": {
+      "status": "absent"
+    },
+    "rights": {
+      "status": "absent"
+    },
+    "withdrawal": {
+      "status": "absent"
+    },
+    "complaint": {
+      "status": "absent"
+    },
+    "obligation": {
+      "status": "absent"
+    },
+    "automated": {
+      "status": "absent"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "name": "dk-vague-retention",
+  "locale": "da",
+  "jurisdiction": "DK",
+  "text": "Privatlivspolitik\n\nDen dataansvarlige er Møbelhuset A/S, Industrivej 4, 7100 Vejle, CVR 11223344, mail@moebelhuset.dk.\n\nFormålet med behandlingen er at gennemføre dit køb og yde kundeservice. Vi behandler oplysningerne, fordi det er nødvendigt for at opfylde aftalen med dig.\n\nVi opbevarer dine oplysninger, så længe det er nødvendigt.\n\nVi videregiver oplysninger til de samarbejdspartnere, der er nødvendige for at levere varen.\n\nDu kan altid bede om at få indsigt i dine oplysninger eller få dem rettet eller slettet.\n\nDu kan til enhver tid tilbagekalde et samtykke, du har givet os.\n\nKlager kan rettes til Datatilsynet.",
+  "expected": {
+    "controller": {
+      "status": "present",
+      "quote": "Den dataansvarlige er Møbelhuset A/S, Industrivej 4, 7100 Vejle, CVR 11223344, mail@moebelhuset.dk."
+    },
+    "dpo": {
+      "status": "absent"
+    },
+    "purposes_basis": {
+      "status": "present",
+      "quote": "Formålet med behandlingen er at gennemføre dit køb og yde kundeservice. Vi behandler oplysningerne, fordi det er nødvendigt for at opfylde aftalen med dig."
+    },
+    "legitimate_interests": {
+      "status": "absent"
+    },
+    "recipients": {
+      "status": "undetermined"
+    },
+    "transfers": {
+      "status": "absent"
+    },
+    "retention": {
+      "status": "undetermined"
+    },
+    "rights": {
+      "status": "undetermined"
+    },
+    "withdrawal": {
+      "status": "present",
+      "quote": "Du kan til enhver tid tilbagekalde et samtykke, du har givet os."
+    },
+    "complaint": {
+      "status": "present",
+      "quote": "Klager kan rettes til Datatilsynet."
+    },
+    "obligation": {
+      "status": "absent"
+    },
+    "automated": {
+      "status": "absent"
+    }
+  }
+}

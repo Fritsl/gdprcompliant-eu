@@ -1,0 +1,51 @@
+{
+  "name": "dk-clinic-no-retention",
+  "locale": "da",
+  "jurisdiction": "DK",
+  "text": "Sådan behandler Klinik Nordvest dine oplysninger\n\nKlinik Nordvest ApS, CVR 87654321, Nørrebrogade 200, 2200 København N, er dataansvarlig. Du kan kontakte os på klinik@nordvest.dk eller telefon 35 00 00 00.\n\nVi behandler helbredsoplysninger for at kunne behandle dig. Grundlaget er databeskyttelsesforordningens artikel 9, stk. 2, litra h, sammenholdt med sundhedsloven.\n\nOplysninger deles med din egen læge, med regionen ved henvisning og med vores journalsystemleverandør, der behandler oplysningerne på vores vegne.\n\nVi overfører ikke oplysninger til lande uden for EU/EØS.\n\nDu har ret til indsigt, berigtigelse, sletning, begrænsning, indsigelse og dataportabilitet efter reglerne i databeskyttelsesforordningen.\n\nDu kan klage over vores behandling af dine oplysninger til Datatilsynet.\n\nVi bruger ikke automatiske afgørelser eller profilering.",
+  "expected": {
+    "controller": {
+      "status": "present",
+      "quote": "Klinik Nordvest ApS, CVR 87654321, Nørrebrogade 200, 2200 København N, er dataansvarlig. Du kan kontakte os på klinik@nordvest.dk eller telefon 35 00 00 00."
+    },
+    "dpo": {
+      "status": "absent"
+    },
+    "purposes_basis": {
+      "status": "present",
+      "quote": "Vi behandler helbredsoplysninger for at kunne behandle dig. Grundlaget er databeskyttelsesforordningens artikel 9, stk. 2, litra h, sammenholdt med sundhedsloven."
+    },
+    "legitimate_interests": {
+      "status": "absent"
+    },
+    "recipients": {
+      "status": "present",
+      "quote": "Oplysninger deles med din egen læge, med regionen ved henvisning og med vores journalsystemleverandør, der behandler oplysningerne på vores vegne."
+    },
+    "transfers": {
+      "status": "present",
+      "quote": "Vi overfører ikke oplysninger til lande uden for EU/EØS."
+    },
+    "retention": {
+      "status": "absent"
+    },
+    "rights": {
+      "status": "present",
+      "quote": "Du har ret til indsigt, berigtigelse, sletning, begrænsning, indsigelse og dataportabilitet efter reglerne i databeskyttelsesforordningen."
+    },
+    "withdrawal": {
+      "status": "absent"
+    },
+    "complaint": {
+      "status": "present",
+      "quote": "Du kan klage over vores behandling af dine oplysninger til Datatilsynet."
+    },
+    "obligation": {
+      "status": "absent"
+    },
+    "automated": {
+      "status": "present",
+      "quote": "Vi bruger ikke automatiske afgørelser eller profilering."
+    }
+  }
+}

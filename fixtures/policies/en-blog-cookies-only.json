@@ -1,0 +1,44 @@
+{
+  "name": "en-blog-cookies-only",
+  "locale": "en",
+  "jurisdiction": "DK",
+  "text": "Cookies and privacy\n\nThis blog uses cookies to remember your preferences and to measure traffic with Google Analytics.\n\nYou can disable cookies in your browser at any time.\n\nIf you leave a comment, your name and email are stored with the comment so that it can be shown.\n\nQuestions? Use the contact form.",
+  "expected": {
+    "controller": {
+      "status": "absent"
+    },
+    "dpo": {
+      "status": "absent"
+    },
+    "purposes_basis": {
+      "status": "undetermined"
+    },
+    "legitimate_interests": {
+      "status": "absent"
+    },
+    "recipients": {
+      "status": "undetermined"
+    },
+    "transfers": {
+      "status": "absent"
+    },
+    "retention": {
+      "status": "absent"
+    },
+    "rights": {
+      "status": "absent"
+    },
+    "withdrawal": {
+      "status": "absent"
+    },
+    "complaint": {
+      "status": "absent"
+    },
+    "obligation": {
+      "status": "absent"
+    },
+    "automated": {
+      "status": "absent"
+    }
+  }
+}

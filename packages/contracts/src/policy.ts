@@ -1,6 +1,15 @@
 import { z } from 'zod';
+import { CitationSchema } from './citation.js';
 import { EvidenceRefSchema } from './evidence.js';
-import { IsoDateTimeSchema, Sha256Schema } from './primitives.js';
+import {
+  FindingTypeIdSchema,
+  IsoDateTimeSchema,
+  JurisdictionSchema,
+  LocaleSchema,
+  LocalisedTextSchema,
+  NonEmptyStringSchema,
+  Sha256Schema,
+} from './primitives.js';
 
 // Policy discovery (S-09): where a site keeps its privacy policy, cookie policy and terms,
 // how each was found, and the pages that make it up. Every page is stored as document
@@ -76,3 +85,80 @@ export const PolicyDiscoverySchema = z
   })
   .describe('What policy discovery found on a site');
 export type PolicyDiscovery = z.infer<typeof PolicyDiscoverySchema>;
+
+// What a policy must tell the reader (S-10): the elements of Article 13 as content, each
+// with the provision it rests on and the finding raised when it is missing, where the
+// catalogue has one. packages/findings/content/disclosures.json.
+export const DisclosureElementSchema = z.object({
+  id: z.string().regex(/^[a-z][a-z0-9_]*$/),
+  label: LocalisedTextSchema,
+  // What the model is asked to look for, in one line.
+  asks: NonEmptyStringSchema,
+  citation: z.object({
+    instrument: NonEmptyStringSchema,
+    ref: NonEmptyStringSchema,
+    note: z.string().optional(),
+  }),
+  findingTypeId: FindingTypeIdSchema.nullable(),
+});
+export type DisclosureElement = z.infer<typeof DisclosureElementSchema>;
+
+export const DisclosureTableSchema = z
+  .object({ version: z.number().int().min(1), elements: z.array(DisclosureElementSchema).min(1) })
+  .superRefine((t, ctx) => {
+    const seen = new Set<string>();
+    t.elements.forEach((e, i) => {
+      if (seen.has(e.id))
+        ctx.addIssue({ code: 'custom', path: ['elements', i], message: `${e.id} twice` });
+      seen.add(e.id);
+    });
+  });
+export type DisclosureTable = z.infer<typeof DisclosureTableSchema>;
+
+export const CLAUSE_STATUSES = ['present', 'absent', 'undetermined'] as const;
+export const ClauseStatusSchema = z.enum(CLAUSE_STATUSES);
+export type ClauseStatus = z.infer<typeof ClauseStatusSchema>;
+
+// One element's verdict: present with the clause quoted verbatim, absent, or
+// undetermined. The citation is the table's, never the model's.
+export const ClauseResultSchema = z
+  .object({
+    element: NonEmptyStringSchema,
+    status: ClauseStatusSchema,
+    quote: z.string().min(1).optional(),
+    note: z.string().optional(),
+    citation: CitationSchema,
+    findingTypeId: FindingTypeIdSchema.nullable(),
+  })
+  .superRefine((c, ctx) => {
+    if (c.status === 'present' && c.quote === undefined) {
+      ctx.addIssue({ code: 'custom', path: ['quote'], message: 'a present clause is quoted' });
+    }
+    if (c.status !== 'present' && c.quote !== undefined) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['quote'],
+        message: 'only a present clause carries a quote',
+      });
+    }
+  });
+export type ClauseResult = z.infer<typeof ClauseResultSchema>;
+
+export const ClauseAnalysisSchema = z
+  .object({
+    documentHash: Sha256Schema,
+    jurisdiction: JurisdictionSchema,
+    locale: LocaleSchema,
+    clauses: z.array(ClauseResultSchema).min(1),
+    // Findings to raise: one per absent element the catalogue has a type for.
+    drafts: z.array(
+      z.object({
+        typeId: FindingTypeIdSchema,
+        element: NonEmptyStringSchema,
+        evidence: z.array(EvidenceRefSchema).min(1),
+      }),
+    ),
+    undetermined: z.array(NonEmptyStringSchema),
+  })
+  .describe('A policy checked clause by clause against Article 13');
+export type ClauseAnalysis = z.infer<typeof ClauseAnalysisSchema>;

@@ -1,0 +1,53 @@
+{
+  "name": "dk-newsletter-only",
+  "locale": "da",
+  "jurisdiction": "DK",
+  "text": "Nyhedsbrev og persondata\n\nBakeriet ApS (CVR 55667788, Torvet 1, 5000 Odense C, hej@bakeriet.dk) er ansvarlig for behandlingen af din e-mailadresse.\n\nVi bruger din e-mailadresse til at sende dig vores ugentlige nyhedsbrev. Det sker på grundlag af dit samtykke.\n\nNyhedsbrevet udsendes via Mailchimp, som er etableret i USA. Overførslen er dækket af EU-Kommissionens standardkontraktbestemmelser.\n\nDin e-mailadresse slettes, når du afmelder nyhedsbrevet, dog senest 30 dage efter.\n\nDu kan afmelde dig og dermed trække dit samtykke tilbage når som helst via linket nederst i hvert nyhedsbrev.\n\nDu har ret til indsigt, berigtigelse, sletning, begrænsning, indsigelse og dataportabilitet, og du kan klage til Datatilsynet.\n\nDet er frivilligt at tilmelde sig; du kan handle hos os uden.",
+  "expected": {
+    "controller": {
+      "status": "present",
+      "quote": "Bakeriet ApS (CVR 55667788, Torvet 1, 5000 Odense C, hej@bakeriet.dk) er ansvarlig for behandlingen af din e-mailadresse."
+    },
+    "dpo": {
+      "status": "absent"
+    },
+    "purposes_basis": {
+      "status": "present",
+      "quote": "Vi bruger din e-mailadresse til at sende dig vores ugentlige nyhedsbrev. Det sker på grundlag af dit samtykke."
+    },
+    "legitimate_interests": {
+      "status": "absent"
+    },
+    "recipients": {
+      "status": "present",
+      "quote": "Nyhedsbrevet udsendes via Mailchimp, som er etableret i USA."
+    },
+    "transfers": {
+      "status": "present",
+      "quote": "Nyhedsbrevet udsendes via Mailchimp, som er etableret i USA. Overførslen er dækket af EU-Kommissionens standardkontraktbestemmelser."
+    },
+    "retention": {
+      "status": "present",
+      "quote": "Din e-mailadresse slettes, når du afmelder nyhedsbrevet, dog senest 30 dage efter."
+    },
+    "rights": {
+      "status": "present",
+      "quote": "Du har ret til indsigt, berigtigelse, sletning, begrænsning, indsigelse og dataportabilitet, og du kan klage til Datatilsynet."
+    },
+    "withdrawal": {
+      "status": "present",
+      "quote": "Du kan afmelde dig og dermed trække dit samtykke tilbage når som helst via linket nederst i hvert nyhedsbrev."
+    },
+    "complaint": {
+      "status": "present",
+      "quote": "du kan klage til Datatilsynet."
+    },
+    "obligation": {
+      "status": "present",
+      "quote": "Det er frivilligt at tilmelde sig; du kan handle hos os uden."
+    },
+    "automated": {
+      "status": "absent"
+    }
+  }
+}

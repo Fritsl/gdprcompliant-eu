@@ -1,0 +1,54 @@
+{
+  "name": "de-app-tracking",
+  "locale": "de",
+  "jurisdiction": "DE",
+  "text": "Datenschutzhinweise für die Fitmix-App\n\nAnbieter und Verantwortlicher ist die Fitmix UG (haftungsbeschränkt), Kaiserstraße 12, 60311 Frankfurt am Main, hallo@fitmix.app.\n\nWir verarbeiten Ihre Trainingsdaten, um Ihnen Auswertungen anzuzeigen (Vertragserfüllung, Art. 6 Abs. 1 lit. b DSGVO), und Nutzungsdaten zur Verbesserung der App auf Grundlage unseres berechtigten Interesses an einer stabilen Anwendung (Art. 6 Abs. 1 lit. f DSGVO).\n\nUnser berechtigtes Interesse besteht darin, Fehler zu erkennen und die App weiterzuentwickeln.\n\nNutzungsdaten werden an unseren Analysedienstleister Mixpanel in den USA übermittelt; Grundlage sind Standardvertragsklauseln.\n\nTrainingsdaten speichern wir, bis Sie Ihr Konto löschen; Nutzungsdaten werden nach 14 Monaten anonymisiert.\n\nIhnen stehen die Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung, Widerspruch und Datenübertragbarkeit zu.\n\nIhre Einwilligung in Push-Benachrichtigungen können Sie jederzeit in den Einstellungen widerrufen.\n\nSie können sich beim Hessischen Beauftragten für Datenschutz und Informationsfreiheit beschweren.\n\nAuf Grundlage Ihrer Trainingsdaten erstellt die App automatisch Trainingsempfehlungen; diese Profilbildung hat keine rechtliche Wirkung für Sie und Sie können sie in den Einstellungen abschalten.",
+  "expected": {
+    "controller": {
+      "status": "present",
+      "quote": "Anbieter und Verantwortlicher ist die Fitmix UG (haftungsbeschränkt), Kaiserstraße 12, 60311 Frankfurt am Main, hallo@fitmix.app."
+    },
+    "dpo": {
+      "status": "absent"
+    },
+    "purposes_basis": {
+      "status": "present",
+      "quote": "Wir verarbeiten Ihre Trainingsdaten, um Ihnen Auswertungen anzuzeigen (Vertragserfüllung, Art. 6 Abs. 1 lit. b DSGVO), und Nutzungsdaten zur Verbesserung der App auf Grundlage unseres berechtigten Interesses an einer stabilen Anwendung (Art. 6 Abs. 1 lit. f DSGVO)."
+    },
+    "legitimate_interests": {
+      "status": "present",
+      "quote": "Unser berechtigtes Interesse besteht darin, Fehler zu erkennen und die App weiterzuentwickeln."
+    },
+    "recipients": {
+      "status": "present",
+      "quote": "Nutzungsdaten werden an unseren Analysedienstleister Mixpanel in den USA übermittelt; Grundlage sind Standardvertragsklauseln."
+    },
+    "transfers": {
+      "status": "present",
+      "quote": "Nutzungsdaten werden an unseren Analysedienstleister Mixpanel in den USA übermittelt; Grundlage sind Standardvertragsklauseln."
+    },
+    "retention": {
+      "status": "present",
+      "quote": "Trainingsdaten speichern wir, bis Sie Ihr Konto löschen; Nutzungsdaten werden nach 14 Monaten anonymisiert."
+    },
+    "rights": {
+      "status": "present",
+      "quote": "Ihnen stehen die Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung, Widerspruch und Datenübertragbarkeit zu."
+    },
+    "withdrawal": {
+      "status": "present",
+      "quote": "Ihre Einwilligung in Push-Benachrichtigungen können Sie jederzeit in den Einstellungen widerrufen."
+    },
+    "complaint": {
+      "status": "present",
+      "quote": "Sie können sich beim Hessischen Beauftragten für Datenschutz und Informationsfreiheit beschweren."
+    },
+    "obligation": {
+      "status": "absent"
+    },
+    "automated": {
+      "status": "present",
+      "quote": "Auf Grundlage Ihrer Trainingsdaten erstellt die App automatisch Trainingsempfehlungen; diese Profilbildung hat keine rechtliche Wirkung für Sie und Sie können sie in den Einstellungen abschalten."
+    }
+  }
+}

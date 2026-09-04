@@ -1,0 +1,53 @@
+{
+  "name": "en-recruiting-profiling",
+  "locale": "en",
+  "jurisdiction": "DK",
+  "text": "Candidate privacy notice\n\nTalentbro ApS, CVR 44556677, Frederiksgade 3, 8000 Aarhus C, is the controller of the personal data you provide when you apply. Contact: people@talentbro.dk.\n\nWe process your application, CV and interview notes to assess your suitability for the role. The legal basis is our legitimate interest in recruiting staff, and, for the pre-employment background check, your consent.\n\nOur legitimate interest is to fill open roles with suitable candidates.\n\nYour application is shared with the hiring manager and with our applicant tracking system provider, Teamtailor, which hosts data in the EU.\n\nUnsuccessful applications are deleted six months after the process closes unless you agree to stay in our talent pool.\n\nYou may access, correct or delete your data, restrict or object to its processing, and receive it in a portable format, by writing to people@talentbro.dk.\n\nYou may withdraw your consent to the background check at any time before it is carried out.\n\nYou may complain to Datatilsynet.\n\nWe use an automated screening tool that ranks applications against the job description; no decision to reject is taken without a person reviewing it.",
+  "expected": {
+    "controller": {
+      "status": "present",
+      "quote": "Talentbro ApS, CVR 44556677, Frederiksgade 3, 8000 Aarhus C, is the controller of the personal data you provide when you apply. Contact: people@talentbro.dk."
+    },
+    "dpo": {
+      "status": "absent"
+    },
+    "purposes_basis": {
+      "status": "present",
+      "quote": "We process your application, CV and interview notes to assess your suitability for the role. The legal basis is our legitimate interest in recruiting staff, and, for the pre-employment background check, your consent."
+    },
+    "legitimate_interests": {
+      "status": "present",
+      "quote": "Our legitimate interest is to fill open roles with suitable candidates."
+    },
+    "recipients": {
+      "status": "present",
+      "quote": "Your application is shared with the hiring manager and with our applicant tracking system provider, Teamtailor, which hosts data in the EU."
+    },
+    "transfers": {
+      "status": "undetermined"
+    },
+    "retention": {
+      "status": "present",
+      "quote": "Unsuccessful applications are deleted six months after the process closes unless you agree to stay in our talent pool."
+    },
+    "rights": {
+      "status": "present",
+      "quote": "You may access, correct or delete your data, restrict or object to its processing, and receive it in a portable format, by writing to people@talentbro.dk."
+    },
+    "withdrawal": {
+      "status": "present",
+      "quote": "You may withdraw your consent to the background check at any time before it is carried out."
+    },
+    "complaint": {
+      "status": "present",
+      "quote": "You may complain to Datatilsynet."
+    },
+    "obligation": {
+      "status": "absent"
+    },
+    "automated": {
+      "status": "present",
+      "quote": "We use an automated screening tool that ranks applications against the job description; no decision to reject is taken without a person reviewing it."
+    }
+  }
+}

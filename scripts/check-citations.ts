@@ -26,6 +26,7 @@ const files = [
   join(root, 'packages', 'i18n', 'content'),
   join(root, 'apps', 'web', 'content'),
   join(root, 'fixtures', 'companies'),
+  join(root, 'fixtures', 'policies'),
 ].flatMap((dir) => jsonFilesUnder(dir));
 
 const audit = auditCitations(root, files, chunks, decisions);

@@ -1,0 +1,56 @@
+{
+  "name": "en-saas-complete",
+  "locale": "en",
+  "jurisdiction": "DK",
+  "text": "Privacy Notice\n\nThe controller of your personal data is Nordic Ledger ApS, company no. 99887766, Vesterbrogade 8, 1620 Copenhagen V, Denmark, privacy@nordicledger.eu.\n\nOur data protection officer can be reached at dpo@nordicledger.eu.\n\nWe process your account details and usage data to provide the service under our contract with you (Article 6(1)(b) GDPR), to send product updates with your consent (Article 6(1)(a)), and to keep the service secure on the basis of our legitimate interest in preventing abuse (Article 6(1)(f)).\n\nWhere we rely on legitimate interests, they are the security of the service and the prevention of fraud.\n\nWe share personal data with our hosting provider Hetzner (Germany), our payment processor Stripe, and our support tooling provider.\n\nStripe processes payment data in the United States under the EU-US Data Privacy Framework and standard contractual clauses.\n\nAccount data is kept for the life of your account and deleted 90 days after closure; invoices are kept for five years under the Danish Bookkeeping Act.\n\nYou have the right to access, rectify and erase your data, to restrict or object to processing, and to receive your data in a portable format.\n\nWhere processing is based on consent, you may withdraw it at any time from your account settings.\n\nYou may lodge a complaint with the Danish Data Protection Agency (Datatilsynet) or with the supervisory authority where you live.\n\nProviding your name and email is required to open an account; without them we cannot provide the service.\n\nWe do not make decisions based solely on automated processing, and we do not profile you.",
+  "expected": {
+    "controller": {
+      "status": "present",
+      "quote": "The controller of your personal data is Nordic Ledger ApS, company no. 99887766, Vesterbrogade 8, 1620 Copenhagen V, Denmark, privacy@nordicledger.eu."
+    },
+    "dpo": {
+      "status": "present",
+      "quote": "Our data protection officer can be reached at dpo@nordicledger.eu."
+    },
+    "purposes_basis": {
+      "status": "present",
+      "quote": "We process your account details and usage data to provide the service under our contract with you (Article 6(1)(b) GDPR), to send product updates with your consent (Article 6(1)(a)), and to keep the service secure on the basis of our legitimate interest in preventing abuse (Article 6(1)(f))."
+    },
+    "legitimate_interests": {
+      "status": "present",
+      "quote": "Where we rely on legitimate interests, they are the security of the service and the prevention of fraud."
+    },
+    "recipients": {
+      "status": "present",
+      "quote": "We share personal data with our hosting provider Hetzner (Germany), our payment processor Stripe, and our support tooling provider."
+    },
+    "transfers": {
+      "status": "present",
+      "quote": "Stripe processes payment data in the United States under the EU-US Data Privacy Framework and standard contractual clauses."
+    },
+    "retention": {
+      "status": "present",
+      "quote": "Account data is kept for the life of your account and deleted 90 days after closure; invoices are kept for five years under the Danish Bookkeeping Act."
+    },
+    "rights": {
+      "status": "present",
+      "quote": "You have the right to access, rectify and erase your data, to restrict or object to processing, and to receive your data in a portable format."
+    },
+    "withdrawal": {
+      "status": "present",
+      "quote": "Where processing is based on consent, you may withdraw it at any time from your account settings."
+    },
+    "complaint": {
+      "status": "present",
+      "quote": "You may lodge a complaint with the Danish Data Protection Agency (Datatilsynet) or with the supervisory authority where you live."
+    },
+    "obligation": {
+      "status": "present",
+      "quote": "Providing your name and email is required to open an account; without them we cannot provide the service."
+    },
+    "automated": {
+      "status": "present",
+      "quote": "We do not make decisions based solely on automated processing, and we do not profile you."
+    }
+  }
+}
