@@ -114,3 +114,60 @@
   text-decoration: underline dotted var(--rule-2);
   text-underline-offset: 3px;
 }
+
+/* ─────────────────────────────────── print (U-03): the case page on paper */
+@media print {
+  .screen {
+    padding: 0;
+    max-width: none;
+  }
+  .no-print,
+  .case form,
+  .case .btn,
+  .case nav,
+  .step-act {
+    display: none !important;
+  }
+  .step {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    border: 1px solid var(--rule-2);
+    background: var(--surface);
+    padding: 12px 14px;
+  }
+  .step.next {
+    opacity: 1;
+  }
+  .step.done {
+    border-color: transparent;
+  }
+  .sev,
+  .sev::before,
+  .step-n,
+  .pp-bar,
+  .pp-bar i,
+  .cite {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .drawer summary::before {
+    content: '';
+  }
+  .drawer .body {
+    padding: 0;
+  }
+  .pre {
+    max-height: none;
+    overflow: visible;
+    white-space: pre-wrap;
+    word-break: break-all;
+    font-size: 10px;
+  }
+  .rem-card {
+    border-color: var(--rule-2);
+    break-inside: avoid;
+  }
+  .plan-lead {
+    font-size: 24px;
+  }
+}

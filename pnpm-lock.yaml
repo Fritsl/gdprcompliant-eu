@@ -105,6 +105,9 @@ importers:
       '@gc/db':
         specifier: workspace:*
         version: link:../../packages/db
+      '@gc/findings':
+        specifier: workspace:*
+        version: link:../../packages/findings
       '@gc/i18n':
         specifier: workspace:*
         version: link:../../packages/i18n

@@ -1,7 +1,9 @@
 import 'server-only';
 import {
   RateLimited,
+  attestFinding,
   caseByToken,
+  caseCompany,
   caseProgress,
   caseSummary,
   caseTimeline,
@@ -9,6 +11,7 @@ import {
   deleteCase,
   evidencePack,
   exportCase,
+  findingsWithEvidence,
   inviteMember,
   joinByInvite,
   listMembers,
@@ -25,10 +28,19 @@ import {
   type MemberSummary,
   type MemberView,
 } from '@gc/db';
-import type { Role } from '@gc/findings';
+import { checkForMeProposal, type Role } from '@gc/findings';
+import { localise } from '@gc/i18n';
 import { JobQueue } from '@gc/jobs';
 import { loadCatalogue } from '@gc/remedies';
-import type { CaseEvent, Locale, TaskProposal } from '@gc/contracts';
+import type {
+  CaseEvent,
+  Citation,
+  FindingArea,
+  Locale,
+  LocalisedText,
+  Remedy,
+  TaskProposal,
+} from '@gc/contracts';
 
 // The schema to read from, when a test points the app at a disposable one. Production
 // leaves it unset and reads public.
@@ -246,6 +258,216 @@ export async function checkForMember(
     } finally {
       await queue.stop({ graceful: true });
     }
+  });
+  return done ?? false;
+}
+
+// ---- the case page (U-03) --------------------------------------------------------
+
+export interface CaseEvidenceView {
+  readonly id: string;
+  readonly kind: string;
+  readonly capturedAt: string;
+  readonly caption: string | null;
+  readonly hash: string;
+  readonly body: string;
+  readonly quote: string | null;
+  readonly observedAt: string;
+}
+
+export type CaseActionView =
+  | { readonly kind: 'agent_prompt'; readonly label: string; readonly body: string }
+  | {
+      readonly kind: 'message';
+      readonly label: string;
+      readonly to: string;
+      readonly subject: string;
+      readonly body: string;
+    }
+  | { readonly kind: 'link'; readonly label: string; readonly url: string };
+
+export type VerifyMethod = Remedy['verification']['method'];
+
+export interface CaseFindingView {
+  readonly id: string;
+  readonly typeId: string;
+  readonly area: string;
+  readonly severity: string;
+  readonly open: boolean;
+  readonly citations: string[];
+  readonly authority?: string;
+  readonly remedy: {
+    readonly kind: string;
+    readonly title: string;
+    readonly effort: string;
+    readonly minutes: number;
+    readonly detail: string;
+    readonly snippet?: string;
+    readonly verifyLabel?: string;
+    readonly verify: VerifyMethod;
+    readonly action?: CaseActionView;
+  };
+  readonly evidence: CaseEvidenceView[];
+}
+
+export interface CasePageView extends CaseSummary {
+  readonly members: MemberSummary[];
+  readonly progress: CaseProgress;
+  readonly domain: string;
+  readonly findings: CaseFindingView[];
+}
+
+const DEFAULT_MINUTES = 15;
+
+// A citation as the page shows it: the instrument and the reference the binding gave.
+export function citationText(c: Citation): string {
+  if (c.kind === 'provision') return `${c.instrument} ${c.ref}`;
+  if (c.kind === 'decision') return `${c.body} ${c.reference}`;
+  return `${c.authority}: ${c.title}`;
+}
+
+const pick = (text: LocalisedText | undefined, locale: Locale): string | undefined =>
+  text ? localise(text, locale).value : undefined;
+
+// Remedy text carries {{domain}}; the page fills it, nothing else.
+const fill = (text: string, domain: string) => text.replaceAll('{{domain}}', domain);
+
+function renderAction(
+  action: Remedy['action'] | undefined,
+  locale: Locale,
+  domain: string,
+): CaseActionView | undefined {
+  if (!action) return undefined;
+  const label = fill(localise(action.label, locale).value, domain);
+  switch (action.kind) {
+    case 'agent_prompt':
+      return {
+        kind: 'agent_prompt',
+        label,
+        body: fill(localise(action.body, locale).value, domain),
+      };
+    case 'message':
+      return {
+        kind: 'message',
+        label,
+        to: fill(localise(action.to, locale).value, domain),
+        subject: fill(localise(action.subject, locale).value, domain),
+        body: fill(localise(action.body, locale).value, domain),
+      };
+    case 'link':
+      return { kind: 'link', label, url: action.url };
+  }
+}
+
+function bindingOf(value: unknown): { citations: string[]; authority?: string } {
+  const b = value as { citations?: Citation[]; authority?: { name?: string } } | null;
+  const citations = Array.isArray(b?.citations) ? b.citations.map(citationText) : [];
+  return b?.authority?.name ? { citations, authority: b.authority.name } : { citations };
+}
+
+export function loadCasePage(token: string, locale: Locale): Promise<CasePageView | undefined> {
+  return withConnection(async (connection) => {
+    const found = await caseByToken(connection, token);
+    if (!found) return undefined;
+    const summary = await caseSummary(connection, found.tenantId, found.caseId);
+    const members = await listMembers(connection, found.tenantId, found.caseId, {
+      baseUrl: appBaseUrl(),
+      locale,
+    });
+    const progress = await caseProgress(connection, found.tenantId, found.caseId);
+    const company = await caseCompany(connection, found.tenantId, found.caseId);
+    const domain = company?.domain ?? '';
+    const rows = await findingsWithEvidence(connection, found.tenantId, found.caseId);
+    const findings = rows.map(({ finding, evidence }): CaseFindingView => {
+      const entry = catalogue.get(finding.remedyId, finding.remedyVersion);
+      const r = entry?.remedy;
+      const snippet = r?.kind === 'self_fix' ? r.snippet : undefined;
+      const action = renderAction(r && 'action' in r ? r.action : undefined, locale, domain);
+      return {
+        id: finding.id,
+        typeId: finding.typeId,
+        area: finding.area,
+        severity: finding.severity,
+        open: finding.status === 'open',
+        ...bindingOf(finding.binding),
+        remedy: {
+          kind: r?.kind ?? 'no_solution',
+          title: fill(pick(r?.title, locale) ?? finding.remedyId, domain),
+          effort: pick(r?.effort.label, locale) ?? '',
+          minutes: r?.effort.minutes ?? DEFAULT_MINUTES,
+          detail: fill(pick(r?.detail, locale) ?? '', domain),
+          ...(snippet ? { snippet: fill(snippet, domain) } : {}),
+          ...(r?.verifyLabel ? { verifyLabel: localise(r.verifyLabel, locale).value } : {}),
+          verify: r?.verification.method ?? 'none',
+          ...(action ? { action } : {}),
+        },
+        evidence: evidence.map((e) => ({
+          id: e.id,
+          kind: e.kind,
+          capturedAt: e.capturedAt.toISOString(),
+          caption: e.caption,
+          hash: e.hash,
+          body: e.body,
+          quote: e.quote,
+          observedAt: observedAt(e.observed),
+        })),
+      };
+    });
+    return { ...summary, members, progress, domain, findings };
+  });
+}
+
+const observedAt = (observed: unknown): string => {
+  const o = observed as Record<string, unknown> | null;
+  const parts = ['url', 'host', 'pass', 'registry', 'question']
+    .map((k) => o?.[k])
+    .filter((v): v is string => typeof v === 'string' && v.length > 0);
+  return parts.join(' · ');
+};
+
+// "Check it again": the same re-check a colleague can ask for (P-01), from the owner.
+export async function checkForOwner(token: string, findingId: string): Promise<boolean> {
+  const done = await withConnection(async (connection) => {
+    const found = await caseByToken(connection, token);
+    if (!found) return false;
+    const rows = await findingsWithEvidence(connection, found.tenantId, found.caseId);
+    const row = rows.find((r) => r.finding.id === findingId);
+    const company = await caseCompany(connection, found.tenantId, found.caseId);
+    if (!row || !company) return false;
+    const url = process.env['DATABASE_URL'];
+    if (!url) return false;
+    const proposal = checkForMeProposal(
+      { typeId: row.finding.typeId, area: row.finding.area as FindingArea },
+      company.domain,
+    );
+    const queue = new JobQueue({ connectionString: url });
+    await queue.start();
+    try {
+      await requestCheck(queue, proposal);
+      return true;
+    } finally {
+      await queue.stop({ graceful: true });
+    }
+  });
+  return done ?? false;
+}
+
+// "I have done this": only a remedy verified by attestation closes on the holder's word.
+export async function attestForOwner(token: string, findingId: string): Promise<boolean> {
+  const done = await withConnection(async (connection) => {
+    const found = await caseByToken(connection, token);
+    if (!found) return false;
+    const rows = await findingsWithEvidence(connection, found.tenantId, found.caseId);
+    const row = rows.find((r) => r.finding.id === findingId);
+    if (!row || row.finding.status !== 'open') return false;
+    const entry = catalogue.get(row.finding.remedyId, row.finding.remedyVersion);
+    const v = entry?.remedy.verification;
+    if (!v || v.method !== 'attestation') return false;
+    await attestFinding(connection, found.tenantId, findingId, {
+      by: { kind: 'person', userId: `token:${found.caseId}`, name: 'Case holder' },
+      statement: v.statement,
+    });
+    return true;
   });
   return done ?? false;
 }

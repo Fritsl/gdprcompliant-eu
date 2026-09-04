@@ -91,7 +91,7 @@ describe('reading the log', () => {
         entry(['staging.eksempelbutik.dk'], "C=US, O=Let's Encrypt, CN=R11"),
         entry(['*.eksempelbutik.dk']),
         entry(['eksempelbutik.dk.evil.example', 'notmine.dk']),
-        { name_value: undefined },
+        { name_value: undefined } as unknown as Parameters<typeof hostsFromEntries>[0][number],
       ],
       'eksempelbutik.dk',
     );

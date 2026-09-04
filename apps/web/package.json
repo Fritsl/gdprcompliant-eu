@@ -19,6 +19,7 @@
     "@gc/db": "workspace:*",
     "@gc/artefacts": "workspace:*",
     "@gc/remedies": "workspace:*",
+    "@gc/findings": "workspace:*",
     "@gc/jobs": "workspace:*"
   },
   "devDependencies": {

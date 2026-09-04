@@ -125,10 +125,6 @@
     "en": "Page {{page}} of {{pages}}",
     "da": "Side {{page}} af {{pages}}"
   },
-  "case.heading": {
-    "en": "Case",
-    "da": "Sag"
-  },
   "case.holds": {
     "en": "What this case holds",
     "da": "Hvad sagen indeholder"
@@ -152,10 +148,6 @@
   "case.holds.vendors": {
     "en": "vendors identified",
     "da": "identificerede leverandører"
-  },
-  "case.who": {
-    "en": "Who can see it",
-    "da": "Hvem kan se det"
   },
   "case.who.unclaimed": {
     "en": "Anyone who has this link. Nobody else: the case belongs to its own tenant, and the database refuses every other tenant.",
@@ -488,5 +480,105 @@
   "scan.stage.writingUp": {
     "en": "Writing up what we found",
     "da": "Skriver fundene op"
+  },
+  "case.ready": {
+    "en": "fixes ready",
+    "da": "rettelser klar"
+  },
+  "case.ready.one": {
+    "en": "fix ready",
+    "da": "rettelse klar"
+  },
+  "case.ready.none": {
+    "en": "Nothing left to fix",
+    "da": "Intet tilbage at rette"
+  },
+  "case.progress.of": {
+    "en": "of",
+    "da": "af"
+  },
+  "case.progress.done": {
+    "en": "done",
+    "da": "færdige"
+  },
+  "case.progress.about": {
+    "en": "about",
+    "da": "cirka"
+  },
+  "case.progress.left": {
+    "en": "min left",
+    "da": "min tilbage"
+  },
+  "case.step.now": {
+    "en": "Start here",
+    "da": "Start her"
+  },
+  "case.watch": {
+    "en": "We look again every Monday",
+    "da": "Vi kigger igen hver mandag"
+  },
+  "case.evidence": {
+    "en": "What we saw",
+    "da": "Det vi så"
+  },
+  "case.evidence.quote": {
+    "en": "Quoted",
+    "da": "Citeret"
+  },
+  "case.evidence.none": {
+    "en": "No evidence is attached to this finding.",
+    "da": "Der er ikke knyttet beviser til dette fund."
+  },
+  "case.rule": {
+    "en": "The rule",
+    "da": "Reglen"
+  },
+  "case.remedy.snippet": {
+    "en": "The code",
+    "da": "Koden"
+  },
+  "case.remedy.check": {
+    "en": "Check it again",
+    "da": "Tjek igen"
+  },
+  "case.remedy.attest": {
+    "en": "I have done this",
+    "da": "Det har jeg gjort"
+  },
+  "case.remedy.artefact": {
+    "en": "Closes when the document is published",
+    "da": "Lukkes, når dokumentet er offentliggjort"
+  },
+  "case.remedy.answer": {
+    "en": "Closes when the question is answered",
+    "da": "Lukkes, når spørgsmålet er besvaret"
+  },
+  "case.remedy.none": {
+    "en": "Nothing can verify this from outside",
+    "da": "Intet kan bekræfte dette udefra"
+  },
+  "case.checked": {
+    "en": "Checking again now",
+    "da": "Tjekker igen nu"
+  },
+  "case.attested": {
+    "en": "Noted; the finding is closed on your word",
+    "da": "Noteret; fundet er lukket på dit ord"
+  },
+  "severity.blocking": {
+    "en": "Blocking",
+    "da": "Blokerende"
+  },
+  "severity.serious": {
+    "en": "Serious",
+    "da": "Alvorlig"
+  },
+  "severity.advisory": {
+    "en": "Advisory",
+    "da": "Vejledende"
+  },
+  "severity.closed": {
+    "en": "Fixed",
+    "da": "Rettet"
   }
 }

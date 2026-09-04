@@ -81,7 +81,12 @@ describe('no finding without a remedy is structural (R-02)', () => {
     const empty = mkdtempSync(join(tmpdir(), 'no-fixtures-'));
     const result = checkFindingCompleteness(small, {
       detectors: [
-        { findingTypeId: 'SEC-03', area: 'Security', detector: 'scanner/checks/security#hsts' },
+        {
+          findingTypeId: 'SEC-03',
+          area: 'Security',
+          detector: 'scanner/checks/security#hsts',
+          defaultSeverity: 'serious',
+        },
       ],
       fixturesDir: empty,
     });

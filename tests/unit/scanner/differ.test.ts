@@ -98,7 +98,7 @@ const trackerRequests = () => [
   request(COLLECT, { chain: [TAG], initiator: { type: 'script', url: TAG } }),
   request(PIXEL),
 ];
-const consented = (pass: 'B' | 'C', remembered = true): PassCapture['consent'] => ({
+const consented = (pass: 'B' | 'C', remembered = true): NonNullable<PassCapture['consent']> => ({
   action: pass === 'B' ? 'refuse' : 'accept',
   outcome: pass === 'B' ? 'refused' : 'accepted',
   platform: 'generic',
