@@ -73,6 +73,7 @@
     "@gc/jobs": "workspace:*",
     "@gc/remedies": "workspace:*",
     "@gc/rules": "workspace:*",
-    "@gc/scanner": "workspace:*"
+    "@gc/scanner": "workspace:*",
+    "@gc/telemetry": "workspace:*"
   }
 }

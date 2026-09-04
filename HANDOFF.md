@@ -16,7 +16,7 @@ companies a list of problems; this hands them a plan and the things that close i
 
 ## Where you are
 
-**92 of 112 done.** Phase 0, phase 1 and phase 2 are complete, phase 3 has begun, DNS
+**93 of 112 done.** Phase 0, phase 1 and phase 2 are complete, phase 3 has begun, DNS
 collection opens phase 4 and the task catalogue opens phase 5. Contracts, config with the
 EU-only allowlist, the test harness, record and replay, i18n, the remedy catalogue and
 resolver, the model client, the web shell, the fixture estate (with TLS), the browser
@@ -97,7 +97,9 @@ site’s own store links, what the store declares held against the policy in thr
 languages, a contradiction quoting both sides, no app a clean pass), and job advert stack
 extraction (the careers page from the site’s own links, a tool claimed only when named as
 written, every candidate resting on the advert with its address and date, measured over a
-twelve-advert set with no false claim) are in. The journeys suite
+twelve-advert set with no false claim), and observability (spans, events and metrics as
+redacted JSON lines; a scan reconstructed from its job id; model latency and tokens per
+call; the verifier rate as the dashboard number with its alarm) are in. The journeys suite
 (tests/e2e/journeys.test.ts) drives a real scan of the estate through the front door, a
 fix applied by changing the fixture's responses, a colleague's re-check, a sign-off, an
 export and a deletion, and CI runs every e2e suite on push, files one at a time because

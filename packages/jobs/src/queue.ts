@@ -1,4 +1,5 @@
 import { PgBoss, type JobWithMetadata } from 'pg-boss';
+import { span } from '@gc/telemetry';
 import { deadLetterName, type JobDefinition } from './define.js';
 
 // The one job interface the rest of the codebase sees (F-06). pg-boss underneath, on the
@@ -155,29 +156,36 @@ export class JobQueue {
           job.progress && raw.data?.progress !== undefined
             ? job.progress.safeParse(raw.data.progress)
             : undefined;
-        await handler({
-          id: raw.id,
-          payload: payload.data,
-          progress: progress?.success ? progress.data : undefined,
-          attempt: raw.retryCount,
-          signal: raw.signal,
-          checkpoint: async (next) => {
-            if (!job.progress) throw new Error(`${job.name} declares no progress shape`);
-            const envelope: Envelope<P, S> = {
+        // The run is a span on the job's own id (O-04): a trace starts here.
+        await span(
+          'job.run',
+          { job: job.name, jobId: raw.id, attempt: raw.retryCount },
+          () =>
+            handler({
+              id: raw.id,
               payload: payload.data,
-              progress: job.progress.parse(next),
-            };
-            // pg-boss's own update() only reaches jobs that are still queued; a checkpoint
-            // is by definition on an active one. Its retry path carries `data` across, so
-            // the progress written here is what the next attempt receives.
-            await this.#boss
-              .getDb()
-              .executeSql(
-                `update "${this.#schema}".job set data = $1::jsonb where name = $2 and id = $3::uuid and state = 'active'`,
-                [JSON.stringify(envelope), job.name, raw.id],
-              );
-          },
-        });
+              progress: progress?.success ? progress.data : undefined,
+              attempt: raw.retryCount,
+              signal: raw.signal,
+              checkpoint: async (next) => {
+                if (!job.progress) throw new Error(`${job.name} declares no progress shape`);
+                const envelope: Envelope<P, S> = {
+                  payload: payload.data,
+                  progress: job.progress.parse(next),
+                };
+                // pg-boss's own update() only reaches jobs that are still queued; a checkpoint
+                // is by definition on an active one. Its retry path carries `data` across, so
+                // the progress written here is what the next attempt receives.
+                await this.#boss
+                  .getDb()
+                  .executeSql(
+                    `update "${this.#schema}".job set data = $1::jsonb where name = $2 and id = $3::uuid and state = 'active'`,
+                    [JSON.stringify(envelope), job.name, raw.id],
+                  );
+              },
+            }),
+          { traceId: raw.id },
+        );
       },
     );
   }

@@ -14,6 +14,7 @@ import {
 } from '@gc/db';
 import { assembleFindings, type AssemblyInput } from '@gc/findings';
 import type { JobQueue } from '@gc/jobs';
+import { event, span } from '@gc/telemetry';
 import type { Catalogue } from '@gc/remedies';
 import {
   captureToEvidence,
@@ -58,7 +59,12 @@ export async function registerScanWorker(
 ): Promise<void> {
   await queue.work(SCAN_JOB, async (job) => {
     try {
-      await scan(job);
+      await span(
+        'scan.job',
+        { jobId: job.id, domain: job.payload.domain, attempt: job.attempt },
+        () => scan(job),
+        { traceId: job.id },
+      );
     } catch (e) {
       console.error(`scan job ${job.id} failed:`, e);
       throw e;
@@ -75,6 +81,7 @@ export async function registerScanWorker(
     const mark = async (stage: ScanStage, m: StageMark, detail?: string): Promise<void> => {
       const existing = progress.stages.findIndex((s) => s.stage === stage);
       const state = { stage, mark: m, at: now().toISOString(), ...(detail ? { detail } : {}) };
+      event('scan.stage', { scanId: job.id, ...state }, { traceId: job.id });
       if (existing >= 0) progress.stages[existing] = state;
       else progress.stages.push(state);
       await job.checkpoint({ ...progress, stages: [...progress.stages] });

@@ -1,5 +1,5 @@
 {
-  "name": "@gc/jobs",
+  "name": "@gc/telemetry",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -7,11 +7,5 @@
   "types": "./src/index.ts",
   "scripts": {
     "typecheck": "tsc --build"
-  },
-  "dependencies": {
-    "@gc/contracts": "workspace:*",
-    "pg-boss": "^12.30.0",
-    "zod": "^4.5.4",
-    "@gc/telemetry": "workspace:*"
   }
 }

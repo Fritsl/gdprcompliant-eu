@@ -17,6 +17,7 @@
     "@gc/jobs": "workspace:*",
     "@gc/remedies": "workspace:*",
     "@gc/scanner": "workspace:*",
-    "zod": "^4.5.4"
+    "zod": "^4.5.4",
+    "@gc/telemetry": "workspace:*"
   }
 }

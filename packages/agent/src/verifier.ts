@@ -1,3 +1,4 @@
+import { count, event } from '@gc/telemetry';
 import {
   VerifierVerdictSchema,
   citationKey,
@@ -56,14 +57,25 @@ export const collapse = (s: string): string => s.replace(/\s+/g, ' ').trim();
 export async function verifyClaim(claim: Claim, deps: VerifierDeps): Promise<VerifierVerdict> {
   const checks: VerifierCheck[] = [];
   const at = (deps.now ?? (() => new Date()))().toISOString();
-  const verdict = (reason?: string): VerifierVerdict =>
-    VerifierVerdictSchema.parse({
+  const verdict = (reason?: string): VerifierVerdict => {
+    const v = VerifierVerdictSchema.parse({
       claimId: claim.id,
       verdict: reason === undefined ? 'accepted' : 'rejected',
       checks,
       ...(reason === undefined ? {} : { reason }),
       at,
     });
+    // The gate's own number (O-04): every verdict counted, so a rate can be watched.
+    count('verifier.claim', { verdict: v.verdict, kind: claim.kind });
+    event('verifier.verdict', {
+      claimId: claim.id,
+      kind: claim.kind,
+      verdict: v.verdict,
+      checks: checks.map((c) => `${c.name}:${c.passed ? 'ok' : 'fail'}`),
+      ...(reason === undefined ? {} : { reason }),
+    });
+    return v;
+  };
 
   // 1. Every pointer names stored evidence, with the hash it claims, in this case.
   const evidence: Evidence[] = [];

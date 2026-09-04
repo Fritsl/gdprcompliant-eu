@@ -1,3 +1,4 @@
+import { span } from '@gc/telemetry';
 import {
   PlanSchema,
   TaskResultSchema,
@@ -173,7 +174,18 @@ export class Dispatcher {
         // Paid before it runs: a worker that dies still spent its budget.
         spentThisScan += price;
         this.#spent.set(validated.caseId, this.spentOnCase(validated.caseId) + price);
-        last = await this.#attempt(task, spec.output, worker, attempts);
+        last = await span(
+          'agent.task',
+          {
+            taskType: task.type,
+            taskId: task.id,
+            scanId,
+            credits: task.cost.credits,
+            attempt: attempts,
+          },
+          () => this.#attempt(task, spec.output, worker, attempts),
+          { traceId: scanId },
+        );
         if (last.status === 'done' || !last.reason?.startsWith('retryable:')) break;
       }
       done.set(task.id, last ?? skipped(task, `stopped: ${stoppedBecause ?? 'budget'}`));

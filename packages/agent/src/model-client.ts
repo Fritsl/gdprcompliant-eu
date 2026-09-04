@@ -1,3 +1,4 @@
+import { count, event, metric } from '@gc/telemetry';
 import {
   ChatCompletionResponseSchema,
   EmbeddingInputSchema,
@@ -144,8 +145,11 @@ export class ModelClient {
             : messages,
         response_format: { type: 'json_schema', json_schema: { name, schema, strict: true } },
       };
-      const outcome = await this.post('chat/completions', body, (text) =>
-        this.parseCompletion(name, input.data as ModelInput<N>, text),
+      const outcome = await this.post(
+        'chat/completions',
+        body,
+        (text) => this.parseCompletion(name, input.data as ModelInput<N>, text),
+        { call: name, attempt },
       );
       if (outcome.ok) return outcome.value;
       const record: ModelAttempt = {
@@ -174,8 +178,11 @@ export class ModelClient {
     const attempts: ModelAttempt[] = [];
     for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
       const body = { model: this.config.model.embedding, input: input.data };
-      const outcome = await this.post('embeddings', body, (text) =>
-        parseEmbeddings(text, input.data.length),
+      const outcome = await this.post(
+        'embeddings',
+        body,
+        (text) => parseEmbeddings(text, input.data.length),
+        { call: 'embed', attempt },
       );
       if (outcome.ok) return outcome.value;
       const record: ModelAttempt = {
@@ -196,7 +203,9 @@ export class ModelClient {
     path: string,
     body: unknown,
     parse: (text: string) => Outcome<T>,
+    meta: { call: string; attempt: number },
   ): Promise<Outcome<T>> {
+    const started = Date.now();
     const base = this.config.model.baseUrl.endsWith('/')
       ? this.config.model.baseUrl
       : `${this.config.model.baseUrl}/`;
@@ -216,6 +225,7 @@ export class ModelClient {
     } catch (e) {
       // A refused host is a configuration fault, not a model fault: it does not retry.
       if (e instanceof EgressError) throw e;
+      recordCall(meta, started, undefined, undefined);
       return {
         ok: false,
         transport: true,
@@ -224,6 +234,7 @@ export class ModelClient {
       };
     }
     const text = await response.text();
+    recordCall(meta, started, response.status, usageOf(text));
     if (!response.ok) {
       return {
         ok: false,
@@ -312,4 +323,41 @@ function parseEmbeddings(text: string, expected: number): Outcome<number[][]> {
     return { ok: false, transport: false, issues: ['embeddings have different widths'], raw: text };
   }
   return { ok: true, value: vectors };
+}
+
+// What the model reported using, when it did.
+function usageOf(text: string): { prompt: number; completion: number } | undefined {
+  try {
+    const u = (
+      JSON.parse(text) as { usage?: { prompt_tokens?: number; completion_tokens?: number } }
+    ).usage;
+    if (!u || typeof u.prompt_tokens !== 'number') return undefined;
+    return { prompt: u.prompt_tokens, completion: u.completion_tokens ?? 0 };
+  } catch {
+    return undefined;
+  }
+}
+
+// Latency and tokens per call and attempt (O-04): the cost of a task type is the sum
+// of what its calls used.
+function recordCall(
+  meta: { call: string; attempt: number },
+  started: number,
+  status: number | undefined,
+  usage: { prompt: number; completion: number } | undefined,
+): void {
+  const latencyMs = Date.now() - started;
+  metric('model.latency_ms', latencyMs, { call: meta.call });
+  count('model.calls', { call: meta.call, ok: status !== undefined && status < 400 });
+  if (usage) {
+    count('model.tokens', { call: meta.call, kind: 'prompt' }, usage.prompt);
+    count('model.tokens', { call: meta.call, kind: 'completion' }, usage.completion);
+  }
+  event('model.call', {
+    call: meta.call,
+    attempt: meta.attempt,
+    status: status ?? 'transport',
+    latencyMs,
+    ...(usage ? { promptTokens: usage.prompt, completionTokens: usage.completion } : {}),
+  });
 }
