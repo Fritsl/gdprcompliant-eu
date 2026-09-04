@@ -179,10 +179,24 @@ export async function collectPassA(
     const screenshot = await page.screenshot({ fullPage: true, type: 'png' });
     if (options.inspect) await options.inspect(page, context);
 
+    const documentLang = await page
+      .evaluate(
+        () =>
+          (globalThis as unknown as { document: { documentElement: { lang: string } } }).document
+            .documentElement.lang || '',
+      )
+      .catch(() => '');
+    const documentTitle = await page.title().catch(() => '');
+    const contentLanguage = response?.headers()['content-language'];
     const capture = PassCaptureSchema.parse({
       pass: 'A',
       url: target.url,
       finalUrl: page.url(),
+      document: {
+        ...(documentLang ? { lang: documentLang } : {}),
+        ...(contentLanguage ? { contentLanguage } : {}),
+        ...(documentTitle ? { title: documentTitle } : {}),
+      },
       ...(response ? { status: response.status() } : {}),
       startedAt: new Date(startedAt).toISOString(),
       frames,

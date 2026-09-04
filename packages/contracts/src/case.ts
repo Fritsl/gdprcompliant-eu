@@ -140,6 +140,8 @@ export const CaseEventSchema = z
     event('watch_run', { scanId: IdSchema, changes: z.number().int().min(0) }),
     event('meeting_requested', { topic: z.string().optional() }),
     event('note_added', { text: NonEmptyStringSchema }),
+    // The visitor changed the language of the case (I-03); the target's own stays inferred.
+    event('locale_overridden', { from: LocaleSchema, to: LocaleSchema }),
     event('claim_rejected', { claimId: IdSchema, reason: NonEmptyStringSchema }),
     // Ownership (C-01): a case opens with no account and is claimed later by proving
     // control of an address at the scanned domain, or by an explicit override.

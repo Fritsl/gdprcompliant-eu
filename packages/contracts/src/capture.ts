@@ -104,6 +104,15 @@ export const PassCaptureSchema = z
     url: z.string().min(1),
     finalUrl: z.string().min(1),
     status: z.number().int().optional(),
+    // What the document says about itself: its declared language, the Content-Language
+    // header, its title (I-03).
+    document: z
+      .object({
+        lang: z.string().optional(),
+        contentLanguage: z.string().optional(),
+        title: z.string().optional(),
+      })
+      .optional(),
     startedAt: IsoDateTimeSchema,
     frames: z.array(z.string()).default([]),
     requests: z.array(CapturedRequestSchema),

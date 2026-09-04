@@ -208,6 +208,16 @@
         "da": "{{text}}"
       }
     },
+    "locale_overridden": {
+      "text": {
+        "en": "Language changed",
+        "da": "Sprog ændret"
+      },
+      "detail": {
+        "en": "{{from}} → {{to}}",
+        "da": "{{from}} → {{to}}"
+      }
+    },
     "claim_rejected": {
       "text": {
         "en": "Ownership claim refused",

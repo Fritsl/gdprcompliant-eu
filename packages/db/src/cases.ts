@@ -4,8 +4,14 @@ import {
   CASE_NUMBER_ALPHABET,
   CASE_NUMBER_PATTERN,
   CompanySchema,
+  describeUnresolved,
+  inferTarget,
   sha256,
+  type Actor,
   type Company,
+  type TargetInference,
+  type TargetSignals,
+  type TargetUnresolved,
 } from '@gc/contracts';
 import type { Connection } from './client.js';
 import { caseClaims, caseEvents, cases, tenants } from './schema.js';
@@ -354,4 +360,73 @@ export async function expireUnclaimedCases(
     expired.push(c.id);
   }
   return expired;
+}
+
+// ---- the target's locale (I-03) ---------------------------------------------------
+
+export class UnsupportedTarget extends Error {
+  constructor(public readonly resolution: TargetUnresolved) {
+    super(`cannot open a case for this target: ${describeUnresolved(resolution)}`);
+    this.name = 'UnsupportedTarget';
+  }
+}
+
+export interface OpenForTargetInput extends Omit<
+  OpenCaseInput,
+  'company' | 'jurisdiction' | 'locale'
+> {
+  // What is known about the target: its declared language, its domain, its register entry.
+  readonly signals: TargetSignals;
+  readonly company?: Partial<Omit<Company, 'domain' | 'country' | 'locale'>>;
+}
+
+// A case for a target, in the target's jurisdiction and language, whoever is scanning.
+export async function openCaseForTarget(
+  connection: Connection,
+  input: OpenForTargetInput,
+): Promise<OpenedCase & { readonly target: TargetInference }> {
+  const r = inferTarget(input.signals);
+  if (!r.ok) throw new UnsupportedTarget(r);
+  const { signals, company, ...rest } = input;
+  const opened = await openCase(connection, {
+    ...rest,
+    company: { ...company, domain: signals.domain, country: r.jurisdiction, locale: r.locale },
+    jurisdiction: r.jurisdiction,
+    locale: r.locale,
+  });
+  return {
+    ...opened,
+    target: { jurisdiction: r.jurisdiction, locale: r.locale, basis: r.basis, signal: r.signal },
+  };
+}
+
+export async function caseLocale(connection: Connection, tenantId: string, caseId: string) {
+  return withTenant(connection, tenantId, async (db) => {
+    const [row] = await db.select({ locale: cases.locale }).from(cases).where(eq(cases.id, caseId));
+    if (!row) throw new Error(`no case ${caseId}`);
+    return row.locale;
+  });
+}
+
+// The visitor's choice of language for their case. Remembered on the case and on the
+// timeline; the jurisdiction is not theirs to change.
+export async function overrideCaseLocale(
+  connection: Connection,
+  tenantId: string,
+  caseId: string,
+  locale: string,
+  actor: Actor,
+  now: Date = new Date(),
+): Promise<{ from: string; to: string; changed: boolean }> {
+  return withTenant(connection, tenantId, async (db) => {
+    const [row] = await db.select({ locale: cases.locale }).from(cases).where(eq(cases.id, caseId));
+    if (!row) throw new Error(`no case ${caseId}`);
+    if (row.locale === locale) return { from: row.locale, to: locale, changed: false };
+    await db.update(cases).set({ locale }).where(eq(cases.id, caseId));
+    await appendEvent(db, tenantId, caseId, now, actor, 'locale_overridden', {
+      from: row.locale,
+      to: locale,
+    });
+    return { from: row.locale, to: locale, changed: true };
+  });
 }
