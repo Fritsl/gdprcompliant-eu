@@ -408,6 +408,7 @@ export default async function CasePage({
         <div
           className="pp-bar"
           role="progressbar"
+          aria-label={t(locale, 'progress.heading').text}
           aria-valuenow={done}
           aria-valuemax={findings.length}
         >

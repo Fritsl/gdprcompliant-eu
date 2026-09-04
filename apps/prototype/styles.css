@@ -4,7 +4,7 @@
 
 :root{
   --paper:#f4f6fa; --surface:#ffffff; --surface-2:#eaeff7; --surface-3:#dfe6f1;
-  --ink:#0f1a2e; --ink-2:#3d4a63; --ink-3:#6b7790;
+  --ink:#0f1a2e; --ink-2:#3d4a63; --ink-3:#5f6b83;
   --rule:#d5dde9; --rule-2:#b6c2d4;
   --eu:#003399; --eu-soft:#e5ecfa; --eu-line:#b9caee;
   --gold:#ffcc00; --gold-deep:#7a5c00; --gold-soft:#fff5d1;
@@ -187,7 +187,7 @@ p{margin:0 0 1em}
 .step.done .step-n{background:var(--ok-bg); border-color:var(--ok-line); color:var(--ok)}
 .step.done .step-body h3{font-weight:500; color:var(--ink-3); font-size:15.5px}
 
-.step.next{opacity:.72}
+.step.next{background:var(--surface-2); border-style:dashed}
 .step.next .step-body h3{font-weight:550; font-size:15.5px; color:var(--ink-2)}
 
 .step.now{

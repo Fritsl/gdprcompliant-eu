@@ -62,7 +62,13 @@ export default async function UpwardPage({
         <Text of={t(locale, 'case.progress.done')} />
       </h1>
       <div className="plan-prog">
-        <div className="pp-bar" role="progressbar" aria-valuenow={view.done} aria-valuemax={total}>
+        <div
+          className="pp-bar"
+          role="progressbar"
+          aria-label={t(locale, 'progress.heading').text}
+          aria-valuenow={view.done}
+          aria-valuemax={total}
+        >
           <i style={{ width: `${width}%` }} />
         </div>
         <span className="pp-txt">
