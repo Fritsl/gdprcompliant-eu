@@ -146,7 +146,12 @@ describe.skipIf(!url)('observability (O-04)', () => {
       );
     const client = new ModelClient(config, { fetch: stub });
     await expect(
-      client.call({ name: 'answer_question', input: { question: 'What is this?', locale: 'en' } }),
+      client.call({
+        name: 'answer_question',
+        input: { question: 'What is this?', locale: 'en' },
+        system: 'Answer the question.',
+        user: 'Answer.',
+      }),
     ).rejects.toThrow();
     const attempts = metrics.count('model.calls', { call: 'answer_question', ok: true }) - before;
     expect(attempts).toBeGreaterThanOrEqual(1);
@@ -171,6 +176,8 @@ describe.skipIf(!url)('observability (O-04)', () => {
       new ModelClient(config, { fetch: down }).call({
         name: 'answer_question',
         input: { question: 'Still there?', locale: 'en' },
+        system: 'Answer the question.',
+        user: 'Answer.',
       }),
     ).rejects.toThrow();
     expect(

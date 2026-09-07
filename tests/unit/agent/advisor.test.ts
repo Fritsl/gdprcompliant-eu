@@ -78,7 +78,10 @@ const chunk: CorpusChunk = {
   paragraph: '3',
   text: 'Processing by a processor shall be governed by a contract   or other legal act.',
   hash: HASH,
-  source: { url: 'https://eur-lex.europa.eu/eli/reg/2016/679/oj', title: 'GDPR' },
+  source: {
+    url: 'https://eur-lex.europa.eu/eli/reg/2016/679/oj',
+    retrievedAt: '2026-09-04T10:00:00Z',
+  },
 };
 
 describe('caseFacts', () => {
@@ -172,7 +175,9 @@ describe('advise', () => {
     now: () => new Date('2026-09-04T10:00:00Z'),
   };
   const retrieve: AdviseInput['retrieve'] = async () => [{ chunk, distance: 0.1 }];
-  const client = (out: ModelOutput<'advise'>) => ({ call: async () => out });
+  const client = (out: ModelOutput<'advise'>): Parameters<typeof advise>[0] => ({
+    call: (async () => out) as Parameters<typeof advise>[0]['call'],
+  });
 
   it('keeps the three parts apart and maps the law back to a resolving citation', async () => {
     const a = await advise(

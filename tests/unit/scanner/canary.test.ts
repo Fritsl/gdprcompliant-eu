@@ -130,9 +130,7 @@ describe('a snapshot', () => {
     });
     expect(s.derived?.findings.map((f) => f.typeId)).toEqual(['CNS-01', 'SEC-03']);
     expect(s.scanner).toEqual({ commit: 'abc1234', families: ['recipients', 'security'] });
-    expect(
-      rawSummaryOf('www.example.dk', [], { policies: undefined, formInventory: undefined }),
-    ).toEqual({
+    expect(rawSummaryOf('www.example.dk', [], {})).toEqual({
       thirdPartyHosts: [],
       cookies: [],
       headerNames: [],

@@ -111,7 +111,7 @@ describe('the question catalogue', () => {
           expect(o.label[locale], `${q.id} ${o.id} ${locale}`).toBeTruthy();
       }
       // A statement and a question never share a sentence: what is known is not in `asks`.
-      expect(q.asks['en'].split('?')).toHaveLength(2);
+      expect(q.asks['en']!.split('?')).toHaveLength(2);
     }
   });
 });

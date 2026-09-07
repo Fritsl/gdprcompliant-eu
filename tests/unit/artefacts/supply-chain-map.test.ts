@@ -17,25 +17,24 @@ import {
 // cap kept and announced, and a PDF from the same model.
 
 const T0 = new Date('2026-09-05T09:14:00Z');
-const row = (name: string) =>
-  ({
-    activityId: `node:activity:${name}`,
-    key: `activity:${name}`,
-    name,
-    attributes: {},
-    purposes: [],
-    dataCategories: [],
-    legalBases: [],
-    recipients: [],
-    transfers: [],
-    risks: [],
-    controls: [],
-    origin: 'derived' as const,
-    confidence: 0.6,
-    evidence: [],
-    draft: false,
-    contradictions: 0,
-  }) as const;
+const row = (name: string) => ({
+  activityId: `node:activity:${name}`,
+  key: `activity:${name}`,
+  name,
+  attributes: {},
+  purposes: [],
+  dataCategories: [],
+  legalBases: [],
+  recipients: [],
+  transfers: [],
+  risks: [],
+  controls: [],
+  origin: 'derived' as const,
+  confidence: 0.6,
+  evidence: [],
+  draft: false,
+  contradictions: 0,
+});
 
 function chain(processors: number, subsEach: number, subSubsEach: number): MapInput {
   const procs: (ProcessorInput & { evidenceId?: string })[] = [];

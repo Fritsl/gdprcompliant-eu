@@ -1,5 +1,6 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-import type { CheckFamily, Evidence } from '@gc/contracts';
+import type { Evidence } from '@gc/contracts';
+import type { CheckFamily } from '@gc/findings';
 import {
   CONTACT_QUESTIONS,
   confirmRegisterRow,

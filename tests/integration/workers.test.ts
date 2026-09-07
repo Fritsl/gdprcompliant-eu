@@ -16,7 +16,14 @@ import {
   type Collected,
 } from '@gc/agent';
 import { loadConfig } from '@gc/config';
-import { ClaimSchema, TaskResultSchema, sha256, type Claim, type PlannerTask } from '@gc/contracts';
+import {
+  ClaimSchema,
+  TaskResultSchema,
+  sha256,
+  type Claim,
+  type Evidence,
+  type PlannerTask,
+} from '@gc/contracts';
 import {
   deterministicEmbedder,
   ingestCorpus,
@@ -118,7 +125,7 @@ const task = <T extends PlannerTask['type']>(
     status: 'pending',
     attempts: 0,
     createdAt: T0.toISOString(),
-  }) as Extract<PlannerTask, { type: T }>;
+  }) as unknown as Extract<PlannerTask, { type: T }>;
 
 const workersDir = join(ROOT, 'packages', 'agent', 'src', 'workers');
 const source = (file: string) => readFileSync(join(workersDir, file), 'utf8');
@@ -268,6 +275,7 @@ describe.skipIf(!url)('the workers (A-05)', () => {
           return row
             ? {
                 ...row,
+                kind: row.kind as Evidence['kind'],
                 capturedAt: row.capturedAt.toISOString(),
                 source: row.observed as { url: string; host: string },
                 scanId: row.scanId ?? undefined,
@@ -452,6 +460,7 @@ describe.skipIf(!url)('the workers (A-05)', () => {
             return row
               ? {
                   ...row,
+                  kind: row.kind as Evidence['kind'],
                   capturedAt: row.capturedAt.toISOString(),
                   source: row.observed as { url: string; host: string },
                   scanId: row.scanId ?? undefined,

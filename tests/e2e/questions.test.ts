@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium, type Browser, type Page } from 'playwright';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+import type { CaseEvent } from '@gc/contracts';
 import {
   CHECK_FOR_ME_JOB,
   caseAnswers,
@@ -219,7 +220,8 @@ describe.skipIf(!url)('one question at a time (D-10)', () => {
     const rows = await caseAnswers(t, tenantId, caseId);
     expect(rows.find((r) => r.questionId === 'q-children')?.answer).toBe('yes');
     const versions = (await events()).filter(
-      (e) => e.type === 'question_answered' && e.payload.questionId === 'q-children',
+      (e): e is Extract<CaseEvent, { type: 'question_answered' }> =>
+        e.type === 'question_answered' && e.payload.questionId === 'q-children',
     );
     expect(versions.map((e) => e.payload.answer)).toEqual(['No', 'Yes']);
     expect(versions.every((e) => e.actor.kind === 'person')).toBe(true);
