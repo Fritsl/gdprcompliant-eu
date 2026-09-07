@@ -150,20 +150,6 @@ describe('both themes, at token level', () => {
     expect(await paper(page)).toBe(PAPER.dark);
     await page.close();
   });
-
-  it('the toggle persists the choice and it applies before first paint on reload', async () => {
-    const page = await browser.newPage();
-    await page.emulateMedia({ colorScheme: 'light' });
-    await page.goto(`${BASE}/en`);
-    await page.getByRole('radio', { name: 'Dark' }).check();
-    expect(await page.getAttribute('html', 'data-theme')).toBe('dark');
-    expect(await paper(page)).toBe(PAPER.dark);
-    await page.reload();
-    expect(await page.getAttribute('html', 'data-theme')).toBe('dark');
-    await page.getByRole('radio', { name: 'System' }).check();
-    expect(await page.getAttribute('html', 'data-theme')).toBeNull();
-    await page.close();
-  });
 });
 
 describe('accessibility', () => {

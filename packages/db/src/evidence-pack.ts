@@ -122,7 +122,7 @@ export async function evidencePack(
         return rest;
       });
     const bundle = {
-      format: 'gdprcompliant.eu/evidence-pack',
+      format: 'gdprhelper.eu/evidence-pack',
       version: 1,
       generatedAt: options.at.toISOString(),
       case: caseRow,

@@ -44,7 +44,7 @@ describe('the banned vocabulary', () => {
   });
 
   it('lets the brand, compliance as a subject, and a colleague approving a document through', () => {
-    expect(bannedClaims('GDPRcompliant.eu looks every week', 'en', vocab)).toEqual([]);
+    expect(bannedClaims('GDPRhelper.eu looks every week', 'en', vocab)).toEqual([]);
     expect(bannedClaims('Compliance is a process, not a state', 'en', vocab)).toEqual([]);
     expect(bannedClaims('Approve this document', 'en', vocab)).toEqual([]);
     expect(bannedClaims('The CSP report lists violations', 'en', vocab)).toEqual([]);

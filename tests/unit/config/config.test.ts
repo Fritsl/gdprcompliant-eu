@@ -17,7 +17,7 @@ import {
 
 const good = {
   NODE_ENV: 'test',
-  APP_BASE_URL: 'https://gdprcompliant.eu',
+  APP_BASE_URL: 'https://gdprhelper.eu',
   DATABASE_URL: 'postgres://gc:hunter2@localhost:5432/gdprcompliant',
   MODEL_BASE_URL: 'http://localhost:8000/v1',
   MODEL_API_KEY: 'sk-secret',

@@ -1,4 +1,4 @@
-/* The app shell: header, locale switch, theme toggle, footer. Built on the design-system
+/* The app shell: header, locale switch, footer. Built on the design-system
    tokens only; no colour or type appears here that is not a token. */
 
 .skip {
@@ -52,29 +52,6 @@
   background: var(--eu-soft);
   border-color: var(--eu-line);
   font-weight: 600;
-}
-
-.theme-toggle {
-  margin-left: auto;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  border: 0;
-  padding: 0;
-}
-.theme-toggle legend {
-  float: left;
-  padding: 0;
-  margin-right: 6px;
-  color: var(--ink-3);
-  font-size: 13px;
-}
-.theme-toggle label {
-  display: inline-flex;
-  gap: 4px;
-  align-items: center;
-  font-size: 14px;
-  color: var(--ink-2);
 }
 
 .shell-main {

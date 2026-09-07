@@ -1,4 +1,4 @@
-# GDPRcompliant.eu — working agreement
+# GDPRhelper.eu — working agreement
 
 Read this before touching anything. It is short on purpose.
 

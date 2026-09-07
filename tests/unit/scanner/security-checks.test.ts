@@ -143,7 +143,7 @@ describe('exposed-path probing stays within the rules (S-12)', () => {
 
   it('honours robots.txt for everyone and for us by name, with the longest rule winning', () => {
     const robots =
-      'User-agent: *\nDisallow: /.env.local\nDisallow: /private/\nAllow: /private/public/\n\nUser-agent: GDPRcompliant-scanner\nDisallow: /.git/\n';
+      'User-agent: *\nDisallow: /.env.local\nDisallow: /private/\nAllow: /private/public/\n\nUser-agent: GDPRhelper-scanner\nDisallow: /.git/\n';
     expect(robotsDisallows(robots, '/.git/HEAD')).toBe(true);
     expect(robotsDisallows(robots, '/.env.local')).toBe(false);
     expect(robotsDisallows(robots, '/.env.local', 'otherbot')).toBe(true);

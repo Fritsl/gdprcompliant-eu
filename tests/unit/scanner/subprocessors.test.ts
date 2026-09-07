@@ -72,7 +72,7 @@ describe('the entry parser', () => {
 describe('robots.txt', () => {
   it('applies the group for our agent over the group for everyone', () => {
     const robots =
-      'User-agent: gdprcompliant\nAllow: /legal/\nDisallow: /\n\nUser-agent: *\nDisallow: /legal/\n';
+      'User-agent: gdprhelper\nAllow: /legal/\nDisallow: /\n\nUser-agent: *\nDisallow: /legal/\n';
     expect(robotsAllows(robots, '/legal/sub-processors')).toBe(true);
     expect(robotsAllows(robots, '/pricing')).toBe(false);
     expect(robotsAllows(robots, '/pricing', 'someone-else')).toBe(true);

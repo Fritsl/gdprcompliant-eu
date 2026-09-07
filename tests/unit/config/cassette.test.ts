@@ -18,7 +18,7 @@ import {
 
 const env = {
   NODE_ENV: 'test',
-  APP_BASE_URL: 'https://gdprcompliant.eu',
+  APP_BASE_URL: 'https://gdprhelper.eu',
   DATABASE_URL: 'postgres://gc:gc@localhost:5432/gc',
   MODEL_BASE_URL: 'http://localhost:8000/v1',
   MODEL_CHAT: 'chat',

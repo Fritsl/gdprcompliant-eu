@@ -34,7 +34,7 @@ const url = (() => {
 
 const T0 = new Date('2026-09-04T09:14:00Z');
 const at = (hours: number) => () => new Date(T0.getTime() + hours * 3_600_000);
-const BASE = 'https://gdprcompliant.eu';
+const BASE = 'https://gdprhelper.eu';
 
 describe.skipIf(!url)('invitations (P-02)', () => {
   let t: TestDatabase;

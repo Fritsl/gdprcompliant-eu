@@ -157,7 +157,7 @@ describe.skipIf(!url)('roles and scoped lists (P-01)', () => {
   it('the owner invites a colleague into a role; the invitation is on the timeline', async () => {
     const invite = await inviteMember(t, {
       invitedBy: 'Mette',
-      baseUrl: 'https://gdprcompliant.eu',
+      baseUrl: 'https://gdprhelper.eu',
       caseId,
       tenantId,
       role: 'it',
@@ -170,7 +170,7 @@ describe.skipIf(!url)('roles and scoped lists (P-01)', () => {
     await expect(
       inviteMember(t, {
         invitedBy: 'Mette',
-        baseUrl: 'https://gdprcompliant.eu',
+        baseUrl: 'https://gdprhelper.eu',
         caseId,
         tenantId,
         role: 'it',

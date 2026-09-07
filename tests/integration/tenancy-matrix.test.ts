@@ -127,7 +127,7 @@ describe.skipIf(!url)('tenant A against tenant B, every way across (T-07)', () =
     });
     const invite = await inviteMember(t, {
       invitedBy: 'Mette',
-      baseUrl: 'https://gdprcompliant.eu',
+      baseUrl: 'https://gdprhelper.eu',
       caseId: side.caseId,
       tenantId: side.tenantId,
       role: 'it',
@@ -250,7 +250,7 @@ describe.skipIf(!url)('tenant A against tenant B, every way across (T-07)', () =
     await expect(
       inviteMember(t, {
         invitedBy: 'Mette',
-        baseUrl: 'https://gdprcompliant.eu',
+        baseUrl: 'https://gdprhelper.eu',
         ...pair,
         role: 'hr',
         email: 'hr@b-side.dk',

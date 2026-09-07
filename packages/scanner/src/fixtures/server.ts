@@ -68,7 +68,7 @@ const MIME: Record<string, string> = {
 };
 
 const asked = (req: IncomingMessage) => {
-  const scanner = req.headers['x-gdprcompliant-scanner'];
+  const scanner = req.headers['x-gdprhelper-scanner'];
   return {
     userAgent: String(req.headers['user-agent'] ?? ''),
     ...(typeof scanner === 'string' ? { scanner } : {}),

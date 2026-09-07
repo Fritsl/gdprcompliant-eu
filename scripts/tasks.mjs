@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Task coordination for GDPRcompliant.eu.
+// Task coordination for GDPRhelper.eu.
 //
 // One file per task under tasks/. Claiming, working and completing a task touches
 // exactly one file, so two agents working in parallel never collide in git.

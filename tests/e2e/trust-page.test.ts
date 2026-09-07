@@ -208,7 +208,7 @@ describe.skipIf(!url)('the public progress page (U-05)', () => {
     expect(meta).toMatch(/Last checked .*1 September 2026/);
     expect(meta).toMatch(/Page published .*2026/);
     expect(meta).toContain(`Case ${caseId}`);
-    expect(meta).toContain('Checked by GDPRcompliant.eu');
+    expect(meta).toContain('Checked by GDPRhelper.eu');
     const statement = await text(card.locator('.trust-st'));
     expect(statement).toMatch(/work in progress/i);
     expect(statement).toMatch(/not a seal/i);
@@ -229,7 +229,7 @@ describe.skipIf(!url)('the public progress page (U-05)', () => {
     );
     // Never a seal, in any of the words a seal uses.
     // The brand is the one place the word may stand; nowhere else, and never as a verdict.
-    const words = body.toLowerCase().replaceAll('gdprcompliant.eu', '');
+    const words = body.toLowerCase().replaceAll('gdprhelper.eu', '');
     for (const banned of BANNED) expect(words).not.toContain(banned);
     expect(words).not.toMatch(/gdpr[ -]compliant/);
     expect(await pub.locator('.sev, .step, .rem-card').count()).toBe(0);

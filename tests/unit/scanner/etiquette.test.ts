@@ -206,7 +206,7 @@ describe('the limiter', () => {
 
 describe('robots.txt and domains', () => {
   it('is read one way for every reader', () => {
-    const robots = 'User-agent: gdprcompliant\nDisallow: /private/\n\nUser-agent: *\nDisallow: /\n';
+    const robots = 'User-agent: gdprhelper\nDisallow: /private/\n\nUser-agent: *\nDisallow: /\n';
     expect(robotsAllows(robots, '/private/x')).toBe(false);
     expect(robotsAllows(robots, '/public')).toBe(true);
     expect(robotsDisallows(robots, '/private/x')).toBe(true);

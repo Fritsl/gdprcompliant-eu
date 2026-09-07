@@ -14,7 +14,7 @@ import { fileURLToPath } from 'node:url';
 export const SOURCE = fileURLToPath(new URL('../apps/prototype/styles.css', import.meta.url));
 export const TARGET = fileURLToPath(new URL('../apps/web/app/design-system.css', import.meta.url));
 
-const HEADER = `/* GDPRcompliant.eu — design system.
+const HEADER = `/* GDPRhelper.eu — design system.
    Generated from apps/prototype/styles.css by scripts/port-design-system.mjs; do not edit
    here. The prototype is the design specification; its clickthrough chrome is left behind. */
 `;
@@ -66,7 +66,7 @@ export function port(css) {
         dropComment = true;
         continue;
       }
-      if (/^\/\* GDPRcompliant\.eu — prototype design system/.test(c.text)) continue;
+      if (/^\/\* GDPRhelper\.eu — prototype design system/.test(c.text)) continue;
       kept.push(c.text);
       continue;
     }

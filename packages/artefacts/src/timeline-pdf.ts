@@ -25,7 +25,7 @@ export function timelinePdf(model: TimelineModel, options: TimelinePdfOptions): 
       compress: options.compress ?? true,
       info: {
         Title: `${options.title} ${model.caseId}`,
-        Producer: 'GDPRcompliant.eu',
+        Producer: 'GDPRhelper.eu',
         CreationDate: options.generatedAt,
       },
     });

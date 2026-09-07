@@ -35,7 +35,7 @@ const baseEnv = {
   MODEL_API_KEY: 'x',
   MODEL_CHAT: 'chat-model',
   MODEL_EMBEDDING: 'embedding-model',
-  APP_BASE_URL: 'https://gdprcompliant.eu',
+  APP_BASE_URL: 'https://gdprhelper.eu',
 };
 
 describe('the resolver follows the network mode (D-01)', () => {

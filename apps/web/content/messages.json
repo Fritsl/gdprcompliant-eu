@@ -1,8 +1,8 @@
 {
   "shell.name": {
-    "en": "GDPRcompliant.eu",
-    "da": "GDPRcompliant.eu",
-    "de": "GDPRcompliant.eu"
+    "en": "GDPRhelper.eu",
+    "da": "GDPRhelper.eu",
+    "de": "GDPRhelper.eu"
   },
   "shell.tagline": {
     "en": "A plan and the things that close it, for European companies.",
@@ -13,26 +13,6 @@
     "en": "Skip to content",
     "da": "Spring til indhold",
     "de": "Zum Inhalt springen"
-  },
-  "shell.theme.label": {
-    "en": "Theme",
-    "da": "Tema",
-    "de": "Design"
-  },
-  "shell.theme.system": {
-    "en": "System",
-    "da": "System",
-    "de": "System"
-  },
-  "shell.theme.light": {
-    "en": "Light",
-    "da": "Lys",
-    "de": "Hell"
-  },
-  "shell.theme.dark": {
-    "en": "Dark",
-    "da": "Mørk",
-    "de": "Dunkel"
   },
   "shell.language": {
     "en": "Language",
@@ -399,20 +379,10 @@
     "da": "En zip med almindelige filer: sagen som JSON, hver bevispost, tidslinjen som PDF og en liste med hashes. Dateret i det øjeblik den laves.",
     "de": "Ein Zip aus einfachen Dateien: der Fall als JSON, jeder Beleg, der Verlauf als PDF und ein Manifest mit Prüfsummen. Datiert auf den Moment der Erstellung."
   },
-  "front.eyebrow": {
-    "en": "Free · no account · about 40 seconds",
-    "da": "Gratis · ingen konto · cirka 40 sekunder",
-    "de": "Kostenlos · kein Konto · etwa 40 Sekunden"
-  },
   "front.heading": {
     "en": "Is your website GDPR compliant?",
     "da": "Overholder din hjemmeside GDPR?",
     "de": "Erfüllt Ihre Website die DSGVO?"
-  },
-  "front.sub": {
-    "en": "Every problem comes with the fix.",
-    "da": "Hvert problem kommer med løsningen.",
-    "de": "Zu jedem Problem gibt es die Lösung."
   },
   "front.field": {
     "en": "Your website address",
@@ -425,9 +395,9 @@
     "de": "ihrshop.de"
   },
   "front.cta": {
-    "en": "Run the free test",
-    "da": "Kør den gratis test",
-    "de": "Kostenlosen Test starten"
+    "en": "Run the test",
+    "da": "Kør testen",
+    "de": "Test starten"
   },
   "front.invalid": {
     "en": "That does not look like a website address. Try something like yourshop.dk.",
@@ -1000,9 +970,9 @@
     "de": "Fall"
   },
   "trust.checkedBy": {
-    "en": "Checked by GDPRcompliant.eu",
-    "da": "Tjekket af GDPRcompliant.eu",
-    "de": "Geprüft von GDPRcompliant.eu"
+    "en": "Checked by GDPRhelper.eu",
+    "da": "Tjekket af GDPRhelper.eu",
+    "de": "Geprüft von GDPRhelper.eu"
   },
   "trust.published": {
     "en": "Page published",

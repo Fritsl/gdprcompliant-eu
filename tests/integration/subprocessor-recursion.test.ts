@@ -198,7 +198,7 @@ describe('reading a list', () => {
       ),
     ).toBe(true);
     expect(
-      robotsAllows('User-agent: gdprcompliant\nDisallow: /\n\nUser-agent: *\nDisallow:', '/'),
+      robotsAllows('User-agent: gdprhelper\nDisallow: /\n\nUser-agent: *\nDisallow:', '/'),
     ).toBe(false);
     expect(robotsAllows('User-agent: otherbot\nDisallow: /', '/')).toBe(true);
     expect(robotsAllows('', '/anything')).toBe(true);

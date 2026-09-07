@@ -28,7 +28,7 @@ const config = loadConfig({
   MODEL_API_KEY: 'x',
   MODEL_CHAT: 'chat-model',
   MODEL_EMBEDDING: 'embedding-model',
-  APP_BASE_URL: 'https://gdprcompliant.eu',
+  APP_BASE_URL: 'https://gdprhelper.eu',
   GC_NETWORK: 'replay',
 });
 

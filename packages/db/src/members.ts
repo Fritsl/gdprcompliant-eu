@@ -41,7 +41,7 @@ export interface InviteInput {
   readonly email: string;
   // Who is asking, in their own words: "Mette", "Mette (Marketing)".
   readonly invitedBy: string;
-  // Where the link points: the app's origin, e.g. https://gdprcompliant.eu.
+  // Where the link points: the app's origin, e.g. https://gdprhelper.eu.
   readonly baseUrl: string;
   readonly locale?: Locale;
   readonly now?: () => Date;

@@ -2,14 +2,14 @@
   "version": "2026-09-05",
   "_comment": "How the scanner behaves on the internet (D-11), as content: the name it gives, the header it sends, the limits it keeps, what it never does, and who may ask for a deep scan of whom. The code reads its constants from this file and the page at /scanner is rendered from it, so the two cannot drift; a test holds the code to every number and name here.",
   "agent": {
-    "name": "GDPRcompliant-scanner",
+    "name": "GDPRhelper-scanner",
     "version": "1",
-    "url": "https://gdprcompliant.eu/en/scanner",
+    "url": "https://gdprhelper.eu/en/scanner",
     "contact": "fly@frits.ai"
   },
   "identity": {
-    "header": "X-GDPRcompliant-Scanner",
-    "robotsGroup": "gdprcompliant"
+    "header": "X-GDPRhelper-Scanner",
+    "robotsGroup": "gdprhelper"
   },
   "limits": {
     "minIntervalMs": 1000,

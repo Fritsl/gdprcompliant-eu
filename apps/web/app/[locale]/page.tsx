@@ -31,13 +31,7 @@ export default async function Home({
   return (
     <article className="fd">
       <div>
-        <p className="eyebrow">
-          <Text of={t(locale, 'front.eyebrow')} />
-        </p>
         <Text of={t(locale, 'front.heading')} as="h1" />
-        <p className="sub">
-          <Text of={t(locale, 'front.sub')} />
-        </p>
       </div>
       {refusal ? (
         <p className="notice" role="alert" data-outcome={outcome}>

@@ -21,7 +21,7 @@ const config = loadConfig({
   MODEL_BASE_URL: 'http://localhost:8000/v1',
   MODEL_CHAT: 'chat-model',
   MODEL_EMBEDDING: 'embedding-model',
-  APP_BASE_URL: 'https://gdprcompliant.eu',
+  APP_BASE_URL: 'https://gdprhelper.eu',
   GC_NETWORK: 'replay',
 });
 const outbound = createRecordedFetch(config, { name: 'corpus-cellar' });

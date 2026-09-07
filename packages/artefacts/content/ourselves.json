@@ -2,7 +2,7 @@
   "version": "2026-09-04",
   "_comment": "Our own compliance record (O-01), published at /ourselves and generated from what is actually configured. The public sources are the hosts in packages/config/endpoints.json: a test fails when this list and that file drift apart. The processors that depend on the deployment (hosting, the database, the model endpoint, mail) are named here the moment they are contracted; until then their status is pending, and the test refuses a pending processor in production.",
   "controller": {
-    "name": "Frits AI ApS (GDPRcompliant.eu)",
+    "name": "Frits AI ApS (GDPRhelper.eu)",
     "contact": "fly@frits.ai",
     "country": "DK"
   },
@@ -234,15 +234,15 @@
         "country": "DE"
       },
       {
-        "host": "data.gdprcompliant.eu",
+        "host": "data.gdprhelper.eu",
         "purpose": "corpus",
-        "entity": "GDPRcompliant.eu (own mirror)",
+        "entity": "GDPRhelper.eu (own mirror)",
         "country": "DK"
       },
       {
-        "host": "ct.gdprcompliant.eu",
+        "host": "ct.gdprhelper.eu",
         "purpose": "registry",
-        "entity": "GDPRcompliant.eu (own mirror)",
+        "entity": "GDPRhelper.eu (own mirror)",
         "country": "DK"
       },
       {

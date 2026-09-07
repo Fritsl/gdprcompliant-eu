@@ -1,4 +1,4 @@
-# GDPRcompliant.eu
+# GDPRhelper.eu
 
 A free European scanner that opens a shareable case and answers every finding with a
 solution. Concept document: see the published artifact. This repo is the build.

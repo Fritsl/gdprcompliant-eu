@@ -62,7 +62,7 @@ a finding title, a step, a phrase like *"refusing cookies"*, a quoted article, a
 cell. There is no prior conversation to append to, so the entry mechanics differ while the
 feel stays identical:
 
-| | GDPRchat | GDPRcompliant.eu |
+| | GDPRchat | GDPRhelper.eu |
 |---|---|---|
 | Origin | A card in an existing thread | Any element on any page |
 | Prior context | Already in the thread | Must be supplied — this is the work |

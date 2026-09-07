@@ -1,4 +1,4 @@
-# GDPRcompliant.eu — implementation plan
+# GDPRhelper.eu — implementation plan
 
 Companion to the concept document. That one argues *what* to build and why; this one says
 *how*, in what order, and who can pick up which piece. 107 tasks across seven phases.

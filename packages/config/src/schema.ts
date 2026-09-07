@@ -40,7 +40,7 @@ export const SECRET_KEYS = ['DATABASE_URL', 'MODEL_API_KEY'] as const;
 
 export const EnvSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
-  APP_BASE_URL: UrlSchema.describe('public origin of the web app, e.g. https://gdprcompliant.eu'),
+  APP_BASE_URL: UrlSchema.describe('public origin of the web app, e.g. https://gdprhelper.eu'),
   DATABASE_URL: z
     .url({ protocol: /^postgres(ql)?$/ })
     .describe('postgres:// connection string, with the password'),

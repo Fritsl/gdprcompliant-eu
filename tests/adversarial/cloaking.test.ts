@@ -54,7 +54,7 @@ describe('a site that cloaks', () => {
     expect(cloak.findingTypeId).toBe('CLK-01');
     expect(cloak.detail['onlyForBrowsers']).toEqual(['sporing.tracker.test']);
     expect(cloak.detail['declaredHosts']).toEqual([]);
-    expect(cloak.summary).toMatch(/withholds from a request declared as GDPRcompliant-scanner/);
+    expect(cloak.summary).toMatch(/withholds from a request declared as GDPRhelper-scanner/);
     // The evidence is the two host lists, kept as a diff, and the observation points at it.
     const ev = surface.evidence.find((e) => e.id === cloak.evidence[0]!.evidenceId)!;
     expect(ev.kind).toBe('pass_diff');

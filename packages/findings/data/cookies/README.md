@@ -6,7 +6,7 @@ is the first version so that a fresh checkout can classify; the job's copy is th
 that counts, and `version.json` says which one answered.
 
 Source: the [Open Cookie Database](https://github.com/jkwakman/Open-Cookie-Database),
-Apache License 2.0. The job fetches it from an EU mirror, `data.gdprcompliant.eu`,
+Apache License 2.0. The job fetches it from an EU mirror, `data.gdprhelper.eu`,
 because the upstream repository is hosted outside the EEA and the system makes no
 requests there. The mirror is refreshed by ops from upstream.
 

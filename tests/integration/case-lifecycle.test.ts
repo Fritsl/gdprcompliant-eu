@@ -184,7 +184,7 @@ describe.skipIf(!url)('case lifecycle (C-01)', () => {
     );
     await claimByOverride(t, {
       ...ctx,
-      by: 'lars@gdprcompliant.eu',
+      by: 'lars@gdprhelper.eu',
       reason: 'Owner has no mailbox at the domain; verified by phone against the registry.',
       now: at(1),
     });
@@ -193,13 +193,13 @@ describe.skipIf(!url)('case lifecycle (C-01)', () => {
       expiresAt: null,
     });
     const [c] = await withTenant(t, opened.tenantId, (db) => db.select().from(schema.cases));
-    expect(c?.claimedBy).toBe('override:lars@gdprcompliant.eu');
+    expect(c?.claimedBy).toBe('override:lars@gdprhelper.eu');
     const events = await withTenant(t, opened.tenantId, (db) =>
       db.select().from(schema.caseEvents),
     );
     expect(events.at(-1)?.payload).toEqual({
       method: 'override',
-      by: 'lars@gdprcompliant.eu',
+      by: 'lars@gdprhelper.eu',
       reason: 'Owner has no mailbox at the domain; verified by phone against the registry.',
     });
     await expect(claimByOverride(t, { ...ctx, by: 'x', reason: 'y' })).rejects.toMatchObject({

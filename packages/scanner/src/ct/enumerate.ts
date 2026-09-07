@@ -19,7 +19,7 @@ import type { BrowserPool, ScanTarget } from '../pool.js';
 // an estate with thousands of certificates cannot stall a scan. Nothing here says a
 // host is compromised; it says a name is public and whether it answers.
 
-export const CT_MIRROR = 'https://ct.gdprcompliant.eu';
+export const CT_MIRROR = 'https://ct.gdprhelper.eu';
 export const DEFAULT_HOST_CAP = 200;
 export const DEFAULT_PROBE_CAP = 25;
 export const DEFAULT_PROBE_GAP_MS = 250;

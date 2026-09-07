@@ -19,7 +19,7 @@ const config = loadConfig({
   MODEL_BASE_URL: process.env['MODEL_BASE_URL'] ?? 'http://localhost:8000/v1',
   MODEL_CHAT: process.env['MODEL_CHAT'] ?? 'unused',
   MODEL_EMBEDDING: process.env['MODEL_EMBEDDING'] ?? 'unused',
-  APP_BASE_URL: process.env['APP_BASE_URL'] ?? 'https://gdprcompliant.eu',
+  APP_BASE_URL: process.env['APP_BASE_URL'] ?? 'https://gdprhelper.eu',
 });
 const outbound = createRecordedFetch(config, { name: 'corpus-cellar' });
 const today = new Date().toISOString().slice(0, 10);

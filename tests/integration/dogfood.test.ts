@@ -18,7 +18,7 @@ const record = loadOurselves();
 const endpoints = declaredEndpoints();
 const env = {
   NODE_ENV: 'test',
-  APP_BASE_URL: 'https://gdprcompliant.eu',
+  APP_BASE_URL: 'https://gdprhelper.eu',
   DATABASE_URL: 'postgres://gc:gc@db.internal:5432/gc',
   MODEL_BASE_URL: 'https://llm.example.eu/v1',
   MODEL_API_KEY: 'sk-test',

@@ -19,7 +19,7 @@ import {
 
 export const COOKIE_DATABASE_SOURCE = 'Open Cookie Database';
 export const COOKIE_DATABASE_LICENCE = 'Apache-2.0';
-export const DEFAULT_COOKIE_DATABASE_URL = 'https://data.gdprcompliant.eu/open-cookie-database.csv';
+export const DEFAULT_COOKIE_DATABASE_URL = 'https://data.gdprhelper.eu/open-cookie-database.csv';
 
 // For the scheduler (F-06): weekly, Monday 04:00 UTC.
 export const COOKIE_DATABASE_JOB = {

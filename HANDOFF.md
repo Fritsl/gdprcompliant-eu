@@ -6,7 +6,7 @@ up front; the rest is referenced when you need it.
 
 ## What this is
 
-**GDPRcompliant.eu** — a free scanner for European companies that opens a numbered,
+**GDPRhelper.eu** — a free scanner for European companies that opens a numbered,
 shareable **case**, answers every finding with something the customer can act on, and
 keeps watching afterwards. Frits AI ApS, Copenhagen. Sister products: `gdprchat.eu`
 (EU-hosted assistant) and `gdproffice.eu` (desktop agent).
@@ -322,7 +322,7 @@ different architecture. The plan is a hypothesis, but it is a shared one.
 - **The web app builds with webpack, not Turbopack.** The packages use NodeNext resolution
   (imports name `.js`, sources are `.ts`); webpack maps one to the other via an extension
   alias in `apps/web/next.config.ts`, Turbopack does not yet. The scripts pass `--webpack`.
-- **Two EU hosts are assumed and not yet stood up:** `data.gdprcompliant.eu` for the Open
+- **Two EU hosts are assumed and not yet stood up:** `data.gdprhelper.eu` for the Open
   Cookie Database (upstream is GitHub, outside the EEA) and the model endpoint declared via
   `ENDPOINTS_EXTRA`. See `packages/config/endpoints.json` and `.env.example`.
 - **Playwright's Chromium is installed locally** (`pnpm exec playwright install chromium`);

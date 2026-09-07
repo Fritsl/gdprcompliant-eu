@@ -125,8 +125,8 @@ describe.skipIf(!url)('the verifier against the database', () => {
     expect(queue.map((q) => [q.claimId, q.tenantId, q.reason])).toEqual([
       ['claim-2', tenantId, v.reason],
     ]);
-    expect(await markReviewed(db, tenantId, queue[0]!.id, 'ops@gdprcompliant.eu')).toBe(true);
-    expect(await markReviewed(db, tenantId, queue[0]!.id, 'ops@gdprcompliant.eu')).toBe(false);
+    expect(await markReviewed(db, tenantId, queue[0]!.id, 'ops@gdprhelper.eu')).toBe(true);
+    expect(await markReviewed(db, tenantId, queue[0]!.id, 'ops@gdprhelper.eu')).toBe(false);
     expect(await reviewQueue(db)).toEqual([]);
   });
 

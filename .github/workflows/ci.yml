@@ -166,6 +166,6 @@ jobs:
       - if: env.MODEL_BASE_URL != '' && github.ref == 'refs/heads/main'
         run: |
           git config user.name 'evals'
-          git config user.email 'evals@gdprcompliant.eu'
+          git config user.email 'evals@gdprhelper.eu'
           git add docs/evals-history.json docs/evals.md
           git diff --cached --quiet || git commit -m "evals: history $(date -u +%F)" && git push || true

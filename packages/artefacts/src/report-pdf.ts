@@ -24,7 +24,7 @@ export function reportPdf(model: ReportModel, options: ReportPdfOptions = {}): P
       compress: options.compress ?? true,
       info: {
         Title: `${model.title} ${model.caseId}`,
-        Producer: 'GDPRcompliant.eu',
+        Producer: 'GDPRhelper.eu',
         CreationDate: new Date(0),
       },
     });

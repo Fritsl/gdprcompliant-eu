@@ -178,7 +178,7 @@ describe('classification (S-06)', () => {
 describe('refresh is a scheduled job (S-06)', () => {
   const config = loadConfig({
     NODE_ENV: 'test',
-    APP_BASE_URL: 'https://gdprcompliant.eu',
+    APP_BASE_URL: 'https://gdprhelper.eu',
     DATABASE_URL: 'postgres://gc:gc@localhost:5432/gc',
     MODEL_BASE_URL: 'http://localhost:8000/v1',
     MODEL_CHAT: 'chat',
@@ -286,10 +286,10 @@ describe('edges of the store (S-06)', () => {
     const version = await refreshCookieDatabase({
       fetch,
       store,
-      url: 'https://data.gdprcompliant.eu/x.csv',
+      url: 'https://data.gdprhelper.eu/x.csv',
     });
     expect(version.commit).toBeUndefined();
-    expect(version.url).toBe('https://data.gdprcompliant.eu/x.csv');
+    expect(version.url).toBe('https://data.gdprhelper.eu/x.csv');
     const reloaded = loadCookieDatabase(store);
     expect(reloaded.lookup('x')).toHaveLength(1);
     expect(reloaded.lookup('x', 'other.test')).toHaveLength(0);

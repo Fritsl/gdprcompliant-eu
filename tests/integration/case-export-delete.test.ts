@@ -192,7 +192,7 @@ describe.skipIf(!url)('export and delete (C-04)', () => {
       case: Record<string, unknown>;
       documents: { kind: string; filename: string; mediaType: string; base64: string }[];
     };
-    expect(bundle['format']).toBe('gdprcompliant.eu/case-export');
+    expect(bundle['format']).toBe('gdprhelper.eu/case-export');
     expect(bundle.case['id']).toBe(caseId);
     expect(bundle.case).not.toHaveProperty('accessToken');
     expect(bundle.case).not.toHaveProperty('tenantId');

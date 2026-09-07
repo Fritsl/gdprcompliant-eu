@@ -43,7 +43,7 @@ jobs:
       # The benchmark the product shows (L-04) is committed, so the site reads last night's.
       - run: |
           git config user.name 'canary'
-          git config user.email 'canary@gdprcompliant.eu'
+          git config user.email 'canary@gdprhelper.eu'
           git add fixtures/canary/benchmark.json
           git diff --cached --quiet || git commit -m "canary: benchmark $(date -u +%F)" && git push || true
       - id: check

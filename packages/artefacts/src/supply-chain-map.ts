@@ -280,7 +280,7 @@ export function supplyChainPdf(model: MapModel, options: MapPdfOptions = {}): Pr
       layout: 'landscape',
       margin: 36,
       compress: options.compress ?? true,
-      info: { Title: model.title, Producer: 'GDPRcompliant.eu', CreationDate: new Date(0) },
+      info: { Title: model.title, Producer: 'GDPRhelper.eu', CreationDate: new Date(0) },
     });
     const chunks: Buffer[] = [];
     doc.on('data', (c: Buffer) => chunks.push(c));

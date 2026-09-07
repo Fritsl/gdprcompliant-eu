@@ -173,7 +173,7 @@ describe.skipIf(!url)('the evidence pack (G-04)', () => {
     const bundle = JSON.parse(dec.decode(files['case.json']!)) as Record<string, unknown[]> & {
       case: Record<string, unknown>;
     };
-    expect(bundle['format']).toBe('gdprcompliant.eu/evidence-pack');
+    expect(bundle['format']).toBe('gdprhelper.eu/evidence-pack');
     expect(bundle['findings']).toHaveLength(1);
     expect(bundle['evidence']).toHaveLength(1);
     expect((bundle['timeline'] as { type: string }[]).map((e) => e.type)).toEqual([

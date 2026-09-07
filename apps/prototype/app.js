@@ -1,4 +1,4 @@
-/* GDPRcompliant.eu — prototype (X-01..X-09)
+/* GDPRhelper.eu — prototype (X-01..X-09)
    Non-functional. No network, no storage, no model calls. Every screen reads
    window.PROTO_DATA, which is fixtures/companies/eksempelbutik.json.
    Vanilla on purpose: the design system and copy port to the real app at F-01;
@@ -97,13 +97,11 @@
   render.front = function () {
     return '<div class="screen"><div class="fd">' +
       '<div>' +
-        '<p class="eyebrow">Free · no account · about 40 seconds</p>' +
         '<h1>Is your website GDPR compliant?</h1>' +
-        '<p class="sub">Every problem comes with the fix.</p>' +
       '</div>' +
       '<form onsubmit="return PROTO.go(\'scanning\')">' +
         '<input type="text" value="eksempelbutik.dk" aria-label="Your website address" spellcheck="false">' +
-        '<button class="btn" type="submit">Run the free test</button>' +
+        '<button class="btn" type="submit">Run the test</button>' +
       '</form>' +
       '</div></div>';
   };
@@ -457,7 +455,7 @@
       '<p class="eyebrow" style="text-align:center;margin-bottom:14px">eksempelbutik.dk/privatliv</p>' +
       '<div class="trust-card">' +
         '<div class="trust-h"><h2>' + esc(t.headline) + '</h2>' +
-          '<div class="meta"><span>Last checked ' + esc(t.updated) + '</span><span>Case ' + esc(t.caseRef) + '</span><span>Checked by GDPRcompliant.eu</span></div></div>' +
+          '<div class="meta"><span>Last checked ' + esc(t.updated) + '</span><span>Case ' + esc(t.caseRef) + '</span><span>Checked by GDPRhelper.eu</span></div></div>' +
         '<div class="trust-st">' + esc(t.statement) + bot('trust-page', 'this page') + '</div>' +
         '<ul class="trust-list">' + t.closed.map(function (c) {
           return '<li><span class="tick">✓</span><span>' + esc(c.text) + '</span><time>' + esc(c.on) + '</time></li>';
@@ -571,7 +569,7 @@
 
         '<div class="paper-foot">' +
           '<p class="disc">' + esc(r.disclaimer) + '</p>' +
-          '<p class="src">' + esc(r.footer) + ' · gdprcompliant.eu</p>' +
+          '<p class="src">' + esc(r.footer) + ' · gdprhelper.eu</p>' +
         '</div>' +
       '</div></div>';
   };
@@ -807,7 +805,7 @@
     var ageToggle = toggle;
     return '<div class="proto-bar">' +
         '<span class="proto-badge">Prototype · nothing behind it</span>' +
-        '<span class="proto-name"><b>GDPRcompliant.eu</b> · X-01…X-09</span>' +
+        '<span class="proto-name"><b>GDPRhelper.eu</b> · X-01…X-09</span>' +
         '<nav class="proto-nav">' + nav + '</nav>' +
       '</div>' +
       '<div class="proto-note"><b>Showing</b><span>' + esc(meta ? meta.note : '') + '</span>' + ageToggle + '</div>';

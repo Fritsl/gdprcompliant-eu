@@ -34,9 +34,9 @@
     }
   ],
   "confirm": {
-    "en": "Load the page twice with the network panel open, once normally and once with the browser’s User-Agent set to “GDPRcompliant-scanner”: the same hosts must be contacted both times. Then run the check again from your case page.",
-    "da": "Indlæs siden to gange med netværkspanelet åbent, én gang normalt og én gang med browserens User-Agent sat til “GDPRcompliant-scanner”: de samme værter skal kontaktes begge gange. Kør derefter tjekket igen fra din sagsside.",
-    "de": "Laden Sie die Seite zweimal mit offenem Netzwerk-Panel, einmal normal und einmal mit dem User-Agent „GDPRcompliant-scanner“: Beide Male müssen dieselben Hosts kontaktiert werden. Führen Sie dann die Prüfung von Ihrer Fallseite aus erneut aus."
+    "en": "Load the page twice with the network panel open, once normally and once with the browser’s User-Agent set to “GDPRhelper-scanner”: the same hosts must be contacted both times. Then run the check again from your case page.",
+    "da": "Indlæs siden to gange med netværkspanelet åbent, én gang normalt og én gang med browserens User-Agent sat til “GDPRhelper-scanner”: de samme værter skal kontaktes begge gange. Kør derefter tjekket igen fra din sagsside.",
+    "de": "Laden Sie die Seite zweimal mit offenem Netzwerk-Panel, einmal normal und einmal mit dem User-Agent „GDPRhelper-scanner“: Beide Male müssen dieselben Hosts kontaktiert werden. Führen Sie dann die Prüfung von Ihrer Fallseite aus erneut aus."
   },
   "keywords": [
     {

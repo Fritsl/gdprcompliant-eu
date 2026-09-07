@@ -171,7 +171,7 @@ describe('the layout', () => {
     const pdf = await supplyChainPdf(layoutSupplyChain(chain(6, 3, 2)), { compress: false });
     expect(pdf.subarray(0, 5).toString()).toBe('%PDF-');
     const text = pdf.toString('latin1');
-    expect(text).toContain('(GDPRcompliant.eu)');
+    expect(text).toContain('(GDPRhelper.eu)');
     expect(text).toContain('(D:19700101000000Z)');
     // Landscape A4, and every colour operator grey (equal r, g, b).
     expect(text).toMatch(/MediaBox \[0 0 841\.89 595\.28\]/);

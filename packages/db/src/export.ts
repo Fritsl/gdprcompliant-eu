@@ -137,7 +137,7 @@ export async function exportCase(
     // The lane, its score and its signals are ours (L-01): not the customer's case.
     const caseRow = omit(all.c, ['accessToken', 'tenantId', 'lane', 'laneScore', 'laneSignals']);
     const bundle = {
-      format: 'gdprcompliant.eu/case-export',
+      format: 'gdprhelper.eu/case-export',
       version: 1,
       exportedAt: now.toISOString(),
       disclaimer: disclaimerText(options.locale),
