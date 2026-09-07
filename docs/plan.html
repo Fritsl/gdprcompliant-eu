@@ -136,10 +136,10 @@ footer{padding:26px 0 46px; font-size:12.5px; color:var(--ink-3); font-family:"I
     <h1>GDPRcompliant<span class="tld">.eu</span> Build Plan</h1>
     <p class="standfirst">A finished design and an unstarted engine. 112 tasks, one file each, claimable in parallel. Hand this to an agent and it knows exactly where to start.</p>
     <div class="mast-meta">
-      <div><span>Tasks</span>112 · 9 done</div>
+      <div><span>Tasks</span>112 · all done</div>
       <div><span>Streams</span>14, worked in parallel</div>
-      <div><span>The gate</span>X-10, your sign-off</div>
-      <div><span>Repo</span>gdprcompliant-eu · 12 commits</div>
+      <div><span>Delivery gate</span>Passed 4 Sep</div>
+      <div><span>Repo</span>gdprcompliant-eu · 175 commits</div>
     </div>
   </div>
   <div class="rule-eu"></div>
@@ -148,26 +148,17 @@ footer{padding:26px 0 46px; font-size:12.5px; color:var(--ink-3); font-family:"I
 <main class="wrap">
 
 <section class="band">
-  <div class="band-head"><div class="band-no">§01</div><h2>Start here</h2></div>
-  <p class="kicker">For whoever — or whatever — picks this up</p>
+  <div class="band-head"><div class="band-no">§01</div><h2>Where this stands</h2></div>
+  <p class="kicker">Built · gate passed 4 September 2026</p>
   <div class="prose">
-    <p><strong>GDPRcompliant.eu</strong> is a free scanner for European companies that opens a numbered, shareable <em>case</em>, answers every finding with something the customer can act on, and keeps watching afterwards. The sentence that settles most arguments: everyone else hands European companies a list of problems; this hands them a plan and the things that close it.</p>
-    <p>The design is finished. The engine is not. Phase 0 built and smoke-tested twelve screens driven by a single fixture; phases 1 to 6 stand at 0 of 102, all blocked behind one open task.</p>
+    <p><strong>All 112 tasks are closed and the delivery gate passes.</strong> Twenty-three automated steps — types, lint, formatting, six test suites, the canary comparison, and every structural invariant — came back green on a full run with database, cassettes and browser present.</p>
+    <p>What that gate actually proves is worth being precise about. It proves the invariants hold: no finding can exist without a remedy in every supported jurisdiction, every citation resolves to a real paragraph and every quotation matches what was published, no table lacks row-level security or a declared lifetime, and no customer-facing string uses certification or verdict vocabulary. It proves the scanner behaves identically against recorded fixtures, and that the canary corpus moved because sites changed rather than because we broke something.</p>
+    <p>Two things it does not prove, both by design.</p>
   </div>
-<pre><span class="cm"># clone, then</span>
-<b>cat HANDOFF.md</b>          <span class="cm">the entry point, written for an agent</span>
-<b>node scripts/tasks.mjs next</b>
-X-10  Clickthrough assembly and review with Frits (S, phase 0)
-
-<b>node scripts/tasks.mjs claim X-10 --as builder</b>
-<b>node scripts/tasks.mjs done X-10 --note "signed off"</b></pre>
   <div class="gate">
-    <span class="lbl">The gate is structural, not a promise</span>
-    <p><code>F-01</code> — the first foundation task — <strong>depends on <code>X-10</code></strong>, Frits's sign-off on the prototype. The tool will not offer phase 1 work to anyone until that closes, and editing the dependency to unblock yourself is the one move explicitly out of bounds. Everything downstream inherits the gate through <code>F-01</code>.</p>
-  </div>
-  <div class="prose">
-    <p>The prototype is the design specification, not a sketch. <code>apps/prototype/styles.css</code> is the real design system and ports to the app unchanged at <code>F-01</code>. <code>fixtures/companies/eksempelbutik.json</code> becomes a real test fixture in phase 2, and its shape is the contract. Only the framework glue is disposable — it is vanilla on purpose.</p>
-    <p>Before changing any screen, read <code>apps/prototype/smoke.mjs</code>. Its 430 assertions are not a formality: each block is a product rule turned into a check. A finding cannot exist without a remedy. The case page shows exactly one current step. A clean site is a pass, never a failed test. Copy may not narrate the interface. Quoted law must match the corpus character for character. Agent prompts must name the real domain and hostnames, never "this site".</p>
+    <span class="lbl">What still needs eyes</span>
+    <p>The <strong>fourteen-item manual checklist</strong> at the foot of every gate report is unticked. Each line is a yes-or-no observation a person has to make — does the case page print without navigation, does German render umlauts as letters, does the trust page avoid looking like a seal. The list is deliberately short because everything else was automated; it is the residue that could not be.</p>
+    <p>And the passing run recorded <code>model no</code> in its environment line. The eval suites completed in eleven seconds, which means they ran against recorded outputs rather than a live model. <code>TESTING.md</code> asks for evals against the self-hosted configuration, so that run is still owed before quality claims about the planner, the verifier or the advisor mean anything.</p>
   </div>
 </section>
 
@@ -197,158 +188,158 @@ X-01  Prototype scaffold and design system (M, phase 0)
   <div class="band-head"><div class="band-no">§03</div><h2>The board</h2></div>
   <p class="kicker">All 112 · generated from the task files, not typed by hand</p>
   <div class="board">
-<section class="ph ph-gate">
-<div class="ph-h"><span class="ph-n">Phase 0</span><h3>Prototype</h3><span class="ph-c">9 / 10 done</span></div>
-<p class="ph-g">Every screen clickable, nothing behind it. Signed off before engine code exists.</p>
+<section class="ph">
+<div class="ph-h"><span class="ph-n">Phase 0</span><h3>Prototype</h3><span class="ph-c">10 / 10 done</span></div>
+<p class="ph-g">Every screen clickable, nothing behind it. Signed off before engine code existed.</p>
 <div class="chips">
-<div class="chip chip-done"><span class="cid">X-01</span><span class="ct">Prototype scaffold and design system</span><span class="ce">✓ M</span></div>
-<div class="chip chip-done"><span class="cid">X-02</span><span class="ct">The mock case dataset</span><span class="ce">✓ S</span></div>
-<div class="chip chip-done"><span class="cid">X-03</span><span class="ct">Front door and scan progress</span><span class="ce">✓ M</span></div>
-<div class="chip chip-done"><span class="cid">X-04</span><span class="ct">The case page</span><span class="ce">✓ L</span></div>
-<div class="chip chip-done"><span class="cid">X-05</span><span class="ct">Finding detail, evidence and the four remedies</span><span class="ce">✓ M</span></div>
-<div class="chip chip-done"><span class="cid">X-06</span><span class="ct">Questions, one at a time</span><span class="ce">✓ M</span></div>
-<div class="chip chip-done"><span class="cid">X-07</span><span class="ct">Colleague branches and invitations</span><span class="ce">✓ M</span></div>
-<div class="chip chip-done"><span class="cid">X-08</span><span class="ct">Supply chain, artefacts and the trust page</span><span class="ce">✓ M</span></div>
-<div class="chip chip-done"><span class="cid">X-09</span><span class="ct">Internal screens</span><span class="ce">✓ S</span></div>
-<div class="chip chip-gate"><span class="cid">X-10</span><span class="ct">Clickthrough assembly and review with Frits</span><span class="ce">S</span></div>
+<div class="chip chip-done"><span class="cid">X-01</span><span class="ct">Prototype scaffold and design system</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">X-02</span><span class="ct">The mock case dataset</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">X-03</span><span class="ct">Front door and scan progress</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">X-04</span><span class="ct">The case page</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">X-05</span><span class="ct">Finding detail, evidence and the four remedies</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">X-06</span><span class="ct">Questions, one at a time</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">X-07</span><span class="ct">Colleague branches and invitations</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">X-08</span><span class="ct">Supply chain, artefacts and the trust page</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">X-09</span><span class="ct">Internal screens</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">X-10</span><span class="ct">Clickthrough assembly and review with Frits</span><span class="ce">✓</span></div>
 </div>
 </section>
 <section class="ph">
-<div class="ph-h"><span class="ph-n">Phase 1</span><h3>Foundations</h3><span class="ph-c">0 / 11 done</span></div>
+<div class="ph-h"><span class="ph-n">Phase 1</span><h3>Foundations</h3><span class="ph-c">11 / 11 done</span></div>
 <p class="ph-g">A repo where a test can fail for the right reason.</p>
 <div class="chips">
-<div class="chip"><span class="cid">F-01</span><span class="ct">Monorepo scaffold and toolchain</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">F-02</span><span class="ct">Postgres + pgvector, Drizzle, migration harness</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">F-03</span><span class="ct">Core relational schema</span><span class="ce">L</span></div>
-<div class="chip"><span class="cid">F-04</span><span class="ct">Shared contracts package (@gc/contracts)</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">F-05</span><span class="ct">Multi-tenancy isolation, provable</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">F-06</span><span class="ct">Durable job queue and resumability</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">F-07</span><span class="ct">Fixture site infrastructure</span><span class="ce">L</span></div>
-<div class="chip"><span class="cid">F-08</span><span class="ct">Test harness: projects, gates, reporting</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">F-09</span><span class="ct">Network record and replay</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">F-10</span><span class="ct">Config, secrets and the EU-only constraint</span><span class="ce">S</span></div>
-<div class="chip"><span class="cid">T-07</span><span class="ct">Tenancy and access-control suite</span><span class="ce">M</span></div>
+<div class="chip chip-done"><span class="cid">F-01</span><span class="ct">Monorepo scaffold and toolchain</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">F-02</span><span class="ct">Postgres + pgvector, Drizzle, migration harness</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">F-03</span><span class="ct">Core relational schema</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">F-04</span><span class="ct">Shared contracts package (@gc/contracts)</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">F-05</span><span class="ct">Multi-tenancy isolation, provable</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">F-06</span><span class="ct">Durable job queue and resumability</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">F-07</span><span class="ct">Fixture site infrastructure</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">F-08</span><span class="ct">Test harness: projects, gates, reporting</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">F-09</span><span class="ct">Network record and replay</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">F-10</span><span class="ct">Config, secrets and the EU-only constraint</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">T-07</span><span class="ct">Tenancy and access-control suite</span><span class="ce">✓</span></div>
 </div>
 </section>
 <section class="ph">
-<div class="ph-h"><span class="ph-n">Phase 2</span><h3>The wedge</h3><span class="ph-c">0 / 34 done</span></div>
-<p class="ph-g">Public scanner live: three passes, 20 findings, every one with a fix.</p>
+<div class="ph-h"><span class="ph-n">Phase 2</span><h3>The wedge</h3><span class="ph-c">34 / 34 done</span></div>
+<p class="ph-g">Public scanner: three passes, twenty findings, every one with a fix.</p>
 <div class="chips">
-<div class="chip"><span class="cid">A-07</span><span class="ct">The verifier gate</span><span class="ce">L</span></div>
-<div class="chip"><span class="cid">A-08</span><span class="ct">Corpus retrieval with jurisdiction filter</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">A-10</span><span class="ct">Prompt-injection defences for untrusted content</span><span class="ce">L</span></div>
-<div class="chip"><span class="cid">I-01</span><span class="ct">Translatable content model</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">I-02</span><span class="ct">Jurisdiction bindings</span><span class="ce">L</span></div>
-<div class="chip"><span class="cid">O-03</span><span class="ct">Claim discipline in customer-facing language</span><span class="ce">S</span></div>
-<div class="chip"><span class="cid">R-01</span><span class="ct">Remedy schema and catalogue store</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">R-02</span><span class="ct">Enforce: no finding without a remedy</span><span class="ce">S</span></div>
-<div class="chip"><span class="cid">R-03</span><span class="ct">Twenty remedy guides, English and Danish</span><span class="ce">L</span></div>
-<div class="chip"><span class="cid">R-04</span><span class="ct">Remedy resolver and solution catalogue</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">R-05</span><span class="ct">Demand ledger</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">S-01</span><span class="ct">Browser pool with clean-profile isolation</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">S-02</span><span class="ct">Pass A collector</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">S-03</span><span class="ct">Consent banner detection and refusal-path automation</span><span class="ce">L</span></div>
-<div class="chip"><span class="cid">S-04</span><span class="ct">Pass B and Pass C collectors</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">S-05</span><span class="ct">Three-pass differ</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">S-06</span><span class="ct">Cookie classification</span><span class="ce">S</span></div>
-<div class="chip"><span class="cid">S-07</span><span class="ct">Host to legal entity resolution</span><span class="ce">L</span></div>
-<div class="chip"><span class="cid">S-08</span><span class="ct">Transfer and jurisdiction determination</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">S-09</span><span class="ct">Policy discovery and fetch</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">S-10</span><span class="ct">Article 13/14 clause analysis</span><span class="ce">L</span></div>
-<div class="chip"><span class="cid">S-11</span><span class="ct">Form inventory and consent patterns</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">S-12</span><span class="ct">Security surface checks</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">S-13</span><span class="ct">Session replay and fingerprinting detection</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">S-14</span><span class="ct">Finding assembly and severity</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">S-15</span><span class="ct">The twenty launch finding types</span><span class="ce">L</span></div>
-<div class="chip"><span class="cid">T-01</span><span class="ct">The fixture site suite</span><span class="ce">L</span></div>
-<div class="chip"><span class="cid">T-02</span><span class="ct">Golden expectations and the differ</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">T-03</span><span class="ct">Citation resolution suite</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">T-04</span><span class="ct">Schema conformance for every model output</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">T-06</span><span class="ct">Adversarial suite</span><span class="ce">L</span></div>
-<div class="chip"><span class="cid">U-01</span><span class="ct">Next.js app shell, tokens, locale routing</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">U-02</span><span class="ct">The front door</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">U-06</span><span class="ct">Guide pages</span><span class="ce">M</span></div>
+<div class="chip chip-done"><span class="cid">A-07</span><span class="ct">The verifier gate</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">A-08</span><span class="ct">Corpus retrieval with jurisdiction filter</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">A-10</span><span class="ct">Prompt-injection defences for untrusted content</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">I-01</span><span class="ct">Translatable content model</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">I-02</span><span class="ct">Jurisdiction bindings</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">O-03</span><span class="ct">Claim discipline in customer-facing language</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">R-01</span><span class="ct">Remedy schema and catalogue store</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">R-02</span><span class="ct">Enforce: no finding without a remedy</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">R-03</span><span class="ct">Twenty remedy guides, English and Danish</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">R-04</span><span class="ct">Remedy resolver and solution catalogue</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">R-05</span><span class="ct">Demand ledger</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">S-01</span><span class="ct">Browser pool with clean-profile isolation</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">S-02</span><span class="ct">Pass A collector</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">S-03</span><span class="ct">Consent banner detection and refusal-path automation</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">S-04</span><span class="ct">Pass B and Pass C collectors</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">S-05</span><span class="ct">Three-pass differ</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">S-06</span><span class="ct">Cookie classification</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">S-07</span><span class="ct">Host to legal entity resolution</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">S-08</span><span class="ct">Transfer and jurisdiction determination</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">S-09</span><span class="ct">Policy discovery and fetch</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">S-10</span><span class="ct">Article 13/14 clause analysis</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">S-11</span><span class="ct">Form inventory and consent patterns</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">S-12</span><span class="ct">Security surface checks</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">S-13</span><span class="ct">Session replay and fingerprinting detection</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">S-14</span><span class="ct">Finding assembly and severity</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">S-15</span><span class="ct">The twenty launch finding types</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">T-01</span><span class="ct">The fixture site suite</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">T-02</span><span class="ct">Golden expectations and the differ</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">T-03</span><span class="ct">Citation resolution suite</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">T-04</span><span class="ct">Schema conformance for every model output</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">T-06</span><span class="ct">Adversarial suite</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">U-01</span><span class="ct">Next.js app shell, tokens, locale routing</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">U-02</span><span class="ct">The front door</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">U-06</span><span class="ct">Guide pages</span><span class="ce">✓</span></div>
 </div>
 </section>
 <section class="ph">
-<div class="ph-h"><span class="ph-n">Phase 3</span><h3>The case</h3><span class="ph-c">0 / 12 done</span></div>
+<div class="ph-h"><span class="ph-n">Phase 3</span><h3>The case</h3><span class="ph-c">12 / 12 done</span></div>
 <p class="ph-g">A numbered case that persists, shares and re-verifies.</p>
 <div class="chips">
-<div class="chip"><span class="cid">C-01</span><span class="ct">Case object, numbering and ownership</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">C-02</span><span class="ct">Timeline events</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">C-03</span><span class="ct">Case state machine</span><span class="ce">S</span></div>
-<div class="chip"><span class="cid">C-04</span><span class="ct">Export and delete — proving the case is theirs</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">C-05</span><span class="ct">Re-scan and fix verification loop</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">I-03</span><span class="ct">Locale from the target, not the visitor</span><span class="ce">S</span></div>
-<div class="chip"><span class="cid">T-09</span><span class="ct">End-to-end journeys</span><span class="ce">L</span></div>
-<div class="chip"><span class="cid">U-03</span><span class="ct">The case page</span><span class="ce">L</span></div>
-<div class="chip"><span class="cid">U-04</span><span class="ct">Remedy interactions</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">U-05</span><span class="ct">Public trust page</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">U-07</span><span class="ct">Share flows</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">V-01</span><span class="ct">Status report, generated at any moment</span><span class="ce">L</span></div>
+<div class="chip chip-done"><span class="cid">C-01</span><span class="ct">Case object, numbering and ownership</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">C-02</span><span class="ct">Timeline events</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">C-03</span><span class="ct">Case state machine</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">C-04</span><span class="ct">Export and delete — proving the case is theirs</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">C-05</span><span class="ct">Re-scan and fix verification loop</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">I-03</span><span class="ct">Locale from the target, not the visitor</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">T-09</span><span class="ct">End-to-end journeys</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">U-03</span><span class="ct">The case page</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">U-04</span><span class="ct">Remedy interactions</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">U-05</span><span class="ct">Public trust page</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">U-07</span><span class="ct">Share flows</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">V-01</span><span class="ct">Status report, generated at any moment</span><span class="ce">✓</span></div>
 </div>
 </section>
 <section class="ph">
-<div class="ph-h"><span class="ph-n">Phase 4</span><h3>Depth</h3><span class="ph-c">0 / 12 done</span></div>
+<div class="ph-h"><span class="ph-n">Phase 4</span><h3>Depth</h3><span class="ph-c">12 / 12 done</span></div>
 <p class="ph-g">Public record and the contract chain. The part nobody else does.</p>
 <div class="chips">
-<div class="chip"><span class="cid">D-01</span><span class="ct">DNS, TXT, SPF and MX collection</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">D-02</span><span class="ct">Certificate transparency enumeration</span><span class="ce">S</span></div>
-<div class="chip"><span class="cid">D-03</span><span class="ct">Business registry adapters</span><span class="ce">L</span></div>
-<div class="chip"><span class="cid">D-04</span><span class="ct">Job advert stack extraction</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">D-05</span><span class="ct">App listing and data-safety comparison</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">D-06</span><span class="ct">Processing agreement discovery and Article 28 analysis</span><span class="ce">L</span></div>
-<div class="chip"><span class="cid">D-07</span><span class="ct">Sub-processor extraction and recursion</span><span class="ce">L</span></div>
-<div class="chip"><span class="cid">D-08</span><span class="ct">Supply-chain map</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">D-09</span><span class="ct">Sector inference and question selection</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">D-10</span><span class="ct">One question at a time</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">D-11</span><span class="ct">Crawl etiquette and scan authorisation</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">L-01</span><span class="ct">Qualification signal and lane routing</span><span class="ce">M</span></div>
+<div class="chip chip-done"><span class="cid">D-01</span><span class="ct">DNS, TXT, SPF and MX collection</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">D-02</span><span class="ct">Certificate transparency enumeration</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">D-03</span><span class="ct">Business registry adapters</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">D-04</span><span class="ct">Job advert stack extraction</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">D-05</span><span class="ct">App listing and data-safety comparison</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">D-06</span><span class="ct">Processing agreement discovery and Article 28 analysis</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">D-07</span><span class="ct">Sub-processor extraction and recursion</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">D-08</span><span class="ct">Supply-chain map</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">D-09</span><span class="ct">Sector inference and question selection</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">D-10</span><span class="ct">One question at a time</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">D-11</span><span class="ct">Crawl etiquette and scan authorisation</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">L-01</span><span class="ct">Qualification signal and lane routing</span><span class="ce">✓</span></div>
 </div>
 </section>
 <section class="ph">
-<div class="ph-h"><span class="ph-n">Phase 5</span><h3>The system</h3><span class="ph-c">0 / 23 done</span></div>
-<p class="ph-g">Graph, rules, planner, verifier, advisor. It stops being a scanner.</p>
+<div class="ph-h"><span class="ph-n">Phase 5</span><h3>The system</h3><span class="ph-c">23 / 23 done</span></div>
+<p class="ph-g">Graph, rules, planner, verifier, advisor. It stopped being a scanner.</p>
 <div class="chips">
-<div class="chip"><span class="cid">A-01</span><span class="ct">Case graph schema</span><span class="ce">L</span></div>
-<div class="chip"><span class="cid">A-02</span><span class="ct">Obligations engine and rule language</span><span class="ce">L</span></div>
-<div class="chip"><span class="cid">A-03</span><span class="ct">First forty rules across two jurisdictions</span><span class="ce">L</span></div>
-<div class="chip"><span class="cid">A-04</span><span class="ct">Typed task catalogue and dispatcher</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">A-05</span><span class="ct">Worker implementations</span><span class="ce">L</span></div>
-<div class="chip"><span class="cid">A-06</span><span class="ct">The planner</span><span class="ce">L</span></div>
-<div class="chip"><span class="cid">A-09</span><span class="ct">Human sign-off gate</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">G-01</span><span class="ct">Processing register seeded from evidence</span><span class="ce">L</span></div>
-<div class="chip"><span class="cid">G-02</span><span class="ct">Privacy policy and cookie declaration generators</span><span class="ce">L</span></div>
-<div class="chip"><span class="cid">G-03</span><span class="ct">DPA and sub-processor page generators</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">G-04</span><span class="ct">Evidence pack export</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">G-05</span><span class="ct">Drift check: policy versus live site</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">L-02</span><span class="ct">Consultant view of the same case</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">L-03</span><span class="ct">Commercial queue</span><span class="ce">S</span></div>
-<div class="chip"><span class="cid">L-04</span><span class="ct">Referral and benchmarks</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">P-01</span><span class="ct">Roles and scoped task lists</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">P-02</span><span class="ct">Invitations from a colleague</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">P-03</span><span class="ct">Shared progress and chasing</span><span class="ce">S</span></div>
-<div class="chip"><span class="cid">T-05</span><span class="ct">Behavioural eval sets</span><span class="ce">L</span></div>
-<div class="chip"><span class="cid">V-02</span><span class="ct">Case-grounded advisor</span><span class="ce">L</span></div>
-<div class="chip"><span class="cid">V-03</span><span class="ct">Verbatim law, guaranteed</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">V-04</span><span class="ct">Advisor safety and limits</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">V-05</span><span class="ct">Dive points on every element</span><span class="ce">L</span></div>
+<div class="chip chip-done"><span class="cid">A-01</span><span class="ct">Case graph schema</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">A-02</span><span class="ct">Obligations engine and rule language</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">A-03</span><span class="ct">First forty rules across two jurisdictions</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">A-04</span><span class="ct">Typed task catalogue and dispatcher</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">A-05</span><span class="ct">Worker implementations</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">A-06</span><span class="ct">The planner</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">A-09</span><span class="ct">Human sign-off gate</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">G-01</span><span class="ct">Processing register seeded from evidence</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">G-02</span><span class="ct">Privacy policy and cookie declaration generators</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">G-03</span><span class="ct">DPA and sub-processor page generators</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">G-04</span><span class="ct">Evidence pack export</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">G-05</span><span class="ct">Drift check: policy versus live site</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">L-02</span><span class="ct">Consultant view of the same case</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">L-03</span><span class="ct">Commercial queue</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">L-04</span><span class="ct">Referral and benchmarks</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">P-01</span><span class="ct">Roles and scoped task lists</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">P-02</span><span class="ct">Invitations from a colleague</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">P-03</span><span class="ct">Shared progress and chasing</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">T-05</span><span class="ct">Behavioural eval sets</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">V-02</span><span class="ct">Case-grounded advisor</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">V-03</span><span class="ct">Verbatim law, guaranteed</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">V-04</span><span class="ct">Advisor safety and limits</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">V-05</span><span class="ct">Dive points on every element</span><span class="ce">✓</span></div>
 </div>
 </section>
 <section class="ph">
-<div class="ph-h"><span class="ph-n">Phase 6</span><h3>Delivery</h3><span class="ph-c">0 / 10 done</span></div>
+<div class="ph-h"><span class="ph-n">Phase 6</span><h3>Delivery</h3><span class="ph-c">10 / 10 done</span></div>
 <p class="ph-g">Everything green, canary stable, handed over.</p>
 <div class="chips">
-<div class="chip"><span class="cid">I-04</span><span class="ct">Second jurisdiction end to end</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">O-01</span><span class="ct">Our own compliance, published</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">O-02</span><span class="ct">Retention and deletion jobs</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">O-04</span><span class="ct">Observability</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">O-05</span><span class="ct">The delivery gate</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">T-08</span><span class="ct">Jurisdiction matrix suite</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">T-10</span><span class="ct">Canary corpus and drift alarm</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">T-11</span><span class="ct">Performance budget</span><span class="ce">S</span></div>
-<div class="chip"><span class="cid">T-12</span><span class="ct">Delivery gate script and manual smoke checklist</span><span class="ce">M</span></div>
-<div class="chip"><span class="cid">U-08</span><span class="ct">Accessibility, responsive and print pass</span><span class="ce">M</span></div>
+<div class="chip chip-done"><span class="cid">I-04</span><span class="ct">Second jurisdiction end to end</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">O-01</span><span class="ct">Our own compliance, published</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">O-02</span><span class="ct">Retention and deletion jobs</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">O-04</span><span class="ct">Observability</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">O-05</span><span class="ct">The delivery gate</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">T-08</span><span class="ct">Jurisdiction matrix suite</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">T-10</span><span class="ct">Canary corpus and drift alarm</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">T-11</span><span class="ct">Performance budget</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">T-12</span><span class="ct">Delivery gate script and manual smoke checklist</span><span class="ce">✓</span></div>
+<div class="chip chip-done"><span class="cid">U-08</span><span class="ct">Accessibility, responsive and print pass</span><span class="ce">✓</span></div>
 </div>
 </section>
   </div>
@@ -408,16 +399,15 @@ X-01  Prototype scaffold and design system (M, phase 0)
 
 <section class="band" style="border-bottom:0">
   <div class="band-head"><div class="band-no">§06</div><h2>What is still open</h2></div>
-  <p class="kicker">Three, and only the first blocks anything</p>
+  <p class="kicker">Two, and neither is code</p>
   <div class="ask">
     <ol>
-      <li><b>The sign-off.</b> Click through the prototype and close <code>X-10</code>. Everything else in the plan waits on it, so a slow review here is the cheapest delay available and a rushed one is the most expensive.</li>
-      <li><b>How many agents in parallel.</b> Phase 1 supports three or four without collision — foundations, schema and the test harness are largely independent. Phase 2 opens wider.</li>
-      <li><b>Whether to deploy the prototype anywhere permanent</b>, so it can be forwarded without a Claude link.</li>
+      <li><b>Walk the fourteen manual checks.</b> They take about twenty minutes against a running instance and they are the only verification nobody could automate.</li>
+      <li><b>Run the evals against the self-hosted model.</b> The gate has only ever seen them replay recorded output. Until they run for real, the numbers on the planner, the verifier and the advisor are unproven.</li>
     </ol>
   </div>
   <div class="prose">
-    <p>Nothing else needs deciding to start. The stack, the repo layout, the test strategy and the order of work are all settled in <code>PLAN.md</code> and <code>TESTING.md</code>, and where they turn out to be wrong the working agreement says to raise it in the task log rather than quietly build something else.</p>
+    <p>Everything else is closed. The delivery gate is one command, <code>pnpm run gate</code>, and it writes a dated, signed report into <code>artifacts/gate/</code> — so the answer to "is this fit to hand over" is a thing you run, not a thing you ask.</p>
   </div>
 </section>
 
