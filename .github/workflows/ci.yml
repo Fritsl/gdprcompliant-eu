@@ -22,7 +22,8 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm -r typecheck
+      # The root script also checks the test project, which is where the drift hid (F-01).
+      - run: pnpm typecheck
       - run: pnpm lint
       # Every table carries row-level security, or the build fails (F-05); every finding
       # type carries a remedy in every jurisdiction, or the build fails (R-02).
