@@ -128,11 +128,6 @@
       "file": "apps/web/content/messages.json",
       "path": "trust.statement",
       "why": "the progress page disclaimer names the claim in order to deny it"
-    },
-    {
-      "file": "apps/web/content/messages.json",
-      "path": "front.heading",
-      "why": "the front page asks the question and never answers it; the rest of the product describes what was seen"
     }
   ]
 }

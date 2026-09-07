@@ -97,7 +97,7 @@
   render.front = function () {
     return '<div class="screen"><div class="fd">' +
       '<div>' +
-        '<h1>Is your website GDPR compliant?</h1>' +
+        '<h1>Does your website follow GDPR?</h1>' +
       '</div>' +
       '<form onsubmit="return PROTO.go(\'scanning\')">' +
         '<input type="text" value="eksempelbutik.dk" aria-label="Your website address" spellcheck="false">' +

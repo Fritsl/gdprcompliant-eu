@@ -380,9 +380,9 @@
     "de": "Ein Zip aus einfachen Dateien: der Fall als JSON, jeder Beleg, der Verlauf als PDF und ein Manifest mit Prüfsummen. Datiert auf den Moment der Erstellung."
   },
   "front.heading": {
-    "en": "Is your website GDPR compliant?",
-    "da": "Overholder din hjemmeside GDPR?",
-    "de": "Erfüllt Ihre Website die DSGVO?"
+    "en": "Does your website follow GDPR?",
+    "da": "Følger din hjemmeside GDPR?",
+    "de": "Hält sich Ihre Website an die DSGVO?"
   },
   "front.field": {
     "en": "Your website address",

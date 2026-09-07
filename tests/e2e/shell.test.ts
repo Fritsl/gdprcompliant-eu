@@ -79,8 +79,8 @@ describe('locale-prefixed routes, server-rendered', () => {
 
   it('each locale renders on the server, with its lang attribute and its text in the HTML', async () => {
     for (const [locale, heading] of [
-      ['en', 'Is your website GDPR compliant?'],
-      ['da', 'Overholder din hjemmeside GDPR?'],
+      ['en', 'Does your website follow GDPR?'],
+      ['da', 'Følger din hjemmeside GDPR?'],
     ] as const) {
       const r = await fetch(`${BASE}/${locale}`);
       expect(r.status).toBe(200);
@@ -118,7 +118,7 @@ describe('locale-prefixed routes, server-rendered', () => {
 
   it('every language renders its own heading, and nothing falls back now that German is complete', async () => {
     const de = await (await fetch(`${BASE}/de`)).text();
-    expect(de).toContain('<h1>Erfüllt Ihre Website die DSGVO?</h1>');
+    expect(de).toContain('<h1>Hält sich Ihre Website an die DSGVO?</h1>');
     for (const l of ['en', 'da', 'de']) {
       const html = await (await fetch(`${BASE}/${l}`)).text();
       expect(html, l).not.toContain('data-fallback');
