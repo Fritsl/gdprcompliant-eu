@@ -144,13 +144,55 @@ export function environment(env: NodeJS.ProcessEnv = process.env, root = ROOT): 
         ? join(env['HOME'] ?? '', 'Library', 'Caches', 'ms-playwright')
         : join(env['HOME'] ?? '', '.cache', 'ms-playwright'));
   return {
-    database: Boolean(env['GC_TEST_DATABASE_URL'] ?? dotEnv(root)['GC_TEST_DATABASE_URL']),
+    database: listening(env['GC_TEST_DATABASE_URL'] ?? dotEnv(root)['GC_TEST_DATABASE_URL'], 5432),
     cassettes: existsSync(cassettes) && readdirSync(cassettes).length > 0,
     browser: existsSync(browsers) && readdirSync(browsers).some((d) => d.startsWith('chromium')),
-    model: Boolean(env['MODEL_BASE_URL'] && env['MODEL_CHAT']),
+    model: Boolean(env['MODEL_CHAT']) && listening(env['MODEL_BASE_URL'], 443),
     commit: gitCommit(root),
     node: process.version,
   };
+}
+
+// A configured service is not a running one. Checking only that a connection string
+// exists made the gate report "database yes" with nothing listening, and then blamed
+// the integration suite for a failure that was a stopped container — which is the one
+// thing a delivery gate must never do, because it makes a red impossible to diagnose.
+//
+// A TCP connect is deliberately shallow: it separates "nothing is listening" from
+// "configured", which is the case that actually bites. It does not prove the service is
+// healthy or the credentials work; the suites themselves prove that.
+const reachability = new Map<string, boolean>();
+
+export function listening(url: string | undefined, defaultPort: number, timeoutMs = 1500): boolean {
+  if (!url) return false;
+  const cached = reachability.get(url);
+  if (cached !== undefined) return cached;
+
+  let host: string;
+  let port: number;
+  try {
+    const u = new URL(url);
+    host = u.hostname;
+    port = u.port ? Number(u.port) : defaultPort;
+  } catch {
+    reachability.set(url, false);
+    return false;
+  }
+
+  // Synchronous by necessity: environment() is called from formatting and from tests.
+  const probe = [
+    'const net=require("net");',
+    'const [h,p,t]=process.argv.slice(1);',
+    'const s=net.connect({host:h,port:+p});',
+    'const done=(c)=>{try{s.destroy()}catch{};process.exit(c)};',
+    's.on("connect",()=>done(0));s.on("error",()=>done(1));s.setTimeout(+t,()=>done(1));',
+  ].join('');
+  const r = spawnSync(process.execPath, ['-e', probe, host, String(port), String(timeoutMs)], {
+    timeout: timeoutMs + 1000,
+  });
+  const ok = r.status === 0;
+  reachability.set(url, ok);
+  return ok;
 }
 
 // The suites read the test database from .env under its own name (vitest.workspace.ts);

@@ -8,6 +8,7 @@ import {
   checklist,
   environment,
   formatReport,
+  listening,
   runGate,
   steps,
   taskOwner,
@@ -115,6 +116,26 @@ describe('a run', () => {
     expect(md).toContain('Manual smoke checklist');
     expect(md).toContain(`Signature: sha256 ${r.signature}`);
   });
+  // Regression: the gate once reported "database yes" whenever a connection string was
+  // configured, so a stopped container surfaced as a failing integration suite instead of
+  // an absent environment. A red the reader cannot diagnose is worse than no gate.
+  it('tells a configured service apart from a running one', () => {
+    expect(listening(undefined, 5432)).toBe(false);
+    expect(listening('not a url', 5432)).toBe(false);
+    // Reserved by RFC 2606 and never resolvable, so this cannot pass by accident.
+    expect(listening('postgres://user@nothing.invalid:5432/db', 5432)).toBe(false);
+  });
+
+  it('a suite whose environment is absent is red, and says which need is missing', () => {
+    const env = { GC_TEST_DATABASE_URL: 'postgres://user@nothing.invalid:5432/db' };
+    const r = runGate({ exec: green, env: { ...env }, signer: 'test' });
+    expect(r.environment.database).toBe(false);
+    const blocked = r.results.find((x) => x.step.needs.includes('database'));
+    expect(blocked?.status).toBe('red');
+    expect(blocked?.detail).toContain('needs database');
+    expect(r.verdict).toBe('fail');
+  });
+
   it('a red stops the gate and names the task and its owner', () => {
     const env = {
       GC_TEST_DATABASE_URL: 'postgres://x',
