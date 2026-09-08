@@ -1,5 +1,6 @@
 import {
   EvidenceSchema,
+  HostnameSchema,
   canonicalJson,
   sha256,
   type Evidence,
@@ -72,13 +73,20 @@ export function captureToEvidence(
     );
   }
   for (const write of capture.storage) {
+    // A sandboxed, srcdoc or about:blank frame has an opaque origin, which the browser
+    // reports as the string "null". The write still happened in the visitor's browser,
+    // so the row is kept, attributed to the page, and the caption says where it came from.
+    const host = hostOf(write.origin);
+    const opaque = !HostnameSchema.safeParse(host).success;
     rows.push(
       row(
         identity,
         'storage',
         canonicalJson(write),
-        { host: hostOf(write.origin), pass: capture.pass },
-        `${write.area}Storage ${write.key} on ${write.origin} during pass ${capture.pass}`,
+        { host: opaque ? pageHost : host, pass: capture.pass },
+        opaque
+          ? `${write.area}Storage ${write.key} in a frame without an origin on ${pageHost} during pass ${capture.pass}`
+          : `${write.area}Storage ${write.key} on ${write.origin} during pass ${capture.pass}`,
       ),
     );
   }
