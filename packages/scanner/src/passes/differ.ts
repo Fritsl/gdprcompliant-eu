@@ -24,7 +24,9 @@ import { refTo, type EvidenceIdentity } from '../evidence.js';
 export interface DifferInput {
   readonly a: PassCapture;
   readonly b: PassCapture;
-  readonly c: PassCapture;
+  // Absent when the acceptance pass did not complete. Nothing is judged on what was not
+  // seen: no host counts as gated or as ignoring the refusal without pass C.
+  readonly c?: PassCapture;
   readonly refusal: ConsentRefusal;
   readonly identity: EvidenceIdentity;
   // Screenshots of the refusal path, for the findings about the path itself.
@@ -153,10 +155,10 @@ function consentPlatformHosts(input: DifferInput, site: string): Set<string> {
     .filter(
       (r) =>
         input.b.requests.some((x) => x.host === r.host) &&
-        input.c.requests.some((x) => x.host === r.host),
+        (!input.c || input.c.requests.some((x) => x.host === r.host)),
     );
   for (const r of everywhere) {
-    const anyTracking = [input.a, input.b, input.c].some((cap) =>
+    const anyTracking = [input.a, input.b, ...(input.c ? [input.c] : [])].some((cap) =>
       cap.requests.some(
         (x) =>
           x.host === r.host &&
@@ -174,7 +176,7 @@ export function diffPasses(input: DifferInput): DifferResult {
   const acts = {
     a: activity(input.a, site),
     b: activity(input.b, site),
-    c: activity(input.c, site),
+    c: input.c ? activity(input.c, site) : new Map<string, HostActivity>(),
   };
   const consentHosts = consentPlatformHosts(input, site);
   const allHosts = [...new Set([...acts.a.keys(), ...acts.b.keys(), ...acts.c.keys()])].sort();
@@ -239,7 +241,9 @@ export function diffPasses(input: DifferInput): DifferResult {
     source: { host: site },
     body,
     hash,
-    caption: `Pass B (reject all) vs Pass C (accept all) — ${identical} host${identical === 1 ? '' : 's'} identical`,
+    caption: input.c
+      ? `Pass B (reject all) vs Pass C (accept all) — ${identical} host${identical === 1 ? '' : 's'} identical`
+      : 'Pass B (reject all) recorded; Pass C (accept all) did not complete',
   });
   const diffRef = refTo(diffRow);
   const pathRefs = input.refusalEvidence ?? [];

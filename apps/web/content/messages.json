@@ -544,6 +544,21 @@
     "da": "Prøv igen",
     "de": "Noch einmal versuchen"
   },
+  "scan.outcome.failed.heading": {
+    "en": "The check stopped before it finished.",
+    "da": "Tjekket stoppede, før det var færdigt.",
+    "de": "Die Prüfung wurde abgebrochen, bevor sie fertig war."
+  },
+  "scan.outcome.failed.body": {
+    "en": "Something went wrong on our side, not on your site. Try again in a moment.",
+    "da": "Noget gik galt hos os, ikke på din side. Prøv igen om lidt.",
+    "de": "Auf unserer Seite ist etwas schiefgegangen, nicht auf Ihrer Website. Versuchen Sie es gleich noch einmal."
+  },
+  "scan.outcome.failed.cta": {
+    "en": "Try again",
+    "da": "Prøv igen",
+    "de": "Noch einmal versuchen"
+  },
   "scan.stage.firstLoad": {
     "en": "Recording what loads before you agree",
     "da": "Registrerer, hvad der indlæses, før du siger ja",

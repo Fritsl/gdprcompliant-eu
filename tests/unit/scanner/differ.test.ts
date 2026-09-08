@@ -296,3 +296,32 @@ describe('the refusal path itself', () => {
       expect(d.evidence.map((e) => e.evidenceId)).toContain(screenshot.evidenceId);
   });
 });
+
+describe('without the acceptance pass', () => {
+  // Seen on a large news site: pass C did not settle inside its budget. What pass A and
+  // pass B showed is still judged; nothing is concluded about acceptance.
+  const result = diffPasses({
+    a: capture('A', [request(CMP), ...trackerRequests()]),
+    b: capture('B', [request(CMP), ...trackerRequests()], { consent: consented('B') }),
+    refusal: simpleRefusal(),
+    identity,
+  });
+
+  it('still raises what the first load showed, and nothing that needs pass C', () => {
+    expect(PassDiffSchema.safeParse(result.diff).success).toBe(true);
+    expect(result.diff.beforeInteraction).toEqual(['analytics.tracker.test', 'pixel.social.test']);
+    expect(result.diff.ignoringRefusal).toEqual([]);
+    expect(result.diff.gated).toEqual([]);
+    expect(result.drafts.map((d) => d.typeId)).toEqual([CONSENT_FINDINGS.beforeInteraction]);
+    const by = Object.fromEntries(result.diff.hosts.map((h) => [h.host, h]));
+    expect(by['analytics.tracker.test']?.afterAcceptance).toBe(false);
+    expect(by['consent.cmp.test']?.role).toBe('consent-platform');
+  });
+
+  it('says on the evidence that pass C did not complete', () => {
+    const diffRow = result.evidence.find((e) => e.kind === 'pass_diff');
+    expect(diffRow?.caption).toBe(
+      'Pass B (reject all) recorded; Pass C (accept all) did not complete',
+    );
+  });
+});

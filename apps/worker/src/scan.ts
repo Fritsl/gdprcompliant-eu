@@ -19,11 +19,14 @@ import type { JobQueue } from '@gc/jobs';
 import { event, span } from '@gc/telemetry';
 import type { Catalogue } from '@gc/remedies';
 import {
+  PassTimeoutError,
   captureToEvidence,
   collectPassA,
   collectPassB,
   collectPassC,
   diffPasses,
+  type PassBResult,
+  type PassCResult,
   discoverPolicies,
   inventoryForms,
   refTo,
@@ -42,7 +45,7 @@ import {
   type SupplyChainResult,
 } from '@gc/scanner';
 import type { OutboundFetch } from '@gc/config';
-import type { Evidence, SupplyChainLimits } from '@gc/contracts';
+import type { ConsentFindingDraft, Evidence, SupplyChainLimits } from '@gc/contracts';
 
 // The scan worker (U-02). One job per front-door request: reach the site, run the three
 // passes and the checks, open the case in the target's own jurisdiction, record the
@@ -149,40 +152,68 @@ export async function registerScanWorker(
     await mark('opening', 'ok');
     await mark('first-load', 'ok', `${new Set(a.capture.requests.map((r) => r.host)).size} hosts`);
 
-    // 2. The banner and the refusal: Pass B, then the acceptance: Pass C.
+    // 2. The banner and the refusal: Pass B, then the acceptance: Pass C. A pass that
+    // does not settle inside its budget (seen on a large news site after accepting
+    // everything) is a "could not tell" on its stage, never a dead scan: the case is
+    // written from what the other passes saw, and nothing is judged on the pass that
+    // did not complete.
     await mark('banner', 'on');
     const evidence: Evidence[] = captureToEvidence(a.capture, a.screenshot, identity);
-    const b = await collectPassB(options.pool, { url }, { identity, ...quiet, now });
-    evidence.push(...captureToEvidence(b.capture, b.screenshot, identity), ...b.evidence);
-    const refusal = b.refusal;
-    if (refusal.outcome === 'no_banner') {
-      await mark('banner', 'na', 'no banner');
-      await mark('refusing', 'na');
-      await mark('after-refusal', 'na');
-      await mark('accepting', 'na');
-    } else {
-      await mark('banner', 'ok', `${refusal.platform ?? 'banner'} found`);
-      await mark(
-        'refusing',
-        refusal.outcome === 'refused' ? 'ok' : 'undet',
-        refusal.summary.slice(0, 200),
-      );
-      await mark('after-refusal', refusal.outcome === 'refused' ? 'ok' : 'skip');
-      await mark('accepting', 'on');
+    const cutOff = (e: unknown): string | undefined =>
+      e instanceof PassTimeoutError ? e.message.slice(0, 200) : undefined;
+    let b: PassBResult | undefined;
+    try {
+      b = await collectPassB(options.pool, { url }, { identity, ...quiet, now });
+    } catch (e) {
+      const detail = cutOff(e);
+      if (detail === undefined) throw e;
+      await mark('banner', 'undet', detail);
+      for (const s of ['refusing', 'after-refusal', 'accepting'] as const) await mark(s, 'skip');
     }
-    const c = await collectPassC(options.pool, { url }, { identity, ...quiet, now });
-    evidence.push(...captureToEvidence(c.capture, c.screenshot, identity), ...c.evidence);
-    if (refusal.outcome !== 'no_banner') {
-      await mark('accepting', c.capture.consent?.outcome === 'accepted' ? 'ok' : 'undet');
+    const refusal = b?.refusal;
+    let c: PassCResult | undefined;
+    if (b && refusal) {
+      evidence.push(...captureToEvidence(b.capture, b.screenshot, identity), ...b.evidence);
+      if (refusal.outcome === 'no_banner') {
+        await mark('banner', 'na', 'no banner');
+        await mark('refusing', 'na');
+        await mark('after-refusal', 'na');
+        await mark('accepting', 'na');
+      } else {
+        await mark('banner', 'ok', `${refusal.platform ?? 'banner'} found`);
+        await mark(
+          'refusing',
+          refusal.outcome === 'refused' ? 'ok' : 'undet',
+          refusal.summary.slice(0, 200),
+        );
+        await mark('after-refusal', refusal.outcome === 'refused' ? 'ok' : 'skip');
+        await mark('accepting', 'on');
+      }
+      try {
+        c = await collectPassC(options.pool, { url }, { identity, ...quiet, now });
+      } catch (e) {
+        const detail = cutOff(e);
+        if (detail === undefined) throw e;
+        await mark('accepting', 'undet', detail);
+      }
+      if (c) {
+        evidence.push(...captureToEvidence(c.capture, c.screenshot, identity), ...c.evidence);
+        if (refusal.outcome !== 'no_banner') {
+          await mark('accepting', c.capture.consent?.outcome === 'accepted' ? 'ok' : 'undet');
+        }
+      }
     }
-    const diffed = diffPasses({
-      a: a.capture,
-      b: b.capture,
-      c: c.capture,
-      refusal,
-      identity,
-      refusalEvidence: b.evidence.map((e) => refTo(e)),
-    });
+    const diffed: { drafts: readonly ConsentFindingDraft[]; evidence: readonly Evidence[] } =
+      b && refusal
+        ? diffPasses({
+            a: a.capture,
+            b: b.capture,
+            ...(c ? { c: c.capture } : {}),
+            refusal,
+            identity,
+            refusalEvidence: b.evidence.map((e) => refTo(e)),
+          })
+        : { drafts: [], evidence: [] };
     evidence.push(...diffed.evidence);
 
     // 3. The policy, the recipients, the security surface.
@@ -221,7 +252,7 @@ export async function registerScanWorker(
     await mark(
       'recipients',
       recipients.observations.some((o) => o.outcome === 'fail') ? 'undet' : 'ok',
-      `${c.vendorHosts.length} third-party host(s)`,
+      c ? `${c.vendorHosts.length} third-party host(s)` : 'accept pass not completed',
     );
     await mark('security', 'on');
     const surface = await runSecurityChecks(
@@ -270,7 +301,7 @@ export async function registerScanWorker(
     // at the site its own terms are published on.
     if (options.agreements && deep.allowed) {
       const seen = new Set<string>();
-      for (const r of resolveHosts(c.vendorHosts)) {
+      for (const r of resolveHosts(c?.vendorHosts ?? [])) {
         if (r.resolution !== 'resolved' || r.entry.role !== 'processor' || seen.has(r.entry.id))
           continue;
         seen.add(r.entry.id);
@@ -338,7 +369,7 @@ export async function registerScanWorker(
         forms.inventory.observations.filter((o) => o.outcome === 'pass').length +
         (policies.discovery.observation.outcome === 'pass' ? 1 : 0) +
         (diffed.drafts.length === 0 ? 1 : 0),
-      undetermined: refusal.outcome === 'undetermined' ? 1 : 0,
+      undetermined: !refusal || refusal.outcome === 'undetermined' ? 1 : 0,
       actor: { kind: 'scanner' },
       now: now(),
     });
@@ -361,8 +392,9 @@ export async function registerScanWorker(
     // The lane (L-01): scored from what was seen, stored, never shown to the customer.
     await assignLane(connection, opened.tenantId, opened.caseId);
     await mark('writing-up', 'ok', `${assembled.findings.length} finding(s)`);
-    const outcome: ScanProgress['outcome'] =
-      refusal.outcome === 'undetermined'
+    const outcome: ScanProgress['outcome'] = !refusal
+      ? 'case'
+      : refusal.outcome === 'undetermined'
         ? 'no_refusal'
         : refusal.outcome === 'no_banner' && diffed.drafts.length === 0
           ? 'no_banner_needed'

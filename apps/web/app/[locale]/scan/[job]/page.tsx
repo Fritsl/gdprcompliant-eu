@@ -57,6 +57,11 @@ export default async function ScanPage({
       body: t(locale, 'scan.outcome.noRefusal.body').text,
       cta: t(locale, 'scan.outcome.noRefusal.cta').text,
     },
+    failed: {
+      heading: t(locale, 'scan.outcome.failed.heading').text,
+      body: t(locale, 'scan.outcome.failed.body').text,
+      cta: t(locale, 'scan.outcome.failed.cta').text,
+    },
     unreachable: {
       heading: t(locale, 'scan.outcome.unreachable.heading').text,
       body: t(locale, 'scan.outcome.unreachable.body').text,
@@ -82,7 +87,7 @@ export default async function ScanPage({
         initial={{
           rows,
           done: view.done,
-          ...(failedOutright ? { outcome: 'unreachable' } : {}),
+          ...(failedOutright ? { outcome: 'failed' } : {}),
           ...(view.progress.outcome ? { outcome: view.progress.outcome } : {}),
           ...(view.progress.caseToken ? { caseToken: view.progress.caseToken } : {}),
         }}

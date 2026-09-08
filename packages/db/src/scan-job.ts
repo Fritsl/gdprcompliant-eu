@@ -33,7 +33,15 @@ export const ScanStageStateSchema = z.object({
 });
 export type ScanStageState = z.infer<typeof ScanStageStateSchema>;
 
-export const SCAN_OUTCOMES = ['case', 'no_banner_needed', 'no_refusal', 'unreachable'] as const;
+// `failed` is the check stopping on our side, said as such; it is never dressed up as
+// the site not answering.
+export const SCAN_OUTCOMES = [
+  'case',
+  'no_banner_needed',
+  'no_refusal',
+  'unreachable',
+  'failed',
+] as const;
 export const ScanOutcomeSchema = z.enum(SCAN_OUTCOMES);
 export type ScanOutcome = z.infer<typeof ScanOutcomeSchema>;
 

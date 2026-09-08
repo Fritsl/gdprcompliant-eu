@@ -34,6 +34,7 @@ export interface ScanProgressProps {
 
 interface WireView {
   readonly done: boolean;
+  readonly failed: boolean;
   readonly progress: {
     readonly stages: readonly { stage: string; mark: string; detail?: string }[];
     readonly outcome?: string;
@@ -58,7 +59,12 @@ export function ScanProgress(props: ScanProgressProps) {
             : { ...r, mark: 'todo' };
         }),
         done: view.done,
-        ...(view.progress.outcome ? { outcome: view.progress.outcome } : {}),
+        // A job that died before it wrote an outcome is said as such, not left spinning.
+        ...(view.progress.outcome
+          ? { outcome: view.progress.outcome }
+          : view.done && view.failed
+            ? { outcome: 'failed' }
+            : {}),
         ...(view.progress.caseToken ? { caseToken: view.progress.caseToken } : {}),
       });
     };
