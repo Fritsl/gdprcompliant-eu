@@ -544,6 +544,21 @@
     "da": "Prøv igen",
     "de": "Noch einmal versuchen"
   },
+  "scan.outcome.unsupported.heading": {
+    "en": "We cannot check this site yet.",
+    "da": "Vi kan ikke tjekke denne side endnu.",
+    "de": "Diese Website können wir noch nicht prüfen."
+  },
+  "scan.outcome.unsupported.body": {
+    "en": "The check reads a site against Danish or German law, so it needs a .dk or .de address, or pages written in Danish or German.",
+    "da": "Tjekket læser en side op mod dansk eller tysk lov, så det kræver en .dk- eller .de-adresse eller sider skrevet på dansk eller tysk.",
+    "de": "Die Prüfung liest eine Website gegen dänisches oder deutsches Recht; dafür braucht es eine .dk- oder .de-Adresse oder Seiten auf Dänisch oder Deutsch."
+  },
+  "scan.outcome.unsupported.cta": {
+    "en": "Try another site",
+    "da": "Prøv en anden side",
+    "de": "Eine andere Website versuchen"
+  },
   "scan.outcome.failed.heading": {
     "en": "The check stopped before it finished.",
     "da": "Tjekket stoppede, før det var færdigt.",

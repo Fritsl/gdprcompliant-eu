@@ -283,7 +283,7 @@ export async function registerScanWorker(
     } catch (e) {
       if (e instanceof UnsupportedTarget) {
         await mark('writing-up', 'fail', e.message.slice(0, 200));
-        await finish('unreachable');
+        await finish('unsupported');
         return;
       }
       throw e;

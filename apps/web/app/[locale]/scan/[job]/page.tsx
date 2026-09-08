@@ -57,6 +57,11 @@ export default async function ScanPage({
       body: t(locale, 'scan.outcome.noRefusal.body').text,
       cta: t(locale, 'scan.outcome.noRefusal.cta').text,
     },
+    unsupported: {
+      heading: t(locale, 'scan.outcome.unsupported.heading').text,
+      body: t(locale, 'scan.outcome.unsupported.body').text,
+      cta: t(locale, 'scan.outcome.unsupported.cta').text,
+    },
     failed: {
       heading: t(locale, 'scan.outcome.failed.heading').text,
       body: t(locale, 'scan.outcome.failed.body').text,

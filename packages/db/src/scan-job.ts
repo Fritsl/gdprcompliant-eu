@@ -33,13 +33,15 @@ export const ScanStageStateSchema = z.object({
 });
 export type ScanStageState = z.infer<typeof ScanStageStateSchema>;
 
-// `failed` is the check stopping on our side, said as such; it is never dressed up as
-// the site not answering.
+// `unsupported` is a site the product cannot bind to a jurisdiction it knows (I-03);
+// `failed` is the check stopping on our side. Both are said as such, never dressed up
+// as the site not answering.
 export const SCAN_OUTCOMES = [
   'case',
   'no_banner_needed',
   'no_refusal',
   'unreachable',
+  'unsupported',
   'failed',
 ] as const;
 export const ScanOutcomeSchema = z.enum(SCAN_OUTCOMES);
