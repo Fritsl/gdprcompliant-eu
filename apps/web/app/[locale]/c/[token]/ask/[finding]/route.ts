@@ -1,5 +1,6 @@
 import { askForOwner } from '@/lib/case';
 import { asLocale } from '@/lib/i18n';
+import { redirectTo } from '@/lib/redirect';
 
 // "Ask for an answer" on a remedy with none (U-04, R-05): one row in the demand ledger,
 // and back to the case.
@@ -19,5 +20,5 @@ export async function POST(
   url.pathname = `/${locale}/c/${token}`;
   url.search = '?asked=1';
   url.hash = finding;
-  return Response.redirect(url.toString(), 303);
+  return redirectTo(url);
 }

@@ -1,5 +1,6 @@
 import { checkForOwner } from '@/lib/case';
 import { asLocale } from '@/lib/i18n';
+import { redirectTo } from '@/lib/redirect';
 
 // "Check it again" on the case page (U-04): a re-check job for the worker, and the
 // holder of the token goes back to the case, where the outcome is reported as it lands.
@@ -19,5 +20,5 @@ export async function POST(
   url.pathname = `/${locale}/c/${token}`;
   url.search = `?recheck=${encodeURIComponent(jobId)}`;
   url.hash = finding;
-  return Response.redirect(url.toString(), 303);
+  return redirectTo(url);
 }

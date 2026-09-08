@@ -1,5 +1,6 @@
 import { publishTrustForOwner } from '@/lib/case';
 import { asLocale } from '@/lib/i18n';
+import { redirectTo } from '@/lib/redirect';
 
 // Publishing the public progress page (U-05): an explicit act by the holder, on the
 // timeline, and back to the case where the link is shown.
@@ -18,5 +19,5 @@ export async function POST(
   const url = new URL(request.url);
   url.pathname = `/${locale}/c/${token}`;
   url.search = `?trust=${outcome}`;
-  return Response.redirect(url.toString(), 303);
+  return redirectTo(url);
 }

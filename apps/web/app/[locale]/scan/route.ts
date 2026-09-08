@@ -1,5 +1,6 @@
 import { startScan } from '@/lib/scan';
 import { asLocale } from '@/lib/i18n';
+import { redirectTo } from '@/lib/redirect';
 
 // The front door's one action (U-02): a domain in, a scan started, the visitor sent to
 // watch it. A refusal goes back to the front door with the reason, never with a stack
@@ -31,11 +32,9 @@ export async function POST(request: Request, context: { params: Promise<{ locale
   url.search = '';
   if (outcome.ok) {
     url.pathname = `/${locale}/scan/${outcome.jobId}`;
-    return Response.redirect(url.toString(), 303);
+    return redirectTo(url);
   }
   url.pathname = `/${locale}`;
   url.search = `?outcome=${outcome.reason}${outcome.retryAfter ? `&retry=${outcome.retryAfter}` : ''}`;
-  const headers: Record<string, string> = { location: url.toString() };
-  if (outcome.retryAfter) headers['retry-after'] = String(outcome.retryAfter);
-  return new Response(null, { status: 303, headers });
+  return redirectTo(url, outcome.retryAfter ? { 'retry-after': String(outcome.retryAfter) } : {});
 }

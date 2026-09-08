@@ -1,5 +1,6 @@
 import { revokeShareForOwner } from '@/lib/case';
 import { asLocale } from '@/lib/i18n';
+import { redirectTo } from '@/lib/redirect';
 
 // Revoking a summary link (U-07): the link answers nothing from now on, and the
 // revocation is on the timeline like the creation was.
@@ -19,5 +20,5 @@ export async function POST(
   url.pathname = `/${locale}/c/${token}`;
   url.search = '?share=revoked';
   url.hash = 'upward';
-  return Response.redirect(url.toString(), 303);
+  return redirectTo(url);
 }

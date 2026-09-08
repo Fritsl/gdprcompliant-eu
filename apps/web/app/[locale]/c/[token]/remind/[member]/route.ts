@@ -1,5 +1,6 @@
 import { remindForToken } from '@/lib/case';
 import { asLocale } from '@/lib/i18n';
+import { redirectTo } from '@/lib/redirect';
 
 // A reminder to a colleague who has not finished (P-02): once a day at most.
 
@@ -17,5 +18,5 @@ export async function POST(
   const url = new URL(request.url);
   url.pathname = `/${locale}/c/${token}`;
   url.search = outcome === 'ok' ? '' : `?outcome=${outcome}`;
-  return Response.redirect(url.toString(), 303);
+  return redirectTo(url);
 }

@@ -1,5 +1,6 @@
 import { unpublishTrustForOwner } from '@/lib/case';
 import { asLocale } from '@/lib/i18n';
+import { redirectTo } from '@/lib/redirect';
 
 // Taking the public progress page down (U-05): as explicit as putting it up, and on the
 // timeline the same way.
@@ -18,5 +19,5 @@ export async function POST(
   const url = new URL(request.url);
   url.pathname = `/${locale}/c/${token}`;
   url.search = `?trust=${outcome}`;
-  return Response.redirect(url.toString(), 303);
+  return redirectTo(url);
 }

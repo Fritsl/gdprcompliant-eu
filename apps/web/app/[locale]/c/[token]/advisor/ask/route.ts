@@ -1,5 +1,6 @@
 import { adviseForOwner } from '@/lib/advisor';
 import { asLocale } from '@/lib/i18n';
+import { redirectTo } from '@/lib/redirect';
 
 // One question to the advisor (V-02): answered from the case and the law, recorded on
 // the timeline, and back to the advisor page where the answer now stands.
@@ -27,5 +28,5 @@ export async function POST(
   const url = new URL(request.url);
   url.pathname = `/${locale}/c/${token}/advisor`;
   url.search = `?outcome=${result.outcome}${result.thread ? `&thread=${encodeURIComponent(result.thread)}` : ''}`;
-  return Response.redirect(url.toString(), 303);
+  return redirectTo(url);
 }

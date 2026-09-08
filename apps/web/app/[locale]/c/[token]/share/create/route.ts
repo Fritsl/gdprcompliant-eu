@@ -1,5 +1,6 @@
 import { createShareForOwner } from '@/lib/case';
 import { asLocale } from '@/lib/i18n';
+import { redirectTo } from '@/lib/redirect';
 
 // A summary link for someone above the case (U-07): created by the holder, on the
 // timeline, shown on the case page to hand over.
@@ -23,5 +24,5 @@ export async function POST(
   url.pathname = `/${locale}/c/${token}`;
   url.search = '?share=created';
   url.hash = 'upward';
-  return Response.redirect(url.toString(), 303);
+  return redirectTo(url);
 }

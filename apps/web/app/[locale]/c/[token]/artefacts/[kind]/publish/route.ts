@@ -1,6 +1,7 @@
 import { ARTEFACT_KINDS, type ArtefactKind } from '@gc/contracts';
 import { publishForOwner } from '@/lib/case';
 import { asLocale } from '@/lib/i18n';
+import { redirectTo } from '@/lib/redirect';
 
 // Publishing is recorded, never performed here: the document leaves by export, and
 // where it went is written on the timeline (A-09).
@@ -25,5 +26,5 @@ export async function POST(
   const url = new URL(request.url);
   url.pathname = `/${locale}/c/${token}/artefacts/${kind}`;
   url.search = `?outcome=${outcome === 'ok' ? 'published' : outcome}`;
-  return Response.redirect(url.toString(), 303);
+  return redirectTo(url);
 }

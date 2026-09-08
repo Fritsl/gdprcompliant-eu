@@ -1,5 +1,6 @@
 import { checkForMember } from '@/lib/case';
 import { asLocale } from '@/lib/i18n';
+import { redirectTo } from '@/lib/redirect';
 
 // "I do not know, check it for me" (P-01): the item's proposal goes to the agent's
 // queue, and the colleague goes back to their list.
@@ -18,5 +19,5 @@ export async function POST(
   const url = new URL(request.url);
   url.pathname = `/${locale}/m/${invite}`;
   url.search = '?checked=1';
-  return Response.redirect(url.toString(), 303);
+  return redirectTo(url);
 }

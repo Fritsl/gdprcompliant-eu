@@ -1,5 +1,6 @@
 import { deepScanForOwner } from '@/lib/deep-scan';
 import { asLocale } from '@/lib/i18n';
+import { redirectTo } from '@/lib/redirect';
 
 // "Look deeper" on a claimed case (T-09): one job for the worker, and back to the case,
 // which reads the job while it runs.
@@ -21,5 +22,5 @@ export async function POST(
     result.outcome === 'queued' && result.jobId
       ? `?deep=${encodeURIComponent(result.jobId)}`
       : `?outcome=${result.outcome}`;
-  return Response.redirect(url.toString(), 303);
+  return redirectTo(url);
 }

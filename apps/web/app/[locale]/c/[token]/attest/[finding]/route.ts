@@ -1,5 +1,6 @@
 import { attestForOwner } from '@/lib/case';
 import { asLocale } from '@/lib/i18n';
+import { redirectTo } from '@/lib/redirect';
 
 // "I have done this" (U-03, C-05): a finding whose remedy is verified by attestation
 // closes on the holder's word, and the word is on the timeline.
@@ -18,5 +19,5 @@ export async function POST(
   const url = new URL(request.url);
   url.pathname = `/${locale}/c/${token}`;
   url.search = '?attested=1';
-  return Response.redirect(url.toString(), 303);
+  return redirectTo(url);
 }

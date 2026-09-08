@@ -1,5 +1,6 @@
 import { asLocale } from '@/lib/i18n';
 import { confirmForOwner } from '@/lib/register';
+import { redirectTo } from '@/lib/redirect';
 
 // The holder confirms a register row (G-01), answering the retention as they do; the
 // drafts it replaces are superseded on the graph, and the page shows the row confirmed.
@@ -22,5 +23,5 @@ export async function POST(
   const url = new URL(request.url);
   url.pathname = `/${locale}/c/${token}/register`;
   url.search = '?confirmed=1';
-  return Response.redirect(url.toString(), 303);
+  return redirectTo(url);
 }

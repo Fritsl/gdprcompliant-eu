@@ -1,5 +1,6 @@
 import { ARTEFACT_KINDS, type ArtefactKind } from '@gc/contracts';
 import { generateForOwner } from '@/lib/case';
+import { redirectTo } from '@/lib/redirect';
 
 // Write a draft from the register (G-02), then back to the preview with the outcome.
 
@@ -15,8 +16,7 @@ export async function POST(
   if (!isKind(kind)) return new Response('Not found', { status: 404 });
   const outcome = await generateForOwner(token, kind);
   if (outcome === 'not_found') return new Response('Not found', { status: 404 });
-  return Response.redirect(
+  return redirectTo(
     new URL(`/${locale}/c/${token}/artefacts/${kind}?outcome=${outcome}`, _request.url),
-    303,
   );
 }

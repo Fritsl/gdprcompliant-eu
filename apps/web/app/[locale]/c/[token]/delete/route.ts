@@ -1,5 +1,6 @@
 import { deleteForToken } from '@/lib/case';
 import { asLocale } from '@/lib/i18n';
+import { redirectTo } from '@/lib/redirect';
 
 // The hard delete (C-04): a POST from the case page, the case number typed back as
 // confirmation. Afterwards the token resolves to nothing; the page that follows shows
@@ -23,5 +24,5 @@ export async function POST(
   const url = new URL(request.url);
   url.pathname = `/${locale}/deleted`;
   url.search = `?audit=${stub.id}&rows=${stub.rowsRemoved}`;
-  return Response.redirect(url.toString(), 303);
+  return redirectTo(url);
 }

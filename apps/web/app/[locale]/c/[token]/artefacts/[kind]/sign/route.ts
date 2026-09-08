@@ -1,6 +1,7 @@
 import { ARTEFACT_KINDS, type ArtefactKind } from '@gc/contracts';
 import { signForOwner } from '@/lib/case';
 import { asLocale } from '@/lib/i18n';
+import { redirectTo } from '@/lib/redirect';
 
 // A person signs the version and the bytes they read (A-09). Anything else is stale, and
 // the page says so.
@@ -26,5 +27,5 @@ export async function POST(
   const url = new URL(request.url);
   url.pathname = `/${locale}/c/${token}/artefacts/${kind}`;
   url.search = `?outcome=${outcome === 'ok' ? 'signed' : outcome}`;
-  return Response.redirect(url.toString(), 303);
+  return redirectTo(url);
 }

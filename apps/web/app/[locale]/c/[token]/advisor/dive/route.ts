@@ -1,5 +1,6 @@
 import { diveForOwner } from '@/lib/advisor';
 import { asLocale } from '@/lib/i18n';
+import { redirectTo } from '@/lib/redirect';
 
 // A dive (V-05): the element posts its kind, its reference and its text; turn zero is
 // seeded from them, or the conversation the element came from gets one more turn; then
@@ -30,5 +31,5 @@ export async function POST(
   const url = new URL(request.url);
   url.pathname = `/${locale}/c/${token}/advisor`;
   url.search = `?outcome=${result.outcome}${result.thread ? `&thread=${encodeURIComponent(result.thread)}` : ''}`;
-  return Response.redirect(url.toString(), 303);
+  return redirectTo(url);
 }

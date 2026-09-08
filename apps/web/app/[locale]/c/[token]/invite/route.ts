@@ -1,5 +1,6 @@
 import { inviteForToken } from '@/lib/case';
 import { asLocale } from '@/lib/i18n';
+import { redirectTo } from '@/lib/redirect';
 
 // An invitation from the person holding the case (P-02): their name, the colleague's
 // address and desk. Back to the case page with the outcome, whatever it was.
@@ -31,5 +32,5 @@ export async function POST(
   const url = new URL(request.url);
   url.pathname = `/${locale}/c/${token}`;
   url.search = outcome === 'ok' ? '' : `?outcome=${outcome}`;
-  return Response.redirect(url.toString(), 303);
+  return redirectTo(url);
 }

@@ -1,5 +1,6 @@
 import { revokeForToken } from '@/lib/case';
 import { asLocale } from '@/lib/i18n';
+import { redirectTo } from '@/lib/redirect';
 
 // The owner withdraws an invitation (P-02): the link stops working now.
 
@@ -17,5 +18,5 @@ export async function POST(
   const url = new URL(request.url);
   url.pathname = `/${locale}/c/${token}`;
   url.search = outcome === 'ok' ? '' : `?outcome=${outcome}`;
-  return Response.redirect(url.toString(), 303);
+  return redirectTo(url);
 }
