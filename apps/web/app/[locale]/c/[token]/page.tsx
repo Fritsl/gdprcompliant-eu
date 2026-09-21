@@ -544,7 +544,7 @@ export default async function CasePage({
                 fragment={`${f.typeId}: ${f.remedy.title}`}
               />
               {f.citations.length > 0 ? (
-                <p className="cites">
+                <div className="cites">
                   <Text of={t(locale, 'case.rule')} />
                   {f.citations.map((c) => (
                     <span className="cite" key={c}>
@@ -558,7 +558,7 @@ export default async function CasePage({
                       <Text of={t(locale, 'case.guide')} />
                     </a>
                   ) : null}
-                </p>
+                </div>
               ) : null}
               <details className="drawer evidence" open data-evidence-for={f.id}>
                 <summary>
